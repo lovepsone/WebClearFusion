@@ -17,12 +17,13 @@
 	if ($lang == 'en') require "lang/text.".$lang.".php";
               else require "lang/text.".$lang.".".$encoding.".php";
 
-	$cssfile = "skins/$skin/style.css";
-	$skinfile = "skins/$skin/skin.php";
+	$cssfile = "themes/$theme/style.css";
+	$themefile = "themes/$theme/skin.php";
+	$themedir  = "themes/$theme/img/";
 
 	if ($encoding == 'cp1251') $code_page = 'windows-1251';
    		else $code_page = 'utf-8';
 
-	if (file_exists($skinfile)) include($skinfile);
-   		else include("skins/default/skin.php");
+	if (file_exists($themefile)) include($themefile);
+   		else include("themes/default/theme.php");
 ?>

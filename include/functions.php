@@ -14,36 +14,36 @@
 
 	function selectDb($jmeno)
 		{
-  			global $characters, $mangos, $realmd, $lk, $encoding;
+  			global $characters, $mangos, $realmd, $wcf, $encoding;
   
   			switch ($jmeno):
   
   			case ("realmd"):
-  			$db = $realmd['db'];
-  			$ip = $realmd['host'];
-  			$userdb = $realmd['user'];
-  			$pw = $realmd['pass'];
+  			$db = $r_db;
+  			$ip = $r_ip;
+  			$userdb = $r_userdb;
+  			$pw = $r_pw;
   			break;
   
   			case ("characters"):
-  			$db = $characters['db'];
-  			$ip = $characters['host'];
-  			$userdb = $characters['user'];
-  			$pw = $characters['pass'];
+  			$db = $c_db;
+  			$ip = $c_ip;
+  			$userdb = $c_userdb;
+  			$pw = $c_pw;
   			break;
   
  			case ("mangos"):
-  			$db = $mangos['db'];
-  			$ip = $mangos['host'];
-  			$userdb = $mangos['user'];
-  			$pw = $mangos['pass'];
+  			$db = $m_db;
+  			$ip = $m_ip;
+  			$userdb = $m_userdb;
+  			$pw = $m_pw;
   			break;
   
-  			case ("lk"):
-  			$db = $lk['db'];
-  			$ip = $lk['host'];
-  			$userdb = $lk['user'];
-  			$pw = $lk['pass'];
+  			case ("wcf"):
+  			$db = $w_db;
+  			$ip = $w_ip;
+  			$userdb = $w_userdb;
+  			$pw = $w_pw;
   			break;
   
   			endswitch;

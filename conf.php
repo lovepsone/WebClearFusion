@@ -48,12 +48,11 @@ $c_db = 	'characters';
 $namesite =	'World of warcraft';
 $lang = 	'ru';
 $encoding = 	'utf8';
-$top_panel =	'on';
 
 //==================================================================
-// Выбор скина по умолчанию (default)
+// Выбор темы по умолчанию (default)
 //==================================================================
-$skin = 	'default';
+$theme = 	'default';
 
 //error_reporting(E_ERROR | E_PARSE | E_WARNING);
 error_reporting(E_ALL);
