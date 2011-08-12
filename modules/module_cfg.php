@@ -12,6 +12,6 @@
 
 $modules  = array (
 //       modul                path
-	''     => array ('modules/.php'),  
+	'login'    => array ('include/authpanel.php',      257,     -1,     3,   0  ),
 );
 ?>

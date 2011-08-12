@@ -54,6 +54,11 @@ $encoding = 	'utf8';
 //==================================================================
 $theme = 	'default';
 
+//==================================================================
+// Разрешение\Запрет функции восстановления пароля (on\off)
+//==================================================================
+$PassRemember  = 'on';
+
 //error_reporting(E_ERROR | E_PARSE | E_WARNING);
 error_reporting(E_ALL);
 ini_set('display_errors', 0); //disable on production servers!

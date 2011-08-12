@@ -31,7 +31,7 @@
       <tr>
         <td width="299" height="172" align="left" valign="top" background="<?php echo $themedir; ?>ll.jpg">&nbsp;</td>
       </tr>      
-    </table><br><div align="center"><?php /*require "panel.php";*/ ?></div>	</td>
+    </table><br><div align="center"><?php require "panel.php"; ?></div>	</td>
     <td align="center" valign="top" bgcolor="#FFFFFF"><div align="right">&nbsp;</div><br><?php /*require "mainform.php";*/ ?></td>
 	<td width="150" align="left" valign="top" background=""><?php /*require "rules.php";*/ ?><br><?php /*require "menu.php";*/ ?><br><?php /*require "links.php";*/ ?></td>
     <td width="25" background="<?php echo $themedir; ?>r.jpg"></td>

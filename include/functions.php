@@ -12,11 +12,11 @@
 
 	$date = date('d-m-Y [H:i:s]');
 
-	function selectDb($jmeno)
+	function selectDb($cnt)
 		{
   			global $characters, $mangos, $realmd, $wcf, $encoding;
   
-  			switch ($jmeno):
+  			switch ($cnt):
   
   			case ("realmd"):
   			$db = $r_db;
