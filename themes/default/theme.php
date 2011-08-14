@@ -39,7 +39,7 @@
 
   <tr>
     <td align="center" valign="top" background="<?php echo $themedir; ?>l.jpg">&nbsp;</td>
-    <td height="30" colspan="2" align="center" valign="bottom" bgcolor="#FFFFFF"><?php /*require "toolbar.php";*/ ?></td>
+    <td height="30" colspan="2" align="center" valign="bottom" bgcolor="#FFFFFF"><?php require "toolbar.php"; ?></td>
     <td height="30" background="<?php echo $themedir; ?>r.jpg"></td>
   </tr>
   <tr>

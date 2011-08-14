@@ -59,6 +59,12 @@ $theme = 	'default';
 //==================================================================
 $PassRemember  = 'on';
 
+//==================================================================
+// Ревизия и копирайт wcf (запрещается менять)
+//==================================================================
+$revision = 'wcf_revision_nr = [0]';
+$copyright = 'WebClearFusion v 0.0.1 from LovePSone 2010-2011';
+
 //error_reporting(E_ERROR | E_PARSE | E_WARNING);
 error_reporting(E_ALL);
 ini_set('display_errors', 0); //disable on production servers!

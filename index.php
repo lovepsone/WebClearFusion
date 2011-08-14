@@ -13,6 +13,7 @@
 	require "conf.php";
 	require "include/functions.php";
 	require "include/auth.php";
+	require "modules/module_cfg.php";
 
 	if ($lang == 'en') require "lang/text.".$lang.".php";
               else require "lang/text.".$lang.".".$encoding.".php";
