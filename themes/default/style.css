@@ -15,7 +15,8 @@ TABLE.sitetitle TD.fonmenu    {HEIGHT: 96px;WIDTH: 356px; BACKGROUND: url(img/me
 TABLE.sitetitle TD.fonmenu    {FONT-SIZE: 22px; text-align: center; vertical-align: middle; padding-bottom: 10px;}
 
 TABLE.mainmenu           {WIDTH: 225px; COLOR: #ffdd00; BACKGROUND-COLOR: #000000; FONT-SIZE: 14px; BORDER: 0; border-collapse: collapse;}
-TABLE.mainmenu TD.body   {COLOR: #ffdd00; BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/bord.gif);BACKGROUND-REPEAT: repeat-y; padding-left: 20px;}
+TABLE.mainmenu TD.right-body   {COLOR: #ffdd00; BACKGROUND-POSITION: left; BACKGROUND-IMAGE: url(img/bord.gif);BACKGROUND-REPEAT: repeat-y; padding-left: 20px;}
+TABLE.mainmenu TD.left-body   {COLOR: #ffdd00; BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/bord.gif);BACKGROUND-REPEAT: repeat-y; padding-left: 20px;}
 TABLE.mainmenu TD.left-top    {HEIGHT:134px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/left-Trollniz.gif); BACKGROUND-REPEAT: no-repeat;}
 TABLE.mainmenu TD.right-top    {HEIGHT:134px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/right-Trollniz.gif); BACKGROUND-REPEAT: no-repeat;}
 TABLE.mainmenu TD.left-bottom {HEIGHT: 23px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/left-bottom2.gif); BACKGROUND-REPEAT: no-repeat;}
