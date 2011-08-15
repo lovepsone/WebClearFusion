@@ -21,8 +21,8 @@
 	<TITLE><?php echo  $config['servername']; ?></TITLE>
 	<META http-equiv="content-type" content="text/html; charset=<?php echo  $code_page; ?>" /></HEAD>
 <?php
-	if ($lang == 'en') require "lang/text.".$lang.".php";
-              else require "lang/text.".$lang.".".$encoding.".php";
+	if ($config['lang'] == 'en') require "lang/text.".$config['lang'].".php";
+              else require "lang/text.".$config['lang'].".".$config['encoding'].".php";
 
 	$cssfile = "themes/".$config['theme']."/style.css";
 	$themefile = "themes/".$config['theme']."/theme.php";

@@ -53,7 +53,6 @@
 			mysql_query("SET NAMES '$encoding'");   
 		}
 
-
 	function getLocale($locale)
 		{
   			switch ($locale):
