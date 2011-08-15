@@ -33,20 +33,21 @@
     			</TD>
     			<TD class=righttitle></TD>
   		</TR>
-
+		<!-- Тело -->
+		<!-- Левая часть сайта -->
   		<TR>
     			<TD class=leftmenu>
       				<TABLE class=mainmenu>
        					<TBODY>
-       						<TR><TD class=top></TD></TR>
+       						<TR><TD class=left-top></TD></TR>
        						<TR><TD class=body><?php /*include("site_menu.php");*/?></TD></TR>
-        					<TR><TD class=bottom></TD></TR>
+        					<TR><TD class=left-bottom></TD></TR>
        					</TBODY>
       				</TABLE>
     			</TD>
 
     			<TD class=mybody>
-			<!--  -->
+			<!-- Центральная часть сайта -->
     				<TABLE class=mainbody cellSpacing=0 cellPadding=0>
     					<TBODY>
     						<TR>
@@ -67,8 +68,16 @@
 				</TABLE>
 			<!-- -->
   			</TD>
-
-  			<TD class=secondmenu></TD>
+			<!-- Правая часть сайта -->
+  			<TD class=rightmenu>
+      				<TABLE class=mainmenu>
+       					<TBODY>
+       						<TR><TD class=right-top></TD></TR>
+       						<TR><TD class=body><?php /*include("");*/?></TD></TR>
+        					<TR><TD class=right-bottom></TD></TR>
+       					</TBODY>
+      				</TABLE>
+			</TD>
   		</TR>
   	</TBODY>
 	</TABLE>
