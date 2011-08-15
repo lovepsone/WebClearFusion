@@ -37,11 +37,38 @@
   		<TR>
     			<TD class=leftmenu>
       				<TABLE class=mainmenu>
-       				<TBODY>
-       					<TR><TD class=top></TD></TR>
-       					<TR>
-        					<TD class=body>
+       					<TBODY>
+       						<TR><TD class=top></TD></TR>
+       						<TR><TD class=body><?php /*include("site_menu.php");*/?></TD></TR>
+        					<TR><TD class=bottom></TD></TR>
+       					</TBODY>
+      				</TABLE>
+    			</TD>
 
-<?php
-     include("site_menu.php");
-?>
+    			<TD class=mybody>
+			<!--  -->
+    				<TABLE class=mainbody cellSpacing=0 cellPadding=0>
+    					<TBODY>
+    						<TR>
+        						<TD class=bodytopleft></TD>
+        						<TD class=bodytop></TD>
+        						<TD class=bodytopright></TD>
+						</TR>
+						<TR>
+        						<TD class=bodyleft></TD>
+        						<TD class=body><center><?php include("main.php");?></center></TD>
+        						<TD class=bodyright></TD></TR>
+						<TR>
+        						<TD class=bodybottomleft></TD>
+        						<TD class=bodybottom></TD>
+        						<TD class=bodybottomright></TD>
+						</TR>
+					</TBODY>
+				</TABLE>
+			<!-- -->
+  			</TD>
+
+  			<TD class=secondmenu></TD>
+  		</TR>
+  	</TBODY>
+	</TABLE>
