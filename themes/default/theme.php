@@ -3,51 +3,55 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone
 +--------------------------------------------------------+
-| Filename: skin.php
+| Filename: teme.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $code_page; ?>" />
-<meta http-equiv="Content-Style-Type" content="text/css">
-<link href="<?php echo $cssfile; ?>" type=text/css rel=stylesheet>
-<link href="images/favicon.ico" rel="icon" type="image/ico">
-<title><?php echo $namesite; ?></title>
-</head><body>
-<div align="center">
-<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
-  <tr>
-    <td width="299" height="25" background="<?php echo $themedir; ?>lt.jpg">&nbsp;</td>
-    <td height="25" colspan="2" background="<?php echo $themedir; ?>t.jpg">&nbsp;</td>
-	<td width="25" height="25" background="<?php echo $themedir; ?>rt.jpg">&nbsp;</td>
-  </tr>
-  <tr>
-    <td width="299" align="left" valign="top" background="<?php echo $themedir; ?>l.jpg"><table width="299" border="0" cellpadding="0" cellspacing="0">
-      <tr>
-        <td width="299" height="172" align="left" valign="top" background="<?php echo $themedir; ?>ll.jpg">&nbsp;</td>
-      </tr>      
-    </table><br><div align="center"><?php require "panel.php"; ?></div>	</td>
-    <td align="center" valign="top" bgcolor="#FFFFFF"><div align="right">&nbsp;</div><br><?php /*require "mainform.php";*/ ?></td>
-	<td width="150" align="left" valign="top" background=""><?php /*require "rules.php";*/ ?><br><?php /*require "menu.php";*/ ?><br><?php /*require "links.php";*/ ?></td>
-    <td width="25" background="<?php echo $themedir; ?>r.jpg"></td>
-  </tr>
 
-  <tr>
-    <td align="center" valign="top" background="<?php echo $themedir; ?>l.jpg">&nbsp;</td>
-    <td height="30" colspan="2" align="center" valign="bottom" bgcolor="#FFFFFF"><?php require "toolbar.php"; ?></td>
-    <td height="30" background="<?php echo $themedir; ?>r.jpg"></td>
-  </tr>
-  <tr>
-    <td width="299" height="30" background="<?php echo $themedir; ?>lb.jpg"></td>
-    <td height="30" background="<?php echo $themedir; ?>b.jpg"></td>
-    <td height="30" background="<?php echo $themedir; ?>b.jpg"></td>
-    <td width="25" height="30" background="<?php echo $themedir; ?>rb.jpg"></td>
-  </tr>
-</table>
-</div>
-</body></html>
+	require "include/functions.php";
+?>
+<LINK href="themes/<?php echo $theme; ?>/style.css" type=text/css rel=stylesheet>
+<TABLE class=foundation cellSpacing=0 cellPadding=0>
+  <TBODY>
+  <TR>
+    <TD class=lefttitle></TD>
+    <TD align=center>
+          <table class=sitetitle cellSpacing=0 cellPadding=0>
+          <tbody>
+           <tr>
+            <td class=ugverhfon>&nbsp;</td>
+            <td class=topfon>&nbsp;</td>
+            <td class=fonmenu><?php  echo $config['servername']; ?></td>
+            <td class=topfon>&nbsp;</td>
+            <td class=ugverhfon2>&nbsp;</td>
+           </tr>
+          </tbody>
+          </table>
+    </TD>
+    <TD class=righttitle></TD>
+  </TR>
+  <TR>
+    <TD class=leftmenu>
+      <TABLE class=mainmenu>
+       <TBODY>
+       <TR><TD class=top></TD></TR>
+       <TR>
+        <TD class=body>
+         <!--<?php  echo $lang['search_database']; ?><br> -->
+          <FORM style="DISPLAY: inline" method=get>
+           <input name="s" type="hidden" value="all">
+           <INPUT class=ls_search alt="all" name=name style="width: 190px;"><br />
+          </form>
+<?php
+   // Получаем данные для левого меню (сначала из кэша)
+   $left_menu_file = "left_menu_".$config['lang'].".js";
+   if (checkUseCacheJs($left_menu_file, 60*60*24))
+   {
+     include("site_menu.php");
+     echo 'var leftmenu = '.php2js($menu).';';
+     echo 'generateLeftMenu("leftmenu");';
+     flushJsCache($left_menu_file);
+   }
+?>

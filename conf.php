@@ -53,6 +53,7 @@ $encoding = 	'utf8';
 // Выбор темы по умолчанию (default)
 //==================================================================
 $theme = 	'default';
+$DefaultModule = 'news';
 
 //==================================================================
 // Разрешение\Запрет функции восстановления пароля (on\off)
@@ -65,17 +66,17 @@ $PassRemember  = 'on';
 $revision = 'wcf_revision_nr = [0]';
 $copyright = 'WebClearFusion v 0.0.1 from LovePSone 2010-2011';
 
-//error_reporting(E_ERROR | E_PARSE | E_WARNING);
+error_reporting(E_ERROR | E_PARSE | E_WARNING);
 error_reporting(E_ALL);
 ini_set('display_errors', 0); //disable on production servers!
 
 //==================================================================
 // Подключенные модули
 //==================================================================
-$modules=array();
+//$modules=array();
 
 //==================================================================
-// дальнейшая настройка в modules/module_cfg.php
+// дальнейшая настройка в module/module_cfg.php
 //==================================================================
-include("modules/module_cfg.php");
+include("module/module_cfg.php");
 ?>
