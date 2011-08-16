@@ -68,7 +68,7 @@
       		}
 	else 
       		{  
-         		/*if (isset($_GET['modul']) AND isset($modules[$_GET['modul']]) AND ($modules[$_GET['modul']][2] == -1))
+         		if (isset($_GET['modul']) AND isset($modules[$_GET['modul']]) AND ($modules[$_GET['modul']][2] == -1))
 				{
             				$ModuleTxt     = $modules[$_GET['modul']][1];  
             				$ModuleAccess  = $modules[$_GET['modul']][2];  
@@ -77,7 +77,7 @@
             				$ModulePath    = $modules[$_GET['modul']][0];  
             				require $ModulePath;
                 		}
-         		else
+         		/*else
 				{
             				$ModuleTxt     = $modules[$config['default_module']][1];  
             				$ModuleAccess  = $modules[$config['default_module']][2];  
@@ -85,8 +85,8 @@
             				$ModuleCurrent = $config['default_module'];  
             				$ModulePath    = $modules[$config['default_module']][0];  
             				require $ModulePath;
-                		}
-        	}*/
+                		}*/
+        	}
 	echo"</div>";
 ?>
 

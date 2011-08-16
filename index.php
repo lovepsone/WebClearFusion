@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone

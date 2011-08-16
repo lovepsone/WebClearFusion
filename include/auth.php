@@ -26,7 +26,7 @@
        					$_SESSION['kito'] = strtoupper($_POST['auth_name']);
        					$_SESSION['slovo'] = strtoupper($par);
        					$_SESSION['gnom'] = (int)$row['gmlevel'];
-       					$_SESSION['modul'] = 'default';
+       					$_SESSION['modul'] = 'online';
        				}
 
    			header("Location: http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
