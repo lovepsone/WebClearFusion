@@ -25,7 +25,7 @@
            					<tr>
             						<td class=ugverhfon>&nbsp;</td>
             						<td class=topfon>&nbsp;</td>
-            						<td class=fonmenu><?php  echo $config['servername']; ?></td>
+            						<td class=fonmenu><a href="index.php"><?php  echo $config['servername']; ?></a></td>
             						<td class=topfon>&nbsp;</td>
             						<td class=ugverhfon2>&nbsp;</td>
            					</tr>

@@ -12,6 +12,7 @@
 
 	require "conf.php";
 	require "include/auth.php";
+	require "include/protect.php";
 
 	if ($config['encoding'] == 'cp1251') $code_page = 'windows-1251';
    		else $code_page = 'utf-8';
