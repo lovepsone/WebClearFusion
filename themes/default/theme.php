@@ -41,7 +41,7 @@
       				<TABLE class=mainmenu>
        					<TBODY>
        						<TR><TD class=left-top></TD></TR>
-       						<TR><TD class=left-body><?php include(""); ?></TD></TR>
+       						<TR><TD class=left-body><?php include("leftform.php"); ?></TD></TR>
         					<TR><TD class=left-bottom></TD></TR>
        					</TBODY>
       				</TABLE>
@@ -58,7 +58,7 @@
 						</TR>
 						<TR>
         						<TD class=bodyleft></TD>
-        						<TD class=body><center><?php include("siteform/mainform.php");?></center></TD>
+        						<TD class=body><center><?php include("mainform.php");?></center></TD>
         						<TD class=bodyright></TD></TR>
 						<TR>
         						<TD class=bodybottomleft></TD>
@@ -74,7 +74,7 @@
       				<TABLE class=mainmenu>
        					<TBODY>
        						<TR><TD class=right-top></TD></TR>
-       						<TR><TD class=right-body><?php include("siteform/rightform.php"); ?></TD></TR>
+       						<TR><TD class=right-body><?php include("rightform.php"); ?></TD></TR>
         					<TR><TD class=right-bottom></TD></TR>
        					</TBODY>
       				</TABLE>

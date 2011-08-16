@@ -72,7 +72,7 @@ ini_set('display_errors', 0); //disable on production servers!
 $modules=array();
 
 //==================================================================
-// дальнейшая настройка в modules/module_cfg.php
+// дальнейшая настройка в module/module_cfg.php
 //==================================================================
-include("modules/module_cfg.php");
+include("module/module_cfg.php");
 ?>
