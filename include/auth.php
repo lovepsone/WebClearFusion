@@ -16,10 +16,7 @@
    		{
    			$par= SHA1(strtoupper($_POST['auth_name']).':'.strtoupper($_POST['auth_pass']));
 
-			//selectDB('realmd');
-   			$cont = mysql_connect($r_ip, $r_userdb, $r_pw);
-   			mysql_select_db($r_db, $cont);
-   			mysql_query("SET NAMES '$encoding'"); 
+			selectdb('realmd'); 
    			$res = mysql_query('SELECT * FROM `account` WHERE `username`="'.strtoupper(addslashes($_POST['auth_name'])).'" AND sha_pass_hash ="'.$par.'"');
 
    			if ($row = mysql_fetch_assoc($res))
