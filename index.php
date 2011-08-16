@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone
@@ -10,6 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	session_start(); 
 	require "conf.php";
 	require "include/auth.php";
 	require "include/protect.php";

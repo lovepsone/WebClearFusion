@@ -77,7 +77,7 @@
             				$ModulePath    = $modules[$_GET['modul']][0];  
             				require $ModulePath;
                 		}
-         		/*else
+         		else
 				{
             				$ModuleTxt     = $modules[$config['default_module']][1];  
             				$ModuleAccess  = $modules[$config['default_module']][2];  
@@ -85,7 +85,7 @@
             				$ModuleCurrent = $config['default_module'];  
             				$ModulePath    = $modules[$config['default_module']][0];  
             				require $ModulePath;
-                		}*/
+                		}
         	}
 	echo"</div>";
 ?>
