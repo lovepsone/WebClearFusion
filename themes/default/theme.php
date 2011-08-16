@@ -74,7 +74,7 @@
       				<TABLE class=mainmenu>
        					<TBODY>
        						<TR><TD class=right-top></TD></TR>
-       						<TR><TD class=right-body><?php include(""); ?></TD></TR>
+       						<TR><TD class=right-body><?php include("siteform/rightform.php"); ?></TD></TR>
         					<TR><TD class=right-bottom></TD></TR>
        					</TBODY>
       				</TABLE>
