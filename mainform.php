@@ -15,14 +15,16 @@
 	$banSearch = 0;
 
 	if (isset($_SESSION['ip']))
-		{
+		{	
+			selectdb("realmd");
      			$bres = mysql_query('SELECT count(`ip`) as kol FROM `ip_banned` WHERE `ip`="'.$_SESSION['ip'].'"');
      			$brow = mysql_fetch_assoc($bres);
      			$banSearch = $banSearch + (int)$brow['kol'];
 		}
 
 	if (isset($_SESSION['user_id']))
-		{ 
+		{
+			selectdb("realmd");
 			$bres = mysql_query('SELECT count(`id`) as kol FROM `account_banned` WHERE `id`="'.$_SESSION['user_id'].'" and `active` = 1');
      			$brow = mysql_fetch_assoc($bres);
      			$banSearch = $banSearch + (int)$brow['kol'];
