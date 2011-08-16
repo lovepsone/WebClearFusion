@@ -10,11 +10,12 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	echo"<table width='200' border='0' cellspacing='0' cellpadding='3'>";
-	echo"<tr><td align='center' class='MenuText'>$txt[1]</td></tr>"; 
-	echo"</table><br><br>";
 
-	if (!isset($_SESSION['user_id']) or ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR'])) require $modules['login'][0];
+
+	if (!isset($_SESSION['user_id']) or ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
+		{
+			require $modules['login'][0];
+		}
 	else 
 		{
   			$rip = '';
@@ -41,7 +42,7 @@
        					$ra_locked      = $row['locked'];
        					$ra_last_login  = $row['last_login'];
        					$ra_online       = $row['active_realm_id'];
-       					$ra_expansion  = getExpansion($row['expansion']);
+       					//$ra_expansion  = getExpansion($row['expansion']);
        					$ra_locale        = getlocale($row['locale']);
       				}
 
@@ -66,8 +67,9 @@
   			if ($row2 = mysql_fetch_assoc($res2)) $r_act  = $row2['active'];
   			else $r_act = '0';
 
-  			echo"<table width='220' border='0' cellspacing='0' cellpadding='3'>";
+  			echo"<table width='200' border='0' cellspacing='0' cellpadding='3'>";
   			echo"<tr><td align='left' valign='top' class='PanelTitle'>$txt[2]</td></tr>";
-  			echo"<tr><td align='right' valign='bottom' class='PanelData'><a href='index.php?modul=acc'>$ra_username</a></td></tr></table>";
+  			echo"<tr><td align='right' valign='bottom' class='PanelData'><a href='index.php?modul=acc'>$ra_username</a></td></tr>";
+			echo"<tr><td align='right' valign='bottom' class='PanelData'><a href='logout.php'>$txt[11]</a></table>";
 		}
 ?>

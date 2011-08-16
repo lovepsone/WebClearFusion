@@ -10,6 +10,10 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	echo"<table width='200' border='0' cellspacing='0' cellpadding='3'>";
+	echo"<tr><td align='center' class='MenuText'>$txt[1]</td></tr>"; 
+	echo"</table><br><br>";
+
 	echo"<form method='POST'>";
   	echo"<table border='0' cellpadding='0' cellspacing='0' width='100%'>";
 
