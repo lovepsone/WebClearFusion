@@ -98,5 +98,47 @@
   
 		}
 
+function ReturnMainForm($Retime)
+{echo '
+<script type="text/javascript"> <!--
+function exec_refresh(){
+  window.status = "reloading..." + myvar;
+  myvar = myvar + " .";
+  var timerID = setTimeout("exec_refresh();", 100);
+  if (timeout > 0){
+  timeout -= 1;
+  }else{
+    clearTimeout(timerID);
+    window.status = "";
+    window.location = "index.php";
+    }
+}
+var myvar = "";
+var timeout = '.$Retime.';
+exec_refresh();
+//--> </script>';
+}
+
+	function generate($number)
+		{
+    			$arr = array('a','b','c','d','e','f',
+                 	     	     'g','h','i','j','k','l',
+                 	     	     'm','n','o','p','r','s',
+                 	     	     't','u','v','x','y','z',
+                 	     	     'A','B','C','D','E','F',
+                 	     	     'G','H','I','J','K','L',
+                 	     	     'M','N','O','P','R','S',
+                 	     	     'T','U','V','X','Y','Z',
+                 	     	     '1','2','3','4','5','6',
+                 	     	     '7','8','9','0',);
+   			$symbol = "";
+
+   			for($i = 0; $i < $number; $i++)
+				{
+     					$index = rand(0, count($arr) - 1);
+     					$symbol .= $arr[$index];
+     				}
+   			return $symbol;
+		}
 
 ?>
