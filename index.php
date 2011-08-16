@@ -12,6 +12,7 @@
 
 	session_start(); 
 	require "conf.php";
+	require "include/functions.php";
 	require "include/auth.php";
 	require "include/protect.php";
 

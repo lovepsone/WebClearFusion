@@ -9,8 +9,6 @@
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
-
-	require "include/functions.php";
 ?>
 	<LINK href="<?php echo $cssfile; ?>" type=text/css rel=stylesheet>
 	<LINK href="wcf.css" type=text/css rel=stylesheet>
