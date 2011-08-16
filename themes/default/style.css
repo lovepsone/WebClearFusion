@@ -13,8 +13,6 @@ TABLE.sitetitle TD.ugverhfon2 {HEIGHT: 96px;BACKGROUND: url(img/ugol-verh2.gif) 
 TABLE.sitetitle TD.topfon     {HEIGHT: 96px;BACKGROUND: url(img/line.gif) center top repeat-x;}
 TABLE.sitetitle TD.fonmenu    {HEIGHT: 96px;WIDTH: 356px; BACKGROUND: url(img/menu.jpg) center center no-repeat;}
 TABLE.sitetitle TD.fonmenu    {FONT-SIZE: 22px; text-align: center; vertical-align: middle; padding-bottom: 10px;}
-TABLE.sitetitle TD.fonmenu a:hover {FONT-SIZE: 22px; text-align: center; vertical-align: middle; padding-bottom: 10px;}
-TABLE.sitetitle TD.fonmenu a:link {FONT-SIZE: 22px; text-align: center; vertical-align: middle; padding-bottom: 10px; color:white;}
 TABLE.sitetitle TD.fonmenu a:visited {FONT-SIZE: 22px; text-align: center; vertical-align: middle; padding-bottom: 10px; color:white;}
 
 TABLE.mainmenu           {WIDTH: 225px; COLOR: #ffdd00; BACKGROUND-COLOR: #000000; FONT-SIZE: 14px; BORDER: 0; border-collapse: collapse;}
