@@ -13,6 +13,7 @@
 	require "include/functions.php";
 ?>
 	<LINK href="<?php echo $cssfile; ?>" type=text/css rel=stylesheet>
+	<LINK href="wcf.css" type=text/css rel=stylesheet>
 	<TABLE class=foundation cellSpacing=0 cellPadding=0>
   	<TBODY>
 		 <!-- иряър -->
@@ -57,7 +58,7 @@
 						</TR>
 						<TR>
         						<TD class=bodyleft></TD>
-        						<TD class=body><center><?php include("");?></center></TD>
+        						<TD class=body><center><?php include("siteform/mainform.php");?></center></TD>
         						<TD class=bodyright></TD></TR>
 						<TR>
         						<TD class=bodybottomleft></TD>
