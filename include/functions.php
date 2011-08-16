@@ -12,47 +12,6 @@
 
 	$date = date('d-m-Y [H:i:s]');
 
-	function selectdb($connect)
-		{
-  			global $characters, $mangos, $realmd, $wcf, $encoding;
-  
-  			switch ($connect):
-  
-  			case ("realmd"):
-  			$db = $config['rdbName'];
-  			$ip = $config['rhostname'];
-  			$userdb = $config['rusername'];
-  			$pw = $config['rpassword'];
-  			break;
-  
-  			case ("characters"):
-  			$db = $config['cdbName'];
-  			$ip = $config['chostname'];
-  			$userdb = $config['cusername'];
-  			$pw = $config['cpassword'];
-  			break;
-  
- 			case ("mangos"):
-  			$db = $config['dbName'];
-  			$ip = $config['hostname'];
-  			$userdb = $config['username'];
-  			$pw = $config['password'];
-  			break;
-  
-  			case ("wcf"):
-  			$db = $config['wdbName'];
-  			$ip = $config['whostname'];
-  			$userdb = $config['wusername'];
-  			$pw = $config['wpassword'];
-  			break;
-  
-  			endswitch;
-  
- 			$connect = mysql_connect($ip, $userdb, $pw);
- 			mysql_select_db($db, $connect);
-			mysql_query("SET NAMES '$encoding'");   
-		}
-
 	function getLocale($locale)
 		{
   			switch ($locale):

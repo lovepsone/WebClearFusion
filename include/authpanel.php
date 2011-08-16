@@ -20,7 +20,11 @@
       	echo"<td width='50%' height='30' align='left' valign='middle' class='LoginInput'><input type='password' name='auth_pass' size='10'></td></tr>";
 	echo"<tr><td width='50%' height='30' colspan='2' align='center' valign='middle' class='LoginButton'><input type='submit' value='$txt[4]'></td></tr>";
   	$rip = 'no';
-	selectdb('realmd');
+
+ 	$r_connect = mysql_connect($config['rhostname'], $config['rusername'], $config['rpassword']);
+	mysql_select_db($config['rdbName'], $r_connect);
+	mysql_query("SET NAMES '".$config['encoding']."'");
+
   	$res = mysql_query("SELECT `ip` FROM `ip_banned` WHERE `ip`='".$_SERVER['REMOTE_ADDR']."' LIMIT 1") or trigger_error(mysql_error());
 
   	if ($row = mysql_fetch_assoc($res)) $rip  = $row['ip'];

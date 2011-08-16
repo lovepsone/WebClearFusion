@@ -18,9 +18,13 @@
 	else 
 		{
   			$rip = '';
- 			selectdb("realmd");
+
+ 			$r_connect = mysql_connect($config['rhostname'], $config['rusername'], $config['rpassword']);
+			mysql_select_db($config['rdbName'], $r_connect);
+			mysql_query("SET NAMES '".$config['encoding']."'");
+
   			$query0 = "SELECT `ip` FROM `ip_banned` WHERE `ip`='".$_SERVER['REMOTE_ADDR']."' LIMIT 1";
- 			 $res0 = mysql_query($query0);
+ 			$res0 = mysql_query($query0);
 
   			if ($row0 = mysql_fetch_assoc($res0)) $rip  = $row0['ip'];
   			$query = "SELECT * FROM `account` WHERE `id`=".$_SESSION['user_id']." LIMIT 1";
@@ -52,7 +56,10 @@
       					return;
      				}
 
-			selectdb("realmd");
+			$r_connect = mysql_connect($config['rhostname'], $config['rusername'], $config['rpassword']);
+			mysql_select_db($config['rdbName'], $r_connect);
+			mysql_query("SET NAMES '".$config['encoding']."'");
+
   			$query2 = "SELECT `active` FROM `account_banned` WHERE `id`='".$ra_id."' LIMIT 1";
   			$res2 = mysql_query($query2) or trigger_error(mysql_error());
 
@@ -61,6 +68,6 @@
 
   			echo"<table width='220' border='0' cellspacing='0' cellpadding='3'>";
   			echo"<tr><td align='left' valign='top' class='PanelTitle'>$txt[2]</td></tr>";
-  			echo"<tr><td align='right' valign='bottom' class='PanelData'><a href='index.php?modul=acc'>$ra_username</a></td></tr>";
+  			echo"<tr><td align='right' valign='bottom' class='PanelData'><a href='index.php?modul=acc'>$ra_username</a></td></tr></table>";
 		}
 ?>
