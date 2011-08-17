@@ -7,9 +7,6 @@ td.MenuText { font-size:20px; font-family:Arial, Helvetica, sans-serif; }
 td.ErrTitle { background-color:#FF0000; color:#FFFF00; font-family:Arial, Helvetica, sans-serif; font-size:12px; }
 td.ErrTab { background-color:#FFB9B9; color:#000000; font-family:Arial, Helvetica, sans-serif; font-size:10px; border-color:#FF0000; border-bottom-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-width: 1px; border-right-width: 1px; border-left-style: solid; border-right-style: solid; border-bottom-style: solid; border-top-style: solid; }
 
-td.PanelTitle { font-size:10px; text-align:left; color:#666666; }
-td.PanelData { font-size:11px; text-align:Right; color:Navy; }
-
 td.TableTitle { background-color:#303B4A; color:#FFFFFF; font-family:Arial, Helvetica, sans-serif; font-size:16px; }
 td.TableLeft {background-color:#CFD7E0;border:#333333;border-left-style: solid;border-bottom-style: solid;border-bottom-width: 1px;border-left-width: 1px;}
 td.TableRight {background-color:#CFD7E0;border:#333333;border-right-style: solid;border-bottom-style: solid;border-bottom-width: 1px;border-right-width: 1px;}
