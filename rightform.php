@@ -12,10 +12,7 @@
 
 
 
-	if (!isset($_SESSION['user_id']) or ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
-		{
-			require $modules['login'][0];
-		}
+	if (!isset($_SESSION['user_id']) or ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR'])) require $modules['login'][0];
 	else 
 		{
   			$rip = '';

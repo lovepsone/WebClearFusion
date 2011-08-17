@@ -32,15 +32,13 @@
 
  	while ($mres = mysql_fetch_array($res))
 		{
-			if( $mres['mode'] == '1')
-				{
-					echo"<tr><td width='20%'>".$mres['date']."</td>";
-					echo"<td width='15%' colspan='2' align='left'>".$mres['ip']."</td>";
-					echo"<td width='17%' colspan='2' align='left'></td>";
-					echo"<td width='15%' colspan='2' align='left'>".$txt[18+$mres['mode']]."</td>";
-					echo"<td width='18%' colspan='2' align='left'>".$mres['email']."</td>";
-					echo"<td width='15%' colspan='2' align='right'>".ucfirst(strtolower($mres['note']))."</td></tr>";
-				}
+			if ($mres['character'] == '0') $mres['character'] = '';
+			echo"<tr><td width='20%'>".$mres['date']."</td>";
+			echo"<td width='15%' colspan='2' align='left'>".$mres['ip']."</td>";
+			echo"<td width='17%' colspan='2' align='left'>".$mres['character']."</td>";
+			echo"<td width='15%' colspan='2' align='left'>".$txt[18+$mres['mode']]."</td>";
+			echo"<td width='18%' colspan='2' align='left'>".$mres['email']."</td>";
+			echo"<td width='15%' colspan='2' align='right'>".ucfirst(strtolower($mres['note']))."</td></tr>";
 		}
 
 	echo"</td></tr>";
