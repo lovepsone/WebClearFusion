@@ -115,7 +115,7 @@
           						$log_resultat  =  '';
           						$log_note      =  $_SESSION['kito'];
           						$log_old_data  =  '';
-          						require('include/log.php');					  
+          						require('include/logs.php');					  
          					}
        					ReturnMainForm(40);
        					return;
