@@ -137,32 +137,40 @@
    			echo"<td width='400' height='40' class='TableCenter'><div align='justify'>$txt[273]<br/></div></td>";
    			echo"<td width='50' height='40' class='TableRight'>&nbsp;</td></tr></table>"; 
    		}
-// form begin
-echo"<br>";
-echo '<form method="post" action="index.php?modul=reg"><input name="reg" value="1" type=hidden>';
-echo '<table width="500" border="0" align="center" cellpadding="0" cellspacing="0">';
-// account name
-echo '<tr><td width="130" height="30" align="right" valign="middle">'.$txt[2].'</td><td width="10" height="30">&nbsp;</td>';
-echo '<td width="150" height="30" align="left" valign="middle"><span class="LoginInput"><input type="text" name="new_acc" ';
-if (isset($_POST['new_acc']) AND ($_POST['new_acc'] != '')) echo ' value="'.$_POST['new_acc'].'"';
-echo '></span></td></tr>';
-// password 1 
-echo '<tr><td width="130" height="30" align="right" valign="middle">'.$txt[3].'</td>';
-echo '<td width="10" height="30">&nbsp;</td><td width="150" height="30" align="left" valign="middle"><span class="LoginInput">';
-echo '<input type="password" name="pass1"></span></td></tr>';
-// password 2
-echo '<tr><td width="130" height="30" align="right" valign="middle">';
-echo $txt[10].'</td><td height="30">&nbsp;</td><td width="150" height="30" align="left" valign="middle"><span class="LoginInput">';
-echo '<input type="password" name="pass2"></span></td></tr>';
-// email
-echo '<tr><td width="130" height="30" align="right" valign="middle">'.$txt[274].'</td><td width="10" height="30">&nbsp;</td>';
-echo '<td width="150" height="30" align="left" valign="middle"><span class="LoginInput"><input type="text" name="email" ';
-if (isset($_POST['email']) AND ($_POST['email'] != '')) echo ' value="'.$_POST['email'].'"';
-echo '/></span></td></tr>';
-// submit key
-echo '<tr><td width="130" height="40" align="left" valign="bottom">&nbsp;</td>';
-echo '<td width="10" height="40" valign="bottom">&nbsp;</td><td width="150" height="40" align="left" valign="bottom"><span class="LoginButton">';
-echo '<input type="submit" value="'.$txt[275].'" ></span></td></tr>';
-// end form
-echo"</table></form>";
+	// form begin
+	echo"<br>";
+	echo"<form method='post' action='index.php?modul=reg'><input name='reg' value='1' type=hidden>";
+	echo"<table width='500' border='0' align='center' cellpadding='0' cellspacing='0'>";
+
+	// account name
+	echo"<tr><td width='130' height='30' align='right' valign='middle'>$txt[2]</td>";
+	echo"<td width='10' height='30'>&nbsp;</td>";
+	echo"<td width='150' height='30' align='left' valign='middle'><span class='LoginInput'><input type='text' name='new_acc'";
+	if (isset($_POST['new_acc']) AND ($_POST['new_acc'] != '')) echo" value='".$_POST['new_acc']."'></span></td>";
+	echo"</tr>";
+
+	// password 1 
+	echo"<tr><td width='130' height='30' align='right' valign='middle'>$txt[3]</td>";
+	echo"<td width='10' height='30'>&nbsp;</td>";
+	echo"<td width='150' height='30' align='left' valign='middle'><span class='LoginInput'><input type='password' name='pass1'></span></td></tr>";
+
+	// password 2
+	echo"<tr><td width='130' height='30' align='right' valign='middle'>$txt[10]</td>";
+	echo"<td height='30'>&nbsp;</td>";
+	echo"<td width='150' height='30' align='left' valign='middle'><span class='LoginInput'><input type='password' name='pass2'></span></td></tr>";
+
+	// email
+	echo"<tr><td width='130' height='30' align='right' valign='middle'>$txt[274]</td>";
+	echo"<td width='10' height='30'>&nbsp;</td>";
+	echo"<td width='150' height='30' align='left' valign='middle'><span class='LoginInput'><input type='text' name='email' ";
+	if (isset($_POST['email']) AND ($_POST['email'] != '')) echo" value='".$_POST['email']."'/></span></td>";
+	echo"</tr>";
+
+	// submit key
+	echo"<tr><td width='130' height='40' align='left' valign='bottom'>&nbsp;</td>";
+	echo"<td width='10' height='40' valign='bottom'>&nbsp;</td>";
+	echo"<td width='150' height='40' align='left' valign='bottom'><span class='LoginButton'><input type='submit' value='$txt[275]' ></span></td></tr>";
+
+	// end form
+	echo"</table></form>";
 ?>
