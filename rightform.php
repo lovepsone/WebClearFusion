@@ -36,6 +36,7 @@
        					$ra_id             = $row['id'];
        					$ra_username  = $row['username'];
        					$ra_gmlevel     = $txt[70+$row['gmlevel']];
+					$ra_admin     = $row['gmlevel'];
        					$ra_email        = $row['email'];
        					$ra_joindate    = $row['joindate'];
        					$ra_last_ip      = $row['last_ip'];
@@ -79,7 +80,8 @@
   			echo"<tr><td align='right' valign='bottom' class='PanelData'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
 
 			echo"<tr><td width='100%' valign='bottom' class='line'></td></tr>";
-			echo"<tr><td align='right' valign='bottom' class='PanelData'><a href='logout.php'>$txt[11]</a></table>";
+			if ( $ra_admin >= $config['admin'] ) { echo"<tr><td align='right' valign='bottom' class='PanelData'><a href='index.php?modul=admin'>$txt[16]</a></td></tr>";}
+			echo"<tr><td align='right' valign='bottom' class='PanelData'><a href='logout.php'>$txt[11]</a></td></tr></table>";
 			echo"</td></tr></table>";
 		}
 ?>

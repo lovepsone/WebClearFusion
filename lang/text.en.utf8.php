@@ -25,11 +25,20 @@ $txt[12] = 'Account:';
 $txt[13] = 'E-Mail:';
 $txt[14] = 'Your IP-address Banned!';
 $txt[15] = 'Your account has been Banned!';
-$txt[16] = '';
-$txt[17] = '';
-$txt[18] = '';
-$txt[19] = '';
-$txt[20] = '';
+// Text in admin
+$txt[16] = 'Admin';
+$txt[17] = 'logs';
+$txt[18] = 'All log';
+$txt[19] = 'Posts';
+$txt[20] = 'Request password';
+$txt[21] = 'Get New Password';
+$txt[22] = 'Request for change of E-mail';
+$txt[23] = 'Change E-mail-a';
+$txt[24] = 'Transferring to another account of the character';
+$txt[25] = 'Rename the character';
+$txt[26] = 'Unlock ip';
+$txt[27] = 'Anti-bug';
+//
 $txt[257] = 'module';
 // Text of the registration
 $txt[267] = '<b>Register a new account is not possible.</b><br>You have already registered the maximum<br>number of accounts from this IP-address.';
