@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone
@@ -59,11 +59,11 @@ $config =array (
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
 'copyright'=>'WebClearFusion v 0.1.16 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [12]',
+'revision'=>'wcf_revision_nr = [13]',
 );
 
 error_reporting(E_ERROR | E_PARSE | E_WARNING);
-error_reporting(E_ALL);
+//error_reporting(E_ALL);
 ini_set('display_errors', 0); //disable on production servers!
 
 //==================================================================
