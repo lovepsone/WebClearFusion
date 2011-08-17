@@ -10,7 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	@session_start(); 
+	session_start(); 
 	require "conf.php";
 	require "include/functions.php";
 	require "include/auth.php";

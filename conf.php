@@ -54,12 +54,12 @@ $config =array (
 // Выбор темы по умолчанию (default)
 //==================================================================
 'theme'=>'default',
-
+'admin'=>'3',
 //==================================================================
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
-'copyright'=>'WebClearFusion v 0.1.12 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [9]',
+'copyright'=>'WebClearFusion v 0.1.13 from LovePSone 2010-2011',
+'revision'=>'wcf_revision_nr = [10]',
 );
 
 error_reporting(E_ERROR | E_PARSE | E_WARNING);
