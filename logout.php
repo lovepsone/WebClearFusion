@@ -10,7 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	require "conf.php";
+	require "conf/conf.php";
 	require "lang/text.".$config['lang'].".utf8.php";
 
 	$cssfile = "themes/".$config['theme']."/style.css";

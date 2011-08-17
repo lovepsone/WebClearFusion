@@ -10,7 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	require "conf.php";
+	require "conf/conf.php";
 
 	$banSearch = 0;
 

@@ -10,8 +10,14 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 ?>
+	<HTML>
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+	<HEAD><link rel="SHORTCUT ICON" href="images/favicon.ico">
+	<TITLE><?php echo  $config['servername']; ?></TITLE>
 	<LINK href="<?php echo $cssfile; ?>" type=text/css rel=stylesheet>
 	<LINK href="wcf.css" type=text/css rel=stylesheet>
+	<META http-equiv="content-type" content="text/html; charset=<?php echo  $code_page; ?>" /></HEAD>
+	<BODY>
 	<TABLE class=foundation cellSpacing=0 cellPadding=0>
   	<TBODY>
 		 <!-- иряър -->
@@ -80,3 +86,6 @@
   		</TR>
   	</TBODY>
 	</TABLE>
+	<br><hr width=90%>
+	<CENTER><FONT size=-1><?php echo  $config['copyright']; ?></FONT></CENTER>
+	</BODY></HTML>
