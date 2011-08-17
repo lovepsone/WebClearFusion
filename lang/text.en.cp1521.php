@@ -38,7 +38,14 @@ $txt[24] = 'Transferring to another account of the character';
 $txt[25] = 'Rename the character';
 $txt[26] = 'Unlock ip';
 $txt[27] = 'Anti-bug';
+$txt[28] = 'Date';
+$txt[29] = 'IP-Address';
+$txt[30] = 'Characters';
+$txt[31] = 'Mod';
+$txt[32] = 'E-mail';
+$txt[33] = 'Accaunt';
 //
+$txt[256] = 'Was:';
 $txt[257] = 'module';
 // Text of the registration
 $txt[267] = '<b>Register a new account is not possible.</b><br>You have already registered the maximum<br>number of accounts from this IP-address.';

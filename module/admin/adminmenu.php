@@ -15,8 +15,8 @@
 		echo"<ul id='cssmenu1'>";
 			echo"<li style='border-left: 1px solid #202020;'><a>$txt[17]</a> 
 						<ul>
-    						<li><a href=''>$txt[18]</a></li>
-    						<li><a href=''>$txt[19]</a></li>
+    						<li><a href='index.php?modul=alllogs'>$txt[18]</a></li>
+    						<li><a href='index.php?modul=reglogs'>$txt[19]</a></li>
     						<li><a href=''>$txt[20]</a></li>
     						<li><a href=''>$txt[21]</a></li>
     						<li><a href=''>$txt[22]</a></li>

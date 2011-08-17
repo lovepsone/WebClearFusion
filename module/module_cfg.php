@@ -47,6 +47,7 @@ $modules  = array (
 
 // модули для логов\modules for admin
 	'alllogs'       => array ('module/logs/alllogs.php',         257,            1,     	     3,   	  0  ),
+	'reglogs'       => array ('module/logs/reglogs.php',         257,            1,     	     3,   	  0  ),
 );
 
 //==================================================================
