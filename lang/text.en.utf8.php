@@ -43,7 +43,14 @@ $txt[29] = 'IP-Address';
 $txt[30] = 'Characters';
 $txt[31] = 'Mod';
 $txt[32] = 'E-mail';
-$txt[33] = 'Accaunt';
+$txt[33] = 'Accоunt';
+$txt[34] = '';
+$txt[35] = '';
+$txt[36] = '';
+$txt[37] = '';
+$txt[38] = '';
+$txt[39] = '';
+$txt[40] = '';
 //
 $txt[256] = 'Was:';
 $txt[257] = 'module';
