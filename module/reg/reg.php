@@ -124,18 +124,18 @@
 				{
 
       					echo"<table width='400' border='0' cellspacing='0' cellpadding='0'>";
-      					echo"<tr><td height='25' align='center' valign='middle' class='ErrTitle'><b>$txt[7]</b></td></tr>";
-      					echo"<tr><td height='45' align='center' valign='middle'  class='ErrTab'><b>$er_txt</b></td></tr></table>";     
+      					echo"<tr><td height='25' align='center' valign='middle' class='errtitle'><b>$txt[7]</b></td></tr>";
+      					echo"<tr><td height='45' align='center' valign='middle'  class='errtab'><b>$er_txt</b></td></tr></table>";     
       				}
    		}
 
 	if ($er == 0)
 		{
    			echo"<table width='500' border='0' cellspacing='0' cellpadding='0'>";
-   			echo"<tr><td height='25' colspan='3' align='center' valign='middle' class='TableTitle'><b>$txt[5]</b></td></tr>";
-   			echo"<tr><td width='50' height='40' class='TableLeft'>&nbsp;</td>";
-   			echo"<td width='400' height='40' class='TableCenter'><div align='justify'>$txt[273]<br/></div></td>";
-   			echo"<td width='50' height='40' class='TableRight'>&nbsp;</td></tr></table>"; 
+   			echo"<tr><td height='25' colspan='3' align='center' valign='middle' class='tabletitle'><b>$txt[5]</b></td></tr>";
+   			echo"<tr><td width='50' height='40' class='tableleft'>&nbsp;</td>";
+   			echo"<td width='400' height='40' class='tablecenter'><div align='justify'>$txt[273]<br/></div></td>";
+   			echo"<td width='50' height='40' class='tableright'>&nbsp;</td></tr></table>"; 
    		}
 	// form begin
 	echo"<br>";
@@ -145,31 +145,31 @@
 	// account name
 	echo"<tr><td width='130' height='30' align='right' valign='middle'>$txt[2]</td>";
 	echo"<td width='10' height='30'>&nbsp;</td>";
-	echo"<td width='150' height='30' align='left' valign='middle'><span class='LoginInput'><input type='text' name='new_acc'";
+	echo"<td width='150' height='30' align='left' valign='middle'><span class='logininput'><input type='text' name='new_acc'";
 	if (isset($_POST['new_acc']) AND ($_POST['new_acc'] != '')) echo" value='".$_POST['new_acc']."'></span></td>";
 	echo"</tr>";
 
 	// password 1 
 	echo"<tr><td width='130' height='30' align='right' valign='middle'>$txt[3]</td>";
 	echo"<td width='10' height='30'>&nbsp;</td>";
-	echo"<td width='150' height='30' align='left' valign='middle'><span class='LoginInput'><input type='password' name='pass1'></span></td></tr>";
+	echo"<td width='150' height='30' align='left' valign='middle'><span class='logininput'><input type='password' name='pass1'></span></td></tr>";
 
 	// password 2
 	echo"<tr><td width='130' height='30' align='right' valign='middle'>$txt[10]</td>";
 	echo"<td height='30'>&nbsp;</td>";
-	echo"<td width='150' height='30' align='left' valign='middle'><span class='LoginInput'><input type='password' name='pass2'></span></td></tr>";
+	echo"<td width='150' height='30' align='left' valign='middle'><span class='logininput'><input type='password' name='pass2'></span></td></tr>";
 
 	// email
 	echo"<tr><td width='130' height='30' align='right' valign='middle'>$txt[274]</td>";
 	echo"<td width='10' height='30'>&nbsp;</td>";
-	echo"<td width='150' height='30' align='left' valign='middle'><span class='LoginInput'><input type='text' name='email' ";
+	echo"<td width='150' height='30' align='left' valign='middle'><span class='logininput'><input type='text' name='email' ";
 	if (isset($_POST['email']) AND ($_POST['email'] != '')) echo" value='".$_POST['email']."'/></span></td>";
 	echo"</tr>";
 
 	// submit key
 	echo"<tr><td width='130' height='40' align='left' valign='bottom'>&nbsp;</td>";
 	echo"<td width='10' height='40' valign='bottom'>&nbsp;</td>";
-	echo"<td width='150' height='40' align='left' valign='bottom'><span class='LoginButton'><input type='submit' value='$txt[275]' ></span></td></tr>";
+	echo"<td width='150' height='40' align='left' valign='bottom'><span class='logininput'><input type='submit' value='$txt[275]' ></span></td></tr>";
 
 	// end form
 	echo"</table></form>";

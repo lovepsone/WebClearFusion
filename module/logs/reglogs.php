@@ -16,6 +16,7 @@
 
 	require $modules['adminmenu'][0];
 
+	echo"<table class='report'>";
 	echo"<tr><td width='20%' align='left'>$txt[28]<td>";
 	echo"<td width='15%' align='left'>$txt[29]<td>";
 	echo"<td width='17%' align='left'>$txt[30]<td>";
@@ -39,10 +40,10 @@
 					echo"<td width='17%' colspan='2' align='left'></td>";
 					echo"<td width='15%' colspan='2' align='left'>".$txt[18+$mres['mode']]."</td>";
 					echo"<td width='18%' colspan='2' align='left'>".$mres['email']."</td>";
-					echo"<td width='15%' colspan='2' align='right'>".ucfirst(strtolower($mres['note']))."</td></tr>";
+					echo"<td width='15%' colspan='2' align='left'>".ucfirst(strtolower($mres['note']))."</td></tr>";
 				}
 		}
-
+	echo"</table>";
 	echo"</td></tr>";
 	echo"</table>";
 

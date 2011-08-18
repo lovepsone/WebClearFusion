@@ -11,7 +11,7 @@
 +--------------------------------------------------------*/
 
 	echo"<table align='center'>";
-	echo"<td align=center><div class='adminmenu'>";
+	echo"<td align='center'><div class='adminmenu'>";
 		echo"<ul id='cssmenu1'>";
 			echo"<li style='border-left: 1px solid #202020;'><a>$txt[17]</a> 
 						<ul>

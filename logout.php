@@ -48,23 +48,11 @@
 		//--> </script>
 		</head>
 		<body>
-		<br>
-
-    				<TABLE class=mainbody cellSpacing=0 cellPadding=0 align=bottom>
-    					<TBODY>
-    						<TR>
-        						<TD class=bodytopleft></TD>
-        						<TD class=bodytop></TD>
-        						<TD class=bodytopright></TD>
-						</TR>
-						<TR>
-        						<TD class=bodyleft></TD>
-        						<TD class=body><center><?php echo $txt[logout]; ?></center></TD>
-        						<TD class=bodyright></TD></TR>
-						<TR>
-        						<TD class=bodybottomleft></TD>
-        						<TD class=bodybottom></TD>
-        						<TD class=bodybottomright></TD>
-						</TR>
-					</TBODY>
-				</TABLE>
+		<br><br><br>
+    			<TABLE class=mainbody cellSpacing=0 cellPadding=0 align=bottom>
+    				<TBODY>
+    					<TR><TD class=bodytopleft></TD><TD class=bodytop></TD><TD class=bodytopright></TD></TR>
+					<TR><TD class=bodyleft></TD><TD class=body><center><?php echo $txt[logout]; ?></center></TD><TD class=bodyright></TD></TR>
+					<TR><TD class=bodybottomleft></TD><TD class=bodybottom></TD><TD class=bodybottomright></TD></TR>
+				</TBODY>
+			</TABLE>

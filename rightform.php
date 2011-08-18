@@ -48,8 +48,8 @@
      				{
       					session_destroy();
       					echo"<table width='200' border='0' cellspacing='0' cellpadding='0'>";
-      					echo"<tr><td height='25' align='center' valign='middle' class='ErrTitle'><b>$txt[7]</b></td></tr>";
-					echo"<tr><td height='45' align='center' valign='middle'  class='ErrTab'><b>$txt[8]</b></td></tr>";
+      					echo"<tr><td height='25' align='center' valign='middle' class='errtitle'><b>$txt[7]</b></td></tr>";
+					echo"<tr><td height='45' align='center' valign='middle'  class='errtab'><b>$txt[8]</b></td></tr>";
 					echo"</table><br><br>";
       					ReturnMainForm(40);
       					return;
@@ -68,17 +68,17 @@
   			echo"<table width='200' border='0' cellspacing='0' cellpadding='3'>";
 			echo"<tr><td align='center'>";
 			echo"<table valign='top' border='0' align='right' width='100%' class='PanelBG'>";
-  			echo"<tr><td align='left' valign='top' class='PanelTitle'>$txt[12]</td></tr>";
-  			echo"<tr><td align='right' valign='bottom' class='PanelData'>".ucfirst(strtolower($ra_username))."</td></tr>";
-  			echo"<tr><td align='left' valign='top' class='PanelTitle'>$txt[13]</td></tr>";
-  			echo"<tr><td align='right' valign='bottom' class='PanelData'>$ra_email</td></tr>";
+  			echo"<tr><td align='left' valign='top' class='paneltitle'>$txt[12]</td></tr>";
+  			echo"<tr><td align='right' valign='bottom' class='paneldata'>".ucfirst(strtolower($ra_username))."</td></tr>";
+  			echo"<tr><td align='left' valign='top' class='paneltitle'>$txt[13]</td></tr>";
+  			echo"<tr><td align='right' valign='bottom' class='paneldata'>$ra_email</td></tr>";
 
-  			echo"<tr><td align='left' valign='top' class='PanelTitle'>IP</td></tr>";
-  			echo"<tr><td align='right' valign='bottom' class='PanelData'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
+  			echo"<tr><td align='left' valign='top' class='paneltitle'>IP</td></tr>";
+  			echo"<tr><td align='right' valign='bottom' class='paneldata'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
 
 			echo"<tr><td width='100%' valign='bottom' class='line'></td></tr>";
-			if ( $ra_admin >= $config['admin'] ) { echo"<tr><td align='right' valign='bottom' class='PanelData'><a href='index.php?modul=admin'>$txt[16]</a></td></tr>";}
-			echo"<tr><td align='right' valign='bottom' class='PanelData'><a href='logout.php'>$txt[11]</a></td></tr></table>";
+			if ( $ra_admin >= $config['admin'] ) { echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='index.php?modul=admin'>$txt[16]</a></td></tr>";}
+			echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='logout.php'>$txt[11]</a></td></tr></table>";
 			echo"</td></tr></table>";
 		}
 ?>
