@@ -10,8 +10,6 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-
-	echo"<script type='text/javascript' src='js/adminmenu.js'></script>";
 	echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
 	echo"<tr><td>";
 	require $modules['adminmenu'][0];

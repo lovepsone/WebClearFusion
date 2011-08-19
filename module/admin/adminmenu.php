@@ -10,6 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	echo"<script type='text/javascript' src='js/adminmenu.js'></script>";
 	echo"<table align='center'>";
 	echo"<td align='center'><div class='adminmenu'>";
 		echo"<ul id='cssmenu1'>";
@@ -26,6 +27,7 @@
     						<li><a href=''>$txt[26]</a></li>
     						<li><a href=''>$txt[27]</a></li>
     						</ul></li>";
+
 
 
 		echo"</ul>";
