@@ -41,7 +41,6 @@ $modules  = array (
 	'login'   	=> array ('include/authpanel.php',           257,           -1,     	     3,   	  0  ),
 
 // модули для админки\modules for admin
-	'admin'   	=> array ('module/admin/admin.php',           16,            1,     	     3,   	  0  ),
 	'adminmenu'     => array ('module/admin/adminmenu.php',      257,            1,     	     3,   	  0  ),
 
 // модули для логов\modules for logs

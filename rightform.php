@@ -77,7 +77,7 @@
   			echo"<tr><td align='right' valign='bottom' class='paneldata'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
 
 			echo"<tr><td width='100%' valign='bottom' class='line'></td></tr>";
-			if ( $ra_admin >= $config['admin'] ) { echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='index.php?modul=admin'>$txt[16]</a></td></tr>";}
+			if ( $ra_admin >= $config['admin'] ) { echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='index.php?modul=newscreate'>$txt[16]</a></td></tr>";}
 			echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='logout.php'>$txt[11]</a></td></tr></table>";
 			echo"</td></tr></table>";
 		}
