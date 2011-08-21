@@ -11,18 +11,15 @@
 +--------------------------------------------------------*/
 
 	echo"<script type='text/javascript' src='js/adminmenu.js'></script>";
-	echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
-	echo"<tr><td>";
 
 	require $modules['adminmenu'][0];
 
-	echo"<table class='report'>";
-	echo"<tr><td width='20%' align='left'>$txt[28]<td>";
-	echo"<td width='15%' align='left'>$txt[29]<td>";
-	echo"<td width='17%' align='left'>$txt[30]<td>";
-	echo"<td width='15%' align='left'>$txt[31]<td>";
-	echo"<td width='18%' align='left'>$txt[32]<td>";
-	echo"<td width='15%' align='left'>$txt[33]<td></tr>";
+	echo"<table width='100%' class='report'>";
+	echo"<tr class='head'><td width='20%' align='left' class='head'>$txt[28]<td>";
+	echo"<td width='15%' align='left' class='head'>$txt[29]<td>";
+	echo"<td width='20%' align='left' class='head'>$txt[31]<td>";
+	echo"<td width='20%' align='left' class='head'>$txt[32]<td>";
+	echo"<td width='20%' align='left' class='head'>$txt[33]<td></tr>";
 
 	$w_connect = mysql_connect($config['whostname'], $config['wusername'], $config['wpassword']);
 	mysql_select_db($config['wdbName'], $w_connect);
@@ -37,14 +34,10 @@
 				{
 					echo"<tr><td width='20%'>".$mres['date']."</td>";
 					echo"<td width='15%' colspan='2' align='left'>".$mres['ip']."</td>";
-					echo"<td width='17%' colspan='2' align='left'></td>";
-					echo"<td width='15%' colspan='2' align='left'>".$txt[18+$mres['mode']]."</td>";
-					echo"<td width='18%' colspan='2' align='left'>".$mres['email']."</td>";
-					echo"<td width='15%' colspan='2' align='left'>".ucfirst(strtolower($mres['note']))."</td></tr>";
+					echo"<td width='20%' colspan='2' align='left'>".$txt[18+$mres['mode']]."</td>";
+					echo"<td width='20%' colspan='2' align='left'>".$mres['email']."</td>";
+					echo"<td width='20%' colspan='2' align='left'>".ucfirst(strtolower($mres['note']))."</td></tr>";
 				}
 		}
 	echo"</table>";
-	echo"</td></tr>";
-	echo"</table>";
-
 ?>
