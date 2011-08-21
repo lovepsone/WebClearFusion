@@ -65,6 +65,7 @@ $txt[50] = 'news editor';
 $txt[51] = 'Subject';
 $txt[52] = 'Type';
 //
+$txt[255] = 'No logs.';
 $txt[256] = 'Was:';
 $txt[257] = 'module';
 // Text of the registration
