@@ -47,10 +47,23 @@ $txt[33] = 'Accîunt';
 $txt[34] = '';
 $txt[35] = '';
 $txt[36] = '';
-$txt[37] = '';
-$txt[38] = '';
-$txt[39] = '';
-$txt[40] = '';
+// News categories
+$txt[37] = 'news';
+$txt[38] = 'news about bugs';
+$txt[39] = 'news game';
+$txt[40] = 'News on the Internet';
+$txt[41] = 'news downloads';
+$txt[42] = 'news about the modifications';
+$txt[43] = 'news-style website';
+$txt[44] ='';
+$txt[45] ='';
+$txt[46] ='';
+$txt[47] = 'Add';
+$txt[48] = 'Edit';
+$txt[49] = 'Delete';
+$txt[50] = 'news editor';
+$txt[51] = 'Subject';
+$txt[52] = 'Type';
 //
 $txt[256] = 'Was:';
 $txt[257] = 'module';

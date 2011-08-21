@@ -28,6 +28,12 @@
     						<li><a href=''>$txt[27]</a></li>
     						</ul></li>";
 
+			echo"<li style='border-left: 1px solid #202020;'><a>$txt[37]</a> 
+						<ul>
+    						<li><a href='index.php?modul=newscreate'>$txt[47]</a></li>
+    						<li><a href='index.php?modul=newsedit'>$txt[48]</a></li>
+    						<li><a href='index.php?modul=newsdel'>$txt[49]</a></li>
+    						</ul></li>";
 
 
 		echo"</ul>";

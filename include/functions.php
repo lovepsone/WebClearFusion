@@ -100,4 +100,97 @@ exec_refresh();
    			return $symbol;
 		}
 
+	function ShowPageNavigator($LinkText,$Page,$AllPages)
+		{
+			$Page = intval($Page);
+			$AllPages = intval($AllPages);
+			if ($Page > $AllPages) $Page = 1;
+			$text ="<table border='0' cellpadding='5' cellspacing='3'><tr>";
+			if ($AllPages < 16)
+				{
+   					for ($i = 1; $i <= $AllPages; $i++)
+						{
+       							if ($i == $Page)  $text .= "<td class=navicurrent>$i</td>";
+       							else $text .= "<td class=navibutton><a href='$LinkText$i' target='_self'>$i</a></td>";
+      						}
+  				} 
+			else
+				{
+    					if ($Page < 6)
+						{
+        						for ($i = 1; $i <= 6; $i++)
+								{
+            								if ($i == $Page)  $text .= "<td class=navicurrent>$i</td>";
+            								else $text .= "<td class=navibutton><a href='$LinkText$i' target='_self'>$i</a></td>";
+            							}
+        						$text .= "<td>...</td>";
+        						$text .= "<td class=navibutton><a href='$LinkText($AllPages-2)' target='_self'>($AllPages-2)</a></td>";
+        						$text .= "<td class=navibutton><a href='$LinkText($AllPages-1)' target='_self'>($AllPages-1)</a></td>";
+        						$text .= "<td class=navibutton><a href='$LinkText$AllPages' target='_self'>$AllPages</a></td>";
+        					}
+
+    					else if ($Page > ($AllPages-5))
+						{
+        						$text .= "<td class=navibutton><a href='$LinkText1' target='_self'>1</a></td>";
+        						$text .= "<td class=navibutton><a href='$LinkText2' target='_self'>2</a></td>";
+        						$text .= "<td class=navibutton><a href='$LinkText3' target='_self'>3</a></td>";
+        						$text .= "<td>...</td>";
+
+        						for ($i = ($AllPages-5); $i <= $AllPages; $i++)
+								{
+            								if ($i == $Page)  $text .= "<td class=navicurrent>$i</td>";
+            								else $text .= "<td class=navibutton><a href='$LinkText$i' target='_self'>$i</a></td>";
+            							}
+        					}
+    					else
+						{
+        						$text .= "<td class=navibutton><a href='$LinkText1' target='_self'>1</a></td>";
+        						$text .= "<td class=navibutton><a href='$LinkText2' target='_self'>2</a></td>";
+        						$text .= "<td class=navibutton><a href='$LinkText3' target='_self'>3</a></td>";
+        						$text .= "<td>...</td>";
+        						$text .= "<td class=navibutton><a href='$LinkText($Page-1)' target='_self'>($Page-1)</a></td>";
+        						$text .= "<td class=navicurrent>$Page</td>";
+        						$text .= "<td class=navibutton><a href='$LinkText($Page+1)' target='_self'>($Page+1)</a></td>";
+        						$text .= "<td>...</td>";
+        						$text .= "<td class=navibutton><a href='$LinkText($AllPages-2)' target='_self'>($AllPages-2)</a></td>";
+        						$text .= "<td class=navibutton><a href='$LinkText($AllPages-1)' target='_self'>($AllPages-1)</a></td>";
+        						$text .= "<td class=navibutton><a href='$LinkText$AllPages' target='_self'>$AllPages</a></td>";
+        					}
+  				}
+			$text .= "</tr></table>";
+			return $text;
+		}
+
+	function text_optimazer($Mstring)
+		{
+			$e = 0;
+			$rString = trim($Mstring);
+			$rString = AddSlashes($rString);
+			$rString = trim($rString);
+
+			while ($e < 50)
+   				{
+   					if ((substr($rString, -13) == '<p>&nbsp;</p>') && (strlen($rString) > 13))
+      						{
+       							$rString = substr($rString, 0, strlen($rString)-13);
+       							$e++;
+      						}
+					else $e = 51;
+   					$rString = rtrim($rString);
+   				}
+
+			$e = 0;
+
+			while ($e < 50)
+   				{
+   					if ((substr($rString, 0, 13) == '<p>&nbsp;</p>') && (strlen($rString) > 13))
+      						{
+       							$rString = substr($rString, 13, strlen($rString)-13);
+       							$e++;
+      						}
+					else $e = 51;
+   					$rString = ltrim($rString);
+   				}
+			return trim($rString);
+		}
 ?>
