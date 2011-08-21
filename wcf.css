@@ -41,3 +41,6 @@ TABLE.report TR.head      {BACKGROUND-COLOR: #000055; FONT-SIZE: 16px; FONT-WEIG
 TABLE.report TR.head    TD{COLOR: #ffdd00;}
 TABLE.report TD.head      {COLOR: #ffdd00; BACKGROUND-COLOR: #000055; FONT-SIZE: 16px; FONT-WEIGHT: 800;}
 TABLE.report TD.page      {COLOR: #000000; BACKGROUND-COLOR: #aaaaaa; FONT-SIZE: 13px;}
+
+td.navibutton {border: #aaaaaa;border-left-style: solid; border-left-width: 1px; border-right-style: solid;border-right-width: 1px; border-bottom-style: solid; border-bottom-width: 1px; border-top-style: solid; border-top-width: 1px; background-color: #cccccc;}
+td.navicurrent {border: black; border-left-style: solid; border-left-width: 1px;border-right-style: solid; border-right-width: 1px; border-bottom-style: solid; border-bottom-width: 1px; border-top-style: solid; border-top-width: 1px; background-color: #bbbbff;}

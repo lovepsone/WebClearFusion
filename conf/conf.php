@@ -58,8 +58,8 @@ $config =array (
 //==================================================================
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
-'copyright'=>'WebClearFusion v 0.1.31 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [20]',
+'copyright'=>'WebClearFusion v 0.1.32 from LovePSone 2010-2011',
+'revision'=>'wcf_revision_nr = [21]',
 );
 
 error_reporting(E_ERROR | E_PARSE | E_WARNING);
