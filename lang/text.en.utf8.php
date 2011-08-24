@@ -64,6 +64,9 @@ $txt[49] = 'Delete';
 $txt[50] = 'news editor';
 $txt[51] = 'Subject';
 $txt[52] = 'Type';
+$txt[53] = 'The news has been successfully changed.';
+$txt[54] = '';
+$txt[55] = '';
 //
 $txt[255] = 'No logs.';
 $txt[256] = 'Was:';
