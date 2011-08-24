@@ -31,7 +31,7 @@
 
         echo"<tr><td width='100' height='30' align='right' valign='middle'>$txt[52]</td>";
 	echo"<td width='10' height='30' >&nbsp;</td>";
-        echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='50' type=hidden>";
+        echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='create' type=hidden>";
 
         echo"<select name=cat>
              <option value=0 selected>$txt[37]</option>
@@ -45,11 +45,9 @@
 	echo"</td></tr></table>";
 
 	echo"<textarea name='news'></textarea>";
-	echo"<br><center><input type='submit' value='$txt[47]'/></center>";
+	echo"<br><center><input type='submit' value='$txt[47]'/></center></form>";
 
-	echo"</form>";
-
-    	if ($_POST['cmd'] == 50)
+    	if ($_POST['cmd'] == create)
 		{	// на до бы придумать что - то другое. кусок кода мне не нравится
         		if ($_POST['tema'] <> '') $nt = addslashes($_POST['tema']);
 	    		else $nt = $txt[37+(int)$_POST['сat']];
@@ -57,11 +55,8 @@
 			$nt = addslashes($_POST['tema']);
 			$addQuery = 'insert into `wcf_news` (`title`,`text`,`cat`) values ("'.$nt.'","'.text_optimazer($_POST['news']).'",'.((int)$_POST['cat']).')';
        			mysql_query($addQuery) or trigger_error(mysql_error());
-        echo"
-<script type='text/javascript'> <!--
-window.status = '';
-window.location = 'index.php?modul=newscreate';
-//--> </script>";
+
+        		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newscreate';//--> </script>";
 		}
 
 	echo"</td></tr></table>";
