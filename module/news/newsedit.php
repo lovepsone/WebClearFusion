@@ -108,8 +108,8 @@
         		if ($_POST['tema'] <> '') $nt = addslashes($_POST['tema']);
 	    		else $nt = $txt[37+(int)$_POST['ñat']];
 
-			$addQuery = "UPDATE `wcf_news` SET `title`='".$nt."',`text`='".text_optimazer($_POST['news'])."',`cat`='".(int)$_POST['cat']."' WHERE `id`='".(int)$_POST['guid']."'"; 
-	   		mysql_query($addQuery) or trigger_error(mysql_error());
+			$editQuery = "UPDATE `wcf_news` SET `title`='".$nt."',`text`='".text_optimazer($_POST['news'])."',`cat`='".(int)$_POST['cat']."' WHERE `id`='".(int)$_POST['guid']."'"; 
+	   		mysql_query($editQuery) or trigger_error(mysql_error());
 
 			echo"$txt[53]";
         		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsedit';//--> </script>";
