@@ -52,6 +52,7 @@ $modules  = array (
 	'news'     	=> array ('module/news/news.php',             37,           -1,     	     3,   	  1  ),
 	'newscreate'    => array ('module/news/newscreate.php',      257,            1,     	     3,   	  0  ),
 	'newsedit'      => array ('module/news/newsedit.php',        257,            1,     	     3,   	  0  ),
+	'newsdel'       => array ('module/news/newsdel.php',         257,            1,     	     3,   	  0  ),
 );
 
 //==================================================================
@@ -74,6 +75,7 @@ $config['reg_ip_limit'] = '0';
 //==================================================================
 $config['page_news']    =  5;
 $config['page_news_edit']   = 20;
+$config['page_news_del']   = 20;
 
 //==================================================================
 // дальнейшая настройка в include/new_cat.php
