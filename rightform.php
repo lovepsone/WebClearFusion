@@ -65,20 +65,18 @@
   			if ($row2 = mysql_fetch_assoc($res2)) $r_act  = $row2['active'];
   			else $r_act = '0';
 
-  			echo"<table width='200' border='0' cellspacing='0' cellpadding='3'>";
-			echo"<tr><td align='center'>";
-			echo"<table valign='top' border='0' align='right' width='100%' class='PanelBG'>";
+  			echo"<table width='200' border='0' cellspacing='0' cellpadding='3' class='panel-right'>";
+
   			echo"<tr><td align='left' valign='top' class='paneltitle'>$txt[12]</td></tr>";
-  			echo"<tr><td align='right' valign='bottom' class='paneldata'>".ucfirst(strtolower($ra_username))."</td></tr>";
+  			echo"<tr><td align='left' valign='bottom' class='paneldata'>".ucfirst(strtolower($ra_username))."</td></tr>";
   			echo"<tr><td align='left' valign='top' class='paneltitle'>$txt[13]</td></tr>";
-  			echo"<tr><td align='right' valign='bottom' class='paneldata'>$ra_email</td></tr>";
+  			echo"<tr><td align='left' valign='bottom' class='paneldata'>$ra_email</td></tr>";
 
   			echo"<tr><td align='left' valign='top' class='paneltitle'>IP</td></tr>";
-  			echo"<tr><td align='right' valign='bottom' class='paneldata'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
+  			echo"<tr><td align='left' valign='bottom' class='paneldata'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
 
-			echo"<tr><td width='100%' valign='bottom' class='line'></td></tr>";
+			echo"<tr><td width='100%' valign='bottom'><hr></td></tr>";
 			if ( $ra_admin >= $config['admin'] ) { echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='index.php?modul=newscreate'>$txt[16]</a></td></tr>";}
 			echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='logout.php'>$txt[11]</a></td></tr></table>";
-			echo"</td></tr></table>";
 		}
 ?>

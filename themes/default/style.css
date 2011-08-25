@@ -1,8 +1,8 @@
 BODY {FONT-SIZE: 15px; FONT-FAMILY: Arial, Garamond, Helvetica; MARGIN: 0px; COLOR: #FFFFFF; BACKGROUND-COLOR: #000000;}
 TABLE.foundation {WIDTH: 100%; BORDER: 0; border-collapse: collapse; FONT-SIZE: 15px;}
-TABLE.foundation TD.lefttitle  {WIDTH: 225px; HEIGHT: 96px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/left-Trollup.gif); BACKGROUND-REPEAT: no-repeat;}
+TABLE.foundation TD.lefttitle   {WIDTH: 225px; HEIGHT: 96px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/left-Trollup.gif);  BACKGROUND-REPEAT: no-repeat;}
 TABLE.foundation TD.righttitle  {WIDTH: 225px; HEIGHT: 96px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/right-Trollup.gif); BACKGROUND-REPEAT: no-repeat;}
-TABLE.foundation TD.leftmenu {VERTICAL-ALIGN: top; text-align: left;}
+TABLE.foundation TD.leftmenu  {VERTICAL-ALIGN: top; text-align: left;}
 TABLE.foundation TD.rightmenu {VERTICAL-ALIGN: top; text-align: right;}
 TABLE.foundation TD.mybody {PADDING: 0px; text-align: center; VERTICAL-ALIGN: top; COLOR:#000000;}
 
@@ -16,11 +16,12 @@ TABLE.sitetitle TD.fonmenu    {FONT-SIZE: 22px; text-align: center; vertical-ali
 TABLE.sitetitle TD.fonmenu a:visited {FONT-SIZE: 22px; text-align: center; vertical-align: middle; padding-bottom: 10px; color:white;}
 
 TABLE.mainmenu           {WIDTH: 225px; COLOR: #ffdd00; BACKGROUND-COLOR: #000000; FONT-SIZE: 14px; BORDER: 0; border-collapse: collapse;}
-TABLE.mainmenu TD.right-body   {COLOR: #ffdd00; BACKGROUND-POSITION: left; BACKGROUND-IMAGE: url(img/right-bord.gif);BACKGROUND-REPEAT: repeat-y; padding-left: 20px;}
-TABLE.mainmenu TD.left-body   {COLOR: #ffdd00; BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/left-bord.gif);BACKGROUND-REPEAT: repeat-y; padding-left: 20px;}
-TABLE.mainmenu TD.left-top    {HEIGHT:134px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/left-Trollniz.gif); BACKGROUND-REPEAT: no-repeat;}
+TABLE.mainmenu TD.left-body   {COLOR: #ffdd00; BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/left-bord.gif);BACKGROUND-REPEAT: repeat-y; padding-right: 11px;}
+TABLE.mainmenu TD.left-top    {HEIGHT:134px;BACKGROUND-POSITION: left; BACKGROUND-IMAGE: url(img/left-Trollniz.gif); BACKGROUND-REPEAT: no-repeat;}
+TABLE.mainmenu TD.left-bottom {HEIGHT: 23px;BACKGROUND-POSITION: left; BACKGROUND-IMAGE: url(img/left-bottom2.gif); BACKGROUND-REPEAT: no-repeat;}
+
+TABLE.mainmenu TD.right-body   {COLOR: #ffdd00; BACKGROUND-POSITION: left; BACKGROUND-IMAGE: url(img/right-bord.gif);BACKGROUND-REPEAT: repeat-y; padding-left: 11px;}
 TABLE.mainmenu TD.right-top    {HEIGHT:134px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/right-Trollniz.gif); BACKGROUND-REPEAT: no-repeat;}
-TABLE.mainmenu TD.left-bottom {HEIGHT: 23px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/left-bottom2.gif); BACKGROUND-REPEAT: no-repeat;}
 TABLE.mainmenu TD.right-bottom {HEIGHT: 23px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/right-bottom2.gif); BACKGROUND-REPEAT: no-repeat;}
 
 DIV.menutitle          {color: #ffdd00; font-size: 12px; background-color: #111111; font-weight: bold; margin-right: 10px;}
@@ -38,11 +39,9 @@ TABLE.mainbody     {WIDTH: 100%; COLOR: #000000; BACKGROUND-COLOR: #000000; FONT
 TABLE.mainbody TD.bodytopleft {WIDTH: 14px;HEIGHT: 20px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(img/verh-levo.gif);BACKGROUND-REPEAT: no-repeat;}
 TABLE.mainbody TD.bodytop     {            HEIGHT: 20px;BACKGROUND-POSITION: center 50%; BACKGROUND-IMAGE: url(img/verh.gif);BACKGROUND-REPEAT: repeat-x;}
 TABLE.mainbody TD.bodytopright{WIDTH: 14px;HEIGHT: 20px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(img/verh-pravo.gif);BACKGROUND-REPEAT: no-repeat;}
-
 TABLE.mainbody TD.bodyleft {WIDTH: 14px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(img/left.gif);BACKGROUND-REPEAT: repeat-y;}
 TABLE.mainbody TD.body     {BACKGROUND-IMAGE: url(img/bg.gif); padding: 10px;}
 TABLE.mainbody TD.bodyright{WIDTH: 14px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(img/right.gif);BACKGROUND-REPEAT: repeat-y;}
-
 TABLE.mainbody TD.bodybottomleft {WIDTH: 14px;HEIGHT: 20px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(img/niz-levo.gif);BACKGROUND-REPEAT: no-repeat;}
 TABLE.mainbody TD.bodybottom     {            HEIGHT: 20px;BACKGROUND-POSITION: center 50%; BACKGROUND-IMAGE: url(img/niz.gif);BACKGROUND-REPEAT: repeat-x;}
 TABLE.mainbody TD.bodybottomright{WIDTH: 14px;HEIGHT: 20px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(img/niz-pravo.gif);BACKGROUND-REPEAT: no-repeat;}
@@ -103,8 +102,7 @@ TABLE.reagents TD         {BORDER: 0px;}
 table.no_border TD        {BORDER: 0px;}
 table.quest_reward TD     {BORDER: 0px;}
 
-table.PanelBG {BACKGROUND-IMAGE: url(img/bg.gif); padding: 10px;}
-td.PanelTitle { font-size:11px; text-align:left; color: blue;}
-td.PanelData { font-size:11px; text-align:Right; color:Navy;}
-
-td.line {HEIGHT: 30px;BACKGROUND: url(img/line.gif) center top repeat-x;}
+TABLE.panel-right {BACKGROUND-IMAGE: url(img/bg.gif);padding: 10px;FONT-SIZE: 13px; color: #000000; border-color: #999 #333 #333 #999; border-width: 2px; border-style: solid; border-collapse: collapse; border-spacing: 0; width: 100%; margin-bottom: 0px;}
+TABLE.panel-left  {BACKGROUND-IMAGE: url(img/bg.gif);padding: 10px;FONT-SIZE: 13px; color: #000000; border-color: #999 #333 #333 #999; border-width: 2px; border-style: solid; border-collapse: collapse; border-spacing: 0; width: 100%; margin-bottom: 0px;}
+td.paneltitle { font-size:11px; text-align:left; color: blue;}
+td.paneldata { font-size:11px; text-align:Right; color:Navy;}
