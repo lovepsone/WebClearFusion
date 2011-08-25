@@ -65,7 +65,7 @@
      				}
     		}
 
-	echo"<tr><td colspan='3' align='center' class='page'><input action='index.php' name='del' value='newsdel' type=hidden><input type='submit' value='$txt[56]'></td></tr></table></form>";
+	echo"<tr><td colspan='3' align='center' class='page'><input action='index.php' name='del' value='newsdel' type=hidden><input type='submit' value='$txt[menu_admin_news_del]'></td></tr></table></form>";
 
 	if ( isset($_POST['del']) )
 		{
@@ -75,7 +75,7 @@
 				$delQuery = "DELETE FROM `wcf_news` WHERE `id` = '".(int)$_POST['id']."'";
 				mysql_query($delQuery) or trigger_error(mysql_error());
 
-				echo"$txt[57] ".$_POST['id']."";
+				echo"$txt[admin_news_del_successfully]";
 
         			echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsdel';//--> </script>";
       			}

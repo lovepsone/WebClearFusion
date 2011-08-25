@@ -25,32 +25,31 @@
 	echo"<form method='post'>";
 	echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
 	
-        echo"<tr><td width='10%' height='30' align='right' valign='middle'> $txt[51]</td>";
+        echo"<tr><td width='10%' height='30' align='right' valign='middle'>$txt[admin_teme_news]</td>";
 	echo"<td width='1%' height='30' >&nbsp;</td>";
         echo"<td width='89%' height='30' align='left' valign='middle'><input name='modul' value='newscreate' type=hidden><input type='text' name='tema' size='40'></td></tr>";
 
-        echo"<tr><td width='100' height='30' align='right' valign='middle'>$txt[52]</td>";
+        echo"<tr><td width='100' height='30' align='right' valign='middle'>$txt[admin_typ_news]</td>";
 	echo"<td width='10' height='30' >&nbsp;</td>";
         echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='create' type=hidden>";
 
         echo"<select name=cat>
-             <option value=0 selected>$txt[37]</option>
-             <option value=1>$txt[38]</option>
-             <option value=2>$txt[39]</option>
-             <option value=3>$txt[40]</option>
-             <option value=4>$txt[41]</option>
-             <option value=5>$txt[42]</option>
-             <option value=6>$txt[43]</option></select>";
-
+             <option value=0 selected>$txt[typ_news_0]</option>
+             <option value=1>$txt[typ_news_1]</option>
+             <option value=2>$txt[typ_news_2]</option>
+             <option value=3>$txt[typ_news_3]</option>
+             <option value=4>$txt[typ_news_4]</option>
+             <option value=5>$txt[typ_news_5]</option>
+             <option value=6>$txt[typ_news_6]</option></select>";
 	echo"</td></tr></table>";
 
 	echo"<textarea name='news'></textarea>";
-	echo"<br><center><input type='submit' value='$txt[47]'/></center></form>";
+	echo"<br><center><input type='submit' value='$txt[menu_admin_news_create]'/></center></form>";
 
     	if ($_POST['cmd'] == create)
 		{	// на до бы придумать что - то другое. кусок кода мне не нравится
         		if ($_POST['tema'] <> '') $nt = addslashes($_POST['tema']);
-	    		else $nt = $txt[37+(int)$_POST['сat']];
+	    		//else $nt = $txt['typ_news_".(int)$_POST['сat']."'];
 
 			$nt = addslashes($_POST['tema']);
 			$addQuery = 'insert into `wcf_news` (`title`,`text`,`cat`) values ("'.$nt.'","'.text_optimazer($_POST['news']).'",'.((int)$_POST['cat']).')';

@@ -41,8 +41,8 @@
     			session_destroy();
 
     			echo"<b><h1><font color='red'>";
-    			if ((int)$brow['kol'] > 0) echo $txt[15];
-    			else echo $txt[14];
+    			if ((int)$brow['kol'] > 0) echo $txt[main_ban_account];
+    			else echo $txt[main_ban_ip];
     			echo"</font></h1></b>";
    		}
 

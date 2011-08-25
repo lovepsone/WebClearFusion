@@ -10,6 +10,13 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+/*-------------------------------------------------------+
+| (ru): при редактировании файла, файл нужно сохранять
+| в кодировке UTF-8 без BOM
+| (en): when editing a file, the file must be saved
+| in utf-8 encoding with no BOM
++--------------------------------------------------------*/
+
 //==================================================================
 // Здесь подключаются модули и выставляются их настройки
 //==================================================================
@@ -44,12 +51,12 @@ $modules  = array (
 	'adminmenu'     => array ('module/admin/adminmenu.php',      257,            1,     	     3,   	  0  ),
 
 // модули для логов\modules for logs
-	'reg'     	=> array ('module/reg/reg.php',                5,           -1,     	     3,   	  1  ),
+	'reg'     	=> array ('module/reg/reg.php',              reg,           -1,     	     3,   	  1  ),
 	'alllogs'       => array ('module/logs/alllogs.php',         257,            1,     	     3,   	  0  ),
 	'reglogs'       => array ('module/logs/reglogs.php',         257,            1,     	     3,   	  0  ),
 
 // модули для новостей\modules for news
-	'news'     	=> array ('module/news/news.php',             37,           -1,     	     3,   	  1  ),
+	'news'     	=> array ('module/news/news.php',           news,           -1,     	     3,   	  1  ),
 	'newscreate'    => array ('module/news/newscreate.php',      257,            1,     	     3,   	  0  ),
 	'newsedit'      => array ('module/news/newsedit.php',        257,            1,     	     3,   	  0  ),
 	'newsdel'       => array ('module/news/newsdel.php',         257,            1,     	     3,   	  0  ),

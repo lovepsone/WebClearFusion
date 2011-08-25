@@ -48,8 +48,8 @@
      				{
       					session_destroy();
       					echo"<table width='200' border='0' cellspacing='0' cellpadding='0'>";
-      					echo"<tr><td height='25' align='center' valign='middle' class='errtitle'><b>$txt[7]</b></td></tr>";
-					echo"<tr><td height='45' align='center' valign='middle'  class='errtab'><b>$txt[8]</b></td></tr>";
+      					echo"<tr><td height='25' align='center' valign='middle' class='errtitle'><b>$txt[menu_auth_error]</b></td></tr>";
+					echo"<tr><td height='45' align='center' valign='middle'  class='errtab'><b>$txt[menu_auth_re_enter]</b></td></tr>";
 					echo"</table><br><br>";
       					ReturnMainForm(40);
       					return;
@@ -67,16 +67,16 @@
 
   			echo"<table width='200' border='0' cellspacing='0' cellpadding='3' class='panel-right'>";
 
-  			echo"<tr><td align='left' valign='top' class='paneltitle'>$txt[12]</td></tr>";
+  			echo"<tr><td align='left' valign='top' class='paneltitle'>$txt[menu_auth_account]</td></tr>";
   			echo"<tr><td align='left' valign='bottom' class='paneldata'>".ucfirst(strtolower($ra_username))."</td></tr>";
-  			echo"<tr><td align='left' valign='top' class='paneltitle'>$txt[13]</td></tr>";
+  			echo"<tr><td align='left' valign='top' class='paneltitle'>$txt[menu_auth_e_mail]</td></tr>";
   			echo"<tr><td align='left' valign='bottom' class='paneldata'>$ra_email</td></tr>";
 
-  			echo"<tr><td align='left' valign='top' class='paneltitle'>IP</td></tr>";
+  			echo"<tr><td align='left' valign='top' class='paneltitle'>$txt[menu_auth_ip]</td></tr>";
   			echo"<tr><td align='left' valign='bottom' class='paneldata'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
 
 			echo"<tr><td width='100%' valign='bottom'><hr></td></tr>";
-			if ( $ra_admin >= $config['admin'] ) { echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='index.php?modul=newscreate'>$txt[16]</a></td></tr>";}
-			echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='logout.php'>$txt[11]</a></td></tr></table>";
+			if ( $ra_admin >= $config['admin'] ) { echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='index.php?modul=newscreate'>$txt[menu_auth_admin]</a></td></tr>";}
+			echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='logout.php'>$txt[menu_auth_exit]</a></td></tr></table>";
 		}
 ?>

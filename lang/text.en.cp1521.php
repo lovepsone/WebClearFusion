@@ -10,78 +10,88 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-$txt[1] = 'Log in or register for convenient use';
-$txt[2] = 'Account';
-$txt[3] = 'Password';
-$txt[4] = 'Login';
-$txt[5] = 'Registration';
-$txt[6] = 'Recover password';
-$txt[7] = 'Error!';
-$txt[8] = 'Enter your account and password again!';
-$txt[9] = 'The primary form';
-$txt[10] = 'confirmation';
-$txt[11] = 'exit';
-$txt[12] = 'Account:';
-$txt[13] = 'E-Mail:';
-$txt[14] = 'Your IP-address Banned!';
-$txt[15] = 'Your account has been Banned!';
-// Text in admin
-$txt[16] = 'Admin';
-$txt[17] = 'logs';
-$txt[18] = 'All log';
-$txt[19] = 'Posts';
-$txt[20] = 'Request password';
-$txt[21] = 'Get New Password';
-$txt[22] = 'Request for change of E-mail';
-$txt[23] = 'Change E-mail-a';
-$txt[24] = 'Transferring to another account of the character';
-$txt[25] = 'Rename the character';
-$txt[26] = 'Unlock ip';
-$txt[27] = 'Anti-bug';
-$txt[28] = 'Date';
-$txt[29] = 'IP-Address';
-$txt[30] = 'Characters';
-$txt[31] = 'Mod';
-$txt[32] = 'E-mail';
-$txt[33] = 'Accîunt';
-$txt[34] = '';
-$txt[35] = '';
-$txt[36] = '';
-// News categories
-$txt[37] = 'news';
-$txt[38] = 'news about bugs';
-$txt[39] = 'news game';
-$txt[40] = 'News on the Internet';
-$txt[41] = 'news downloads';
-$txt[42] = 'news about the modifications';
-$txt[43] = 'news-style website';
-$txt[44] ='';
-$txt[45] ='';
-$txt[46] ='';
-$txt[47] = 'Add';
-$txt[48] = 'Edit';
-$txt[49] = 'Delete';
-$txt[50] = 'news editor';
-$txt[51] = 'Subject';
-$txt[52] = 'Type';
-$txt[53] = 'The news has been successfully changed.';
-$txt[54] = '';
-$txt[55] = '';
-$txt[56] = 'Delete';
-$txt[57] = 'The news has been successfully removed.';
-//
-$txt[255] = 'No logs.';
-$txt[256] = 'Was:';
-$txt[257] = 'module';
-// Text of the registration
-$txt[267] = '<b>Register a new account is not possible.</b><br>You have already registered the maximum<br>number of accounts from this IP-address.';
-$txt[268] = 'Invalid E-Mail!';
-$txt[269] = 'Wrong password!';
-$txt[270] = 'Please fill in all fields!';
-$txt[271] = 'This account already exists!';
-$txt[272] = 'The account was created successfully.';
-$txt[273] = '<br>Register an account to play WoW on our server. Carefully and correctly fill out all fields in this form.Pay special attention to the correctness of the E-maila, because many transactions with the accounts and characters need to be confirmed by email. The account name and password must be different.<hr>Most asked not to register the accounts that contain Russian letters, but you can not properly connect to the server.<hr> Good luck to you play. Thank you for your attention.<br>';
-$txt[274] = 'Registration E-mail';
-$txt[275] = 'Êegister';
-$txt[logout] = 'You have successfully signed out.';
+$txt = array (
+# Text to the right and the left menu
+'menu_auth_title'		=>'log in or register for convenient use',
+'menu_auth_account'		=>'account',
+'menu_auth_pass'		=>'password',
+'menu_auth_enter'		=>'Log in',
+'menu_auth_reg'			=>'Register',
+'menu_auth_remember_pass'	=>'Reset Password',
+'menu_auth_error'		=>'Error!',
+'menu_auth_re_enter'		=>'Please enter your account and password again!',
+'menu_auth_e_mail'		=>'E-Mail',
+'menu_auth_ip'			=>'IP-Address',
+'menu_auth_admin'		=>'Admin',
+'menu_auth_exit'		=>'Exit',
+
+# Text for a bath in the main form
+'main_ban_ip'			=>'Your IP-address Banned!',
+'main_ban_account'		=>'Your account has been Banned!',
+'main_home'			=>'Go to the main form',
+
+# Text in the menu admin
+'menu_admin_news'		=>'News',
+'menu_admin_news_create'	=>'Add',
+'menu_admin_news_edit'		=>'Edit',
+'menu_admin_news_del'		=>'Delete',
+
+# Text in the news
+'news'				=>'News',
+'admin_teme_news'		=>'Subject',
+'admin_typ_news'		=>'Type',
+'admin_news_edit_successfully'	=>'news has been successfully changed.',
+'admin_news_del_successfully'	=>'News deleted successfully.',
+
+# Types of news
+'typ_news_0'			=>'News',
+'typ_news_1'			=>'News of the bugs',
+'typ_news_2'			=>'News about the games',
+'typ_news_3'			=>'News on the Internet',
+'typ_news_4'			=>'News of downloads',
+'typ_news_5'			=>'News of the modifications',
+'typ_news_6'			=>'News-style website',
+
+# Code when registering
+'reg'				=>'Register',
+'reg_account'			=>'account',
+'reg_pass'			=>'password',
+'reg_confirm_pass'		=>'Confirm',
+'reg_mail'			=>'Registration E-mail',
+'reg_add'			=>'Register',
+'reg_no'			=>'<b> Register a new account is not possible. </B> <br> you have already registered the maximum number of accounts <br> with this IP-address.',
+'reg_warning_mail'		=>'Invalid E-Mail!',
+'reg_warning_pass'		=>'Wrong password!',
+'reg_warning_field'		=>'Please fill in all fields!',
+'reg_warning_account'		=>'This account already exists!',
+'reg_account_successfully'	=>'Account successfully created!',
+'reg_error'			=>'Error!',
+'reg_txt'			=>'<br>Register an account to play WoW on our server. Carefully and correctly fill out all fields in this form. Pay special attention to the correctness of the E-maila, because many transactions with the accounts and characters need to be confirmed by email. The account name and password must be different.<hr>Big request does not register accounts that contain Russian letters, but you can not properly connect to the server.<hr>Good luck to you play. Thank you for your attention.<br>',
+
+# Text at the logs
+'log'				=>'Logs',
+'log_title_date'		=>'Date',
+'log_title_ip'			=>'IP-Address',
+'log_title_char'		=>'Persanazh',
+'log_title_mode'		=>'Mod',
+'log_title_mail'		=>'E-mail',
+'log_title_account'		=>'account',
+'log_no'			=>'No logs.',
+'1'				=>'All log',
+'2'				=>'Register ',
+'3'				=>'Request password ',
+'4'				=>'Get a new password ',
+'5'				=>'Request for change of E-mail ',
+'6'				=>'Change E-mail-a ',
+'7'				=>'Move to another account of the character ',
+'8'				=>'Rename character',
+'9'				=>'Unlock ip',
+'10'				=>'Anti-bug',
+
+# Exit from the session
+'logout'			=>'You have successfully signed out',
+
+# Else
+'257'				=>' Module',
+);
 ?>

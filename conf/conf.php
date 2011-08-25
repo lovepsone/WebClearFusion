@@ -10,6 +10,13 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+/*-------------------------------------------------------+
+| (ru): при редактировании файла, файл нужно сохранять
+| в кодировке UTF-8 без BOM
+| (en): when editing a file, the file must be saved
+| in utf-8 encoding with no BOM
++--------------------------------------------------------*/
+
 $config =array (
 //==================================================================
 // База мира (mangos)
@@ -58,8 +65,8 @@ $config =array (
 //==================================================================
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
-'copyright'=>'WebClearFusion v 0.1.41 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [29]',
+'copyright'=>'WebClearFusion v 0.1.45 from LovePSone 2010-2011',
+'revision'=>'wcf_revision_nr = [30]',
 );
 
 error_reporting(E_ERROR | E_PARSE | E_WARNING);

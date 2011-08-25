@@ -67,7 +67,7 @@
      				}
     		}
 
-	echo"<tr><td colspan='3' align='center' class='page'><input action='index.php' name='edit' value='newsedit' type=hidden><input type='submit' value='$txt[48]'></td></tr></table></form>";
+	echo"<tr><td colspan='3' align='center' class='page'><input action='index.php' name='edit' value='newsedit' type=hidden><input type='submit' value='$txt[menu_admin_news_edit]'></td></tr></table></form>";
 
 
 	if ( isset($_POST['edit']) )
@@ -77,41 +77,41 @@
        				$nres = mysql_query("select * from `wcf_news` where `id` = ".$_POST['id'].' limit 1') or trigger_error(mysql_error());
 	   			$nr = mysql_fetch_assoc($nres);
 
-       				echo"<form method='post'><div align='center'><b>$txt[50]</b></div><br>";
+       				echo"<form method='post'>";
 				echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
 
-             			echo"<tr><td width='10%' height='30' align='right' valign='middle'> $txt[51]</td>";
+             			echo"<tr><td width='10%' height='30' align='right' valign='middle'>$txt[admin_teme_news]</td>";
 				echo"<td width='1%' height='30' >&nbsp;</td>";
              			echo"<td width='89%' height='30' align='left' valign='middle'><input name='modul' value='newsedit' type=hidden><input type='text' name='tema' size='60' value='".$nr['title']."'></td></tr>";
 
-        			echo"<tr><td width='100' height='30' align='right' valign='middle'>$txt[52]</td>";
+        			echo"<tr><td width='100' height='30' align='right' valign='middle'>$txt[admin_typ_news]</td>";
 				echo"<td width='10' height='30' >&nbsp;</td>";
 				echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='edit' type=hidden><input name='guid' value='".$nr['id']."' type=hidden>";
 
         			echo"<select name=cat>
-             				<option value=0 selected>$txt[37]</option>
-             				<option value=1>$txt[38]</option>
-             				<option value=2>$txt[39]</option>
-             				<option value=3>$txt[40]</option>
-             				<option value=4>$txt[41]</option>
-             				<option value=5>$txt[42]</option>
-             				<option value=6>$txt[43]</option></select>";
+             				<option value=0 selected>$txt[typ_news_0]</option>
+             				<option value=1>$txt[typ_news_1]</option>
+             				<option value=2>$txt[typ_news_2]</option>
+             				<option value=3>$txt[typ_news_3]</option>
+             				<option value=4>$txt[typ_news_4]</option>
+             				<option value=5>$txt[typ_news_5]</option>
+             				<option value=6>$txt[typ_news_6]</option></select>";
 				echo"</td></tr></table>";
 
        				echo"<textarea name='news'>".$nr['text']."</textarea>"; 
-       				echo"<br><center><input type='submit' value='$txt[48]'/></center></form>";
+       				echo"<br><center><input type='submit' value='$txt[menu_admin_news_edit]'/></center></form>";
       			}
 		}
 
    	if ($_POST['cmd'] == edit)
 		{	// на до бы придумать что - то другое. кусок кода мне не нравится
         		if ($_POST['tema'] <> '') $nt = addslashes($_POST['tema']);
-	    		else $nt = $txt[37+(int)$_POST['сat']];
+	    		//else $nt = $txt[37+(int)$_POST['сat']];
 
 			$editQuery = "UPDATE `wcf_news` SET `title`='".$nt."',`text`='".text_optimazer($_POST['news'])."',`cat`='".(int)$_POST['cat']."' WHERE `id`='".(int)$_POST['guid']."'"; 
 	   		mysql_query($editQuery) or trigger_error(mysql_error());
 
-			echo"$txt[53]";
+			echo"$txt[admin_news_edit_successfully]";
         		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsedit';//--> </script>";
        		}
 
