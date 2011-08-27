@@ -92,6 +92,8 @@ $txt = array (
 'logout'			=>'You have successfully signed out',
 
 # Else
-'257'				=>' Module',
+'home'				=>'Home',
+'change_lang'			=>'Change Lang',
+'257'				=>'Module',
 );
 ?>

@@ -87,5 +87,6 @@
   	</TBODY>
 	</TABLE>
 	<br><hr width=90%>
-	<CENTER><FONT size=-1><?php echo  $config['copyright']; ?></FONT></CENTER>
+	<CENTER><FONT size=-1><?php echo  $config['copyright']; ?></FONT></CENTER><br>
+		<?php include($modules['changelang'][0]); ?>
 	</BODY></HTML>

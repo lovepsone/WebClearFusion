@@ -16,12 +16,24 @@
 	require "include/auth.php";
 	require "include/protect.php";
 
+	//==================================================================
+	// Выбор нужной кодировки\When choosing a character encoding
+	//==================================================================
 	if ($config['encoding'] == 'cp1251') $code_page = 'windows-1251';
    		else $code_page = 'utf-8';
+
+	//==================================================================
+	// Выбор нужного языка\Choosing the right language
+	//==================================================================
+	if (isset($_GET['lang'])) $config['lang'] = $_GET['lang'];
+       					$_SESSION['lang'] = $config['lang'];
 
 	if ($config['lang'] == 'en') require "lang/text.".$config['lang'].".".$config['encoding'].".php";
               else require "lang/text.".$config['lang'].".".$config['encoding'].".php";
 
+	//==================================================================
+	//Установка нужной темы\Setting the right topic
+	//==================================================================
 	$cssfile = "themes/".$config['theme']."/style.css";
 	$themefile = "themes/".$config['theme']."/theme.php";
 

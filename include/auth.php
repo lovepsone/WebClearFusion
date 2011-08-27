@@ -30,6 +30,8 @@
        					$_SESSION['slovo'] = strtoupper($par);
        					$_SESSION['gnom'] = (int)$row['gmlevel'];
        					$_SESSION['modul'] = $config['default_module'];
+       					$_SESSION['lang'] = $config['lang'];
+
        				}
 
    			header("Location: http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);

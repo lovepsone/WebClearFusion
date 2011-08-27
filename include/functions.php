@@ -57,6 +57,22 @@
   
 		}
 
+	if (isset($_SESSION['lang']))
+		{
+    			switch($_SESSION['lang'])
+    			{
+        			case "ru":
+        			$config['lang'] = "ru";
+        			break;
+        			case "en":
+        			$config['lang'] = "en";
+        			break;
+        			default:
+        			unset($_SESSION['lang']);
+       	 			break;
+    			}
+		}
+
 function ReturnMainForm($Retime)
 {echo '
 <script type="text/javascript"> <!--
