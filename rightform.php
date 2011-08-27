@@ -77,6 +77,6 @@
 
 			echo"<tr><td width='100%' valign='bottom'><hr></td></tr>";
 			if ( $ra_admin >= $config['admin'] ) { echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='index.php?modul=newscreate'>$txt[menu_auth_admin]</a></td></tr>";}
-			echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='logout.php'>$txt[menu_auth_exit]</a></td></tr></table>";
+			echo"<tr><td align='right' valign='bottom' class='paneldata'><a href='index.php?modul=logout'>$txt[menu_auth_exit]</a></td></tr></table>";
 		}
 ?>

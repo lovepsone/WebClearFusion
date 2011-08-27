@@ -46,6 +46,7 @@ $modules  = array (
 //       modul\модуль             path\путь                        Name\имя    Access\доступ    Admin\админ     Menu\меню
 	'online'  	=> array ('module/online/online.php',        257,           -1,     	     3,   	  0  ),  
 	'login'   	=> array ('include/authpanel.php',           257,           -1,     	     3,   	  0  ),
+	'logout'   	=> array ('module/logout/logout.php',        257,           -1,     	     3,   	  0  ),
 	'changelang'   	=> array ('module/more/change_lang.php',     257,           -1,     	     3,   	  0  ),
 
 // модули для админки\modules for admin
