@@ -53,7 +53,7 @@ $modules  = array (
 	'adminmenu'     => array ('module/admin/adminmenu.php',      257,            1,     	     3,   	  0  ),
 
 // модули для логов\modules for logs
-	'reg'     	=> array ('module/reg/reg.php',              reg,           -1,     	     3,   	  1  ),
+	'reg'     	=> array ('module/reg/reg.php',              reg,           -1,     	     3,   	  0  ),
 	'alllogs'       => array ('module/logs/alllogs.php',         257,            1,     	     3,   	  0  ),
 	'reglogs'       => array ('module/logs/reglogs.php',         257,            1,     	     3,   	  0  ),
 
