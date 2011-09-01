@@ -45,7 +45,7 @@
       				<TABLE class=mainmenu>
        					<TBODY>
        						<TR><TD class=left-top></TD></TR>
-       						<TR><TD class=left-body><?php include("leftform.php"); ?></TD></TR>
+       						<TR><TD class=left-body><?php include("$panels_left[panel_url]"); ?></TD></TR>
         					<TR><TD class=left-bottom></TD></TR>
        					</TBODY>
       				</TABLE>
@@ -78,7 +78,7 @@
       				<TABLE class=mainmenu>
        					<TBODY>
        						<TR><TD class=right-top></TD></TR>
-       						<TR><TD class=right-body><?php include("rightform.php"); ?></TD></TR>
+       						<TR><TD class=right-body><?php include("$panels_right[panel_url]"); ?></TD></TR>
         					<TR><TD class=right-bottom></TD></TR>
        					</TBODY>
       				</TABLE>
