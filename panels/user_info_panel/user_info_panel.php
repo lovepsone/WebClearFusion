@@ -12,13 +12,10 @@
 
 	if (!isset($_SESSION['user_id']) or ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
 		{
-			echo"<table width='200' border='0' cellspacing='0' cellpadding='3'>";
-			echo"<tr><td align='center' class='menutext'>$txt[menu_auth_title]</td></tr>"; 
-			echo"</table><br><br>";
-
 			echo"<form method='POST'>";
-  			echo"<table border='0' cellpadding='0' cellspacing='0' width='100%'>";
+  			echo"<table border='0' cellpadding='0' cellspacing='0' width='100%' class='panel'>";
 
+			echo"<tr><td  colspan='2' align='center'>$txt[menu_auth_title]<br><br></td></tr>";
   			echo"<tr><td width='50%' height='30' align='left' valign='middle' class='logintext'>$txt[menu_auth_account]:&nbsp;</td>";
 			echo"<td width='50%' height='30' align='left' valign='middle' class='logininput'><input type='text' name='auth_name' size='10'></td></tr>";
 
@@ -98,7 +95,7 @@
   			if ($row2 = mysql_fetch_assoc($res2)) $r_act  = $row2['active'];
   			else $r_act = '0';
 
-  			echo"<table width='200' border='0' cellspacing='0' cellpadding='3' class='panel-right'>";
+  			echo"<table width='200' border='0' cellspacing='0' cellpadding='3' class='panel'>";
 
   			echo"<tr><td align='left' valign='top' class='paneltitle'>$txt[menu_auth_account]</td></tr>";
   			echo"<tr><td align='left' valign='bottom' class='paneldata'>".ucfirst(strtolower($ra_username))."</td></tr>";

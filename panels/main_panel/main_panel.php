@@ -29,7 +29,7 @@
 
 	if ($MenuForAll.$MenuPlayers.$MenuAdmin <> '')
 		{
-       			echo"<table width='200' border='0' cellspacing='0' cellpadding='3' class='panel-left'>";
+       			echo"<table width='200' border='0' cellspacing='0' cellpadding='3' class='panel'>";
        			if ($MenuForAll <> '')
 				{
 					echo"<tr><td width='100%' valign='middle'><a href='index.php'>$txt[home]</a></td></tr>";

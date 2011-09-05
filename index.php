@@ -11,7 +11,7 @@
 +--------------------------------------------------------*/
 
 	session_start(); 
-	require "conf/conf.php";
+	require "conf.php";
 	require "include/functions.php";
 	require "include/auth.php";
 	require "include/protect.php";

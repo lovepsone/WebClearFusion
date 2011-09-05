@@ -1,108 +1,107 @@
-BODY {FONT-SIZE: 15px; FONT-FAMILY: Arial, Garamond, Helvetica; MARGIN: 0px; COLOR: #FFFFFF; BACKGROUND-COLOR: #000000;}
-TABLE.foundation {WIDTH: 100%; BORDER: 0; border-collapse: collapse; FONT-SIZE: 15px;}
-TABLE.foundation TD.lefttitle   {WIDTH: 225px; HEIGHT: 96px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/left-Trollup.gif);  BACKGROUND-REPEAT: no-repeat;}
-TABLE.foundation TD.righttitle  {WIDTH: 225px; HEIGHT: 96px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/right-Trollup.gif); BACKGROUND-REPEAT: no-repeat;}
-TABLE.foundation TD.leftmenu  {VERTICAL-ALIGN: top; text-align: left;}
-TABLE.foundation TD.rightmenu {VERTICAL-ALIGN: top; text-align: right;}
-TABLE.foundation TD.mybody {PADDING: 0px; text-align: center; VERTICAL-ALIGN: top; COLOR:#000000;}
+BODY 					{FONT-SIZE: 15px; FONT-FAMILY: Arial, Garamond, Helvetica; MARGIN: 0px; COLOR: #FFFFFF; BACKGROUND-COLOR: #000000;}
+TABLE.foundation 			{WIDTH: 100%; BORDER: 0; border-collapse: collapse; FONT-SIZE: 15px;}
+TABLE.foundation TD.lefttitle   	{WIDTH: 225px; HEIGHT: 96px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/left-Trollup.gif);  BACKGROUND-REPEAT: no-repeat;}
+TABLE.foundation TD.righttitle  	{WIDTH: 225px; HEIGHT: 96px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/right-Trollup.gif); BACKGROUND-REPEAT: no-repeat;}
+TABLE.foundation TD.leftmenu  		{VERTICAL-ALIGN: top; text-align: left;}
+TABLE.foundation TD.rightmenu 		{VERTICAL-ALIGN: top; text-align: right;}
+TABLE.foundation TD.mybody 		{PADDING: 0px; text-align: center; VERTICAL-ALIGN: top; COLOR:#000000;}
 
-TABLE.sitetitle               {WIDTH: 100%; COLOR: #ffdd00;BACKGROUND-COLOR: #000000;}
-TABLE.sitetitle               {BORDER: 0px; border-collapse: collapse;}
-TABLE.sitetitle TD.ugverhfon  {HEIGHT: 96px;BACKGROUND: url(img/ugol-verh.gif)  center left no-repeat;}
-TABLE.sitetitle TD.ugverhfon2 {HEIGHT: 96px;BACKGROUND: url(img/ugol-verh2.gif) center right no-repeat;}
-TABLE.sitetitle TD.topfon     {HEIGHT: 96px;BACKGROUND: url(img/line.gif) center top repeat-x;}
-TABLE.sitetitle TD.fonmenu    {HEIGHT: 96px;WIDTH: 356px; BACKGROUND: url(img/menu.jpg) center center no-repeat;}
-TABLE.sitetitle TD.fonmenu    {FONT-SIZE: 22px; text-align: center; vertical-align: middle; padding-bottom: 10px;}
-TABLE.sitetitle TD.fonmenu a:visited {FONT-SIZE: 22px; text-align: center; vertical-align: middle; padding-bottom: 10px; color:white;}
+TABLE.sitetitle               		{WIDTH: 100%; COLOR: #ffdd00;BACKGROUND-COLOR: #000000;}
+TABLE.sitetitle               		{BORDER: 0px; border-collapse: collapse;}
+TABLE.sitetitle TD.ugverhfon  		{HEIGHT: 96px;BACKGROUND: url(img/ugol-verh.gif)  center left no-repeat;}
+TABLE.sitetitle TD.ugverhfon2 		{HEIGHT: 96px;BACKGROUND: url(img/ugol-verh2.gif) center right no-repeat;}
+TABLE.sitetitle TD.topfon     		{HEIGHT: 96px;BACKGROUND: url(img/line.gif) center top repeat-x;}
+TABLE.sitetitle TD.fonmenu    		{HEIGHT: 96px;WIDTH: 356px; BACKGROUND: url(img/menu.jpg) center center no-repeat;}
+TABLE.sitetitle TD.fonmenu    		{FONT-SIZE: 22px; text-align: center; vertical-align: middle; padding-bottom: 10px;}
+TABLE.sitetitle TD.fonmenu a:visited 	{FONT-SIZE: 22px; text-align: center; vertical-align: middle; padding-bottom: 10px; color:white;}
 
-TABLE.mainmenu           {WIDTH: 225px; COLOR: #ffdd00; BACKGROUND-COLOR: #000000; FONT-SIZE: 14px; BORDER: 0; border-collapse: collapse;}
-TABLE.mainmenu TD.left-body   {COLOR: #ffdd00; BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/left-bord.gif);BACKGROUND-REPEAT: repeat-y; padding-right: 11px;}
-TABLE.mainmenu TD.left-top    {HEIGHT:134px;BACKGROUND-POSITION: left; BACKGROUND-IMAGE: url(img/left-Trollniz.gif); BACKGROUND-REPEAT: no-repeat;}
-TABLE.mainmenu TD.left-bottom {HEIGHT: 23px;BACKGROUND-POSITION: left; BACKGROUND-IMAGE: url(img/left-bottom2.gif); BACKGROUND-REPEAT: no-repeat;}
+TABLE.mainmenu           		{WIDTH: 225px; COLOR: #ffdd00; BACKGROUND-COLOR: #000000; FONT-SIZE: 14px; BORDER: 0; border-collapse: collapse;}
+TABLE.mainmenu TD.left-body   		{COLOR: #ffdd00; BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/left-bord.gif);BACKGROUND-REPEAT: repeat-y; padding-right: 11px;}
+TABLE.mainmenu TD.left-top    		{HEIGHT:134px;BACKGROUND-POSITION: left; BACKGROUND-IMAGE: url(img/left-Trollniz.gif); BACKGROUND-REPEAT: no-repeat;}
+TABLE.mainmenu TD.left-bottom 		{HEIGHT: 23px;BACKGROUND-POSITION: left; BACKGROUND-IMAGE: url(img/left-bottom2.gif); BACKGROUND-REPEAT: no-repeat;}
 
-TABLE.mainmenu TD.right-body   {COLOR: #ffdd00; BACKGROUND-POSITION: left; BACKGROUND-IMAGE: url(img/right-bord.gif);BACKGROUND-REPEAT: repeat-y; padding-left: 11px;}
-TABLE.mainmenu TD.right-top    {HEIGHT:134px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/right-Trollniz.gif); BACKGROUND-REPEAT: no-repeat;}
-TABLE.mainmenu TD.right-bottom {HEIGHT: 23px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/right-bottom2.gif); BACKGROUND-REPEAT: no-repeat;}
+TABLE.mainmenu TD.right-body   		{COLOR: #ffdd00; BACKGROUND-POSITION: left; BACKGROUND-IMAGE: url(img/right-bord.gif);BACKGROUND-REPEAT: repeat-y; padding-left: 11px;}
+TABLE.mainmenu TD.right-top    		{HEIGHT:134px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/right-Trollniz.gif); BACKGROUND-REPEAT: no-repeat;}
+TABLE.mainmenu TD.right-bottom 		{HEIGHT: 23px;BACKGROUND-POSITION: right; BACKGROUND-IMAGE: url(img/right-bottom2.gif); BACKGROUND-REPEAT: no-repeat;}
 
-DIV.menutitle          {color: #ffdd00; font-size: 12px; background-color: #111111; font-weight: bold; margin-right: 10px;}
-DIV.menutitle input    {width: 100%;}
-DIV.skin_menu_sub      {color: #ffdd00; font-size: 12px; background-color: #000000; margin-right: 10px;}
-DIV.skin_pop_sub       {width: auto; min-width: 100px; background-color:  #000000; border: #666666 1px solid;}
-DIV.skin_pop_sub       {color: #ffdd00; font-size: 12px;}
-DIV.skin_pop_row       {margin: -1px 0px; padding: 0px 5px;}
-DIV.skin_pop_row A     {color: #00ccff; display: block; text-decoration: none; padding-left: 5px;}
-DIV.skin_pop_mrow      {margin: -1px 0px; padding: 0px 5px; background-color: #333333; }
-DIV.skin_pop_mrow A    {color: #00ccff; display: block; text-decoration: none; padding-left: 5px;}
-DIV.skin_pop_arrow     {top: 0px; right: 3px;}
+DIV.menutitle          			{color: #ffdd00; font-size: 12px; background-color: #111111; font-weight: bold; margin-right: 10px;}
+DIV.menutitle input    			{width: 100%;}
+DIV.skin_menu_sub      			{color: #ffdd00; font-size: 12px; background-color: #000000; margin-right: 10px;}
+DIV.skin_pop_sub       			{width: auto; min-width: 100px; background-color:  #000000; border: #666666 1px solid;}
+DIV.skin_pop_sub       			{color: #ffdd00; font-size: 12px;}
+DIV.skin_pop_row       			{margin: -1px 0px; padding: 0px 5px;}
+DIV.skin_pop_row A     			{color: #00ccff; display: block; text-decoration: none; padding-left: 5px;}
+DIV.skin_pop_mrow      			{margin: -1px 0px; padding: 0px 5px; background-color: #333333; }
+DIV.skin_pop_mrow A    			{color: #00ccff; display: block; text-decoration: none; padding-left: 5px;}
+DIV.skin_pop_arrow     			{top: 0px; right: 3px;}
 
-TABLE.mainbody     {WIDTH: 100%; COLOR: #000000; BACKGROUND-COLOR: #000000; FONT-SIZE: 100%; BORDER: 0; border-collapse: collapse;}
-TABLE.mainbody TD.bodytopleft {WIDTH: 14px;HEIGHT: 20px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(img/verh-levo.gif);BACKGROUND-REPEAT: no-repeat;}
-TABLE.mainbody TD.bodytop     {            HEIGHT: 20px;BACKGROUND-POSITION: center 50%; BACKGROUND-IMAGE: url(img/verh.gif);BACKGROUND-REPEAT: repeat-x;}
-TABLE.mainbody TD.bodytopright{WIDTH: 14px;HEIGHT: 20px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(img/verh-pravo.gif);BACKGROUND-REPEAT: no-repeat;}
-TABLE.mainbody TD.bodyleft {WIDTH: 14px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(img/left.gif);BACKGROUND-REPEAT: repeat-y;}
-TABLE.mainbody TD.body     {BACKGROUND-IMAGE: url(img/bg.gif); padding: 10px;}
-TABLE.mainbody TD.bodyright{WIDTH: 14px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(img/right.gif);BACKGROUND-REPEAT: repeat-y;}
-TABLE.mainbody TD.bodybottomleft {WIDTH: 14px;HEIGHT: 20px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(img/niz-levo.gif);BACKGROUND-REPEAT: no-repeat;}
-TABLE.mainbody TD.bodybottom     {            HEIGHT: 20px;BACKGROUND-POSITION: center 50%; BACKGROUND-IMAGE: url(img/niz.gif);BACKGROUND-REPEAT: repeat-x;}
-TABLE.mainbody TD.bodybottomright{WIDTH: 14px;HEIGHT: 20px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(img/niz-pravo.gif);BACKGROUND-REPEAT: no-repeat;}
+TABLE.mainbody     			{WIDTH: 100%; COLOR: #000000; BACKGROUND-COLOR: #000000; FONT-SIZE: 100%; BORDER: 0; border-collapse: collapse;}
+TABLE.mainbody TD.bodytopleft 		{WIDTH: 14px;HEIGHT: 20px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(img/verh-levo.gif);BACKGROUND-REPEAT: no-repeat;}
+TABLE.mainbody TD.bodytop     		{            HEIGHT: 20px;BACKGROUND-POSITION: center 50%; BACKGROUND-IMAGE: url(img/verh.gif);BACKGROUND-REPEAT: repeat-x;}
+TABLE.mainbody TD.bodytopright		{WIDTH: 14px;HEIGHT: 20px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(img/verh-pravo.gif);BACKGROUND-REPEAT: no-repeat;}
+TABLE.mainbody TD.bodyleft 		{WIDTH: 14px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(img/left.gif);BACKGROUND-REPEAT: repeat-y;}
+TABLE.mainbody TD.body     		{BACKGROUND-IMAGE: url(img/bg.gif); padding: 10px;}
+TABLE.mainbody TD.bodyright		{WIDTH: 14px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(img/right.gif);BACKGROUND-REPEAT: repeat-y;}
+TABLE.mainbody TD.bodybottomleft 	{WIDTH: 14px;HEIGHT: 20px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(img/niz-levo.gif);BACKGROUND-REPEAT: no-repeat;}
+TABLE.mainbody TD.bodybottom     	{            HEIGHT: 20px;BACKGROUND-POSITION: center 50%; BACKGROUND-IMAGE: url(img/niz.gif);BACKGROUND-REPEAT: repeat-x;}
+TABLE.mainbody TD.bodybottomright	{WIDTH: 14px;HEIGHT: 20px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(img/niz-pravo.gif);BACKGROUND-REPEAT: no-repeat;}
 
-TABLE.tooltip              {BORDER: 0px solid;  BACKGROUND-COLOR: transparent; border-collapse: collapse;}
-TABLE.tooltip TD.tiptopl   {WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(Tooltip/tooltip.png)   0%  0% no-repeat;}
-TABLE.tooltip TD.tiptop    {WIDTH: auto;HEIGHT:  8px;BACKGROUND: url(Tooltip/tooltip.png)  50%  0% no-repeat;}
-TABLE.tooltip TD.tiptopr   {WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(Tooltip/tooltip.png) 100%  0% no-repeat;}
-TABLE.tooltip TD.tipl      {WIDTH:  8px;HEIGHT: auto;BACKGROUND: url(Tooltip/tooltip.png)   0% 50% no-repeat;}
-TABLE.tooltip TD.tipbody   {BACKGROUND: url(Tooltip/tooltip.png)  50% 50% no-repeat; padding: 0px;}
-TABLE.tooltip TD.tipr      {WIDTH:  8px;HEIGHT: auto;BACKGROUND: url(Tooltip/tooltip.png) 100%  50% no-repeat;}
-TABLE.tooltip TD.tipbottoml{WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(Tooltip/tooltip.png)   0% 100% no-repeat;}
-TABLE.tooltip TD.tipbottom {WIDTH: auto;HEIGHT:  8px;BACKGROUND: url(Tooltip/tooltip.png)  50% 100% no-repeat;}
-TABLE.tooltip TD.tipbottomr{WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(Tooltip/tooltip.png) 100% 100% no-repeat;}
+TABLE.tooltip              		{BORDER: 0px solid;  BACKGROUND-COLOR: transparent; border-collapse: collapse;}
+TABLE.tooltip TD.tiptopl   		{WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(Tooltip/tooltip.png)   0%  0% no-repeat;}
+TABLE.tooltip TD.tiptop    		{WIDTH: auto;HEIGHT:  8px;BACKGROUND: url(Tooltip/tooltip.png)  50%  0% no-repeat;}
+TABLE.tooltip TD.tiptopr   		{WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(Tooltip/tooltip.png) 100%  0% no-repeat;}
+TABLE.tooltip TD.tipl      		{WIDTH:  8px;HEIGHT: auto;BACKGROUND: url(Tooltip/tooltip.png)   0% 50% no-repeat;}
+TABLE.tooltip TD.tipbody   		{BACKGROUND: url(Tooltip/tooltip.png)  50% 50% no-repeat; padding: 0px;}
+TABLE.tooltip TD.tipr      		{WIDTH:  8px;HEIGHT: auto;BACKGROUND: url(Tooltip/tooltip.png) 100%  50% no-repeat;}
+TABLE.tooltip TD.tipbottoml		{WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(Tooltip/tooltip.png)   0% 100% no-repeat;}
+TABLE.tooltip TD.tipbottom 		{WIDTH: auto;HEIGHT:  8px;BACKGROUND: url(Tooltip/tooltip.png)  50% 100% no-repeat;}
+TABLE.tooltip TD.tipbottomr		{WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(Tooltip/tooltip.png) 100% 100% no-repeat;}
 
-TABLE.border             {BORDER: 0px solid; BACKGROUND-COLOR: transparent; border-collapse: collapse;}
-TABLE.border TD.btopl    {WIDTH: 8px;HEIGHT: 8px;BACKGROUND: url(Tooltip/tooltip.png)   0% 0% no-repeat;}
-TABLE.border TD.btop     {           HEIGHT: 8px;BACKGROUND: url(Tooltip/tooltip.png)  50% 0% no-repeat;}
-TABLE.border TD.btopr    {WIDTH: 8px;HEIGHT: 8px;BACKGROUND: url(Tooltip/tooltip.png) 100% 0% no-repeat;}
-TABLE.border TD.bl       {WIDTH: 8px;BACKGROUND: url(Tooltip/tooltip.png)   0% 50% no-repeat;}
-TABLE.border TD.bbody    {           BACKGROUND: url(Tooltip/tooltip.png)  50% 50% no-repeat;}
-TABLE.border TD.br       {WIDTH: 8px;BACKGROUND: url(Tooltip/tooltip.png) 100% 50% no-repeat;}
-TABLE.border TD.bbottoml {WIDTH: 8px;HEIGHT: 8px;BACKGROUND: url(Tooltip/tooltip.png)   0% 100% no-repeat;}
-TABLE.border TD.bbottom  {           HEIGHT: 8px;BACKGROUND: url(Tooltip/tooltip.png)  50% 100% no-repeat;}
-TABLE.border TD.bbottomr {WIDTH: 8px;HEIGHT: 8px;BACKGROUND: url(Tooltip/tooltip.png) 100% 100% no-repeat;}
+TABLE.border             		{BORDER: 0px solid; BACKGROUND-COLOR: transparent; border-collapse: collapse;}
+TABLE.border TD.btopl    		{WIDTH: 8px;HEIGHT: 8px;BACKGROUND: url(Tooltip/tooltip.png)   0% 0% no-repeat;}
+TABLE.border TD.btop     		{           HEIGHT: 8px;BACKGROUND: url(Tooltip/tooltip.png)  50% 0% no-repeat;}
+TABLE.border TD.btopr    		{WIDTH: 8px;HEIGHT: 8px;BACKGROUND: url(Tooltip/tooltip.png) 100% 0% no-repeat;}
+TABLE.border TD.bl       		{WIDTH: 8px;BACKGROUND: url(Tooltip/tooltip.png)   0% 50% no-repeat;}
+TABLE.border TD.bbody    		{           BACKGROUND: url(Tooltip/tooltip.png)  50% 50% no-repeat;}
+TABLE.border TD.br       		{WIDTH: 8px;BACKGROUND: url(Tooltip/tooltip.png) 100% 50% no-repeat;}
+TABLE.border TD.bbottoml 		{WIDTH: 8px;HEIGHT: 8px;BACKGROUND: url(Tooltip/tooltip.png)   0% 100% no-repeat;}
+TABLE.border TD.bbottom  		{           HEIGHT: 8px;BACKGROUND: url(Tooltip/tooltip.png)  50% 100% no-repeat;}
+TABLE.border TD.bbottomr 		{WIDTH: 8px;HEIGHT: 8px;BACKGROUND: url(Tooltip/tooltip.png) 100% 100% no-repeat;}
 
-TABLE.item             {BACKGROUND-COLOR:transparent; padding: 0px;}
-TABLE.spell            {BACKGROUND-COLOR:transparent; padding: 0px;}
-TABLE.creature         {BACKGROUND-COLOR:transparent; padding: 0px;}
-TABLE.gameobject       {BACKGROUND-COLOR:transparent; padding: 0px;}
+TABLE.item             			{BACKGROUND-COLOR:transparent; padding: 0px;}
+TABLE.spell            			{BACKGROUND-COLOR:transparent; padding: 0px;}
+TABLE.creature         			{BACKGROUND-COLOR:transparent; padding: 0px;}
+TABLE.gameobject       			{BACKGROUND-COLOR:transparent; padding: 0px;}
 
-TABLE.charttborder          {BORDER: 0; border-collapse: collapse;}
-TABLE.charttborder TD.ptopl {WIDTH: 9px;HEIGHT: 9px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(Tooltip/topleft.gif);BACKGROUND-REPEAT: no-repeat;}
-TABLE.charttborder TD.ptop  {           HEIGHT: 9px;BACKGROUND-POSITION: center 50%; BACKGROUND-IMAGE: url(Tooltip/top.gif);BACKGROUND-REPEAT: repeat-x;}
-TABLE.charttborder TD.ptopr {WIDTH: 9px;HEIGHT: 9px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(Tooltip/topright.gif);BACKGROUND-REPEAT: no-repeat;}
-TABLE.charttborder TD.pl    {WIDTH: 9px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(Tooltip/left.gif);BACKGROUND-REPEAT: repeat-y;}
-TABLE.charttborder TD.pr    {WIDTH: 9px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(Tooltip/right.gif);BACKGROUND-REPEAT: repeat-y;}
-TABLE.charttborder TD.pbottoml {WIDTH: 9px;HEIGHT: 8px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(Tooltip/bottomleft.gif);BACKGROUND-REPEAT: no-repeat;}
-TABLE.charttborder TD.pbottom  {           HEIGHT: 8px;BACKGROUND-POSITION: center 50%; BACKGROUND-IMAGE: url(Tooltip/bottom.gif);BACKGROUND-REPEAT: repeat-x;}
-TABLE.charttborder TD.pbottomr {WIDTH: 9px;HEIGHT: 8px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(Tooltip/bottomright.gif);BACKGROUND-REPEAT: no-repeat;}
+TABLE.charttborder          		{BORDER: 0; border-collapse: collapse;}
+TABLE.charttborder TD.ptopl 		{WIDTH: 9px;HEIGHT: 9px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(Tooltip/topleft.gif);BACKGROUND-REPEAT: no-repeat;}
+TABLE.charttborder TD.ptop  		{           HEIGHT: 9px;BACKGROUND-POSITION: center 50%; BACKGROUND-IMAGE: url(Tooltip/top.gif);BACKGROUND-REPEAT: repeat-x;}
+TABLE.charttborder TD.ptopr 		{WIDTH: 9px;HEIGHT: 9px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(Tooltip/topright.gif);BACKGROUND-REPEAT: no-repeat;}
+TABLE.charttborder TD.pl    		{WIDTH: 9px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(Tooltip/left.gif);BACKGROUND-REPEAT: repeat-y;}
+TABLE.charttborder TD.pr    		{WIDTH: 9px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(Tooltip/right.gif);BACKGROUND-REPEAT: repeat-y;}
+TABLE.charttborder TD.pbottoml 		{WIDTH: 9px;HEIGHT: 8px;BACKGROUND-POSITION: left;   BACKGROUND-IMAGE: url(Tooltip/bottomleft.gif);BACKGROUND-REPEAT: no-repeat;}
+TABLE.charttborder TD.pbottom  		{           HEIGHT: 8px;BACKGROUND-POSITION: center 50%; BACKGROUND-IMAGE: url(Tooltip/bottom.gif);BACKGROUND-REPEAT: repeat-x;}
+TABLE.charttborder TD.pbottomr 		{WIDTH: 9px;HEIGHT: 8px;BACKGROUND-POSITION: right;  BACKGROUND-IMAGE: url(Tooltip/bottomright.gif);BACKGROUND-REPEAT: no-repeat;}
 
-TABLE.report              {COLOR: #000000;}
-TABLE.report TH           {BORDER:#003366 1px solid;}
-TABLE.report TD           {BORDER:#330099 1px solid;}
-TABLE.report TD.head      {BACKGROUND-IMAGE: url(img/title_bg2.gif); BACKGROUND-REPEAT: repeat-x; HEIGHT: 20px;}
+TABLE.report              		{COLOR: #000000;}
+TABLE.report TH           		{BORDER:#003366 1px solid;}
+TABLE.report TD           		{BORDER:#330099 1px solid;}
+TABLE.report TD.head      		{BACKGROUND-IMAGE: url(img/title_bg2.gif); BACKGROUND-REPEAT: repeat-x; HEIGHT: 20px;}
 
-div.faq img            {border: #333366 3px groove;}
+div.faq img            			{border: #333366 3px groove;}
 
-TABLE.find                {COLOR: #000000; border: #000066 1px solid;}
-TABLE.find TD             {border:#000066 1px solid;}
-TABLE.find TD.bottom      {COLOR: #FFFFFF;BACKGROUND-COLOR: #000066;}
-TABLE.findtop             {COLOR: #000000;}
-TABLE.findtop TD.topleft  {BACKGROUND-COLOR: #000066;}
-TABLE.findtop TD.top      {COLOR: #FFFFFF; BACKGROUND-COLOR: #000066; }
-TABLE.findtop TD.topright {BACKGROUND-COLOR: #000066;}
+TABLE.find                		{COLOR: #000000; border: #000066 1px solid;}
+TABLE.find TD             		{border:#000066 1px solid;}
+TABLE.find TD.bottom      		{COLOR: #FFFFFF;BACKGROUND-COLOR: #000066;}
+TABLE.findtop             		{COLOR: #000000;}
+TABLE.findtop TD.topleft  		{BACKGROUND-COLOR: #000066;}
+TABLE.findtop TD.top      		{COLOR: #FFFFFF; BACKGROUND-COLOR: #000066; }
+TABLE.findtop TD.topright 		{BACKGROUND-COLOR: #000066;}
 
-TABLE.reagents TD         {BORDER: 0px;}
-table.no_border TD        {BORDER: 0px;}
-table.quest_reward TD     {BORDER: 0px;}
+TABLE.reagents TD         		{BORDER: 0px;}
+table.no_border TD        		{BORDER: 0px;}
+table.quest_reward TD     		{BORDER: 0px;}
 
-TABLE.panel-right {BACKGROUND-IMAGE: url(img/bg.gif);padding: 10px;FONT-SIZE: 13px; color: #000000; border-color: #999 #333 #333 #999; border-width: 2px; border-style: solid; border-collapse: collapse; border-spacing: 0; width: 100%; margin-bottom: 0px;}
-TABLE.panel-left  {BACKGROUND-IMAGE: url(img/bg.gif);padding: 10px;FONT-SIZE: 13px; color: #000000; border-color: #999 #333 #333 #999; border-width: 2px; border-style: solid; border-collapse: collapse; border-spacing: 0; width: 100%; margin-bottom: 0px;}
-td.paneltitle { font-size:11px; text-align:left; color: blue;}
-td.paneldata { font-size:11px; text-align:Right; color:Navy;}
+TABLE.panel 				{BACKGROUND-IMAGE: url(img/bg.gif);padding: 10px;FONT-SIZE: 13px; color: #000000; border-color: #999 #333 #333 #999; border-width: 2px; border-style: solid; border-collapse: collapse; border-spacing: 0; width: 100%; margin-bottom: 0px;}
+td.paneltitle 				{ font-size:11px; text-align:left; color: blue;}
+td.paneldata 				{ font-size:11px; text-align:Right; color:Navy;}

@@ -2,8 +2,6 @@ td.logintext { font-size:12px; font-family:Arial, Helvetica, sans-serif; }
 td.logininput { font-size:10px; font-family:Arial, Helvetica, sans-serif; }
 td.loginbutton { font-size:10px; font-family:Arial, Helvetica, sans-serif; }
 
-td.menutext { font-size:20px; font-family:Arial, Helvetica, sans-serif; }
-
 td.errtitle { background-color:#FF0000; color:#FFFF00; font-family:Arial, Helvetica, sans-serif; font-size:12px; }
 td.errtab { background-color:#FFB9B9; color:#000000; font-family:Arial, Helvetica, sans-serif; font-size:10px; border-color:#FF0000; border-bottom-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-width: 1px; border-right-width: 1px; border-left-style: solid; border-right-style: solid; border-bottom-style: solid; border-top-style: solid; }
 
