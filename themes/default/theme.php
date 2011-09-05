@@ -62,7 +62,7 @@
 						</TR>
 						<TR>
         						<TD class=bodyleft></TD>
-        						<TD class=body><center><?php include("mainform.php");?></center></TD>
+        						<TD class=body><center><?php include("$panels_center[panel_url]");?></center></TD>
         						<TD class=bodyright></TD></TR>
 						<TR>
         						<TD class=bodybottomleft></TD>

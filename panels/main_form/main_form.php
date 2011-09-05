@@ -3,14 +3,12 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone
 +--------------------------------------------------------+
-| Filename: mainform.php
+| Filename: main_form.php
 | Author: lovepsone, Кот_ДаWINчи
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
-
-	require "conf/conf.php";
 
 	$banSearch = 0;
 
