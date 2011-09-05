@@ -35,6 +35,21 @@ $txt = array (
 'menu_admin_news_create'	=>'Add',
 'menu_admin_news_edit'		=>'Edit',
 'menu_admin_news_del'		=>'Delete',
+'menu_admin_settings'		=>'Settings',
+'menu_admin_set_panel'		=>'Settings panels',
+
+# Texts in admin
+'admin_panels_center' 		=> 'center',
+'admin_panels_left' 		=> 'from the left',
+'admin_panels_right' 		=> 'with the law',
+'admin_panels_change' 		=> 'Change',
+'admin_panels_choice' 		=> 'Choice',
+'admin_panels_name' 		=> 'Name',
+'admin_panels_url' 		=> 'Path to the panels',
+'admin_panels_position' 	=> 'Position',
+'admin_panels_choose_position' 	=> 'Select Position',
+'admin_panels_choose_success' 	=> 'bar has been successfully changed.',
+'admin_panels_choose_unsuccess' => 'Error in sql query!.',
 
 # Text in the news
 'news'				=>'News',

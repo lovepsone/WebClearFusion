@@ -35,6 +35,21 @@ $txt = array(
 'menu_admin_news_create'	=>'Добавить',
 'menu_admin_news_edit'		=>'Редактировать',
 'menu_admin_news_del'		=>'Удалить',
+'menu_admin_settings'		=>'Настройки',
+'menu_admin_set_panel'		=>'Настройка понелей',
+
+# тексты в админки
+'admin_panels_center'		=>'по центру',
+'admin_panels_left'		=>'с лева',
+'admin_panels_right'		=>'с права',
+'admin_panels_change'		=>'Изменить',
+'admin_panels_choice'		=>'Выбор',
+'admin_panels_name'		=>'Название',
+'admin_panels_url'		=>'Путь до панелей',
+'admin_panels_position'		=>'Позиция',
+'admin_panels_choose_position'	=>'Выбрать Позицию',
+'admin_panels_choose_success'	=>'Панель успешна изменена.',
+'admin_panels_choose_unsuccess'	=>'Ошибка в sql запросе!.',
 
 # тексты при новостях
 'news'				=>'Новости',

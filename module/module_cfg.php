@@ -51,6 +51,7 @@ $modules  = array (
 // модули для админки\modules for admin
 	'adminmenu'     => array ('module/admin/adminmenu.php',      257,            1,     	     3,   	  0  ),
 	'adminmodule'   => array ('module/admin/admin_module.php',   257,            1,     	     3,   	  0  ),
+	'adminsetpanel' => array ('module/admin/admin_setpanel.php', 257,            1,     	     3,   	  0  ),
 
 // модули для логов\modules for logs
 	'reg'     	=> array ('module/reg/reg.php',              reg,           -1,     	     3,   	  0  ),

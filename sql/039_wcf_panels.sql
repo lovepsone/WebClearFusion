@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 05.09.2011 16:27:53
+Date: 05.09.2011 20:17:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,6 +23,6 @@ CREATE TABLE `wcf_panels` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `wcf_panels` VALUES ('1', 'main panel', 'panels/main_panel/main_panel.php', '1');
-INSERT INTO `wcf_panels` VALUES ('2', 'user info panel', 'panels/user_info_panel/user_info_panel.php', '2');
-INSERT INTO `wcf_panels` VALUES ('3', 'main form', 'panels/main_form/main_form.php', '0');
+INSERT INTO `wcf_panels` VALUES ('1', 'main form', 'panels/main_form/main_form.php', '0');
+INSERT INTO `wcf_panels` VALUES ('2', 'main panel', 'panels/main_panel/main_panel.php', '1');
+INSERT INTO `wcf_panels` VALUES ('3', 'user info panel', 'panels/user_info_panel/user_info_panel.php', '2');
