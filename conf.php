@@ -66,8 +66,8 @@ $config =array (
 //==================================================================
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
-'copyright'=>'WebClearFusion v 0.1.70 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [39]',
+'copyright'=>'WebClearFusion v 0.1.73 from LovePSone 2010-2011',
+'revision'=>'wcf_revision_nr = [40]',
 );
 
 error_reporting(E_ERROR | E_PARSE | E_WARNING);
@@ -76,9 +76,8 @@ ini_set('display_errors', 0); //disable on production servers!
 
 //==================================================================
 // дальнейшая настройка в module/module_cfg.php,
-// include/new_cat.php, include/panels.php
+// include/new_cat.php
 //==================================================================
 include("module/module_cfg.php");
 include("include/news_cat.php");
-include("include/panels.php");
 ?>

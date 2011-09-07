@@ -45,7 +45,7 @@
       				<TABLE class=mainmenu>
        					<TBODY>
        						<TR><TD class=left-top></TD></TR>
-       						<TR><TD class=left-body><?php include("$panel_left[panel_url]"); ?></TD></TR>
+       						<TR><TD class=left-body><?php require "panels/panels_l.php"; ?></TD></TR>
         					<TR><TD class=left-bottom></TD></TR>
        					</TBODY>
       				</TABLE>
@@ -62,7 +62,7 @@
 						</TR>
 						<TR>
         						<TD class=bodyleft></TD>
-        						<TD class=body><center><?php include("$panel_center[panel_url]");?></center></TD>
+        						<TD class=body><center><?php require "panels/panels_c.php"; ?></center></TD>
         						<TD class=bodyright></TD></TR>
 						<TR>
         						<TD class=bodybottomleft></TD>
@@ -78,7 +78,7 @@
       				<TABLE class=mainmenu>
        					<TBODY>
        						<TR><TD class=right-top></TD></TR>
-       						<TR><TD class=right-body><?php include("$panel_right[panel_url]"); ?></TD></TR>
+       						<TR><TD class=right-body><?php require "panels/panels_r.php"; ?></TD></TR>
         					<TR><TD class=right-bottom></TD></TR>
        					</TBODY>
       				</TABLE>
