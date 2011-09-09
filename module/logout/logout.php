@@ -27,7 +27,8 @@
 					}
 				else
 					{
-						clearTimeout(timerID); window.status = ''; window.location = 'index.php';
+						clearTimeout(timerID); window.status = ''; 
+						window.location = 'index.php';
 					}
 			}
 		var myvar = '';

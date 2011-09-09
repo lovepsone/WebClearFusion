@@ -75,9 +75,10 @@
 				$delQuery = "DELETE FROM `wcf_news` WHERE `id` = '".(int)$_POST['id']."'";
 				mysql_query($delQuery) or trigger_error(mysql_error());
 
-				echo"$txt[admin_news_del_successfully]";
+				if(mysql_query($delQuery)) == true) { echo"$txt[admin_news_del_successfully]"; } else { echo"$txt[menu_auth_error]"; }
 
         			echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsdel';//--> </script>";
+				ReturnAdminNewsdel(10);
       			}
 		}
 ?>

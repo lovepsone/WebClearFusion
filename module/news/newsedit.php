@@ -111,8 +111,10 @@
 			$editQuery = "UPDATE `wcf_news` SET `title`='".$nt."',`text`='".text_optimazer($_POST['news'])."',`cat`='".(int)$_POST['cat']."' WHERE `id`='".(int)$_POST['guid']."'"; 
 	   		mysql_query($editQuery) or trigger_error(mysql_error());
 
-			echo"$txt[admin_news_edit_successfully]";
+			if(mysql_query($editQuery) == true) { echo"$txt[admin_news_edit_successfully]"; } else { echo"$txt[menu_auth_error]"; }
+
         		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsedit';//--> </script>";
+			ReturnAdminNewsedit(10);
        		}
 
 ?>

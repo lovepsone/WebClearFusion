@@ -55,6 +55,7 @@ $txt = array(
 'news'				=>'Новости',
 'admin_teme_news'		=>'Тема',
 'admin_typ_news'		=>'Тип',
+'admin_news_add_successfully'	=>'Новость успешно создана.',
 'admin_news_edit_successfully'	=>'Новость успешно изменена.',
 'admin_news_del_successfully'	=>'Новость успешно удалена.',
 

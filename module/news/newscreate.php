@@ -49,13 +49,15 @@
     	if ($_POST['cmd'] == create)
 		{	// на до бы придумать что - то другое. кусок кода мне не нравится
         		if ($_POST['tema'] <> '') $nt = addslashes($_POST['tema']);
-	    		//else $nt = $txt['typ_news_".(int)$_POST['сat']."'];
 
 			$nt = addslashes($_POST['tema']);
 			$addQuery = 'insert into `wcf_news` (`title`,`text`,`cat`) values ("'.$nt.'","'.text_optimazer($_POST['news']).'",'.((int)$_POST['cat']).')';
        			mysql_query($addQuery) or trigger_error(mysql_error());
 
+			if(mysql_query($addQuery) == true) { echo"$txt[admin_news_add_successfully]"; } else { echo"$txt[menu_auth_error]"; }
+
         		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newscreate';//--> </script>";
+			ReturnAdminNewscreate(10);
 		}
 
 	echo"</td></tr></table>";

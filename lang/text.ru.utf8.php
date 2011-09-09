@@ -38,7 +38,7 @@ $txt = array(
 'menu_admin_settings'		=>'Настройки',
 'menu_admin_set_panel'		=>'Настройка понели',
 
-# тексты в админки
+# тексты в админке
 'admin_panels_center'		=>'по центру',
 'admin_panels_left'		=>'с лева',
 'admin_panels_right'		=>'с права',
@@ -55,6 +55,7 @@ $txt = array(
 'news'				=>'Новости',
 'admin_teme_news'		=>'Тема',
 'admin_typ_news'		=>'Тип',
+'admin_news_add_successfully'	=>'Новость успешно создана.',
 'admin_news_edit_successfully'	=>'Новость успешно изменена.',
 'admin_news_del_successfully'	=>'Новость успешно удалена.',
 

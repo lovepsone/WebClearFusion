@@ -39,8 +39,8 @@ $txt = array (
 'menu_admin_set_panel'		=>'Settings panels',
 
 # Texts in admin
-'admin_panels_center' 		=> 'center',
-'admin_panels_left' 		=> 'from the left',
+'admin_panels_center' 		=> 'Center',
+'admin_panels_left' 		=> 'From the left',
 'admin_panels_right' 		=> 'with the law',
 'admin_panels_change' 		=> 'Change',
 'admin_panels_choice' 		=> 'Choice',
@@ -48,14 +48,15 @@ $txt = array (
 'admin_panels_url' 		=> 'Path to the panels',
 'admin_panels_position' 	=> 'Position',
 'admin_panels_choose_position' 	=> 'Select Position',
-'admin_panels_choose_success' 	=> 'bar has been successfully changed.',
+'admin_panels_choose_success' 	=> 'Bar has been successfully changed.',
 'admin_panels_choose_unsuccess' => 'Error in sql query!.',
 
 # Text in the news
 'news'				=>'News',
 'admin_teme_news'		=>'Subject',
 'admin_typ_news'		=>'Type',
-'admin_news_edit_successfully'	=>'news has been successfully changed.',
+'admin_news_add_successfully' 	=>'News has been successfully created.',
+'admin_news_edit_successfully'	=>'News has been successfully changed.',
 'admin_news_del_successfully'	=>'News deleted successfully.',
 
 # Types of news
@@ -69,8 +70,8 @@ $txt = array (
 
 # Code when registering
 'reg'				=>'Register',
-'reg_account'			=>'account',
-'reg_pass'			=>'password',
+'reg_account'			=>'Account',
+'reg_pass'			=>'Password',
 'reg_confirm_pass'		=>'Confirm',
 'reg_mail'			=>'Registration E-mail',
 'reg_add'			=>'Register',

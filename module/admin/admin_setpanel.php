@@ -74,8 +74,9 @@
 			$panel_update = "UPDATE `wcf_panels` SET `panel_name`='".$_POST['name_panel']."',`panel_url`='".$_POST['panel_url']."',`panel_position`='".(int)$_POST['position']."' WHERE `panel_id`='".(int)$_POST['up_id']."'";
 	   		mysql_query($panel_update) or trigger_error(mysql_error());
 
-				if(mysql_query($panel_update) == true) { echo"$txt[admin_panels_choose_success]"; } else { echo"$txt[admin_panels_choose_unsuccess]"; }
+			if(mysql_query($panel_update) == true) { echo"$txt[admin_panels_choose_success]"; } else { echo"$txt[admin_panels_choose_unsuccess]"; }
 
         		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=adminsetpanel';//--> </script>";
+			ReturnAdminPanel(10);
        		}
 ?>

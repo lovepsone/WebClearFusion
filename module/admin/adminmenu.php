@@ -28,7 +28,7 @@
 			echo"<li style='border-left: 1px solid #202020;'><a>$txt[log]</a> 
 						<ul>
     						<li><a href='index.php?modul=alllogs'>$txt[1]</a></li>
-    						<li><a href='index.php?modul=reglogs'>$txt[1]</a></li>
+    						<li><a href='index.php?modul=reglogs'>$txt[2]</a></li>
     						<li><a href=''>$txt[3]</a></li>
     						<li><a href=''>$txt[4]</a></li>
     						<li><a href=''>$txt[5]</a></li>
