@@ -20,11 +20,12 @@
 	mysql_query("SET NAMES '".$config['encoding']."'");
 
   	$panels_left = mysql_query("SELECT `panel_id`, `panel_url`  FROM `wcf_panels` WHERE `panel_position`= 1") or trigger_error(mysql_error());
+	$num_l = mysql_num_rows($panels_left);
 
 	while($panel_left = mysql_fetch_array($panels_left))
 		{
-			echo"<br><hr><br>";
 			require $panel_left[panel_url];
+			if ($num_l > 1) echo"<hr>";
 		}
 
 ?>
