@@ -39,5 +39,5 @@
 	$themefile = "themes/".$config['theme']."/theme.php";
 
 	if (file_exists($themefile)) include($themefile);
-   		else include("themes/default/theme.php");
+   		else include("themes/default/theme.php"); 
 ?>

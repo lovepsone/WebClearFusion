@@ -32,24 +32,26 @@ $txt = array (
 
 # Text in the menu admin
 'menu_admin_news'		=>'News',
-'menu_admin_news_create'	=>'Add',
+'menu_admin_news_add'		=>'Add',
 'menu_admin_news_edit'		=>'Edit',
 'menu_admin_news_del'		=>'Delete',
 'menu_admin_settings'		=>'Settings',
 'menu_admin_set_panel'		=>'Settings panels',
+'menu_admin_add_panel'		=>'Add the panel',
 
 # Texts in admin
-'admin_panels_center' 		=> 'Center',
-'admin_panels_left' 		=> 'From the left',
-'admin_panels_right' 		=> 'with the law',
-'admin_panels_change' 		=> 'Change',
-'admin_panels_choice' 		=> 'Choice',
-'admin_panels_name' 		=> 'Name',
-'admin_panels_url' 		=> 'Path to the panels',
-'admin_panels_position' 	=> 'Position',
-'admin_panels_choose_position' 	=> 'Select Position',
-'admin_panels_choose_success' 	=> 'Bar has been successfully changed.',
-'admin_panels_choose_unsuccess' => 'Error in sql query!.',
+'admin_panels_center' 		=>'Center',
+'admin_panels_left' 		=>'From the left',
+'admin_panels_right' 		=>'With the law',
+'admin_panels_change' 		=>'Change',
+'admin_panels_choice' 		=>'Choice',
+'admin_panels_name' 		=>'Name',
+'admin_panels_url' 		=>'Path to the panels',
+'admin_panels_position' 	=>'Position',
+'admin_panels_choose_position' 	=>'Select Position',
+'admin_panels_choose_success' 	=>'bar has been successfully changed.',
+'admin_panels_choose_unsuccess' =>'Error in sql query!.',
+'admin_panels_add_success'	=>'The panel was successfully added.',
 
 # Text in the news
 'news'				=>'News',

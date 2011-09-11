@@ -53,14 +53,14 @@
 					echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
 
              				echo"<tr><td width='20%' height='30' align='right' valign='middle'>$txt[admin_panels_name]&nbsp;</td>";
-             				echo"<td width='80%' height='30' align='left' valign='middle'><input name='modul' value='adminsetpanel' type=hidden><input type='text' name='name_panel' size='60' value='".$panel['panel_name']."'></td></tr>";
+             				echo"<td width='80%' height='30' align='left' valign='middle'><input name='modul' value='adminsetpanel' type=hidden><input type='text' name='panel_set_name' size='60' value='".$panel['panel_name']."'></td></tr>";
 
              				echo"<tr><td width='20%' height='30' align='right' valign='middle'>$txt[admin_panels_url]&nbsp;</td>";
-             				echo"<td width='80%' height='30' align='left' valign='middle'><input name='modul' value='adminsetpanel' type=hidden><input type='text' name='panel_url' size='60' value='".$panel['panel_url']."'></td></tr>";
+             				echo"<td width='80%' height='30' align='left' valign='middle'><input name='modul' value='adminsetpanel' type=hidden><input type='text' name='panel_set_url' size='60' value='".$panel['panel_url']."'></td></tr>";
 
         				echo"<tr><td width='20%' height='30' align='right' valign='middle'>$txt[admin_panels_position]&nbsp;</td>";
-					echo"<td width='80%' height='30' align='left' valign='middle'><input name='cmd' value='change' type=hidden><input name='up_id' value='".$panel['panel_id']."' type=hidden>";
-        				echo"<select name=position>
+					echo"<td width='80%' height='30' align='left' valign='middle'><input name='cmd' value='change' type=hidden><input name='panel_set_id' value='".$panel['panel_id']."' type=hidden>";
+        				echo"<select name=panel_set_position>
              					<option value=0 selected>$txt[admin_panels_center]</option>
              					<option value=1>$txt[admin_panels_left]</option>
              					<option value=2>$txt[admin_panels_right]</option></select>";
@@ -71,7 +71,7 @@
 		}
    	if ($_POST['cmd'] == change)
 		{
-			$panel_update = "UPDATE `wcf_panels` SET `panel_name`='".$_POST['name_panel']."',`panel_url`='".$_POST['panel_url']."',`panel_position`='".(int)$_POST['position']."' WHERE `panel_id`='".(int)$_POST['up_id']."'";
+			$panel_update = "UPDATE `wcf_panels` SET `panel_name`='".$_POST['panel_set_name']."',`panel_url`='".$_POST['panel_set_url']."',`panel_position`='".(int)$_POST['panel_set_position']."' WHERE `panel_id`='".(int)$_POST['panel_set_id']."'";
 	   		mysql_query($panel_update) or trigger_error(mysql_error());
 
 			if(mysql_query($panel_update) == true) { echo"$txt[admin_panels_choose_success]"; } else { echo"$txt[admin_panels_choose_unsuccess]"; }

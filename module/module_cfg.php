@@ -49,9 +49,10 @@ $modules  = array (
 	'changelang'   	=> array ('module/more/change_lang.php',     257,           -1,     	     3,   	  0  ),
 
 // модули для админки\modules for admin
-	'adminmenu'     => array ('module/admin/adminmenu.php',      257,            1,     	     3,   	  0  ),
+	'adminmenu'     => array ('module/admin/admin_menu.php',     257,            1,     	     3,   	  0  ),
 	'adminmodule'   => array ('module/admin/admin_module.php',   257,            1,     	     3,   	  0  ),
 	'adminsetpanel' => array ('module/admin/admin_setpanel.php', 257,            1,     	     3,   	  0  ),
+	'adminaddpanel' => array ('module/admin/admin_addpanel.php', 257,            1,     	     3,   	  0  ),
 
 // модули для логов\modules for logs
 	'reg'     	=> array ('module/reg/reg.php',              reg,           -1,     	     3,   	  0  ),
@@ -60,9 +61,9 @@ $modules  = array (
 
 // модули для новостей\modules for news
 	'news'     	=> array ('module/news/news.php',           news,           -1,     	     3,   	  1  ),
-	'newscreate'    => array ('module/news/newscreate.php',      257,            1,     	     3,   	  0  ),
-	'newsedit'      => array ('module/news/newsedit.php',        257,            1,     	     3,   	  0  ),
-	'newsdel'       => array ('module/news/newsdel.php',         257,            1,     	     3,   	  0  ),
+	'newsadd'    	=> array ('module/news/news_add.php',        257,            1,     	     3,   	  0  ),
+	'newsedit'      => array ('module/news/news_edit.php',       257,            1,     	     3,   	  0  ),
+	'newsdel'       => array ('module/news/news_del.php',        257,            1,     	     3,   	  0  ),
 );
 
 //==================================================================

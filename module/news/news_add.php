@@ -3,7 +3,7 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone
 +--------------------------------------------------------+
-| Filename: newscreate.php
+| Filename: news_add.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
@@ -27,11 +27,11 @@
 	
         echo"<tr><td width='10%' height='30' align='right' valign='middle'>$txt[admin_teme_news]</td>";
 	echo"<td width='1%' height='30' >&nbsp;</td>";
-        echo"<td width='89%' height='30' align='left' valign='middle'><input name='modul' value='newscreate' type=hidden><input type='text' name='tema' size='40'></td></tr>";
+        echo"<td width='89%' height='30' align='left' valign='middle'><input name='modul' value='newsadd' type=hidden><input type='text' name='tema' size='40'></td></tr>";
 
         echo"<tr><td width='100' height='30' align='right' valign='middle'>$txt[admin_typ_news]</td>";
 	echo"<td width='10' height='30' >&nbsp;</td>";
-        echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='create' type=hidden>";
+        echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='newsadd' type=hidden>";
 
         echo"<select name=cat>
              <option value=0 selected>$txt[typ_news_0]</option>
@@ -44,9 +44,9 @@
 	echo"</td></tr></table>";
 
 	echo"<textarea name='news'></textarea>";
-	echo"<br><center><input type='submit' value='$txt[menu_admin_news_create]'/></center></form>";
+	echo"<br><center><input type='submit' value='$txt[menu_admin_news_add]'/></center></form>";
 
-    	if ($_POST['cmd'] == create)
+    	if ($_POST['cmd'] == newsadd)
 		{	// на до бы придумать что - то другое. кусок кода мне не нравится
         		if ($_POST['tema'] <> '') $nt = addslashes($_POST['tema']);
 
@@ -56,8 +56,8 @@
 
 			if(mysql_query($addQuery) == true) { echo"$txt[admin_news_add_successfully]"; } else { echo"$txt[menu_auth_error]"; }
 
-        		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newscreate';//--> </script>";
-			ReturnAdminNewscreate(10);
+        		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsadd';//--> </script>";
+			ReturnAdminNewsadd(10);
 		}
 
 	echo"</td></tr></table>";
