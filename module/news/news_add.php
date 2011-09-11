@@ -14,14 +14,24 @@
 	mysql_select_db($config['wdbName'], $w_connect);
 	mysql_query("SET NAMES '".$config['encoding']."'");
 
-	echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
-	echo"<tr><td width= '100%'>";
-
 	require $modules['adminmenu'][0];
    	require "include/tinymce.php";
    	echo $edit_script;
 
-	// форма создания новостей
+    	if ($_POST['cmd'] == newsadd)
+		{	// на до бы придумать что - то другое. кусок кода мне не нравится
+        		if ($_POST['tema'] <> '') $nt = addslashes($_POST['tema']);
+
+			$nt = addslashes($_POST['tema']);
+			$addQuery = 'insert into `wcf_news` (`title`,`text`,`cat`) values ("'.$nt.'","'.text_optimazer($_POST['news']).'",'.((int)$_POST['cat']).')';
+       			mysql_query($addQuery) or trigger_error(mysql_error());
+
+			if(mysql_query($addQuery) == true) { echo"$txt[admin_news_add_successfully]"; } else { echo"$txt[menu_auth_error]"; }
+
+        		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsadd';//--> </script>";
+			ReturnAdminNewsadd(10);
+		}
+
 	echo"<form method='post'>";
 	echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
 	
@@ -45,20 +55,4 @@
 
 	echo"<textarea name='news'></textarea>";
 	echo"<br><center><input type='submit' value='$txt[menu_admin_news_add]'/></center></form>";
-
-    	if ($_POST['cmd'] == newsadd)
-		{	// на до бы придумать что - то другое. кусок кода мне не нравится
-        		if ($_POST['tema'] <> '') $nt = addslashes($_POST['tema']);
-
-			$nt = addslashes($_POST['tema']);
-			$addQuery = 'insert into `wcf_news` (`title`,`text`,`cat`) values ("'.$nt.'","'.text_optimazer($_POST['news']).'",'.((int)$_POST['cat']).')';
-       			mysql_query($addQuery) or trigger_error(mysql_error());
-
-			if(mysql_query($addQuery) == true) { echo"$txt[admin_news_add_successfully]"; } else { echo"$txt[menu_auth_error]"; }
-
-        		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsadd';//--> </script>";
-			ReturnAdminNewsadd(10);
-		}
-
-	echo"</td></tr></table>";
 ?>

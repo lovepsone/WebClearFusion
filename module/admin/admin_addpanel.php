@@ -46,5 +46,6 @@
 			if(mysql_query($panel_add) == true) { echo"$txt[admin_panels_add_success]"; } else { echo"$txt[admin_panels_choose_unsuccess]"; }
 
         		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=adminaddpanel';//--> </script>";
+			ReturnAdminAddpanel(10);
        		}
 ?>
