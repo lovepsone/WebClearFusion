@@ -23,10 +23,9 @@
         		if ($_POST['tema'] <> '') $nt = addslashes($_POST['tema']);
 
 			$nt = addslashes($_POST['tema']);
-			$addQuery = 'insert into `wcf_news` (`title`,`text`,`cat`) values ("'.$nt.'","'.text_optimazer($_POST['news']).'",'.((int)$_POST['cat']).')';
-       			mysql_query($addQuery) or trigger_error(mysql_error());
+			$addnews = mysql_query("insert into `wcf_news` (`title`,`text`,`cat`) values ('".$nt."','".text_optimazer($_POST['news'])."','".(int)$_POST['cat']."')") or trigger_error(mysql_error());
 
-			if(mysql_query($addQuery) == true) { echo"$txt[admin_news_add_successfully]"; } else { echo"$txt[menu_auth_error]"; }
+			if($addnews == true) { echo"$txt[admin_news_add_successfully]"; } else { echo"$txt[menu_auth_error]"; }
 
         		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsadd';//--> </script>";
 			ReturnAdminNewsadd(10);

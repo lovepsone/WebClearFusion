@@ -40,10 +40,9 @@
 
    	if ($_POST['cmd'] == addpanel)
 		{
-			$panel_add = "INSERT INTO `wcf_panels` (`panel_id`,`panel_name`,`panel_url`,`panel_position`) VALUES (NULL,'".$_POST['panel_add_name']."','".$_POST['panel_add_url']."','".(int)$_POST['panel_add_position']."')";
-	   		mysql_query($panel_add) or trigger_error(mysql_error());
+			$panel_add = mysql_query("INSERT INTO `wcf_panels` (`panel_name`,`panel_url`,`panel_position`) VALUES ('".$_POST['panel_add_name']."','".$_POST['panel_add_url']."','".(int)$_POST['panel_add_position']."')") or trigger_error(mysql_error());
 
-			if(mysql_query($panel_add) == true) { echo"$txt[admin_panels_add_success]"; } else { echo"$txt[admin_panels_choose_unsuccess]"; }
+			if($panel_add == true) { echo"$txt[admin_panels_add_success]"; } else { echo"$txt[admin_panels_choose_unsuccess]"; }
 
         		echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=adminaddpanel';//--> </script>";
 			ReturnAdminAddpanel(10);
