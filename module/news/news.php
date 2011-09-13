@@ -10,11 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-  	$kol = 1;
-	$w_connect = mysql_connect($config['whostname'], $config['wusername'], $config['wpassword']);
-	mysql_select_db($config['wdbName'], $w_connect);
-	mysql_query("SET NAMES '".$config['encoding']."'");
-
+	selectdb(wcf);
   	$cres = mysql_query("SELECT count(`date`) as kol FROM `wcf_news`") or trigger_error(mysql_error());
 	$kolzap = mysql_fetch_array($cres);
 
@@ -35,7 +31,6 @@
   	if (mysql_num_rows($kres) > 0 )
 		{
      			echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
-
      			while ($nres = mysql_fetch_array($kres))
 				{
 					$NewCatPatch = $NewsCat[$nres['cat']][0];
@@ -45,7 +40,6 @@
           				echo"<td align='left' class='head'>".$nres['title']."&nbsp;</td></tr>";
           				echo"<tr><td colspan='3' class='page'>".$nres['text']."</td></tr>";
           				echo"<tr><td align='right' colspan='3' class='page'>".$nres['date']."</td></tr>";
-       					$kol++;
       				}
 
   			if ($kolzap['kol'] > $config['page_news'])

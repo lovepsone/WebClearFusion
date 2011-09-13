@@ -10,12 +10,8 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	selectdb(realmd);
 	$er = 0;
-
-	$r_connect = mysql_connect($config['rhostname'], $config['rusername'], $config['rpassword']);
-	mysql_select_db($config['rdbName'], $r_connect);
-	mysql_query("SET NAMES '".$config['encoding']."'");
-
 	$rip = 'no';   
 	$query = "SELECT `ip` FROM `ip_banned` WHERE `ip`='".$_SERVER['REMOTE_ADDR']."' LIMIT 1";
 	$res = mysql_query($query);
@@ -28,11 +24,7 @@
    		}
 
 	if ($config['reg_ip_limit'] > 0)
-		{	
-			$r_connect = mysql_connect($config['rhostname'], $config['rusername'], $config['rpassword']);
-			mysql_select_db($config['rdbName'], $r_connect);
-			mysql_query("SET NAMES '".$config['encoding']."'");
-
+		{
    			$query = "SELECT COUNT(`id`) AS kol FROM `account` WHERE `last_ip`='".$_SERVER['REMOTE_ADDR']."'";
    			$resk = mysql_query($query);   
    			$rowk = mysql_fetch_assoc($resk);
@@ -71,11 +63,6 @@
 
    			if ($er == 0)
 				{
-
-					$r_connect = mysql_connect($config['rhostname'], $config['rusername'], $config['rpassword']);
-					mysql_select_db($config['rdbName'], $r_connect);
-					mysql_query("SET NAMES '".$config['encoding']."'");
-
       					$query1 = 'select count(`username`) as kol from `account` where `username` = "'.strtoupper($_POST['new_acc']).'"';
       					$res1 = mysql_query($query1);
       					$row1 = mysql_fetch_assoc($res1);
@@ -89,13 +76,8 @@
 
    			if ($er == 0)
 				{
-
-					$r_connect = mysql_connect($config['rhostname'], $config['rusername'], $config['rpassword']);
-					mysql_select_db($config['rdbName'], $r_connect);
-					mysql_query("SET NAMES '".$config['encoding']."'");
-
       	 				mysql_query("INSERT INTO `account` (`username`,`sha_pass_hash`,`email`,`last_ip`,`locked`,`expansion`) VALUES (UPPER('".$_POST['new_acc']."'),SHA1(CONCAT(UPPER('".$_POST['new_acc']."'),':',UPPER('".$_POST['pass1']."'))),'".$_POST['email']."','".$_SERVER['REMOTE_ADDR']."','0','".$def_exp_acc."')");
-								
+
        					echo"<img src='images/yes.png'> <b>$txt[reg_account_successfully]</b><br><br><hr><div align='center'><a href='index.php'>$txt[main_home]</a></div>";
        					$query2 = "SELECT * FROM `account` WHERE `username`='".strtoupper($_POST['new_acc'])."' AND sha_pass_hash ='".SHA1(strtoupper($_POST['new_acc']).':'.strtoupper($_POST['pass1']))."'";
        					$res2 = mysql_query($query2);

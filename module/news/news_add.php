@@ -10,10 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	$w_connect = mysql_connect($config['whostname'], $config['wusername'], $config['wpassword']);
-	mysql_select_db($config['wdbName'], $w_connect);
-	mysql_query("SET NAMES '".$config['encoding']."'");
-
+	selectdb(wcf);
 	require $modules['adminmenu'][0];
    	require "include/tinymce.php";
    	echo $edit_script;

@@ -24,10 +24,7 @@
 			echo"<tr><td width='50%' height='30' colspan='2' align='center' valign='middle' class='loginbutton'><input type='submit' value='$txt[menu_auth_enter]'></td></tr>";
   			$rip = 'no';
 
- 			$r_connect = mysql_connect($config['rhostname'], $config['rusername'], $config['rpassword']);
-			mysql_select_db($config['rdbName'], $r_connect);
-			mysql_query("SET NAMES '".$config['encoding']."'");
-
+			selectdb(realmd);
   			$res = mysql_query("SELECT `ip` FROM `ip_banned` WHERE `ip`='".$_SERVER['REMOTE_ADDR']."' LIMIT 1") or trigger_error(mysql_error());
 
   			if ($row = mysql_fetch_assoc($res)) $rip  = $row['ip'];
@@ -47,10 +44,7 @@
 		{
   			$rip = '';
 
- 			$r_connect = mysql_connect($config['rhostname'], $config['rusername'], $config['rpassword']);
-			mysql_select_db($config['rdbName'], $r_connect);
-			mysql_query("SET NAMES '".$config['encoding']."'");
-
+			selectdb(realmd);
   			$query0 = "SELECT `ip` FROM `ip_banned` WHERE `ip`='".$_SERVER['REMOTE_ADDR']."' LIMIT 1";
  			$res0 = mysql_query($query0);
 
@@ -84,10 +78,6 @@
       					ReturnMainForm(40);
       					return;
      				}
-
-			$r_connect = mysql_connect($config['rhostname'], $config['rusername'], $config['rpassword']);
-			mysql_select_db($config['rdbName'], $r_connect);
-			mysql_query("SET NAMES '".$config['encoding']."'");
 
   			$query2 = "SELECT `active` FROM `account_banned` WHERE `id`='".$ra_id."' LIMIT 1";
   			$res2 = mysql_query($query2) or trigger_error(mysql_error());

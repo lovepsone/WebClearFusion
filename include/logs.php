@@ -10,14 +10,10 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	$w_connect = mysql_connect($config['whostname'], $config['wusername'], $config['wpassword']);
-
 	if (($log_account == '') OR ($log_account == 0)) {$log_account = $_SESSION['user_id']; }
 	if ($log_character == '') { $log_character = 0; }
 
-	mysql_select_db($config['wdbName'], $w_connect);
-	mysql_query("SET NAMES '".$config['encoding']."'");
-
+	selectdb(wcf);
 	mysql_query("insert `wcf_logs` (`ip`, `account`, `character`, `mode`, `email`, `resultat`, `note`, `old_data`) values ('".$_SERVER['REMOTE_ADDR']."', ".$log_account.", ".$log_character.", ".$log_mode.", '".$log_email."', '".$log_resultat."', '".$log_note."', '".$log_old_data."')");
 	echo"<br><br>";
 

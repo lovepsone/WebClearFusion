@@ -14,10 +14,7 @@
 
 	if (isset($_SESSION['ip']))
 		{	
-			$r_connect = mysql_connect($config['rhostname'], $config['rusername'], $config['rpassword']);
-			mysql_select_db($config['rdbName'], $r_connect);
-			mysql_query("SET NAMES '".$config['encoding']."'");
-
+			selectdb(realmd);
      			$bres = mysql_query('SELECT count(`ip`) as kol FROM `ip_banned` WHERE `ip`="'.$_SESSION['ip'].'"');
      			$brow = mysql_fetch_assoc($bres);
      			$banSearch = $banSearch + (int)$brow['kol'];

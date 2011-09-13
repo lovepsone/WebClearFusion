@@ -15,10 +15,7 @@
 | panel_position = 2 - right
 +--------------------------------------------------------*/
 
-	$w_connect = mysql_connect($config['whostname'], $config['wusername'], $config['wpassword']);
-	mysql_select_db($config['wdbName'], $w_connect);
-	mysql_query("SET NAMES '".$config['encoding']."'");
-
+	selectdb(wcf);
   	$panels_center = mysql_query("SELECT `panel_id`, `panel_url`  FROM `wcf_panels` WHERE `panel_position`= 0") or trigger_error(mysql_error());
 	$num_c = mysql_num_rows($panels_center);
 

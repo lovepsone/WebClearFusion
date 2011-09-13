@@ -10,10 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	$w_connect = mysql_connect($config['whostname'], $config['wusername'], $config['wpassword']);
-	mysql_select_db($config['wdbName'], $w_connect);
-	mysql_query("SET NAMES '".$config['encoding']."'");
-
+	selectdb(wcf);
 	$kol = 1;
 	require $modules['adminmenu'][0];
    	require "include/tinymce.php";
@@ -36,7 +33,6 @@
 
 	$kres = mysql_query("SELECT `id`,`date`,`title`,`text`,`cat` FROM `wcf_news` ORDER BY `date` DESC limit ".$StartRec.",".$PageLen) or trigger_error(mysql_error());
 
-	// форма выбора
 	echo"<form method='post'>";
 	echo"<table width='90%' border='0' cellspacing='0' cellpadding='5' class='report'>";
 

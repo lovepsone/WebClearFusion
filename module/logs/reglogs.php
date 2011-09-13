@@ -22,10 +22,7 @@
 	echo"<th>$txt[log_title_mail]</th>";
 	echo"<th>$txt[log_title_account]</th></tr>";
 
-	$w_connect = mysql_connect($config['whostname'], $config['wusername'], $config['wpassword']);
-	mysql_select_db($config['wdbName'], $w_connect);
-	mysql_query("SET NAMES '".$config['encoding']."'");
-
+	selectdb(wcf);
 	$query = "SELECT * FROM `wcf_logs` WHERE `mode`=1";
 	$res = mysql_query($query) or trigger_error(mysql_error().$query);
 

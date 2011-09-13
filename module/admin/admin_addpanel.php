@@ -10,10 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	$w_connect = mysql_connect($config['whostname'], $config['wusername'], $config['wpassword']);
-	mysql_select_db($config['wdbName'], $w_connect);
-	mysql_query("SET NAMES '".$config['encoding']."'");
-
+	selectdb(wcf);
 	$patch = "panels/name/name_files_panel.php";
 	$name = "name panel";
 	require $modules['adminmenu'][0];
