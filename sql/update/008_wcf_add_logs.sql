@@ -1,16 +1,3 @@
-/*
-MySQL Data Transfer
-Source Host: localhost
-Source Database: wcf
-Target Host: localhost
-Target Database: wcf
-Date: 17.08.2011 15:42:17
-*/
-
-SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for wcf_logs
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_logs`;
 CREATE TABLE `wcf_logs` (
   `date` timestamp NOT NULL default CURRENT_TIMESTAMP,
@@ -24,6 +11,3 @@ CREATE TABLE `wcf_logs` (
   `old_data` longtext
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records 
--- ----------------------------
