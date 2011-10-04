@@ -106,6 +106,9 @@ $txt = array (
 '9'				=>'Unlock ip',
 '10'				=>'Anti-bug',
 
+# forum
+'forum'				=>'Forum',
+
 # Exit from the session
 'logout'			=>'You have successfully signed out',
 
