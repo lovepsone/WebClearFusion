@@ -4,10 +4,59 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 13.09.2011 19:09:15
+Date: 05.10.2011 19:04:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for wcf_forums
+-- ----------------------------
+DROP TABLE IF EXISTS `wcf_forums`;
+CREATE TABLE `wcf_forums` (
+  `forum_id` int(11) unsigned NOT NULL auto_increment,
+  `forum_name` longtext,
+  `forum_description` longtext,
+  PRIMARY KEY  (`forum_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for wcf_forums_replies
+-- ----------------------------
+DROP TABLE IF EXISTS `wcf_forums_replies`;
+CREATE TABLE `wcf_forums_replies` (
+  `forum_id` int(11) default NULL,
+  `thread_id` int(11) default NULL,
+  `replies_id` int(11) unsigned NOT NULL auto_increment,
+  `replies_name` longtext,
+  `replies_text` longtext,
+  `thread_postedby` longtext,
+  `thread_whenposted` int(11) default NULL,
+  PRIMARY KEY  (`replies_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for wcf_forums_threads
+-- ----------------------------
+DROP TABLE IF EXISTS `wcf_forums_threads`;
+CREATE TABLE `wcf_forums_threads` (
+  `forum_id` int(11) default NULL,
+  `thread_id` int(11) unsigned NOT NULL auto_increment,
+  `thread_name` longtext,
+  `thread_text` longtext,
+  `thread_postedby` longtext,
+  `thread_whenposted` int(11) default NULL,
+  PRIMARY KEY  (`thread_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for wcf_login_failed
+-- ----------------------------
+DROP TABLE IF EXISTS `wcf_login_failed`;
+CREATE TABLE `wcf_login_failed` (
+  `ip` varchar(15) NOT NULL default '127.0.0.1',
+  `login_time` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 -- ----------------------------
 -- Table structure for wcf_logs
 -- ----------------------------
@@ -48,7 +97,7 @@ CREATE TABLE `wcf_panels` (
   `panel_url` varchar(200) character set utf8 collate utf8_unicode_ci NOT NULL default '',
   `panel_position` tinyint(1) unsigned NOT NULL default '1',
   PRIMARY KEY  (`panel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
