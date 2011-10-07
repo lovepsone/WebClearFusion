@@ -73,14 +73,11 @@
 					// занесение юзера в таблицу
 					$user = mysql_query("SELECT * FROM `wcf_users` WHERE `user_id`='".$_SESSION['user_id']."' AND `user_name`='".$_SESSION['kito']."'");
 
-					if ($user['user_id'] == $_SESSION['user_id'])
-						{
-							$user_upd = mysql_query("UPDATE `wcf_users` SET `user_online`='1' WHERE (`user_id`='".$_SESSION['user_id']."')");
-						}
-					else
+					if ($user['user_id'] <> $_SESSION['user_id'])
 						{
 							$user_crt = mysql_query("INSERT INTO `wcf_users` (`user_id`,`user_name`,`user_online`) VALUES ('".$_SESSION['user_id']."','".$_SESSION['kito']."','1')");
 						}
+
        				}
 			//======================================
 			// добавляем бан по ип-адресу на 

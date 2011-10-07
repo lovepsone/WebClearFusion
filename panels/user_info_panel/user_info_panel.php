@@ -63,6 +63,11 @@
 		}
 	else 
 		{
+			//======================================
+			// занесение юзера в таблицу
+			selectdb(wcf);
+			mysql_query("UPDATE `wcf_users` SET `user_online`='1' WHERE  `user_id`='".$_SESSION['user_id']."'");
+
   			$rip = '';
 			selectdb(realmd);
   			$query0 = mysql_query("SELECT `ip` FROM `ip_banned` WHERE `ip`='".$_SERVER['REMOTE_ADDR']."' LIMIT 1");
