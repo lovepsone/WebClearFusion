@@ -16,9 +16,9 @@
 		echo"<ul id='cssmenu1'>";
 			echo"<li style='border-left: 1px solid #202020;'><a>$txt[menu_admin_news]</a> 
 						<ul>
-    						<li><a href='index.php?modul=newsadd'>$txt[menu_admin_news_add]</a></li>
-    						<li><a href='index.php?modul=newsedit'>$txt[menu_admin_news_edit]</a></li>
-    						<li><a href='index.php?modul=newsdel'>$txt[menu_admin_news_del]</a></li>
+    						<li><a href='index.php?modul=newsed&add'>$txt[menu_admin_news_add]</a></li>
+    						<li><a href='index.php?modul=newsed&edit'>$txt[menu_admin_news_edit]</a></li>
+    						<li><a href='index.php?modul=newsed&del'>$txt[menu_admin_news_del]</a></li>
     						</ul></li>";
 			echo"<li style='border-left: 1px solid #202020;'><a>$txt[menu_admin_settings]</a> 
 						<ul>
