@@ -3,17 +3,19 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone
 +--------------------------------------------------------+
-| Filename: news_edits.php
+| Filename: newsed.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	require $modules['adminmenu'][0];
+	$kol = 1;
+
 	if (isset($_GET['add']))
 		{
 			selectdb(wcf);
-			require $modules['adminmenu'][0];
    			require "include/tinymce.php";
    			echo $edit_script;
 
@@ -58,8 +60,6 @@
 	if (isset($_GET['edit']))
 		{
 			selectdb(wcf);
-			$kol = 1;
-			require $modules['adminmenu'][0];
    			require "include/tinymce.php";
    			echo $edit_script;
 
@@ -163,9 +163,6 @@
 
 	if (isset($_GET['del']))
 		{
-			$kol = 1;
-			require $modules['adminmenu'][0];
-
 			selectdb(wcf);
 			$cres = mysql_query("SELECT count(`date`) as kol FROM `wcf_news` ") or trigger_error(mysql_error());
 			$kolzap = mysql_fetch_array($cres);
