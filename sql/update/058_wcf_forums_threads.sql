@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 05.10.2011 18:57:23
+Date: 13.10.2011 13:23:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -18,10 +18,11 @@ CREATE TABLE `wcf_forums_threads` (
   `thread_name` longtext,
   `thread_text` longtext,
   `thread_postedby` longtext,
-  `thread_whenposted` int(11) default NULL,
+  `thread_num_mess` int(11) default NULL,
   PRIMARY KEY  (`thread_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
 -- ----------------------------
+INSERT INTO `wcf_forums_threads` VALUES ('2', '1', 'Сообщение от администрации', 'Смотрите обязательно', null, '1');
