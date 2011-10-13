@@ -14,7 +14,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `wcf_forums`;
 CREATE TABLE `wcf_forums` (
   `forum_id` mediumint(8) unsigned NOT NULL auto_increment,
-  `forum_cat` mediumint(8) unsigned NOT NULL default '0',
+  `forum_sections` mediumint(8) unsigned NOT NULL default '0',
   `forum_name` longtext,
   `forum_description` longtext,
   PRIMARY KEY  (`forum_id`)
