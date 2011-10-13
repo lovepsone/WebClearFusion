@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 05.10.2011 19:04:23
+Date: 13.10.2011 13:46:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -13,11 +13,12 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `wcf_forums`;
 CREATE TABLE `wcf_forums` (
-  `forum_id` int(11) unsigned NOT NULL auto_increment,
+  `forum_id` mediumint(8) unsigned NOT NULL auto_increment,
+  `forum_sections` mediumint(8) unsigned NOT NULL default '0',
   `forum_name` longtext,
   `forum_description` longtext,
   PRIMARY KEY  (`forum_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for wcf_forums_replies
@@ -32,7 +33,7 @@ CREATE TABLE `wcf_forums_replies` (
   `thread_postedby` longtext,
   `thread_whenposted` int(11) default NULL,
   PRIMARY KEY  (`replies_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for wcf_forums_threads
@@ -44,7 +45,7 @@ CREATE TABLE `wcf_forums_threads` (
   `thread_name` longtext,
   `thread_text` longtext,
   `thread_postedby` longtext,
-  `thread_whenposted` int(11) default NULL,
+  `thread_num_mess` int(11) default NULL,
   PRIMARY KEY  (`thread_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -100,9 +101,29 @@ CREATE TABLE `wcf_panels` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Table structure for wcf_users
+-- ----------------------------
+DROP TABLE IF EXISTS `wcf_users`;
+CREATE TABLE `wcf_users` (
+  `user_id` int(11) unsigned NOT NULL auto_increment COMMENT 'Identifier',
+  `user_name` varchar(32) NOT NULL default '',
+  `user_online` tinyint(3) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`user_id`),
+  UNIQUE KEY `idx_user_name` (`user_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
 -- Records 
 -- ----------------------------
+INSERT INTO `wcf_forums` VALUES ('1', '0', 'Информация о сервере', null);
+INSERT INTO `wcf_forums` VALUES ('2', '1', 'Информация от администрации', 'Обновления, изменения, события, новости.');
+INSERT INTO `wcf_forums` VALUES ('3', '0', 'Мир Warcraft', null);
+INSERT INTO `wcf_forums` VALUES ('4', '3', 'Аддоны и Макросы\r\n', 'Скачиваем и заказываем');
+INSERT INTO `wcf_forums` VALUES ('5', '1', 'Мастерская', 'Делимся своими идеями, решениями. Обсуждаем, создаем что-то свое.');
+INSERT INTO `wcf_forums_threads` VALUES ('2', '1', 'Сообщение от администрации', 'Смотрите обязательно', null, '1');
 INSERT INTO `wcf_news` VALUES ('1', '2011-09-11 15:56:25', 'От разработчика', 'WCF успешно установлен.', '0');
 INSERT INTO `wcf_panels` VALUES ('1', 'main form', 'panels/main_form/main_form.php', '0');
 INSERT INTO `wcf_panels` VALUES ('2', 'navigation panel', 'panels/navigation_panel/navigation_panel.php', '1');
 INSERT INTO `wcf_panels` VALUES ('3', 'user info panel', 'panels/user_info_panel/user_info_panel.php', '2');
+INSERT INTO `wcf_users` VALUES ('1', 'ADMINISTRATOR', '0');
+INSERT INTO `wcf_users` VALUES ('5', 'LOVEPSONE', '1');

@@ -20,13 +20,16 @@ USE `wcf`;
 DROP TABLE IF EXISTS `wcf_forums`;
 
 CREATE TABLE `wcf_forums` (
-  `forum_id` int(11) unsigned NOT NULL auto_increment,
+  `forum_id` mediumint(8) unsigned NOT NULL auto_increment,
+  `forum_sections` mediumint(8) unsigned NOT NULL default '0',
   `forum_name` longtext,
   `forum_description` longtext,
   PRIMARY KEY  (`forum_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wcf_forums` */
+
+insert  into `wcf_forums`(`forum_id`,`forum_sections`,`forum_name`,`forum_description`) values (1,0,'Информация о сервере',NULL),(2,1,'Информация от администрации','Обновления, изменения, события, новости.'),(3,0,'Мир Warcraft',NULL),(4,3,'Аддоны и Макросы\r\n','Скачиваем и заказываем'),(5,1,'Мастерская','Делимся своими идеями, решениями. Обсуждаем, создаем что-то свое.');
 
 /*Table structure for table `wcf_forums_replies` */
 
@@ -41,7 +44,7 @@ CREATE TABLE `wcf_forums_replies` (
   `thread_postedby` longtext,
   `thread_whenposted` int(11) default NULL,
   PRIMARY KEY  (`replies_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `wcf_forums_replies` */
 
@@ -55,11 +58,13 @@ CREATE TABLE `wcf_forums_threads` (
   `thread_name` longtext,
   `thread_text` longtext,
   `thread_postedby` longtext,
-  `thread_whenposted` int(11) default NULL,
+  `thread_num_mess` int(11) default NULL,
   PRIMARY KEY  (`thread_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wcf_forums_threads` */
+
+insert  into `wcf_forums_threads`(`forum_id`,`thread_id`,`thread_name`,`thread_text`,`thread_postedby`,`thread_num_mess`) values (2,1,'Сообщение от администрации','Смотрите обязательно',NULL,1);
 
 /*Table structure for table `wcf_login_failed` */
 
@@ -123,6 +128,22 @@ CREATE TABLE `wcf_panels` (
 /*Data for the table `wcf_panels` */
 
 insert  into `wcf_panels`(`panel_id`,`panel_name`,`panel_url`,`panel_position`) values (1,'main form','panels/main_form/main_form.php',0),(2,'navigation panel','panels/navigation_panel/navigation_panel.php',1),(3,'user info panel','panels/user_info_panel/user_info_panel.php',2);
+
+/*Table structure for table `wcf_users` */
+
+DROP TABLE IF EXISTS `wcf_users`;
+
+CREATE TABLE `wcf_users` (
+  `user_id` int(11) unsigned NOT NULL auto_increment COMMENT 'Identifier',
+  `user_name` varchar(32) NOT NULL default '',
+  `user_online` tinyint(3) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`user_id`),
+  UNIQUE KEY `idx_user_name` (`user_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+/*Data for the table `wcf_users` */
+
+insert  into `wcf_users`(`user_id`,`user_name`,`user_online`) values (1,'ADMINISTRATOR',0),(5,'LOVEPSONE',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
