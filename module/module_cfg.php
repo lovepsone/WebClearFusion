@@ -65,7 +65,8 @@ $modules  = array (
 
 // форум\forum
 	'forum'       => array ('forum/forum.php',            	   forum,           -1,     	     3,   	  1  ),
-	'section'     => array ('forum/forum_topics.php',            257,           -1,     	     3,   	  0  ),
+	'thread'      => array ('forum/forum_threads.php',           257,           -1,     	     3,   	  0  ),
+	'replie'      => array ('forum/forum_replies.php',           257,           -1,     	     3,   	  0  ),
 );
 
 //==================================================================

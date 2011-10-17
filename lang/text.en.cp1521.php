@@ -108,6 +108,7 @@ $txt = array (
 
 # forum
 'forum'				=>'Forum',
+'forum_create_theme'		=>'Ñreate a theme',
 
 # Exit from the session
 'logout'			=>'You have successfully signed out',

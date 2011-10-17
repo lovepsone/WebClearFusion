@@ -30,7 +30,7 @@ TABLE.report IMG          {vertical-align: middle;}
 TABLE.report TH           {BORDER:#CCCCFF 1px solid; COLOR: #66CCFF; BACKGROUND-COLOR: #000066;}
 TABLE.report TH A         {COLOR: #66CCFF; TEXT-DECORATION: underline}
 TABLE.report TD           {BORDER:#CCCCFF 1px solid;PADDING: 0px; vertical-align: middle; TEXT-ALIGN: center;}
-TABLE.report TD A         {TEXT-DECORATION: none;}
+TABLE.report TD A         {TEXT-DECORATION: none; COLOR: #ffdd00;}
 TABLE.report TD.left      {TEXT-ALIGN: left; padding: 0px 5px;}
 TABLE.report TD.full      {TEXT-ALIGN: left; padding: 0px 5px; white-space: nowrap;}
 TABLE.report TD.small     {WIDTH: 1%; padding: 0px 5px; white-space: nowrap;}

@@ -16,8 +16,7 @@ CREATE TABLE `wcf_forums_threads` (
   `forum_id` int(11) default NULL,
   `thread_id` int(11) unsigned NOT NULL auto_increment,
   `thread_name` longtext,
-  `thread_text` longtext,
-  `thread_postedby` longtext,
+  `thread_description` longtext,
   `thread_num_mess` int(11) default NULL,
   PRIMARY KEY  (`thread_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
@@ -25,4 +24,4 @@ CREATE TABLE `wcf_forums_threads` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `wcf_forums_threads` VALUES ('2', '1', 'Сообщение от администрации', 'Смотрите обязательно', null, '1');
+INSERT INTO `wcf_forums_threads` VALUES ('2', '1', 'Сообщение от администрации', 'Смотрите обязательно', '1');

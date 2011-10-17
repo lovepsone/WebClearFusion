@@ -108,6 +108,9 @@ $txt = array(
 
 # форум
 'forum'				=>'Форум',
+'forum_create_theme'		=>'Создать тему',
+'forum_create_name_theme'	=>'Название темы',
+'forum_create_descript_theme'	=>'Описание темы',
 
 # выход из сессии
 'logout'			=>'Вы успешно вышли из Учетной записи',

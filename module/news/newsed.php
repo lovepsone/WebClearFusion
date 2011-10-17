@@ -19,19 +19,6 @@
    			require "include/tinymce.php";
    			echo $edit_script;
 
-    			if ($_POST['cmd'] == newsadd)
-				{	// на до бы придумать что - то другое. кусок кода мне не нравится
-        				if ($_POST['tema'] <> '') $nt = addslashes($_POST['tema']);
-
-					$nt = addslashes($_POST['tema']);
-					$addnews = mysql_query("insert into `wcf_news` (`title`,`text`,`cat`) values ('".$nt."','".text_optimazer($_POST['news'])."','".(int)$_POST['cat']."')") or trigger_error(mysql_error());
-
-					if($addnews == true) { echo"$txt[admin_news_add_successfully]"; } else { echo"$txt[menu_auth_error]"; }
-
-        				echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsed&add';//--> </script>";
-					ReturnAdminNewsadd(10);
-				}
-
 			echo"<form method='post'>";
 			echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
 	
@@ -55,6 +42,19 @@
 
 			echo"<textarea name='news'></textarea>";
 			echo"<br><center><input type='submit' value='$txt[menu_admin_news_add]'/></center></form>";
+
+    			if ($_POST['cmd'] == newsadd)
+				{	// на до бы придумать что - то другое. кусок кода мне не нравится
+        				if ($_POST['tema'] <> '') $nt = addslashes($_POST['tema']);
+
+					$nt = addslashes($_POST['tema']);
+					$addnews = mysql_query("insert into `wcf_news` (`title`,`text`,`cat`) values ('".$nt."','".text_optimazer($_POST['news'])."','".(int)$_POST['cat']."')") or trigger_error(mysql_error());
+
+					if($addnews == true) { echo"$txt[admin_news_add_successfully]"; } else { echo"$txt[menu_auth_error]"; }
+
+        				echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsed&add';//--> </script>";
+					ReturnAdminNewsadd(10);
+				}
 		}
 
 	if (isset($_GET['edit']))

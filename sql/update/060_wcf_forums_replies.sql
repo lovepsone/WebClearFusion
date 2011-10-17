@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 05.10.2011 18:57:10
+Date: 17.10.2011 14:28:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,8 +21,10 @@ CREATE TABLE `wcf_forums_replies` (
   `thread_postedby` longtext,
   `thread_whenposted` int(11) default NULL,
   PRIMARY KEY  (`replies_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
 -- ----------------------------
+INSERT INTO `wcf_forums_replies` VALUES ('2', '1', '1', null, 'Тестовое сообщение', null, null);
+INSERT INTO `wcf_forums_replies` VALUES ('2', '1', '2', null, 'Ответ на Тестовое сообщение', null, null);
