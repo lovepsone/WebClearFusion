@@ -112,6 +112,11 @@ $txt = array(
 'forum_create_name_theme'	=>'Название темы',
 'forum_create_descript_theme'	=>'Описание темы',
 
+'forum_column_section'		=>'Раздел',
+'forum_column_last_post'	=>'Последнее сообщение',
+'forum_column_so'		=>'Тем',
+'forum_column_posts'		=>'Сообщений',
+
 # выход из сессии
 'logout'			=>'Вы успешно вышли из Учетной записи',
 

@@ -107,8 +107,15 @@ $txt = array (
 '10'				=>'Anti-bug',
 
 # forum
-'forum'				=>'Forum',
-'forum_create_theme'		=>'Сreate a theme',
+'forum' 			=> 'Forum',
+'forum_create_theme' 		=> 'Create topic',
+'forum_create_name_theme' 	=> 'Topic Title',
+'forum_create_descript_theme' 	=> 'Description topic',
+
+'forum_column_section' 		=> 'Category',
+'forum_column_last_post' 	=> 'Last Post',
+'forum_column_so' 		=> 'Topics',
+'forum_column_posts' 		=> 'Posts',
 
 # Exit from the session
 'logout'			=>'You have successfully signed out',
