@@ -18,10 +18,10 @@
 			require "include/tinymce.php";
    			echo $edit_script;
 			selectdb(wcf);
-			$result = "SELECT `wcf_forums_threads`.*, `wcf_forums_replies`.*
-						FROM `wcf_forums_threads`,`wcf_forums_replies` 
-						WHERE `wcf_forums_replies`.`forum_id`='$forum_id'
-						AND `wcf_forums_replies`.`thread_id`='$thread_id'
+			$result = "SELECT `wcf_forums_threads`.*, `wcf_forums_posts`.*
+						FROM `wcf_forums_threads`,`wcf_forums_posts` 
+						WHERE `wcf_forums_posts`.`forum_id`='$forum_id'
+						AND `wcf_forums_posts`.`thread_id`='$thread_id'
 						AND `wcf_forums_threads`.`thread_id`='$thread_id'";
 			$result_name = mysql_query($result);
 			$result = mysql_query($result);
@@ -31,10 +31,10 @@
 			echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
 			echo"<tr><th width='100%' class='head' colspan='2'>".$repl_name."</th></tr>";
 
-			while ($replies = mysql_fetch_array($result))
+			while ($posts = mysql_fetch_array($result))
 				{
 					selectdb(realmd);
- 					$query_acc = "SELECT * FROM `account` WHERE `id`=".$replies['user_id']." LIMIT 1";
+ 					$query_acc = "SELECT * FROM `account` WHERE `id`='".$posts['user_id']."' LIMIT 1";
   					$result_acc = mysql_query($query_acc) or trigger_error(mysql_error().$query_acc);
 
   					if ($acc = mysql_fetch_assoc($result_acc)) 
@@ -45,7 +45,7 @@
 						}
 
 					echo"<tr><td width='20%'align='left' class='page'>".ucfirst(strtolower($usr_name))."<br>$usr_ip</td>";
-					echo"<td width='80%'align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;".$replies['replies_text']."</td></tr>";
+					echo"<td width='80%'align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;".$posts['posts_text']."</td></tr>";
 				}
 
 			echo"</table>";
