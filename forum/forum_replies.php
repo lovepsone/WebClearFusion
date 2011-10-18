@@ -15,6 +15,8 @@
 
 	if (isset($_GET['id']) and isset($_GET['fid']))
 		{
+			require "include/tinymce.php";
+   			echo $edit_script;
 			selectdb(wcf);
 			$result = "SELECT `wcf_forums_threads`.*, `wcf_forums_replies`.*
 						FROM `wcf_forums_threads`,`wcf_forums_replies` 
@@ -29,13 +31,30 @@
 			echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
 			echo"<tr><th width='100%' class='head' colspan='2'>".$repl_name."</th></tr>";
 
-			while ($replies =  mysql_fetch_array($result))
+			while ($replies = mysql_fetch_array($result))
 				{
-					echo"<tr><td width='20%'align='left' style='text-align: left;' class='page'></td>";
+					selectdb(realmd);
+ 					$query_acc = "SELECT * FROM `account` WHERE `id`=".$replies['user_id']." LIMIT 1";
+  					$result_acc = mysql_query($query_acc) or trigger_error(mysql_error().$query_acc);
+
+  					if ($acc = mysql_fetch_assoc($result_acc)) 
+      						{
+       							$usr_name = $acc['username'];
+							$usr_gmlvl = $acc['gmlevel'];
+       							$usr_ip = $acc['last_ip'];
+						}
+
+					echo"<tr><td width='20%'align='left' class='page'>".ucfirst(strtolower($usr_name))."<br>$usr_ip</td>";
 					echo"<td width='80%'align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;".$replies['replies_text']."</td></tr>";
 				}
 
 			echo"</table>";
+
+			echo"<form method='post'>";
+			echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
+			echo"</table>";
+			echo"<textarea name='replies' style='width:300'></textarea>";
+			echo"<br><center><input type='submit' value='replies'/></center></form>";
 		}
 
 ?>

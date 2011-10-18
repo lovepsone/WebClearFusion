@@ -39,14 +39,14 @@ CREATE TABLE `wcf_forums_replies` (
   `forum_id` int(11) default NULL,
   `thread_id` int(11) default NULL,
   `replies_id` int(11) unsigned NOT NULL auto_increment,
-  `replies_name` longtext,
+  `user_id` int(11) default NULL,
   `replies_text` longtext,
-  `thread_postedby` longtext,
-  `thread_whenposted` int(11) default NULL,
   PRIMARY KEY  (`replies_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wcf_forums_replies` */
+
+insert  into `wcf_forums_replies`(`forum_id`,`thread_id`,`replies_id`,`user_id`,`replies_text`) values (2,1,1,1,'Тестовое сообщение'),(2,1,2,2,'Ответ на Тестовое сообщение');
 
 /*Table structure for table `wcf_forums_threads` */
 
@@ -55,16 +55,14 @@ DROP TABLE IF EXISTS `wcf_forums_threads`;
 CREATE TABLE `wcf_forums_threads` (
   `forum_id` int(11) default NULL,
   `thread_id` int(11) unsigned NOT NULL auto_increment,
+  `user_id` int(11) default NULL,
   `thread_name` longtext,
-  `thread_text` longtext,
-  `thread_postedby` longtext,
-  `thread_num_mess` int(11) default NULL,
   PRIMARY KEY  (`thread_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wcf_forums_threads` */
 
-insert  into `wcf_forums_threads`(`forum_id`,`thread_id`,`thread_name`,`thread_text`,`thread_postedby`,`thread_num_mess`) values (2,1,'Сообщение от администрации','Смотрите обязательно',NULL,1);
+insert  into `wcf_forums_threads`(`forum_id`,`thread_id`,`user_id`,`thread_name`) values (2,1,1,'Сообщение от администрации'),(2,2,4,'Тестовый форум');
 
 /*Table structure for table `wcf_login_failed` */
 
@@ -134,7 +132,7 @@ insert  into `wcf_panels`(`panel_id`,`panel_name`,`panel_url`,`panel_position`) 
 DROP TABLE IF EXISTS `wcf_users`;
 
 CREATE TABLE `wcf_users` (
-  `user_id` int(11) unsigned NOT NULL auto_increment COMMENT 'Identifier',
+  `user_id` int(11) unsigned NOT NULL auto_increment,
   `user_name` varchar(32) NOT NULL default '',
   `user_online` tinyint(3) unsigned NOT NULL default '0',
   PRIMARY KEY  (`user_id`),
@@ -143,7 +141,7 @@ CREATE TABLE `wcf_users` (
 
 /*Data for the table `wcf_users` */
 
-insert  into `wcf_users`(`user_id`,`user_name`,`user_online`) values (1,'ADMINISTRATOR',0),(5,'LOVEPSONE',1);
+insert  into `wcf_users`(`user_id`,`user_name`,`user_online`) values (1,'ADMINISTRATOR',0),(2,'GAMEMASTER',0),(3,'MODERATOR',0),(4,'PLAYER',0),(5,'LOVEPSONE',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

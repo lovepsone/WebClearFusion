@@ -15,7 +15,7 @@
 	if (isset($_GET['id']))
 		{
 			selectdb(wcf);
-			$result = mysql_query("SELECT `wcf_forums_threads`.*, `wcf_users`.* FROM `wcf_forums_threads`, `wcf_users` WHERE `forum_id`='$forum_id' AND `wcf_forums_threads`.`thread_user_id`=`wcf_users`.`user_id`");
+			$result = mysql_query("SELECT `wcf_forums_threads`.*, `wcf_users`.* FROM `wcf_forums_threads`, `wcf_users` WHERE `forum_id`='$forum_id' AND `wcf_forums_threads`.`user_id`=`wcf_users`.`user_id`");
 
 			echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
 
