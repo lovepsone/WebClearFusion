@@ -14,22 +14,30 @@
 
 	if (isset($_GET['id']))
 		{
-			//echo"<table width='100%' border='0' cellspacing='0' cellpadding='5'>";
-			//echo"<tr><td style='text-align: left;' valign='bottom' class='paneldata'><a href='index.php?modul=section&create'><h4>$txt[forum_create_theme]</h4></a></td></tr></table>";
-
 			selectdb(wcf);
 			$result = mysql_query("SELECT * FROM `wcf_forums_threads` WHERE `forum_id`='$forum_id'");
 
 			echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
 
+   			echo"<tr><th width='4%' class='head'></th>";
+			echo"<th width='57%'>$txt[forum_column_top_aut]</th>";
+			echo"<th width='21%'>$txt[forum_column_last_post]</th>";
+			echo"<th width='5%'>$txt[forum_column_replies]</th>";
+			echo"<th width='10%'>$txt[forum_column_views]</th></tr>";
+			echo"<tr><th width='100%' colspan='5' align='left' style='text-align: left;' class='head'><a href='index.php?modul=thread&create'>$txt[forum_create_theme]</a></th></tr>";
+
 			while($topics = mysql_fetch_array($result))
 				{
-          				echo"<tr><td align='left' style='text-align: left;' class='head'>&nbsp;&nbsp;<a href='index.php?modul=replie&id=$topics[thread_id]&fid=$forum_id'>".$topics['thread_name']."</a></td></tr>";
-					echo"<tr><td align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;".$topics['thread_description']."</td></tr>";
+					echo"<tr><td width='4%' align='left' style='text-align: left;' class='page'></td>";
+          				echo"<td align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=replie&id=$topics[thread_id]&fid=$forum_id'>".$topics['thread_name']."</a><br>&nbsp;&nbsp;".$topics['thread_description']."</td>";
+					echo"<td width='21%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td>";
+					echo"<td width='5%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td>";
+					echo"<td width='11%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td></tr>";
 				}
 			echo"</table>";
 		}
-	/*if (isset($_GET['create']))
+
+	if (isset($_GET['create']))
 		{
 			require "include/tinymce.php";
    			echo $edit_script;
@@ -50,7 +58,7 @@
 
     			if ($_POST['cmd'] == themeadd)
 				{
-					$nt = addslashes($_POST['name_tema']);
+					/*$nt = addslashes($_POST['name_tema']);
 
 					echo $nt;
 					$addnews = mysql_query("insert into `wcf_news` (`title`,`text`,`cat`) values ('".$nt."','".text_optimazer($_POST['news'])."','".(int)$_POST['cat']."')") or trigger_error(mysql_error());
@@ -58,7 +66,7 @@
 					if($addnews == true) { echo"$txt[admin_news_add_successfully]"; } else { echo"$txt[menu_auth_error]"; }
 
         				echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=section&create';//--> </script>";
-					ReturnAdminNewsadd(10);
+					ReturnAdminNewsadd(10);*/
 				}
-		}*/
+		}
 ?>

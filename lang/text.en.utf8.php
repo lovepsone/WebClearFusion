@@ -116,6 +116,9 @@ $txt = array (
 'forum_column_last_post' 	=> 'Last Post',
 'forum_column_so' 		=> 'Topics',
 'forum_column_posts' 		=> 'Posts',
+'forum_column_top_aut' 		=> 'Subject / Author',
+'forum_column_replies' 		=> 'Replies',
+'forum_column_views' 		=> 'Views',
 
 # Exit from the session
 'logout'			=>'You have successfully signed out',

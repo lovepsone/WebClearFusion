@@ -116,6 +116,9 @@ $txt = array(
 'forum_column_last_post'	=>'Последнее сообщение',
 'forum_column_so'		=>'Тем',
 'forum_column_posts'		=>'Сообщений',
+'forum_column_top_aut'		=>'Тема/Автор',
+'forum_column_replies'		=>'Ответов',
+'forum_column_views'		=>'Просмотров',
 
 # выход из сессии
 'logout'			=>'Вы успешно вышли из Учетной записи',
