@@ -15,7 +15,7 @@
 	if (isset($_GET['id']))
 		{
 			selectdb(wcf);
-			$result = mysql_query("SELECT * FROM `wcf_forums_threads` WHERE `forum_id`='$forum_id'");
+			$result = mysql_query("SELECT `wcf_forums_threads`.*, `wcf_users`.* FROM `wcf_forums_threads`, `wcf_users` WHERE `forum_id`='$forum_id' AND `wcf_forums_threads`.`thread_user_id`=`wcf_users`.`user_id`");
 
 			echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
 
@@ -29,7 +29,7 @@
 			while($topics = mysql_fetch_array($result))
 				{
 					echo"<tr><td width='4%' align='left' style='text-align: left;' class='page'></td>";
-          				echo"<td align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=replie&id=$topics[thread_id]&fid=$forum_id'>".$topics['thread_name']."</a><br>&nbsp;&nbsp;".$topics['thread_description']."</td>";
+          				echo"<td align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=replie&id=$topics[thread_id]&fid=$forum_id'>".$topics['thread_name']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($topics['user_name']))."</td>";
 					echo"<td width='21%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td>";
 					echo"<td width='5%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td>";
 					echo"<td width='11%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td></tr>";
