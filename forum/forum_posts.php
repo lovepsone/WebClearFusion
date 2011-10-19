@@ -3,7 +3,7 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone
 +--------------------------------------------------------+
-| Filename: forum_replies.php
+| Filename: forum_posts.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
@@ -50,11 +50,28 @@
 
 			echo"</table>";
 
-			echo"<form method='post'>";
-			echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
-			echo"</table>";
-			echo"<textarea name='replies' style='width:300'></textarea>";
-			echo"<br><center><input type='submit' value='replies'/></center></form>";
+			if (isset($_SESSION['user_id']) or ($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
+				{
+					if($_POST['posts'])
+						{
+							selectdb(wcf);
+							$add_post = mysql_query("INSERT INTO `wcf_forums_posts`
+										(`forum_id`,`thread_id`,`user_id`,`posts_text`) VALUES
+										('$forum_id','$thread_id','".$_SESSION['user_id']."','".text_optimazer($_POST['posts'])."')");
+							echo"true";
+						}
+					else 
+						{
+							echo"<form method='post'>";
+							echo"<table width='300' cellpadding='0' cellspacing='0' border='0' align='center'>";
+							echo"<textarea name='posts'></textarea>";
+							echo"<br><center><input type='submit' value='".$txt['forum_quick_reply']."'/></center></form></table>";
+						}
+				}
+			else if (!isset($_SESSION['user_id']) or ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
+				{ 
+					echo $txt['forum_log'];
+				}
 		}
 
 ?>
