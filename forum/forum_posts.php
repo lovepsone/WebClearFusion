@@ -44,8 +44,8 @@
        							$usr_ip = $acc['last_ip'];
 						}
 
-					echo"<tr><td width='20%'align='left' class='page'>".ucfirst(strtolower($usr_name))."<br>$usr_ip</td>";
-					echo"<td width='80%'align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;".$posts['posts_text']."</td></tr>";
+					echo"<tr><td width='20%' align='left' class='page'>".ucfirst(strtolower($usr_name))."<br>$usr_ip</td>";
+					echo"<td width='80%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;".$posts['posts_text']."</td></tr>";
 				}
 
 			echo"</table>";
@@ -58,7 +58,29 @@
 							$add_post = mysql_query("INSERT INTO `wcf_forums_posts`
 										(`forum_id`,`thread_id`,`user_id`,`posts_text`) VALUES
 										('$forum_id','$thread_id','".$_SESSION['user_id']."','".text_optimazer($_POST['posts'])."')");
-							echo"true";
+
+										echo"<img src='images/ajax-loader.gif'/>";
+										echo"<script type='text/javascript'> <!--
+										function exec_refresh()
+											{
+  												window.status = 'reloading...' + myvar;
+  												myvar = myvar + ' .';
+  												var timerID = setTimeout('exec_refresh();', 100);
+  												if (timeout > 0)
+													{
+														timeout -= 1;
+													}
+												else
+													{
+    														clearTimeout(timerID);
+    														window.status = '';
+    														window.location = 'index.php?modul=post&id=$thread_id&fid=$forum_id';
+    													}
+											}
+										var myvar = '';
+										var timeout = 5;
+										exec_refresh();
+										//--> </script>";
 						}
 					else 
 						{
