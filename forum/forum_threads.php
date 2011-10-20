@@ -29,7 +29,7 @@
 			while($topics = mysql_fetch_array($result))
 				{
 					echo"<tr><td width='4%' align='left' style='text-align: left;' class='page'></td>";
-          				echo"<td align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=post&id=$topics[thread_id]&fid=$forum_id'>".$topics['thread_name']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($topics['user_name']))."</td>";
+          				echo"<td align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=post&id=$topics[thread_id]&forum_id=$forum_id'>".$topics['thread_name']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($topics['user_name']))."</td>";
 					echo"<td width='21%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td>";
 					echo"<td width='5%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td>";
 					echo"<td width='11%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td></tr>";

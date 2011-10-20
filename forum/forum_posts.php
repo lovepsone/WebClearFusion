@@ -10,10 +10,10 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	$forum_id = addslashes($_GET["fid"]);
+	$forum_id = addslashes($_GET["forum_id"]);
 	$thread_id = addslashes($_GET["id"]);
 
-	if (isset($_GET['id']) and isset($_GET['fid']))
+	if (isset($_GET['id']) and isset($_GET['forum_id']))
 		{
 			require "include/tinymce.php";
    			echo $edit_script;
