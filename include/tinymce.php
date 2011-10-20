@@ -17,7 +17,7 @@ tinyMCE.init({
 // General options
 	mode : "textareas",
 	theme : "advanced",
-//	theme : "simple",
+	//theme : "simple",
 	language : "ru",
 	width : "100%",
 	height : "300",
@@ -37,7 +37,9 @@ tinyMCE.init({
 	external_link_list_url : "js/link_list.js",
 	external_image_list_url : "js/image_list.js",
 	media_external_list_url : "js/media_list.js",
+// skin options
+	skin : "o2k7",
+	skin_variant : "silver",
 });
-</script>
-';
+</script>';
 ?>
