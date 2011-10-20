@@ -58,6 +58,7 @@
 							$add_post = mysql_query("INSERT INTO `wcf_forums_posts`
 										(`forum_id`,`thread_id`,`user_id`,`posts_text`) VALUES
 										('$forum_id','$thread_id','".$_SESSION['user_id']."','".text_optimazer($_POST['posts'])."')");
+							$updt_post = mysql_query("UPDATE `wcf_forums` SET `forum_postcount`=forum_postcount+1 WHERE (`forum_id`='$forum_id')");
 
 										echo"<img src='images/ajax-loader.gif'/>";
 										echo"<script type='text/javascript'> <!--

@@ -34,8 +34,8 @@
 							echo"<tr><td width='4%' align='left' style='text-align: left;' class='page'></td>";
 							echo"<td width='59%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=thread&id=$tm_section[forum_id]'><b>".$tm_section['forum_name']."</b></a><br>&nbsp;&nbsp;".$tm_section['forum_description']."</td>";
 							echo"<td width='21%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td>";
-							echo"<td width='5%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td>";
-							echo"<td width='11%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td></tr>";	
+							echo"<td width='5%'  class='page'>".$tm_section['forum_threadcount']."</td>";
+							echo"<td width='11%' class='page'>".$tm_section['forum_postcount']."</td></tr>";	
 						}	
 					echo"</table>";
 				}	
