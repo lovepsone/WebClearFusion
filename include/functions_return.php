@@ -76,7 +76,7 @@
 						{
     							clearTimeout(timerID);
     							window.status = '';
-    							window.location = 'index.php?modul=newsed&add';
+    							window.location = 'index.php?modul=newsadd';
     						}
 				}
 			var myvar = '';
@@ -100,7 +100,7 @@
 						{
     							clearTimeout(timerID);
     							window.status = '';
-    							window.location = 'index.php?modul=newsed&del';
+    							window.location = 'index.php?modul=newsdel';
     						}
 				}
 			var myvar = '';
@@ -125,7 +125,7 @@
 						{
     							clearTimeout(timerID);
     							window.status = '';
-    							window.location = 'index.php?modul=newsed&edit';
+    							window.location = 'index.php?modul=newsedit';
     						}
 				}
 			var myvar = '';
