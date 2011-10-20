@@ -59,6 +59,7 @@
 										(`forum_id`,`thread_id`,`user_id`,`posts_text`) VALUES
 										('$forum_id','$thread_id','".$_SESSION['user_id']."','".text_optimazer($_POST['posts'])."')");
 							$updt_post = mysql_query("UPDATE `wcf_forums` SET `forum_postcount`=forum_postcount+1 WHERE (`forum_id`='$forum_id')");
+							$updt_post = mysql_query("UPDATE `wcf_forums_threads` SET `thread_postcount`=thread_postcount+1 WHERE (`forum_id`='$forum_id' AND `thread_id`='$thread_id')");
 
 										echo"<img src='images/ajax-loader.gif'/>";
 										echo"<script type='text/javascript'> <!--
@@ -75,7 +76,7 @@
 													{
     														clearTimeout(timerID);
     														window.status = '';
-    														window.location = 'index.php?modul=post&id=$thread_id&fid=$forum_id';
+    														window.location = 'index.php?modul=post&id=$thread_id&forum_id=$forum_id';
     													}
 											}
 										var myvar = '';
