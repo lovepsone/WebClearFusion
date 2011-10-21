@@ -23,8 +23,8 @@
 						WHERE `wcf_forums_posts`.`forum_id`='$forum_id'
 						AND `wcf_forums_posts`.`thread_id`='$thread_id'
 						AND `wcf_forums_threads`.`thread_id`='$thread_id'";
-			$result_name = mysql_query($result);
-			$result = mysql_query($result);
+			$result_name = mysql_query($result) or trigger_error(mysql_error());
+			$result = mysql_query($result) or trigger_error(mysql_error());
 
 			if ($res = mysql_fetch_assoc($result_name))  $repl_name = $res['thread_name'];
 
@@ -57,12 +57,12 @@
 							selectdb(wcf);
 							$add_post = mysql_query("INSERT INTO `wcf_forums_posts`
 										(`forum_id`,`thread_id`,`user_id`,`posts_text`) VALUES
-										('$forum_id','$thread_id','".$_SESSION['user_id']."','".text_optimazer($_POST['posts'])."')");
-							$updt_post = mysql_query("UPDATE `wcf_forums` SET `forum_postcount`=forum_postcount+1 WHERE (`forum_id`='$forum_id')");
-							$updt_post = mysql_query("UPDATE `wcf_forums_threads` SET `thread_postcount`=thread_postcount+1 WHERE (`forum_id`='$forum_id' AND `thread_id`='$thread_id')");
+										('$forum_id','$thread_id','".$_SESSION['user_id']."','".text_optimazer($_POST['posts'])."')") or trigger_error(mysql_error());
+							$updt_forum = mysql_query("UPDATE `wcf_forums` SET `forum_postcount`=forum_postcount+1 WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
+							$updt_thread = mysql_query("UPDATE `wcf_forums_threads` SET `thread_postcount`=thread_postcount+1 WHERE (`forum_id`='$forum_id' AND `thread_id`='$thread_id')") or trigger_error(mysql_error());
 
-										echo"<img src='images/ajax-loader.gif'/>";
-										echo"<script type='text/javascript'> <!--
+							echo"<img src='images/ajax-loader.gif'/>";
+							echo"<script type='text/javascript'> <!--
 										function exec_refresh()
 											{
   												window.status = 'reloading...' + myvar;

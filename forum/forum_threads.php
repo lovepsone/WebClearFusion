@@ -24,7 +24,7 @@
 			echo"<th width='21%'>$txt[forum_column_last_post]</th>";
 			echo"<th width='5%'>$txt[forum_column_replies]</th>";
 			echo"<th width='10%'>$txt[forum_column_views]</th></tr>";
-			echo"<tr><th width='100%' colspan='5' align='left' style='text-align: left;' class='head'><a href='index.php?modul=thread&create'>$txt[forum_create_theme]</a></th></tr>";
+			echo"<tr><th width='100%' colspan='5' align='left' style='text-align: left;' class='head'><a href='index.php?modul=thread&create&forum_id=$forum_id'>$txt[forum_create_theme]</a></th></tr>";
 
 			while($topics = mysql_fetch_array($result))
 				{
@@ -36,9 +36,9 @@
 				}
 			echo"</table>";
 		}
-
-	if (isset($_GET['create']))
+	if (isset($_GET['create']) & isset($_GET['forum_id']))
 		{
+			$forum_id = addslashes($_GET["forum_id"]);
 			require "include/tinymce.php";
    			echo $edit_script;
 
@@ -47,26 +47,41 @@
 	
        			echo"<tr><td width='15%' height='30' align='right' valign='middle'>$txt[forum_create_name_theme]</td>";
 			echo"<td width='1%' height='30' >&nbsp;</td>";
-        		echo"<td width='84%' height='30' align='left' valign='middle'><input name='cmd' value='themeadd' type=hidden><input type='text' name='name_tema' size='40'></td></tr>";
+        		echo"<td width='84%' height='30' align='left' valign='middle'><input name='modul' value='thread' type=hidden><input type='text' name='name_thread' size='40'></td></tr></table>";
 
-       			echo"<tr><td width='15%' height='30' align='right' valign='middle'>$txt[forum_create_descript_theme]</td>";
-			echo"<td width='1%' height='30' >&nbsp;</td>";
-        		echo"<td width='84%' height='30' align='left' valign='middle'><input name='modul' value='create' type=hidden><input type='text' name='description' size='40'></td></tr></table>";
-
-			echo"<textarea name='topics'></textarea>";
+			echo"<textarea name='thread'></textarea>";
 			echo"<br><center><input type='submit' value='$txt[forum_create_theme]'/></center></form>";
 
-    			if ($_POST['cmd'] == themeadd)
+    			if ($_POST['thread'])
 				{
-					/*$nt = addslashes($_POST['name_tema']);
+					selectdb(wcf);
+					$add_thread = mysql_query("INSERT INTO `wcf_forums_threads` (`forum_id`,`user_id`,`thread_name`,`thread_postcount`) VALUES ('$forum_id','".$_SESSION['user_id']."','".$_POST['name_thread']."','1')") or trigger_error(mysql_error());
+					$thread_id = mysql_insert_id();
+					$add_post = mysql_query("INSERT INTO `wcf_forums_posts` (`forum_id`,`thread_id`,`user_id`,`posts_text`) VALUES ('$forum_id','$thread_id','".$_SESSION['user_id']."','".$_POST['thread']."')") or trigger_error(mysql_error());
+					$updt_forum = mysql_query("UPDATE `wcf_forums` SET `forum_postcount`=forum_postcount+1, `forum_threadcount`=forum_threadcount+1 WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
 
-					echo $nt;
-					$addnews = mysql_query("insert into `wcf_news` (`title`,`text`,`cat`) values ('".$nt."','".text_optimazer($_POST['news'])."','".(int)$_POST['cat']."')") or trigger_error(mysql_error());
-
-					if($addnews == true) { echo"$txt[admin_news_add_successfully]"; } else { echo"$txt[menu_auth_error]"; }
-
-        				echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=section&create';//--> </script>";
-					ReturnAdminNewsadd(10);*/
+					echo"<img src='images/ajax-loader.gif'/>";
+					echo"<script type='text/javascript'> <!--
+						function exec_refresh()
+							{
+  								window.status = 'reloading...' + myvar;
+  								myvar = myvar + ' .';
+  								var timerID = setTimeout('exec_refresh();', 100);
+  								if (timeout > 0)
+									{
+										timeout -= 1;
+									}
+								else
+									{
+    										clearTimeout(timerID);
+    										window.status = '';
+    										window.location = 'index.php?modul=post&id=$thread_id&forum_id=$forum_id';
+    									}
+							}
+						var myvar = '';
+						var timeout = 10;
+						exec_refresh();
+						//--> </script>";
 				}
 		}
 ?>

@@ -110,7 +110,6 @@ $txt = array (
 'forum' 			=> 'Forum',
 'forum_create_theme' 		=> 'Create topic',
 'forum_create_name_theme' 	=> 'Topic Title',
-'forum_create_descript_theme' 	=> 'Description topic',
 
 'forum_column_section' 		=> 'Category',
 'forum_column_last_post' 	=> 'Last Post',
