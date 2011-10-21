@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 18.10.2011 19:36:41
+Date: 21.10.2011 17:50:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -19,10 +19,12 @@ CREATE TABLE `wcf_forums_posts` (
   `user_id` int(11) default NULL,
   `posts_text` longtext,
   PRIMARY KEY  (`posts_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `wcf_forums_posts` VALUES ('2', '1', '1', '1', 'Тестовое сообщение');
-INSERT INTO `wcf_forums_posts` VALUES ('2', '1', '2', '2', 'Ответ на Тестовое сообщение');
+INSERT INTO `wcf_forums_posts` VALUES ('2', '1', '1', '1', 'Проверка работоспособности форума');
+INSERT INTO `wcf_forums_posts` VALUES ('2', '2', '3', '1', 'Проверка работоспособности форума!!!');
+INSERT INTO `wcf_forums_posts` VALUES ('5', '3', '4', '1', 'Проверка работоспособности форума!!!');
+INSERT INTO `wcf_forums_posts` VALUES ('4', '4', '5', '1', 'Проверка работоспособности форума!!!');

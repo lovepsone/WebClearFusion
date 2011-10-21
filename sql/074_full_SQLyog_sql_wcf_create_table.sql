@@ -24,29 +24,33 @@ CREATE TABLE `wcf_forums` (
   `forum_sections` mediumint(8) unsigned NOT NULL default '0',
   `forum_name` longtext,
   `forum_description` longtext,
-  PRIMARY KEY  (`forum_id`)
+  `forum_postcount` mediumint(8) unsigned NOT NULL default '0',
+  `forum_threadcount` mediumint(8) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`forum_id`),
+  KEY `forum_postcount` (`forum_postcount`),
+  KEY `forum_threadcount` (`forum_threadcount`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wcf_forums` */
 
-insert  into `wcf_forums`(`forum_id`,`forum_sections`,`forum_name`,`forum_description`) values (1,0,'Информация о сервере',NULL),(2,1,'Информация от администрации','Обновления, изменения, события, новости.'),(3,0,'Мир Warcraft',NULL),(4,3,'Аддоны и Макросы\r\n','Скачиваем и заказываем'),(5,1,'Мастерская','Делимся своими идеями, решениями. Обсуждаем, создаем что-то свое.');
+insert  into `wcf_forums`(`forum_id`,`forum_sections`,`forum_name`,`forum_description`,`forum_postcount`,`forum_threadcount`) values (1,0,'Информация о сервере',NULL,0,0),(2,1,'Информация от администрации','Обновления, изменения, события, новости.',2,2),(3,0,'Мир Warcraft',NULL,0,0),(4,3,'Аддоны и Макросы\r\n','Скачиваем и заказываем',1,1),(5,1,'Мастерская','Делимся своими идеями, решениями. Обсуждаем, создаем что-то свое.',1,1);
 
-/*Table structure for table `wcf_forums_replies` */
+/*Table structure for table `wcf_forums_posts` */
 
-DROP TABLE IF EXISTS `wcf_forums_replies`;
+DROP TABLE IF EXISTS `wcf_forums_posts`;
 
-CREATE TABLE `wcf_forums_replies` (
+CREATE TABLE `wcf_forums_posts` (
   `forum_id` int(11) default NULL,
   `thread_id` int(11) default NULL,
-  `replies_id` int(11) unsigned NOT NULL auto_increment,
+  `posts_id` int(11) unsigned NOT NULL auto_increment,
   `user_id` int(11) default NULL,
-  `replies_text` longtext,
-  PRIMARY KEY  (`replies_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `posts_text` longtext,
+  PRIMARY KEY  (`posts_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
-/*Data for the table `wcf_forums_replies` */
+/*Data for the table `wcf_forums_posts` */
 
-insert  into `wcf_forums_replies`(`forum_id`,`thread_id`,`replies_id`,`user_id`,`replies_text`) values (2,1,1,1,'Тестовое сообщение'),(2,1,2,2,'Ответ на Тестовое сообщение');
+insert  into `wcf_forums_posts`(`forum_id`,`thread_id`,`posts_id`,`user_id`,`posts_text`) values (2,1,1,1,'Проверка работоспособности форума'),(2,2,3,1,'Проверка работоспособности форума!!!'),(5,3,4,1,'Проверка работоспособности форума!!!'),(4,4,5,1,'Проверка работоспособности форума!!!');
 
 /*Table structure for table `wcf_forums_threads` */
 
@@ -57,12 +61,14 @@ CREATE TABLE `wcf_forums_threads` (
   `thread_id` int(11) unsigned NOT NULL auto_increment,
   `user_id` int(11) default NULL,
   `thread_name` longtext,
-  PRIMARY KEY  (`thread_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+  `thread_postcount` smallint(5) unsigned NOT NULL default '0',
+  PRIMARY KEY  (`thread_id`),
+  KEY `thread_postcount` (`thread_postcount`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wcf_forums_threads` */
 
-insert  into `wcf_forums_threads`(`forum_id`,`thread_id`,`user_id`,`thread_name`) values (2,1,1,'Сообщение от администрации'),(2,2,4,'Тестовый форум');
+insert  into `wcf_forums_threads`(`forum_id`,`thread_id`,`user_id`,`thread_name`,`thread_postcount`) values (2,1,1,'Сообщение от администрации',2),(2,2,4,'Тестовый форум',1),(5,3,1,'Сообщение от администрации',1),(4,4,1,'Сообщение от администрации',1);
 
 /*Table structure for table `wcf_login_failed` */
 
@@ -109,7 +115,7 @@ CREATE TABLE `wcf_news` (
 
 /*Data for the table `wcf_news` */
 
-insert  into `wcf_news`(`id`,`date`,`title`,`text`,`cat`) values (1,'2011-09-11 15:56:25','От разработчика','WCF успешно установлен.',0);
+insert  into `wcf_news`(`id`,`date`,`title`,`text`,`cat`) values (1,'2011-10-21 14:16:39','От разработчика.','<p><span style=\\\"background-color: #888888; color: #ffff00;\\\">WCF успешно установлен.</span></p>',0);
 
 /*Table structure for table `wcf_panels` */
 
@@ -141,7 +147,7 @@ CREATE TABLE `wcf_users` (
 
 /*Data for the table `wcf_users` */
 
-insert  into `wcf_users`(`user_id`,`user_name`,`user_online`) values (1,'ADMINISTRATOR',0),(2,'GAMEMASTER',0),(3,'MODERATOR',0),(4,'PLAYER',0),(5,'LOVEPSONE',1);
+insert  into `wcf_users`(`user_id`,`user_name`,`user_online`) values (1,'ADMINISTRATOR',0),(2,'GAMEMASTER',0),(3,'MODERATOR',0),(4,'PLAYER',0),(5,'LOVEPSONE',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
