@@ -16,7 +16,7 @@
 	if (isset($_GET['id']) and isset($_GET['forum_id']))
 		{
 			require "include/tinymce.php";
-   			echo $edit_script;
+   			echo $simple_script;
 			selectdb(wcf);
 			$result = "SELECT `wcf_forums_threads`.*, `wcf_forums_posts`.*
 						FROM `wcf_forums_threads`,`wcf_forums_posts` 

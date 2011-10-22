@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 21.10.2011 17:51:25
+Date: 22.10.2011 13:51:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -88,7 +88,7 @@ CREATE TABLE `wcf_news` (
   `cat` tinyint(3) unsigned default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for wcf_panels
@@ -130,7 +130,7 @@ INSERT INTO `wcf_forums_threads` VALUES ('2', '1', '1', 'Сообщение от
 INSERT INTO `wcf_forums_threads` VALUES ('2', '2', '4', 'Тестовый форум', '1');
 INSERT INTO `wcf_forums_threads` VALUES ('5', '3', '1', 'Сообщение от администрации', '1');
 INSERT INTO `wcf_forums_threads` VALUES ('4', '4', '1', 'Сообщение от администрации', '1');
-INSERT INTO `wcf_news` VALUES ('1', '2011-10-21 14:16:39', 'От разработчика.', '<p><span style=\\\"background-color: #888888; color: #ffff00;\\\">WCF успешно установлен.</span></p>', '0');
+INSERT INTO `wcf_news` VALUES ('1', '2011-10-22 13:50:00', 'От разработчика.', 'WCF успешно установлен.', '0');
 INSERT INTO `wcf_panels` VALUES ('1', 'main form', 'panels/main_form/main_form.php', '0');
 INSERT INTO `wcf_panels` VALUES ('2', 'navigation panel', 'panels/navigation_panel/navigation_panel.php', '1');
 INSERT INTO `wcf_panels` VALUES ('3', 'user info panel', 'panels/user_info_panel/user_info_panel.php', '2');
@@ -138,4 +138,4 @@ INSERT INTO `wcf_users` VALUES ('1', 'ADMINISTRATOR', '0');
 INSERT INTO `wcf_users` VALUES ('2', 'GAMEMASTER', '0');
 INSERT INTO `wcf_users` VALUES ('3', 'MODERATOR', '0');
 INSERT INTO `wcf_users` VALUES ('4', 'PLAYER', '0');
-INSERT INTO `wcf_users` VALUES ('5', 'LOVEPSONE', '0');
+INSERT INTO `wcf_users` VALUES ('5', 'LOVEPSONE', '1');

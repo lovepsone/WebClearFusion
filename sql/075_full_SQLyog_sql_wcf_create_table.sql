@@ -111,11 +111,11 @@ CREATE TABLE `wcf_news` (
   `cat` tinyint(3) unsigned default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wcf_news` */
 
-insert  into `wcf_news`(`id`,`date`,`title`,`text`,`cat`) values (1,'2011-10-21 14:16:39','От разработчика.','<p><span style=\\\"background-color: #888888; color: #ffff00;\\\">WCF успешно установлен.</span></p>',0);
+insert  into `wcf_news`(`id`,`date`,`title`,`text`,`cat`) values (1,'2011-10-22 13:50:00','От разработчика.','WCF успешно установлен.',0);
 
 /*Table structure for table `wcf_panels` */
 
@@ -147,7 +147,7 @@ CREATE TABLE `wcf_users` (
 
 /*Data for the table `wcf_users` */
 
-insert  into `wcf_users`(`user_id`,`user_name`,`user_online`) values (1,'ADMINISTRATOR',0),(2,'GAMEMASTER',0),(3,'MODERATOR',0),(4,'PLAYER',0),(5,'LOVEPSONE',0);
+insert  into `wcf_users`(`user_id`,`user_name`,`user_online`) values (1,'ADMINISTRATOR',0),(2,'GAMEMASTER',0),(3,'MODERATOR',0),(4,'PLAYER',0),(5,'LOVEPSONE',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

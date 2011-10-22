@@ -13,7 +13,7 @@
 	selectdb(wcf);
 	require $modules['adminmenu'][0];
    	require "include/tinymce.php";
-   	echo $edit_script;
+   	echo $advanced_script;
 
     	if ($_POST['cmd'] == newsadd)
 		{	// на до бы придумать что - то другое. кусок кода мне не нравится

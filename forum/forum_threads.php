@@ -40,7 +40,7 @@
 		{
 			$forum_id = addslashes($_GET["forum_id"]);
 			require "include/tinymce.php";
-   			echo $edit_script;
+   			echo $advanced_script;
 
 			echo"<form method='post'>";
 			echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";

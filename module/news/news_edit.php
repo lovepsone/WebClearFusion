@@ -14,7 +14,7 @@
 	$kol = 1;
 	require $modules['adminmenu'][0];
    	require "include/tinymce.php";
-   	echo $edit_script;
+   	echo $advanced_script;
 
 	$cres = mysql_query("SELECT count(`date`) as kol FROM `wcf_news` ") or trigger_error(mysql_error());
 	$kolzap = mysql_fetch_array($cres);
