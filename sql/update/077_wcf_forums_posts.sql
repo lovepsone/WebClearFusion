@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 26.10.2011 16:40:26
+Date: 27.10.2011 12:49:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,6 +26,6 @@ CREATE TABLE `wcf_forums_posts` (
 -- Records 
 -- ----------------------------
 INSERT INTO `wcf_forums_posts` VALUES ('2', '1', '1', '1', 'Проверка работоспособности форума!!!', '2010-05-28 21:04:49');
-INSERT INTO `wcf_forums_posts` VALUES ('2', '2', '3', '1', 'Проверка работоспособности форума!!!', '2010-05-28 21:04:48');
-INSERT INTO `wcf_forums_posts` VALUES ('5', '3', '4', '1', 'Проверка работоспособности форума!!!', '2010-05-28 21:04:47');
-INSERT INTO `wcf_forums_posts` VALUES ('4', '4', '5', '1', 'Проверка работоспособности форума!!!', '2010-05-28 21:04:46');
+INSERT INTO `wcf_forums_posts` VALUES ('2', '2', '2', '4', 'Проверка работоспособности форума!!!', '2011-10-27 12:40:08');
+INSERT INTO `wcf_forums_posts` VALUES ('5', '3', '3', '1', 'Проверка работоспособности форума!!!', '2011-10-27 12:39:40');
+INSERT INTO `wcf_forums_posts` VALUES ('4', '4', '4', '1', 'Проверка работоспособности форума!!!', '2011-10-27 12:39:44');

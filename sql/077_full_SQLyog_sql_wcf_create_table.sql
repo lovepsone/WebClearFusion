@@ -42,15 +42,16 @@ DROP TABLE IF EXISTS `wcf_forums_posts`;
 CREATE TABLE `wcf_forums_posts` (
   `forum_id` int(11) default NULL,
   `thread_id` int(11) default NULL,
-  `posts_id` int(11) unsigned NOT NULL auto_increment,
+  `post_id` int(11) unsigned NOT NULL auto_increment,
   `user_id` int(11) default NULL,
-  `posts_text` longtext,
-  PRIMARY KEY  (`posts_id`)
+  `post_text` longtext,
+  `post_date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`post_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wcf_forums_posts` */
 
-insert  into `wcf_forums_posts`(`forum_id`,`thread_id`,`posts_id`,`user_id`,`posts_text`) values (2,1,1,1,'Проверка работоспособности форума'),(2,2,3,1,'Проверка работоспособности форума!!!'),(5,3,4,1,'Проверка работоспособности форума!!!'),(4,4,5,1,'Проверка работоспособности форума!!!');
+insert  into `wcf_forums_posts`(`forum_id`,`thread_id`,`post_id`,`user_id`,`post_text`,`post_date`) values (2,1,1,1,'Проверка работоспособности форума!!!','2010-05-28 21:04:49'),(2,2,2,4,'Проверка работоспособности форума!!!','2011-10-27 12:40:08'),(5,3,3,1,'Проверка работоспособности форума!!!','2011-10-27 12:39:40'),(4,4,4,1,'Проверка работоспособности форума!!!','2011-10-27 12:39:44');
 
 /*Table structure for table `wcf_forums_threads` */
 
@@ -59,8 +60,10 @@ DROP TABLE IF EXISTS `wcf_forums_threads`;
 CREATE TABLE `wcf_forums_threads` (
   `forum_id` int(11) default NULL,
   `thread_id` int(11) unsigned NOT NULL auto_increment,
-  `user_id` int(11) default NULL,
-  `thread_name` longtext,
+  `thread_subject` longtext,
+  `thread_author` int(11) default NULL,
+  `thread_lastpostid` int(11) unsigned NOT NULL default '0',
+  `thread_lastuser` int(11) unsigned NOT NULL default '0',
   `thread_postcount` smallint(5) unsigned NOT NULL default '0',
   PRIMARY KEY  (`thread_id`),
   KEY `thread_postcount` (`thread_postcount`)
@@ -68,7 +71,7 @@ CREATE TABLE `wcf_forums_threads` (
 
 /*Data for the table `wcf_forums_threads` */
 
-insert  into `wcf_forums_threads`(`forum_id`,`thread_id`,`user_id`,`thread_name`,`thread_postcount`) values (2,1,1,'Сообщение от администрации',2),(2,2,4,'Тестовый форум',1),(5,3,1,'Сообщение от администрации',1),(4,4,1,'Сообщение от администрации',1);
+insert  into `wcf_forums_threads`(`forum_id`,`thread_id`,`thread_subject`,`thread_author`,`thread_lastpostid`,`thread_lastuser`,`thread_postcount`) values (2,1,'Сообщение от администрации',1,1,1,1),(2,2,'Тестовый форум',4,2,4,1),(5,3,'Сообщение от администрации',1,3,1,1),(4,4,'Сообщение от администрации',1,4,1,1);
 
 /*Table structure for table `wcf_login_failed` */
 
@@ -111,7 +114,7 @@ CREATE TABLE `wcf_news` (
   `cat` tinyint(3) unsigned default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wcf_news` */
 

@@ -14,57 +14,65 @@
 
 	if (isset($_GET['id']))
 		{
-			//==============================
-			// конструкция пока не работает
 			selectdb(wcf);
-  			$thr_cres = mysql_query("SELECT count(`date`) as kol FROM `wcf_forums_posts`") or trigger_error(mysql_error());
+  			$thr_cres = mysql_query("SELECT count(`post_date`) as kol FROM `wcf_forums_posts` WHERE `forum_id`='$forum_id'") or trigger_error(mysql_error());
 			$thr_kolzap = mysql_fetch_array($thr_cres);
 
 			if ($thr_kolzap['kol'] > $config['page_forum_threads'])
 				{
     					$page_len_thr = $config['page_forum_threads'];
  
-    					if (!isset($_GET['page']) or ($_GET['page'] == '')) $start_rec_thr = 0;
-					else $start_rec_thr = ((int)$_GET['page']-1)*$config['page_forum_threads'];
+    					if (!isset($_GET['page']) or ($_GET['page'] == '')) $start_rec_thr = 0; else $start_rec_thr = ((int)$_GET['page']-1)*$config['page_forum_threads'];
 				}
 			else
 				{
     					$page_len_thr = $thr_kolzap['kol'];
 					$start_rec_thr = 0;
 				}
-			//==============================
 
 			$result = mysql_query("SELECT * FROM `wcf_forums_threads` 
+						LEFT JOIN `wcf_forums_posts` ON `wcf_forums_posts`.`post_id`=`wcf_forums_threads`.`thread_lastpostid`
 						LEFT JOIN `wcf_users` ON `wcf_users`.`user_id`=`wcf_forums_threads`.`thread_author`
-						WHERE `forum_id`='$forum_id'");
+						WHERE `wcf_forums_threads`.`forum_id`='$forum_id'
+						ORDER BY `wcf_forums_posts`.`post_date` DESC LIMIT $start_rec_thr,$page_len_thr");
 
-			echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
-
-   			echo"<tr><th width='4%' class='head'></th>";
-			echo"<th width='57%'>$txt[forum_column_top_aut]</th>";
-			echo"<th width='21%'>$txt[forum_column_last_post]</th>";
-			echo"<th width='5%'>$txt[forum_column_replies]</th>";
-			echo"<th width='10%'>$txt[forum_column_views]</th></tr>";
-			echo"<tr><th width='100%' colspan='5' align='left' style='text-align: left;' class='head'><a href='index.php?modul=thread&create&forum_id=$forum_id'>$txt[forum_create_theme]</a></th></tr>";
-
-			while($topics = mysql_fetch_array($result))
+			if (mysql_num_rows($result) > 0 )
 				{
-					selectdb(wcf);
-					$author = mysql_query("SELECT * FROM `wcf_users` WHERE `user_id`='".$topics['user_id']."' LIMIT 1") or trigger_error(mysql_error());
-					$author = mysql_fetch_assoc($author);
-					$last_post =  mysql_query("SELECT * FROM `wcf_forums_posts`,`wcf_users`
-									WHERE `wcf_forums_posts`.`post_id`='".$topics['thread_lastpostid']."'
-									AND `wcf_users`.`user_id`='".$topics['thread_lastuser']."' LIMIT 1") or trigger_error(mysql_error());
-					$last_post = mysql_fetch_assoc($last_post);
+					echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
 
-					echo"<tr><td width='4%' align='left' style='text-align: left;' class='page'></td>";
-          				echo"<td align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=post&id=$topics[thread_id]&forum_id=$forum_id'>".$topics['thread_subject']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($author['user_name']))."</td>";
-					echo"<td width='21%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;".$last_post['post_date']."<br>&nbsp;&nbsp;".$txt['forum_from']."&nbsp;&nbsp;".ucfirst(strtolower($last_post['user_name']))."</td>";
-					echo"<td width='5%' class='page'>".$topics['thread_postcount']."</td>";
-					echo"<td width='11%' class='page'>&nbsp;&nbsp;</td></tr>";
+   					echo"<tr><th width='4%' class='head'></th>";
+					echo"<th width='57%'>$txt[forum_column_top_aut]</th>";
+					echo"<th width='21%'>$txt[forum_column_last_post]</th>";
+					echo"<th width='5%'>$txt[forum_column_replies]</th>";
+					echo"<th width='10%'>$txt[forum_column_views]</th></tr>";
+					echo"<tr><th width='100%' colspan='5' align='left' style='text-align: left;' class='head'><a href='index.php?modul=thread&create&forum_id=$forum_id'>$txt[forum_create_theme]</a></th></tr>";
+
+					while($topics = mysql_fetch_array($result))
+						{
+							selectdb(wcf);
+							$last_post =  mysql_query("SELECT * FROM `wcf_forums_posts`,`wcf_users`
+											WHERE `wcf_forums_posts`.`post_id`='".$topics['thread_lastpostid']."'
+											AND `wcf_users`.`user_id`='".$topics['thread_lastuser']."' LIMIT 1") or trigger_error(mysql_error());
+							$last_post = mysql_fetch_assoc($last_post);
+
+							echo"<tr><td width='4%' align='left' style='text-align: left;' class='page'></td>";
+          						echo"<td align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=post&id=$topics[thread_id]&forum_id=$forum_id'>".$topics['thread_subject']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($topics['user_name']))."</td>";
+							echo"<td width='21%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;".$last_post['post_date']."<br>&nbsp;&nbsp;".$txt['forum_from']."&nbsp;&nbsp;".ucfirst(strtolower($last_post['user_name']))."</td>";
+							echo"<td width='5%' class='page'>".$topics['thread_postcount']."</td>";
+							echo"<td width='11%' class='page'>&nbsp;&nbsp;</td></tr>";
+						}
+  					if ($thr_kolzap['kol'] > $config['page_forum_threads'])
+						{
+  							$page_counter_thr = ceil($thr_kolzap['kol'] / $config['page_forum_threads']);
+
+   							if (!isset($_GET['page']) OR ($_GET['page'] == '') OR ($_GET['page'] == '_')) $tp3 = 1; else $tp3 = (int)$_GET['page'];
+ 							echo"<tr><td height='30' colspan='3' align='center' valign='middle' >". ShowPageNavigator('index.php?modul=thread&id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";
+  						}
+					echo"</table>";
 				}
-			echo"</table>";
 		}
+	//=========================
+	// форма создания темы
 	if (isset($_GET['create']) & isset($_GET['forum_id']))
 		{
 			$forum_id = addslashes($_GET["forum_id"]);
