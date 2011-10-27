@@ -17,6 +17,7 @@ CREATE TABLE `wcf_forums_threads` (
   `thread_id` int(11) unsigned NOT NULL auto_increment,
   `thread_subject` longtext,
   `thread_author` int(11) default NULL,
+  `thread_views` int(11) default NULL,
   `thread_lastpostid` int(11) unsigned NOT NULL default '0',
   `thread_lastuser` int(11) unsigned NOT NULL default '0',
   `thread_postcount` smallint(5) unsigned NOT NULL default '0',
@@ -27,7 +28,7 @@ CREATE TABLE `wcf_forums_threads` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `wcf_forums_threads` VALUES ('2', '1', 'Сообщение от администрации', '1', '1', '1', '1');
-INSERT INTO `wcf_forums_threads` VALUES ('2', '2', 'Тестовый форум', '4', '2', '4', '1');
-INSERT INTO `wcf_forums_threads` VALUES ('5', '3', 'Сообщение от администрации', '1', '3', '1', '1');
-INSERT INTO `wcf_forums_threads` VALUES ('4', '4', 'Сообщение от администрации', '1', '4', '1', '1');
+INSERT INTO `wcf_forums_threads` VALUES ('2', '1', 'Сообщение от администрации', '1', '0', '1', '1', '1');
+INSERT INTO `wcf_forums_threads` VALUES ('2', '2', 'Тестовый форум', '4', '0', '2', '4', '1');
+INSERT INTO `wcf_forums_threads` VALUES ('5', '3', 'Сообщение от администрации', '1', '0', '3', '1', '1');
+INSERT INTO `wcf_forums_threads` VALUES ('4', '4', 'Сообщение от администрации', '1', '0', '4', '1', '1');

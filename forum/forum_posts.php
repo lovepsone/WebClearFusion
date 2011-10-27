@@ -44,6 +44,10 @@
 			$result_name = mysql_query($result) or trigger_error(mysql_error());
 			$result = mysql_query($result) or trigger_error(mysql_error());
 
+			//==============================
+			// Функция добавления просмотров
+			if ($result != 0) mysql_query("UPDATE `wcf_forums_threads` SET `thread_views`=thread_views+1 WHERE `thread_id`='$thread_id'") or trigger_error(mysql_error());
+
 			if (mysql_num_rows($result) > 0 )
 				{
 					if ($res = mysql_fetch_assoc($result_name))  $repl_name = $res['thread_subject'];

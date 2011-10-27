@@ -59,7 +59,7 @@
           						echo"<td align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=post&id=$topics[thread_id]&forum_id=$forum_id'>".$topics['thread_subject']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($topics['user_name']))."</td>";
 							echo"<td width='21%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;".$last_post['post_date']."<br>&nbsp;&nbsp;".$txt['forum_from']."&nbsp;&nbsp;".ucfirst(strtolower($last_post['user_name']))."</td>";
 							echo"<td width='5%' class='page'>".$topics['thread_postcount']."</td>";
-							echo"<td width='11%' class='page'>&nbsp;&nbsp;</td></tr>";
+							echo"<td width='11%' class='page'>&nbsp;&nbsp;".$topics['thread_views']."</td></tr>";
 						}
   					if ($thr_kolzap['kol'] > $config['page_forum_threads'])
 						{
@@ -68,6 +68,7 @@
    							if (!isset($_GET['page']) OR ($_GET['page'] == '') OR ($_GET['page'] == '_')) $tp3 = 1; else $tp3 = (int)$_GET['page'];
  							echo"<tr><td height='30' colspan='3' align='center' valign='middle' >". ShowPageNavigator('index.php?modul=thread&id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";
   						}
+
 					echo"</table>";
 				}
 		}
