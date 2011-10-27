@@ -14,8 +14,29 @@
 
 	if (isset($_GET['id']))
 		{
+			//==============================
+			// конструкция пока не работает
 			selectdb(wcf);
-			$result = mysql_query("SELECT `wcf_forums_threads`.*, `wcf_users`.* FROM `wcf_forums_threads`, `wcf_users` WHERE `forum_id`='$forum_id' AND `wcf_forums_threads`.`user_id`=`wcf_users`.`user_id`");
+  			$thr_cres = mysql_query("SELECT count(`date`) as kol FROM `wcf_forums_posts`") or trigger_error(mysql_error());
+			$thr_kolzap = mysql_fetch_array($thr_cres);
+
+			if ($thr_kolzap['kol'] > $config['page_forum_threads'])
+				{
+    					$page_len_thr = $config['page_forum_threads'];
+ 
+    					if (!isset($_GET['page']) or ($_GET['page'] == '')) $start_rec_thr = 0;
+					else $start_rec_thr = ((int)$_GET['page']-1)*$config['page_forum_threads'];
+				}
+			else
+				{
+    					$page_len_thr = $thr_kolzap['kol'];
+					$start_rec_thr = 0;
+				}
+			//==============================
+
+			$result = mysql_query("SELECT * FROM `wcf_forums_threads` 
+						LEFT JOIN `wcf_users` ON `wcf_users`.`user_id`=`wcf_forums_threads`.`thread_author`
+						WHERE `forum_id`='$forum_id'");
 
 			echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
 
@@ -28,9 +49,17 @@
 
 			while($topics = mysql_fetch_array($result))
 				{
+					selectdb(wcf);
+					$author = mysql_query("SELECT * FROM `wcf_users` WHERE `user_id`='".$topics['user_id']."' LIMIT 1") or trigger_error(mysql_error());
+					$author = mysql_fetch_assoc($author);
+					$last_post =  mysql_query("SELECT * FROM `wcf_forums_posts`,`wcf_users`
+									WHERE `wcf_forums_posts`.`post_id`='".$topics['thread_lastpostid']."'
+									AND `wcf_users`.`user_id`='".$topics['thread_lastuser']."' LIMIT 1") or trigger_error(mysql_error());
+					$last_post = mysql_fetch_assoc($last_post);
+
 					echo"<tr><td width='4%' align='left' style='text-align: left;' class='page'></td>";
-          				echo"<td align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=post&id=$topics[thread_id]&forum_id=$forum_id'>".$topics['thread_name']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($topics['user_name']))."</td>";
-					echo"<td width='21%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td>";
+          				echo"<td align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=post&id=$topics[thread_id]&forum_id=$forum_id'>".$topics['thread_subject']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($author['user_name']))."</td>";
+					echo"<td width='21%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;".$last_post['post_date']."<br>&nbsp;&nbsp;".$txt['forum_from']."&nbsp;&nbsp;".ucfirst(strtolower($last_post['user_name']))."</td>";
 					echo"<td width='5%' class='page'>".$topics['thread_postcount']."</td>";
 					echo"<td width='11%' class='page'>&nbsp;&nbsp;</td></tr>";
 				}
@@ -47,7 +76,7 @@
 	
        			echo"<tr><td width='15%' height='30' align='right' valign='middle'>$txt[forum_create_name_theme]</td>";
 			echo"<td width='1%' height='30' >&nbsp;</td>";
-        		echo"<td width='84%' height='30' align='left' valign='middle'><input name='modul' value='thread' type=hidden><input type='text' name='name_thread' size='40'></td></tr></table>";
+        		echo"<td width='84%' height='30' align='left' valign='middle'><input name='modul' value='thread' type=hidden><input type='text' name='thread_subject' size='40'></td></tr></table>";
 
 			echo"<textarea name='thread'></textarea>";
 			echo"<br><center><input type='submit' value='$txt[forum_create_theme]'/></center></form>";
@@ -55,10 +84,21 @@
     			if ($_POST['thread'])
 				{
 					selectdb(wcf);
-					$add_thread = mysql_query("INSERT INTO `wcf_forums_threads` (`forum_id`,`user_id`,`thread_name`,`thread_postcount`) VALUES ('$forum_id','".$_SESSION['user_id']."','".$_POST['name_thread']."','1')") or trigger_error(mysql_error());
-					$thread_id = mysql_insert_id();
-					$add_post = mysql_query("INSERT INTO `wcf_forums_posts` (`forum_id`,`thread_id`,`user_id`,`posts_text`) VALUES ('$forum_id','$thread_id','".$_SESSION['user_id']."','".$_POST['thread']."')") or trigger_error(mysql_error());
-					$updt_forum = mysql_query("UPDATE `wcf_forums` SET `forum_postcount`=forum_postcount+1, `forum_threadcount`=forum_threadcount+1 WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
+					// Создание темы
+					$t_add_thread = mysql_query("INSERT INTO `wcf_forums_threads`
+									(`forum_id`,`thread_subject`,`thread_author`,`thread_lastpostid`,`thread_lastuser`,`thread_postcount`)
+									VALUES ('$forum_id','".$_POST['thread_subject']."','".$_SESSION['user_id']."','0','".$_SESSION['user_id']."','1')") or trigger_error(mysql_error());
+					$thread_id = mysql_insert_id();// Прикрепляем id темы
+
+					// Добавляем сообщение
+					$t_add_post = mysql_query("INSERT INTO `wcf_forums_posts` (`forum_id`,`thread_id`,`user_id`,`post_text`) VALUES ('$forum_id','$thread_id','".$_SESSION['user_id']."','".$_POST['thread']."')") or trigger_error(mysql_error());
+					$t_lastpost_id = mysql_insert_id();// Прикрепляем id сообщения
+
+					// Обновляем тему с целю добавить Id сообщения
+					$t_updt_post = mysql_query("UPDATE `wcf_forums_threads` SET `thread_lastpostid`='$t_lastpost_id' WHERE (`thread_id`='$thread_id')") or trigger_error(mysql_error());
+
+					// Обновляем сам форум с целю обнов кол-во собщений
+					$t_updt_forum = mysql_query("UPDATE `wcf_forums` SET `forum_postcount`=forum_postcount+1, `forum_threadcount`=forum_threadcount+1 WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
 
 					echo"<img src='images/ajax-loader.gif'/>";
 					echo"<script type='text/javascript'> <!--

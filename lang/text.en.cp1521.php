@@ -119,7 +119,9 @@ $txt = array (
 'forum_column_replies' 		=> 'Replies',
 'forum_column_views' 		=> 'Views',
 
+'forum_quick_reply'		=>'Send a quick reply',
 'forum_log'			=>'Log in to leave a message on the forum!',
+'forum_from'			=>'from',
 
 # Exit from the session
 'logout'			=>'You have successfully signed out',

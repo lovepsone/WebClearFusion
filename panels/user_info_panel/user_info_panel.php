@@ -77,7 +77,7 @@
  			$query = "SELECT * FROM `account` WHERE `id`=".$_SESSION['user_id']." LIMIT 1";
   			$res = mysql_query($query) or trigger_error(mysql_error().$query);
 
-  			if ($row = mysql_fetch_assoc($res)) 
+  			if ($row = mysql_fetch_assoc($res))
       				{
        					$ra_id             = $row['id'];
        					$ra_username  = $row['username'];
