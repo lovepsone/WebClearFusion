@@ -20,12 +20,13 @@ USE `wcf`;
 DROP TABLE IF EXISTS `wcf_forums`;
 
 CREATE TABLE `wcf_forums` (
-  `forum_id` mediumint(8) unsigned NOT NULL auto_increment,
-  `forum_sections` mediumint(8) unsigned NOT NULL default '0',
+  `forum_id` int(11) unsigned NOT NULL auto_increment,
+  `forum_sections` int(11) unsigned NOT NULL default '0',
   `forum_name` longtext,
   `forum_description` longtext,
-  `forum_postcount` mediumint(8) unsigned NOT NULL default '0',
-  `forum_threadcount` mediumint(8) unsigned NOT NULL default '0',
+  `forum_lastpostid` int(11) unsigned NOT NULL default '0',
+  `forum_postcount` int(11) unsigned NOT NULL default '0',
+  `forum_threadcount` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`forum_id`),
   KEY `forum_postcount` (`forum_postcount`),
   KEY `forum_threadcount` (`forum_threadcount`)
@@ -33,7 +34,7 @@ CREATE TABLE `wcf_forums` (
 
 /*Data for the table `wcf_forums` */
 
-insert  into `wcf_forums`(`forum_id`,`forum_sections`,`forum_name`,`forum_description`,`forum_postcount`,`forum_threadcount`) values (1,0,'Информация о сервере',NULL,0,0),(2,1,'Информация от администрации','Обновления, изменения, события, новости.',2,2),(3,0,'Мир Warcraft',NULL,0,0),(4,3,'Аддоны и Макросы\r\n','Скачиваем и заказываем',1,1),(5,1,'Мастерская','Делимся своими идеями, решениями. Обсуждаем, создаем что-то свое.',1,1);
+insert  into `wcf_forums`(`forum_id`,`forum_sections`,`forum_name`,`forum_description`,`forum_lastpostid`,`forum_postcount`,`forum_threadcount`) values (1,0,'Информация о сервере',NULL,0,0,0),(2,1,'Информация от администрации','Обновления, изменения, события, новости.',2,2,2),(3,0,'Мир Warcraft',NULL,0,0,0),(4,3,'Аддоны и Макросы\r\n','Скачиваем и заказываем',3,1,1),(5,1,'Мастерская','Делимся своими идеями, решениями. Обсуждаем, создаем что-то свое.',4,1,1);
 
 /*Table structure for table `wcf_forums_posts` */
 
@@ -62,16 +63,17 @@ CREATE TABLE `wcf_forums_threads` (
   `thread_id` int(11) unsigned NOT NULL auto_increment,
   `thread_subject` longtext,
   `thread_author` int(11) default NULL,
+  `thread_views` int(11) default NULL,
   `thread_lastpostid` int(11) unsigned NOT NULL default '0',
   `thread_lastuser` int(11) unsigned NOT NULL default '0',
-  `thread_postcount` smallint(5) unsigned NOT NULL default '0',
+  `thread_postcount` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`thread_id`),
   KEY `thread_postcount` (`thread_postcount`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `wcf_forums_threads` */
 
-insert  into `wcf_forums_threads`(`forum_id`,`thread_id`,`thread_subject`,`thread_author`,`thread_lastpostid`,`thread_lastuser`,`thread_postcount`) values (2,1,'Сообщение от администрации',1,1,1,1),(2,2,'Тестовый форум',4,2,4,1),(5,3,'Сообщение от администрации',1,3,1,1),(4,4,'Сообщение от администрации',1,4,1,1);
+insert  into `wcf_forums_threads`(`forum_id`,`thread_id`,`thread_subject`,`thread_author`,`thread_views`,`thread_lastpostid`,`thread_lastuser`,`thread_postcount`) values (2,1,'Сообщение от администрации',1,0,1,1,1),(2,2,'Тестовый форум',4,0,2,4,1),(5,3,'Сообщение от администрации',1,0,3,1,1),(4,4,'Сообщение от администрации',1,0,4,1,1);
 
 /*Table structure for table `wcf_login_failed` */
 

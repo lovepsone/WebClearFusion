@@ -107,7 +107,7 @@
 					$t_updt_post = mysql_query("UPDATE `wcf_forums_threads` SET `thread_lastpostid`='$t_lastpost_id' WHERE (`thread_id`='$thread_id')") or trigger_error(mysql_error());
 
 					// Обновляем сам форум с целю обнов кол-во собщений
-					$t_updt_forum = mysql_query("UPDATE `wcf_forums` SET `forum_postcount`=forum_postcount+1, `forum_threadcount`=forum_threadcount+1 WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
+					$t_updt_forum = mysql_query("UPDATE `wcf_forums` SET `forum_lastpostid`='$t_lastpost_id',`forum_postcount`=forum_postcount+1, `forum_threadcount`=forum_threadcount+1 WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
 
 					echo"<img src='images/ajax-loader.gif'/>";
 					echo"<script type='text/javascript'> <!--

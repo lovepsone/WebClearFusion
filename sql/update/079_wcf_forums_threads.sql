@@ -20,7 +20,7 @@ CREATE TABLE `wcf_forums_threads` (
   `thread_views` int(11) default NULL,
   `thread_lastpostid` int(11) unsigned NOT NULL default '0',
   `thread_lastuser` int(11) unsigned NOT NULL default '0',
-  `thread_postcount` smallint(5) unsigned NOT NULL default '0',
+  `thread_postcount` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`thread_id`),
   KEY `thread_postcount` (`thread_postcount`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;

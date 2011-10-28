@@ -10,6 +10,11 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+//=========================================================================
+// Заметки
+// Придумать функцию, дя замены substr($tm_section['thread_subject'],0,30) 
+//=========================================================================
+
 	selectdb(wcf);
 	$result = mysql_query("SELECT * FROM `wcf_forums`");
 
@@ -28,12 +33,20 @@
 					echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
           				echo"<tr><td width='100%' colspan='5' align='left' style='text-align: left;' class='head'>&nbsp;&nbsp;".$section['forum_name']."&nbsp;</td></tr>";
 
-					$tm_result = mysql_query("SELECT * FROM `wcf_forums` WHERE `forum_sections`='".$section['forum_id']."'");
+					$tm_result = mysql_query("SELECT * FROM `wcf_forums`
+									LEFT JOIN `wcf_forums_threads` ON `wcf_forums_threads`.`thread_lastpostid`=`wcf_forums`.`forum_lastpostid`
+									LEFT JOIN `wcf_users` ON `wcf_users`.`user_id`=`wcf_forums_threads`.`thread_lastuser`
+									LEFT JOIN `wcf_forums_posts` ON `wcf_forums_posts`.`post_id`=`wcf_forums_threads`.`thread_lastpostid`
+									WHERE `forum_sections`='".$section['forum_id']."'");
+
 					while ($tm_section = mysql_fetch_array($tm_result))
 						{
 							echo"<tr><td width='4%' align='left' style='text-align: left;' class='page'></td>";
-							echo"<td width='59%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=thread&id=$tm_section[forum_id]'><b>".$tm_section['forum_name']."</b></a><br>&nbsp;&nbsp;".$tm_section['forum_description']."</td>";
-							echo"<td width='21%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;</td>";
+							echo"<td width='59%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=thread&id=$tm_section[forum_id]'><b>".$tm_section['forum_name']."</b></a>
+								<br>&nbsp;&nbsp;".$tm_section['forum_description']."</td>";
+							echo"<td width='21%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=post&id=$tm_section[thread_id]&forum_id=$tm_section[forum_id]'>".substr($tm_section['thread_subject'],0,30)."...</a>
+								<br>&nbsp;&nbsp;".$txt['forum_from']."&nbsp;".ucfirst(strtolower($tm_section['user_name']))."
+								<br>&nbsp;&nbsp;".$tm_section['post_date']."</td>";
 							echo"<td width='5%'  class='page'>".$tm_section['forum_threadcount']."</td>";
 							echo"<td width='11%' class='page'>".$tm_section['forum_postcount']."</td></tr>";	
 						}	

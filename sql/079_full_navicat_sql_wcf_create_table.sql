@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 27.10.2011 13:56:51
+Date: 28.10.2011 16:32:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -13,12 +13,13 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `wcf_forums`;
 CREATE TABLE `wcf_forums` (
-  `forum_id` mediumint(8) unsigned NOT NULL auto_increment,
-  `forum_sections` mediumint(8) unsigned NOT NULL default '0',
+  `forum_id` int(11) unsigned NOT NULL auto_increment,
+  `forum_sections` int(11) unsigned NOT NULL default '0',
   `forum_name` longtext,
   `forum_description` longtext,
-  `forum_postcount` mediumint(8) unsigned NOT NULL default '0',
-  `forum_threadcount` mediumint(8) unsigned NOT NULL default '0',
+  `forum_lastpostid` int(11) unsigned NOT NULL default '0',
+  `forum_postcount` int(11) unsigned NOT NULL default '0',
+  `forum_threadcount` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`forum_id`),
   KEY `forum_postcount` (`forum_postcount`),
   KEY `forum_threadcount` (`forum_threadcount`)
@@ -47,9 +48,10 @@ CREATE TABLE `wcf_forums_threads` (
   `thread_id` int(11) unsigned NOT NULL auto_increment,
   `thread_subject` longtext,
   `thread_author` int(11) default NULL,
+  `thread_views` int(11) default NULL,
   `thread_lastpostid` int(11) unsigned NOT NULL default '0',
   `thread_lastuser` int(11) unsigned NOT NULL default '0',
-  `thread_postcount` smallint(5) unsigned NOT NULL default '0',
+  `thread_postcount` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`thread_id`),
   KEY `thread_postcount` (`thread_postcount`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
@@ -120,19 +122,19 @@ CREATE TABLE `wcf_users` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `wcf_forums` VALUES ('1', '0', 'Информация о сервере', null, '0', '0');
-INSERT INTO `wcf_forums` VALUES ('2', '1', 'Информация от администрации', 'Обновления, изменения, события, новости.', '2', '2');
-INSERT INTO `wcf_forums` VALUES ('3', '0', 'Мир Warcraft', null, '0', '0');
-INSERT INTO `wcf_forums` VALUES ('4', '3', 'Аддоны и Макросы\r\n', 'Скачиваем и заказываем', '1', '1');
-INSERT INTO `wcf_forums` VALUES ('5', '1', 'Мастерская', 'Делимся своими идеями, решениями. Обсуждаем, создаем что-то свое.', '1', '1');
+INSERT INTO `wcf_forums` VALUES ('1', '0', 'Информация о сервере', null, '0', '0', '0');
+INSERT INTO `wcf_forums` VALUES ('2', '1', 'Информация от администрации', 'Обновления, изменения, события, новости.', '2', '2', '2');
+INSERT INTO `wcf_forums` VALUES ('3', '0', 'Мир Warcraft', null, '0', '0', '0');
+INSERT INTO `wcf_forums` VALUES ('4', '3', 'Аддоны и Макросы\r\n', 'Скачиваем и заказываем', '3', '1', '1');
+INSERT INTO `wcf_forums` VALUES ('5', '1', 'Мастерская', 'Делимся своими идеями, решениями. Обсуждаем, создаем что-то свое.', '4', '1', '1');
 INSERT INTO `wcf_forums_posts` VALUES ('2', '1', '1', '1', 'Проверка работоспособности форума!!!', '2010-05-28 21:04:49');
 INSERT INTO `wcf_forums_posts` VALUES ('2', '2', '2', '4', 'Проверка работоспособности форума!!!', '2011-10-27 12:40:08');
 INSERT INTO `wcf_forums_posts` VALUES ('5', '3', '3', '1', 'Проверка работоспособности форума!!!', '2011-10-27 12:39:40');
 INSERT INTO `wcf_forums_posts` VALUES ('4', '4', '4', '1', 'Проверка работоспособности форума!!!', '2011-10-27 12:39:44');
-INSERT INTO `wcf_forums_threads` VALUES ('2', '1', 'Сообщение от администрации', '1', '1', '1', '1');
-INSERT INTO `wcf_forums_threads` VALUES ('2', '2', 'Тестовый форум', '4', '2', '4', '1');
-INSERT INTO `wcf_forums_threads` VALUES ('5', '3', 'Сообщение от администрации', '1', '3', '1', '1');
-INSERT INTO `wcf_forums_threads` VALUES ('4', '4', 'Сообщение от администрации', '1', '4', '1', '1');
+INSERT INTO `wcf_forums_threads` VALUES ('2', '1', 'Сообщение от администрации', '1', '0', '1', '1', '1');
+INSERT INTO `wcf_forums_threads` VALUES ('2', '2', 'Тестовый форум', '4', '0', '2', '4', '1');
+INSERT INTO `wcf_forums_threads` VALUES ('5', '3', 'Сообщение от администрации', '1', '0', '3', '1', '1');
+INSERT INTO `wcf_forums_threads` VALUES ('4', '4', 'Сообщение от администрации', '1', '0', '4', '1', '1');
 INSERT INTO `wcf_news` VALUES ('1', '2011-10-22 13:50:00', 'От разработчика.', 'WCF успешно установлен.', '0');
 INSERT INTO `wcf_panels` VALUES ('1', 'main form', 'panels/main_form/main_form.php', '0');
 INSERT INTO `wcf_panels` VALUES ('2', 'navigation panel', 'panels/navigation_panel/navigation_panel.php', '1');

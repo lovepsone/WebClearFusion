@@ -96,7 +96,9 @@
 							$p_post_id = mysql_insert_id(); // Прикрепляем id
 
 							// Обновляем сам форум с целю обнов кол-во собщений
-							$p_updt_forum = mysql_query("UPDATE `wcf_forums` SET `forum_postcount`=forum_postcount+1 WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
+							$p_updt_forum = mysql_query("UPDATE `wcf_forums`
+											SET `forum_lastpostid`='$p_post_id',`forum_postcount`=forum_postcount+1
+											WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
 
 							// Обновляем тему
 							$p_updt_thread = mysql_query("UPDATE `wcf_forums_threads`
