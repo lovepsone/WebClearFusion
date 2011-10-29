@@ -60,7 +60,7 @@ $modules  = array (
 	'reglogs'       => array ('module/logs/reglogs.php',         257,            1,     	     3,   	  0  ),
 
 // модули для новостей\modules for news
-	'news'     	=> array ('administration/news.php',        news,           -1,     	     3,   	  1  ),
+	'news'     	=> array ('module/news/news.php',           news,           -1,     	     3,   	  1  ),
 	'newsadd'    	=> array ('administration/news_add.php',     257,            1,     	     3,   	  0  ),
 	'newsedit'      => array ('administration/news_edit.php',    257,            1,     	     3,   	  0  ),
 	'newsdel'       => array ('administration/news_del.php',     257,            1,     	     3,   	  0  ),
