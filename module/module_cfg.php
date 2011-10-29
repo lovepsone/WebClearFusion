@@ -49,10 +49,10 @@ $modules  = array (
 	'changelang'   	=> array ('module/more/change_lang.php',     257,           -1,     	     3,   	  0  ),
 
 // модули для админки\modules for admin
-	'adminmenu'     => array ('module/admin/admin_menu.php',     257,            1,     	     3,   	  0  ),
-	'adminmodule'   => array ('module/admin/admin_module.php',   257,            1,     	     3,   	  0  ),
-	'adminsetpanel' => array ('module/admin/admin_setpanel.php', 257,            1,     	     3,   	  0  ),
-	'adminaddpanel' => array ('module/admin/admin_addpanel.php', 257,            1,     	     3,   	  0  ),
+	'adminmenu'     => array ('administration/admin_menu.php',     257,            1,     	     3,   	  0  ),
+	'adminmodule'   => array ('administration/admin_module.php',   257,            1,     	     3,   	  0  ),
+	'adminsetpanel' => array ('administration/admin_setpanel.php', 257,            1,     	     3,   	  0  ),
+	'adminaddpanel' => array ('administration/admin_addpanel.php', 257,            1,     	     3,   	  0  ),
 
 // модули для логов\modules for logs
 	'reg'     	=> array ('module/reg/reg.php',              reg,           -1,     	     3,   	  0  ),
@@ -60,10 +60,10 @@ $modules  = array (
 	'reglogs'       => array ('module/logs/reglogs.php',         257,            1,     	     3,   	  0  ),
 
 // модули для новостей\modules for news
-	'news'     	=> array ('module/news/news.php',           news,           -1,     	     3,   	  1  ),
-	'newsadd'    	=> array ('module/news/news_add.php',        257,            1,     	     3,   	  0  ),
-	'newsedit'      => array ('module/news/news_edit.php',       257,            1,     	     3,   	  0  ),
-	'newsdel'       => array ('module/news/news_del.php',        257,            1,     	     3,   	  0  ),
+	'news'     	=> array ('administration/news.php',        news,           -1,     	     3,   	  1  ),
+	'newsadd'    	=> array ('administration/news_add.php',     257,            1,     	     3,   	  0  ),
+	'newsedit'      => array ('administration/news_edit.php',    257,            1,     	     3,   	  0  ),
+	'newsdel'       => array ('administration/news_del.php',     257,            1,     	     3,   	  0  ),
 
 // форум\forum
 	'forum'       => array ('forum/forum.php',            	   forum,           -1,     	     3,   	  1  ),

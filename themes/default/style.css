@@ -102,6 +102,6 @@ TABLE.reagents TD         		{BORDER: 0px;}
 table.no_border TD        		{BORDER: 0px;}
 table.quest_reward TD     		{BORDER: 0px;}
 
-TABLE.panel 				{BACKGROUND-IMAGE: url(img/bg.gif);padding: 10px;FONT-SIZE: 13px; color: #000000; border-color: #999 #333 #333 #999; border-width: 2px; border-style: solid; border-collapse: collapse; border-spacing: 0; width: 100%; margin-bottom: 0px;}
+TABLE.panel 				{BACKGROUND-IMAGE: url(img/bg.gif);padding: 10px;FONT-SIZE: 11px; color: #000000; border-color: #999 #333 #333 #999; border-width: 2px; border-style: solid; border-collapse: collapse; border-spacing: 0; width: 100%; margin-bottom: 0px;}
 td.paneltitle 				{ font-size:11px; text-align:left; color: blue;}
 td.paneldata 				{ font-size:11px; text-align:Right; color:Navy;}
