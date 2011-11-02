@@ -3,7 +3,7 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone
 +--------------------------------------------------------+
-| Filename: news_cat.php
+| Filename: wcf_lib.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
@@ -17,6 +17,8 @@
 | in utf-8 encoding with no BOM
 +--------------------------------------------------------*/
 
+//=================================================================
+// категория новостей
 $NewsCat  = array (
 			// patch\путь			// name\имя
 	'0'  => array ('images/news_cat/news.gif',  	typ_news_0),

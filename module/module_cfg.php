@@ -43,32 +43,32 @@
 +--------------------------------------------------------*/
 
 $modules  = array (
-//       modul\модуль             path\путь                        Name\имя    Access\доступ    Admin\админ     Menu\меню
-	'online'  	=> array ('module/online/online.php',        257,           -1,     	     3,   	  0  ),  
-	'logout'   	=> array ('module/logout/logout.php',        257,           -1,     	     3,   	  0  ),
-	'changelang'   	=> array ('module/more/change_lang.php',     257,           -1,     	     3,   	  0  ),
+//       modul\модуль             path\путь                          Name\имя      Access\доступ    	Admin\админ   Menu\меню
+	'online'  	=> array ('module/online/online.php',        	257,		-1,     	     3,   	  0  ),  
+	'logout'   	=> array ('module/logout/logout.php',        	257,           	-1,     	     3,   	  0  ),
+	'changelang'   	=> array ('module/more/change_lang.php',     	257,           	-1,     	     3,   	  0  ),
 
 // модули для админки\modules for admin
-	'adminmenu'     => array ('administration/admin_menu.php',     257,            1,     	     3,   	  0  ),
-	'adminmodule'   => array ('administration/admin_module.php',   257,            1,     	     3,   	  0  ),
-	'adminsetpanel' => array ('administration/admin_setpanel.php', 257,            1,     	     3,   	  0  ),
-	'adminaddpanel' => array ('administration/admin_addpanel.php', 257,            1,     	     3,   	  0  ),
+	'admin'		=> array ('administration/admin.php',		257,             1,     	     3,   	  0  ),
+	'adminmodule'   => array ('administration/admin_module.php',   	257,             1,     	     3,   	  0  ),
+	'adminsetpanel' => array ('administration/admin_setpanel.php', 	257,             1,     	     3,   	  0  ),
+	'adminaddpanel' => array ('administration/admin_addpanel.php', 	257,             1,     	     3,   	  0  ),
 
 // модули для логов\modules for logs
-	'reg'     	=> array ('module/reg/reg.php',              reg,           -1,     	     3,   	  0  ),
-	'alllogs'       => array ('module/logs/alllogs.php',         257,            1,     	     3,   	  0  ),
-	'reglogs'       => array ('module/logs/reglogs.php',         257,            1,     	     3,   	  0  ),
+	'reg'     	=> array ('module/reg/reg.php',			reg,            -1,     	     3,   	  0  ),
+	'alllogs'       => array ('module/logs/alllogs.php',		257,             1,     	     3,   	  0  ),
+	'reglogs'       => array ('module/logs/reglogs.php',		257,             1,     	     3,   	  0  ),
 
 // модули для новостей\modules for news
-	'news'     	=> array ('module/news/news.php',           news,           -1,     	     3,   	  1  ),
-	'newsadd'    	=> array ('administration/news_add.php',     257,            1,     	     3,   	  0  ),
-	'newsedit'      => array ('administration/news_edit.php',    257,            1,     	     3,   	  0  ),
-	'newsdel'       => array ('administration/news_del.php',     257,            1,     	     3,   	  0  ),
+	'news'     	=> array ('module/news/news.php',		news,           -1,     	     3,   	  1  ),
+	'newsedit'	=> array ('administration/news.php',		257,             1,     	     3,   	  0  ),
+	//'newsedit'      => array ('administration/news_edit.php',	257,             1,     	     3,   	  0  ),
+	//'newsdel'       => array ('administration/news_del.php',	257,             1,     	     3,   	  0  ),
 
 // форум\forum
-	'forum'       => array ('forum/forum.php',            	   forum,           -1,     	     3,   	  1  ),
-	'thread'      => array ('forum/forum_threads.php',           257,           -1,     	     3,   	  0  ),
-	'post'        => array ('forum/forum_posts.php',             257,           -1,     	     3,   	  0  ),
+	'forum'       => array ('forum/forum.php',			forum,          -1,     	     3,   	  1  ),
+	'thread'      => array ('forum/forum_threads.php',		257,            -1,     	     3,   	  0  ),
+	'post'        => array ('forum/forum_posts.php',		257,            -1,     	     3,   	  0  ),
 );
 
 //==================================================================

@@ -11,7 +11,7 @@
 +--------------------------------------------------------*/
 
 	selectdb(wcf);
-  	$cres = mysql_query("SELECT count(`date`) as kol FROM `wcf_news`") or trigger_error(mysql_error());
+  	$cres = mysql_query("SELECT count(`news_date`) as kol FROM `wcf_news`") or trigger_error(mysql_error());
 	$kolzap = mysql_fetch_array($cres);
 
 	if ($kolzap['kol'] > $config['page_news'])
@@ -27,19 +27,19 @@
 			$StartRec = 0;
 		}
 
-  	$kres = mysql_query("SELECT `date`,`title`,`text`,`cat` FROM `wcf_news` ORDER BY `date` DESC limit ".$StartRec.",".$PageLen) or trigger_error(mysql_error());
+  	$kres = mysql_query("SELECT * FROM `wcf_news` ORDER BY `news_date` DESC limit ".$StartRec.",".$PageLen) or trigger_error(mysql_error());
   	if (mysql_num_rows($kres) > 0 )
 		{
      			echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
      			while ($nres = mysql_fetch_array($kres))
 				{
-					$NewCatPatch = $NewsCat[$nres['cat']][0];
-					$NewCatTxt   = $NewsCat[$nres['cat']][1];
+					$NewCatPatch = $NewsCat[$nres['news_cat']][0];
+					$NewCatTxt   = $NewsCat[$nres['news_cat']][1];
 
           				echo"<tr><th rowspan='2' align='left' width='80' height='80'><img src='$NewCatPatch' align='absmiddle' style=''></th>";
-          				echo"<td align='left' class='head'>".$nres['title']."&nbsp;</td></tr>";
-          				echo"<tr><td colspan='3' class='page'>".$nres['text']."</td></tr>";
-          				echo"<tr><td align='right' colspan='3' class='page'>".$nres['date']."</td></tr>";
+          				echo"<td align='left' class='head'>".$nres['news_title']."&nbsp;</td></tr>";
+          				echo"<tr><td colspan='3' class='page'>".$nres['news_text']."</td></tr>";
+          				echo"<tr><td align='right' colspan='3' class='page'>".$nres['news_date']."</td></tr>";
       				}
 
   			if ($kolzap['kol'] > $config['page_news'])
