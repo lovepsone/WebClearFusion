@@ -243,28 +243,32 @@
 					if ($num > 1) echo"<hr>";
 				}
 		}
-	function admin_page($admin_page)
+	function admin_page($admin_page,$admin_string)
 		{
 			selectdb(wcf);
-			$administration = mysql_query("SELECT * FROM `wcf_admin` WHERE `admin_page`='$admin_page'") or trigger_error(mysql_error());
+			$administration = mysql_query("SELECT * FROM `wcf_admin` WHERE `admin_page`='$admin_page' AND `admin_string`='$admin_string'") or trigger_error(mysql_error());
 					echo"<tr>";
 			while ($page_contet = mysql_fetch_array($administration))
 				{
 					if ($page_contet['admin_colum'] == 1)
 						{
-							echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
+							if ($page_contet['admin_image'] <> '') echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
+							else echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>";
 						}
 					if ($page_contet['admin_colum'] == 2)
 						{
-							echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
+							if ($page_contet['admin_image'] <> '') echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
+							else echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>";
 						}
 					if ($page_contet['admin_colum'] == 3)
 						{
-							echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
+							if ($page_contet['admin_image'] <> '') echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
+							else echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>";
 						}
 					if ($page_contet['admin_colum'] == 4)
 						{
-							echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
+							if ($page_contet['admin_image'] <> '') echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
+							else echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>";
 						}
 				}
 					echo"</tr>";
