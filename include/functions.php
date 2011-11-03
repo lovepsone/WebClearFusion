@@ -243,4 +243,30 @@
 					if ($num > 1) echo"<hr>";
 				}
 		}
+	function admin_page($admin_page)
+		{
+			selectdb(wcf);
+			$administration = mysql_query("SELECT * FROM `wcf_admin` WHERE `admin_page`='$admin_page'") or trigger_error(mysql_error());
+					echo"<tr>";
+			while ($page_contet = mysql_fetch_array($administration))
+				{
+					if ($page_contet['admin_colum'] == 1)
+						{
+							echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
+						}
+					if ($page_contet['admin_colum'] == 2)
+						{
+							echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
+						}
+					if ($page_contet['admin_colum'] == 3)
+						{
+							echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
+						}
+					if ($page_contet['admin_colum'] == 4)
+						{
+							echo"<td width='25%' class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
+						}
+				}
+					echo"</tr>";
+		}
 ?>

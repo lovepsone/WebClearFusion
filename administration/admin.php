@@ -3,38 +3,19 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone
 +--------------------------------------------------------+
-| Filename: admin_menu.php
+| Filename: admin.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-
-function page_generator($admin_page,$lang)
-	{
-		selectdb(wcf);
-		$administration = mysql_query("SELECT * FROM `wcf_admin` WHERE `admin_page`='$admin_page'") or trigger_error(mysql_error());
-
-		while ($page_contet = mysql_fetch_array($administration))
-			{
-				if ($lang = "ru") $admin_title = $page_contet['admin_title_loc8'];
-				else if ($lang = "en") $admin_title = $page_contet['admin_title_loc1'];
-
-				echo"<tr>";
-				if ($page_contet['admin_colum'] = 1)
-					{
-						echo"<td class='page'><a href='index.php?modul=".$page_contet['admin_link']."'><img src='administration/images/".$page_contet['admin_image']."' align='absmiddle'><br>$admin_title</td>";
-					}
-				echo"</tr>";
-			}
-	}
 	//==================================================================
 	// Верхнее меню
 	echo"<script type='text/javascript' src='js/adminmenu.js'></script>";
 	echo"<table align='center' class='report'>";
-	echo"<th>".$txt['menu_auth_admin']." - v".$config['rev_admin']."</th>";
-	echo"<tr><td align='center'><div class='adminmenu'>";
+	echo"<th  colspan='4'>".$txt['menu_auth_admin']." - v".$config['rev_admin']."</th>";
+	echo"<tr><td align='center' colspan='4'><div class='adminmenu'>";
 		echo"<ul id='cssmenu1'>";
 			echo"<li style='border-left: 1px solid #202020;'><a href='index.php?modul=admin&contet'>".$txt['menu_admin_content']."</a> 
 						<ul>
@@ -55,7 +36,7 @@ function page_generator($admin_page,$lang)
     						<li><a href='index.php?modul=adminaddpanel'>$txt[menu_admin_add_panel]</a></li>
     						</ul></li>";
 
-			echo"<li style='border-left: 1px solid #202020;'><a href='index.php?modul=admin&system'>".$txt['menu_admin_plants']."</a> 
+			echo"<li style='border-left: 1px solid #202020;'><a href='index.php?modul=admin&plants'>".$txt['menu_admin_plants']."</a> 
 						<ul>
     						<li><a href='index.php?modul=alllogs'>$txt[1]</a></li>
     						<li><a href='index.php?modul=reglogs'>$txt[2]</a></li>
@@ -71,14 +52,11 @@ function page_generator($admin_page,$lang)
 		echo"</ul>";
 	echo"</div></td></tr><br><br>";
 	//==================================================================
+	// Подробное меню
+	if (isset($_GET['contet'])) admin_page(1);
+	else if (isset($_GET['users'])) admin_page(2);
+	else if (isset($_GET['system'])) admin_page(3);
+	else if (isset($_GET['plants'])) admin_page(4);
 
-//$lang = isset($_SESSION['lang']);
-
-	if (isset($_GET['contet']))
-		{
-			page_generator(1,$config['lang']);
-		}
-
-
-echo"</table>";
+	echo"</table>";
 ?>
