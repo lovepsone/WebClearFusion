@@ -31,6 +31,10 @@ $txt = array(
 'main_home'			=>'К основной форме',
 
 # тексты в меню админки
+'menu_admin_content'		=>'Администрирование контента',
+'menu_admin_users'		=>'Администрир. пользователей',
+'menu_admin_system'		=>'Администрирование системы',
+'menu_admin_plants'		=>'Установки',
 'menu_admin_news'		=>'Новости',
 'menu_admin_news_add'		=>'Добавить',
 'menu_admin_news_edit'		=>'Редактировать',
@@ -40,6 +44,12 @@ $txt = array(
 'menu_admin_add_panel'		=>'Добавить понель',
 
 # тексты в админке
+'admin_newsmaker'		=>'Редактор новостей',
+'admin_newsmaker_title'		=>'Выберите нужную новость и команду!',
+'admin_newsmaker_team'		=>'Команда:',
+'admin_newsmaker_edit'		=>'Редактировать',
+'admin_newsmaker_add'		=>'Добавить',
+'admin_newsmaker_del'		=>'Удалить',
 'admin_panels_center'		=>'по центру',
 'admin_panels_left'		=>'с лева',
 'admin_panels_right'		=>'с права',
@@ -57,18 +67,10 @@ $txt = array(
 'news'				=>'Новости',
 'admin_teme_news'		=>'Тема',
 'admin_typ_news'		=>'Тип',
+'admin_news_not_all_fields'	=>'<font color=red>Ошибка!</font>Не заполнены все поля.',
 'admin_news_add_successfully'	=>'Новость успешно создана.',
 'admin_news_edit_successfully'	=>'Новость успешно изменена.',
 'admin_news_del_successfully'	=>'Новость успешно удалена.',
-
-# типы новостей
-'typ_news_0'			=>'Новости',
-'typ_news_1'			=>'Новости о багах',
-'typ_news_2'			=>'Новости о играх',
-'typ_news_3'			=>'Новости о интернете',
-'typ_news_4'			=>'Новости о загрузках',
-'typ_news_5'			=>'Новости о модификациях',
-'typ_news_6'			=>'Новости о стиле сайта',
 
 # тексты при регистрации
 'reg'				=>'Регистрация',
@@ -127,8 +129,9 @@ $txt = array(
 'logout'			=>'Вы успешно вышли из Учетной записи',
 
 # остальное
+'errors'			=>'<font color=red>Неведомая ошибка в коде!!!</font>',
+'Run'				=>'Выполнить',
 'home'				=>'Главная',
 'change_lang'			=>'Выбор языка',
 '257'				=>'Модуль',
 );
-?>

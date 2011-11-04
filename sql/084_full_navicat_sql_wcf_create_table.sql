@@ -4,10 +4,25 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 28.10.2011 16:32:38
+Date: 04.11.2011 15:37:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for wcf_admin
+-- ----------------------------
+DROP TABLE IF EXISTS `wcf_admin`;
+CREATE TABLE `wcf_admin` (
+  `admin_id` int(11) unsigned NOT NULL auto_increment,
+  `admin_colum` int(11) unsigned NOT NULL default '0',
+  `admin_page` int(11) unsigned NOT NULL default '0',
+  `admin_string` int(11) unsigned NOT NULL default '0',
+  `admin_image` varchar(50) character set utf8 collate utf8_unicode_ci NOT NULL default '',
+  `admin_title` longtext,
+  `admin_link` varchar(100) character set utf8 collate utf8_unicode_ci NOT NULL default '',
+  PRIMARY KEY  (`admin_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
 -- ----------------------------
 -- Table structure for wcf_forums
 -- ----------------------------
@@ -37,7 +52,7 @@ CREATE TABLE `wcf_forums_posts` (
   `post_text` longtext,
   `post_date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for wcf_forums_threads
@@ -86,14 +101,25 @@ CREATE TABLE `wcf_logs` (
 -- ----------------------------
 DROP TABLE IF EXISTS `wcf_news`;
 CREATE TABLE `wcf_news` (
-  `id` int(11) unsigned NOT NULL auto_increment,
-  `date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
-  `title` longtext,
-  `text` longtext,
-  `cat` tinyint(3) unsigned default '0',
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `id` (`id`)
+  `news_id` int(11) unsigned NOT NULL auto_increment,
+  `news_date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `news_title` longtext,
+  `news_text` longtext,
+  `news_cats` int(11) unsigned default '1',
+  PRIMARY KEY  (`news_id`),
+  UNIQUE KEY `news_id` (`news_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for wcf_news_cats
+-- ----------------------------
+DROP TABLE IF EXISTS `wcf_news_cats`;
+CREATE TABLE `wcf_news_cats` (
+  `news_cat_id` int(11) unsigned NOT NULL auto_increment,
+  `news_cat_name` varchar(100) collate utf8_unicode_ci NOT NULL,
+  `news_cat_image` varchar(100) collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`news_cat_id`)
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for wcf_panels
@@ -117,25 +143,53 @@ CREATE TABLE `wcf_users` (
   `user_online` tinyint(3) unsigned NOT NULL default '0',
   PRIMARY KEY  (`user_id`),
   UNIQUE KEY `idx_user_name` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
 -- ----------------------------
+INSERT INTO `wcf_admin` VALUES ('1', '1', '1', '1', 'news.gif', 'Новости', 'newsedit');
+INSERT INTO `wcf_admin` VALUES ('2', '2', '1', '1', 'forums.gif', 'Форум', 'forumedit');
+INSERT INTO `wcf_admin` VALUES ('3', '3', '1', '1', 'panels.gif', 'Панели', 'panelsedit');
+INSERT INTO `wcf_admin` VALUES ('4', '4', '1', '1', '', null, '');
+INSERT INTO `wcf_admin` VALUES ('5', '1', '1', '2', '', '', '');
+INSERT INTO `wcf_admin` VALUES ('6', '1', '1', '2', '', null, '');
+INSERT INTO `wcf_admin` VALUES ('7', '1', '1', '2', '', null, '');
+INSERT INTO `wcf_admin` VALUES ('8', '1', '1', '2', '', null, '');
 INSERT INTO `wcf_forums` VALUES ('1', '0', 'Информация о сервере', null, '0', '0', '0');
 INSERT INTO `wcf_forums` VALUES ('2', '1', 'Информация от администрации', 'Обновления, изменения, события, новости.', '2', '2', '2');
 INSERT INTO `wcf_forums` VALUES ('3', '0', 'Мир Warcraft', null, '0', '0', '0');
 INSERT INTO `wcf_forums` VALUES ('4', '3', 'Аддоны и Макросы\r\n', 'Скачиваем и заказываем', '3', '1', '1');
 INSERT INTO `wcf_forums` VALUES ('5', '1', 'Мастерская', 'Делимся своими идеями, решениями. Обсуждаем, создаем что-то свое.', '4', '1', '1');
-INSERT INTO `wcf_forums_posts` VALUES ('2', '1', '1', '1', 'Проверка работоспособности форума!!!', '2010-05-28 21:04:49');
-INSERT INTO `wcf_forums_posts` VALUES ('2', '2', '2', '4', 'Проверка работоспособности форума!!!', '2011-10-27 12:40:08');
-INSERT INTO `wcf_forums_posts` VALUES ('5', '3', '3', '1', 'Проверка работоспособности форума!!!', '2011-10-27 12:39:40');
-INSERT INTO `wcf_forums_posts` VALUES ('4', '4', '4', '1', 'Проверка работоспособности форума!!!', '2011-10-27 12:39:44');
+INSERT INTO `wcf_forums_posts` VALUES ('2', '1', '1', '1', 'Проверка работоспособности форума!!!', '2010-05-28 20:04:49');
+INSERT INTO `wcf_forums_posts` VALUES ('2', '2', '2', '4', 'Проверка работоспособности форума!!!', '2011-10-27 11:40:08');
+INSERT INTO `wcf_forums_posts` VALUES ('5', '3', '3', '1', 'Проверка работоспособности форума!!!', '2011-10-27 11:39:40');
+INSERT INTO `wcf_forums_posts` VALUES ('4', '4', '4', '1', 'Проверка работоспособности форума!!!', '2011-10-27 11:39:44');
 INSERT INTO `wcf_forums_threads` VALUES ('2', '1', 'Сообщение от администрации', '1', '0', '1', '1', '1');
-INSERT INTO `wcf_forums_threads` VALUES ('2', '2', 'Тестовый форум', '4', '0', '2', '4', '1');
+INSERT INTO `wcf_forums_threads` VALUES ('2', '2', 'Тестовый форум', '4', '2', '2', '4', '1');
 INSERT INTO `wcf_forums_threads` VALUES ('5', '3', 'Сообщение от администрации', '1', '0', '3', '1', '1');
 INSERT INTO `wcf_forums_threads` VALUES ('4', '4', 'Сообщение от администрации', '1', '0', '4', '1', '1');
-INSERT INTO `wcf_news` VALUES ('1', '2011-10-22 13:50:00', 'От разработчика.', 'WCF успешно установлен.', '0');
+INSERT INTO `wcf_news` VALUES ('1', '2011-11-04 15:35:04', 'От разработчика.', 'WCF успешно установлен.', '19');
+INSERT INTO `wcf_news_cats` VALUES ('1', 'Новости', 'news.gif');
+INSERT INTO `wcf_news_cats` VALUES ('2', 'Ошибки', 'bugs.gif');
+INSERT INTO `wcf_news_cats` VALUES ('3', 'Игры', 'games.gif');
+INSERT INTO `wcf_news_cats` VALUES ('4', 'Интернет', 'network.gif');
+INSERT INTO `wcf_news_cats` VALUES ('5', 'Загрузки', 'downloads.gif');
+INSERT INTO `wcf_news_cats` VALUES ('6', 'БСД', 'bsd.gif');
+INSERT INTO `wcf_news_cats` VALUES ('7', 'Графика', 'graphics.gif');
+INSERT INTO `wcf_news_cats` VALUES ('8', 'Аппаратные средства', 'hardware.gif');
+INSERT INTO `wcf_news_cats` VALUES ('9', 'Журнал', 'journal.gif');
+INSERT INTO `wcf_news_cats` VALUES ('10', 'Linux', 'linux.gif');
+INSERT INTO `wcf_news_cats` VALUES ('11', 'Мас', 'mac.gif');
+INSERT INTO `wcf_news_cats` VALUES ('12', 'Пользователи', 'members.gif');
+INSERT INTO `wcf_news_cats` VALUES ('13', 'Моды', 'mods.gif');
+INSERT INTO `wcf_news_cats` VALUES ('14', 'Видео', 'movies.gif');
+INSERT INTO `wcf_news_cats` VALUES ('15', 'Музыка', 'music.gif');
+INSERT INTO `wcf_news_cats` VALUES ('16', 'Безопасность', 'security.gif');
+INSERT INTO `wcf_news_cats` VALUES ('17', 'Программы', 'software.gif');
+INSERT INTO `wcf_news_cats` VALUES ('18', 'Схемы Скины', 'themes.gif');
+INSERT INTO `wcf_news_cats` VALUES ('19', 'Web Clear Fusion', 'web-clear-fusion.gif');
+INSERT INTO `wcf_news_cats` VALUES ('20', 'Виндовс', 'windows.gif');
 INSERT INTO `wcf_panels` VALUES ('1', 'main form', 'panels/main_form/main_form.php', '0');
 INSERT INTO `wcf_panels` VALUES ('2', 'navigation panel', 'panels/navigation_panel/navigation_panel.php', '1');
 INSERT INTO `wcf_panels` VALUES ('3', 'user info panel', 'panels/user_info_panel/user_info_panel.php', '2');

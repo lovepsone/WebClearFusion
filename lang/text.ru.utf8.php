@@ -66,20 +66,11 @@ $txt = array(
 # тексты при новостях
 'news'				=>'Новости',
 'admin_teme_news'		=>'Тема',
-'admin_typ_news'		=>'Тип',
+'admin_category_news'		=>'Категория',
 'admin_news_not_all_fields'	=>'<font color=red>Ошибка!</font>Не заполнены все поля.',
 'admin_news_add_successfully'	=>'Новость успешно создана.',
 'admin_news_edit_successfully'	=>'Новость успешно изменена.',
 'admin_news_del_successfully'	=>'Новость успешно удалена.',
-
-# типы новостей
-'typ_news_0'			=>'Новости',
-'typ_news_1'			=>'Новости о багах',
-'typ_news_2'			=>'Новости о играх',
-'typ_news_3'			=>'Новости о интернете',
-'typ_news_4'			=>'Новости о загрузках',
-'typ_news_5'			=>'Новости о модификациях',
-'typ_news_6'			=>'Новости о стиле сайта',
 
 # тексты при регистрации
 'reg'				=>'Регистрация',

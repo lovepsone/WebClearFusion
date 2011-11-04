@@ -74,7 +74,15 @@
 
 	echo"<option value=3>".$txt['admin_newsmaker_del']."</option></select></td>";
 	echo"<td align='center'><input action='index.php' name='modul' value='newsedit' type=hidden><input type='submit' value='".$txt['Run']."'></td></tr></table><hr></form>";
-
+	//===============================================
+	// Доп. форма
+	$query = mysql_query("SELECT * FROM `wcf_news_cats`") or trigger_error(mysql_error());
+	$editlist = "";
+	while ($news_cats = mysql_fetch_array($query))
+		{
+	  		$news_cats_list .= "<option value=".$news_cats['news_cat_id'].">".$news_cats['news_cat_name']."</option>";
+		}
+	//===============================================
 	if (isset($_POST['cmd']))
 		{
    			require "include/tinymce.php";
@@ -93,18 +101,11 @@
 					echo"<td width='1%' height='30' >&nbsp;</td>";
              				echo"<td width='89%' height='30' align='left' valign='middle'><input name='modul' value='newsedit' type=hidden><input type='text' name='tema_edit' size='60' value='".$nr['news_title']."'></td></tr>";
 
-        				echo"<tr><td width='100' height='30' align='right' valign='middle'>".$txt['admin_typ_news']."</td>";
+        				echo"<tr><td width='100' height='30' align='right' valign='middle'>".$txt['admin_category_news']."</td>";
 					echo"<td width='10' height='30' >&nbsp;</td>";
 					echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='edit' type=hidden><input name='guid' value='".$nr['news_id']."' type=hidden>";
 
-        				echo"<select name=catedit>
-             					<option value=0 selected>$txt[typ_news_0]</option>
-             					<option value=1>$txt[typ_news_1]</option>
-             					<option value=2>$txt[typ_news_2]</option>
-             					<option value=3>$txt[typ_news_3]</option>
-             					<option value=4>$txt[typ_news_4]</option>
-             					<option value=5>$txt[typ_news_5]</option>
-             					<option value=6>$txt[typ_news_6]</option></select>";
+        				echo"<select name=catedit>$news_cats_list</select>";
 					echo"</td></tr></table>";
 
        					echo"<textarea name='news_edit'>".$nr['news_text']."</textarea>"; 
@@ -114,7 +115,7 @@
 				{
 					echo"<img src='images/ajax-loader.gif'/>";
 					$nt = addslashes($_POST['tema_edit']);
-					$query = mysql_query("UPDATE `wcf_news` SET `news_title`='".$nt."',`news_text`='".text_optimazer($_POST['news_edit'])."',`news_cat`='".(int)$_POST['catedit']."' WHERE `news_id`='".(int)$_POST['guid']."'") or trigger_error(mysql_error()); 
+					$query = mysql_query("UPDATE `wcf_news` SET `news_title`='".$nt."',`news_text`='".text_optimazer($_POST['news_edit'])."',`news_cats`='".(int)$_POST['catedit']."' WHERE `news_id`='".(int)$_POST['guid']."'") or trigger_error(mysql_error()); 
 
 					if ($query)
 						{
@@ -135,18 +136,11 @@
 					echo"<td width='1%' height='30' >&nbsp;</td>";
         				echo"<td width='89%' height='30' align='left' valign='middle'><input name='modul' value='newsedit' type=hidden><input type='text' name='tema_add' size='40'></td></tr>";
 
-        				echo"<tr><td width='100' height='30' align='right' valign='middle'>".$txt['admin_typ_news']."</td>";
+        				echo"<tr><td width='100' height='30' align='right' valign='middle'>".$txt['admin_category_news']."</td>";
 					echo"<td width='10' height='30' >&nbsp;</td>";
         				echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='newsadd' type=hidden>";
 
-        				echo"<select name=catadd>
-             					<option value=0 selected>$txt[typ_news_0]</option>
-             					<option value=1>$txt[typ_news_1]</option>
-             					<option value=2>$txt[typ_news_2]</option>
-             					<option value=3>$txt[typ_news_3]</option>
-             					<option value=4>$txt[typ_news_4]</option>
-             					<option value=5>$txt[typ_news_5]</option>
-             					<option value=6>$txt[typ_news_6]</option></select>";
+        				echo"<select name=catadd>$news_cats_list</select>";
 					echo"</td></tr></table>";
 
 					echo"<textarea name='news_add'></textarea>";
@@ -157,7 +151,7 @@
 				{
 					echo"<img src='images/ajax-loader.gif'/>";
 					$nt = addslashes($_POST['tema_add']);
-					$query = mysql_query("INSERT INTO `wcf_news` (`news_title`,`news_text`,`news_cat`) values ('".$nt."','".text_optimazer($_POST['news_add'])."','".(int)$_POST['catadd']."')") or trigger_error(mysql_error());
+					$query = mysql_query("INSERT INTO `wcf_news` (`news_title`,`news_text`,`news_cats`) values ('".$nt."','".text_optimazer($_POST['news_add'])."','".(int)$_POST['catadd']."')") or trigger_error(mysql_error());
 
 					if ($query)
 						{
