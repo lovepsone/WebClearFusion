@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 03.11.2011 20:30:16
+Date: 04.11.2011 19:17:35
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,7 +21,7 @@ CREATE TABLE `wcf_admin` (
   `admin_title` longtext,
   `admin_link` varchar(100) character set utf8 collate utf8_unicode_ci NOT NULL default '',
   PRIMARY KEY  (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
@@ -34,3 +34,4 @@ INSERT INTO `wcf_admin` VALUES ('5', '1', '1', '2', '', '', '');
 INSERT INTO `wcf_admin` VALUES ('6', '1', '1', '2', '', null, '');
 INSERT INTO `wcf_admin` VALUES ('7', '1', '1', '2', '', null, '');
 INSERT INTO `wcf_admin` VALUES ('8', '1', '1', '2', '', null, '');
+INSERT INTO `wcf_admin` VALUES ('49', '1', '4', '1', 'settings.gif', 'Главные установки', 'settings');

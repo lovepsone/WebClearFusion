@@ -10,10 +10,11 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	session_start(); 
+	session_start();
 	require "conf.php";
 	require "include/functions.php";
 	require "include/functions_return.php";
+	require "include/conf_lib.php";
 	require "include/auth.php";
 	require "include/protect.php";
 
