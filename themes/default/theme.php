@@ -15,7 +15,7 @@
 	<HEAD><link rel="SHORTCUT ICON" href="images/favicon.ico">
 	<TITLE><?php echo  $config['servername']; ?></TITLE>
 	<LINK href="<?php echo $cssfile; ?>" type=text/css rel=stylesheet>
-	<LINK href="wcf.css" type=text/css rel=stylesheet>
+	<LINK href="<?php echo $csswcffile; ?>" type=text/css rel=stylesheet>
 	<LINK href="administration/administration.css" type=text/css rel=stylesheet>
 	<META http-equiv="content-type" content="text/html; charset=<?php echo  $code_page; ?>" /></HEAD>
 	<BODY>
