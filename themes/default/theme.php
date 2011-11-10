@@ -30,7 +30,7 @@
            					<tr>
             						<td class=ugverhfon>&nbsp;</td>
             						<td class=topfon>&nbsp;</td>
-            						<td class=fonmenu><a href="index.php"><?php  echo $config['servername']; ?></a></td>
+            						<td class=fonmenu><a href="<?php $config['urlserver'] ?>"><?php  echo $config['servername']; ?></a></td>
             						<td class=topfon>&nbsp;</td>
             						<td class=ugverhfon2>&nbsp;</td>
            					</tr>

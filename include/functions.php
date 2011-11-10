@@ -98,6 +98,9 @@
   
 		}
 
+	//=============================================================================================
+	// функция, создающая switch языков,то есть поддержака нескольких языков, при это не 
+	// переключаясь в config настройках
 	if (isset($_SESSION['lang']))
 		{
     			switch($_SESSION['lang'])
@@ -136,6 +139,8 @@
    			return $symbol;
 		}
 
+	//=============================================================================================
+	// функция, создающая навигацию, берет данные из module_cfg.php
 	function ShowPageNavigator($LinkText,$Page,$AllPages)
 		{
 			$Page = intval($Page);
@@ -229,6 +234,29 @@
    				}
 			return trim($rString);
 		}
+
+	//=============================================================================================
+	//пользовательская функция, предназначена для подовления HTML кода в нежелательных местах
+	function stripinput($text)
+		{
+			if (!is_array($text))
+				{
+					$text = trim($text);
+					if (QUOTES_GPC) { $text = stripslashes($text); }
+					$search = array("&", "\"", "'", "\\", '\"', "\'", "<", ">", "&nbsp;");
+					$replace = array("&amp;", "&quot;", "&#39;", "&#92;", "&quot;", "&#39;", "&lt;", "&gt;", " ");
+					$text = preg_replace("/(&amp;)+(?=\#([0-9]{2,3});)/i", "&", str_replace($search, $replace, $text));
+				}
+			else
+				{
+					foreach ($exts as $key => $value)
+						{
+							$text[$key] = stripinput($value);
+						}
+				}
+			return $text;
+		}
+
 	//===============================
 	// функция пока не используется
 	function panel_position($position)
@@ -243,6 +271,9 @@
 					if ($num > 1) echo"<hr>";
 				}
 		}
+
+	//=============================================================================================
+	// функция, создающая админку, берет данные из базы mysql
 	function admin_page($admin_page,$admin_string)
 		{
 			selectdb(wcf);
