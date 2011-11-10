@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 04.11.2011 15:37:49
+Date: 10.11.2011 17:09:07
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,7 +21,7 @@ CREATE TABLE `wcf_admin` (
   `admin_title` longtext,
   `admin_link` varchar(100) character set utf8 collate utf8_unicode_ci NOT NULL default '',
   PRIMARY KEY  (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for wcf_forums
@@ -52,7 +52,7 @@ CREATE TABLE `wcf_forums_posts` (
   `post_text` longtext,
   `post_date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   PRIMARY KEY  (`post_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for wcf_forums_threads
@@ -134,6 +134,16 @@ CREATE TABLE `wcf_panels` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
+-- Table structure for wcf_settings
+-- ----------------------------
+DROP TABLE IF EXISTS `wcf_settings`;
+CREATE TABLE `wcf_settings` (
+  `settings_name` varchar(200) collate utf8_unicode_ci NOT NULL default '',
+  `settings_value` text collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`settings_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
 -- Table structure for wcf_users
 -- ----------------------------
 DROP TABLE IF EXISTS `wcf_users`;
@@ -156,8 +166,9 @@ INSERT INTO `wcf_admin` VALUES ('5', '1', '1', '2', '', '', '');
 INSERT INTO `wcf_admin` VALUES ('6', '1', '1', '2', '', null, '');
 INSERT INTO `wcf_admin` VALUES ('7', '1', '1', '2', '', null, '');
 INSERT INTO `wcf_admin` VALUES ('8', '1', '1', '2', '', null, '');
+INSERT INTO `wcf_admin` VALUES ('49', '1', '4', '1', 'settings.gif', 'Главные установки', 'settings');
 INSERT INTO `wcf_forums` VALUES ('1', '0', 'Информация о сервере', null, '0', '0', '0');
-INSERT INTO `wcf_forums` VALUES ('2', '1', 'Информация от администрации', 'Обновления, изменения, события, новости.', '2', '2', '2');
+INSERT INTO `wcf_forums` VALUES ('2', '1', 'Информация от администрации', 'Обновления, изменения, события, новости.', '5', '3', '2');
 INSERT INTO `wcf_forums` VALUES ('3', '0', 'Мир Warcraft', null, '0', '0', '0');
 INSERT INTO `wcf_forums` VALUES ('4', '3', 'Аддоны и Макросы\r\n', 'Скачиваем и заказываем', '3', '1', '1');
 INSERT INTO `wcf_forums` VALUES ('5', '1', 'Мастерская', 'Делимся своими идеями, решениями. Обсуждаем, создаем что-то свое.', '4', '1', '1');
@@ -165,11 +176,12 @@ INSERT INTO `wcf_forums_posts` VALUES ('2', '1', '1', '1', 'Проверка р�
 INSERT INTO `wcf_forums_posts` VALUES ('2', '2', '2', '4', 'Проверка работоспособности форума!!!', '2011-10-27 11:40:08');
 INSERT INTO `wcf_forums_posts` VALUES ('5', '3', '3', '1', 'Проверка работоспособности форума!!!', '2011-10-27 11:39:40');
 INSERT INTO `wcf_forums_posts` VALUES ('4', '4', '4', '1', 'Проверка работоспособности форума!!!', '2011-10-27 11:39:44');
+INSERT INTO `wcf_forums_posts` VALUES ('2', '2', '5', '5', '<p><strong><em><span style=\\\"text-decoration: underline;\\\"><span style=\\\"text-decoration: line-through;\\\">Повторная проверка + коды</span></span></em></strong></p>\r\n<p>&nbsp;</p>', '2011-11-10 17:05:23');
 INSERT INTO `wcf_forums_threads` VALUES ('2', '1', 'Сообщение от администрации', '1', '0', '1', '1', '1');
-INSERT INTO `wcf_forums_threads` VALUES ('2', '2', 'Тестовый форум', '4', '2', '2', '4', '1');
+INSERT INTO `wcf_forums_threads` VALUES ('2', '2', 'Тестовый форум', '4', '0', '5', '5', '2');
 INSERT INTO `wcf_forums_threads` VALUES ('5', '3', 'Сообщение от администрации', '1', '0', '3', '1', '1');
 INSERT INTO `wcf_forums_threads` VALUES ('4', '4', 'Сообщение от администрации', '1', '0', '4', '1', '1');
-INSERT INTO `wcf_news` VALUES ('1', '2011-11-04 15:35:04', 'От разработчика.', 'WCF успешно установлен.', '19');
+INSERT INTO `wcf_news` VALUES ('1', '2011-11-10 16:57:52', 'От разработчика.', 'WCF успешно установлен.', '1');
 INSERT INTO `wcf_news_cats` VALUES ('1', 'Новости', 'news.gif');
 INSERT INTO `wcf_news_cats` VALUES ('2', 'Ошибки', 'bugs.gif');
 INSERT INTO `wcf_news_cats` VALUES ('3', 'Игры', 'games.gif');
@@ -193,6 +205,16 @@ INSERT INTO `wcf_news_cats` VALUES ('20', 'Виндовс', 'windows.gif');
 INSERT INTO `wcf_panels` VALUES ('1', 'main form', 'panels/main_form/main_form.php', '0');
 INSERT INTO `wcf_panels` VALUES ('2', 'navigation panel', 'panels/navigation_panel/navigation_panel.php', '1');
 INSERT INTO `wcf_panels` VALUES ('3', 'user info panel', 'panels/user_info_panel/user_info_panel.php', '2');
+INSERT INTO `wcf_settings` VALUES ('servername', 'Name WoW Server');
+INSERT INTO `wcf_settings` VALUES ('default_module', 'news');
+INSERT INTO `wcf_settings` VALUES ('urlserver', '/');
+INSERT INTO `wcf_settings` VALUES ('change_lang', 'on');
+INSERT INTO `wcf_settings` VALUES ('page_forum_threads', '10');
+INSERT INTO `wcf_settings` VALUES ('page_forum_posts', '10');
+INSERT INTO `wcf_settings` VALUES ('pass_remember', 'on');
+INSERT INTO `wcf_settings` VALUES ('reg_ip_limit', '0');
+INSERT INTO `wcf_settings` VALUES ('page_news', '5');
+INSERT INTO `wcf_settings` VALUES ('page_news_edit', '20');
 INSERT INTO `wcf_users` VALUES ('1', 'ADMINISTRATOR', '0');
 INSERT INTO `wcf_users` VALUES ('2', 'GAMEMASTER', '0');
 INSERT INTO `wcf_users` VALUES ('3', 'MODERATOR', '0');

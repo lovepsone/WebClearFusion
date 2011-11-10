@@ -12,6 +12,8 @@
 
 	$date = date('d-m-Y [H:i:s]');
 
+	//=============================================================================================
+	// функция коннекта к базе 
 	function selectdb($date_base)
 		{
   			global $config;
@@ -202,41 +204,16 @@
 			return $text;
 		}
 
-	function text_optimazer($Mstring)
+	//=============================================================================================
+	// функция добавления \ перед кавычками. Для безопасности дабы Mysql не выдавала ошибку.
+	function addslash($text)
 		{
-			$e = 0;
-			$rString = trim($Mstring);
-			$rString = AddSlashes($rString);
-			$rString = trim($rString);
-
-			while ($e < 50)
-   				{
-   					if ((substr($rString, -13) == '<p>&nbsp;</p>') && (strlen($rString) > 13))
-      						{
-       							$rString = substr($rString, 0, strlen($rString)-13);
-       							$e++;
-      						}
-					else $e = 51;
-   					$rString = rtrim($rString);
-   				}
-
-			$e = 0;
-
-			while ($e < 50)
-   				{
-   					if ((substr($rString, 0, 13) == '<p>&nbsp;</p>') && (strlen($rString) > 13))
-      						{
-       							$rString = substr($rString, 13, strlen($rString)-13);
-       							$e++;
-      						}
-					else $e = 51;
-   					$rString = ltrim($rString);
-   				}
-			return trim($rString);
+			if (!QUOTES_GPC) { $text = addslashes(addslashes($text)); } else { $text = addslashes($text); }
+			return $text;
 		}
 
 	//=============================================================================================
-	//пользовательская функция, предназначена для подовления HTML кода в нежелательных местах
+	// пользовательская функция, предназначена для подовления HTML кода в нежелательных местах
 	function stripinput($text)
 		{
 			if (!is_array($text))

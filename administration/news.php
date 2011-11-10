@@ -115,7 +115,7 @@
 				{
 					echo"<img src='images/ajax-loader.gif'/>";
 					$nt = addslashes($_POST['tema_edit']);
-					$query = mysql_query("UPDATE `wcf_news` SET `news_title`='".$nt."',`news_text`='".text_optimazer($_POST['news_edit'])."',`news_cats`='".(int)$_POST['catedit']."' WHERE `news_id`='".(int)$_POST['guid']."'") or trigger_error(mysql_error()); 
+					$query = mysql_query("UPDATE `wcf_news` SET `news_title`='".$nt."',`news_text`='".addslash($_POST['news_edit'])."',`news_cats`='".(int)$_POST['catedit']."' WHERE `news_id`='".(int)$_POST['guid']."'") or trigger_error(mysql_error()); 
 
 					if ($query)
 						{
@@ -151,7 +151,7 @@
 				{
 					echo"<img src='images/ajax-loader.gif'/>";
 					$nt = addslashes($_POST['tema_add']);
-					$query = mysql_query("INSERT INTO `wcf_news` (`news_title`,`news_text`,`news_cats`) values ('".$nt."','".text_optimazer($_POST['news_add'])."','".(int)$_POST['catadd']."')") or trigger_error(mysql_error());
+					$query = mysql_query("INSERT INTO `wcf_news` (`news_title`,`news_text`,`news_cats`) values ('".$nt."','".addslash($_POST['news_add'])."','".(int)$_POST['catadd']."')") or trigger_error(mysql_error());
 
 					if ($query)
 						{

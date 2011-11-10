@@ -37,7 +37,7 @@
 				{
           				echo"<tr><th rowspan='2' align='left' width='80' height='80'><img src='images/news_cat/".$nres['news_cat_image']."' align='absmiddle' style=''></th>";
           				echo"<td align='left' class='head'>".$nres['news_title']."&nbsp;</td></tr>";
-          				echo"<tr><td colspan='3' class='page'>".$nres['news_text']."</td></tr>";
+          				echo"<tr><td colspan='3' class='page'>".stripslashes($nres['news_text'])."</td></tr>";
           				echo"<tr><td align='right' colspan='3' class='page'>".$nres['news_date']."</td></tr>";
       				}
 

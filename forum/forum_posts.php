@@ -69,7 +69,7 @@
 								}
 
 							echo"<tr><td width='20%' align='left' class='page'>".ucfirst(strtolower($usr_name))."<br>$usr_ip</td>";
-							echo"<td width='80%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;".$posts['post_text']."</td></tr>";
+							echo"<td width='80%' align='left' style='text-align: left;' class='page'>".stripslashes($posts['post_text'])."</td></tr>";
 						}
 
   					if ($p_kolzap['kol'] > $config['page_forum_posts'])
@@ -92,7 +92,7 @@
 							// Создаем сообщение
 							$p_add_post = mysql_query("INSERT INTO `wcf_forums_posts`
 										(`forum_id`,`thread_id`,`user_id`,`post_text`) VALUES
-										('$forum_id','$thread_id','".$_SESSION['user_id']."','".text_optimazer($_POST['posts'])."')") or trigger_error(mysql_error());
+										('$forum_id','$thread_id','".$_SESSION['user_id']."','".addslash($_POST['posts'])."')") or trigger_error(mysql_error());
 							$p_post_id = mysql_insert_id(); // Прикрепляем id
 
 							// Обновляем сам форум с целю обнов кол-во собщений
