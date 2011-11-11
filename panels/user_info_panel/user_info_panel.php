@@ -26,12 +26,12 @@
 
 					if ($config['Kcaptcha_enable'] == 1) 
   						{
-   							echo"<tr><td colspan='2' height='30' align='center' valign='middle' class='logintext'><iframe src='./kcaptcha.php' marginheight='0' marginwidth='0' width='100' height='40' frameborder='0' scrolling='no' allowtransparency='true'></iframe></td></tr>"; 
+   							echo"<tr><td colspan='2' height='30' align='center' valign='middle' class='logintext'><iframe src='./include/kcaptcha.php' marginheight='0' marginwidth='0' width='100' height='40' frameborder='0' scrolling='no' allowtransparency='true'></iframe></td></tr>"; 
    							echo"<tr><td colspan='2' height='30' align='center' valign='middle' class='LoginInput'><input type='text' name='kapcha_code' size=10></td></tr>";
   						}
 					elseif (($config['Kcaptcha_enable'] == 2) AND ($login_count > 0)) 
   						{
-   							echo"<tr><td colspan='2' height='30' align='center' valign='middle' class='logintext'><iframe src='./kcaptcha.php' marginheight='0' marginwidth='0' width='100' height='40' frameborder='0' scrolling='no' allowtransparency='true'></iframe></td></tr>"; 
+   							echo"<tr><td colspan='2' height='30' align='center' valign='middle' class='logintext'><iframe src='./include/kcaptcha.php' marginheight='0' marginwidth='0' width='100' height='40' frameborder='0' scrolling='no' allowtransparency='true'></iframe></td></tr>"; 
    							echo"<tr><td colspan='2' height='30' align='center' valign='middle' class='LoginInput'><input type='text' name='kapcha_code' size=10></td></tr>";
   						}
 
