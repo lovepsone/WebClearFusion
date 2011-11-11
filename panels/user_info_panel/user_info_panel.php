@@ -66,7 +66,7 @@
 			//======================================
 			// занесение юзера в таблицу
 			selectdb(wcf);
-			mysql_query("UPDATE `wcf_users` SET `user_online`='1' WHERE  `user_id`='".$_SESSION['user_id']."'");
+			mysql_query("UPDATE ".DB_USERS." SET `user_online`='1' WHERE  `user_id`='".$_SESSION['user_id']."'");
 
   			$rip = '';
 			selectdb(realmd);
@@ -125,11 +125,11 @@
 			//======================================
 			// чистка онлайна
 			selectdb(wcf);
-			$clear_user = mysql_query("SELECT * FROM `wcf_users`");
+			$clear_user = mysql_query("SELECT * FROM ".DB_USERS."");
 
 			while ($user = mysql_fetch_array($clear_user))
 				{
-					if ($user['user_id'] <> $_SESSION['user_id']) mysql_query("UPDATE `wcf_users` SET `user_online`='0' WHERE  `user_id`='".$user['user_id']."'");
+					if ($user['user_id'] <> $_SESSION['user_id']) mysql_query("UPDATE ".DB_USERS." SET `user_online`='0' WHERE  `user_id`='".$user['user_id']."'");
 				}
 		}
 ?>

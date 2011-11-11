@@ -13,13 +13,13 @@
 	if (isset($_POST['savesettings']))
 		{
 			selectdb(wcf);
-			mysql_query("UPDATE `wcf_settings` SET `settings_value`='".stripinput($_POST['servername'])."' WHERE `settings_name`='servername'") or trigger_error(mysql_error());
-			mysql_query("UPDATE `wcf_settings` SET `settings_value`='".stripinput($_POST['urlserver']).(strrchr($_POST['urlserver'],"/") != "/" ? "/" : "")."' WHERE `settings_name`='urlserver'") or trigger_error(mysql_error());
+			mysql_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['servername'])."' WHERE `settings_name`='servername'") or trigger_error(mysql_error());
+			mysql_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['urlserver']).(strrchr($_POST['urlserver'],"/") != "/" ? "/" : "")."' WHERE `settings_name`='urlserver'") or trigger_error(mysql_error());
 		}
 
 	$settings = array();
 	selectdb(wcf);
-	$result = mysql_query("SELECT * FROM `wcf_settings`") or trigger_error(mysql_error());
+	$result = mysql_query("SELECT * FROM ".DB_SETTINGS."") or trigger_error(mysql_error());
 	while ($data = mysql_fetch_array($result))
 		{
 			$settings[$data['settings_name']] = $data['settings_value'];

@@ -16,14 +16,14 @@
 //=========================================================================
 
 	selectdb(wcf);
-	$result = mysql_query("SELECT * FROM `wcf_forums`");
+	$result = mysql_query("SELECT * FROM ".DB_FORUMS."");
 
 	echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
    	echo"<tr><th class='head' width='4%'></th>";
-	echo"<th width='60%'>$txt[forum_column_section]</th>";
-	echo"<th width='21%'>$txt[forum_column_last_post]</th>";
-	echo"<th width='5%'>$txt[forum_column_so]</th>";
-	echo"<th width='10%'>$txt[forum_column_posts]</th></tr>";
+	echo"<th width='60%'>".$txt['forum_column_section']."</th>";
+	echo"<th width='21%'>".$txt['forum_column_last_post']."</th>";
+	echo"<th width='5%'>".$txt['forum_column_so']."</th>";
+	echo"<th width='10%'>".$txt['forum_column_posts']."</th></tr>";
 	echo"</table>";
 
 	while($section = mysql_fetch_array($result))
@@ -33,10 +33,10 @@
 					echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
           				echo"<tr><td width='100%' colspan='5' align='left' style='text-align: left;' class='head'>&nbsp;&nbsp;".$section['forum_name']."&nbsp;</td></tr>";
 
-					$tm_result = mysql_query("SELECT * FROM `wcf_forums`
-									LEFT JOIN `wcf_forums_threads` ON `wcf_forums_threads`.`thread_lastpostid`=`wcf_forums`.`forum_lastpostid`
-									LEFT JOIN `wcf_users` ON `wcf_users`.`user_id`=`wcf_forums_threads`.`thread_lastuser`
-									LEFT JOIN `wcf_forums_posts` ON `wcf_forums_posts`.`post_id`=`wcf_forums_threads`.`thread_lastpostid`
+					$tm_result = mysql_query("SELECT * FROM ".DB_FORUMS."
+									LEFT JOIN ".DB_FORUMS_THREADS." ON ".DB_FORUMS_THREADS.".`thread_lastpostid`=".DB_FORUMS.".`forum_lastpostid`
+									LEFT JOIN ".DB_USERS." ON ".DB_USERS.".`user_id`=".DB_FORUMS_THREADS.".`thread_lastuser`
+									LEFT JOIN ".DB_FORUMS_POSTS." ON ".DB_FORUMS_POSTS.".`post_id`=".DB_FORUMS_THREADS.".`thread_lastpostid`
 									WHERE `forum_sections`='".$section['forum_id']."'");
 
 					while ($tm_section = mysql_fetch_array($tm_result))

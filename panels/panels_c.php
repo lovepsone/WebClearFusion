@@ -16,7 +16,7 @@
 +--------------------------------------------------------*/
 
 	selectdb(wcf);
-  	$panels_center = mysql_query("SELECT `panel_id`, `panel_url`  FROM `wcf_panels` WHERE `panel_position`= 0") or trigger_error(mysql_error());
+  	$panels_center = mysql_query("SELECT `panel_id`, `panel_url`  FROM ".DB_PANELS." WHERE `panel_position`= 0") or trigger_error(mysql_error());
 	$num_c = mysql_num_rows($panels_center);
 
 	while($panel_center = mysql_fetch_array($panels_center))

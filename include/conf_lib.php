@@ -11,7 +11,7 @@
 +--------------------------------------------------------*/
 
 	selectdb(wcf);
-	$result = mysql_query("SELECT * FROM `wcf_settings`") or trigger_error(mysql_error());
+	$result = mysql_query("SELECT * FROM ".DB_SETTINGS."") or trigger_error(mysql_error());
 	while ($data = mysql_fetch_array($result))
 		{
 			$config[$data['settings_name']] = $data['settings_value'];

@@ -23,7 +23,7 @@
 	echo"<th>$txt[log_title_account]</th></tr>";
 
 	selectdb(wcf);
-	$query = "SELECT * FROM `wcf_logs` WHERE `mode`=1";
+	$query = "SELECT * FROM ".DB_LOGS." WHERE `mode`=1";
 	$res = mysql_query($query) or trigger_error(mysql_error().$query);
 
 	if(mysql_num_rows($res)!=0)

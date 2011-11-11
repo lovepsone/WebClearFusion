@@ -30,11 +30,11 @@
 					$start_rec_thr = 0;
 				}
 
-			$result = mysql_query("SELECT * FROM `wcf_forums_threads` 
-						LEFT JOIN `wcf_forums_posts` ON `wcf_forums_posts`.`post_id`=`wcf_forums_threads`.`thread_lastpostid`
-						LEFT JOIN `wcf_users` ON `wcf_users`.`user_id`=`wcf_forums_threads`.`thread_author`
-						WHERE `wcf_forums_threads`.`forum_id`='$forum_id'
-						ORDER BY `wcf_forums_posts`.`post_date` DESC LIMIT $start_rec_thr,$page_len_thr");
+			$result = mysql_query("SELECT * FROM ".DB_FORUMS_THREADS." 
+						LEFT JOIN ".DB_FORUMS_POSTS." ON ".DB_FORUMS_POSTS.".`post_id`=".DB_FORUMS_THREADS.".`thread_lastpostid`
+						LEFT JOIN `wcf_users` ON `wcf_users`.`user_id`=".DB_FORUMS_THREADS.".`thread_author`
+						WHERE ".DB_FORUMS_THREADS.".`forum_id`='$forum_id'
+						ORDER BY ".DB_FORUMS_POSTS.".`post_date` DESC LIMIT $start_rec_thr,$page_len_thr");
 
 			if (mysql_num_rows($result) > 0 )
 				{
@@ -50,8 +50,8 @@
 					while($topics = mysql_fetch_array($result))
 						{
 							selectdb(wcf);
-							$last_post =  mysql_query("SELECT * FROM `wcf_forums_posts`,`wcf_users`
-											WHERE `wcf_forums_posts`.`post_id`='".$topics['thread_lastpostid']."'
+							$last_post =  mysql_query("SELECT * FROM ".DB_FORUMS_POSTS.",`wcf_users`
+											WHERE ".DB_FORUMS_POSTS.".`post_id`='".$topics['thread_lastpostid']."'
 											AND `wcf_users`.`user_id`='".$topics['thread_lastuser']."' LIMIT 1") or trigger_error(mysql_error());
 							$last_post = mysql_fetch_assoc($last_post);
 
@@ -94,20 +94,20 @@
 				{
 					selectdb(wcf);
 					// Создание темы
-					$t_add_thread = mysql_query("INSERT INTO `wcf_forums_threads`
+					$t_add_thread = mysql_query("INSERT INTO ".DB_FORUMS_THREADS."
 									(`forum_id`,`thread_subject`,`thread_author`,`thread_lastpostid`,`thread_lastuser`,`thread_postcount`)
 									VALUES ('$forum_id','".$_POST['thread_subject']."','".$_SESSION['user_id']."','0','".$_SESSION['user_id']."','1')") or trigger_error(mysql_error());
 					$thread_id = mysql_insert_id();// Прикрепляем id темы
 
 					// Добавляем сообщение
-					$t_add_post = mysql_query("INSERT INTO `wcf_forums_posts` (`forum_id`,`thread_id`,`user_id`,`post_text`) VALUES ('$forum_id','$thread_id','".$_SESSION['user_id']."','".addslash($_POST['thread'])."')") or trigger_error(mysql_error());
+					$t_add_post = mysql_query("INSERT INTO ".DB_FORUMS_POSTS." (`forum_id`,`thread_id`,`user_id`,`post_text`) VALUES ('$forum_id','$thread_id','".$_SESSION['user_id']."','".addslash($_POST['thread'])."')") or trigger_error(mysql_error());
 					$t_lastpost_id = mysql_insert_id();// Прикрепляем id сообщения
 
 					// Обновляем тему с целю добавить Id сообщения
-					$t_updt_post = mysql_query("UPDATE `wcf_forums_threads` SET `thread_lastpostid`='$t_lastpost_id' WHERE (`thread_id`='$thread_id')") or trigger_error(mysql_error());
+					$t_updt_post = mysql_query("UPDATE ".DB_FORUMS_THREADS." SET `thread_lastpostid`='$t_lastpost_id' WHERE (`thread_id`='$thread_id')") or trigger_error(mysql_error());
 
 					// Обновляем сам форум с целю обнов кол-во собщений
-					$t_updt_forum = mysql_query("UPDATE `wcf_forums` SET `forum_lastpostid`='$t_lastpost_id',`forum_postcount`=forum_postcount+1, `forum_threadcount`=forum_threadcount+1 WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
+					$t_updt_forum = mysql_query("UPDATE ".DB_FORUMS." SET `forum_lastpostid`='$t_lastpost_id',`forum_postcount`=forum_postcount+1, `forum_threadcount`=forum_threadcount+1 WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
 
 					echo"<img src='images/ajax-loader.gif'/>";
 					echo"<script type='text/javascript'> <!--

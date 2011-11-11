@@ -13,9 +13,9 @@
 	//=====================
 	// проверка на автобан
 	selectdb(wcf);
-  	$query = 'DELETE FROM `wcf_login_failed` WHERE UNIX_TIMESTAMP(`login_time`) < UNIX_TIMESTAMP()-60*"'.$config['auto_ban_time'].'"';
+  	$query = 'DELETE FROM ".DB_LOGIN_FAILED." WHERE UNIX_TIMESTAMP(`login_time`) < UNIX_TIMESTAMP()-60*"'.$config['auto_ban_time'].'"';
 	mysql_query($query);
-  	$query = 'SELECT * FROM `wcf_login_failed` WHERE `ip` = "'.$_SERVER['REMOTE_ADDR'].'"';
+  	$query = 'SELECT * FROM ".DB_LOGIN_FAILED." WHERE `ip` = "'.$_SERVER['REMOTE_ADDR'].'"';
   	$login_access = mysql_query($query);
   	$login_count = mysql_num_rows($login_access);
   	if ($login_count < $config['auto_ban_count']) $Block_login = 1; else $Block_login = 0;
@@ -67,15 +67,15 @@
 					//======================================
        					// Чистка в wcf_login_failed IP - адреса
 					selectdb(wcf);
-       					$query = mysql_query('DELETE FROM `wcf_login_failed` WHERE `ip` = "'.$_SERVER['REMOTE_ADDR'].'"');
+       					$query = mysql_query('DELETE FROM ".DB_LOGIN_FAILED." WHERE `ip` = "'.$_SERVER['REMOTE_ADDR'].'"');
 					
 					//======================================
 					// занесение юзера в таблицу
-					$user = mysql_query("SELECT * FROM `wcf_users` WHERE `user_id`='".$_SESSION['user_id']."' AND `user_name`='".$_SESSION['kito']."'");
+					$user = mysql_query("SELECT * FROM ".DB_USERS." WHERE `user_id`='".$_SESSION['user_id']."' AND `user_name`='".$_SESSION['kito']."'");
 
 					if ($user['user_id'] <> $_SESSION['user_id'])
 						{
-							$user_crt = mysql_query("INSERT INTO `wcf_users` (`user_id`,`user_name`,`user_online`) VALUES ('".$_SESSION['user_id']."','".$_SESSION['kito']."','1')");
+							$user_crt = mysql_query("INSERT INTO ".DB_USERS." (`user_id`,`user_name`,`user_online`) VALUES ('".$_SESSION['user_id']."','".$_SESSION['kito']."','1')");
 						}
 
        				}
@@ -85,7 +85,7 @@
    			else if ($Block_login == 1)
        				{
 					selectdb(wcf);
-       					$query = mysql_query('insert `wcf_login_failed` (`ip`) VALUES ("'.$_SERVER['REMOTE_ADDR'].'")');
+       					$query = mysql_query('INSERT ".DB_LOGIN_FAILED." (`ip`) VALUES ("'.$_SERVER['REMOTE_ADDR'].'")');
        				}
 
    			header("Location: http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);

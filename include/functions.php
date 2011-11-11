@@ -239,7 +239,7 @@
 	function panel_position($position)
 		{
 			selectdb(wcf);
-  			$panels_position = mysql_query("SELECT `panel_id`, `panel_url`  FROM `wcf_panels` WHERE `panel_position`= '".$position."'") or trigger_error(mysql_error());
+  			$panels_position = mysql_query("SELECT `panel_id`, `panel_url`  FROM ".DB_PANELS." WHERE `panel_position`= '".$position."'") or trigger_error(mysql_error());
 			$num = mysql_num_rows($panels_position);
 
 			while($position = mysql_fetch_array($panels_position))
@@ -254,7 +254,7 @@
 	function admin_page($admin_page,$admin_string)
 		{
 			selectdb(wcf);
-			$administration = mysql_query("SELECT * FROM `wcf_admin` WHERE `admin_page`='$admin_page' AND `admin_string`='$admin_string'") or trigger_error(mysql_error());
+			$administration = mysql_query("SELECT * FROM ".DB_ADMIN." WHERE `admin_page`='$admin_page' AND `admin_string`='$admin_string'") or trigger_error(mysql_error());
 					echo"<tr>";
 			while ($page_contet = mysql_fetch_array($administration))
 				{

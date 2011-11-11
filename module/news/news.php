@@ -11,7 +11,7 @@
 +--------------------------------------------------------*/
 
 	selectdb(wcf);
-  	$cres = mysql_query("SELECT count(`news_date`) as kol FROM `wcf_news`") or trigger_error(mysql_error());
+  	$cres = mysql_query("SELECT count(`news_date`) as kol FROM ".DB_NEWS."") or trigger_error(mysql_error());
 	$kolzap = mysql_fetch_array($cres);
 
 	if ($kolzap['kol'] > $config['page_news'])
@@ -27,8 +27,8 @@
 			$StartRec = 0;
 		}
 
-  	$kres = mysql_query("SELECT * FROM `wcf_news` 
-				LEFT JOIN `wcf_news_cats` ON `news_cat_id`=`news_cats`
+  	$kres = mysql_query("SELECT * FROM ".DB_NEWS." 
+				LEFT JOIN ".DB_NEWS_CATS." ON `news_cat_id`=`news_cats`
 				ORDER BY `news_date` DESC limit ".$StartRec.",".$PageLen) or trigger_error(mysql_error());
   	if (mysql_num_rows($kres) > 0 )
 		{

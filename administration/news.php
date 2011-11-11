@@ -16,7 +16,7 @@
 	echo"<div align='center'><h1>".$txt['admin_newsmaker']."</h1></div><hr>";
 
 	selectdb(wcf);
-	$n_cres = mysql_query("SELECT count(`news_date`) as kol FROM `wcf_news` ") or trigger_error(mysql_error());
+	$n_cres = mysql_query("SELECT count(`news_date`) as kol FROM ".DB_NEWS." ") or trigger_error(mysql_error());
 	$n_kolzap = mysql_fetch_array($n_cres);
 
 	if ($n_kolzap['kol'] > $config['page_news_edit'])
@@ -31,7 +31,7 @@
 			$start_rec_n = 0;
 		}
 
-	$kres = mysql_query("SELECT * FROM `wcf_news` ORDER BY `news_date` DESC limit $start_rec_n,$page_len_n") or trigger_error(mysql_error());
+	$kres = mysql_query("SELECT * FROM ".DB_NEWS." ORDER BY `news_date` DESC limit $start_rec_n,$page_len_n") or trigger_error(mysql_error());
 
 	echo"<form method='post'>";
 	echo"<table width='90%' border='0' cellspacing='0' cellpadding='5' class='report'>";
@@ -76,7 +76,7 @@
 	echo"<td align='center'><input action='index.php' name='modul' value='newsedit' type=hidden><input type='submit' value='".$txt['Run']."'></td></tr></table><hr></form>";
 	//===============================================
 	// Доп. форма
-	$query = mysql_query("SELECT * FROM `wcf_news_cats`") or trigger_error(mysql_error());
+	$query = mysql_query("SELECT * FROM ".DB_NEWS_CATS."") or trigger_error(mysql_error());
 	$editlist = "";
 	while ($news_cats = mysql_fetch_array($query))
 		{
@@ -91,7 +91,7 @@
 			// Редактирование
      			if (isset($_POST['id']) AND ($_POST['cmd'] == 1) AND ($_POST['id'] > 0))
 				{
-       					$nres = mysql_query("SELECT * FROM `wcf_news` WHERE `news_id` = ".$_POST['id'].' limit 1') or trigger_error(mysql_error());
+       					$nres = mysql_query("SELECT * FROM ".DB_NEWS." WHERE `news_id` = ".$_POST['id'].' limit 1') or trigger_error(mysql_error());
 	   				$nr = mysql_fetch_assoc($nres);
 
        					echo"<br><form method='post'>";
@@ -115,7 +115,7 @@
 				{
 					echo"<img src='images/ajax-loader.gif'/>";
 					$nt = addslashes($_POST['tema_edit']);
-					$query = mysql_query("UPDATE `wcf_news` SET `news_title`='".$nt."',`news_text`='".addslash($_POST['news_edit'])."',`news_cats`='".(int)$_POST['catedit']."' WHERE `news_id`='".(int)$_POST['guid']."'") or trigger_error(mysql_error()); 
+					$query = mysql_query("UPDATE ".DB_NEWS." SET `news_title`='".$nt."',`news_text`='".addslash($_POST['news_edit'])."',`news_cats`='".(int)$_POST['catedit']."' WHERE `news_id`='".(int)$_POST['guid']."'") or trigger_error(mysql_error()); 
 
 					if ($query)
 						{
@@ -151,7 +151,7 @@
 				{
 					echo"<img src='images/ajax-loader.gif'/>";
 					$nt = addslashes($_POST['tema_add']);
-					$query = mysql_query("INSERT INTO `wcf_news` (`news_title`,`news_text`,`news_cats`) values ('".$nt."','".addslash($_POST['news_add'])."','".(int)$_POST['catadd']."')") or trigger_error(mysql_error());
+					$query = mysql_query("INSERT INTO ".DB_NEWS." (`news_title`,`news_text`,`news_cats`) values ('".$nt."','".addslash($_POST['news_add'])."','".(int)$_POST['catadd']."')") or trigger_error(mysql_error());
 
 					if ($query)
 						{
@@ -167,7 +167,7 @@
     			if (isset($_POST['id']) AND ($_POST['cmd'] == 3) AND ($_POST['id'] > 0))
 				{
 					echo"<img src='images/ajax-loader.gif'/>";
-					$query = mysql_query("DELETE FROM `wcf_news` WHERE `news_id` = '".(int)$_POST['id']."'") or trigger_error(mysql_error());
+					$query = mysql_query("DELETE FROM ".DB_NEWS." WHERE `news_id` = '".(int)$_POST['id']."'") or trigger_error(mysql_error());
 
 					if ($query)
 						{

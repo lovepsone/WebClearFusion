@@ -24,7 +24,7 @@
 	echo"<th>$txt[log_title_account]</th></tr>";
 
 	selectdb(wcf);
-	$query = "SELECT * FROM `wcf_logs`";
+	$query = "SELECT * FROM ".DB_LOGS."";
 	$res = mysql_query($query) or trigger_error(mysql_error().$query);
 
 	if(mysql_num_rows($res)!=0)

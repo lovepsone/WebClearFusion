@@ -14,7 +14,7 @@
 	if ($log_character == '') { $log_character = 0; }
 
 	selectdb(wcf);
-	mysql_query("insert `wcf_logs` (`ip`, `account`, `character`, `mode`, `email`, `resultat`, `note`, `old_data`) values ('".$_SERVER['REMOTE_ADDR']."', ".$log_account.", ".$log_character.", ".$log_mode.", '".$log_email."', '".$log_resultat."', '".$log_note."', '".$log_old_data."')");
+	mysql_query("INSERT ".DB_LOGS." (`ip`, `account`, `character`, `mode`, `email`, `resultat`, `note`, `old_data`) values ('".$_SERVER['REMOTE_ADDR']."', ".$log_account.", ".$log_character.", ".$log_mode.", '".$log_email."', '".$log_resultat."', '".$log_note."', '".$log_old_data."')");
 	echo"<br><br>";
 
 
