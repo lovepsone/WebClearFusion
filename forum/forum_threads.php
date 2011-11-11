@@ -110,27 +110,7 @@
 					$t_updt_forum = mysql_query("UPDATE ".DB_FORUMS." SET `forum_lastpostid`='$t_lastpost_id',`forum_postcount`=forum_postcount+1, `forum_threadcount`=forum_threadcount+1 WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
 
 					echo"<img src='images/ajax-loader.gif'/>";
-					echo"<script type='text/javascript'> <!--
-						function exec_refresh()
-							{
-  								window.status = 'reloading...' + myvar;
-  								myvar = myvar + ' .';
-  								var timerID = setTimeout('exec_refresh();', 100);
-  								if (timeout > 0)
-									{
-										timeout -= 1;
-									}
-								else
-									{
-    										clearTimeout(timerID);
-    										window.status = '';
-    										window.location = 'index.php?modul=post&id=$thread_id&forum_id=$forum_id';
-    									}
-							}
-						var myvar = '';
-						var timeout = 10;
-						exec_refresh();
-						//--> </script>";
+					return_form(10,'index.php?modul=post&id='.$thread_id.'&forum_id='.$forum_id);
 				}
 		}
 ?>

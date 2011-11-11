@@ -106,27 +106,7 @@
 											WHERE (`forum_id`='$forum_id' AND `thread_id`='$thread_id')") or trigger_error(mysql_error());
 
 							echo"<img src='images/ajax-loader.gif'/>";
-							echo"<script type='text/javascript'> <!--
-										function exec_refresh()
-											{
-  												window.status = 'reloading...' + myvar;
-  												myvar = myvar + ' .';
-  												var timerID = setTimeout('exec_refresh();', 100);
-  												if (timeout > 0)
-													{
-														timeout -= 1;
-													}
-												else
-													{
-    														clearTimeout(timerID);
-    														window.status = '';
-    														window.location = 'index.php?modul=post&id=$thread_id&forum_id=$forum_id';
-    													}
-											}
-										var myvar = '';
-										var timeout = 5;
-										exec_refresh();
-										//--> </script>";
+							return_form(5,'?modul=post&id='.$thread_id.'&forum_id='.$forum_id);
 						}
 					else 
 						{

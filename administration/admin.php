@@ -12,10 +12,10 @@
 
 	//==================================================================
 	// Верхнее меню
-	echo"<script type='text/javascript' src='js/adminmenu.js'></script>";
+	echo"<script type='text/javascript' src='include/js/adminmenu.js'></script>";
 	echo"<table align='center' class='report'>";
 	echo"<th colspan='4'>".$txt['menu_auth_admin']." - v".$config['rev_admin']."</th>";
-	echo"<tr><td align='center' colspan='4'><div class='adminmenu'><ul id='cssmenu1'>";
+	echo"<tr><td align='center' colspan='4'><div class='adminmenu'><ul id='cssmenu'>";
 	echo"<li style='border-left: 1px solid #202020;'><a href='index.php?modul=admin&contet'>".$txt['menu_admin_content']."</a></li>";
 	echo"<li style='border-left: 1px solid #202020;'><a href='index.php?modul=admin&users'>".$txt['menu_admin_users']."</a></li>";
 	echo"<li style='border-left: 1px solid #202020;'><a href='index.php?modul=admin&system'>".$txt['menu_admin_system']."</a></li>";

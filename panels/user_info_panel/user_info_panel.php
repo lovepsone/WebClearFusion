@@ -99,7 +99,7 @@
       					echo"<tr><td height='25' align='center' valign='middle' class='errtitle'><b>$txt[menu_auth_error]</b></td></tr>";
 					echo"<tr><td height='45' align='center' valign='middle'  class='errtab'><b>$txt[menu_auth_re_enter]</b></td></tr>";
 					echo"</table><br><br>";
-      					ReturnMainForm(40);
+      					return_form(40,'');
       					return;
      				}
 

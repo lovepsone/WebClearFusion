@@ -120,7 +120,7 @@
 					if ($query)
 						{
 							echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsedit';//--> </script>";
-							ReturnAdminNewsedit(10);
+							return_form(10,'?modul=newsedit');
 						}
 					else echo $txt['errors'];
        				}
@@ -156,7 +156,7 @@
 					if ($query)
 						{
 							echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsedit';//--> </script>";
-							ReturnAdminNewsedit(10);
+							return_form(10,'?modul=newsedit');
 						}
 					else echo $txt['errors'];
 
@@ -172,7 +172,7 @@
 					if ($query)
 						{
 							echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsedit';//--> </script>";
-							ReturnAdminNewsedit(10);
+							return_form(10,'?modul=newsedit');
 						}
 					else echo $txt['errors'];
 				}

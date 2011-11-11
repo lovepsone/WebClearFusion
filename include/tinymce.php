@@ -10,7 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	$advanced_script = '<script type="text/javascript" src="js/tiny_mce/tiny_mce.js"></script><script type="text/javascript">
+	$advanced_script = '<script type="text/javascript" src="include/js/tiny_mce/tiny_mce.js"></script><script type="text/javascript">
 	tinyMCE.init(
 		{
 			// General options
@@ -32,13 +32,13 @@
 			theme_advanced_resizing : false,
 
 			// Example content CSS (should be your site CSS)
-			content_css : "js/tiny_mce/tiny_mce.css",
+			content_css : "include/js/tiny_mce/tiny_mce.css",
 
 			// Drop lists for link/image/media/template dialogs
-			template_external_list_url : "js/tiny_mce/lists/template_list.js",
-			external_link_list_url : "js/tiny_mce/lists/link_list.js",
-			external_image_list_url : "js/tiny_mce/lists/image_list.js",
-			media_external_list_url : "js/tiny_mce/lists/media_list.js",
+			template_external_list_url : "include/js/tiny_mce/lists/template_list.js",
+			external_link_list_url : "include/js/tiny_mce/lists/link_list.js",
+			external_image_list_url : "include/js/tiny_mce/lists/image_list.js",
+			media_external_list_url : "include/js/tiny_mce/lists/media_list.js",
 
 			// skin options
 			skin : "o2k7",
@@ -46,7 +46,7 @@
 		}
 	);</script>';
 
-	$simple_script = '<script type="text/javascript" src="js/tiny_mce/tiny_mce.js"></script><script type="text/javascript">
+	$simple_script = '<script type="text/javascript" src="include/js/tiny_mce/tiny_mce.js"></script><script type="text/javascript">
 	tinyMCE.init(
 		{
 			// General options
@@ -57,7 +57,7 @@
 			height : "150",
 
 			// Example content CSS (should be your site CSS)
-			content_css : "js/tiny_mce/tiny_mce.css",
+			content_css : "include/js/tiny_mce/tiny_mce.css",
 
 			// skin options
 			skin : "o2k7",

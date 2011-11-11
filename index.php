@@ -13,7 +13,6 @@
 	session_start();
 	require "conf.php";
 	require "include/functions.php";
-	require "include/functions_return.php";
 	require "include/multi_db_prefix.php";
 	require "include/conf_lib.php";
 	require "include/auth.php";
