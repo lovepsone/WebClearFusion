@@ -219,7 +219,6 @@
 			if (!is_array($text))
 				{
 					$text = trim($text);
-					if (QUOTES_GPC) { $text = stripslashes($text); }
 					$search = array("&", "\"", "'", "\\", '\"', "\'", "<", ">", "&nbsp;");
 					$replace = array("&amp;", "&quot;", "&#39;", "&#92;", "&quot;", "&#39;", "&lt;", "&gt;", " ");
 					$text = preg_replace("/(&amp;)+(?=\#([0-9]{2,3});)/i", "&", str_replace($search, $replace, $text));
@@ -244,7 +243,7 @@
 
 			while($position = mysql_fetch_array($panels_position))
 				{
-					require $position['panel_url'];
+				 	require $position['panel_url'];
 					if ($num > 1) echo"<hr>";
 				}
 		}
