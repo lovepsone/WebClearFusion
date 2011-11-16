@@ -31,6 +31,7 @@
 	define("ADMIN", BASEDIR."administration/");
 	define("FORUM", BASEDIR."forum/");
 	define("IMAGES", BASEDIR."images/");
+	define("IMAGES_NC", BASEDIR."images/news_cat/");
 	define("INCLUDE", BASEDIR."include/");
 	define("MODULE", BASEDIR."module/");
 	define("PANELS", BASEDIR."panels/");

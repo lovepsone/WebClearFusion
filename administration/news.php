@@ -68,7 +68,7 @@
 		{
 			echo"<font color='red'>".$txt['admin_newsmaker_title']."</font><br>";
 			echo"<br><table width='100%' height='30' border='0' cellpadding='0' cellspacing='0'><tr><td align='center'><b>".$txt['admin_newsmaker_team']."</b>&nbsp;&nbsp;";
-				echo"<select name=cmd><option value=1 selected>".$txt['admin_newsmaker_edit']."</option><option value=2>".$txt['admin_newsmaker_add']."</option>";
+				echo"<select name=cmd class='textbox'><option value=1 selected>".$txt['admin_newsmaker_edit']."</option><option value=2>".$txt['admin_newsmaker_add']."</option>";
 		}
 	else echo "<option value=2 selected>".$txt['admin_newsmaker_add']."</option>";
 
@@ -99,23 +99,26 @@
 
              				echo"<tr><td width='10%' height='30' align='right' valign='middle'>".$txt['admin_teme_news']."</td>";
 					echo"<td width='1%' height='30' >&nbsp;</td>";
-             				echo"<td width='89%' height='30' align='left' valign='middle'><input name='modul' value='newsedit' type=hidden><input type='text' name='tema_edit' size='60' value='".$nr['news_title']."'></td></tr>";
+             				echo"<td width='89%' height='30' align='left' valign='middle'><input name='modul' value='newsedit' type=hidden><input type='text' name='tema_edit' class='textbox' size='60' value='".$nr['news_title']."'></td></tr>";
 
         				echo"<tr><td width='100' height='30' align='right' valign='middle'>".$txt['admin_category_news']."</td>";
 					echo"<td width='10' height='30' >&nbsp;</td>";
-					echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='edit' type=hidden><input name='guid' value='".$nr['news_id']."' type=hidden>";
+					echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='edit' type=hidden><input name='guid' class='textbox' value='".$nr['news_id']."' type=hidden>";
 
-        				echo"<select name=catedit>$news_cats_list</select>";
+        				echo"<select name=catedit class='textbox'>$news_cats_list</select>";
 					echo"</td></tr></table>";
 
-       					echo"<textarea name='news_edit'>".$nr['news_text']."</textarea>"; 
+					echo"<hr>".$txt['admin_newsmaker_newsflash'];
+       					echo"<textarea name='news_edit'>".$nr['news_text']."</textarea>";
+					echo"<hr>".$txt['admin_newsmaker_newsfull'];
+       					echo"<textarea name='news_edit_main'>".$nr['news_text_main']."</textarea>";
        					echo"<br><center><input type='submit' value='$txt[menu_admin_news_edit]'/></center></form>";
       				}
-   			if ($_POST['cmd'] == edit AND $_POST['tema_edit'] <> '' AND $_POST['news_edit'] <> '')
+   			if ($_POST['cmd'] == edit AND $_POST['tema_edit'] <> '' AND $_POST['news_edit'] <> '' AND $_POST['news_edit_main'] <> '')
 				{
 					echo"<img src='images/ajax-loader.gif'/>";
 					$nt = addslashes($_POST['tema_edit']);
-					$query = mysql_query("UPDATE ".DB_NEWS." SET `news_title`='".$nt."',`news_text`='".addslash($_POST['news_edit'])."',`news_cats`='".(int)$_POST['catedit']."' WHERE `news_id`='".(int)$_POST['guid']."'") or trigger_error(mysql_error()); 
+					$query = mysql_query("UPDATE ".DB_NEWS." SET `news_title`='".$nt."',`news_text`='".addslash($_POST['news_edit'])."',`news_text_main`='".addslash($_POST['news_edit_main'])."',`news_cats`='".(int)$_POST['catedit']."' WHERE `news_id`='".(int)$_POST['guid']."'") or trigger_error(mysql_error()); 
 
 					if ($query)
 						{
@@ -124,7 +127,7 @@
 						}
 					else echo $txt['errors'];
        				}
-			else if($_POST['cmd'] == edit AND $_POST['tema_edit'] == '' OR $_POST['cmd'] == edit AND $_POST['news_edit'] == '') echo $txt['admin_news_not_all_fields'];
+			else if($_POST['cmd'] == edit AND $_POST['tema_edit'] == '' OR $_POST['cmd'] == edit AND $_POST['news_edit'] == ''OR $_POST['cmd'] == edit AND $_POST['news_edit_main'] == '') echo $txt['admin_news_not_all_fields'];
 			//===============================================
 			// Добавление
     			if ($_POST['cmd'] == 2)
@@ -134,24 +137,27 @@
 	
         				echo"<tr><td width='10%' height='30' align='right' valign='middle'>".$txt['admin_teme_news']."</td>";
 					echo"<td width='1%' height='30' >&nbsp;</td>";
-        				echo"<td width='89%' height='30' align='left' valign='middle'><input name='modul' value='newsedit' type=hidden><input type='text' name='tema_add' size='40'></td></tr>";
+        				echo"<td width='89%' height='30' align='left' valign='middle'><input name='modul' value='newsedit' type=hidden><input type='text' class='textbox' name='tema_add' size='40'></td></tr>";
 
         				echo"<tr><td width='100' height='30' align='right' valign='middle'>".$txt['admin_category_news']."</td>";
 					echo"<td width='10' height='30' >&nbsp;</td>";
         				echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='newsadd' type=hidden>";
 
-        				echo"<select name=catadd>$news_cats_list</select>";
+        				echo"<select name=catadd class='textbox'>$news_cats_list</select>";
 					echo"</td></tr></table>";
 
+					echo"<hr>".$txt['admin_newsmaker_newsflash'];
 					echo"<textarea name='news_add'></textarea>";
+					echo"<hr>".$txt['admin_newsmaker_newsfull'];
+					echo"<textarea name='news_add_main'></textarea>";
 					echo"<br><center><input type='submit' value='".$txt['menu_admin_news_add']."'/></center></form>";
 
 				}
-			if ($_POST['cmd'] == newsadd AND $_POST['tema_add'] <> '' AND $_POST['news_add'] <> '')
+			if ($_POST['cmd'] == newsadd AND $_POST['tema_add'] <> '' AND $_POST['news_add'] <> '' AND $_POST['news_add_main'] <> '')
 				{
 					echo"<img src='images/ajax-loader.gif'/>";
 					$nt = addslashes($_POST['tema_add']);
-					$query = mysql_query("INSERT INTO ".DB_NEWS." (`news_title`,`news_text`,`news_cats`) values ('".$nt."','".addslash($_POST['news_add'])."','".(int)$_POST['catadd']."')") or trigger_error(mysql_error());
+					$query = mysql_query("INSERT INTO ".DB_NEWS." (`news_title`,`news_text`,`news_text_main`,`news_cats`) values ('".$nt."','".addslash($_POST['news_add'])."','".addslash($_POST['news_add_main'])."','".(int)$_POST['catadd']."')") or trigger_error(mysql_error());
 
 					if ($query)
 						{
@@ -161,7 +167,7 @@
 					else echo $txt['errors'];
 
 				}
-			else if($_POST['cmd'] == newsadd AND $_POST['tema_add'] == '' OR $_POST['cmd'] == newsad AND $_POST['news_add'] == '') echo $txt['admin_news_not_all_fields'];
+			else if($_POST['cmd'] == newsadd AND $_POST['tema_add'] == '' OR $_POST['cmd'] == newsad AND $_POST['news_add'] == ''OR $_POST['cmd'] == newsad AND $_POST['news_add_main'] == '') echo $txt['admin_news_not_all_fields'];
 			//===============================================
 			// Удаление
     			if (isset($_POST['id']) AND ($_POST['cmd'] == 3) AND ($_POST['id'] > 0))

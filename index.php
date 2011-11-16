@@ -72,5 +72,6 @@
 	$themefile = THEMES.$config['theme']."/theme.php";
 
 	if (file_exists($themefile)) include($themefile);
-   		else include(THEMES."default/theme.php"); 
+   		else include(THEMES."default/theme.php");
+
 ?>

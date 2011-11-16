@@ -11,7 +11,7 @@ table.report              		{FONT-SIZE: 13px; color: #000000; border-color: #999
 table.report TH           		{border:#CCCCFF 1px solid; COLOR: #66CCFF; BACKGROUND-COLOR: #000066;}
 table.report TH A         		{COLOR: #66CCFF; TEXT-DECORATION: underline}
 
-table.report TD           		{BORDER:#CCCCFF 1px solid;PADDING: 0px; vertical-align: middle; TEXT-ALIGN: center;}
+table.report TD           		{BORDER:#CCCCFF 1px solid;PADDING: 0px; vertical-align: middle;}
 table.report TD A         		{TEXT-DECORATION: none; COLOR: #ffdd00;}
 table.report TD.left      		{TEXT-ALIGN: left; padding: 0px 5px;}
 table.report TD.full      		{TEXT-ALIGN: left; padding: 0px 5px; white-space: nowrap;}

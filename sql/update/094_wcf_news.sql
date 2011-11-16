@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 04.11.2011 15:20:46
+Date: 15.11.2011 19:31:43
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -17,6 +17,7 @@ CREATE TABLE `wcf_news` (
   `news_date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `news_title` longtext,
   `news_text` longtext,
+  `news_text_main` longtext,
   `news_cats` int(11) unsigned default '1',
   PRIMARY KEY  (`news_id`),
   UNIQUE KEY `news_id` (`news_id`)
@@ -25,4 +26,4 @@ CREATE TABLE `wcf_news` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `wcf_news` VALUES ('1', '2011-11-04 15:20:39', 'От разработчика.', 'WCF успешно установлен.', '19');
+INSERT INTO `wcf_news` VALUES ('1', '2011-11-15 19:27:45', 'От разработчика.', '<p>WCF успешно установлен.</p>', '<p>WCF успешно установлен и готов к использыванию. Пройдите в админку и настройте движок на свой вкус! Приятной вам работы!</p>', '1');
