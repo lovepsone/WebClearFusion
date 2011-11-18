@@ -3,7 +3,7 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone
 +--------------------------------------------------------+
-| Filename: main_panel.php
+| Filename: navigation_panel.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
@@ -29,7 +29,7 @@
 
 	if ($MenuForAll.$MenuPlayers.$MenuAdmin <> '')
 		{
-       			echo"<table width='200' border='0' cellspacing='0' cellpadding='3' class='panel'>";
+			openside();
        			if ($MenuForAll <> '')
 				{
 					echo"<tr><td width='100%' valign='middle'><a href='index.php'>$txt[home]</a></td></tr>";
@@ -48,6 +48,6 @@
            				echo"<tr><td align='left' valign='middle'><hr></td></tr>";
            				echo $MenuAdmin;
            			}
-       			echo"</table>";
+       			closeside();
       		}
 ?>

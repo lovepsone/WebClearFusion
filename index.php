@@ -67,11 +67,9 @@
 	//=============================================================================================================
 	//Установка нужной темы\Setting the right topic
 	//=============================================================================================================
-	$cssfile = THEMES.$config['theme']."/style.css";
-	$csswcffile = THEMES.$config['theme']."/wcf.css";
+	//$cssfile = THEMES.$config['theme']."/style.css";
 	$themefile = THEMES.$config['theme']."/theme.php";
 
 	if (file_exists($themefile)) include($themefile);
    		else include(THEMES."default/theme.php");
-
 ?>

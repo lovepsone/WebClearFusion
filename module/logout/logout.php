@@ -20,6 +20,7 @@
     	session_destroy();
 
 	return_form(7,'');
-
-	echo $txt[logout]; 
+	opentable();
+	echo"<tr><td align='center'>".$txt['logout']."</td></tr>";
+	closetable(); 
 ?>

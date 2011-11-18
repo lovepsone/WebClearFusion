@@ -35,17 +35,15 @@
 						LEFT JOIN `wcf_users` ON `wcf_users`.`user_id`=".DB_FORUMS_THREADS.".`thread_author`
 						WHERE ".DB_FORUMS_THREADS.".`forum_id`='$forum_id'
 						ORDER BY ".DB_FORUMS_POSTS.".`post_date` DESC LIMIT $start_rec_thr,$page_len_thr");
-
+			opentable();
 			if (mysql_num_rows($result) > 0 )
 				{
-					echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
-
-   					echo"<tr><th width='4%' class='head'></th>";
-					echo"<th width='57%'>$txt[forum_column_top_aut]</th>";
-					echo"<th width='21%'>$txt[forum_column_last_post]</th>";
-					echo"<th width='5%'>$txt[forum_column_replies]</th>";
-					echo"<th width='10%'>$txt[forum_column_views]</th></tr>";
-					echo"<tr><th width='100%' colspan='5' align='left' style='text-align: left;' class='head'><a href='index.php?modul=thread&create&forum_id=$forum_id'>$txt[forum_create_theme]</a></th></tr>";
+   					echo"<tr><th width='4%'></th>";
+					echo"<th width='57%' class='forum-caption'>".$txt['forum_column_top_aut']."</th>";
+					echo"<th width='21%' class='forum-caption'>".$txt['forum_column_last_post']."</th>";
+					echo"<th width='5%' class='forum-caption'>".$txt['forum_column_replies']."</th>";
+					echo"<th width='10%' class='forum-caption'>".$txt['forum_column_views']."</th></tr>";
+					echo"<tr><th width='100%' colspan='5' align='left'><a href='index.php?modul=thread&create&forum_id=$forum_id'>$txt[forum_create_theme]</a></th></tr>";
 
 					while($topics = mysql_fetch_array($result))
 						{
@@ -55,22 +53,21 @@
 											AND `wcf_users`.`user_id`='".$topics['thread_lastuser']."' LIMIT 1") or trigger_error(mysql_error());
 							$last_post = mysql_fetch_assoc($last_post);
 
-							echo"<tr><td width='4%' align='left' style='text-align: left;' class='page'></td>";
-          						echo"<td align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;<a href='index.php?modul=post&id=$topics[thread_id]&forum_id=$forum_id'>".$topics['thread_subject']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($topics['user_name']))."</td>";
-							echo"<td width='21%' align='left' style='text-align: left;' class='page'>&nbsp;&nbsp;".$last_post['post_date']."<br>&nbsp;&nbsp;".$txt['forum_from']."&nbsp;&nbsp;".ucfirst(strtolower($last_post['user_name']))."</td>";
-							echo"<td width='5%' class='page'>".$topics['thread_postcount']."</td>";
-							echo"<td width='11%' class='page'>&nbsp;&nbsp;".$topics['thread_views']."</td></tr>";
+							echo"<tr><td width='4%' align='left' class='tbl1'></td>";
+          						echo"<td align='left' class='tbl1'>&nbsp;&nbsp;<a href='index.php?modul=post&id=$topics[thread_id]&forum_id=$forum_id'>".$topics['thread_subject']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($topics['user_name']))."</td>";
+							echo"<td width='21%' align='left' class='tbl1'>&nbsp;&nbsp;".$last_post['post_date']."<br>&nbsp;&nbsp;".$txt['forum_from']."&nbsp;&nbsp;".ucfirst(strtolower($last_post['user_name']))."</td>";
+							echo"<td width='5%' align='center' class='tbl2'>".$topics['thread_postcount']."</td>";
+							echo"<td width='11%' align='center' class='tbl2'>".$topics['thread_views']."</td></tr>";
 						}
   					if ($thr_kolzap['kol'] > $config['page_forum_threads'])
 						{
   							$page_counter_thr = ceil($thr_kolzap['kol'] / $config['page_forum_threads']);
 
    							if (!isset($_GET['page']) OR ($_GET['page'] == '') OR ($_GET['page'] == '_')) $tp3 = 1; else $tp3 = (int)$_GET['page'];
- 							echo"<tr><td height='30' colspan='3' align='center' valign='middle' >". ShowPageNavigator('index.php?modul=thread&id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";
+ 							echo"<tr><td colspan='3' align='center' valign='middle' >". ShowPageNavigator('index.php?modul=thread&id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";
   						}
-
-					echo"</table>";
 				}
+			closetable();
 		}
 	//=========================
 	// форма создания темы
@@ -81,14 +78,13 @@
    			echo $advanced_script;
 
 			echo"<form method='post'>";
-			echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
-	
-       			echo"<tr><td width='15%' height='30' align='right' valign='middle'>$txt[forum_create_name_theme]</td>";
-			echo"<td width='1%' height='30' >&nbsp;</td>";
-        		echo"<td width='84%' height='30' align='left' valign='middle'><input name='modul' value='thread' type=hidden><input type='text' name='thread_subject' size='40'></td></tr></table>";
+			opentable();
+       			echo"<tr><td width='15%' align='left' valign='middle'>".$txt['forum_create_name_theme']."<input name='modul' value='thread' type=hidden>&nbsp;&nbsp;<input type='text' class='textbox' name='thread_subject' size='40'></td></tr>";
 
-			echo"<textarea name='thread'></textarea>";
-			echo"<br><center><input type='submit' value='$txt[forum_create_theme]'/></center></form>";
+			echo"<tr><td><br><textarea name='thread'></textarea></td></tr>";
+			echo"<tr><td align='center'><input type='submit' class='button' value='".$txt['forum_create_theme']."'/></td></tr>";
+			closetable();
+			echo"</form>";
 
     			if ($_POST['thread'])
 				{
@@ -109,8 +105,10 @@
 					// Обновляем сам форум с целю обнов кол-во собщений
 					$t_updt_forum = mysql_query("UPDATE ".DB_FORUMS." SET `forum_lastpostid`='$t_lastpost_id',`forum_postcount`=forum_postcount+1, `forum_threadcount`=forum_threadcount+1 WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
 
-					echo"<img src='images/ajax-loader.gif'/>";
+					opentable();
+					echo"<tr><td align='center'><img src='".IMAGES."ajax-loader.gif'/></td></tr>";
 					return_form(10,'index.php?modul=post&id='.$thread_id.'&forum_id='.$forum_id);
+					closetable();
 				}
 		}
 ?>

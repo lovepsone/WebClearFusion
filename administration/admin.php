@@ -13,7 +13,7 @@
 	//==================================================================
 	// Верхнее меню
 	echo"<script type='text/javascript' src='include/js/adminmenu.js'></script>";
-	echo"<table align='center' class='report'>";
+	opentable();
 	echo"<th colspan='4'>".$txt['menu_auth_admin']." - v".$config['rev_admin']."</th>";
 	echo"<tr><td align='center' colspan='4'><div class='adminmenu'><ul id='cssmenu'>";
 	echo"<li style='border-left: 1px solid #202020;'><a href='index.php?modul=admin&contet'>".$txt['menu_admin_content']."</a></li>";
@@ -31,5 +31,5 @@
 			else if (isset($_GET['system'])) admin_page(3,$i);
 			else if (isset($_GET['plants'])) admin_page(4,$i);
 		}
-	echo"</table>";
+	closetable();
 ?>

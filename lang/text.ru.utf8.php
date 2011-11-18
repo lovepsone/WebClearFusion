@@ -54,7 +54,7 @@ $txt = array(
 'admin_settings'		=>'Настройки',
 'admin_settings_nameserver'	=>'Название сайта:',
 'admin_settings_urlserver'	=>'URL сайта:',
-'admin_savesettings'		=>'Сохранить установки',
+'admin_savesettings'		=>'Сохранить',
 'admin_newsmaker_del'		=>'Удалить',
 'admin_panels_center'		=>'по центру',
 'admin_panels_left'		=>'с лева',
@@ -127,7 +127,7 @@ $txt = array(
 'forum_column_replies'		=>'Ответов',
 'forum_column_views'		=>'Просмотров',
 
-'forum_quick_reply'		=>'Отправить быстрый ответ',
+'forum_quick_reply'		=>'Отправить',
 'forum_log'			=>'Авторизуйтесь чтобы оставлять сообщения на форуме!',
 'forum_from'			=>'от',
 

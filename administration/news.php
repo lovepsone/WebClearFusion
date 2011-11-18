@@ -13,7 +13,7 @@
 	//===============================================
 	// Основная форма
 	$kol = 1;
-	echo"<div align='center'><h1>".$txt['admin_newsmaker']."</h1></div><hr>";
+
 
 	selectdb(wcf);
 	$n_cres = mysql_query("SELECT count(`news_date`) as kol FROM ".DB_NEWS." ") or trigger_error(mysql_error());
@@ -34,7 +34,8 @@
 	$kres = mysql_query("SELECT * FROM ".DB_NEWS." ORDER BY `news_date` DESC limit $start_rec_n,$page_len_n") or trigger_error(mysql_error());
 
 	echo"<form method='post'>";
-	echo"<table width='90%' border='0' cellspacing='0' cellpadding='5' class='report'>";
+	opentable();
+	echo"<div align='center'><h1>".$txt['admin_newsmaker']."</h1></div><hr>";
 
 	if (mysql_num_rows($kres) > 0 )
 		{
@@ -59,10 +60,9 @@
            						if ($tp3 == $i) $pages_selector .= ' '.$i.' -';
 		   					else $pages_selector .= ' <A href="index.php?modul=newsedit&page='.$i.'">'.$i.'</a> -';
            					}
-      					echo"<tr><td height='30' colspan='3' align='center' valign='middle' class='head'><b>$pages_selector</b></td></tr>";
+      					echo"<tr><td colspan='3' align='center' valign='middle'><b>$pages_selector</b></td></tr>";
      				}
     		}
-	echo"</table>";
 
 	if ($kol > 1)
 		{
@@ -73,7 +73,9 @@
 	else echo "<option value=2 selected>".$txt['admin_newsmaker_add']."</option>";
 
 	echo"<option value=3>".$txt['admin_newsmaker_del']."</option></select></td>";
-	echo"<td align='center'><input action='index.php' name='modul' value='newsedit' type=hidden><input type='submit' value='".$txt['Run']."'></td></tr></table><hr></form>";
+	echo"<td align='center'><input action='index.php' name='modul' value='newsedit' type=hidden><input type='submit' class='button' value='".$txt['Run']."'></td></tr><hr>";
+	closetable();
+	echo"</form>";
 	//===============================================
 	// Доп. форма
 	$query = mysql_query("SELECT * FROM ".DB_NEWS_CATS."") or trigger_error(mysql_error());
@@ -95,37 +97,39 @@
 	   				$nr = mysql_fetch_assoc($nres);
 
        					echo"<br><form method='post'>";
-					echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
+					opentable();
 
-             				echo"<tr><td width='10%' height='30' align='right' valign='middle'>".$txt['admin_teme_news']."</td>";
-					echo"<td width='1%' height='30' >&nbsp;</td>";
-             				echo"<td width='89%' height='30' align='left' valign='middle'><input name='modul' value='newsedit' type=hidden><input type='text' name='tema_edit' class='textbox' size='60' value='".$nr['news_title']."'></td></tr>";
+             				echo"<tr><td align='left' valign='middle'>".$txt['admin_teme_news']."&nbsp;&nbsp;";
+					echo"<input name='modul' value='newsedit' type=hidden><input type='text' name='tema_edit' class='textbox' value='".$nr['news_title']."' size='40'></td>";
 
-        				echo"<tr><td width='100' height='30' align='right' valign='middle'>".$txt['admin_category_news']."</td>";
-					echo"<td width='10' height='30' >&nbsp;</td>";
-					echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='edit' type=hidden><input name='guid' class='textbox' value='".$nr['news_id']."' type=hidden>";
+        				echo"<tr><td align='left' valign='middle'>".$txt['admin_category_news']."&nbsp;&nbsp;";
+					echo"<input name='cmd' value='edit' type=hidden><input name='guid' class='textbox' value='".$nr['news_id']."' type=hidden>";
 
         				echo"<select name=catedit class='textbox'>$news_cats_list</select>";
-					echo"</td></tr></table>";
+					echo"</td></tr>";
 
-					echo"<hr>".$txt['admin_newsmaker_newsflash'];
-       					echo"<textarea name='news_edit'>".$nr['news_text']."</textarea>";
-					echo"<hr>".$txt['admin_newsmaker_newsfull'];
-       					echo"<textarea name='news_edit_main'>".$nr['news_text_main']."</textarea>";
-       					echo"<br><center><input type='submit' value='$txt[menu_admin_news_edit]'/></center></form>";
+					echo"<tr><td><hr>".$txt['admin_newsmaker_newsflash']."</td></tr>";
+       					echo"<tr><td><textarea name='news_edit'>".$nr['news_text']."</textarea></td></tr>";
+					echo"<tr><td><hr>".$txt['admin_newsmaker_newsfull']."</td></tr>";
+       					echo"<tr><td><textarea name='news_edit_main'>".$nr['news_text_main']."</textarea></td></tr>";
+       					echo"<tr><td align='center'><br><input type='submit' class='button' value='$txt[menu_admin_news_edit]'/></td></tr>";
+					closetable();
+					echo"</form>";
       				}
    			if ($_POST['cmd'] == edit AND $_POST['tema_edit'] <> '' AND $_POST['news_edit'] <> '' AND $_POST['news_edit_main'] <> '')
 				{
-					echo"<img src='images/ajax-loader.gif'/>";
+					opentable();
+					echo"<tr><td align='center'><img src='".IMAGES."ajax-loader.gif'/></td></tr>";
 					$nt = addslashes($_POST['tema_edit']);
 					$query = mysql_query("UPDATE ".DB_NEWS." SET `news_title`='".$nt."',`news_text`='".addslash($_POST['news_edit'])."',`news_text_main`='".addslash($_POST['news_edit_main'])."',`news_cats`='".(int)$_POST['catedit']."' WHERE `news_id`='".(int)$_POST['guid']."'") or trigger_error(mysql_error()); 
 
 					if ($query)
 						{
-							echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsedit';//--> </script>";
+							echo"<script type='text/javascript'><!-- window.status = ''; window.location = 'index.php?modul=newsedit';//--> </script>";
 							return_form(10,'?modul=newsedit');
 						}
-					else echo $txt['errors'];
+					else echo"<tr><td align='center'>".$txt['errors']."</td></tr>";
+					closetable();
        				}
 			else if($_POST['cmd'] == edit AND $_POST['tema_edit'] == '' OR $_POST['cmd'] == edit AND $_POST['news_edit'] == ''OR $_POST['cmd'] == edit AND $_POST['news_edit_main'] == '') echo $txt['admin_news_not_all_fields'];
 			//===============================================
@@ -133,29 +137,29 @@
     			if ($_POST['cmd'] == 2)
 				{
 					echo"<form method='post'>";
-					echo"<table width='100%' cellpadding='0' cellspacing='0' border='0' align='center'>";
-	
-        				echo"<tr><td width='10%' height='30' align='right' valign='middle'>".$txt['admin_teme_news']."</td>";
-					echo"<td width='1%' height='30' >&nbsp;</td>";
-        				echo"<td width='89%' height='30' align='left' valign='middle'><input name='modul' value='newsedit' type=hidden><input type='text' class='textbox' name='tema_add' size='40'></td></tr>";
+					opentable();
 
-        				echo"<tr><td width='100' height='30' align='right' valign='middle'>".$txt['admin_category_news']."</td>";
-					echo"<td width='10' height='30' >&nbsp;</td>";
-        				echo"<td width='510' height='30' align='left' valign='middle'><input name='cmd' value='newsadd' type=hidden>";
+        				echo"<tr><td align='left' valign='middle'>".$txt['admin_teme_news']."&nbsp;";
+        				echo"<input name='modul' value='newsedit' type=hidden><input type='text' class='textbox' name='tema_add' size='40'></td></tr>";
+
+        				echo"<tr><td align='left' valign='middle'>".$txt['admin_category_news']."&nbsp;";
+        				echo"<input name='cmd' value='newsadd' type=hidden>";
 
         				echo"<select name=catadd class='textbox'>$news_cats_list</select>";
-					echo"</td></tr></table>";
+					echo"</td></tr>";
 
-					echo"<hr>".$txt['admin_newsmaker_newsflash'];
-					echo"<textarea name='news_add'></textarea>";
-					echo"<hr>".$txt['admin_newsmaker_newsfull'];
-					echo"<textarea name='news_add_main'></textarea>";
-					echo"<br><center><input type='submit' value='".$txt['menu_admin_news_add']."'/></center></form>";
-
+					echo"<tr><td><hr>".$txt['admin_newsmaker_newsflash']."</td></tr>";
+					echo"<tr><td><textarea name='news_add'></textarea></td></tr>";
+					echo"<tr><td><hr>".$txt['admin_newsmaker_newsfull']."</td></tr>";
+					echo"<tr><td><textarea name='news_add_main'></textarea></td></tr>";
+					echo"<tr><td align='center'><br><input type='submit' class='button' value='".$txt['menu_admin_news_add']."'/></td></tr>";
+					closetable();
+					echo"</form>";
 				}
 			if ($_POST['cmd'] == newsadd AND $_POST['tema_add'] <> '' AND $_POST['news_add'] <> '' AND $_POST['news_add_main'] <> '')
 				{
-					echo"<img src='images/ajax-loader.gif'/>";
+					opentable();
+					echo"<tr><td align='center'><img src='".IMAGES."ajax-loader.gif'/></td></tr>";
 					$nt = addslashes($_POST['tema_add']);
 					$query = mysql_query("INSERT INTO ".DB_NEWS." (`news_title`,`news_text`,`news_text_main`,`news_cats`) values ('".$nt."','".addslash($_POST['news_add'])."','".addslash($_POST['news_add_main'])."','".(int)$_POST['catadd']."')") or trigger_error(mysql_error());
 
@@ -164,15 +168,16 @@
 							echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsedit';//--> </script>";
 							return_form(10,'?modul=newsedit');
 						}
-					else echo $txt['errors'];
-
+					else echo"<tr><td align='center'>".$txt['errors']."</td></tr>";
+					closetable();
 				}
 			else if($_POST['cmd'] == newsadd AND $_POST['tema_add'] == '' OR $_POST['cmd'] == newsad AND $_POST['news_add'] == ''OR $_POST['cmd'] == newsad AND $_POST['news_add_main'] == '') echo $txt['admin_news_not_all_fields'];
 			//===============================================
 			// Удаление
     			if (isset($_POST['id']) AND ($_POST['cmd'] == 3) AND ($_POST['id'] > 0))
 				{
-					echo"<img src='images/ajax-loader.gif'/>";
+					opentable();
+					echo"<tr><td align='center'><img src='".IMAGES."ajax-loader.gif'/></td></tr>";
 					$query = mysql_query("DELETE FROM ".DB_NEWS." WHERE `news_id` = '".(int)$_POST['id']."'") or trigger_error(mysql_error());
 
 					if ($query)
@@ -180,7 +185,8 @@
 							echo"<script type='text/javascript'> <!-- window.status = ''; window.location = 'index.php?modul=newsedit';//--> </script>";
 							return_form(10,'?modul=newsedit');
 						}
-					else echo $txt['errors'];
+					else echo"<tr><td align='center'>".$txt['errors']."</td></tr>";
+					closetable();
 				}
 		}
 ?>

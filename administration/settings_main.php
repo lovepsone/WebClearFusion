@@ -26,16 +26,16 @@
 		}
 
 	echo"<form name='settingsform' method='post'>";
-     	echo"<table width='100%' border='0' cellspacing='0' cellpadding='5' class='report'>";
-	echo"<tr><td align='left' colspan='2' class='head'>".$txt['admin_settings']."</td></tr>";
+	opentable();
+	echo"<tr><td align='left' colspan='2'>".$txt['admin_settings']."</td></tr>";
 
-	echo "<tr><td width='50%' class='page'>".$txt['admin_settings_nameserver']."</td>";
-	echo "<td width='50%' class='page'><input type='text' name='servername' value='".$settings['servername']."' maxlength='255' class='textbox' style='width:230px;'/></td></tr>";
+	echo "<tr><td width='50%'>".$txt['admin_settings_nameserver']."</td>";
+	echo "<td width='50%'><input type='text' name='servername' value='".$settings['servername']."' maxlength='255' class='textbox' style='width:230px;'/></td></tr>";
 
-	echo "<tr><td width='50%' class='page'>".$txt['admin_settings_urlserver']."</td>";
-	echo "<td width='50%' class='page'><input type='text' name='urlserver' value='".$settings['urlserver']."' maxlength='255' class='textbox' style='width:230px;'/></td></tr>";
+	echo "<tr><td width='50%'>".$txt['admin_settings_urlserver']."</td>";
+	echo "<td width='50%'><input type='text' name='urlserver' value='".$settings['urlserver']."' maxlength='255' class='textbox' style='width:230px;'/></td></tr>";
 
-	echo"<tr><td align='center' colspan='2' class='page'>";
-	echo"<input type='submit' name='savesettings' value='".$txt['admin_savesettings']."' class='button' /></td>\n";
-	echo"</table></form>";
+	echo"<tr><td align='center' colspan='2'><input type='submit' name='savesettings' value='".$txt['admin_savesettings']."' class='button' /></td></tr>";
+	closetable();
+	echo"</form>";
 ?>

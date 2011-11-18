@@ -10,78 +10,70 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	function opentable()
+		{
+			echo"<table cellpadding='0' cellspacing='0' width='100%'><tr>";
+			echo"<td class='capmain-top-left'></td><td class='capmain-top'></td><td class='capmain-top-right'></td>\n";
+			echo"</tr></table>";
+
+			echo"<table cellpadding='0' cellspacing='0' width='100%'>";
+			echo"<tr><td class='capmain-side-left'><td class='main-body'>";
+			echo"<table cellpadding='0' cellspacing='0' style='width:100%'>";
+		}
+
+	function closetable()
+		{
+			echo"</table></td><td class='capmain-side-right'></tr></table>";
+			echo"<table cellpadding='0' cellspacing='0' width='100%'><tr>";
+			echo"<td class='capmain-foot-left'></td><td class='capmain-foot'></td><td class='capmain-foot-right'></td>\n";
+			echo"</tr></table>";
+		}
+
+	function openside()
+		{
+			echo"<table cellpadding='0' cellspacing='0' width='100%'><tr>";
+			echo"<td class='scapmain-top-left'></td><td class='scapmain-top'></td><td class='scapmain-top-right'></td>\n";
+			echo"</tr></table>";
+
+			echo"<table cellpadding='0' cellspacing='0' width='100%'>";
+			echo"<tr><td class='scapmain-side-left'><td class='scapmain-body'>";
+			echo"<table cellpadding='0' cellspacing='0' style='width:100%'>";
+		}
+
+	function closeside()
+		{
+			echo"</table></td><td class='scapmain-side-right'></tr></table>";
+			echo"<table cellpadding='0' cellspacing='0' width='100%'><tr>";
+			echo"<td class='scapmain-foot-left'></td><td class='scapmain-foot'></td><td class='scapmain-foot-right'></td>";
+			echo"</tr></table>";
+		}
 	//==========================================
-	// Загаловок\Title
+	//Содержание
 	echo"<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Frameset//EN' 'http://www.w3.org/TR/html4/frameset.dtd'>";
 	echo"<head><link rel='SHORTCUT ICON' href='images/favicon.ico'>";
 	echo"<title>".$config['servername']."</title>";
-	echo"<LINK href='$cssfile' type=text/css rel=stylesheet>";
-	echo"<LINK href='$csswcffile' type=text/css rel=stylesheet>";
+	echo"<LINK href='".THEMES."/default/style.css' type=text/css rel=stylesheet>";
 	echo"<LINK href='administration/administration.css' type=text/css rel=stylesheet>";
 	echo"<META http-equiv='content-type' content='text/html; charset=$code_page' /></HEAD>";
 	echo"<body>";
 
-	//==========================================
-	// Основной контент\Main content
-	echo"<table class='foundation' cellSpacing='0' cellPadding='0'>";
+	echo"<table cellpadding='0' cellspacing='0' width='100%'>";
+	echo"<tr><td class='full-header' align='center'><img src='".THEMES."/default/img/baners.png' alt='".$config['servername']."' style='border: 0;' /></td></tr>";
+	echo"</table>";
 
-		//==========================================
-		// Верхний колонтитул\Header
-  		echo"<tbody><tr><td class='lefttitle'></td>";
-		echo"<td align='center'>";
-          		echo"<table class='sitetitle' cellSpacing='0' cellPadding='0'><tbody><tr>
-            			<td class='ugverhfon'>&nbsp;</td>
-            			<td class='topfon'>&nbsp;</td>
-            			<td class='fonmenu'><a href='".$config['urlserver']."'>".$config['servername']."</a></td>
-            			<td class='topfon'>&nbsp;</td>
-            			<td class='ugverhfon2'>&nbsp;</td>";
-           		echo"</tr></tbody></table>";
-    		echo"</td><td class='righttitle'></td></tr>";
+	echo"<table cellpadding='0' cellspacing='0' width='100%'><tr>";
+	echo"<td class='side-border-left' valign='top'>";
+	require "panels/panels_l.php";
+	echo"</td>";
 
-		echo"<tr><td><table class='mainmenu'><tr><td width='225' class='left-top'>&nbsp;</td></tr></table></td>";
-		echo"<td align='center'></td>";
-		echo"<td><table class='mainmenu'><tr><td width='225' class='right-top'>&nbsp;</td></tr></table></td></tr>";
+	echo "<td class='main-bg' valign='top'>";
+	require "panels/panels_c.php";
+	echo"</td>";
 
-		//================================================================
-		// Тело. Левая часть\The body. The left part
-  		echo"<tr><td class='leftmenu'>";
-      			echo"<table class='mainmenu'><tbody>";
-			echo"<tr><td class=left-body>";
-
-				require "panels/panels_l.php";
-
-			echo"</td></tr>";
-			echo"<tr><td class=left-bottom></td></tr></tbody></table></td>";
-
-		//================================================================
-		// Тело. Центральная часть часть\The body. The central part of the
-  		echo"<td class='mybody'>";
-    			echo"<table class='mainbody' cellSpacing='0' cellPadding='0'><tbody>";
-
-    			echo"<tr><td class='bodytopleft'></td><td class='bodytop'></td><td class='bodytopright'></td></tr>";
-
-			echo"<tr><td class='bodyleft'></td><td class='body'><center>";
-			require "panels/panels_c.php";
-			echo"</center></td><td class='bodyright'></td></tr>";
-
-			echo"<tr><td class='bodybottomleft'></td><td class='bodybottom'></td><td class='bodybottomright'></td></tr>";
-
-			echo"</tbody></table>";
-  		echo"</td>";
-
-		//================================================================
-		// Тело. Правая часть\The body. The right part
-  		echo"<td class='rightmenu'>";
-      			echo"<table class='mainmenu'><tbody>";
-       			echo"<tr><td class='right-body'>";
-
-			require "panels/panels_r.php";
-
-			echo"</td></tr>";
-        		echo"<tr><td class='right-bottom'></td></tr></tbody></table>";
-		echo"</td></tr>";
-
-	echo"</tbody></table>";
+	echo"<td class='side-border-right' valign='top'>";
+	require "panels/panels_r.php";
+	echo"</td>";
+	echo"</tr></table>";
 
 	//==========================================
 	// Hижний колонтитул\footer

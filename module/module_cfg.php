@@ -43,8 +43,7 @@
 +--------------------------------------------------------*/
 
 $modules  = array (
-//       modul\модуль             path\путь                          Name\имя      Access\доступ    	Admin\админ   Menu\меню
-	'online'  	=> array ('module/online/online.php',        	257,		-1,     	     3,   	  0  ),  
+//       modul\модуль             path\путь                          Name\имя      Access\доступ    	Admin\админ   Menu\меню 
 	'logout'   	=> array ('module/logout/logout.php',        	257,           	-1,     	     3,   	  0  ),
 
 // модули для админки\modules for admin
@@ -56,7 +55,6 @@ $modules  = array (
 // модули для логов\modules for logs
 	'reg'     	=> array ('module/reg/reg.php',			reg,            -1,     	     3,   	  0  ),
 	'alllogs'       => array ('module/logs/alllogs.php',		257,             1,     	     3,   	  0  ),
-	'reglogs'       => array ('module/logs/reglogs.php',		257,             1,     	     3,   	  0  ),
 
 // модули для новостей\modules for news
 	'news'     	=> array ('module/news/news.php',		news,           -1,     	     3,   	  1  ),

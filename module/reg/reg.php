@@ -78,7 +78,7 @@
 				{
       	 				mysql_query("INSERT INTO `account` (`username`,`sha_pass_hash`,`email`,`last_ip`,`locked`,`expansion`) VALUES (UPPER('".$_POST['new_acc']."'),SHA1(CONCAT(UPPER('".$_POST['new_acc']."'),':',UPPER('".$_POST['pass1']."'))),'".$_POST['email']."','".$_SERVER['REMOTE_ADDR']."','0','".$def_exp_acc."')");
 
-       					echo"<img src='images/yes.png'> <b>$txt[reg_account_successfully]</b><br><br><hr><div align='center'><a href='index.php'>$txt[main_home]</a></div>";
+       					echo"<img src='".IMAGES."yes.png'> <b>".$txt['reg_account_successfully']."</b><br><br><hr><div align='center'><a href='index.php'>".$txt['main_home']."</a></div>";
        					$query2 = "SELECT * FROM `account` WHERE `username`='".strtoupper($_POST['new_acc'])."' AND sha_pass_hash ='".SHA1(strtoupper($_POST['new_acc']).':'.strtoupper($_POST['pass1']))."'";
        					$res2 = mysql_query($query2);
 
@@ -105,20 +105,22 @@
    			if ($er == 1)
 				{
 
-      					echo"<table width='400' border='0' cellspacing='0' cellpadding='0'>";
-      					echo"<tr><td height='25' align='center' valign='middle' class='errtitle'><b>$txt[reg_error]</b></td></tr>";
-      					echo"<tr><td height='45' align='center' valign='middle'  class='errtab'><b>$er_txt</b></td></tr></table>";     
+      					opentable();
+      					echo"<tr><td height='25' align='center' valign='middle'><b>".$txt[reg_error]."</b></td></tr>";
+      					echo"<tr><td height='45' align='center' valign='middle'><b>$er_txt</b></td></tr>";
+					closetable();     
       				}
    		}
 
+   	opentable();
 	if ($er == 0)
 		{
-   			echo"<table width='500' border='0' cellspacing='0' cellpadding='0'>";
-   			echo"<tr><td height='25' colspan='3' align='center' valign='middle' class='tabletitle'><b>$txt[reg]</b></td></tr>";
-   			echo"<tr><td width='50' height='40' class='tableleft'>&nbsp;</td>";
-   			echo"<td width='400' height='40' class='tablecenter'><div align='justify'>$txt[reg_txt]<br/></div></td>";
-   			echo"<td width='50' height='40' class='tableright'>&nbsp;</td></tr></table>"; 
+   			echo"<tr><td height='25' colspan='3' align='center' valign='middle'><b>".$txt['reg']."</b></td></tr>";
+   			echo"<tr><td width='50' height='40'>&nbsp;</td>";
+   			echo"<td width='400' height='40'><div align='justify'>".$txt[reg_txt]."<br/></div></td>";
+   			echo"<td width='50' height='40'>&nbsp;</td></tr>"; 
    		}
+
 	// form begin
 	echo"<br>";
 	echo"<form method='post' action='index.php?modul=reg'><input name='reg' value='1' type=hidden>";
@@ -127,32 +129,31 @@
 	// account name
 	echo"<tr><td width='130' height='30' align='right' valign='middle'>$txt[reg_account]</td>";
 	echo"<td width='10' height='30'>&nbsp;</td>";
-	echo"<td width='150' height='30' align='left' valign='middle'><span class='logininput'><input type='text' name='new_acc'";
-	if (isset($_POST['new_acc']) AND ($_POST['new_acc'] != '')) echo" value='".$_POST['new_acc']."'></span></td>";
+	echo"<td width='150' height='30' align='left' valign='middle'><input type='text' class='textbox' name='new_acc'";
+	if (isset($_POST['new_acc']) AND ($_POST['new_acc'] != '')) echo" value='".$_POST['new_acc']."'></td>";
 	echo"</tr>";
 
 	// password 1 
-	echo"<tr><td width='130' height='30' align='right' valign='middle'>$txt[reg_pass]</td>";
+	echo"<tr><td width='130' height='30' align='right' valign='middle'>".$txt['reg_pass']."</td>";
 	echo"<td width='10' height='30'>&nbsp;</td>";
-	echo"<td width='150' height='30' align='left' valign='middle'><span class='logininput'><input type='password' name='pass1'></span></td></tr>";
+	echo"<td width='150' height='30' align='left' valign='middle'><input type='password' class='textbox' name='pass1'></td></tr>";
 
 	// password 2
-	echo"<tr><td width='130' height='30' align='right' valign='middle'>$txt[reg_confirm_pass]</td>";
+	echo"<tr><td width='130' height='30' align='right' valign='middle'>".$txt['reg_confirm_pass']."</td>";
 	echo"<td height='30'>&nbsp;</td>";
-	echo"<td width='150' height='30' align='left' valign='middle'><span class='logininput'><input type='password' name='pass2'></span></td></tr>";
+	echo"<td width='150' height='30' align='left' valign='middle'><input type='password' class='textbox' name='pass2'></td></tr>";
 
 	// email
-	echo"<tr><td width='130' height='30' align='right' valign='middle'>$txt[reg_mail]</td>";
+	echo"<tr><td width='130' height='30' align='right' valign='middle'>".$txt['reg_mail']."</td>";
 	echo"<td width='10' height='30'>&nbsp;</td>";
-	echo"<td width='150' height='30' align='left' valign='middle'><span class='logininput'><input type='text' name='email' ";
-	if (isset($_POST['email']) AND ($_POST['email'] != '')) echo" value='".$_POST['email']."'/></span></td>";
+	echo"<td width='150' height='30' align='left' valign='middle'><span class='logininput'><input type='text' class='textbox' name='email' ";
+	if (isset($_POST['email']) AND ($_POST['email'] != '')) echo" value='".$_POST['email']."'/></td>";
 	echo"</tr>";
 
 	// submit key
-	echo"<tr><td width='130' height='40' align='left' valign='bottom'>&nbsp;</td>";
-	echo"<td width='10' height='40' valign='bottom'>&nbsp;</td>";
-	echo"<td width='150' height='40' align='left' valign='bottom'><span class='logininput'><input type='submit' value='$txt[reg_add]' ></span></td></tr>";
+	echo"<tr><td colspan='3' align='center' valign='bottom'><input type='submit' class='button' value='".$txt['reg_add']."'></td></tr>";
 
+	closetable();
 	// end form
-	echo"</table></form>";
+	echo"</form>";
 ?>

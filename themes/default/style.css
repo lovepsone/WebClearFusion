@@ -1,213 +1,234 @@
-BODY 	{
-		font-size: 12px;
-		font-family: Arial, Garamond, Helvetica;
-		MARGIN: 0px;
-		color: #FFFFFF;
-		background-color: #000000;
-	}
-/*================================
-| Переменные настройки стиля, так
-| как они все находятся в файле
-| theme.php
-| Основные настройки в wcf.css
-================================*/
-table.foundation {
-		width: 100%;
-		border: 0;
-		border-collapse: collapse;
-		font-size: 12px;
-	}
+/*=============================
+| Все что связано с фонам
+===============================*/
+body 	{
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 0px;
+	color: #000000;
+	background-image: url(img/bg.jpg);
+	background-repeat: no-repeat;
+	background-color: #000000;
+}
 
-table.foundation TD.lefttitle {
-		width: 225px;
-		height: 96px;
-		background-posision: left;
-		background-image: url(img/left-Trollup.gif);
-		background-repeat: no-repeat;
-	}
+td {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+}
 
-table.foundation TD.righttitle {
-		width: 225px;
-		height: 96px;
-		background-posision: right;
-		background-image: url(img/right-Trollup.gif);
-		background-repeat: no-repeat;
-	}
 
-table.foundation TD.leftmenu {
-		vertical-align: top;
-		text-align: left;
-	}
 
-table.foundation TD.rightmenu {
-		vertical-align: top;
-		text-align: right;
-	}
+/*===============================
+| Ссылки и кнопки
+===============================*/
+a {
+	font-size: 10px;
+	color: #ff0000;
+	font-family: arial, helvetica, verdana, sans-serif;
+	text-decoration: none;
+}
 
-table.foundation TD.mybody {
-		padding: 0px;
-		text-align: center;
-		vertical-align: top;
-		color: #000000;
-	}
+a:hover {
+	font-size: 11px;
+	color: #ff0000;
+	font-family:: arial, helvetica, verdana, sans-serif;
+	text-decoration: underline;
+}
 
-table.sitetitle {
-		width: 100%;
-		color: #ffdd00;
-		background-color: #000000;
-		border: 0px;
-		border-collapse: collapse;
-	}
+.button {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: yellow;
+	background-image: url(img/button.png);
+	height: 23px;
+	width: 113px;
+}
 
-table.sitetitle TD.ugverhfon {
-		height: 96px;
-		background: url(img/ugol-verh.gif) center left no-repeat;
-	}
+.full-header {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	padding: 5px 0 10px 0;
+}
 
-table.sitetitle TD.ugverhfon2 {
-		height: 96px;
-		background: url(img/ugol-verh2.gif) center right no-repeat;
-	}
+/*===============================
+| Боковые панели
+===============================*/
+.side-border-left {
+	
+	color: #ff0000;
+	background-color: none;
+	padding: 10px 10px 10px 0;
+	width: 175px;
+}
 
-table.sitetitle TD.topfon {
-		height: 96px;
-		background: url(img/line.gif) center top repeat-x;
-	}
+.side-border-right {
+	color: #ff0000;
+	background-color: none;
+	padding: 10px 0 10px 10px;
+	width: 210px;
+}
+.scapmain-body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	font-weight: #ff0000;
+	color: #0000ff;
+	background-image: url(img/scapmain-body.gif);
+	padding: 6px 4px 6px 6px;
+}
 
-table.sitetitle TD.fonmenu {
-		height: 96px;
-		width: 356px;
-		background: url(img/menu.jpg) center center no-repeat;
-		font-size: 22px;
-		text-align: center;
-		vertical-align: middle;
-		padding-bottom: 10px;
-	}
-table.sitetitle TD.fonmenu a:visited {
-		color: #ffffff;
-	}
+.scapmain-top {
+	background-image: url(img/scapmain-top.gif);
+  	background-repeat: repeat-x;
+	padding: 0px 0px 0px 0px;
+}
 
-table.mainmenu {
-		WIDTH: 225px;
-		color: #ffdd00;
-		background-color: #000000;
-		fony-size: 13px;
-		border: 0;
-		border-collapse: collapse;
-	}
+.scapmain-top-left {
+	background-image: url(img/scapmain-top-left.gif);
+	width: 14px;
+	height: 20px;
+}
 
-table.mainmenu TD.left-body {
-		color: #ffdd00;
-		background-position: right;
-		background-image: url(img/left-bord.gif);
-		background-repeat: repeat-y;
-		padding-right: 11px;
-	}
+.scapmain-top-right {
+	background-image: url(img/scapmain-top-right.gif);
+	width: 14px;
+	height: 20px;
+}
+.scapmain-foot {
+	background-image: url(img/scapmain-foot.gif);
+  	background-repeat: repeat-x;
+	padding: 0px 0px 0px 0px;
+}
 
-table.mainmenu TD.left-top {
-		height: 134px;
-		background-position: left;
-		background-image: url(img/left-Trollniz.gif);
-		background-repeat: no-repeat;
-	}
+.scapmain-foot-left {
+	background-image: url(img/scapmain-foot-left.gif);
+	width: 14px;
+	height: 20px;
+}
 
-table.mainmenu TD.left-bottom {
-		height: 23px;
-		background-position: left;
-		background-image: url(img/left-bottom2.gif);
-		background-repeat: no-repeat;
-	}
+.scapmain-foot-right {
+	background-image: url(img/scapmain-foot-right.gif);
+	width: 14px;
+	height: 20px;
+}
 
-table.mainmenu TD.right-body {
-		color: #ffdd00;
-		background-position: left;
-		background-image: url(img/right-bord.gif);
-		background-repeat: repeat-y;
-		padding-left: 11px;
-	}
+.scapmain-side-left {
+	background-image: url(img/scapmain-side-left.gif);
+	width: 7px;
+	height: 20px;
+}
 
-table.mainmenu TD.right-top {
-		height: 134px;
-		background-position: right;
-		background-image: url(img/right-Trollniz.gif);
-		background-repeat: no-repeat;
-	}
+.scapmain-side-right {
+	background-image: url(img/scapmain-side-right.gif);
+	width: 7px;
+	height: 20px;
+}
 
-table.mainmenu TD.right-bottom {
-		height: 23px;
-		background-position: right;
-		background-image: url(img/right-bottom2.gif);
-		background-repeat: no-repeat;
-	}
+/*===============================
+| Основной контент
+===============================*/
+.capmain-top {
+	background-image: url(img/capmain-top.gif);
+  	background-repeat: repeat-x;
+	padding: 0px 0px 0px 0px;
+}
 
-table.mainbody {
-		width: 100%;
-		color: #000000;
-		background-color: #000000;
-		font-size: 100%;
-		border: 0;
-		border-collapse: collapse;
-	}
+.capmain-top-left {
+	background-image: url(img/capmain-top-left.gif);
+	width: 14px;
+	height: 20px;
+}
 
-table.mainbody TD.bodytopleft {
-		width: 14px;
-		height: 20px;
-		background-position: left;
-		background-image: url(img/verh-levo.gif);
-		background-repeat: no-repeat;
-	}
+.capmain-top-right {
+	background-image: url(img/capmain-top-right.gif);
+	width: 14px;
+	height: 20px;
+}
 
-table.mainbody TD.bodytop {
-            	height: 20px;
-		background-position: center 50%;
-		background-image: url(img/verh.gif)
-		;background-repeat: repeat-x;
-	}
+.capmain-foot {
+	background-image: url(img/capmain-foot.gif);
+  	background-repeat: repeat-x;
+	padding: 0px 0px 0px 0px;
+}
 
-table.mainbody TD.bodytopright {
-		width: 14px;
-		height: 20px;
-		background-position: right;
-		background-image: url(img/verh-pravo.gif);
-		background-repeat: no-repeat;
-	}
+.capmain-foot-left {
+	background-image: url(img/capmain-foot-left.gif);
+	width: 14px;
+	height: 20px;
+}
 
-table.mainbody TD.bodyleft {
-		width: 14px;
-		background-position: left;
-		background-image: url(img/left.gif);
-		background-repeat: repeat-y;
-	}
+.capmain-foot-right {
+	background-image: url(img/capmain-foot-right.gif);
+	width: 14px;
+	height: 20px;
+}
+.capmain-side-left {
+	background-image: url(img/capmain-side-left.gif);
+	width: 14px;
+	height: 20px;
+}
 
-table.mainbody TD.body {
-		background-image: url(img/bg.gif);
-		padding: 10px;
-	}
+.capmain-side-right {
+	background-image: url(img/capmain-side-right.gif);
+	width: 14px;
+	height: 20px;
+}
 
-table.mainbody TD.bodyright {
-		width: 14px;
-		background-position: right;
-		background-image: url(img/right.gif);background-repeat: repeat-y;
-	}
+.main-body {
+	font-size: 11px;
+	color: none;
+	background: url(img/main-body.jpg);
+	border: 1px solid black;
+	padding: 4px;
+}
 
-table.mainbody TD.bodybottomleft {
-		width: 14px;
-		height: 20px;
-		background-position: left;
-		background-image: url(img/niz-levo.gif);
-		background-repeat: no-repeat;
-	}
+/*===============================
+| Все что связано с форумам
+===============================*/
+.forum-caption {
+	font-size: 12px;
+	font-weight: bold;
+	color: #ff6020;
+	background-color: none;
+	padding: 2px 4px 4px 4px;
+}
 
-table.mainbody TD.bodybottom { height: 20px;
-		background-position: center 50%;
-		background-image: url(img/niz.gif);
-		background-repeat: repeat-x;
-	}
+.tbl {
+	font-size: 13px;
+	color: #ff4000;
+	background-color: none;
+	padding: 4px;
+}
 
-table.mainbody TD.bodybottomright {
-		width: 14px;
-		height: 20px;
-		background-position: right;
-		background-image: url(img/niz-pravo.gif);
-		background-repeat: no-repeat;
-	}
+.tbl1 {
+	font-size: 11px;
+	background-color: none;
+	background-image: url(img/tbl1.jpg);
+	color: #0000ff;
+	padding: 4px;
+}
+
+.tbl2 {
+	font-size: 13px;
+	background-color: none;
+	background-image: url(img/tbl1.jpg);
+	color: #ff0000;
+	padding: 4px;
+}
+
+.small {
+	font-size: 10px;
+	font-weight: normal;
+}
+
+.textbox {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: blue;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+hr {
+	height: 1px;
+	border: 1px solid #eee;
+}
