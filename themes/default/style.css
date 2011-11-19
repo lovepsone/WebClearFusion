@@ -16,7 +16,15 @@ td {
 	font-size: 11px;
 }
 
-
+.head-table {
+	font-size: 16px;
+	font-style: italic;
+	font-family: arial, helvetica, verdana, sans-serif;
+	color: #ff0000;
+	text-decoration: none;
+	background-image: url(img/head-table.png);
+	height: 23px;
+}
 
 /*===============================
 | —сылки и кнопки
@@ -231,4 +239,10 @@ a:hover {
 hr {
 	height: 1px;
 	border: 1px solid #eee;
+}
+.copyright {
+	font-size: 10px;
+	font-weight: normal;
+	color: #ff4000;
+	text-align: center;
 }

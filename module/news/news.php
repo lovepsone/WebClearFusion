@@ -35,10 +35,10 @@
 			opentable();
      			while ($nres = mysql_fetch_array($kres))
 				{
-          				echo"<tr><th rowspan='2' align='left' width='80' height='80'><img src='".IMAGES_NC.$nres['news_cat_image']."' align='absmiddle'></th>";
-          				echo"<td align='left'>&nbsp;".$nres['news_title']."</td></tr>";
-          				echo"<tr><td colspan='2' align='center'>".stripslashes($nres['news_text'])."</td></tr>";
-          				echo"<tr><td colspan='2' align='left'>&nbsp;".$nres['news_date']."</td></tr>";
+          				echo"<tr><td align='left' colspan='3' class='head-table'>&nbsp;".$nres['news_title']."</td></tr>";
+          				echo"<tr><td align='left' width='80'><img src='".IMAGES_NC.$nres['news_cat_image']."' align='absmiddle'>&nbsp;</td><td>&nbsp&nbsp;</td>";
+					echo"<td align='top'>".stripslashes($nres['news_text'])."</td><td>&nbsp;&nbsp;</td></tr>";
+          				echo"<tr><td colspan='4' align='left'>&nbsp;".$nres['news_date']."<br><hr></td></tr>";
       				}
 
   			if ($kolzap['kol'] > $config['page_news'])

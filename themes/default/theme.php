@@ -10,6 +10,8 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	//==========================================
+	// Функции открытия и закрытия таблиц,панелей
 	function opentable()
 		{
 			echo"<table cellpadding='0' cellspacing='0' width='100%'><tr>";
@@ -47,6 +49,7 @@
 			echo"<td class='scapmain-foot-left'></td><td class='scapmain-foot'></td><td class='scapmain-foot-right'></td>";
 			echo"</tr></table>";
 		}
+
 	//==========================================
 	//Содержание
 	echo"<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Frameset//EN' 'http://www.w3.org/TR/html4/frameset.dtd'>";
@@ -75,9 +78,8 @@
 	echo"</td>";
 	echo"</tr></table>";
 
-	//==========================================
-	// Hижний колонтитул\footer
-	echo"<br><hr width='90%'><center><font size=-1>".$config['copyright']."</font></center><br>";
+	echo"<br><br>";
+	echo"<div class='copyright'><hr width='90%'><font size=-1>".$config['copyright']."</font></div><br>";
 
 	if($config['change_lang'] == 'on')
 		{
