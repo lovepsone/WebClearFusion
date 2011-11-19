@@ -16,13 +16,15 @@
 +--------------------------------------------------------*/
 
 	selectdb(wcf);
-  	$panels_right = mysql_query("SELECT `panel_id`, `panel_url`  FROM ".DB_PANELS." WHERE `panel_position`= 2") or trigger_error(mysql_error());
-	$num_r = mysql_num_rows($panels_right);
+  	$pr = mysql_query("SELECT `panel_id`, `panel_filename`  FROM ".DB_PANELS." WHERE `panel_position`= '2' AND `panel_status`='1'") or trigger_error(mysql_error());
 
-	while($panel_right = mysql_fetch_array($panels_right))
+	while($pr_open = mysql_fetch_array($pr))
 		{
-			require $panel_right[panel_url];
-			if ($num_r > 1) echo"<hr>";
+			if (file_exists(PANELS.$pr_open['panel_filename']."/".$pr_open['panel_filename'].".php"))
+				{
+							include PANELS.$pr_open['panel_filename']."/".$pr_open['panel_filename'].".php";
+							echo"<br>";
+				}
 		}
 
 ?>

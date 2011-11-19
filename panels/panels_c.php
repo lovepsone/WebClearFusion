@@ -3,7 +3,7 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone
 +--------------------------------------------------------+
-| Filename: panels.php
+| Filename: panels_c.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
@@ -16,13 +16,15 @@
 +--------------------------------------------------------*/
 
 	selectdb(wcf);
-  	$panels_center = mysql_query("SELECT `panel_id`, `panel_url`  FROM ".DB_PANELS." WHERE `panel_position`= 0") or trigger_error(mysql_error());
-	$num_c = mysql_num_rows($panels_center);
+  	$pc = mysql_query("SELECT `panel_id`, `panel_filename`  FROM ".DB_PANELS." WHERE `panel_position`= '0' AND `panel_status`='1'") or trigger_error(mysql_error());
 
-	while($panel_center = mysql_fetch_array($panels_center))
+	while($pc_open = mysql_fetch_array($pc))
 		{
-			require $panel_center[panel_url];
-			if ($num_c > 1) echo"<hr>";
+			if (file_exists(PANELS.$pc_open['panel_filename']."/".$pc_open['panel_filename'].".php"))
+				{
+							include PANELS.$pc_open['panel_filename']."/".$pc_open['panel_filename'].".php";
+							echo"<br>";
+				}
 		}
 
 ?>

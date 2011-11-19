@@ -233,21 +233,6 @@
 			return $text;
 		}
 
-	//===============================
-	// функция пока не используется
-	function panel_position($position)
-		{
-			selectdb(wcf);
-  			$panels_position = mysql_query("SELECT `panel_id`, `panel_url`  FROM ".DB_PANELS." WHERE `panel_position`= '".$position."'") or trigger_error(mysql_error());
-			$num = mysql_num_rows($panels_position);
-
-			while($position = mysql_fetch_array($panels_position))
-				{
-				 	require $position['panel_url'];
-					if ($num > 1) echo"<hr>";
-				}
-		}
-
 	//=============================================================================================
 	// функция, создающая админку, берет данные из базы mysql
 	function admin_page($admin_page,$admin_string)

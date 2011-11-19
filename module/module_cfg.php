@@ -49,8 +49,6 @@ $modules  = array (
 // модули для админки\modules for admin
 	'admin'		=> array ('administration/admin.php',		257,             1,     	     3,   	  0  ),
 	'settings'	=> array ('administration/settings_main.php',	257,             1,     	     3,   	  0  ),
-	'adminsetpanel' => array ('administration/admin_setpanel.php', 	257,             1,     	     3,   	  0  ),
-	'adminaddpanel' => array ('administration/admin_addpanel.php', 	257,             1,     	     3,   	  0  ),
 
 // модули для логов\modules for logs
 	'reg'     	=> array ('module/reg/reg.php',			reg,            -1,     	     3,   	  0  ),

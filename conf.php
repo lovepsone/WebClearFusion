@@ -73,15 +73,15 @@ $config =array (
 //==================================================================
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
-'copyright'=>'WebClearFusion v 0.4.00 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [96]',
+'copyright'=>'WebClearFusion v 0.4.01 from LovePSone 2010-2011',
+'revision'=>'wcf_revision_nr = [97]',
 'rev_admin'=>' 0.00.04',
 );
 
 define("DB_PREFIX", "wcf_");
 
 error_reporting(E_ERROR | E_PARSE | E_WARNING);
-//error_reporting(E_ALL);
+error_reporting(E_ALL);
 ini_set('display_errors', 0); //disable on production servers!
 
 //==================================================================
