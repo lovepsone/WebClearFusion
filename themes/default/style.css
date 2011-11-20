@@ -205,12 +205,16 @@ a:hover {
 	color: #ff4000;
 	background-color: none;
 	padding: 4px;
+	background-image: url(img/tbl.png);
+	background-repeat: repeat-x;
+	height: 23px;
 }
 
 .tbl1 {
 	font-size: 11px;
 	background-color: none;
-	background-image: url(img/tbl1.jpg);
+	background-image: url(img/tbl1.gif);
+	background-repeat: repeat-x;
 	color: #0000ff;
 	padding: 4px;
 }
@@ -218,7 +222,8 @@ a:hover {
 .tbl2 {
 	font-size: 13px;
 	background-color: none;
-	background-image: url(img/tbl1.jpg);
+	background-image: url(img/tbl1.gif);
+	background-repeat: repeat-x;
 	color: #ff0000;
 	padding: 4px;
 }
