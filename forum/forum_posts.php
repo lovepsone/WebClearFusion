@@ -57,19 +57,21 @@
 
 					while ($posts = mysql_fetch_array($result))
 						{
-							selectdb(realmd);
- 							$query_acc = "SELECT * FROM `account` WHERE `id`='".$posts['user_id']."' LIMIT 1";
-  							$result_acc = mysql_query($query_acc) or trigger_error(mysql_error().$query_acc);
+							selectdb(wcf);
+ 							$query_user = mysql_query("SELECT * FROM ".DB_USERS." WHERE `user_id`=".$posts['user_id']." LIMIT 1");
+  							$usr = mysql_fetch_assoc($query_user);
 
-  							if ($acc = mysql_fetch_assoc($result_acc)) 
-      								{
-       									$usr_name = $acc['username'];
-									$usr_gmlvl = $acc['gmlevel'];
-       									$usr_ip = $acc['last_ip'];
+							echo"<tr><td width='20%' align='left' class='tbl2'>".ucfirst(strtolower($usr['user_name']))."<br>";
+
+							if ($usr['user_avatar'] <> '')
+								{
+			  						echo"<img src='".IMAGES_A.$usr['user_avatar']."'/></td>";
 								}
-
-							echo"<tr><td width='20%' align='left' class='tbl2'>".ucfirst(strtolower($usr_name))."<br>$usr_ip</td>";
-							echo"<td width='80%' align='left' class='tbl1'>".stripslashes($posts['post_text'])."<hr></td></tr>";
+							else
+								{
+									echo"<img src='".IMAGES_A."null-avatar.gif' class='avatar'></td>";
+								}
+							echo"<td width='80%' align='left' class='tbl1'>".stripslashes($posts['post_text'])."</td></tr><tr><td colspan='2'><hr></td></tr>";
 						}
 
   					if ($p_kolzap['kol'] > $config['page_forum_posts'])

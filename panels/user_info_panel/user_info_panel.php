@@ -84,13 +84,6 @@
        					$ra_username  = $row['username'];
 					$ra_admin     = $row['gmlevel'];
        					$ra_email        = $row['email'];
-       					$ra_joindate    = $row['joindate'];
-       					$ra_last_ip      = $row['last_ip'];
-       					$ra_locked      = $row['locked'];
-       					$ra_last_login  = $row['last_login'];
-       					$ra_online       = $row['active_realm_id'];
-       					//$ra_expansion  = getExpansion($row['expansion']);
-       					$ra_locale        = getlocale($row['locale']);
       				}
 
    			if (strtoupper($_SESSION['slovo']) != strtoupper($row['sha_pass_hash'])) 
@@ -111,11 +104,20 @@
 
   			if ($row2 = mysql_fetch_assoc($res2)) $r_act = $row2['active']; else $r_act = '0';
 
+			selectdb(wcf);
+ 			$query_user = mysql_query("SELECT * FROM ".DB_USERS." WHERE `user_id`=".$_SESSION['user_id']." LIMIT 1");
+  			$res_user = mysql_fetch_assoc($query_user);
+
 			openside();
-  			echo"<tr><td align='left' valign='top'>".$txt['menu_auth_account']."</td></tr>";
-  			echo"<tr><td align='left' valign='bottom'>".ucfirst(strtolower($ra_username))."</td></tr>";
-  			echo"<tr><td align='left' valign='top'>".$txt['menu_auth_e_mail']."</td></tr>";
-  			echo"<tr><td align='left' valign='bottom'>$ra_email</td></tr>";
+			echo"<tr><td align='left' valign='top'>".$txt['menu_auth_greeting']."&nbsp;".ucfirst(strtolower($ra_username))."</td></tr>";
+			if ($res_user['user_avatar'] <> '')
+				{
+			  		echo"<tr><td align='right' valign='top' class='avatar'><img src='".IMAGES_A.$res_user['user_avatar']."'/></td></tr>";
+				}
+			else
+				{
+					echo"<tr><td align='right' valign='top'><img src='".IMAGES_A."null-avatar.gif' class='avatar'></td></tr>";
+				}
 
   			echo"<tr><td align='left' valign='top'>".$txt['menu_auth_ip']."</td></tr>";
   			echo"<tr><td align='left' valign='bottom'>".$_SERVER['REMOTE_ADDR']."</td></tr>";

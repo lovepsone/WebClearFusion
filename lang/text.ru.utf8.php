@@ -13,7 +13,7 @@
 $txt = array(
 # тексты в правом и левом меню
 'menu_auth_title'		=>'Авторизуйтесь или зарегистрируйтесь для удобного пользования',
-'menu_auth_account'		=>'Учётная запись',
+'menu_auth_greeting'		=>'Приветствуем вас',
 'menu_auth_pass'		=>'Пароль',
 'menu_auth_enter'		=>'Войти',
 'menu_auth_reg'			=>'Регистрация',
