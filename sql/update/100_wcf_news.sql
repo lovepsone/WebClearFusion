@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS `wcf_news`;
 CREATE TABLE `wcf_news` (
   `news_id` int(11) unsigned NOT NULL auto_increment,
   `news_date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  `news_author` int(11) unsigned default '1',
   `news_title` longtext,
   `news_text` longtext,
   `news_text_main` longtext,
@@ -26,4 +27,4 @@ CREATE TABLE `wcf_news` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `wcf_news` VALUES ('1', '2011-11-15 19:27:45', 'От разработчика.', '<p>WCF успешно установлен.</p>', '<p>WCF успешно установлен и готов к использыванию. Пройдите в админку и настройте движок на свой вкус! Приятной вам работы!</p>', '1');
+INSERT INTO `wcf_news` VALUES ('1', '2011-11-15 19:27:45', '1', 'От разработчика.', '<p>WCF успешно установлен.</p>', '<p>WCF успешно установлен и готов к использыванию. Пройдите в админку и настройте движок на свой вкус! Приятной вам работы!</p>', '1');

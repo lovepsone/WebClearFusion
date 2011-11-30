@@ -56,6 +56,7 @@ $modules  = array (
 
 // модули для новостей\modules for news
 	'news'     	=> array ('module/news/news.php',		news,           -1,     	     3,   	  1  ),
+	'newsext'     	=> array ('module/news/news_ext.php',		257,            -1,     	     3,   	  0  ),
 	'newsedit'	=> array ('administration/news.php',		257,             1,     	     3,   	  0  ),
 
 // форум\forum

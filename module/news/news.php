@@ -29,6 +29,7 @@
 
   	$kres = mysql_query("SELECT * FROM ".DB_NEWS." 
 				LEFT JOIN ".DB_NEWS_CATS." ON `news_cat_id`=`news_cats`
+				LEFT JOIN ".DB_USERS." ON ".DB_USERS.".`user_id`=".DB_NEWS.".`news_author`
 				ORDER BY `news_date` DESC limit ".$StartRec.",".$PageLen) or trigger_error(mysql_error());
   	if (mysql_num_rows($kres) > 0 )
 		{
@@ -38,7 +39,8 @@
           				echo"<tr><td align='left' colspan='3' class='head-table'>&nbsp;".$nres['news_title']."</td></tr>";
           				echo"<tr><td align='left' width='80'><img src='".IMAGES_NC.$nres['news_cat_image']."' align='absmiddle'>&nbsp;</td><td>&nbsp&nbsp;</td>";
 					echo"<td align='top'>".stripslashes($nres['news_text'])."</td><td>&nbsp;&nbsp;</td></tr>";
-          				echo"<tr><td colspan='4' align='left'>&nbsp;".$nres['news_date']."<br><hr></td></tr>";
+          				echo"<tr><td colspan='4' align='left'>&nbsp;".$txt['modul_news_creation_date']."&nbsp;".$nres['news_date']."&nbsp;".$txt['modul_news_author']."
+						&nbsp;".ucfirst(strtolower($nres['user_name']))."&nbsp;|&nbsp;<a href='index.php?modul=newsext&id=".$nres['news_id']."'>".$txt['modul_news_read_more']."</a><br><hr></td></tr>";
       				}
 
   			if ($kolzap['kol'] > $config['page_news'])

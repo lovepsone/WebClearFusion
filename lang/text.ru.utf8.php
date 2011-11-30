@@ -25,6 +25,11 @@ $txt = array(
 'menu_auth_admin'		=>'Админка',
 'menu_auth_exit'		=>'Выйти',
 
+# тексты в стандартных модулях
+'modul_news_creation_date'	=>'Дата создания:',
+'modul_news_author'		=>'| Автор:',
+'modul_news_read_more'		=>'Читать далее',
+
 # тексты при бане в основной форме
 'main_ban_ip'			=>'Ваш IP-адрес ЗАБАНЕН!',
 'main_ban_account'		=>'Ваша учетная запись ЗАБАНЕНА!',
