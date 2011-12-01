@@ -14,6 +14,7 @@
 	// Название таблиц mysql
 	//===============================================
 	define("DB_ADMIN", DB_PREFIX."admin");
+	define("DB_COMMENTS", DB_PREFIX."comments");
 	define("DB_FORUMS", DB_PREFIX."forums");
 	define("DB_FORUMS_POSTS", DB_PREFIX."forums_posts");
 	define("DB_FORUMS_THREADS", DB_PREFIX."forums_threads");

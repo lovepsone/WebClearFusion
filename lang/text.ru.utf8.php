@@ -30,6 +30,7 @@ $txt = array(
 'modul_news_creation_date'	=>'Дата создания:',
 'modul_news_author'		=>'| Автор:',
 'modul_news_read_more'		=>'Читать далее',
+'modul_newsexp_date_reply'	=>'Дата ответа:',
 
 # тексты при бане в основной форме
 'main_ban_ip'			=>'Ваш IP-адрес ЗАБАНЕН!',
