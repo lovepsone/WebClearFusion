@@ -15,6 +15,8 @@
 			echo"<form method='POST'>";
   			openside();
 
+			//======================================
+			// Проверка на бан,блок,кптча
 			if (isset($Block_login) and ($Block_login == 1))
 				{
 					echo"<tr><td  colspan='2' align='center'>".$txt['menu_auth_title']."<br><br></td></tr>";
