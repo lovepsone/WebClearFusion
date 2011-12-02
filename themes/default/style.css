@@ -229,8 +229,30 @@ a:hover {
 }
 
 .small {
+	font-size: 13px;
+	background-color: none;
+	font-weight: normal;
+	color: #ff0000;
+	padding: 4px;
+}
+
+.small2 {
 	font-size: 10px;
 	font-weight: normal;
+	color: blue;
+}
+
+.side-small {
+	font-size: 10px;
+	font-weight: normal;
+	color: blue;
+}
+
+.side-label {
+	color: #fff;
+	background-color: none;
+	margin: 2px 0 2px 0;
+	padding: 2px 2px 3px 2px;
 }
 
 .textbox {

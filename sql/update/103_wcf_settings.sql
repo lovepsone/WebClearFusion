@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 04.11.2011 19:45:14
+Date: 02.12.2011 17:05:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,3 +31,4 @@ INSERT INTO `wcf_settings` VALUES ('pass_remember', 'on');
 INSERT INTO `wcf_settings` VALUES ('reg_ip_limit', '0');
 INSERT INTO `wcf_settings` VALUES ('page_news', '5');
 INSERT INTO `wcf_settings` VALUES ('page_news_edit', '20');
+INSERT INTO `wcf_settings` VALUES ('serverintro', '<div style=\\\\\\\'text-align:center\\\\\\\'>Добро пожаловать на сайт!</div>');
