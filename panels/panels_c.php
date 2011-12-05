@@ -16,15 +16,23 @@
 +--------------------------------------------------------*/
 
 	selectdb(wcf);
-  	$pc = mysql_query("SELECT `panel_id`, `panel_filename`  FROM ".DB_PANELS." WHERE `panel_position`= '0' AND `panel_status`='1'") or trigger_error(mysql_error());
+  	$pc = mysql_query("SELECT `panel_id`, `panel_filename`  FROM ".DB_PANELS." WHERE `panel_position`= '0' AND `panel_status`='1' ORDER BY `panel_order` ASC") or trigger_error(mysql_error());
 
 	while($pc_open = mysql_fetch_array($pc))
 		{
-			if (file_exists(PANELS.$pc_open['panel_filename']."/".$pc_open['panel_filename'].".php"))
+			if (check_panel_status("center") AND $pc_open['panel_filename'] != 'main_form')
 				{
+					if (file_exists(PANELS.$pc_open['panel_filename']."/".$pc_open['panel_filename'].".php"))
+						{
 							include PANELS.$pc_open['panel_filename']."/".$pc_open['panel_filename'].".php";
-							echo"<br>";
+						}
+				}
+			else if ($pc_open['panel_filename'] == 'main_form')
+				{
+					if (file_exists(PANELS.$pc_open['panel_filename']."/".$pc_open['panel_filename'].".php"))
+						{
+							include PANELS.$pc_open['panel_filename']."/".$pc_open['panel_filename'].".php";
+						}
 				}
 		}
-
 ?>

@@ -22,9 +22,8 @@
 		{
 			if (file_exists(PANELS.$pr_open['panel_filename']."/".$pr_open['panel_filename'].".php"))
 				{
-							include PANELS.$pr_open['panel_filename']."/".$pr_open['panel_filename'].".php";
-							echo"<br>";
+					include PANELS.$pr_open['panel_filename']."/".$pr_open['panel_filename'].".php";
+					echo"<br>";
 				}
 		}
-
 ?>

@@ -134,6 +134,11 @@ a:hover {
 /*===============================
 | Основной контент
 ===============================*/
+.main-bg {
+	color: red;
+	padding: 50px 0 5px 3;
+}
+
 .capmain-top {
 	background-image: url(img/capmain-top.gif);
   	background-repeat: repeat-x;

@@ -76,6 +76,7 @@
 	echo"<td class='side-border-right' valign='top'>";
 	require "panels/panels_r.php";
 	echo"</td>";
+
 	echo"</tr></table>";
 
 	echo"<br><br>";

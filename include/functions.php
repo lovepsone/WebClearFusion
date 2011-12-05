@@ -208,7 +208,7 @@
 	// функция добавления \ перед кавычками. Для безопасности дабы Mysql не выдавала ошибку.
 	function addslash($text)
 		{
-			if (!QUOTES_GPC) { $text = addslashes(addslashes($text)); } else { $text = addslashes($text); }
+			$text = addslashes($text);
 			return $text;
 		}
 
@@ -301,5 +301,53 @@
 			var timeout = '".$Retime."';
 			exec_refresh();
 			//--> </script>";
+		}
+
+	//=============================================================================================
+	// функция исключает понели на отдельных страницах, установленых в настройках
+	function check_panel_status($side)
+		{
+			global $config;
+	
+			$exclude_list = "";
+
+			if ($side == "center")
+				{
+					if ($_SERVER['QUERY_STRING'] == "" or $_SERVER['QUERY_STRING'] == $config['news'])
+						{
+							return true;
+						}
+					else
+						{
+							return false;
+						}
+				}
+			//================================================
+			// остальная часть кода работает некорректно
+			elseif ($side == "left")
+				{
+					if ($config['exclude_left'] != "") {$exclude_list = explode("\r\n", $config['exclude_left']);}
+				}
+			elseif ($side == "right")
+				{
+					if ($config['exclude_right'] != "") {$exclude_list = explode("\r\n", $config['exclude_right']);}
+				}
+	
+			if (is_array($exclude_list))
+				{
+					$exclude_url = explode("&", $_SERVER['QUERY_STRING']);
+					if (!in_array($_SERVER['QUERY_STRING'], $exclude_list) && !in_array($exclude_url[0].($_SERVER['QUERY_STRING'] ? "?".$exclude_url[1] : ""), $exclude_list))
+						{
+							return true;
+						}
+					else
+						{
+							return false;
+						}
+				}
+			else
+				{
+					return true;
+				}
 		}
 ?>
