@@ -27,6 +27,7 @@ $txt = array(
 'menu_auth_exit'		=>'Выйти',
 
 # тексты в стандартных модулях
+'modul_news_no_news'		=>'<b>Нет новостей</b>',
 'modul_news_creation_date'	=>'Дата создания:',
 'modul_news_author'		=>'| Автор:',
 'modul_news_read_more'		=>'Читать далее',
@@ -68,6 +69,9 @@ $txt = array(
 'admin_settings_off_right_p'	=>'Выключить правые панели:',
 'admin_settings_off_p_title'	=>'Пример:<br>modul=forum<br>modul=thread<br>modul=post',
 'admin_savesettings'		=>'Сохранить',
+'admin_forumedit_cat_or_forum'	=>'Категория/Форум',
+'admin_forumedit_order'		=>'Порядок',
+'admin_forumedit_options'	=>'Опции',
 'admin_newsmaker_del'		=>'Удалить',
 'admin_panels_center'		=>'по центру',
 'admin_panels_left'		=>'с лева',

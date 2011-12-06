@@ -12,49 +12,6 @@
 
 	$date = date('d-m-Y [H:i:s]');
 
-	//=============================================================================================
-	// функция коннекта к базе 
-	function selectdb($date_base)
-		{
-  			global $config;
-  
-  			switch ($date_base):
-
- 			case ("mangos"):
-  			$db = $config['dbName'];
-  			$ip = $config['hostname'];
-  			$userdb = $config['username'];
-  			$pw = $config['password'];
-  			break;
-  
-  			case ("realmd"):
-  			$db = $config['rdbName'];
-  			$ip = $config['rhostname'];
-  			$userdb = $config['rusername'];
-  			$pw = $config['rpassword'];
-  			break;
-  
-  			case ("characters"):
-  			$db = $config['cdbName'];
-  			$ip = $config['chostname'];
-  			$userdb = $config['cusername'];
-  			$pw = $config['cpassword'];
-  			break;
-  
-  			case ("wcf"):
-  			$db = $config['wdbName'];
-  			$ip = $config['whostname'];
-  			$userdb = $config['wusername'];
-  			$pw = $config['wpassword'];
-  			break;
-  
-  			endswitch;
-  
- 			$connect = mysql_connect($ip, $userdb, $pw);
- 			mysql_select_db($db, $connect);
-			mysql_query("SET NAMES '".$config['encoding']."'");   
-		}
-
 	function getLocale($locale)
 		{
   			switch ($locale):
@@ -205,35 +162,6 @@
 		}
 
 	//=============================================================================================
-	// функция добавления \ перед кавычками. Для безопасности дабы Mysql не выдавала ошибку.
-	function addslash($text)
-		{
-			$text = addslashes($text);
-			return $text;
-		}
-
-	//=============================================================================================
-	// пользовательская функция, предназначена для подовления HTML кода в нежелательных местах
-	function stripinput($text)
-		{
-			if (!is_array($text))
-				{
-					$text = trim($text);
-					$search = array("&", "\"", "'", "\\", '\"', "\'", "<", ">", "&nbsp;");
-					$replace = array("&amp;", "&quot;", "&#39;", "&#92;", "&quot;", "&#39;", "&lt;", "&gt;", " ");
-					$text = preg_replace("/(&amp;)+(?=\#([0-9]{2,3});)/i", "&", str_replace($search, $replace, $text));
-				}
-			else
-				{
-					foreach ($exts as $key => $value)
-						{
-							$text[$key] = stripinput($value);
-						}
-				}
-			return $text;
-		}
-
-	//=============================================================================================
 	// функция, создающая админку, берет данные из базы mysql
 	function admin_page($admin_page,$admin_string)
 		{
@@ -264,16 +192,6 @@
 						}
 				}
 					echo"</tr>";
-		}
-
-	//=============================================================================================
-	//заменяет &, \, ', \\, <, > эти тэги на спец символы. В этом случаи браузер их не обрабатывает
-	function phpentities($text)
-		{
-			$search = array("&", "\"", "'", "\\", "<", ">");
-			$replace = array("&amp;", "&quot;", "&#39;", "&#92;", "&lt;", "&gt;");
-			$text = str_replace($search, $replace, $text);
-			return $text;
 		}
 
 	//=============================================================================================

@@ -18,40 +18,40 @@
    			echo $simple_script;
 
 			selectdb(wcf);
-  			$query_news = mysql_query("SELECT * FROM ".DB_NEWS." 
+  			$result = mysql_query("SELECT * FROM ".DB_NEWS." 
 						LEFT JOIN ".DB_NEWS_CATS." ON `news_cat_id`=`news_cats`
 						LEFT JOIN ".DB_USERS." ON ".DB_USERS.".`user_id`=".DB_NEWS.".`news_author`
 						WHERE `news_id`='".$newsid."' limit 1") or trigger_error(mysql_error());
 
-  			if (mysql_num_rows($query_news) > 0 )
+  			if (db_num_rows($result) != 0 )
 				{
-					$newsexp = mysql_fetch_assoc($query_news);
+					$data = db_aassoc($result);
 					opentable();
-          				echo"<tr><td align='left' colspan='3' class='head-table'>&nbsp;".$newsexp['news_title']."</td></tr>";
-          				echo"<tr><td align='left' width='80'><img src='".IMAGES_NC.$newsexp['news_cat_image']."' align='absmiddle'>&nbsp;</td><td>&nbsp&nbsp;</td>";
-					echo"<td align='top'>".stripslashes($newsexp['news_text_main'])."</td><td>&nbsp;&nbsp;</td></tr>";
-          				echo"<tr><td colspan='4' align='left'>&nbsp;".$txt['modul_news_creation_date']."&nbsp;".$newsexp['news_date']."&nbsp;".$txt['modul_news_author']."
-						&nbsp;".ucfirst(strtolower($newsexp['user_name']))."&nbsp;<br><hr></td></tr>";
+          				echo"<tr><td align='left' colspan='3' class='head-table'>&nbsp;".$data['news_title']."</td></tr>";
+          				echo"<tr><td align='left' width='80'><img src='".IMAGES_NC.$data['news_cat_image']."' align='absmiddle'>&nbsp;</td><td>&nbsp&nbsp;</td>";
+					echo"<td align='top'>".stripslashes($data['news_text_main'])."</td><td>&nbsp;&nbsp;</td></tr>";
+          				echo"<tr><td colspan='4' align='left'>&nbsp;".$txt['modul_news_creation_date']."&nbsp;".$data['news_date']."&nbsp;".$txt['modul_news_author']."
+						&nbsp;".ucfirst(strtolower($data['user_name']))."&nbsp;<br><hr></td></tr>";
 
-					$query_com = mysql_query("SELECT * FROM `wcf_comments` WHERE `comment_item_id`='".$newsid."' AND `comment_type`='1'") or trigger_error(mysql_error());
+					$result = mysql_query("SELECT * FROM `wcf_comments` WHERE `comment_item_id`='".$newsid."' AND `comment_type`='1'") or trigger_error(mysql_error());
 
-					while ($comments =  mysql_fetch_array($query_com))
+					while ($data = db_array($result))
 						{
-					  		$query_user = mysql_query("SELECT * FROM ".DB_USERS." WHERE `user_id`='".$comments['user_id']."' LIMIT 1");
-  							$com_usr = mysql_fetch_assoc($query_user);
+					  		$result_user = mysql_query("SELECT * FROM ".DB_USERS." WHERE `user_id`='".$data['user_id']."' LIMIT 1");
+  							$data_user = db_aassoc($result_user);
 
-							echo"<tr><td colspan='2' align='left' class='tbl2'>".ucfirst(strtolower($com_usr['user_name']))."<br>";
+							echo"<tr><td colspan='2' align='left' class='tbl2'>".ucfirst(strtolower($data_user['user_name']))."<br>";
 
 							if ($usr['user_avatar'] <> '')
 								{
-			  						echo"<img src='".IMAGES_A.$com_usr['user_avatar']."'/></td>";
+			  						echo"<img src='".IMAGES_A.$data_user['user_avatar']."'/></td>";
 								}
 							else
 								{
 									echo"<img src='".IMAGES_A."null-avatar.gif' class='avatar'></td>";
 								}
-							echo"<td colspan='2' align='left' class='tbl1'>".stripslashes($comments['comment_message'])."</td></tr><tr>";
-							echo"<td colspan='4'>&nbsp;".$txt['modul_newsexp_date_reply']."&nbsp;".$comments['comment_date']."<br><hr></td></tr>";
+							echo"<td colspan='2' align='left' class='tbl1'>".stripslashes($data['comment_message'])."</td></tr><tr>";
+							echo"<td colspan='4'>&nbsp;".$txt['modul_newsexp_date_reply']."&nbsp;".$data['comment_date']."<br><hr></td></tr>";
 						}
 
 					//=========================
@@ -61,11 +61,11 @@
 							if($_POST['comments'])
 								{
 									// Создаем коммент
-									$p_add_post = mysql_query("INSERT INTO `wcf_comments`
-												(`comment_item_id`,`comment_type`,`user_id`,`comment_message`)
-												VALUES ('".$newsid."','1','".$_SESSION['user_id']."','".addslash($_POST['comments'])."')") or trigger_error(mysql_error());
+									mysql_query("INSERT INTO `wcf_comments`
+											(`comment_item_id`,`comment_type`,`user_id`,`comment_message`)
+											VALUES ('".$newsid."','1','".$_SESSION['user_id']."','".addslash($_POST['comments'])."')") or trigger_error(mysql_error());
 
-									echo"<img src='".IMAGES."ajax-loader.gif'/>";
+									echo"<tr><td align='center' colspan='4'><img src='".IMAGES."ajax-loader.gif'/></td></tr>";
 									return_form(5,'?modul=newsext&id='.$newsid);
 								}
 							else 

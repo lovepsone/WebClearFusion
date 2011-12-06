@@ -30,6 +30,8 @@
 	// Запускаем основные функции и многоузловое определение\Run the basic functions and determination of multisite
 	//=============================================================================================================
 	require_once BASEDIR."include/functions.php";
+	require_once BASEDIR."include/functions_mysql.php";
+	require_once BASEDIR."include/functions_text_process.php";
 	require_once BASEDIR."include/multisite.php";
 
 	//=============================================================================================================
