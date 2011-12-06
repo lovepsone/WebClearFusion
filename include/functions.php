@@ -313,7 +313,7 @@
 
 			if ($side == "center")
 				{
-					if ($_SERVER['QUERY_STRING'] == "" or $_SERVER['QUERY_STRING'] == $config['news'])
+					if ($_SERVER['QUERY_STRING'] == "" OR $_SERVER['QUERY_STRING'] == "modul=".$config['default_module'])
 						{
 							return true;
 						}
