@@ -13,7 +13,7 @@
     	session_start();
 
 	selectdb(wcf);
-       	$query = mysql_query("UPDATE ".DB_USERS." SET `user_online`='0' WHERE (`user_id`='".$_SESSION['user_id']."')");
+       	mysql_query("UPDATE ".DB_USERS." SET `user_online`='0' WHERE (`user_id`='".$_SESSION['user_id']."')");
     	unset($_SESSION['user_id']);
 
     	unset($_SESSION['ip']);

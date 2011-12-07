@@ -110,8 +110,8 @@
 				{
    					for ($i = 1; $i <= $AllPages; $i++)
 						{
-       							if ($i == $Page)  $text .= "<td class=navicurrent>$i</td>";
-       							else $text .= "<td class=navibutton><a href='$LinkText$i' target='_self'>$i</a></td>";
+       							if ($i == $Page)  $text .= "<td>$i</td>";
+       							else $text .= "<td><a href='$LinkText$i' target='_self'>$i</a></td>";
       						}
   				} 
 			else
@@ -120,41 +120,41 @@
 						{
         						for ($i = 1; $i <= 6; $i++)
 								{
-            								if ($i == $Page)  $text .= "<td class=navicurrent>$i</td>";
-            								else $text .= "<td class=navibutton><a href='$LinkText$i' target='_self'>$i</a></td>";
+            								if ($i == $Page)  $text .= "<td>$i</td>";
+            								else $text .= "<td><a href='$LinkText$i' target='_self'>$i</a></td>";
             							}
         						$text .= "<td>...</td>";
-        						$text .= "<td class=navibutton><a href='$LinkText($AllPages-2)' target='_self'>($AllPages-2)</a></td>";
-        						$text .= "<td class=navibutton><a href='$LinkText($AllPages-1)' target='_self'>($AllPages-1)</a></td>";
-        						$text .= "<td class=navibutton><a href='$LinkText$AllPages' target='_self'>$AllPages</a></td>";
+        						$text .= "<td><a href='$LinkText($AllPages-2)' target='_self'>($AllPages-2)</a></td>";
+        						$text .= "<td><a href='$LinkText($AllPages-1)' target='_self'>($AllPages-1)</a></td>";
+        						$text .= "<td><a href='$LinkText$AllPages' target='_self'>$AllPages</a></td>";
         					}
 
     					else if ($Page > ($AllPages-5))
 						{
-        						$text .= "<td class=navibutton><a href='$LinkText1' target='_self'>1</a></td>";
-        						$text .= "<td class=navibutton><a href='$LinkText2' target='_self'>2</a></td>";
-        						$text .= "<td class=navibutton><a href='$LinkText3' target='_self'>3</a></td>";
+        						$text .= "<td><a href='$LinkText1' target='_self'>1</a></td>";
+        						$text .= "<td><a href='$LinkText2' target='_self'>2</a></td>";
+        						$text .= "<td><a href='$LinkText3' target='_self'>3</a></td>";
         						$text .= "<td>...</td>";
 
         						for ($i = ($AllPages-5); $i <= $AllPages; $i++)
 								{
-            								if ($i == $Page)  $text .= "<td class=navicurrent>$i</td>";
-            								else $text .= "<td class=navibutton><a href='$LinkText$i' target='_self'>$i</a></td>";
+            								if ($i == $Page)  $text .= "<td>$i</td>";
+            								else $text .= "<td><a href='$LinkText$i' target='_self'>$i</a></td>";
             							}
         					}
     					else
 						{
-        						$text .= "<td class=navibutton><a href='$LinkText1' target='_self'>1</a></td>";
-        						$text .= "<td class=navibutton><a href='$LinkText2' target='_self'>2</a></td>";
-        						$text .= "<td class=navibutton><a href='$LinkText3' target='_self'>3</a></td>";
+        						$text .= "<td><a href='$LinkText1' target='_self'>1</a></td>";
+        						$text .= "<td><a href='$LinkText2' target='_self'>2</a></td>";
+        						$text .= "<td><a href='$LinkText3' target='_self'>3</a></td>";
         						$text .= "<td>...</td>";
-        						$text .= "<td class=navibutton><a href='$LinkText($Page-1)' target='_self'>($Page-1)</a></td>";
-        						$text .= "<td class=navicurrent>$Page</td>";
-        						$text .= "<td class=navibutton><a href='$LinkText($Page+1)' target='_self'>($Page+1)</a></td>";
+        						$text .= "<td><a href='$LinkText($Page-1)' target='_self'>($Page-1)</a></td>";
+        						$text .= "<td>$Page</td>";
+        						$text .= "<td><a href='$LinkText($Page+1)' target='_self'>($Page+1)</a></td>";
         						$text .= "<td>...</td>";
-        						$text .= "<td class=navibutton><a href='$LinkText($AllPages-2)' target='_self'>($AllPages-2)</a></td>";
-        						$text .= "<td class=navibutton><a href='$LinkText($AllPages-1)' target='_self'>($AllPages-1)</a></td>";
-        						$text .= "<td class=navibutton><a href='$LinkText$AllPages' target='_self'>$AllPages</a></td>";
+        						$text .= "<td><a href='$LinkText($AllPages-2)' target='_self'>($AllPages-2)</a></td>";
+        						$text .= "<td><a href='$LinkText($AllPages-1)' target='_self'>($AllPages-1)</a></td>";
+        						$text .= "<td><a href='$LinkText$AllPages' target='_self'>$AllPages</a></td>";
         					}
   				}
 			$text .= "</tr></table>";
