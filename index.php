@@ -41,7 +41,7 @@
 	$result = mysql_query("SELECT * FROM ".DB_SETTINGS."") or trigger_error(mysql_error());
 	if ($result)
 		{
-			while ($data = mysql_fetch_array($result))
+			while ($data = db_array($result))
 				{
 					$config[$data['settings_name']] = $data['settings_value'];
 				}

@@ -16,8 +16,8 @@
 
 
 	selectdb(wcf);
-	$n_cres = mysql_query("SELECT count(`news_date`) as kol FROM ".DB_NEWS." ") or trigger_error(mysql_error());
-	$n_kolzap = mysql_fetch_array($n_cres);
+	$result = mysql_query("SELECT count(`news_date`) as kol FROM ".DB_NEWS." ") or trigger_error(mysql_error());
+	$n_kolzap = db_array($result);
 
 	if ($n_kolzap['kol'] > $config['page_news_edit'])
 		{
@@ -31,19 +31,19 @@
 			$start_rec_n = 0;
 		}
 
-	$kres = mysql_query("SELECT * FROM ".DB_NEWS." ORDER BY `news_date` DESC limit $start_rec_n,$page_len_n") or trigger_error(mysql_error());
+	$result = mysql_query("SELECT * FROM ".DB_NEWS." ORDER BY `news_date` DESC limit $start_rec_n,$page_len_n") or trigger_error(mysql_error());
 
 	echo"<form method='post'>";
 	opentable();
 	echo"<div align='center'><h1>".$txt['admin_newsmaker']."</h1></div><hr>";
 
-	if (mysql_num_rows($kres) > 0 )
+	if (db_num_rows($result) > 0 )
 		{
-   			while ($nres = mysql_fetch_array($kres))
+   			while ($data = db_array($result))
 				{
-          				echo"<tr><td align='left' class='page'><input name=id type=radio value='".$nres['news_id']."'></td>";
-          				echo"<td align='left' class='page'>".$nres['news_title']."</td>";
-          				echo"<td align='right' class='page'>".$nres['news_date']."</td></tr>";
+          				echo"<tr><td align='left' class='page'><input name=id type=radio value='".$data['news_id']."'></td>";
+          				echo"<td align='left' class='page'>".$data['news_title']."</td>";
+          				echo"<td align='right' class='page'>".$data['news_date']."</td></tr>";
           				$kol++;
           			}
 
@@ -76,14 +76,16 @@
 	echo"<td align='center'><input action='index.php' name='modul' value='newsedit' type=hidden><input type='submit' class='button' value='".$txt['Run']."'></td></tr><hr>";
 	closetable();
 	echo"</form>";
+
 	//===============================================
 	// Доп. форма
-	$query = mysql_query("SELECT * FROM ".DB_NEWS_CATS."") or trigger_error(mysql_error());
+	$result = mysql_query("SELECT * FROM ".DB_NEWS_CATS."") or trigger_error(mysql_error());
 	$editlist = "";
-	while ($news_cats = mysql_fetch_array($query))
+	while ($news_cats = db_array($result))
 		{
 	  		$news_cats_list .= "<option value=".$news_cats['news_cat_id'].">".$news_cats['news_cat_name']."</option>";
 		}
+
 	//===============================================
 	if (isset($_POST['cmd']))
 		{
@@ -93,26 +95,26 @@
 			// Редактирование
      			if (isset($_POST['id']) AND ($_POST['cmd'] == 1) AND ($_POST['id'] > 0))
 				{
-       					$nres = mysql_query("SELECT * FROM ".DB_NEWS." WHERE `news_id` = ".$_POST['id'].' limit 1') or trigger_error(mysql_error());
-	   				$nr = mysql_fetch_assoc($nres);
+       					$result = mysql_query("SELECT * FROM ".DB_NEWS." WHERE `news_id` = ".$_POST['id'].' limit 1') or trigger_error(mysql_error());
+	   				$data = db_aassoc($result);
 
        					echo"<br><form method='post'>";
 					opentable();
 
              				echo"<tr><td align='left' valign='middle'>".$txt['admin_teme_news']."&nbsp;&nbsp;";
-					echo"<input name='modul' value='newsedit' type=hidden><input type='text' name='tema_edit' class='textbox' value='".$nr['news_title']."' size='40'></td>";
+					echo"<input name='modul' value='newsedit' type=hidden><input type='text' name='tema_edit' class='textbox' value='".$data['news_title']."' size='40'></td>";
 
         				echo"<tr><td align='left' valign='middle'>".$txt['admin_category_news']."&nbsp;&nbsp;";
-					echo"<input name='cmd' value='edit' type=hidden><input name='guid' class='textbox' value='".$nr['news_id']."' type=hidden>";
+					echo"<input name='cmd' value='edit' type=hidden><input name='guid' class='textbox' value='".$data['news_id']."' type=hidden>";
 
         				echo"<select name=catedit class='textbox'>$news_cats_list</select>";
 					echo"</td></tr>";
 
 					echo"<tr><td><hr>".$txt['admin_newsmaker_newsflash']."</td></tr>";
-       					echo"<tr><td><textarea name='news_edit'>".$nr['news_text']."</textarea></td></tr>";
+       					echo"<tr><td><textarea name='news_edit'>".$data['news_text']."</textarea></td></tr>";
 					echo"<tr><td><hr>".$txt['admin_newsmaker_newsfull']."</td></tr>";
-       					echo"<tr><td><textarea name='news_edit_main'>".$nr['news_text_main']."</textarea></td></tr>";
-       					echo"<tr><td align='center'><br><input type='submit' class='button' value='$txt[menu_admin_news_edit]'/></td></tr>";
+       					echo"<tr><td><textarea name='news_edit_main'>".$data['news_text_main']."</textarea></td></tr>";
+       					echo"<tr><td align='center'><br><input type='submit' class='button' value='".$txt['menu_admin_news_edit']."'/></td></tr>";
 					closetable();
 					echo"</form>";
       				}
