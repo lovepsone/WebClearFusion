@@ -72,6 +72,7 @@ $txt = array(
 'admin_forumedit_cat_or_forum'	=>'Категория/Форум',
 'admin_forumedit_order'		=>'Порядок',
 'admin_forumedit_options'	=>'Опции',
+'admin_forumedit_cleaning'	=>'Очистка',
 'admin_newsmaker_del'		=>'Удалить',
 'admin_panels_center'		=>'по центру',
 'admin_panels_left'		=>'с лева',

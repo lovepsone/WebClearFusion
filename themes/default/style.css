@@ -273,6 +273,10 @@ hr {
 	border: 1px solid #eee;
 }
 
+.alt {
+	color: #04688d;
+}
+
 .copyright {
 	font-size: 10px;
 	font-weight: normal;
