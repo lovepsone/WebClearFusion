@@ -48,4 +48,12 @@
 			$text = str_replace($search, $replace, $text);
 			return $text;
 		}
+
+	//=============================================================================================
+	//возвращает подстроку строки $string длиной $length, начинающегося с $start символа по счету. 
+	function substring($string,$start,$length)
+		{
+			$string = substr($string,$start,$length);
+			return $string;
+		}
 ?>

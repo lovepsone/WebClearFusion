@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 27.10.2011 16:16:24
+Date: 08.12.2011 13:06:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS `wcf_forums`;
 CREATE TABLE `wcf_forums` (
   `forum_id` int(11) unsigned NOT NULL auto_increment,
   `forum_sections` int(11) unsigned NOT NULL default '0',
+  `forum_order` int(11) unsigned NOT NULL default '0',
   `forum_name` longtext,
   `forum_description` longtext,
   `forum_lastpostid` int(11) unsigned NOT NULL default '0',
@@ -28,8 +29,8 @@ CREATE TABLE `wcf_forums` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `wcf_forums` VALUES ('1', '0', 'Информация о сервере', null, '0', '0', '0');
-INSERT INTO `wcf_forums` VALUES ('2', '1', 'Информация от администрации', 'Обновления, изменения, события, новости.', '2', '2', '2');
-INSERT INTO `wcf_forums` VALUES ('3', '0', 'Мир Warcraft', null, '0', '0', '0');
-INSERT INTO `wcf_forums` VALUES ('4', '3', 'Аддоны и Макросы\r\n', 'Скачиваем и заказываем', '3', '1', '1');
-INSERT INTO `wcf_forums` VALUES ('5', '1', 'Мастерская', 'Делимся своими идеями, решениями. Обсуждаем, создаем что-то свое.', '4', '1', '1');
+INSERT INTO `wcf_forums` VALUES ('1', '0', '1', 'Информация о сервере', null, '0', '0', '0');
+INSERT INTO `wcf_forums` VALUES ('2', '1', '1', 'Информация от администрации', 'Обновления, изменения, события, новости.', '2', '2', '2');
+INSERT INTO `wcf_forums` VALUES ('3', '0', '2', 'Мир Warcraft', null, '0', '0', '0');
+INSERT INTO `wcf_forums` VALUES ('4', '3', '1', 'Аддоны и Макросы\r\n', 'Скачиваем и заказываем', '3', '1', '1');
+INSERT INTO `wcf_forums` VALUES ('5', '1', '2', 'Мастерская', 'Делимся своими идеями, решениями. Обсуждаем, создаем что-то свое.', '4', '1', '1');

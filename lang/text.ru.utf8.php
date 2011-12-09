@@ -135,7 +135,7 @@ $txt = array(
 'forum'				=>'Форум',
 'forum_create_theme'		=>'Создать тему',
 'forum_create_name_theme'	=>'Название темы',
-
+'forum_no_partitions'		=>'Администратор не создал разделы!!!',
 'forum_column_section'		=>'Раздел',
 'forum_column_last_post'	=>'Последнее сообщение',
 'forum_column_so'		=>'Тем',
@@ -156,6 +156,8 @@ $txt = array(
 'Run'				=>'Выполнить',
 'home'				=>'Главная',
 'change_lang'			=>'Выбор языка',
+'up'				=>'Вверх',
+'down'				=>'Вниз',
 '257'				=>'Модуль',
 );
 ?>
