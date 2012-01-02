@@ -50,6 +50,8 @@ $modules  = array (
 	'admin'		=> array ('administration/admin.php',		257,             1,     	     3,   	  0  ),
 	'forumedit'	=> array ('administration/forumedit.php',	257,             1,     	     3,   	  0  ),
 	'settings'	=> array ('administration/settings_main.php',	257,             1,     	     3,   	  0  ),
+	'newsedit'	=> array ('administration/news.php',		257,             1,     	     3,   	  0  ),
+	'newscats'	=> array ('administration/news_cats.php',	257,             1,     	     3,   	  0  ),
 
 // модули для логов\modules for logs
 	'reg'     	=> array ('module/reg/reg.php',			reg,            -1,     	     3,   	  0  ),
@@ -58,7 +60,6 @@ $modules  = array (
 // модули для новостей\modules for news
 	'news'     	=> array ('module/news/news.php',		news,           -1,     	     3,   	  1  ),
 	'newsext'     	=> array ('module/news/news_ext.php',		257,            -1,     	     3,   	  0  ),
-	'newsedit'	=> array ('administration/news.php',		257,             1,     	     3,   	  0  ),
 
 // форум\forum
 	'forum'       => array ('forum/forum.php',			forum,          -1,     	     3,   	  1  ),

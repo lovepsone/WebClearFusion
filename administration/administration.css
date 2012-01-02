@@ -17,37 +17,12 @@
 	border: 1px solid #202020;
 	border-left-width: 0;
 	text-decoration: none;
-	background: url(../images/admin/menubg.gif) center center repeat-x;
+	background: url(../administration/images/menubg.gif) center center repeat-x;
 	font: bold 10px Tahoma;
 		}
 
-.adminmenu ul li ul {
-	left: 0;
-	top: 0;
-	border-top: 1px solid #202020;
-	position: absolute;
-	display: block;
-	visibility: hidden;
-	z-index: 100;
-		}
-
-.adminmenu ul li ul li {
-	display: inline;
-	float: none;
-			}
-
-.adminmenu ul li ul li a {
-	width: 176px;
-	font-weight: normal;
-	padding: 2px 8px;
-	background: url(../images/admin/menubgover.gif) center center repeat-x;
-	border-width: 0 1px 1px 1px;
-		}
-
 .adminmenu ul li a:hover {
-	background: url(../images/admin/menubgover.gif) center center repeat-x;
+	background: url(../administration/images/menubgover.gif) center center repeat-x;
 		}
 
-.adminmenu ul li ul li a:hover {
-	background: url(../images/admin/menubg.gif) center center repeat-x;
-		}
+

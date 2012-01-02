@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 04.11.2011 19:17:35
+Date: 02.01.2012 13:24:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -30,7 +30,7 @@ INSERT INTO `wcf_admin` VALUES ('1', '1', '1', '1', 'news.gif', 'Новости'
 INSERT INTO `wcf_admin` VALUES ('2', '2', '1', '1', 'forums.gif', 'Форум', 'forumedit');
 INSERT INTO `wcf_admin` VALUES ('3', '3', '1', '1', 'panels.gif', 'Панели', 'panelsedit');
 INSERT INTO `wcf_admin` VALUES ('4', '4', '1', '1', '', null, '');
-INSERT INTO `wcf_admin` VALUES ('5', '1', '1', '2', '', '', '');
+INSERT INTO `wcf_admin` VALUES ('5', '1', '1', '2', 'news_cats', 'Категории новостей', 'newscats');
 INSERT INTO `wcf_admin` VALUES ('6', '1', '1', '2', '', null, '');
 INSERT INTO `wcf_admin` VALUES ('7', '1', '1', '2', '', null, '');
 INSERT INTO `wcf_admin` VALUES ('8', '1', '1', '2', '', null, '');
