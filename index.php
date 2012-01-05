@@ -63,8 +63,7 @@
 	if (isset($_GET['lang'])) $config['lang'] = $_GET['lang'];
        					$_SESSION['lang'] = $config['lang'];
 
-	if ($config['lang'] == 'en') require "lang/text.".$config['lang'].".".$config['encoding'].".php";
-              else require "lang/text.".$config['lang'].".".$config['encoding'].".php";
+	if ($config['lang']) require "lang/".$config['lang']."/".$config['encoding']."/text.php";
 
 	//=============================================================================================================
 	//Установка нужной темы\Setting the right topic

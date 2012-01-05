@@ -86,8 +86,8 @@
 		{
 			echo"<select size='1' name='lang_list' onchange=\"document.location.href='index.php?lang='+this.value;\">
              			<option selected>".$txt['change_lang']."</option>
-             			<option value='ru'>ru</option>
-             			<option value='en'>en</option>
+             			<option value='russian'>Russian</option>
+             			<option value='english'>English</option>
 			</select>";
   		}
 	echo"</body>";

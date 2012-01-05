@@ -64,11 +64,11 @@
 		{
     			switch($_SESSION['lang'])
     			{
-        			case "ru":
-        			$config['lang'] = "ru";
+        			case "russian":
+        			$config['lang'] = "russian";
         			break;
-        			case "en":
-        			$config['lang'] = "en";
+        			case "english":
+        			$config['lang'] = "english";
         			break;
         			default:
         			unset($_SESSION['lang']);
