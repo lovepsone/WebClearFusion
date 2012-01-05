@@ -43,15 +43,15 @@
 						WHERE ".DB_FORUMS_THREADS.".`forum_id`='$forum_id'
 						ORDER BY ".DB_FORUMS_POSTS.".`post_date` DESC LIMIT $start_rec_thr,$page_len_thr");
 			opentable();
+   			echo"<tr><th width='4%'></th>";
+			echo"<th width='57%' class='forum-caption'>".$txt['forum_column_top_aut']."</th>";
+			echo"<th width='21%' class='forum-caption'>".$txt['forum_column_last_post']."</th>";
+			echo"<th width='5%' class='forum-caption'>".$txt['forum_column_replies']."</th>";
+			echo"<th width='10%' class='forum-caption'>".$txt['forum_column_views']."</th></tr>";
+			echo"<tr><th width='100%' colspan='5' align='left'><a href='index.php?modul=thread&create&forum_id=$forum_id'>".$txt['forum_create_theme']."</a></th></tr>";
+
 			if (db_num_rows($result) > 0 )
 				{
-   					echo"<tr><th width='4%'></th>";
-					echo"<th width='57%' class='forum-caption'>".$txt['forum_column_top_aut']."</th>";
-					echo"<th width='21%' class='forum-caption'>".$txt['forum_column_last_post']."</th>";
-					echo"<th width='5%' class='forum-caption'>".$txt['forum_column_replies']."</th>";
-					echo"<th width='10%' class='forum-caption'>".$txt['forum_column_views']."</th></tr>";
-					echo"<tr><th width='100%' colspan='5' align='left'><a href='index.php?modul=thread&create&forum_id=$forum_id'>$txt[forum_create_theme]</a></th></tr>";
-
 					while($data = db_array($result))
 						{
 							selectdb(wcf);
@@ -73,6 +73,10 @@
    							if (!isset($_GET['page']) OR ($_GET['page'] == '') OR ($_GET['page'] == '_')) $tp3 = 1; else $tp3 = (int)$_GET['page'];
  							echo"<tr><td colspan='3' align='center' valign='middle' >".ShowPageNavigator('index.php?modul=thread&id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";
   						}
+				}
+			else
+				{
+					echo"<td width='100%' align='center' colspan='5' class='tbl1'><h3>".$txt['forum_no_temes']."</h3></td>";
 				}
 			closetable();
 		}

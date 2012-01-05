@@ -30,14 +30,14 @@ td {
 | —сылки и кнопки
 ===============================*/
 a {
-	font-size: 10px;
+	font-size: 11px;
 	color: #ff0000;
 	font-family: arial, helvetica, verdana, sans-serif;
 	text-decoration: none;
 }
 
 a:hover {
-	font-size: 11px;
+	font-size: 12px;
 	color: #ff0000;
 	font-family:: arial, helvetica, verdana, sans-serif;
 	text-decoration: underline;
@@ -216,7 +216,7 @@ a:hover {
 }
 
 .tbl1 {
-	font-size: 11px;
+	font-size: 12px;
 	background-color: none;
 	background-image: url(img/tbl1.gif);
 	background-repeat: repeat-x;
@@ -229,6 +229,14 @@ a:hover {
 	background-color: none;
 	background-image: url(img/tbl1.gif);
 	background-repeat: repeat-x;
+	color: #ff0000;
+	padding: 4px;
+}
+
+.small-tbl1 {
+	font-size: 10px;
+	background-color: none;
+	font-weight: normal;
 	color: #ff0000;
 	padding: 4px;
 }

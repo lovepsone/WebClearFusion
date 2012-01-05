@@ -41,10 +41,19 @@
 
 					echo"<tr><td width='4%' align='left' class='tbl1'></td>";
 					echo"<td width='59%' align='left' class='tbl1'><a href='index.php?modul=thread&id=".$data['forum_id']."'><b>".$data['forum_name']."</b></a>";
-					echo"<br><span class='small'>".$data['forum_description']."</span></td>";
+					echo"<br><span class='small-tbl1'>".$data['forum_description']."</span></td>";
 
-					echo"<td width='21%' align='left' class='tbl1'><a href='index.php?modul=post&id=".$data['thread_id']."&forum_id=".$data['forum_id']."'><b>".substring($data['thread_subject'],0,30)."...</b></a>";
-					echo"<br>&nbsp;&nbsp;".$txt['forum_from']."&nbsp;".ucfirst(strtolower($data['user_name']))."<br>&nbsp;&nbsp;".$data['post_date']."</td>";
+					echo"<td width='21%' align='left' class='tbl1'>";
+					if ($data['thread_subject'] != "")
+						{
+							echo"<a href='index.php?modul=post&id=".$data['thread_id']."&forum_id=".$data['forum_id']."'><b>".substring($data['thread_subject'],0,30)."...</b></a>";
+							echo"<br>&nbsp;&nbsp;".$txt['forum_from']."&nbsp;".ucfirst(strtolower($data['user_name']))."<br>&nbsp;&nbsp;".$data['post_date'];
+						}
+					else
+						{
+							echo $txt['forum_no_message'];
+						}
+					echo"</td>";
 
 					echo"<td width='5%' align='center'class='tbl2'>".$data['forum_threadcount']."</td>";
 					echo"<td width='11%' align='center' class='tbl2'>".$data['forum_postcount']."</td></tr>";	

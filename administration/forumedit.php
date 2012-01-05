@@ -284,10 +284,10 @@
 	selectdb(wcf);
 	$result = mysql_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_sections`='0' ORDER BY `forum_order`") or trigger_error(mysql_error());
 
-	opentable();
 
 	if (db_num_rows($result) != 0)
 		{
+			opentable();
    			echo"<tr><th width='60%' class='forum-caption'>".$txt['admin_forumedit_cat_or_forum']."</th>";
 			echo"<th width='5%' class='forum-caption'></th>";
 			echo"<th width='21%' class='forum-caption'>".$txt['admin_forumedit_order']."</th>";
@@ -369,6 +369,6 @@
 								}
 						}
 				}
+			closetable();
 		}
-	closetable();
 ?>

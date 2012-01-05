@@ -156,6 +156,8 @@ $txt = array(
 'forum_column_replies'		=>'Ответов',
 'forum_column_views'		=>'Просмотров',
 
+'forum_no_message'		=>'Нет сообщений',
+'forum_no_temes'		=>'Нет тем',
 'forum_quick_reply'		=>'Отправить',
 'forum_log'			=>'Авторизуйтесь чтобы оставлять сообщения на форуме!',
 'forum_from'			=>'от',
