@@ -324,8 +324,8 @@
 					echo"</td>";
 
 					echo"<td align='center' width='1%' class='small' style='white-space:nowrap'>";
-					echo"<a href='".$sect_link."&action=edit&forum_id=".$data['forum_id']."'>".$txt['menu_admin_news_edit']."</a> ::";
-					echo"<a href='".$sect_link."&action=delete&forum_id=".$data['forum_id']."'>".$txt['menu_admin_news_del']."</a></td></tr>";
+					echo"<a href='".$sect_link."&action=edit&forum_id=".$data['forum_id']."'>".$txt['admin_forumedit_edit']."</a> ::";
+					echo"<a href='".$sect_link."&action=delete&forum_id=".$data['forum_id']."'>".$txt['admin_forumedit_del']."</a></td></tr>";
 					echo"<tr><td colspan='4'><hr></td></tr>";
 
 					$result2 = mysql_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_sections`='".$data['forum_id']."' ORDER BY `forum_order`");
@@ -363,8 +363,8 @@
 									$k++;
 									echo"</td>";
 									echo"<td align='center' width='1%' class='tbl1' style='white-space:nowrap'>";
-									echo"<a href='".$forum_link."&action=edit&forum_id=".$data2['forum_id']."'>".$txt['menu_admin_news_edit']."</a> ::";
-									echo"<a href='".$forum_link."&action=delete&forum_id=".$data2['forum_id']."'>".$txt['menu_admin_news_del']."</a></td>";
+									echo"<a href='".$forum_link."&action=edit&forum_id=".$data2['forum_id']."'>".$txt['admin_forumedit_edit']."</a> ::";
+									echo"<a href='".$forum_link."&action=delete&forum_id=".$data2['forum_id']."'>".$txt['admin_forumedit_del']."</a></td>";
 									echo"</tr>";
 								}
 						}
