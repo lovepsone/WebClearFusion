@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 01.12.2011 16:16:11
+Date: 11.01.2012 17:17:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -18,10 +18,10 @@ CREATE TABLE `wcf_comments` (
   `comment_date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `comment_type` int(2) unsigned default '0',
   `user_id` int(11) unsigned default '1',
-  `comment_message` longtext,
+  `comment_message` longtext collate utf8_unicode_ci,
   PRIMARY KEY  (`comment_id`),
   UNIQUE KEY `comment_id` (`comment_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records 

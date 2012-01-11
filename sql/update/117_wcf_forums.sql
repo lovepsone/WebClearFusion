@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 05.01.2012 12:00:09
+Date: 11.01.2012 17:18:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -16,15 +16,15 @@ CREATE TABLE `wcf_forums` (
   `forum_id` int(11) unsigned NOT NULL auto_increment,
   `forum_sections` int(11) unsigned NOT NULL default '0',
   `forum_order` int(11) unsigned NOT NULL default '0',
-  `forum_name` longtext,
-  `forum_description` longtext,
+  `forum_name` longtext collate utf8_unicode_ci,
+  `forum_description` longtext collate utf8_unicode_ci,
   `forum_lastpostid` int(11) unsigned NOT NULL default '0',
   `forum_postcount` int(11) unsigned NOT NULL default '0',
   `forum_threadcount` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`forum_id`),
   KEY `forum_postcount` (`forum_postcount`),
   KEY `forum_threadcount` (`forum_threadcount`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records 

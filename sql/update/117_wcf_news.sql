@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 01.12.2011 16:16:18
+Date: 11.01.2012 16:57:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -16,12 +16,12 @@ CREATE TABLE `wcf_news` (
   `news_id` int(11) unsigned NOT NULL auto_increment,
   `news_date` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
   `news_author` int(11) unsigned default '1',
-  `news_title` longtext,
-  `news_text` longtext,
-  `news_text_main` longtext,
+  `news_title` longtext character set utf8,
+  `news_text` longtext character set utf8,
+  `news_text_main` longtext character set utf8,
   `news_cats` int(11) unsigned default '1',
   PRIMARY KEY  (`news_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records 
