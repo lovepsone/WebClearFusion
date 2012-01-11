@@ -43,6 +43,16 @@ a:hover {
 	text-decoration: underline;
 }
 
+a.side {
+	color: #ff0000;
+	text-decoration: none;
+}
+
+a:hover.side {
+	color: #ff0000;
+	text-decoration: underline;
+}
+
 .button {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
@@ -66,14 +76,14 @@ a:hover {
 	color: #ff0000;
 	background-color: none;
 	padding: 10px 10px 10px 0;
-	width: 175px;
+	width: 190px;
 }
 
 .side-border-right {
 	color: #ff0000;
 	background-color: none;
 	padding: 10px 0 10px 10px;
-	width: 210px;
+	width: 190px;
 }
 .scapmain-body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -262,7 +272,7 @@ a:hover {
 }
 
 .side-label {
-	color: #fff;
+	color: #000066;
 	background-color: none;
 	margin: 2px 0 2px 0;
 	padding: 2px 2px 3px 2px;
@@ -277,6 +287,11 @@ a:hover {
 }
 
 hr {
+	height: 1px;
+	border: 1px solid #eee;
+}
+
+hr.side-hr {
 	height: 1px;
 	border: 1px solid #eee;
 }

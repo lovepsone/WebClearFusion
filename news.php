@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
 | Filename: news.php
 | Author: lovepsone
@@ -9,6 +9,9 @@
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
+
+	require_once "maincore.php";
+	require_once THEMES."templates/header.php";
 
 	selectdb(wcf);
   	$result = mysql_query("SELECT count(`news_date`) as number FROM ".DB_NEWS."") or trigger_error(mysql_error());
@@ -41,7 +44,7 @@
           				echo"<tr><td align='left' width='80'><img src='".IMAGES_NC.$data['news_cat_image']."' align='absmiddle'>&nbsp;</td><td>&nbsp&nbsp;</td>";
 					echo"<td align='top'>".stripslashes($data['news_text'])."</td><td>&nbsp;&nbsp;</td></tr>";
           				echo"<tr><td colspan='4' align='left'>&nbsp;".$txt['modul_news_creation_date']."&nbsp;".$data['news_date']."&nbsp;".$txt['modul_news_author']."
-						&nbsp;".ucfirst(strtolower($data['user_name']))."&nbsp;|&nbsp;<a href='index.php?modul=newsext&id=".$data['news_id']."'>".$txt['modul_news_read_more']."</a><br><hr></td></tr>";
+						&nbsp;".ucfirst(strtolower($data['user_name']))."&nbsp;|&nbsp;<a href='newsext.php?id=".$data['news_id']."'>".$txt['modul_news_read_more']."</a><br><hr></td></tr>";
       				}
 
   			if ($kolzap['number'] > $config['page_news'])
@@ -64,4 +67,6 @@
 			echo"<tr><td align='center' valign='middle' >".$txt['modul_news_no_news']."</td></tr>";
 		}
 	closetable();
+
+	require_once THEMES."templates/footer.php";
 ?>

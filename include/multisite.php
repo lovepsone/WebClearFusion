@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
 | Filename: multisite.php
 | Author: lovepsone
@@ -20,6 +20,7 @@
 	define("DB_FORUMS_THREADS", DB_PREFIX."forums_threads");
 	define("DB_LOGIN_FAILED", DB_PREFIX."login_failed");
 	define("DB_LOGS", DB_PREFIX."logs");
+	define("DB_NAVIGATION_LINKS", DB_PREFIX."navigation_links");
 	define("DB_NEWS", DB_PREFIX."news");
 	define("DB_NEWS_CATS", DB_PREFIX."news_cats");
 	define("DB_PANELS", DB_PREFIX."panels");
@@ -34,8 +35,7 @@
 	define("IMAGES", BASEDIR."images/");
 	define("IMAGES_NC", BASEDIR."images/news_cat/");
 	define("IMAGES_A", BASEDIR."images/avatars/");
-	define("INCLUDE", BASEDIR."include/");
-	define("MODULE", BASEDIR."module/");
+	define("INCLUDES", BASEDIR."include/");
 	define("PANELS", BASEDIR."panels/");
 	define("THEMES", BASEDIR."themes/");
 ?>

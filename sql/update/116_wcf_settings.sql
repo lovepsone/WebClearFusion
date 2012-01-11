@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 05.12.2011 14:18:39
+Date: 09.01.2012 17:35:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,7 +22,7 @@ CREATE TABLE `wcf_settings` (
 -- Records 
 -- ----------------------------
 INSERT INTO `wcf_settings` VALUES ('servername', 'Name WoW Server');
-INSERT INTO `wcf_settings` VALUES ('default_module', 'news');
+INSERT INTO `wcf_settings` VALUES ('opening_page', 'news.php');
 INSERT INTO `wcf_settings` VALUES ('urlserver', '/');
 INSERT INTO `wcf_settings` VALUES ('change_lang', 'on');
 INSERT INTO `wcf_settings` VALUES ('page_forum_threads', '10');
@@ -33,4 +33,6 @@ INSERT INTO `wcf_settings` VALUES ('page_news', '5');
 INSERT INTO `wcf_settings` VALUES ('page_news_edit', '20');
 INSERT INTO `wcf_settings` VALUES ('exclude_left', '');
 INSERT INTO `wcf_settings` VALUES ('serverintro', '<div style=\\\'text-align:center\\\'>Добро пожаловать на сайт!</div>');
-INSERT INTO `wcf_settings` VALUES ('exclude_right', 'modul=forum\r\nmodul=thread\r\nmodul=post');
+INSERT INTO `wcf_settings` VALUES ('exclude_right', '');
+INSERT INTO `wcf_settings` VALUES ('exclude_upper', '');
+INSERT INTO `wcf_settings` VALUES ('exclude_lower', '');

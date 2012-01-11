@@ -9,6 +9,8 @@
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
+	require_once "maincore.php";
+	require_once THEMES."templates/header.php";
 
     	session_start();
 
@@ -19,8 +21,10 @@
     	unset($_SESSION['ip']);
     	session_destroy();
 
-	return_form(7,'');
+	return_form(7,'index.php');
 	opentable();
 	echo"<tr><td align='center'>".$txt['logout']."</td></tr>";
-	closetable(); 
+	closetable();
+
+	require_once THEMES."templates/footer.php";
 ?>

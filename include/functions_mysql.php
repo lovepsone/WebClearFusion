@@ -56,6 +56,22 @@
 		}
 
 	//=============================================================================================
+	// MySQL database functions
+	function db_query($query)
+		{
+			$result = @mysql_query($query);
+			if (!$result)
+				{
+					echo mysql_error();
+					return false;
+				}
+			else 
+				{
+					return $result;
+				}
+		}
+
+	//=============================================================================================
 	// функция определяет количество строк в таблице 
 	function db_num_rows($query)
 		{

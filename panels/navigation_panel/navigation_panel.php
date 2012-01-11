@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
 | Filename: navigation_panel.php
 | Author: lovepsone
@@ -10,44 +10,43 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	reset($modules);
-   	while (list($menu1, $menu2) = each($modules))
+	openside();
+	selectdb(wcf);
+	$result = db_query("SELECT `link_name`, `link_url`, `link_visibility` FROM ".DB_NAVIGATION_LINKS." WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`");
+
+
+	if (db_num_rows($result))
 		{
-         		if (($menu2[2]  < 0) and ($menu2[4]  == 1))
+			while($data = db_array($result))
 				{
-               				$MenuForAll = $MenuForAll."<tr><td align='left' valign='middle'><a href='index.php?modul=".$menu1."' target=_self>".$txt[$menu2[1]]."</a></td></tr>";
-              			}
-         		elseif (($menu2[2] == 0) and isset($_SESSION['gnom']) and ($menu2[4]  == 1))
-				{
-               				$MenuPlayers = $MenuPlayers."<tr><td align='left' valign='middle'><a href='index.php?modul=".$menu1."' target=_self>".$txt[$menu2[1]]."</a></td></tr>";
-              			}
-         		elseif (($menu2[2]  > 0) and isset($_SESSION['gnom']) and ($_SESSION['gnom'] > 1) and ($menu2[4]  == 1))
-				{
-               				$MenuAdmin = $MenuAdmin."<tr><td align='left' valign='middle'><a href='index.php?modul=".$menu1."' target=_self>".$txt[$menu2[1]]."</a></td></tr>";
-              			}
-        	}
-
-	if ($MenuForAll.$MenuPlayers.$MenuAdmin <> '')
+					if (check_user($data['link_visibility']))
+						{
+							echo"<tr><td width='100%' valign='middle'>";
+							if ($data['link_name'] != "---" && $data['link_url'] == "---")
+								{
+									echo"<div class='side-label'><strong>".$data['link_name']."</strong></div>";
+								}
+							else if ($data['link_name'] == "---" && $data['link_url'] == "---")
+								{
+									echo"<hr class='side-hr' />\n";
+								}
+							else
+								{
+									echo" <a href='".BASEDIR.$data['link_url']."' class='side'>".$data['link_name']."</a>";
+								}
+							echo"</td></tr>";
+						}
+					else
+						{
+							echo $txt['no_links'];
+							break;
+						}
+				}
+		}
+	else
 		{
-			openside();
-       			if ($MenuForAll <> '')
-				{
-					echo"<tr><td width='100%' valign='middle'><a href='index.php'>$txt[home]</a></td></tr>";
-           				echo"<tr><td align='left' valign='middle'><hr></td></tr>";
-           				echo $MenuForAll;
-           			}
+			echo $txt['no_links'];
+		}
+       	closeside();
 
-       			if ($MenuPlayers <> '')
-				{
-           				echo"<tr><td align='left' valign='middle'><hr></td></tr>";
-           				echo $MenuPlayers;
-           			}
-
-       			if ($MenuAdmin <> '')
-				{
-           				echo"<tr><td align='left' valign='middle'><hr></td></tr>";
-           				echo $MenuAdmin;
-           			}
-       			closeside();
-      		}
 ?>

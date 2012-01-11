@@ -3,25 +3,19 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2011 lovepsone
 +--------------------------------------------------------+
-| Filename: reg.php
-| Author: lovepsone, Кот_ДаWINчи
+| Filename: register.php
+| Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	selectdb(realmd);
-	$er = 0;
-	$rip = 'no';   
-	$query = "SELECT `ip` FROM `ip_banned` WHERE `ip`='".$_SERVER['REMOTE_ADDR']."' LIMIT 1";
-	$res = mysql_query($query);
+//==============================================================================
+// скрипт устарил с последнего момента обнавления, нужно все переделать!
 
-	if ($row = mysql_fetch_assoc($res)) $rip  = $row['ip'];
-	if ($rip == $_SERVER['REMOTE_ADDR'])
-		{
-   			echo $txt['main_ban_ip'];
-   			return;
-   		}
+	require_once "maincore.php";
+	require_once THEMES."templates/header.php";
+        require_once INCLUDES."logs.php";
 
 	if ($config['reg_ip_limit'] > 0)
 		{
@@ -96,8 +90,7 @@
           						$log_email     =  $_POST['email'];
           						$log_resultat  =  '';
           						$log_note      =  $_SESSION['kito'];
-          						$log_old_data  =  '';
-          						require('include/logs.php');					  
+          						$log_old_data  =  '';					  
          					}
        					ReturnMainForm(40);
        					return;
@@ -153,7 +146,8 @@
 	// submit key
 	echo"<tr><td colspan='3' align='center' valign='bottom'><input type='submit' class='button' value='".$txt['reg_add']."'></td></tr>";
 
-	closetable();
-	// end form
 	echo"</form>";
+	closetable();
+
+	require_once THEMES."templates/footer.php";
 ?>

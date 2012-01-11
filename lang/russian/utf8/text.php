@@ -12,10 +12,10 @@
 
 $txt = array(
 # тексты в правом и левом меню
-'menu_auth_title'		=>'Авторизуйтесь или зарегистрируйтесь для удобного пользования',
+'menu_auth_title'		=>'Авторизуйтесь или зарегистрируйтесь',
 'menu_auth_greeting'		=>'Приветствуем вас',
-'menu_auth_account'		=>'Учётная запись',
-'menu_auth_pass'		=>'Пароль',
+'menu_auth_account'		=>'Учётная запись:',
+'menu_auth_pass'		=>'Пароль:',
 'menu_auth_enter'		=>'Войти',
 'menu_auth_reg'			=>'Регистрация',
 'menu_auth_remember_pass'	=>'Восстановить пароль',
@@ -71,10 +71,10 @@ $txt = array(
 'admin_settings_urlserver'	=>'URL сайта:',
 'admin_settings_intro'		=>'Приветствие сайта:',
 'admin_settings_intro_title'	=>'Оставьте пустым, если не нужно',
-'admin_settings_start_unit'	=>'Стартовый модуль:',
+'admin_settings_start_unit'	=>'Стартовая страница:',
 'admin_settings_off_left_p'	=>'Выключить левые панели:',
 'admin_settings_off_right_p'	=>'Выключить правые панели:',
-'admin_settings_off_p_title'	=>'Пример:<br>modul=forum<br>modul=thread<br>modul=post',
+'admin_settings_off_p_title'	=>'Пример:<br>/forum/forum.php<br>/news.php',
 'admin_savesettings'		=>'Сохранить',
 
 'admin_forumedit_edit'		=>'Редактировать',
@@ -163,5 +163,6 @@ $txt = array(
 'yes'				=>'Да',
 'no'				=>'Нет',
 '257'				=>'Модуль',
+'no_links'			=>'Нет ссылок',
 );
 ?>

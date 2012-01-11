@@ -1,25 +1,29 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
-| Filename: admin.php
+| Filename: administration.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	require_once "../maincore.php";
+	require_once THEMES."templates/header.php";
+
+	$url_admin = ADMIN."administration.php";
 	//==================================================================
 	// Верхнее меню
 	opentable();
 	echo"<th colspan='4'>".$txt['menu_auth_admin']." - v".$config['rev_admin']."</th>";
 	echo"<tr><td align='center' colspan='4'><div class='adminmenu'><ul>";
 
-	echo"<li style='border-left: 1px solid #202020;'><a href='index.php?modul=admin&contet'>".$txt['menu_admin_content']."</a></li>";
-	echo"<li style='border-left: 1px solid #202020;'><a href='index.php?modul=admin&users'>".$txt['menu_admin_users']."</a></li>";
-	echo"<li style='border-left: 1px solid #202020;'><a href='index.php?modul=admin&system'>".$txt['menu_admin_system']."</a></li>";
-	echo"<li style='border-left: 1px solid #202020;'><a href='index.php?modul=admin&plants'>".$txt['menu_admin_plants']."</a></li>";
+	echo"<li style='border-left: 1px solid #202020;'><a href='".$url_admin."?contet'>".$txt['menu_admin_content']."</a></li>";
+	echo"<li style='border-left: 1px solid #202020;'><a href='".$url_admin."?users'>".$txt['menu_admin_users']."</a></li>";
+	echo"<li style='border-left: 1px solid #202020;'><a href='".$url_admin."?system'>".$txt['menu_admin_system']."</a></li>";
+	echo"<li style='border-left: 1px solid #202020;'><a href='".$url_admin."?plants'>".$txt['menu_admin_plants']."</a></li>";
 
 	echo"</ul></div></td></tr>";
 
@@ -34,4 +38,6 @@
 			else if (isset($_GET['plants'])) admin_page(4,$i);
 		}
 	closetable();
+
+	require_once THEMES."templates/footer.php";
 ?>

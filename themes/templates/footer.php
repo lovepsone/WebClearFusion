@@ -1,15 +1,18 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
-| Filename: index.php
+| Filename: footer.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	require_once "maincore.php";
-	redirect($config['opening_page']);
+	define("CONTENT", ob_get_contents());
+	ob_end_clean();
+	render_page(false);
+
+	echo"</body>";
 ?>

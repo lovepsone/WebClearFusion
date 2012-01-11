@@ -10,6 +10,9 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	require_once "../maincore.php";
+	require_once THEMES."templates/header.php";
+
 	selectdb(wcf);
 	$result = mysql_query("SELECT f.*, f2.`forum_name` AS `forum_sections_name`, u.`user_id`, u.`user_name`,
 					t.`thread_id`, t.`thread_lastuser`, t.`thread_lastpostid`, t.`thread_subject`,
@@ -40,13 +43,13 @@
 						}
 
 					echo"<tr><td width='4%' align='left' class='tbl1'></td>";
-					echo"<td width='59%' align='left' class='tbl1'><a href='index.php?modul=thread&id=".$data['forum_id']."'><b>".$data['forum_name']."</b></a>";
+					echo"<td width='59%' align='left' class='tbl1'><a href='".FORUM."viewforum.php?forum_id=".$data['forum_id']."'><b>".$data['forum_name']."</b></a>";
 					echo"<br><span class='small-tbl1'>".$data['forum_description']."</span></td>";
 
 					echo"<td width='21%' align='left' class='tbl1'>";
 					if ($data['thread_subject'] != "")
 						{
-							echo"<a href='index.php?modul=post&id=".$data['thread_id']."&forum_id=".$data['forum_id']."'><b>".substring($data['thread_subject'],0,30)."...</b></a>";
+							echo"<a href='".FORUM."viewposts.php?thread_id=".$data['thread_id']."&forum_id=".$data['forum_id']."'><b>".substring($data['thread_subject'],0,30)."...</b></a>";
 							echo"<br>&nbsp;&nbsp;".$txt['forum_from']."&nbsp;".ucfirst(strtolower($data['user_name']))."<br>&nbsp;&nbsp;".$data['post_date'];
 						}
 					else
@@ -64,4 +67,6 @@
 			echo"<tr><td width='100%' align='center' class='tbl1'>".$txt['forum_no_partitions']."</td></tr>";
 		}	
 	closetable();
+
+	require_once THEMES."templates/footer.php";
 ?>
