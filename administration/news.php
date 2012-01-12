@@ -161,7 +161,7 @@
      	if (isset($_POST['run_cmd']) AND isset($_POST['cmd']) AND isset($_POST['id']) AND ($_POST['cmd'] == 1) AND ($_POST['id'] > 0))
 		{
        			$result = db_query("SELECT * FROM ".DB_NEWS." WHERE `news_id` = ".$_POST['id'].' limit 1');
-	   		$data = db_aassoc($result);
+	   		$data = db_assoc($result);
 
 			opentable();
        			echo"<form method='post'>";

@@ -38,6 +38,7 @@
 	//=============================================================================================================
 	// Запускаем основные функции и многоузловое определение\Run the basic functions and determination of multisite
 	//=============================================================================================================
+	require_once BASEDIR."include/multisite.php";
 	require_once BASEDIR."include/functions.php";
 	require_once BASEDIR."include/functions_files.php";
 	require_once BASEDIR."include/functions_lang.php";
@@ -46,7 +47,6 @@
 	require_once BASEDIR."include/functions_text_process.php";
 	require_once BASEDIR."include/functions_theme.php";
 	require_once BASEDIR."include/functions_users.php";
-	require_once BASEDIR."include/multisite.php";
 
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup

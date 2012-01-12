@@ -28,7 +28,7 @@
 
   			if (db_num_rows($result) != 0 )
 				{
-					$data = db_aassoc($result);
+					$data = db_assoc($result);
 					opentable();
           				echo"<tr><td align='left' colspan='3' class='head-table'>&nbsp;".$data['news_title']."</td></tr>";
           				echo"<tr><td align='left' width='80'><img src='".IMAGES_NC.$data['news_cat_image']."' align='absmiddle'>&nbsp;</td><td>&nbsp&nbsp;</td>";
@@ -41,7 +41,7 @@
 					while ($data = db_array($result))
 						{
 					  		$result_user = mysql_query("SELECT * FROM ".DB_USERS." WHERE `user_id`='".$data['user_id']."' LIMIT 1");
-  							$data_user = db_aassoc($result_user);
+  							$data_user = db_assoc($result_user);
 
 							echo"<tr><td colspan='2' align='left' class='tbl2'>".ucfirst(strtolower($data_user['user_name']))."<br>";
 

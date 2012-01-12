@@ -81,7 +81,7 @@
 
 	//=============================================================================================
 	// функция возвращает ассоциативный массив с названиями индексов 
-	function db_aassoc($query)
+	function db_assoc($query)
 		{
 			$result = @mysql_fetch_assoc($query);
 			if (!$result) 
@@ -109,6 +109,38 @@
 				{
 					return $result;
 				}
+		}
+
+	//=============================================================================================
+	// функция работает с логами, добавляет их в бд.
+	// Значения поля mode в запросе:
+	// 0 - другое (указано в поле "note")
+	// 1 - регистрация
+	// 2 - восстановление пароля (запрос)
+	// 3 - восстановление пароля (выслан новый)
+	// 4 - смена емайла (запрос)
+	// 5 - смена емайла (Замена)
+	// 6 - перенос на другой аккаунт персонажа
+	// 7 - переименование персонажа
+	// 8 - unlock ip
+	// 9 - antierror
+
+	function logs($log_account,$log_character,$log_mode,$log_email,$log_resultat,$log_note,$log_old_data)
+		{
+			global $_SERVER;
+			if (($log_account == '') OR ($log_account == 0))
+				{
+					$log_account = $_SESSION['user_id'];
+				}
+			if ($log_character == '')
+				{
+					$log_character = 0;
+				}
+
+			selectdb(wcf);
+			db_query("INSERT ".DB_LOGS." (`ip`, `account`, `character`, `mode`, `email`, `resultat`, `note`, `old_data`)
+				VALUES ('".$_SERVER['REMOTE_ADDR']."', ".$log_account.", ".$log_character.", ".$log_mode.", '".$log_email."', '".$log_resultat."', '".$log_note."', '".$log_old_data."')");
+
 		}
 
 ?>

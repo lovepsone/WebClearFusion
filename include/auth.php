@@ -31,7 +31,7 @@
 
    			if ((mysql_num_rows($result) == 1) AND ($CapchaInput == 1))
       				{
-					$data = db_aassoc($result);
+					$data = db_assoc($result);
        					$_SESSION['user_id'] = (int)$data['id'];
        					$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
        					$_SESSION['user_name'] = strtoupper($_POST['auth_name']);

@@ -1,7 +1,7 @@
 ﻿<?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
 | Filename: protect.php
 | Author: Кот_ДаWINчи

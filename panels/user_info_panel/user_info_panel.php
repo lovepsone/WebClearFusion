@@ -43,7 +43,7 @@
 			db_query("UPDATE ".DB_USERS." SET `user_online`='1' WHERE  `user_id`='".$_SESSION['user_id']."'");
 
  			$query_user = db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`=".$_SESSION['user_id']." LIMIT 1");
-  			$res_user = db_aassoc($query_user);
+  			$res_user = db_assoc($query_user);
 
 			openside();
 			echo"<tr><td align='left'>".$txt['menu_auth_greeting']."&nbsp;".ucfirst(strtolower($_SESSION['user_name']))."</td></tr>";
