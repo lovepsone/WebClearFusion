@@ -1,7 +1,7 @@
 ﻿<?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
 | Filename: text.ru.utf8.php
 | Author: lovepsone
@@ -83,9 +83,13 @@ $txt = array(
 'admin_settings_intro'		=>'Приветствие сайта:',
 'admin_settings_intro_title'	=>'Оставьте пустым, если не нужно',
 'admin_settings_start_unit'	=>'Стартовая страница:',
+'admin_settings_lang'		=>'Язык сайта (locale):',
+'admin_settings_themes'		=>'Тема оформления сайта:',
 'admin_settings_off_left_p'	=>'Выключить левые панели:',
+'admin_settings_off_upper_p'	=>'Выключить центральные панели:',
+'admin_settings_off_lower_p'	=>'Выключить нижние панели:',
 'admin_settings_off_right_p'	=>'Выключить правые панели:',
-'admin_settings_off_p_title'	=>'Пример:<br>/forum/forum.php<br>/news.php',
+'admin_settings_off_p_title'	=>'Пример:<br>/news.php<br>/forum/index.php',
 'admin_savesettings'		=>'Сохранить',
 
 'admin_forumedit_edit'		=>'Редактировать',
@@ -151,7 +155,6 @@ $txt = array(
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',
 'fill_field'			=>'<font color=red>Вы не заполнили поле!!!</font>',
 'Run'				=>'Выполнить',
-'change_lang'			=>'Выбор языка',
 'up'				=>'Вверх',
 'down'				=>'Вниз',
 'yes'				=>'Да',

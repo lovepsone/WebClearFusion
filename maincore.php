@@ -10,7 +10,9 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	error_reporting(E_ERROR | E_PARSE | E_WARNING);
 	error_reporting(E_ALL);
+	ini_set('display_errors', 0);
 
 	//=============================================================================================================
 	// Предотвращения возможных атак через XSS $_GET.

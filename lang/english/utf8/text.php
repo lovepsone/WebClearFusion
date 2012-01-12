@@ -1,7 +1,7 @@
 ﻿<?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
 | Filename: text.ru.utf8.php
 | Author: lovepsone
@@ -12,10 +12,10 @@
 
 $txt = array(
 # тексты в правом и левом меню
-'menu_auth_title'		=>'Авторизуйтесь или зарегистрируйтесь для удобного пользования',
+'menu_auth_title'		=>'Авторизуйтесь или зарегистрируйтесь',
 'menu_auth_greeting'		=>'Приветствуем вас',
-'menu_auth_account'		=>'Учётная запись',
-'menu_auth_pass'		=>'Пароль',
+'menu_auth_account'		=>'Учётная запись:',
+'menu_auth_pass'		=>'Пароль:',
 'menu_auth_enter'		=>'Войти',
 'menu_auth_reg'			=>'Регистрация',
 'menu_auth_remember_pass'	=>'Восстановить пароль',
@@ -32,26 +32,31 @@ $txt = array(
 'modul_news_author'		=>'| Автор:',
 'modul_news_read_more'		=>'Читать далее',
 'modul_newsexp_date_reply'	=>'Дата ответа:',
+'modul_newsexp_date_reply'	=>'Дата ответа:',
 
-# тексты при бане в основной форме
-'main_ban_ip'			=>'Ваш IP-адрес ЗАБАНЕН!',
-'main_ban_account'		=>'Ваша учетная запись ЗАБАНЕНА!',
-'main_home'			=>'К основной форме',
+'modul_register'		=>'Регистрация',
+'modul_register_no_ip'		=>'<b>Регистрация новой учетной записи не возможна.</b><br>Вы уже зарегистрировали максимально возможное<br>число учетных записей с данного IP-адреса.',
+'modul_register_account'	=>'Учётная запись:',
+'modul_register_pass'		=>'Пароль:',
+'modul_register_confirm_pass'	=>'Подтверждение:',
+'modul_register_mail'		=>'Регистрационный E-mail:',
+'modul_register_add'		=>'Зарегистрировать',
+'modul_register_no'		=>'Регистрация временно приостановлена администрацией!<br>Извините за причиненные неудобства.',
+'modul_registe_warning_mail'	=>'Неправильно введен E-Mail!',
+'modul_registe_warning_pass'	=>'Не совподают пароли либо пароль одинаковый с логинам!!!',
+'modul_registe_warning_field'	=>'Пожалуйста правильно заполните все поля!',
+'modul_registe_warning_account'	=>'Такая учетная запись уже существует!',
+'modul_register_error'		=>'Ошибка при регистрации!!!',
+'modul_register_sucess'		=>'Вы успешно зарегестрировались! Через 2-4 секунды вас перекинет на главную страницу. Приятной вам игры.',
 
 # тексты в меню админки
 'menu_admin_content'		=>'Администрирование контента',
 'menu_admin_users'		=>'Администрир. пользователей',
 'menu_admin_system'		=>'Администрирование системы',
 'menu_admin_plants'		=>'Установки',
-'menu_admin_news'		=>'Новости',
-'menu_admin_news_add'		=>'Добавить',
-'menu_admin_news_edit'		=>'Редактировать',
-'menu_admin_news_del'		=>'Удалить',
-'menu_admin_settings'		=>'Настройки',
-'menu_admin_set_panel'		=>'Настройка понели',
-'menu_admin_add_panel'		=>'Добавить понель',
 
 # тексты в админке
+'news'				=>'Новости',
 'admin_newsmaker'		=>'Редактор новостей',
 'admin_newsmaker_title'		=>'Выберите нужную новость и команду!',
 'admin_newsmaker_team'		=>'Команда:',
@@ -59,16 +64,36 @@ $txt = array(
 'admin_newsmaker_add'		=>'Добавить',
 'admin_newsmaker_newsflash'	=>'Краткая новость',
 'admin_newsmaker_newsfull'	=>'Полная новость',
+'admin_newsmaker_del'		=>'Удалить',
+'admin_newsmaker_teme'		=>'Тема',
+'admin_newsmaker_cat'		=>'Категория',
+'admin_newsmaker_not_fields'	=>'<font color=red>Ошибка!</font>Не заполнены все поля.',
+'admin_newsmake_add_succes'	=>'Новость успешно создана.',
+'admin_newsmaker_edit_succes'	=>'Новость успешно изменена.',
+'admin_newsmake_del_succes'	=>'Новость успешно удалена.',
+
+'admin_newscat_name'		=>'Название категории: ',
+'admin_newscat_edit'		=>'Редактировать',
+'admin_newscat_del'		=>'Удалить',
+'admin_newscat_del_y'		=>'Удалить категорию новостей?',
+
 'admin_settings'		=>'Настройки',
 'admin_settings_nameserver'	=>'Название сайта:',
 'admin_settings_urlserver'	=>'URL сайта:',
 'admin_settings_intro'		=>'Приветствие сайта:',
 'admin_settings_intro_title'	=>'Оставьте пустым, если не нужно',
-'admin_settings_start_unit'	=>'Стартовый модуль:',
+'admin_settings_start_unit'	=>'Стартовая страница:',
+'admin_settings_lang'		=>'Язык сайта (locale):',
+'admin_settings_themes'		=>'Тема оформления сайта:',
 'admin_settings_off_left_p'	=>'Выключить левые панели:',
+'admin_settings_off_upper_p'	=>'Выключить центральные панели:',
+'admin_settings_off_lower_p'	=>'Выключить нижние панели:',
 'admin_settings_off_right_p'	=>'Выключить правые панели:',
-'admin_settings_off_p_title'	=>'Пример:<br>modul=forum<br>modul=thread<br>modul=post',
+'admin_settings_off_p_title'	=>'Пример:<br>/news.php<br>/forum/index.php',
 'admin_savesettings'		=>'Сохранить',
+
+'admin_forumedit_edit'		=>'Редактировать',
+'admin_forumedit_del'		=>'Удалить',
 'admin_forumedit_add_f_s'	=>'Добавить категорию форума',
 'admin_forumedit_add_f_f'	=>'Добавить форум',
 'admin_forumedit_edit_f_s'	=>'Редактировать категорию форума',
@@ -84,44 +109,6 @@ $txt = array(
 'admin_forumedit_options'	=>'Опции',
 'admin_forumedit_cleaning'	=>'Очистка',
 'admin_forumedit_delete'	=>'Вы уверены в выборе действия?<br>Данные после этого действия нельзя восстановить.',
-'admin_newsmaker_del'		=>'Удалить',
-'admin_panels_center'		=>'по центру',
-'admin_panels_left'		=>'с лева',
-'admin_panels_right'		=>'с права',
-'admin_panels_change'		=>'Изменить',
-'admin_panels_choice'		=>'Выбор',
-'admin_panels_name'		=>'Название',
-'admin_panels_url'		=>'Путь до панели',
-'admin_panels_position'		=>'Позиция',
-'admin_panels_choose_position'	=>'Выбрать Позицию',
-'admin_panels_choose_success'	=>'Панель успешна изменена.',
-'admin_panels_choose_unsuccess'	=>'Ошибка в sql запросе!.',
-'admin_panels_add_success'	=>'Панель успешна добавлена.',
-
-# тексты при новостях
-'news'				=>'Новости',
-'admin_teme_news'		=>'Тема',
-'admin_category_news'		=>'Категория',
-'admin_news_not_all_fields'	=>'<font color=red>Ошибка!</font>Не заполнены все поля.',
-'admin_news_add_successfully'	=>'Новость успешно создана.',
-'admin_news_edit_successfully'	=>'Новость успешно изменена.',
-'admin_news_del_successfully'	=>'Новость успешно удалена.',
-
-# тексты при регистрации
-'reg'				=>'Регистрация',
-'reg_account'			=>'Учётная запись',
-'reg_pass'			=>'Пароль',
-'reg_confirm_pass'		=>'Подтверждение',
-'reg_mail'			=>'Регистрационный E-mail',
-'reg_add'			=>'Зарегистрировать',
-'reg_no'			=>'<b>Регистрация новой учетной записи не возможна.</b><br>Вы уже зарегистрировали максимально возможное<br>число учетных записей с данного IP-адреса.',
-'reg_warning_mail'		=>'Неправильно введен E-Mail!',
-'reg_warning_pass'		=>'Неверный пароль!',
-'reg_warning_field'		=>'Пожалуйста правильно заполните все поля!',
-'reg_warning_account'		=>'Такая учетная запись уже существует!',
-'reg_account_successfully'	=>'Учётная запись успешно создана!',
-'reg_error'			=>'Ошибка!',
-'reg_txt'			=>'<br>Регистрация учётной записи для игры в WoW на нашем сервере. Внимательно, правильно заполните все поля этой формы. Особое внимание обращаем на правильность ввода E-mailа, т.к. многие операции с учётными записями и персонажами требуют подтверждения по электронной почте. Имя учётной записи и пароль не должны совпадать.<hr>Большая просьба не регистрировать учётные записи, содержащие русские буквы, а то вы не сможете правильно подключиться к серверу.<hr> Удачной вам игры. Спасибо за внимание.<br>',
 
 # тексты при логах
 'log'				=>'Логи',
@@ -155,7 +142,6 @@ $txt = array(
 'forum_column_top_aut'		=>'Тема/Автор',
 'forum_column_replies'		=>'Ответов',
 'forum_column_views'		=>'Просмотров',
-
 'forum_no_message'		=>'Нет сообщений',
 'forum_no_temes'		=>'Нет тем',
 'forum_quick_reply'		=>'Отправить',
@@ -169,12 +155,10 @@ $txt = array(
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',
 'fill_field'			=>'<font color=red>Вы не заполнили поле!!!</font>',
 'Run'				=>'Выполнить',
-'home'				=>'Главная',
-'change_lang'			=>'Выбор языка',
 'up'				=>'Вверх',
 'down'				=>'Вниз',
 'yes'				=>'Да',
 'no'				=>'Нет',
-'257'				=>'Модуль',
+'no_links'			=>'Нет ссылок',
 );
 ?>

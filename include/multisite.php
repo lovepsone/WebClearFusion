@@ -36,6 +36,7 @@
 	define("IMAGES_NC", BASEDIR."images/news_cat/");
 	define("IMAGES_A", BASEDIR."images/avatars/");
 	define("INCLUDES", BASEDIR."include/");
+	define("LANG", BASEDIR."lang/");
 	define("PANELS", BASEDIR."panels/");
 	define("THEMES", BASEDIR."themes/");
 ?>

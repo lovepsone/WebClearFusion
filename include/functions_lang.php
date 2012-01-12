@@ -56,23 +56,4 @@
 			return $locale;
   
 		}
-
-	//=============================================================================================
-	// функция, создающая switch языков,то есть поддержака нескольких языков, при это не 
-	// переключаясь в config настройках
-	if (isset($_SESSION['lang']))
-		{
-    			switch($_SESSION['lang'])
-    			{
-        			case "russian":
-        			$config['lang'] = "russian";
-        			break;
-        			case "english":
-        			$config['lang'] = "english";
-        			break;
-        			default:
-        			unset($_SESSION['lang']);
-       	 			break;
-    			}
-		}
 ?>

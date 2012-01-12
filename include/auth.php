@@ -12,7 +12,7 @@
 
 	//======================================
 	// проверка каптчи
-	if ($config['Kcaptcha_enable'] == 1)
+	if ($config['Kcaptcha_enable_auth'] == 1)
    		{
     			if (isset($_SESSION['captcha_keystring']) AND isset($_POST['kapcha_code']) AND (strtolower($_SESSION['captcha_keystring']) == strtolower($_POST['kapcha_code'])))
        				{

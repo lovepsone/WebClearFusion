@@ -30,15 +30,6 @@
 	
 			echo"<br><br>";
 			echo"<div class='copyright'><hr width='90%'><font size=-1>".$config['copyright']."</font></div><br>";
-
-			if($config['change_lang'] == 'on')
-				{
-					echo"<select size='1' name='lang_list' onchange=\"document.location.href='index.php?lang='+this.value;\">
-             					<option selected>".$txt['change_lang']."</option>
-             					<option value='russian'>Russian</option>
-             					<option value='english'>English</option>
-						</select>";
-  				}
 		}
 
 	//==========================================

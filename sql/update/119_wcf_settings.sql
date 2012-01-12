@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 12.01.2012 15:24:02
+Date: 12.01.2012 19:15:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,7 +24,7 @@ CREATE TABLE `wcf_settings` (
 INSERT INTO `wcf_settings` VALUES ('servername', 'Name WoW Server');
 INSERT INTO `wcf_settings` VALUES ('opening_page', 'news.php');
 INSERT INTO `wcf_settings` VALUES ('urlserver', '/');
-INSERT INTO `wcf_settings` VALUES ('change_lang', 'on');
+INSERT INTO `wcf_settings` VALUES ('Kcaptcha_enable_auth', '0');
 INSERT INTO `wcf_settings` VALUES ('page_forum_threads', '10');
 INSERT INTO `wcf_settings` VALUES ('page_forum_posts', '10');
 INSERT INTO `wcf_settings` VALUES ('pass_remember', 'on');
@@ -32,9 +32,11 @@ INSERT INTO `wcf_settings` VALUES ('registration_ip_limit', '0');
 INSERT INTO `wcf_settings` VALUES ('page_news', '5');
 INSERT INTO `wcf_settings` VALUES ('page_admin_news', '10');
 INSERT INTO `wcf_settings` VALUES ('exclude_left', '');
-INSERT INTO `wcf_settings` VALUES ('serverintro', '<div style=\\\'text-align:center\\\'>Добро пожаловать на сайт!</div>');
+INSERT INTO `wcf_settings` VALUES ('serverintro', '<div style=\\\'text-align:center\\\'>Добро пожаловать на сайт!<br>Наш set realmlist WoW Server</div>');
 INSERT INTO `wcf_settings` VALUES ('exclude_right', '');
 INSERT INTO `wcf_settings` VALUES ('exclude_upper', '');
 INSERT INTO `wcf_settings` VALUES ('exclude_lower', '');
 INSERT INTO `wcf_settings` VALUES ('license_agreement', 'Регистрация учётной записи для игры в WoW на нашем сервере. Внимательно, правильно заполните все поля этой формы. Особое внимание обращаем на правильность ввода E-mailа, т.к. многие операции с учётными записями и персонажами требуют подтверждения по электронной почте. Имя учётной записи и пароль не должны совпадать.<hr>Большая просьба не регистрировать учётные записи, содержащие русские буквы, а то вы не сможете правильно подключиться к серверу.<hr> Удачной вам игры. Спасибо за внимание.<br>');
 INSERT INTO `wcf_settings` VALUES ('permit_registration', '1');
+INSERT INTO `wcf_settings` VALUES ('lang', 'russian');
+INSERT INTO `wcf_settings` VALUES ('theme', 'default');
