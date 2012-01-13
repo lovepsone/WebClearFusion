@@ -27,6 +27,7 @@
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_upper'])."' WHERE `settings_name`='exclude_upper'");
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_lower'])."' WHERE `settings_name`='exclude_lower'");
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_right'])."' WHERE `settings_name`='exclude_right'");
+			return_form(1,'settings_main.php');
 		}
 
 	$settings = array();
@@ -70,9 +71,8 @@
 	echo makefileopts($themes_files, $settings['theme']);
 	echo"</select></td></tr>";
 
-
 	echo"<tr><td align='center' width='40%' class='small'>".$txt['admin_settings_off_left_p']."<br/><span class='small2'>".$txt['admin_settings_off_p_title']."</span></td>";
-	echo"<td width='60%'><textarea name='exclude_right' cols='50' rows='5' class='textbox' style='width:230px;'>".$settings['exclude_left']."</textarea></td></tr>";
+	echo"<td width='60%'><textarea name='exclude_left' cols='50' rows='5' class='textbox' style='width:230px;'>".$settings['exclude_left']."</textarea></td></tr>";
 
 	echo"<tr><td align='center' width='40%' class='small'>".$txt['admin_settings_off_upper_p']."<br/><span class='small2'>".$txt['admin_settings_off_p_title']."</span></td>";
 	echo"<td width='60%'><textarea name='exclude_upper' cols='50' rows='5' class='textbox' style='width:230px;'>".$settings['exclude_upper']."</textarea></td></tr>";
