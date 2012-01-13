@@ -80,6 +80,7 @@ $txt = array(
 'admin_settings'		=>'Настройки',
 'admin_settings_nameserver'	=>'Название сайта:',
 'admin_settings_urlserver'	=>'URL сайта:',
+'admin_settings_serverbanner'	=>'Лого сайта:',
 'admin_settings_intro'		=>'Приветствие сайта:',
 'admin_settings_intro_title'	=>'Оставьте пустым, если не нужно',
 'admin_settings_start_unit'	=>'Стартовая страница:',

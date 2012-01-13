@@ -19,9 +19,10 @@
 			global $config, $txt;
 
 			echo"<table cellpadding='0' cellspacing='0' width='100%'>";
-			echo"<tr><td class='full-header' align='center'><img src='".THEMES."/".$config['theme']."/img/baners.png' alt='".$config['servername']."' style='border: 0;' /></td></tr>";
+			//echo"<tr><td class='full-header' align='center'><img src='".THEMES."/".$config['theme']."/img/baners.png' alt='".$config['servername']."' style='border: 0;' /></td></tr>";
+			echo"<tr><td class='full-header' align='center'>".showbanners()."</td></tr>";
 			echo"</table>";
-	
+
 			echo"<table cellpadding='0' cellspacing='0' width='100%'><tr>";
 			if (LEFT) { echo"<td class='side-border-left' valign='top'>".LEFT."</td>"; }
 			echo"<td class='main-bg' valign='top'>".U_CENTER.CONTENT.L_CENTER."</td>";

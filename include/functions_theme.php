@@ -63,4 +63,23 @@
 					return true;
 				}
 		}
+
+	function showbanners()
+		{
+			global $config;
+			ob_start();
+
+			if ($config['serverbanner'])
+				{
+					echo "<a href='".$config['serverurl']."'><img src='".BASEDIR.$config['serverbanner']."' alt='".$config['servername']."' style='border: 0;' /></a>\n";
+				}
+			else
+				{
+					echo "<a href='".$config['serverurl']."'>".$config['servername']."</a>\n";
+				}	
+			$output = ob_get_contents();
+			ob_end_clean();
+			return $output;
+		}
+
 ?>

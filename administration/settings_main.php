@@ -17,7 +17,8 @@
 		{
 			selectdb(wcf);
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['servername'])."' WHERE `settings_name`='servername'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['urlserver']).(strrchr($_POST['urlserver'],"/") != "/" ? "/" : "")."' WHERE `settings_name`='urlserver'");
+			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['serverurl']).(strrchr($_POST['serverurl'],"/") != "/" ? "/" : "")."' WHERE `settings_name`='serverurl'");
+			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['serverbanner'])."' WHERE `settings_name`='serverbanner'");
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".addslashes($_POST['intro'])."' WHERE `settings_name`='serverintro'");
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['opening_page'])."' WHERE `settings_name`='default_module'");
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['langset'])."' WHERE `settings_name`='lang'");
@@ -48,7 +49,10 @@
 	echo"<td width='60%'><input type='text' name='servername' value='".$settings['servername']."' maxlength='255' class='textbox' style='width:230px;'/></td></tr>";
 
 	echo"<tr><td align='center' width='40%' class='small'>".$txt['admin_settings_urlserver']."</td>";
-	echo"<td width='60%'><input type='text' name='urlserver' value='".$settings['urlserver']."' maxlength='255' class='textbox' style='width:230px;'/></td></tr>";
+	echo"<td width='60%'><input type='text' name='serverurl' value='".$settings['serverurl']."' maxlength='255' class='textbox' style='width:230px;'/></td></tr>";
+
+	echo"<tr><td align='center' width='40%' class='small'>".$txt['admin_settings_serverbanner']."</td>";
+	echo"<td width='60%'><input type='text' name='serverbanner' value='".$settings['serverbanner']."' maxlength='255' class='textbox' style='width:230px;'/></td></tr>";
 
 	echo"<tr><td align='center' width='40%' class='small'>".$txt['admin_settings_intro']."<br/><span class='small2'>".$txt['admin_settings_intro_title']."</span></td>";
 	echo"<td width='60%'><textarea name='intro' cols='50' rows='6' class='textbox' style='width:230px;'>".phpentities(stripslashes($settings['serverintro']))."</textarea></td></tr>";
