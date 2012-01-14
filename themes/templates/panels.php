@@ -27,8 +27,8 @@
 
 	$p_sql = false; $p_arr = array(1 => false, 2 => false, 3 => false, 4 => false);
 
-	//if (!defined("ADMIN_PANEL"))
-		//{
+	if (!defined("EXCLUDE_PANEL_USERS"))
+		{
 			if (check_panel_status("left"))
 				{
 					$p_sql = "panel_side='1'";
@@ -88,7 +88,7 @@
 							ob_end_clean();
 						}
 				}
-		//}
+		}
 	/*else
 		{
 			ob_start();

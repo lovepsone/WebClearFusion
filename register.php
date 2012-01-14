@@ -89,8 +89,9 @@
 						{
 							db_query("INSERT INTO ".DB_USERS." (`user_id`,`user_name`,`user_online`) VALUES ('".$_SESSION['user_id']."','".$_SESSION['user_name']."','1')");
 						}
-
-       					return_form(30,BASEDIR.'index.php');
+					sleep(3);
+					header("Location: http://".$_SERVER['HTTP_HOST']."/setuser.php?action=auth");
+   					exit;
       				}
    		}
 	//=================================================

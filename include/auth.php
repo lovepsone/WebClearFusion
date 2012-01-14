@@ -22,7 +22,7 @@
    		}
 	elseif ($config['Kcaptcha_enable'] == 0) { $CapchaInput = 1; }
 
-	if (isset($_POST['auth_name'])) 
+	if (isset($_POST['auth_name']) AND $_POST['auth_name'] != '') 
    		{
 			$password= SHA1(strtoupper(addslashes($_POST['auth_name']).':'.addslashes($_POST['auth_pass'])));
 
@@ -51,7 +51,7 @@
 						}
 
        				}
-   			header("Location: http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+			header("Location: http://".$_SERVER['HTTP_HOST']."/setuser.php?action=auth");
    			exit;
    		}
 ?>
