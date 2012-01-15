@@ -27,7 +27,7 @@
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_upper'])."' WHERE `settings_name`='exclude_upper'");
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_lower'])."' WHERE `settings_name`='exclude_lower'");
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_right'])."' WHERE `settings_name`='exclude_right'");
-			return_form(1,'settings_main.php');
+			redirect(WCF_SELF);
 		}
 
 	$settings = array();
