@@ -79,9 +79,16 @@ $txt = array(
 'admin_newsmake_del_succes'	=>'Новость успешно удалена.',
 
 'admin_newscat_name'		=>'Название категории: ',
+'admin_newscat_picture'		=>'Картинка: ',
+'admin_newscat_save'		=>'Сохранить',
 'admin_newscat_edit'		=>'Редактировать',
 'admin_newscat_del'		=>'Удалить',
 'admin_newscat_del_y'		=>'Удалить категорию новостей?',
+'admin_newscat_no_cat'		=>'Нет категорий',
+'admin_newscat_edit_n'		=>'Редактировать категории новостей',
+'admin_newscat_add_n'		=>'Добавить новую категорию',
+'admin_newscat_link_load_img'	=>'Нажмите здесь, для загрузки картинки для категории',
+
 
 'admin_settings'		=>'Настройки',
 'admin_settings_nameserver'	=>'Название сайта:',
