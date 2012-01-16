@@ -16,15 +16,15 @@
 	ob_start();
 	require_once THEMES."templates/header.php";
 
-	if ((isset($_GET['action']) && $_GET['action'] == "auth") AND isset($_SESSION['user_id']) AND $_SESSION['user_id'] != "")
+	if ((isset($_GET['action']) && $_GET['action'] == "auth") && (isset($_SESSION['user_id']) && isnum($_SESSION['user_id'])))
 		{
 			$txt_page = $txt['modul_setuser_sucess_auth'].ucfirst(strtolower($_SESSION['user_name'])).$txt['modul_setuser_wait'];
 		}
-	elseif ((isset($_GET['action']) && $_GET['action'] == "auth") AND !isset($_SESSION['user_id']) AND $_SESSION['user_id'] == "")
+	elseif ((isset($_GET['action']) && $_GET['action'] == "auth") && (!isset($_SESSION['user_id']) && isnum($_SESSION['user_id'])))
 		{
 			$txt_page = $txt['modul_setuser_errors_auth'].$txt['modul_setuser_wait'];
 		}
-	elseif ((isset($_GET['action']) && $_GET['action'] == "logout") AND isset($_SESSION['user_id']) AND $_SESSION['user_id'] != "")
+	elseif ((isset($_GET['action']) && $_GET['action'] == "logout") && (isset($_SESSION['user_id']) && isnum($_SESSION['user_id'])))
 		{
 			$txt_page = $txt['modul_setuser_logout'].$txt['modul_setuser_wait'];
 			session_start();
