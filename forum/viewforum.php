@@ -76,7 +76,7 @@
   							$page_counter_thr = ceil($thr_kolzap['kol'] / $config['page_forum_threads']);
 
    							if (!isset($_GET['page']) OR ($_GET['page'] == '') OR ($_GET['page'] == '_')) $tp3 = 1; else $tp3 = (int)$_GET['page'];
- 							echo"<tr><td colspan='3' align='center' valign='middle' >".ShowPageNavigator(FORUM.'viewforum.php?forum_id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";
+ 							echo"<tr><td colspan='3' align='center' valign='middle' >".show_page(FORUM.'viewforum.php?forum_id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";
   						}
 				}
 			else

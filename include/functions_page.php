@@ -12,7 +12,7 @@
 
 	//=============================================================================================
 	// функция, создающая навигацию, берет данные из module_cfg.php
-	function ShowPageNavigator($LinkText,$Page,$AllPages)
+	function show_page($LinkText,$Page,$AllPages)
 		{
 			$Page = intval($Page);
 			$AllPages = intval($AllPages);
