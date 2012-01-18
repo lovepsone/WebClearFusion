@@ -58,7 +58,7 @@
 			// Функция добавления просмотров
 			if ($result != 0)
 				{
-					db_query("UPDATE ".DB_FORUMS_THREADS." SET `thread_views`=thread_views+1 WHERE `thread_id`='$thread_id'");
+					db_query("UPDATE ".DB_FORUMS_THREADS." SET `thread_views`=thread_views+1 WHERE `thread_id`='".$thread_id."'");
 				}
 
 			if (db_num_rows($result) > 0 )
@@ -73,16 +73,7 @@
  							$result_user = db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`=".$data['user_id']." LIMIT 1");
   							$usr = db_aassoc($result_user);
 
-							echo"<tr><td width='20%' align='left' class='tbl2'>".ucfirst(strtolower($usr['user_name']))."<br>";
-
-							if ($usr['user_avatar'] <> '')
-								{
-			  						echo"<img src='".IMAGES_A.$usr['user_avatar']."'/></td>";
-								}
-							else
-								{
-									echo"<img src='".IMAGES_A."null-avatar.gif' class='avatar'></td>";
-								}
+							echo"<tr><td width='20%' align='left' class='tbl2'>".ucfirst(strtolower($usr['user_name']))."<br>.avatar_img($usr['user_avatar'])."</td>";
 							echo"<td width='80%' align='left' class='tbl1'>".stripslashes($data['post_text'])."</td></tr><tr><td colspan='2'><hr></td></tr>";
 						}
 
