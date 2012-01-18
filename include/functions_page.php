@@ -11,7 +11,20 @@
 +--------------------------------------------------------*/
 
 	//=============================================================================================
-	// функция, создающая навигацию, берет данные из module_cfg.php
+	// функция, создающая форму доступа
+	function access_form()
+		{
+			global $txt;
+			return "<option value='-1'>".$txt['genl']."</option>
+				<option value='0'>".$txt['user']."</option>
+				<option value='1'>".$txt['moderator']."</option>
+				<option value='2'>".$txt['vebmaster']."</option>
+				<option value='3'>".$txt['administrator']."</option>
+				<option value='4'>".$txt['superadministrator']."</option>";
+		}
+
+	//=============================================================================================
+	// функция, создающая навигацию
 	function show_page($LinkText,$Page,$AllPages)
 		{
 			$Page = intval($Page);

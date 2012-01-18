@@ -17,7 +17,7 @@
 			mode : 'textareas',
 			theme : 'advanced',
 			language : 'ru',
-			width : '100%',
+			width : '400',
 			height : '300',
 			plugins : 'autolink,lists,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,inlinepopups,autosave',
 

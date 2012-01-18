@@ -13,198 +13,149 @@
 	require_once "../maincore.php";
 	require_once THEMES."templates/header.php";
    	require_once INCLUDES."tinymce.php";
-
    	echo $advanced_script;
-	//===============================================
-	// Основная форма
-	selectdb(wcf);
-	$result = db_query("SELECT count(`news_date`) as kol FROM ".DB_NEWS." ");
-	$n_kolzap = db_array($result);
 
-	if ($n_kolzap['kol'] > $config['page_admin_news'])
+	if (isset($_POST['save']) && (!isset($_GET['action']) && $_GET['action'] != "edit"))
 		{
-    			$page_len_n = $config['page_admin_news'];
+			$news_visibility = isnum($_POST['news_visibility']) ? $_POST['news_visibility'] : "-1";
+			$news_show_cat = isset($_POST['news_show_cat']) ? "1" : "0";
+			$news_comments = isset($_POST['news_comments']) ? "1" : "0";
 
-    			if (!isset($_GET['page']) or ($_GET['page'] == '')) { $start_rec_n = 0; }
-			else  { $start_rec_n = ((int)$_GET['page']-1)*$config['page_admin_news']; }
+			if ((isset($_POST['news_subject']) && $_POST['news_subject'] != "") AND (isset($_POST['news_text']) && $_POST['news_text'] != "") AND (isset($_POST['news_text_ext']) && $_POST['news_text_ext'] != ""))
+				{
+					selectdb(wcf);
+					$result = db_query("INSERT INTO ".DB_NEWS." (`news_author`,`news_subject`,`news_show_cat`,`news_cat`,`news_text`,`news_text_extended`,`news_visibility`,`news_allow_comments`)
+						values ('".$_SESSION['user_id']."','".stripinput($_POST['news_subject'])."','".$news_show_cat."','".$_POST['news_cat']."','".addslash($_POST['news_text'])."','".addslash($_POST['news_text_ext'])."','".$news_visibility."','".$news_comments."')");
+					if ($result) {redirect(WCF_SELF);}
+				}
+			else
+				{
+					$errors = 1;
+					redirect(WCF_SELF."?errors=".$errors);
+				}
+		}
+	elseif (isset($_POST['save']) && (isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_POST['news_id']) && isnum($_POST['news_id'])))
+		{
+			$news_visibility = isnum($_POST['news_visibility']) ? $_POST['news_visibility'] : "-1";
+			$news_show_cat = isset($_POST['news_show_cat']) ? "1" : "0";
+			$news_comments = isset($_POST['news_comments']) ? "1" : "0";
+
+			if ((isset($_POST['news_subject']) && $_POST['news_subject'] != "") AND (isset($_POST['news_text']) && $_POST['news_text'] != "") AND (isset($_POST['news_text_ext']) && $_POST['news_text_ext'] != ""))
+				{
+					selectdb(wcf);
+					$result = db_query("UPDATE ".DB_NEWS." SET `news_author`='".$_SESSION['user_id']."', `news_subject`='".stripinput($_POST['news_subject'])."', `news_show_cat`='".$news_show_cat."', `news_cat`='".$_POST['news_cat']."',
+								`news_text`='".addslash($_POST['news_text'])."', `news_text_extended`='".addslash($_POST['news_text_ext'])."', `news_visibility`='".$news_visibility."', `news_allow_comments`='".$news_comments."' WHERE `news_id`='".$_POST['news_id']."'");
+		
+					if ($result) {redirect(WCF_SELF);}
+				}
+			else
+				{
+					$errors = 1;
+					redirect(WCF_SELF."?errors=".$errors);
+				}
+		}
+	elseif (isset($_POST['delete']) && (isset($_POST['news_id']) && isnum($_POST['news_id'])))
+		{
+			selectdb(wcf);
+			$result = db_query("DELETE FROM ".DB_NEWS." WHERE `news_id`='".$_POST['news_id']."'");
+			$result = db_query("DELETE FROM ".DB_COMMENTS."  WHERE `comment_item_id`='".$_POST['news_id']."' and `comment_type`='1'");
+			redirect(WCF_SELF."?status=del");
+			redirect(WCF_SELF);
+		}
+	elseif (!isset($_POST['save']) && (!isset($_GET['action']) && $_GET['action'] != "edit"))
+		{
+			$news_id = "";
+			$news_subject = "";
+			$news_cat = "";
+			$news_text = "";
+			$news_text_ext = "";
+			$news_comments = " checked='checked'";
+			$news_show_cat = " checked='checked'";
+			$txt_button = $txt['admin_newsmaker_add'];
+		}
+
+	selectdb(wcf);
+	$result = db_query("SELECT * FROM ".DB_NEWS);
+
+	if (db_num_rows($result) != 0)
+		{
+			$editlist = "";
+			while ($data = db_array($result))
+				{
+					$editlist .= "<option value='".$data['news_id']."'>".$data['news_subject']."</option>";
+				}
+			//=======================================
+			// 1-ая форма
+			opentable();
+			echo"<div style='text-align:center'><form name='selectform' method='post' action='".WCF_SELF."?action=edit'>";
+			echo"<h1>".$txt['admin_newsmaker']."</h1>";
+			echo"<select name='news_id' class='textbox' style='width:450px'>".$editlist."</select>";
+			echo"<input type='submit' name='edit' value='".$txt['admin_newsmaker_edit']."' class='button' />\n";
+			echo"<input type='submit' name='delete' value='".$txt['admin_newsmaker_del']."' onclick='return DeleteNews();' class='button' />";
+			echo"<br><hr></form></div>";
+			closetable();
+		}
+
+	if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_POST['news_id']) && isnum($_POST['news_id'])) || (isset($_GET['news_id']) && isnum($_GET['news_id'])))
+		{
+			$result1 = db_query("SELECT * FROM ".DB_NEWS." WHERE `news_id`='".(isset($_POST['news_id']) ? $_POST['news_id'] : $_GET['news_id'])."' LIMIT 1");
+			if (db_num_rows($result1))
+				{
+					$data1 = db_assoc($result1);
+					$news_id = $data1['news_id'];
+					$news_subject = $data1['news_subject'];
+					$news_cat = $data1['news_cat'];
+					$news_text = $data1['news_text'];
+					$news_text_ext = $data1['news_text_extended'];
+					$news_comments = $data1['news_allow_comments'] == "1" ? " checked='checked'" : "";
+					$news_show_cat = $data1['news_show_cat'] == "1" ? " checked='checked'" : "";
+					$txt_button = $txt['admin_newsmaker_edit'];
+				}
+			else
+				{
+					redirect(WCF_SELF);
+				}
+		}
+	if ($errors == 1 AND isset($_GET['errors']))
+		{
+			opentable();
+		       	echo"<tr><td align='center' class='small'><h3>".$txt['admin_newsmaker_not_fields']."</h3></td></tr>";
+			closetable();
+			return_form(30,WCF_SELF);
 		}
 	else
 		{
-    			$page_len_n = $config['page_admin_news'];
-			$start_rec_n = 0;
-		}
-
-	$result = db_query("SELECT * FROM ".DB_NEWS." ORDER BY `news_date` DESC limit $start_rec_n,$page_len_n");
-
-	opentable();
-	echo"<form method='post'>";
-	echo"<div align='center'><h1>".$txt['admin_newsmaker']."</h1></div>";
-
-	if (db_num_rows($result) > 0 )
-		{
-			echo"<tr><td align='center' colspan='3'>".$txt['admin_newsmaker_title']."<br><hr></td></tr>";
-   			while ($data = db_array($result))
+			$result = db_query("SELECT * FROM ".DB_NEWS_CATS."");
+			$news_cat_list = "";
+			while ($data = db_array($result))
 				{
-          				echo"<tr><td width='1%' align='right'><input name=id type=radio value='".$data['news_id']."'></td>";
-          				echo"<td width='81%' align='left'>".$data['news_title']."</td>";
-          				echo"<td width='18%'align='right'>".$data['news_date']."</td></tr>";
-          				$kol++;
-          			}
-
-    			if ($n_kolzap['kol'] > $config['page_admin_news'])
-				{
-       					$pages_selector = '-';
-       					$page_counter_n = ceil($n_kolzap['kol'] / $config['page_admin_news']);
-
-       					if (!isset($_GET['page']) OR ($_GET['page'] == '') OR ($_GET['page'] == '_')) {$tp3 = 1;} else {$tp3 = (int)$_GET['page'];}
-
-       					for ($i = 1; $i <= $page_counter_n; $i++)
-						{
-           						if ($tp3 == $i) {$pages_selector .= ' '.$i.' -';}
-		   					else {$pages_selector .= "<A href='".ADMIN."news.php?page=".$i."'>".$i."</a> -";}
-           					}
-      					echo"<tr><td colspan='3' align='center'><b>".$pages_selector."</b></td></tr>";
-     				}
-
-			echo"<tr><td align='center' colspan='3'><hr><br><b>".$txt['admin_newsmaker_team']."</b>&nbsp;
-				<select name=cmd class='textbox'>
-					<option value=1 selected>".$txt['admin_newsmaker_edit']."</option>
-					<option value=2>".$txt['admin_newsmaker_add']."</option>
-					<option value=3>".$txt['admin_newsmaker_del']."</option></select></td></tr>";
-
-    		}
-	elseif (db_num_rows($result) == 0)
-		{
-			echo"<tr><td align='center' colspan='3'><hr><br><b>".$txt['admin_newsmaker_team']."</b>&nbsp;
-				<select name='cmd' class='textbox'>
-					<option value=2 selected>".$txt['admin_newsmaker_add']."</option></select></td></tr>";
-		}
-	echo"<tr><td align='center' colspan='3'><input type='submit' name='run_cmd' value='".$txt['Run']."' class='button'></td></tr>";
-	echo"<tr><td align='center' colspan='3'>";
-
-	$return_url = ADMIN."news.php";
-	//===============================================
-	// Редактирование
-   	if ($_POST['cmd'] == edit AND $_POST['tema_edit'] <> '' AND $_POST['news_edit'] <> '' AND $_POST['news_edit_main'] <> '')
-		{
-			echo"<img src='".IMAGES."ajax-loader.gif'/><br>";
-			$query = db_query("UPDATE ".DB_NEWS." SET `news_title`='".addslashes($_POST['tema_edit'])."',`news_text`='".addslash($_POST['news_edit'])."',`news_text_main`='".addslash($_POST['news_edit_main'])."',`news_cats`='".(int)$_POST['catedit']."' WHERE `news_id`='".(int)$_POST['guid']."'"); 
-
-			if ($query)
-				{
-					echo $txt['admin_newsmaker_edit_succes'];
-					return_form(20,$return_url);
+	  				$news_cat_list .= "<option value=".$data['news_cat_id'].">".$data['news_cat_name']."</option>";
 				}
-			else
-				{
-					echo $txt['errors'];
-					return_form(20,$return_url);
-				}
-       		}
-	//===============================================
-	// Добавление
-	elseif ($_POST['cmd'] == newsadd AND $_POST['tema_add'] <> '' AND $_POST['news_add'] <> '' AND $_POST['news_add_main'] <> '')
-		{
-			echo"<img src='".IMAGES."ajax-loader.gif'/><br>";
-			$nt = addslashes($_POST['tema_add']);
-			$query = db_query("INSERT INTO ".DB_NEWS." (`news_title`,`news_text`,`news_text_main`,`news_cats`) values ('".addslashes($_POST['tema_add'])."','".addslash($_POST['news_add'])."','".addslash($_POST['news_add_main'])."','".(int)$_POST['catadd']."')");
-
-			if ($query)
-				{
-					echo $txt['admin_newsmake_add_succes'];
-					return_form(20,$return_url);
-				}
-			else
-				{
-					echo $txt['errors'];
-					return_form(20,$return_url);
-				}
-		}
-	//===============================================
-	// Удаление
-    	elseif (isset($_POST['run_cmd']) AND isset($_POST['cmd']) AND isset($_POST['id']) AND ($_POST['cmd'] == 3) AND ($_POST['id'] > 0))
-		{
-			echo"<img src='".IMAGES."ajax-loader.gif'/><br>";
-			$query = db_query("DELETE FROM ".DB_NEWS." WHERE `news_id` = '".(int)$_POST['id']."'");
-
-			if ($query)
-				{
-					echo $txt['admin_newsmake_del_succes'];
-					return_form(20,$return_url);
-				}
-			else
-				{
-							echo $txt['errors'];
-							return_form(20,$return_url);
-				}
-		}
-	elseif (($_POST['cmd'] == edit AND ($_POST['tema_edit'] == '' OR $_POST['news_edit'] == '' OR $_POST['news_edit_main'] == '')) OR ($_POST['cmd'] == newsadd AND ($_POST['tema_add'] == '' OR $_POST['news_add'] == '' OR $_POST['news_add_main'] == '')))
-				{
-					echo"<img src='".IMAGES."ajax-loader.gif'/><br>";
-					echo $txt['admin_newsmaker_not_fields'];
-					return_form(10,$return_url);
-				}
-	echo"</td></tr>";
-	echo"</form>";
-	closetable();
-
-	//===============================================
-	// Доп. форма
-	$result = db_query("SELECT * FROM ".DB_NEWS_CATS."");
-	$editlist = "";
-	while ($news_cats = db_array($result))
-		{
-	  		$news_cats_list .= "<option value=".$news_cats['news_cat_id'].">".$news_cats['news_cat_name']."</option>";
-		}
-	//===============================================
-	// форма редактирования
-     	if (isset($_POST['run_cmd']) AND isset($_POST['cmd']) AND isset($_POST['id']) AND ($_POST['cmd'] == 1) AND ($_POST['id'] > 0))
-		{
-       			$result = db_query("SELECT * FROM ".DB_NEWS." WHERE `news_id` = ".$_POST['id'].' limit 1');
-	   		$data = db_assoc($result);
-
+			//=======================================
+			// 2-ая форма
 			opentable();
-       			echo"<form method='post'>";
-       			echo"<tr><td align='left' valign='middle'>".$txt['admin_newsmaker_teme']."&nbsp;&nbsp;";
-			echo"<input type='text' name='tema_edit' class='textbox' value='".$data['news_title']."' size='40'></td>";
-
-       			echo"<tr><td align='left' valign='middle'>".$txt['admin_newsmaker_cat']."&nbsp;&nbsp;";
-			echo"<input name='cmd' value='edit' type=hidden><input name='guid' class='textbox' value='".$data['news_id']."' type=hidden>";
-
-        		echo"<select name=catedit class='textbox'>".$news_cats_list."</select>";
-			echo"</td></tr>";
-
-			echo"<tr><td><hr>".$txt['admin_newsmaker_newsflash']."</td></tr>";
-       			echo"<tr><td><textarea name='news_edit'>".$data['news_text']."</textarea></td></tr>";
-			echo"<tr><td><hr>".$txt['admin_newsmaker_newsfull']."</td></tr>";
-       			echo"<tr><td><textarea name='news_edit_main'>".$data['news_text_main']."</textarea></td></tr>";
-       			echo"<tr><td align='center'><br><input type='submit' class='button' value='".$txt['admin_newsmaker_edit']."'/></td></tr>";
+		       	echo"<form method='post'>";
+		       	echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_teme']."</td>";
+			echo"<td align='left' width='80%'><input type='text' name='news_subject' class='textbox' value='".$news_subject."' size='60'></td></tr>";
+			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_cat']."<input name='news_id' class='textbox' value='".$news_id."' type=hidden></td>";
+		        echo"<td align='left' width='80%'><select name=news_cat class='textbox'>".$news_cat_list."</select></td></tr>";
+			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_show_img_cat']."</td>";
+		       	echo"<td align='left' width='80%'><input type='checkbox' name='news_show_cat' value='yes'".$news_show_cat." /></td></tr>";
+			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_comments']."</td>";
+		       	echo"<td align='left' width='80%'><input type='checkbox' name='news_comments' value='yes'".$news_comments." /></td></tr>";
+			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_access']."</td>";
+		       	echo"<td align='left' width='80%'><select name='news_visibility' class='textbox' style='width:250px'>".access_form()."</select></td></tr>";
+			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_newsflash']."</td>";
+		       	echo"<td align='left' width='80%'><textarea name='news_text'>".$news_text."</textarea></td></tr>";
+			echo"<tr><td colspan='2'><hr></td></tr>";
+			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_newsfull']."</td>";
+		       	echo"<td align='left' width='80%'><textarea name='news_text_ext'>".$news_text_ext."</textarea></td></tr>";
+		       	echo"<tr><td align='center' colspan='2' class='small'><input type='submit' name='save'  class='button' value='".$txt_button."'/></td></tr>";
 			echo"</form>";
 			closetable();
-      		}
-	//===============================================
-	// форма добавления
-    	elseif (isset($_POST['run_cmd']) AND isset($_POST['cmd']) AND $_POST['cmd'] == 2)
-		{
-			opentable();
-			echo"<form method='post'>";
-        		echo"<tr><td align='left' valign='middle'>".$txt['admin_newsmaker_teme']."&nbsp;";
-        		echo"<input type='text' class='textbox' name='tema_add' size='40'></td></tr>";
-
-        		echo"<tr><td align='left' valign='middle'>".$txt['admin_newsmaker_cat']."&nbsp;";
-       			echo"<input name='cmd' value='newsadd' type=hidden>";
-
-     			echo"<select name=catadd class='textbox'>$news_cats_list</select>";
-			echo"</td></tr>";
-
-			echo"<tr><td><hr>".$txt['admin_newsmaker_newsflash']."</td></tr>";
-			echo"<tr><td><textarea name='news_add'></textarea></td></tr>";
-			echo"<tr><td><hr>".$txt['admin_newsmaker_newsfull']."</td></tr>";
-			echo"<tr><td><textarea name='news_add_main'></textarea></td></tr>";
-			echo"<tr><td align='center'><br><input type='submit' class='button' value='".$txt['admin_newsmaker_add']."'/></td></tr>";
-			echo"</form>";
-			closetable();
-
 		}
+
+	echo"<script type='text/javascript'>\n"."function DeleteNews() { return confirm('".$txt['admin_newsmaker_title']."'); }</script>";
+
 	require_once THEMES."templates/footer.php";
 ?>

@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 11.01.2012 17:17:12
+Date: 17.01.2012 18:24:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,10 +21,9 @@ CREATE TABLE `wcf_comments` (
   `comment_message` longtext collate utf8_unicode_ci,
   PRIMARY KEY  (`comment_id`),
   UNIQUE KEY `comment_id` (`comment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `wcf_comments` VALUES ('2', '1', '2011-12-01 15:57:52', '1', '5', '<p><span style=\\\"text-decoration: line-through;\\\"><span style=\\\"text-decoration: underline;\\\"><em><strong>Проверка работаспособности!</strong></em></span></span></p>');
-INSERT INTO `wcf_comments` VALUES ('3', '2', '2011-12-01 16:09:16', '1', '5', '<p>Когда же сервера появятся пирацкие?</p>');
+INSERT INTO `wcf_comments` VALUES ('1', '1', '2012-01-17 18:08:28', '1', '5', '<p><span style=\\\"text-decoration: line-through;\\\"><span style=\\\"text-decoration: underline;\\\"><em><strong>Проверка работаспособности!</strong></em></span></span></p>');

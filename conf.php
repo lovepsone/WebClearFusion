@@ -49,9 +49,9 @@ $config =array (
 //==================================================================
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
-'copyright'=>'WebClearFusion v 0.4.50 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [127]',
-'rev_admin'=>' 0.01.20',
+'copyright'=>'WebClearFusion v 0.4.54 from LovePSone 2010-2011',
+'revision'=>'wcf_revision_nr = [128]',
+'rev_admin'=>' 0.01.80',
 );
 
 define("DB_PREFIX", "wcf_");

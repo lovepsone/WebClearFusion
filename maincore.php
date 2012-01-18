@@ -43,6 +43,7 @@
 	require_once BASEDIR."include/multisite.php";
 	require_once BASEDIR."include/functions.php";
 	require_once BASEDIR."include/functions_files.php";
+	require_once BASEDIR."include/functions_img.php";
 	require_once BASEDIR."include/functions_lang.php";
 	require_once BASEDIR."include/functions_mysql.php";
 	require_once BASEDIR."include/functions_page.php";

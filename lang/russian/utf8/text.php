@@ -33,6 +33,7 @@ $txt = array(
 'modul_news_read_more'		=>'Читать далее',
 'modul_newsexp_date_reply'	=>'Дата ответа:',
 'modul_newsexp_date_reply'	=>'Дата ответа:',
+'modul_newsexp_log_in'		=>'Авторизуйтесь чтобы оставлять сообщения!',
 
 'modul_register'		=>'Регистрация',
 'modul_register_no_ip'		=>'<b>Регистрация новой учетной записи не возможна.</b><br>Вы уже зарегистрировали максимально возможное<br>число учетных записей с данного IP-адреса.',
@@ -62,21 +63,20 @@ $txt = array(
 'menu_admin_plants'		=>'Установки',
 
 # тексты в админке
-'news'				=>'Новости',
 'admin_newsmaker'		=>'Редактор новостей',
-'admin_newsmaker_title'		=>'Выберите нужную новость и команду!',
+'admin_newsmaker_title'		=>'Удалить эту новость?',
 'admin_newsmaker_team'		=>'Команда:',
 'admin_newsmaker_edit'		=>'Редактировать',
-'admin_newsmaker_add'		=>'Добавить',
-'admin_newsmaker_newsflash'	=>'Краткая новость',
-'admin_newsmaker_newsfull'	=>'Полная новость',
+'admin_newsmaker_add'		=>'Создать',
+'admin_newsmaker_newsflash'	=>'Краткая новость:',
+'admin_newsmaker_newsfull'	=>'Полная новость:',
 'admin_newsmaker_del'		=>'Удалить',
-'admin_newsmaker_teme'		=>'Тема',
-'admin_newsmaker_cat'		=>'Категория',
-'admin_newsmaker_not_fields'	=>'<font color=red>Ошибка!</font>Не заполнены все поля.',
-'admin_newsmake_add_succes'	=>'Новость успешно создана.',
-'admin_newsmaker_edit_succes'	=>'Новость успешно изменена.',
-'admin_newsmake_del_succes'	=>'Новость успешно удалена.',
+'admin_newsmaker_teme'		=>'Тема:',
+'admin_newsmaker_cat'		=>'Категория:',
+'admin_newsmaker_comments'	=>'Разрешить комментарии:',
+'admin_newsmaker_access'	=>'Доступ:',
+'admin_newsmaker_show_img_cat'	=>'Показывать картинку категории:',
+'admin_newsmaker_not_fields'	=>'Ошибка! Не заполнены все поля.',
 
 'admin_newscat_name'		=>'Название категории: ',
 'admin_newscat_picture'		=>'Картинка: ',
@@ -165,11 +165,17 @@ $txt = array(
 # остальное
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',
 'fill_field'			=>'<font color=red>Вы не заполнили поле!!!</font>',
-'Run'				=>'Выполнить',
 'up'				=>'Вверх',
 'down'				=>'Вниз',
 'yes'				=>'Да',
 'no'				=>'Нет',
 'no_links'			=>'Нет ссылок',
+
+'genl'				=>'Общий',
+'user'				=>'Пользователь',
+'moderator'			=>'Модератор',
+'vebmaster'			=>'Веб-мастер',
+'administrator'			=>'Админитратор',
+'superadministrator'		=>'Супер Администратор',
 );
 ?>

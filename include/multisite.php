@@ -33,6 +33,7 @@
 	define("ADMIN", BASEDIR."administration/");
 	define("FORUM", BASEDIR."forum/");
 	define("IMAGES", BASEDIR."images/");
+	define("IMAGES_N", BASEDIR."images/news/");
 	define("IMAGES_NC", BASEDIR."images/news_cat/");
 	define("IMAGES_A", BASEDIR."images/avatars/");
 	define("INCLUDES", BASEDIR."include/");
