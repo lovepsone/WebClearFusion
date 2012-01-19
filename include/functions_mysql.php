@@ -111,6 +111,23 @@
 				}
 		}
 
+	function db_result($query, $row)
+		{
+			$query_time = get_microtime();
+			$result = @mysql_result($query, $row);
+			$query_time = substr((get_microtime() - $query_time),0,7);
+
+			if (!$result)
+				{
+						echo mysql_error();
+						return false;
+				}
+			else
+				{
+					return $result;
+				}
+		}
+
 	//=============================================================================================
 	// функция работает с логами, добавляет их в бд.
 	// Значения поля mode в запросе:

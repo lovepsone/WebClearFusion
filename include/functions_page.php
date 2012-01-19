@@ -24,6 +24,20 @@
 		}
 
 	//=============================================================================================
+	// функция, показывающая доступ
+	function display_access_form($access)
+		{
+			global $txt;
+			if ($access == -1) { return $txt['genl']; }
+			else if ($access == 0) { return $txt['user']; }
+			else if ($access == 1) { return $txt['moderator']; }
+			else if ($access == 2) { return $txt['vebmaster']; }
+			else if ($access == 3) { return $txt['administrator']; }
+			else if ($access == 4) { return $txt['superadministrator']; }
+			else { return false; }
+		}
+
+	//=============================================================================================
 	// функция, создающая навигацию
 	function show_page($LinkText,$Page,$AllPages)
 		{
