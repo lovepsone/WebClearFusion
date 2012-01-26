@@ -18,7 +18,7 @@
 	// Верхнее меню
 	opentable();
 	echo"<th colspan='4'>".$txt['menu_auth_admin']." - v".$config['rev_admin']."</th>";
-	echo"<tr><td align='center' colspan='4'><div class='adminmenu'><ul>";
+	echo"<tr><td align='center' colspan='4'><div class='jsmenu'><ul>";
 
 	echo"<li style='border-left: 1px solid #202020;'><a href='".$url_admin."?contet'>".$txt['menu_admin_content']."</a></li>";
 	echo"<li style='border-left: 1px solid #202020;'><a href='".$url_admin."?users'>".$txt['menu_admin_users']."</a></li>";
