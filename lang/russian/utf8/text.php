@@ -107,6 +107,28 @@ $txt = array(
 'admin_forumedit_cleaning'	=>'Очистка',
 'admin_forumedit_delete'	=>'Вы уверены в выборе действия?<br>Данные после этого действия нельзя восстановить.',
 
+'admin_panel_control'		=>'Управление панелями',
+'admin_panel_name'		=>'Название панели',
+'admin_panel_place'		=>'Место',
+'admin_panel_position'		=>'Положение',
+'admin_panel_type'		=>'Тип',
+'admin_panel_show'		=>'Доступ',
+'admin_panel_options'		=>'Опции',
+'admin_panel_edit'		=>'Редактировать',
+'admin_panel_switch_off'	=>'ВЫКЛ',
+'admin_panel_switch_on'		=>'ВКЛ',
+'admin_panel_del'		=>'Удалить',
+'admin_panel_del_n_y'		=>'Удалить эту панель?',
+'admin_panel_add'		=>'Добавить новую панель',
+'admin_panel_refresh'		=>'Обновить порядок панелей',
+
+'admin_paneledit_name'		=>'Название панели:',
+'admin_paneledit_position'	=>'Положение:',
+'admin_paneledit_show'		=>'Доступ:',
+'admin_paneledit_save'		=>'Сохронить',
+'admin_paneledit_t_add'		=>'Добавить панель',
+'admin_paneledit_t_edit'	=>'Редактировать панель',
+
 'admin_settings'		=>'Настройки',
 'admin_settings_nameserver'	=>'Название сайта:',
 'admin_settings_urlserver'	=>'URL сайта:',
@@ -182,11 +204,19 @@ $txt = array(
 # остальное
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',
 'fill_field'			=>'<font color=red>Вы не заполнили поле!!!</font>',
+
 'up'				=>'Вверх',
 'down'				=>'Вниз',
+'left'				=>'Слева',
+'right'				=>'Справа',
+'center'			=>'Центр',
+'center_footer'			=>'По центру снизу',
+
 'yes'				=>'Да',
 'no'				=>'Нет',
 'no_links'			=>'Нет ссылок',
+'php'				=>'PHP',
+'file'				=>'Файл',
 
 'genl'				=>'Общий',
 'user'				=>'Пользователь',

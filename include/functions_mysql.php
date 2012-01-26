@@ -128,6 +128,23 @@
 				}
 		}
 
+	function db_count($field, $table, $conditions = "")
+		{
+			$cond = ($conditions ? " WHERE ".$conditions : "");
+			$result = @mysql_query("SELECT Count".$field." FROM ".$table.$cond);
+
+			if (!$result)
+				{
+					echo mysql_error();
+					return false;
+				}
+			else
+				{
+					$rows = mysql_result($result, 0);
+					return $rows;
+				}
+		}
+
 	//=============================================================================================
 	// функция работает с логами, добавляет их в бд.
 	// Значения поля mode в запросе:
