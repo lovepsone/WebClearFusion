@@ -34,7 +34,6 @@
 			$folder_level .= "../"; $i++;
 			if ($i == 7) { die("Config file not found"); }
 		}
-	require_once $folder_level."include/multi_realms.php";
 	require_once $folder_level."conf.php";
 	define("BASEDIR", $folder_level);
 

@@ -20,39 +20,62 @@
   
   			switch ($date_base):
 
- 			case ("mangos"):
-  			$db = $config['dbName'];
-  			$ip = $config['hostname'];
-  			$userdb = $config['username'];
-  			$pw = $config['password'];
-  			break;
-  
-  			case ("realmd"):
-  			$db = $config['rdbName'];
-  			$ip = $config['rhostname'];
-  			$userdb = $config['rusername'];
-  			$pw = $config['rpassword'];
-  			break;
-  
-  			case ("characters"):
-  			$db = $config['cdbName'];
-  			$ip = $config['chostname'];
-  			$userdb = $config['cusername'];
-  			$pw = $config['cpassword'];
-  			break;
-  
   			case ("wcf"):
   			$db = $config['wdbName'];
   			$ip = $config['whostname'];
   			$userdb = $config['wusername'];
   			$pw = $config['wpassword'];
   			break;
-  
+
+  			case ("realmd"):
+  			$db = $config['rdbName'];
+  			$ip = $config['rhostname'];
+  			$userdb = $config['rusername'];
+  			$pw = $config['rpassword'];
+  			break;
+
+  			case ("characters_r1"):
+  			$db = $config['cdbName_r1'];
+  			$ip = $config['chostname_r1'];
+  			$userdb = $config['cusername_r1'];
+  			$pw = $config['cpassword_r1'];
+  			break;
+
+   			case ("mangos_r1"):
+  			$db = $config['dbName_r1'];
+  			$ip = $config['hostname_r1'];
+  			$userdb = $config['username_r1'];
+  			$pw = $config['password_r1'];
+  			break;
+
+  			case ("characters_r2"):
+  			$db = $config['cdbName_r2'];
+  			$ip = $config['chostname_r2'];
+  			$userdb = $config['cusername_r2'];
+  			$pw = $config['cpassword_r2'];
+  			break;
+
+   			case ("mangos_r2"):
+  			$db = $config['dbName'];
+  			$ip = $config['hostname'];
+  			$userdb = $config['username'];
+  			$pw = $config['password'];
+  			break;
+
   			endswitch;
   
- 			$connect = mysql_connect($ip, $userdb, $pw);
- 			mysql_select_db($db, $connect);
-			mysql_query("SET NAMES '".$config['encoding']."'");   
+ 			$db_connect = @mysql_connect($ip, $userdb, $pw);
+ 			$db_select = @mysql_select_db($db, $db_connect);
+			@mysql_query("SET NAMES '".$config['encoding']."'");
+
+			if (!$db_connect)
+				{
+					die("<div style='text-align:center;'><strong>Unable to establish connection to MySQL</strong><br />".mysql_errno()." : ".mysql_error()."</div>");
+				}
+			elseif (!$db_select)
+				{
+					die("<div style='text-align:center;'><strong>Unable to select MySQL database</strong><br />".mysql_errno()." : ".mysql_error()."</div>");
+				}
 		}
 
 	//=============================================================================================

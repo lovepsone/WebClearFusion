@@ -28,20 +28,36 @@ $config =array (
 'rdbName' =>'realmd',
 
 //==================================================================
-// База мира (mangos)
+// База мира (mangos_r1)
 //==================================================================
-'hostname' => $realms[$_SESSION['realmd']]['hostname'],
-'username' => $realms[$_SESSION['realmd']]['username'],
-'password' => $realms[$_SESSION['realmd']]['password'],
-'dbName' => $realms[$_SESSION['realmd']]['dbName'],
+'hostname_r1' => '127.0.0.1',
+'username_r1' => 'mangos',
+'password_r1' => 'mangos',
+'dbName_r1' => 'mangos',
 
 //==================================================================
-// База персанажей (characters)
+// База персанажей (characters_1)
 //==================================================================
-'chostname' => $realms[$_SESSION['realmd']]['chostname'],
-'cusername' => $realms[$_SESSION['realmd']]['cusername'],
-'cpassword' => $realms[$_SESSION['realmd']]['cpassword'],
-'cdbName' => $realms[$_SESSION['realmd']]['cdbName'],
+'chostname_r1' => '127.0.0.1',
+'cusername_r1' => 'mangos',
+'cpassword_r1' => 'mangos',
+'cdbName_r1' => 'characters',
+
+//==================================================================
+// База мира (mangos_r2)
+//==================================================================
+'hostname_r2' => '127.0.0.1',
+'username_r2' => 'mangos',
+'password_r2' => 'mangos',
+'dbName_r2' => '335_mangos',
+
+//==================================================================
+// База персанажей (characters_r2)
+//==================================================================
+'chostname_r2' => '127.0.0.1',
+'cusername_r2' => 'mangos',
+'cpassword_r2' => 'mangos',
+'cdbName_r2' => '335_characters',
 
 'encoding'=> 'utf8',
 'admin'=>'3',
@@ -50,7 +66,7 @@ $config =array (
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
 'copyright'=>'WebClearFusion v 0.4.60 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [142]',
+'revision'=>'wcf_revision_nr = [143]',
 'rev_admin'=>' 0.01.80',
 );
 
