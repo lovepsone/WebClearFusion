@@ -113,10 +113,7 @@
 
 	function db_result($query, $row)
 		{
-			$query_time = get_microtime();
 			$result = @mysql_result($query, $row);
-			$query_time = substr((get_microtime() - $query_time),0,7);
-
 			if (!$result)
 				{
 						echo mysql_error();
