@@ -10,9 +10,9 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	error_reporting(E_ERROR | E_PARSE | E_WARNING);
-	error_reporting(E_ALL);
-	ini_set('display_errors', 0);
+	//error_reporting(E_ERROR | E_PARSE | E_WARNING);
+	error_reporting(E_ERROR);
+	//ini_set('display_errors', 0);
 
 	//=============================================================================================================
 	// Предотвращения возможных атак через XSS $_GET.
@@ -41,7 +41,6 @@
 	// Запускаем основные функции и многоузловое определение\Run the basic functions and determination of multisite
 	//=============================================================================================================
 	require_once BASEDIR."include/multisite.php";
-	require_once BASEDIR."include/functions.php";
 	require_once BASEDIR."include/functions_files.php";
 	require_once BASEDIR."include/functions_img.php";
 	require_once BASEDIR."include/functions_lang.php";
@@ -64,7 +63,7 @@
 	// Запускаем настройки\Run the setup
 	//=============================================================================================================
 	selectdb(wcf);
-	$result = mysql_query("SELECT * FROM ".DB_SETTINGS."") or trigger_error(mysql_error());
+	$result = db_query("SELECT * FROM ".DB_SETTINGS."");
 	if ($result)
 		{
 			while ($data = db_array($result))
