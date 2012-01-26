@@ -69,6 +69,7 @@
 			$news_cat = "";
 			$news_text = "";
 			$news_text_ext = "";
+			$news_visibility = "";
 			$news_comments = " checked='checked'";
 			$news_show_cat = " checked='checked'";
 			$txt_button = $txt['admin_newsmaker_add'];
@@ -107,6 +108,7 @@
 					$news_cat = $data1['news_cat'];
 					$news_text = $data1['news_text'];
 					$news_text_ext = $data1['news_text_extended'];
+					$news_visibility = $data1['news_visibility'];
 					$news_comments = $data1['news_allow_comments'] == "1" ? " checked='checked'" : "";
 					$news_show_cat = $data1['news_show_cat'] == "1" ? " checked='checked'" : "";
 					$txt_button = $txt['admin_newsmaker_edit'];
@@ -144,7 +146,7 @@
 			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_comments']."</td>";
 		       	echo"<td align='left' width='80%'><input type='checkbox' name='news_comments' value='yes'".$news_comments." /></td></tr>";
 			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_access']."</td>";
-		       	echo"<td align='left' width='80%'><select name='news_visibility' class='textbox' style='width:250px'>".access_form()."</select></td></tr>";
+		       	echo"<td align='left' width='80%'><select name='news_visibility' class='textbox' style='width:250px'>".access($news_visibility)."</select></td></tr>";
 			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_newsflash']."</td>";
 		       	echo"<td align='left' width='80%'><textarea name='news_text'>".$news_text."</textarea></td></tr>";
 			echo"<tr><td colspan='2'><hr></td></tr>";

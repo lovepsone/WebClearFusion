@@ -11,19 +11,6 @@
 +--------------------------------------------------------*/
 
 	//=============================================================================================
-	// функция, создающая форму доступа
-	function access_form()
-		{
-			global $txt;
-			return "<option value='-1'>".$txt['genl']."</option>
-				<option value='0'>".$txt['user']."</option>
-				<option value='1'>".$txt['moderator']."</option>
-				<option value='2'>".$txt['vebmaster']."</option>
-				<option value='3'>".$txt['administrator']."</option>
-				<option value='4'>".$txt['superadministrator']."</option>";
-		}
-
-	//=============================================================================================
 	// функция, показывающая доступ
 	function display_access_form($access)
 		{

@@ -104,6 +104,7 @@
 								$link_name = $data['link_name'];
 								$link_url = $data['link_url'];
 								$link_order = $data['link_order'];
+								$link_visibility = $data['link_visibility'];
 								$txt_page = $txt['admin_slinks_title_edit'];
 								$formaction = WCF_SELF."?action=edit&link_id=".$_GET['link_id'];
 							}
@@ -117,6 +118,7 @@
 					$link_name = "";
 					$link_url = "";
 					$link_order = "";
+					$link_visibility = "";
 					$txt_page = $txt['admin_slinks_title_add'];
 					$formaction = WCF_SELF;
 				}
@@ -129,7 +131,7 @@
 			echo"<tr><td align='right' width='50%' class='small'>".$txt['admin_slinks_url']."</td>";
 			echo"<td align='left'><input type='text' name='link_url' value='".$link_url."' maxlength='200' class='textbox' style='width:240px;' /></td></tr>";
 			echo"<tr><td align='right' width='50%' class='small'>".$txt['admin_slinks_show']."</td>";
-			echo"<td align='left' class='small'><select name='link_visibility' class='textbox' style='width:150px;'>".access_form()."</select>";
+			echo"<td align='left' class='small'><select name='link_visibility' class='textbox' style='width:150px;'>".access($link_visibility)."</select>";
 			echo $txt['admin_slinks_order']."<input type='text' name='link_order'  value='".$link_order."' maxlength='3' class='textbox' style='width:40px;' /></td></tr>";
 			echo"<tr><td align='center' colspan='2'><hr><input type='submit' name='savelink' value='".$txt['admin_slinks_save']."' class='button' /></td></tr>";
 			echo"</form>";

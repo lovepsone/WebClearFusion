@@ -49,6 +49,7 @@
 	require_once BASEDIR."include/functions_text_process.php";
 	require_once BASEDIR."include/functions_theme.php";
 	require_once BASEDIR."include/functions_users.php";
+	require_once BASEDIR."include/access_list.php";
 
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup

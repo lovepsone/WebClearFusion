@@ -126,7 +126,7 @@
 					echo"</select></td></tr>";
 				}
 			echo"<tr><td width='50%' align='right' class='small'>".$txt['admin_paneledit_show']."</td>";
-			echo"<td width='50%' align='left'><select name='panel_access' class='textbox' style='width:150px;'>".access_form()."</select></td></tr>";
+			echo"<td width='50%' align='left'><select name='panel_access' class='textbox' style='width:150px;'>".access($panel_access)."</select></td></tr>";
 			echo"<tr><td align='center' class='small' colspan='2'><input type='submit' name='save' value='".$txt['admin_paneledit_save']."' class='button' /></td></tr></form>";
 			closetable();
 		}

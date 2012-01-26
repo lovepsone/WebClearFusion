@@ -20,4 +20,27 @@
 				
 			
 		}
+
+	function access($data)
+		{
+			global $access,$txt;
+
+    			reset($access);
+			if ($data == "")
+				{
+					for ($i=1;$i <= count($access);$i++)
+						{
+							$list .= "<option value='".$access[$i]['access']."'>".$txt[$access[$i]['txt']]."</option>";
+						}
+
+				}
+			elseif ($data != "")
+				{
+					for ($i=1;$i <= count($access);$i++)
+						{
+							$list .= "<option value='".$access[$i]['access']."'".($data == $access[$i]['access'] ? " selected='selected'" : "").">".$txt[$access[$i]['txt']]."</option>";
+						}
+				}
+			return $list;
+		}
 ?>
