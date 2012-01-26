@@ -12,14 +12,6 @@
 
 $config =array (
 //==================================================================
-// База мира (mangos)
-//==================================================================
-'hostname' => '127.0.0.1',
-'username' => 'mangos',
-'password' => 'mangos',
-'dbName' => 'mangos',
-
-//==================================================================
 // База сайта (WCF)
 //==================================================================
 'whostname' => '127.0.0.1',
@@ -36,12 +28,20 @@ $config =array (
 'rdbName' =>'realmd',
 
 //==================================================================
+// База мира (mangos)
+//==================================================================
+'hostname' => $realms[$_SESSION['realmd']]['hostname'],
+'username' => $realms[$_SESSION['realmd']]['username'],
+'password' => $realms[$_SESSION['realmd']]['password'],
+'dbName' => $realms[$_SESSION['realmd']]['dbName'],
+
+//==================================================================
 // База персанажей (characters)
 //==================================================================
-'chostname' => '127.0.0.1',
-'cusername' => 'mangos',
-'cpassword' => 'mangos',
-'cdbName' =>'characters',
+'chostname' => $realms[$_SESSION['realmd']]['chostname'],
+'cusername' => $realms[$_SESSION['realmd']]['cusername'],
+'cpassword' => $realms[$_SESSION['realmd']]['cpassword'],
+'cdbName' => $realms[$_SESSION['realmd']]['cdbName'],
 
 'encoding'=> 'utf8',
 'admin'=>'3',
@@ -50,7 +50,7 @@ $config =array (
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
 'copyright'=>'WebClearFusion v 0.4.60 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [141]',
+'revision'=>'wcf_revision_nr = [142]',
 'rev_admin'=>' 0.01.80',
 );
 
