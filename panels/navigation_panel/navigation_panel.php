@@ -36,11 +36,6 @@
 								}
 							echo"</td></tr>";
 						}
-					else
-						{
-							echo $txt['no_links'];
-							break;
-						}
 				}
 		}
 	else
