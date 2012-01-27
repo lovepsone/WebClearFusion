@@ -49,7 +49,7 @@ $config =array (
 'hostname_r2' => '127.0.0.1',
 'username_r2' => 'mangos',
 'password_r2' => 'mangos',
-'dbName_r2' => '335_mangos',
+'dbName_r2' => 'mangos2',
 
 //==================================================================
 // База персанажей (characters_r2)
@@ -57,7 +57,7 @@ $config =array (
 'chostname_r2' => '127.0.0.1',
 'cusername_r2' => 'mangos',
 'cpassword_r2' => 'mangos',
-'cdbName_r2' => '335_characters',
+'cdbName_r2' => 'characters2',
 
 'encoding'=> 'utf8',
 'admin'=>'3',
@@ -66,7 +66,7 @@ $config =array (
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
 'copyright'=>'WebClearFusion v 0.4.60 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [147]',
+'revision'=>'wcf_revision_nr = [148]',
 'rev_admin'=>' 0.01.80',
 );
 

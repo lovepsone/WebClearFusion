@@ -75,9 +75,9 @@
 	else { die("Settings do not exist or no connection to base mysql. May not correctly configured conf.php."); }
 
 	selectdb(realmd);
-	$result_r = db_query("SELECT * FROM `realmlist`");
-	$config['namber_realmd'] = db_num_rows($result_r);
+	$config['namber_realmd'] = db_num_rows(db_query("SELECT * FROM `realmlist`"));
 	$config['defult_realmd_id'] = db_result(db_query("SELECT `id` FROM `realmlist`"),0);
+	$config['data_realms'] = db_assoc(db_query("SELECT * FROM `realmlist` LIMIT ".$config['namber_realmd']));
 
 	require_once BASEDIR."include/auth.php";
 	require_once BASEDIR."include/protect.php";
