@@ -77,6 +77,7 @@
 	selectdb(realmd);
 	$result_r = db_query("SELECT * FROM `realmlist`");
 	$config['namber_realmd'] = db_num_rows($result_r);
+	$config['defult_realmd_id'] = db_result(db_query("SELECT `id` FROM `realmlist`"),0);
 
 	require_once BASEDIR."include/auth.php";
 	require_once BASEDIR."include/protect.php";
