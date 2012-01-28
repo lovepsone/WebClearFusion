@@ -47,15 +47,7 @@
 
 			openside();
 			echo"<tr><td align='left'>".$txt['menu_auth_greeting']."&nbsp;".ucfirst(strtolower($_SESSION['user_name']))."</td></tr>";
-			if ($res_user['user_avatar'] <> '')
-				{
-			  		echo"<tr><td align='right' valign='top' class='avatar'><img src='".IMAGES_A.$res_user['user_avatar']."'/></td></tr>";
-				}
-			else
-				{
-					echo"<tr><td align='right' valign='top'><img src='".IMAGES_A."null-avatar.gif' class='avatar'></td></tr>";
-				}
-
+			echo"<tr><td align='right' valign='top' class='avatar'>".avatar_img($res_user['user_avatar'])."</td></tr>";
   			echo"<tr><td align='left'>".$txt['menu_auth_ip']."</td></tr>";
   			echo"<tr><td align='left'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
 
