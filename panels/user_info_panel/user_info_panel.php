@@ -71,7 +71,7 @@
 
 			while ($user = db_array($clear_user))
 				{
-					if ($user['user_id'] <> $_SESSION['user_id']) db_query("UPDATE ".DB_USERS." SET `user_online`='0' WHERE  `user_id`='".$user['user_id']."'");
+					if ($user['user_id'] != $_SESSION['user_id']) { db_query("UPDATE ".DB_USERS." SET `user_online`='0' WHERE  `user_id`='".$user['user_id']."'"); }
 				}
 		}
 ?>
