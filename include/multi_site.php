@@ -14,6 +14,8 @@
 	// Название таблиц mysql
 	//===============================================
 	define("DB_ADMIN", DB_PREFIX."admin");
+	define("DB_CHR_CLASSES", DB_PREFIX."chr_classes");
+	define("DB_CHR_RACES", DB_PREFIX."chr_races");
 	define("DB_COMMENTS", DB_PREFIX."comments");
 	define("DB_FORUMS", DB_PREFIX."forums");
 	define("DB_FORUMS_POSTS", DB_PREFIX."forums_posts");
@@ -36,6 +38,7 @@
 	define("IMAGES_N", BASEDIR."images/news/");
 	define("IMAGES_NC", BASEDIR."images/news_cat/");
 	define("IMAGES_A", BASEDIR."images/avatars/");
+	define("IMAGES_PI", BASEDIR."images/player_info/");
 	define("INCLUDES", BASEDIR."include/");
 	define("LANG", BASEDIR."lang/");
 	define("PANELS", BASEDIR."panels/");

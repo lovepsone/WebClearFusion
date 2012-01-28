@@ -10,6 +10,8 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	require_once "zone_names.php";
+
 $txt = array(
 # тексты в правом и левом меню
 'menu_auth_title'		=>'Авторизуйтесь или зарегистрируйтесь',
@@ -55,6 +57,19 @@ $txt = array(
 'modul_setuser_wait'		=>'<br>Пожалуйста, подождите, сейчас вы будете перемещены...<br><br>',
 'modul_setuser_link'		=>'или нажмите сюда, если не хотите ждать',
 'modul_setuser_logout'		=>'Вы успешно вышли из Учетной записи!',
+
+'modul_online_timers'		=>'Таймеры:',
+'modul_online_points_arena'	=>'Дата начисления очков арены:',
+'modul_online_daily_quests'	=>'Дата сброса ежедневных заданий:',
+'modul_online_weekly_quests'	=>'Дата сброса еженедельных заданий:',
+'modul_online_monthly_quests'	=>'Дата сброса ежемесячных заданий:',
+'modul_online'			=>'онлайн',
+'modul_online_no_char'		=>'Нет игроков со статусом <b>Онлайн</b>',
+'modul_online_level'		=>'Уровень',
+'modul_online_name'		=>'Имя',
+'modul_online_race'		=>'Раса',
+'modul_online_class'		=>'Класс',
+'modul_online_position'		=>'Позиция',
 
 # тексты в меню админки
 'menu_admin_content'		=>'Администрирование контента',

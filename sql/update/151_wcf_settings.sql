@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 13.01.2012 12:34:02
+Date: 28.01.2012 16:36:47
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -38,6 +38,6 @@ INSERT INTO `wcf_settings` VALUES ('page_forum_posts', '10');
 INSERT INTO `wcf_settings` VALUES ('pass_remember', 'on');
 INSERT INTO `wcf_settings` VALUES ('registration_ip_limit', '0');
 INSERT INTO `wcf_settings` VALUES ('page_news', '5');
-INSERT INTO `wcf_settings` VALUES ('page_admin_news', '10');
+INSERT INTO `wcf_settings` VALUES ('page_online', '30');
 INSERT INTO `wcf_settings` VALUES ('license_agreement', 'Регистрация учётной записи для игры в WoW на нашем сервере. Внимательно, правильно заполните все поля этой формы. Особое внимание обращаем на правильность ввода E-mailа, т.к. многие операции с учётными записями и персонажами требуют подтверждения по электронной почте. Имя учётной записи и пароль не должны совпадать.<hr>Большая просьба не регистрировать учётные записи, содержащие русские буквы, а то вы не сможете правильно подключиться к серверу.<hr> Удачной вам игры. Спасибо за внимание.<br>');
 INSERT INTO `wcf_settings` VALUES ('permit_registration', '1');

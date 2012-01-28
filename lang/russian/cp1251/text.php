@@ -10,6 +10,8 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	require_once "zone_names.php";
+
 $txt = array(
 # тексты в правом и левом меню
 'menu_auth_title'		=>'Авторизуйтесь или зарегистрируйтесь',
