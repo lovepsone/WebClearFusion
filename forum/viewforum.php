@@ -20,7 +20,7 @@
 		{
 			$forum_id = addslashes($_GET["forum_id"]);
 			selectdb(wcf);
-  			$result = db_query("SELECT count(`post_date`) as kol FROM `wcf_forums_posts` WHERE `forum_id`='$forum_id'") or trigger_error(mysql_error());
+  			$result = db_query("SELECT count(`post_date`) as kol FROM `wcf_forums_posts` WHERE `forum_id`='$forum_id'");
 			$thr_kolzap = db_array($result);
 
 			if ($thr_kolzap['kol'] > $config['page_forum_threads'])
@@ -62,7 +62,7 @@
 							selectdb(wcf);
 							$last_post =  mysql_query("SELECT * FROM ".DB_FORUMS_POSTS.",`wcf_users`
 											WHERE ".DB_FORUMS_POSTS.".`post_id`='".$data['thread_lastpostid']."'
-											AND `wcf_users`.`user_id`='".$data['thread_lastuser']."' LIMIT 1") or trigger_error(mysql_error());
+											AND `wcf_users`.`user_id`='".$data['thread_lastuser']."' LIMIT 1");
 							$last_post = mysql_fetch_assoc($last_post);
 
 							echo"<tr><td width='4%' align='left' class='tbl1'></td>";
@@ -75,7 +75,7 @@
 						{
   							$page_counter_thr = ceil($thr_kolzap['kol'] / $config['page_forum_threads']);
 
-   							if (!isset($_GET['page']) OR ($_GET['page'] == '') OR ($_GET['page'] == '_')) $tp3 = 1; else $tp3 = (int)$_GET['page'];
+   							if (!isset($_GET['page']) OR ($_GET['page'] == '') OR ($_GET['page'] == '_')) { $tp3 = 1; } else { $tp3 = (int)$_GET['page']; }
  							echo"<tr><td colspan='3' align='center' valign='middle' >".show_page(FORUM.'viewforum.php?forum_id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";
   						}
 				}
