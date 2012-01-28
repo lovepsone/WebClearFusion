@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 26.01.2012 16:32:04
+Date: 28.01.2012 16:39:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,6 +22,55 @@ CREATE TABLE `wcf_admin` (
   `admin_link` varchar(100) character set utf8 collate utf8_unicode_ci NOT NULL default 'reserved',
   PRIMARY KEY  (`admin_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for wcf_chr_classes
+-- ----------------------------
+DROP TABLE IF EXISTS `wcf_chr_classes`;
+CREATE TABLE `wcf_chr_classes` (
+  `id` int(10) unsigned NOT NULL,
+  `unk_1` int(10) unsigned NOT NULL,
+  `power_type` int(10) unsigned NOT NULL,
+  `unk_3` int(10) unsigned NOT NULL,
+  `name` text NOT NULL,
+  `female_name` text NOT NULL,
+  `neutral_name` text NOT NULL,
+  `internal_name` text NOT NULL,
+  `spell_family` int(10) unsigned NOT NULL,
+  `unk_9` int(10) unsigned NOT NULL,
+  `cinematic_id` int(10) unsigned NOT NULL,
+  `expansion` int(10) unsigned NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for wcf_chr_races
+-- ----------------------------
+DROP TABLE IF EXISTS `wcf_chr_races`;
+CREATE TABLE `wcf_chr_races` (
+  `id` int(10) unsigned NOT NULL,
+  `unk_1` int(10) unsigned NOT NULL,
+  `facton_id` int(10) unsigned NOT NULL,
+  `unk_4` int(10) unsigned NOT NULL,
+  `model_m` int(10) unsigned NOT NULL,
+  `model_f` int(10) unsigned NOT NULL,
+  `short_name` text NOT NULL,
+  `unk_8` int(10) unsigned NOT NULL,
+  `unk_9` int(10) unsigned NOT NULL,
+  `unk_10` int(10) unsigned NOT NULL,
+  `unk_11` int(10) unsigned NOT NULL,
+  `internal_name` text NOT NULL,
+  `cinematic_id` int(10) unsigned NOT NULL,
+  `team` int(10) unsigned NOT NULL,
+  `name` text NOT NULL,
+  `female_name` text NOT NULL,
+  `neutral_name` text NOT NULL,
+  `unk_18` text NOT NULL,
+  `unk_19` text NOT NULL,
+  `unk_20` text NOT NULL,
+  `expansion` int(10) unsigned NOT NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for wcf_comments
@@ -115,7 +164,7 @@ CREATE TABLE `wcf_navigation_links` (
   `link_position` tinyint(1) unsigned NOT NULL default '1',
   `link_order` smallint(2) unsigned NOT NULL default '0',
   PRIMARY KEY  (`link_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for wcf_news
@@ -237,6 +286,37 @@ INSERT INTO `wcf_admin` VALUES ('46', '2', '3', '4', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('47', '3', '3', '4', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('48', '4', '3', '4', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('49', '1', '4', '1', 'settings.gif', 'Главные установки', 'settings_main.php');
+INSERT INTO `wcf_chr_classes` VALUES ('1', '0', '1', '1', 'Воин', '', 'Воин', 'WARRIOR', '4', '50', '0', '0');
+INSERT INTO `wcf_chr_classes` VALUES ('2', '0', '0', '1', 'Паладин', '', 'Паладин', 'PALADIN', '10', '58', '0', '0');
+INSERT INTO `wcf_chr_classes` VALUES ('3', '1', '0', '1', 'Охотник', 'Охотница', 'Охотник', 'HUNTER', '9', '22', '0', '0');
+INSERT INTO `wcf_chr_classes` VALUES ('4', '1', '3', '1', 'Разбойник', 'Разбойница', 'Разбойник', 'ROGUE', '8', '2', '0', '0');
+INSERT INTO `wcf_chr_classes` VALUES ('5', '0', '0', '1', 'Жрец', 'Жрица', 'Жрец', 'PRIEST', '6', '2', '0', '0');
+INSERT INTO `wcf_chr_classes` VALUES ('6', '9', '6', '1', 'Рыцарь смерти', '', 'Рыцарь смерти', 'DEATHKNIGHT', '15', '122', '165', '2');
+INSERT INTO `wcf_chr_classes` VALUES ('7', '1', '0', '1', 'Шаман', 'Шаманка', 'Шаман', 'SHAMAN', '11', '26', '0', '0');
+INSERT INTO `wcf_chr_classes` VALUES ('8', '0', '0', '1', 'Маг', '', 'Маг', 'MAGE', '3', '2', '0', '0');
+INSERT INTO `wcf_chr_classes` VALUES ('9', '0', '0', '240', 'Чернокнижник', 'Чернокнижница', 'Чернокнижник', 'WARLOCK', '5', '6', '0', '0');
+INSERT INTO `wcf_chr_classes` VALUES ('11', '0', '0', '1', 'Друид', '', 'Друид', 'DRUID', '7', '10', '0', '0');
+INSERT INTO `wcf_chr_races` VALUES ('1', '12', '1', '4140', '49', '50', 'Hu', '7', '7', '15007', '1096', 'Human', '81', '0', 'Человек', '', 'Человек', 'NORMAL', 'PIERCINGS', 'NORMAL', '0');
+INSERT INTO `wcf_chr_races` VALUES ('2', '12', '2', '4141', '51', '52', 'Or', '1', '7', '15007', '1096', 'Orc', '21', '1', 'Орк', '', 'Орк', 'NORMAL', 'PIERCINGS', 'NORMAL', '0');
+INSERT INTO `wcf_chr_races` VALUES ('3', '12', '3', '4147', '53', '54', 'Dw', '7', '7', '15007', '1090', 'Dwarf', '41', '0', 'Дворф', '', 'Дворф', 'NORMAL', 'PIERCINGS', 'NORMAL', '0');
+INSERT INTO `wcf_chr_races` VALUES ('4', '4', '4', '4145', '55', '56', 'Ni', '7', '7', '15007', '1096', 'NightElf', '61', '0', 'Ночной эльф', 'Ночная эльфийка', 'Ночной эльф', 'NORMAL', 'MARKINGS', 'NORMAL', '0');
+INSERT INTO `wcf_chr_races` VALUES ('5', '12', '5', '4142', '57', '58', 'Sc', '1', '7', '15007', '1096', 'Scourge', '2', '1', 'Нежить', 'Нежить', '', 'FEATURES', 'FEATURES', 'NORMAL', '0');
+INSERT INTO `wcf_chr_races` VALUES ('6', '14', '6', '4143', '59', '60', 'Ta', '1', '7', '15007', '1096', 'Tauren', '141', '1', 'Таурен', '', 'Таурен', 'NORMAL', 'HAIR', 'HORNS', '0');
+INSERT INTO `wcf_chr_races` VALUES ('7', '12', '115', '4146', '1563', '1564', 'Gn', '7', '7', '15007', '1096', 'Gnome', '101', '0', 'Гном', '', 'Гном', 'NORMAL', 'EARRINGS', 'NORMAL', '0');
+INSERT INTO `wcf_chr_races` VALUES ('8', '14', '116', '4144', '1478', '1479', 'Tr', '1', '7', '15007', '1096', 'Troll', '121', '1', 'Тролль', '', 'Тролль', 'TUSKS', 'TUSKS', 'NORMAL', '0');
+INSERT INTO `wcf_chr_races` VALUES ('9', '1', '1', '0', '6894', '6895', 'Go', '7', '7', '15007', '1096', 'Goblin', '0', '2', 'Гоблин', '', 'Гоблин', 'NORMAL', 'NONE', 'NORMAL', '0');
+INSERT INTO `wcf_chr_races` VALUES ('10', '12', '1610', '4142', '15476', '15475', 'Be', '1', '7', '15007', '1096', 'BloodElf', '162', '1', 'Эльф крови', 'Эльфийка крови', 'Эльф крови', 'NORMAL', 'EARRINGS', 'NORMAL', '1');
+INSERT INTO `wcf_chr_races` VALUES ('11', '14', '1629', '4140', '16125', '16126', 'Dr', '7', '7', '15007', '1096', 'Draenei', '163', '0', 'Дреней', '', 'Дреней', 'NORMAL', 'HORNS', 'NORMAL', '1');
+INSERT INTO `wcf_chr_races` VALUES ('12', '5', '1', '0', '16981', '16980', 'Fo', '7', '7', '15007', '1096', 'FelOrc', '0', '2', 'Орк Скверны', '', 'Орк Скверны', 'NORMAL', 'NORMAL', 'NORMAL', '0');
+INSERT INTO `wcf_chr_races` VALUES ('13', '1', '1', '0', '17402', '17403', 'Na', '7', '7', '15007', '1096', 'Naga_', '0', '2', 'Нага', 'Нага', 'Наг', 'Normal', 'Normal', 'Normal', '0');
+INSERT INTO `wcf_chr_races` VALUES ('14', '5', '1', '0', '17576', '17577', 'Br', '7', '7', '15007', '1096', 'Broken', '0', '2', 'Падший', 'Падшая', 'Падший', 'Normal', 'Normal', 'Normal', '0');
+INSERT INTO `wcf_chr_races` VALUES ('15', '1', '1', '0', '17578', '17579', 'Sk', '7', '7', '15007', '1096', 'Skeleton', '0', '2', 'Скелет', '', 'Скелет', 'Normal', 'Normal', 'Normal', '0');
+INSERT INTO `wcf_chr_races` VALUES ('16', '9', '1', '0', '21685', '21686', 'Vr', '7', '7', '15007', '1096', 'Vrykul', '0', '2', 'Врайкул', '', 'Врайкул', 'Normal', 'Normal', 'Normal', '0');
+INSERT INTO `wcf_chr_races` VALUES ('17', '1', '1', '0', '21780', '21781', 'Tu', '7', '7', '15007', '1096', 'Tuskarr', '0', '2', 'Клыкарр', '', 'Клыкарр', 'Normal', 'Normal', 'Normal', '0');
+INSERT INTO `wcf_chr_races` VALUES ('18', '15', '1', '0', '21963', '21964', 'Ft', '7', '7', '15007', '1096', 'ForestTroll', '0', '2', 'Лесной тролль', '', 'Лесной тролль', 'TUSKS', 'TUSKS', 'Normal', '0');
+INSERT INTO `wcf_chr_races` VALUES ('19', '5', '1', '0', '26316', '26317', 'Wt', '7', '7', '15007', '1096', 'Taunka', '0', '2', 'Таунка', 'Таунка', 'Таунка', 'Normal', 'Normal', 'Normal', '0');
+INSERT INTO `wcf_chr_races` VALUES ('20', '5', '1', '0', '26871', '26872', 'NS', '7', '7', '15007', '1096', 'NorthrendSkeleton', '0', '2', 'Нордскольский скелет', '', 'Нордскольский скелет', 'Normal', 'Normal', 'Normal', '0');
+INSERT INTO `wcf_chr_races` VALUES ('21', '5', '1', '0', '26873', '26874', 'It', '7', '7', '15007', '1096', 'IceTroll', '0', '2', 'Ледяной тролль', '', 'Ледяной тролль', 'Normal', 'Normal', 'Normal', '0');
 INSERT INTO `wcf_comments` VALUES ('1', '1', '2012-01-17 18:08:28', '1', '5', '<p><span style=\\\"text-decoration: line-through;\\\"><span style=\\\"text-decoration: underline;\\\"><em><strong>Проверка работаспособности!</strong></em></span></span></p>');
 INSERT INTO `wcf_forums` VALUES ('1', '0', '1', 'Информация о сервере', null, '0', '0', '0');
 INSERT INTO `wcf_forums` VALUES ('2', '0', '2', 'Мир Warcraft', null, '0', '0', '0');
@@ -261,6 +341,7 @@ INSERT INTO `wcf_logs` VALUES ('2012-01-22 21:20:39', '192.168.12.100', '5', '0'
 INSERT INTO `wcf_navigation_links` VALUES ('1', 'Общее пространство', '---', '-1', '1', '1');
 INSERT INTO `wcf_navigation_links` VALUES ('2', 'Главная', 'index.php', '-1', '1', '2');
 INSERT INTO `wcf_navigation_links` VALUES ('3', 'Форум', 'forum/index.php', '-1', '1', '3');
+INSERT INTO `wcf_navigation_links` VALUES ('5', 'Онлайн', 'online.php', '-1', '1', '4');
 INSERT INTO `wcf_news` VALUES ('1', '2012-01-26 15:51:10', '5', 'От разработчика', '1', '1', '<p>wcf успешно установлен и готов к использованию!</p>', '<p>wcf успешно установлен и готов к использованию!</p>', '-1', '1');
 INSERT INTO `wcf_news` VALUES ('4', '2012-01-26 15:39:43', '5', 'Десятка умерших аддонов', '1', '1', '<p>Не секрет что Близзард любят заимствовать иде у различного вида проектов. Получается это у них отменно, именно поэтому треть их бюджета уходит на судебные разбирательства. Но вот о внутреннем заимствовании мало кто задумывается. А именно заимствование аддонов, которые пользователи создают за бесплатно и продвигают в массы. Ну а Blizzard берут идею и подгребают под себя с выходом очередного патча.</p>\r\n<p><br /> <strong>Десяток аддонов, пострадавших от инициативы Blizzard:<br /> </strong><br /> <strong><span><strong><strong>QuestHelper</strong></strong></span> </strong>- Самый популярный аддон для The Burning Crusade, и Начальных версий Wrath of the Lich King, но после патча 3.3, про него многие забыли, ибо Blizzard придумали свой \\\\\\\"Квест хелпер\\\\\\\", который понравился многим намного больше аддона. По большей части потому, что он не требовал так много ресурсов от вашей машины...</p>', '<p>Не секрет что Близзард любят заимствовать иде у различного вида проектов. Получается это у них отменно, именно поэтому треть их бюджета уходит на судебные разбирательства. Но вот о внутреннем заимствовании мало кто задумывается. А именно заимствование аддонов, которые пользователи создают за бесплатно и продвигают в массы. Ну а Blizzard берут идею и подгребают под себя с выходом очередного патча. <br /> <strong>Десяток аддонов, пострадавших от инициативы Blizzard:<br /> </strong><br /> <strong>QuestHelper </strong>- Самый популярный аддон для The Burning Crusade, и Начальных версий Wrath of the Lich King, но после патча 3.3, про него многие забыли, ибо Blizzard придумали свой \\\\\\\"Квест хелпер\\\\\\\", который понравился многим намного больше аддона. По большей части потому, что он не требовал так много ресурсов от вашей машины.<br /> <br /> <br /> <strong>Cartographer</strong> - В былое время был популярен не менее чем QuestHelper, ибо с ним вместе они работали на славу и помогали проходить квесты не одному поколению Воверов, но после патча 3.0 Блззард кардинально изменили систему определения локаций, поэтому разработчик прекратил дальнейшую модификацию этого аддона.<br /> <br /> <strong><span>Outfitter </span></strong>- Не каждый мог себе позволить носить при себе сразу два сета, для PVE и PVP, но те кто мог использовали Outfitter для быстрой смены экипировки. И вот начиная с патча 3.1.2, Близзард решили сделать свой Outfitter и назвали его \\\\\\\"Управление экипировкой\\\\\\\".<br /> <br /> <strong><span>FloTotemBar</span></strong> - Излюбленный аддон для шаманов ровно до патча 3.x, точно не помню в каком именно патче разработчики игры решили позаимствовать идею отдельных панелей для тотемов. Теперь использовать Тотем бар будут наверно только те, кому не нравиться стандартный интерфейс.<br /> <br /> <strong><span>VuhDo</span></strong> - Изменял интерфейс рейд-иконок. и позволял лечащим классам чувствовать себя увереннее.<br /> <br /> <strong><strong><span>Grid </span></strong></strong>- Так же как и VuhDo аддон был полностью перенесен в интерфейс игры разработчиками, начиная с патча 4.0.1. Поэтому в Катаклизме у этих двух аддонов перспективы на существование нету.<br /> <br /> Group Calendar - Аддон прижился далеко не во всех гильдиях, ибо заставить всех установить его было не легкой задачей. Теперь в этом нет необходимости, так как календарь появился по умолчанию.<br /> <br /> AVR - Помогал организовать рейды, в плане управления толпой. Некоторые рейды без этого аддона были бы просто большим бестолковым пати. Но до катаклизма аддон не дожил ибо Близы официально его запретили, а в катаклизме сделали свою, более простую и красивую версию данного аддона.<br /> <br /> EquipCompare - Как сравнить шмотку надетую на вас, с той что в инвентаре или магазине? Ну естественно надо нажать кнопку Shift, но ранее такой опции в игре не было, и для этого был придуман EquipCompare. После выхода WotLK про аддон забыли, но его по прежнему разрабатывают.<br /> <br /> Buff Timers - Отличная модификация иконок Бафов, времен Пылающего Легиона. Аддон добавлял таймеры возле картинок бафов или дебафов, что позволяло узнать когда он спадет. Удивительно как Близард сразу не додумались такое интегрировать в интерфейс? Теперь в этом аддоне нет нужды, по понятным всем причинам.<br /> <br /> Не смотря на то, что в свое время Близард даже пытались запретить донат за аддоны, которые созданы сторонними разработчиками для улучшения игры, и делают ее интереснее. В сети все ровно появляются все новые и новые модификации, и как бы Близард не бесилась по этому поводу, прогресс не остановить, как и тот факт что весь прогресс будет в итоге присвоен \\\\\\\"Конторой\\\\\\\".</p>', '-1', '0');
 INSERT INTO `wcf_news_cats` VALUES ('1', 'Новости', 'news.gif');
@@ -303,11 +384,11 @@ INSERT INTO `wcf_settings` VALUES ('page_forum_posts', '10');
 INSERT INTO `wcf_settings` VALUES ('pass_remember', 'on');
 INSERT INTO `wcf_settings` VALUES ('registration_ip_limit', '0');
 INSERT INTO `wcf_settings` VALUES ('page_news', '5');
-INSERT INTO `wcf_settings` VALUES ('page_admin_news', '10');
+INSERT INTO `wcf_settings` VALUES ('page_online', '30');
 INSERT INTO `wcf_settings` VALUES ('license_agreement', 'Регистрация учётной записи для игры в WoW на нашем сервере. Внимательно, правильно заполните все поля этой формы. Особое внимание обращаем на правильность ввода E-mailа, т.к. многие операции с учётными записями и персонажами требуют подтверждения по электронной почте. Имя учётной записи и пароль не должны совпадать.<hr>Большая просьба не регистрировать учётные записи, содержащие русские буквы, а то вы не сможете правильно подключиться к серверу.<hr> Удачной вам игры. Спасибо за внимание.<br>');
 INSERT INTO `wcf_settings` VALUES ('permit_registration', '1');
 INSERT INTO `wcf_users` VALUES ('1', 'ADMINISTRATOR', '0', '');
 INSERT INTO `wcf_users` VALUES ('2', 'GAMEMASTER', '0', '');
 INSERT INTO `wcf_users` VALUES ('3', 'MODERATOR', '0', '');
-INSERT INTO `wcf_users` VALUES ('4', 'PLAYER', '1', '');
-INSERT INTO `wcf_users` VALUES ('5', 'LOVEPSONE', '0', '');
+INSERT INTO `wcf_users` VALUES ('4', 'PLAYER', '0', '');
+INSERT INTO `wcf_users` VALUES ('5', 'LOVEPSONE', '1', '');
