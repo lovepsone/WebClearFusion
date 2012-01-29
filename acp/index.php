@@ -11,7 +11,7 @@
 +--------------------------------------------------------*/
 
 	require_once "../maincore.php";
-	require_once THEMES."templates/header.php";
+	require_once THEMES."templates/acp_header.php";
 
 	opentable();
 	echo"Personal account is not scripted!";

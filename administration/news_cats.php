@@ -11,7 +11,7 @@
 +--------------------------------------------------------*/
 
 	require_once "../maincore.php";
-	require_once THEMES."templates/header.php";
+	require_once THEMES."templates/admin_header.php";
 
 	if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat_id']) && isnum($_GET['cat_id'])))
 		{
