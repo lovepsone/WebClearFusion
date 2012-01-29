@@ -32,6 +32,7 @@
 	//===============================================
 	// Пути определения папок
 	//===============================================
+	define("ACP", BASEDIR."acp/");
 	define("ADMIN", BASEDIR."administration/");
 	define("FORUM", BASEDIR."forum/");
 	define("IMAGES", BASEDIR."images/");

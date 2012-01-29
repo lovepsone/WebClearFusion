@@ -25,6 +25,7 @@ $txt = array(
 'menu_auth_re_enter'		=>'Введите аккаунт и пароль заново!',
 'menu_auth_e_mail'		=>'E-Mail',
 'menu_auth_ip'			=>'ИП-Адрес',
+'menu_auth_log_in_acp'		=>'Вход в ACP',
 'menu_auth_admin'		=>'Админка',
 'menu_auth_exit'		=>'Выйти',
 
@@ -57,6 +58,7 @@ $txt = array(
 'modul_setuser_wait'		=>'<br>Пожалуйста, подождите, сейчас вы будете перемещены...<br><br>',
 'modul_setuser_link'		=>'или нажмите сюда, если не хотите ждать',
 'modul_setuser_logout'		=>'Вы успешно вышли из Учетной записи!',
+'modul_setuser_login'		=>'Вы успешно вошли в Управление учетной записи!',
 
 'modul_online_timers'		=>'Таймеры:',
 'modul_online_points_arena'	=>'Дата начисления очков арены:',
