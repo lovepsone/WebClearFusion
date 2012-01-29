@@ -91,7 +91,7 @@
 			echo"<div style='text-align:center'><form name='selectform' method='post' action='".WCF_SELF."?action=edit'>";
 			echo"<h1>".$txt['admin_newsmaker']."</h1>";
 			echo"<select name='news_id' class='textbox' style='width:450px'>".$editlist."</select>";
-			echo"<input type='submit' name='edit' value='".$txt['admin_newsmaker_edit']."' class='button' />\n";
+			echo"<input type='submit' name='edit' value='".$txt['admin_newsmaker_edit']."' class='button' />";
 			echo"<input type='submit' name='delete' value='".$txt['admin_newsmaker_del']."' onclick='return DeleteNews();' class='button' />";
 			echo"<br><hr></form></div>";
 			closetable();
@@ -157,7 +157,7 @@
 			closetable();
 		}
 
-	echo"<script type='text/javascript'>\n"."function DeleteNews() { return confirm('".$txt['admin_newsmaker_title']."'); }</script>";
+	echo"<script type='text/javascript'>"."function DeleteNews() { return confirm('".$txt['admin_newsmaker_title']."'); }</script>";
 
 	require_once THEMES."templates/footer.php";
 ?>
