@@ -10,6 +10,8 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	if (!defined("IN_WCF")) { die("Access Denied"); }
+
 	echo"<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Frameset//EN' 'http://www.w3.org/TR/html4/frameset.dtd'>";
 	echo"<head><link rel='SHORTCUT ICON' href='".IMAGES."favicon.ico' />";
 	echo"<title>".$config['servername']."</title>";

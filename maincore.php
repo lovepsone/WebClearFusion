@@ -61,6 +61,7 @@
 	$_SERVER['QUERY_STRING'] = isset($_SERVER['QUERY_STRING']) ? cleanurl($_SERVER['QUERY_STRING']) : "";
 	$_SERVER['PHP_SELF'] = cleanurl($_SERVER['PHP_SELF']);
 
+	define("IN_WCF", TRUE);
 	define("WCF_QUERY", isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : "");
 	define("WCF_SELF", basename($_SERVER['PHP_SELF']));
 
