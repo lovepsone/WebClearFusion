@@ -85,13 +85,13 @@
 						}
 				}
 		}
-	/*else
+	elseif (!defined("EXCLUDE_PANEL_USERS") AND defined("ADMIN_PANEL") AND !defined("ACP_PANEL"))
 		{
 			ob_start();
 			require_once ADMIN."navigation.php";
 			$p_arr[1] = ob_get_contents();
 			ob_end_clean();
-		}*/
+		}
 
 	/*if (!defined("ADMIN_PANEL"))
 		{

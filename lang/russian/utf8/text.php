@@ -74,6 +74,8 @@ $txt = array(
 'modul_online_position'		=>'Позиция',
 
 # тексты в меню админки
+'menu_admin_panel_admin'	=>'Панель администратора',
+'menu_admin_revert'		=>'Вернуться на сайт',
 'menu_admin_content'		=>'Администрирование контента',
 'menu_admin_users'		=>'Администрир. пользователей',
 'menu_admin_system'		=>'Администрирование системы',
