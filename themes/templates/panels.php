@@ -27,7 +27,7 @@
 
 	$p_sql = false; $p_arr = array(1 => false, 2 => false, 3 => false, 4 => false);
 
-	if (!defined("EXCLUDE_PANEL_USERS"))
+	if (!defined("EXCLUDE_PANEL_USERS") AND !defined("ADMIN_PANEL") AND !defined("ACP_PANEL"))
 		{
 			if (check_panel_status("left"))
 				{
