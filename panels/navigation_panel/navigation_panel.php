@@ -28,7 +28,7 @@
 								}
 							else if ($data['link_name'] == "---" && $data['link_url'] == "---")
 								{
-									echo"<hr class='side-hr' />\n";
+									echo"<hr class='side-hr' />";
 								}
 							else
 								{
