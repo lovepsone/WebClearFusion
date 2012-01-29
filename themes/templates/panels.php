@@ -79,10 +79,6 @@
 															include PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php";
 														}
 												}
-											/*else
-												{
-													eval(stripslashes($p_data['panel_content']));
-												}*/
 								}
 							$p_arr[$current_side] .= ob_get_contents();
 							ob_end_clean();
