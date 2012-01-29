@@ -16,7 +16,6 @@
 	opentable();
 	echo"Personal account is not scripted!";
 	closetable();
-	return_form(30,BASEDIR.$config['opening_page']);
 
 	require_once THEMES."templates/footer.php";
 ?>
