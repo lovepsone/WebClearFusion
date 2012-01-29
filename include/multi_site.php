@@ -13,6 +13,7 @@
 	//===============================================
 	// Название таблиц mysql
 	//===============================================
+	define("DB_ACP_PANELS", DB_PREFIX."acp_panels");
 	define("DB_ADMIN", DB_PREFIX."admin");
 	define("DB_CHR_CLASSES", DB_PREFIX."chr_classes");
 	define("DB_CHR_RACES", DB_PREFIX."chr_races");
