@@ -37,6 +37,7 @@
 
     			unset($_SESSION['user_id']);
     			unset($_SESSION['ip']);
+    			unset($_SESSION['realmd_id']);
     			session_destroy();
 			$opening_page = BASEDIR.$config['opening_page'];
 		}
