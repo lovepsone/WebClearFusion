@@ -10,6 +10,70 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	function get_locale($locale)
+		{
+  			switch ($locale):
+      			case 0:
+      			$locale = "English";
+      			break;
+  
+    			case 1:
+      			$locale = "Korean";
+      			break;
+    
+    			case 2:
+      			$locale = "French";
+      			break;
+
+    			case 3:
+      			$locale = "German";
+      			break;
+      
+    			case 4:
+      			$locale = "Chinese";
+      			break;
+      
+    			case 5:
+      			$locale = "Taiwanese";
+     			break;
+      
+    			case 6:
+      			$locale = "Spanish";
+      			break;
+      
+    			case 7:
+      			$locale = "Spanish Mexico";
+      			break;
+      
+    			case 8:
+      			$locale = "Russian";
+      			break;
+
+  			endswitch;
+
+			return $locale;
+		}
+
+	function get_expansion($typ)
+    		{
+    			switch ($typ):
+
+        		case 0:
+            		$typ = "World of Warcraft";
+            		break;
+
+        		case 1:
+            		$typ = "The Burning Crusade";
+            		break;
+
+        		case 2:
+           	 	$typ = "Wrath of the Lich King";
+            		break;
+
+    			endswitch;
+    			return $typ;
+    		}
+
 	function get_player_faction($race)
 		{
 			selectdb(wcf);

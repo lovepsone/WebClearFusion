@@ -44,6 +44,7 @@
 		{
 			$txt_page = $txt['modul_setuser_login'].$txt['modul_setuser_wait'];
 			$opening_page = ACP."index.php";
+			$_SESSION['realmd_id'] = $_GET['realmd_id'];
 		}
 
 	echo"<table width='800' align='center' class='tbl-border center'><tr><td>";

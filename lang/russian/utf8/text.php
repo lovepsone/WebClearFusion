@@ -29,6 +29,22 @@ $txt = array(
 'menu_auth_admin'		=>'Админка',
 'menu_auth_exit'		=>'Выйти',
 
+'menu_acp_info_acc'		=>'Учётная запись:',
+'menu_acp_info_type_acc'	=>'Тип учётной записи:',
+'menu_acp_info_access'		=>'Права доступа:',
+'menu_acp_info_reg_mail'	=>'Регистрационный E-mail:',
+'menu_acp_info_lang'		=>'Язык клиента:',
+'menu_acp_info_online'		=>'игровой статус:',
+'menu_acp_info_game_on'		=>'В игре',
+'menu_acp_info_game_off'	=>'В не игры',
+'menu_acp_info_date_reg'	=>'Дата регистрации:',
+'menu_acp_info_date_game'	=>'Дата последнего посещения:',
+'menu_acp_info_last_ip'		=>'Последний IP-адрес:',
+'menu_acp_info_linking_ip'	=>'Привязка к IP-адресу:',
+'menu_acp_info_linking_ip_on'	=>'Включена',
+'menu_acp_info_linking_ip_off'	=>'<font color=green>Выключена</font>',
+'menu_acp_info_game_realm'	=>'Игровой реалм:',
+
 # тексты в стандартных модулях
 'modul_news_no_news'		=>'<b>Нет новостей</b>',
 'modul_news_creation_date'	=>'Дата создания:',

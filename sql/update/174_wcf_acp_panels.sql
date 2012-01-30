@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 30.01.2012 14:20:19
+Date: 30.01.2012 14:23:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -22,9 +22,10 @@ CREATE TABLE `wcf_acp_panels` (
   `panel_status` tinyint(1) unsigned NOT NULL default '1',
   `panel_display` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`panel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records 
 -- ----------------------------
 INSERT INTO `wcf_acp_panels` VALUES ('1', 'navigation_panel_acp', 'file', '0', '1', '1', '1', '0');
+INSERT INTO `wcf_acp_panels` VALUES ('2', 'user_or_server_panel_acp', 'file', '0', '4', '2', '1', '0');
