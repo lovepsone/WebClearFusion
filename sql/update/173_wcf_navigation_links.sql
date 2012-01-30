@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 29.01.2012 19:36:02
+Date: 30.01.2012 14:34:17
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,12 +28,9 @@ CREATE TABLE `wcf_navigation_links` (
 INSERT INTO `wcf_navigation_links` VALUES ('1', 'Общее пространство', '---', '-1', '1', '1');
 INSERT INTO `wcf_navigation_links` VALUES ('2', 'Главная', 'index.php', '-1', '1', '2');
 INSERT INTO `wcf_navigation_links` VALUES ('3', 'Форум', 'forum/forum.php', '-1', '1', '3');
-INSERT INTO `wcf_navigation_links` VALUES ('31', 'Платные услуги', '---', '0', '3', '1');
-INSERT INTO `wcf_navigation_links` VALUES ('32', 'Пожертвования', 'index.php', '0', '3', '2');
-INSERT INTO `wcf_navigation_links` VALUES ('33', 'Изменить имя персонажа', 'index.php', '0', '3', '3');
-INSERT INTO `wcf_navigation_links` VALUES ('34', 'Получить игровое золото', 'index.php', '0', '3', '4');
-INSERT INTO `wcf_navigation_links` VALUES ('35', 'Получить игровые предметы', 'index.php', '0', '3', '5');
 INSERT INTO `wcf_navigation_links` VALUES ('4', 'Онлайн', 'online.php', '-1', '1', '4');
-INSERT INTO `wcf_navigation_links` VALUES ('38', 'Бесплатные услуги', '---', '0', '3', '8');
-INSERT INTO `wcf_navigation_links` VALUES ('36', 'Повысить уровень', 'index.php', '0', '3', '6');
-INSERT INTO `wcf_navigation_links` VALUES ('37', 'Перенос персонажа', 'index.php', '0', '3', '7');
+INSERT INTO `wcf_navigation_links` VALUES ('31', 'Главная', '../index.php', '0', '3', '1');
+INSERT INTO `wcf_navigation_links` VALUES ('32', 'Услуги', '---', '0', '3', '2');
+INSERT INTO `wcf_navigation_links` VALUES ('33', 'Платные', 'index.php', '0', '3', '3');
+INSERT INTO `wcf_navigation_links` VALUES ('34', 'Бесплатные', 'index.php', '0', '3', '4');
+
