@@ -1,9 +1,9 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
-| Filename: panel_editor.php
+| Filename: acp_panel_editor.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
@@ -17,7 +17,7 @@
 	$temp = opendir(PANELS);
 	while ($folder = readdir($temp))
 		{
-			if ((!in_array($folder, array(".","..")) && strstr($folder, "_panel")) && !strstr($folder, "_panel_acp"))
+			if (!in_array($folder, array(".","..")) && strstr($folder, "_panel_acp"))
 				{
 					if (is_dir(PANELS.$folder)) $panel_list[] = $folder;
 				}
@@ -42,13 +42,13 @@
 			if (isset($_GET['panel_id']) && isnum($_GET['panel_id']))
 				{
 					selectdb(wcf);
-					$result = db_query("UPDATE ".DB_PANELS." SET `panel_filename`='".$panel_filename."', `panel_access`='".$panel_access."', WHERE panel_id='".$_GET['panel_id']."'");
+					$result = db_query("UPDATE ".DB_ACP_PANELS." SET `panel_filename`='".$panel_filename."', `panel_access`='".$panel_access."', WHERE panel_id='".$_GET['panel_id']."'");
 				}
 			else
 				{
-					$result = db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='".$panel_side."' ORDER BY `panel_order` DESC LIMIT 1");
+					$result = db_query("SELECT `panel_order` FROM ".DB_ACP_PANELS." WHERE `panel_side`='".$panel_side."' ORDER BY `panel_order` DESC LIMIT 1");
 					if (db_num_rows($result) != 0) { $data = db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
-					$result = db_query("INSERT INTO ".DB_PANELS." (`panel_filename`,`panel_type`,`panel_access`,`panel_side`,`panel_order`,)
+					$result = db_query("INSERT INTO ".DB_ACP_PANELS." (`panel_filename`,`panel_type`,`panel_access`,`panel_side`,`panel_order`,)
 										VALUES ('".$panel_filename."','".$panel_type."','".$panel_access."', '".$panel_side."', '".$neworder."')");
 				}
 		}
@@ -56,7 +56,7 @@
 		{
 			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 				{
-					$result = db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_id`='".$_GET['panel_id']."'");
+					$result = db_query("SELECT * FROM ".DB_ACP_PANELS." WHERE `panel_id`='".$_GET['panel_id']."'");
 					if (db_num_rows($result))
 						{
 							$data = db_assoc($result);

@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 30.01.2012 19:04:14
+Date: 30.01.2012 19:42:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -28,7 +28,7 @@ CREATE TABLE `wcf_admin` (
 -- ----------------------------
 INSERT INTO `wcf_admin` VALUES ('1', '1', '1', '1', 'news.gif', 'Новости', 'news.php');
 INSERT INTO `wcf_admin` VALUES ('2', '2', '1', '1', 'forums.gif', 'Форум', 'forumedit.php');
-INSERT INTO `wcf_admin` VALUES ('3', '3', '1', '1', 'panels.gif', 'Панели', 'reserved');
+INSERT INTO `wcf_admin` VALUES ('3', '3', '1', '1', 'panels.gif', 'Панели', 'panels.php');
 INSERT INTO `wcf_admin` VALUES ('4', '4', '1', '1', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('5', '5', '1', '1', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('6', '1', '1', '2', 'news_cats', 'Категории новостей', 'news_cats.php');
@@ -108,7 +108,7 @@ INSERT INTO `wcf_admin` VALUES ('79', '4', '4', '4', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('80', '5', '4', '4', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('81', '1', '5', '1', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('82', '2', '5', '1', '', '', 'reserved');
-INSERT INTO `wcf_admin` VALUES ('83', '3', '5', '1', '', '', 'reserved');
+INSERT INTO `wcf_admin` VALUES ('83', '3', '5', '1', 'panels.gif', 'Панели АСР', 'acp_panels.php');
 INSERT INTO `wcf_admin` VALUES ('84', '4', '5', '1', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('85', '5', '5', '1', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('86', '1', '5', '2', '', '', 'reserved');
