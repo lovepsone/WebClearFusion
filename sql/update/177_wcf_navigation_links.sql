@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 30.01.2012 14:34:17
+Date: 30.01.2012 16:21:27
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,10 +27,9 @@ CREATE TABLE `wcf_navigation_links` (
 -- ----------------------------
 INSERT INTO `wcf_navigation_links` VALUES ('1', 'Общее пространство', '---', '-1', '1', '1');
 INSERT INTO `wcf_navigation_links` VALUES ('2', 'Главная', 'index.php', '-1', '1', '2');
-INSERT INTO `wcf_navigation_links` VALUES ('3', 'Форум', 'forum/forum.php', '-1', '1', '3');
+INSERT INTO `wcf_navigation_links` VALUES ('3', 'Форум', 'forum/index.php', '-1', '1', '3');
 INSERT INTO `wcf_navigation_links` VALUES ('4', 'Онлайн', 'online.php', '-1', '1', '4');
 INSERT INTO `wcf_navigation_links` VALUES ('31', 'Главная', '../index.php', '0', '3', '1');
 INSERT INTO `wcf_navigation_links` VALUES ('32', 'Услуги', '---', '0', '3', '2');
 INSERT INTO `wcf_navigation_links` VALUES ('33', 'Платные', 'index.php', '0', '3', '3');
 INSERT INTO `wcf_navigation_links` VALUES ('34', 'Бесплатные', 'index.php', '0', '3', '4');
-
