@@ -74,6 +74,16 @@
     			return $typ;
     		}
 
+	function get_gold($gold)
+    		{
+		    	$g = floor($gold / (100 * 100));
+		    	$gold = $gold - $g * 100 * 100;
+		    	$s = floor($gold / 100);
+		    	$gold = $gold - $s * 100;
+		    	$c = floor($gold);
+    			return sprintf("<b>%d<img src='".IMAGES."gold.png'>&nbsp;%02d<img src='".IMAGES."silver.png'>&nbsp;%02d<img src='".IMAGES."copper.png'></b>", $g, $s, $c);
+    		}
+
 	function get_player_faction($race)
 		{
 			selectdb(wcf);

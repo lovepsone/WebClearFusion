@@ -37,7 +37,6 @@ a {
 }
 
 a:hover {
-	font-size: 12px;
 	color: #ff0000;
 	font-family:: arial, helvetica, verdana, sans-serif;
 	text-decoration: underline;

@@ -255,6 +255,19 @@ $txt = array(
 'forum_log'			=>'Авторизуйтесь чтобы оставлять сообщения на форуме!',
 'forum_from'			=>'от',
 
+#ACP
+'modul_acp_game_on'		=>'<font color=green>В игре</font>',
+'modul_acp_game_off'		=>'Вне игры',
+'modul_acp_revive'		=>'Просмотреть персонажа',
+'modul_acp_level'		=>'Уровень',
+'modul_acp_name'		=>'Имя',
+'modul_acp_race'		=>'Раса',
+'modul_acp_class'		=>'Класс',
+'modul_acp_money'		=>'Деньги',
+'modul_acp_position'		=>'Позиция',
+'modul_acp_game_status'		=>'Игравой статус',
+'modul_acp_no_char'		=>'На вашей учетной записи не созданы персонажи',
+
 # остальное
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',
 'fill_field'			=>'<font color=red>Вы не заполнили поле!!!</font>',
