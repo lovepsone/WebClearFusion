@@ -24,7 +24,7 @@
 		}
 
 	$content = false;
-	for ($i = 1; $i < 5; $i++)
+	for ($i = 1; $i < 6; $i++)
 		{
 			$page = $pages[$i];
 			if ($i == 1)
@@ -35,7 +35,7 @@
 			if ($page)
 				{
 					if ($i == 1) {$t = 'content';} elseif ($i == 2) {$t = 'users';}
-					elseif ($i == 3) {$t = 'system';} elseif ($i == 4) {$t = 'plants';}
+					elseif ($i == 3) {$t = 'system';} elseif ($i == 4) {$t = 'plants';} elseif ($i == 5) {$t = 'acp';}
 
 					$admin_pages = true;
 					echo"<form action='".WCF_SELF."'>";
@@ -44,7 +44,7 @@
 					echo $page."</select></form>";
 					$content = true;
 				}
-			if ($i == 4)
+			if ($i == 5)
 				{
 					if ($content) { echo"<hr>"; }
 					echo" <a href='".BASEDIR."index.php'>".$txt['menu_admin_revert']."</a>";
