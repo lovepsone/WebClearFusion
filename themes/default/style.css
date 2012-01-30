@@ -75,15 +75,15 @@ a:hover.side {
 	
 	color: #ff0000;
 	background-color: none;
-	padding: 10px 10px 10px 0;
-	width: 190px;
+	padding: 5px 5px 5px 0;
+	width: 195px;
 }
 
 .side-border-right {
 	color: #ff0000;
 	background-color: none;
-	padding: 10px 0 10px 10px;
-	width: 190px;
+	padding: 5px 0 5px 5px;
+	width: 195px;
 }
 .scapmain-body {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
