@@ -66,6 +66,12 @@
 					$_SESSION['realmd_id'] = $_GET['realmd_id'];
 				}
 		}
+	elseif (isset($_GET['action']) && $_GET['action'] == "out_acp")
+		{
+    			unset($_SESSION['realmd_id']);
+			$txt_page = $txt['modul_setuser_out_acp'].$txt['modul_setuser_wait'].$txt_url;
+			$opening_page = BASEDIR.$config['opening_page'];
+		}
 
 	echo"<table width='800' align='center' class='tbl-border center'><tr><td>";
 	opentable();
