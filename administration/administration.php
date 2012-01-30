@@ -23,6 +23,7 @@
 	echo"<li style='border-left: 1px solid #202020;'><a href='".WCF_SELF."?users'>".$txt['menu_admin_users']."</a></li>";
 	echo"<li style='border-left: 1px solid #202020;'><a href='".WCF_SELF."?system'>".$txt['menu_admin_system']."</a></li>";
 	echo"<li style='border-left: 1px solid #202020;'><a href='".WCF_SELF."?plants'>".$txt['menu_admin_plants']."</a></li>";
+	echo"<li style='border-left: 1px solid #202020;'><a href='".WCF_SELF."?acp'>".$txt['menu_admin_acp']."</a></li>";
 
 	echo"</ul></div></td></tr>";
 
@@ -35,6 +36,7 @@
 			else if (isset($_GET['users'])) admin_page(2,$i);
 			else if (isset($_GET['system'])) admin_page(3,$i);
 			else if (isset($_GET['plants'])) admin_page(4,$i);
+			else if (isset($_GET['acp'])) admin_page(5,$i);
 		}
 	closetable();
 

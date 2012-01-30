@@ -99,6 +99,7 @@ $txt = array(
 'menu_admin_users'		=>'Администрир. пользователей',
 'menu_admin_system'		=>'Администрирование системы',
 'menu_admin_plants'		=>'Установки',
+'menu_admin_acp'		=>'Управление ACP',
 
 # тексты в админке
 'admin_newsmaker'		=>'Редактор новостей',

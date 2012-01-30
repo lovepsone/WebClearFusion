@@ -92,29 +92,34 @@
 	function admin_page($admin_page,$admin_string)
 		{
 			selectdb(wcf);
-			$administration = mysql_query("SELECT * FROM ".DB_ADMIN." WHERE `admin_page`='$admin_page' AND `admin_string`='$admin_string'") or trigger_error(mysql_error());
-					echo"<tr>";
-			while ($page_contet = mysql_fetch_array($administration))
+			$administration = db_query("SELECT * FROM ".DB_ADMIN." WHERE `admin_page`='$admin_page' AND `admin_string`='$admin_string'") or trigger_error(mysql_error());
+			echo"<tr>";
+			while ($page_contet = db_array($administration))
 				{
 					if ($page_contet['admin_colum'] == 1)
 						{
-							if ($page_contet['admin_image'] <> '') echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><img src='".ADMIN."images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
-							else echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>";
+							if ($page_contet['admin_image'] != "") { echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><img src='".ADMIN."images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>"; }
+							else { echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>"; }
 						}
 					if ($page_contet['admin_colum'] == 2)
 						{
-							if ($page_contet['admin_image'] <> '') echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><img src='".ADMIN."images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
-							else echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>";
+							if ($page_contet['admin_image'] != "") { echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><img src='".ADMIN."images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>"; }
+							else { echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>"; }
 						}
 					if ($page_contet['admin_colum'] == 3)
 						{
-							if ($page_contet['admin_image'] <> '') echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><img src='".ADMIN."images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
-							else echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>";
+							if ($page_contet['admin_image'] != "") { echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><img src='".ADMIN."images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>"; }
+							else { echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>"; }
 						}
 					if ($page_contet['admin_colum'] == 4)
 						{
-							if ($page_contet['admin_image'] <> '') echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><img src='".ADMIN."images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>";
-							else echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>";
+							if ($page_contet['admin_image'] != "") { echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><img src='".ADMIN."images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>"; }
+							else { echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>"; }
+						}
+					if ($page_contet['admin_colum'] == 5)
+						{
+							if ($page_contet['admin_image'] != "") { echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><img src='".ADMIN."images/".$page_contet['admin_image']."' align='absmiddle'><br>".$page_contet['admin_title']."</td>"; }
+							else { echo"<td width='25%' align='center'><a href='".ADMIN.$page_contet['admin_link']."'><br>".$page_contet['admin_title']."</td>"; }
 						}
 				}
 					echo"</tr>";
