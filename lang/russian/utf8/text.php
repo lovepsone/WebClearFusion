@@ -75,6 +75,8 @@ $txt = array(
 'modul_setuser_link'		=>'или нажмите сюда, если не хотите ждать',
 'modul_setuser_logout'		=>'Вы успешно вышли из Учетной записи!',
 'modul_setuser_login'		=>'Вы успешно вошли в Управление учетной записи!',
+'modul_setuser_ban_acc'		=>'Ваша Учетная запись забанена Администрацияй по причине:',
+'modul_setuser_ban_ip'		=>'Ваша IP-Адрес забанен Администрацияй по причине:',
 
 'modul_online_timers'		=>'Таймеры:',
 'modul_online_points_arena'	=>'Дата начисления очков арены:',
