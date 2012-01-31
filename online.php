@@ -93,8 +93,8 @@
 							echo"<tr><td width='1%' align='center' class='tbl1'>".$data3['level']."</td>";
 							echo"<td width='1%' class='tbl1'>".get_faction_image($data3['race'])."</td>";
 							echo"<td align='center' class='tbl1'>".$data3['name']."</td>";
-							echo"<td width='1%' class='tbl1'>".get_race_image($data3['race'],$data3['gender'])."</td>";
-							echo"<td width='1%' class='tbl1'>".get_class_image($data3['class'])."</td>";
+							echo"<td width='1%' class='tbl1'><img width='20' src='".get_race_image($data3['race'],$data3['gender'])."'></td>";
+							echo"<td width='1%' class='tbl1'><img width='20' src='".get_class_image($data3['class'])."'></td>";
 							echo"<td width='1%' class='tbl1'>".$zones[$data3['zone']]."</td></tr>";
 						}
 					if ($kolzap['kol'] > $config['page_online'])

@@ -92,7 +92,7 @@
 			while ($mas_data = db_array($result))
 				{
 					if ($mas_data['ARRAY_KEY'] == $race) { $data[$i] = $mas_data['team']; }	
-					$i++;	
+					$i++;
 				}
  			return isset($data[$race]) ? $data[$race] : 2;
 		}
@@ -107,11 +107,43 @@
 
 	function get_race_image($race, $genderid)
 		{
- 			return "<img width='20' src='".IMAGES_PI."race_img/".$race."_".$genderid.".gif'>";
+ 			return IMAGES_PI."race_img/".$race."_".$genderid.".gif";
 		}
 
 	function get_class_image($class)
 		{
- 			return "<img width='20' src='".IMAGES_PI."class_img/".$class.".gif'>";
+ 			return IMAGES_PI."class_img/".$class.".gif";
+		}
+
+	function get_class_names()
+		{
+			selectdb(wcf);
+ 			$result = db_query("SELECT `id` AS ARRAY_KEY, `name` FROM ".DB_CHR_CLASSES."");
+			$data = array();
+			while ($mas_data = db_array($result))
+				{
+					$data[$mas_data['ARRAY_KEY']] = $mas_data['name'];
+				}
+ 			return $data;
+		}
+
+	function get_classes($class)
+		{
+  			$l = get_class_names();
+  			return isset($l[$class]) ? $l[$class] : 'class_'.$class;
+		}
+
+	//======================================================================================================
+	function validate_text($text)
+		{
+			$letter = array("'",'"'     ,"<"   ,">"   ,">"   ,"\r","\n"  );
+			$values = array("`",'&quot;',"&lt;","&gt;","&gt;",""  ,"<br>");
+			return str_replace($letter, $values, $text);
+		}
+
+	function add_tooltip($text, $extra='')
+		{
+			if ($text=='') return '';
+			return 'onmouseover="Tip(\''.validate_text($text).'\''.($extra?','.$extra:'').');"';
 		}
 ?>
