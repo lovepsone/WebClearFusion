@@ -88,11 +88,10 @@
 		{
 			selectdb(wcf);
  			$result = db_query("SELECT `id` AS ARRAY_KEY, `team` FROM ".DB_CHR_RACES."");
-			$i = 1; $data = array();
+			$data = array();
 			while ($mas_data = db_array($result))
 				{
-					if ($mas_data['ARRAY_KEY'] == $race) { $data[$i] = $mas_data['team']; }	
-					$i++;
+					$data[$mas_data['ARRAY_KEY']] = $mas_data['team'];
 				}
  			return isset($data[$race]) ? $data[$race] : 2;
 		}
