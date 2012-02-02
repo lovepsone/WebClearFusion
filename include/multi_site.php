@@ -22,7 +22,7 @@
 	define("DB_FORUMS", DB_PREFIX."forums");
 	define("DB_FORUMS_POSTS", DB_PREFIX."forums_posts");
 	define("DB_FORUMS_THREADS", DB_PREFIX."forums_threads");
-	define("DB_LOGIN_FAILED", DB_PREFIX."login_failed");
+	define("DB_ITEM_ICON", DB_PREFIX."itemicon");
 	define("DB_LOGS", DB_PREFIX."logs");
 	define("DB_NAVIGATION_LINKS", DB_PREFIX."navigation_links");
 	define("DB_NEWS", DB_PREFIX."news");
@@ -48,6 +48,8 @@
 	define("IMAGES_NC", BASEDIR."images/news_cat/");
 	define("IMAGES_A", BASEDIR."images/avatars/");
 	define("IMAGES_PI", BASEDIR."images/player_info/");
+	define("IMAGES_BAR", BASEDIR."images/bar/");
+	define("IMAGES_ICONS", BASEDIR."images/icons/");
 	define("INCLUDES", BASEDIR."include/");
 	define("LANG", BASEDIR."lang/");
 	define("PANELS", BASEDIR."panels/");

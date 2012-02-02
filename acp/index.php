@@ -38,7 +38,7 @@
 					echo"<td width='1%' class='tbl1'><img width='20' src='".get_class_image($data['class'])."'></td>";
 					echo"<td align='right' class='tbl1'>".get_gold($data['money'])."</td>";
 					echo"<td align='right' class='tbl1'>".$zones[$data['zone']]."</td>";
-					echo"<td align='right' class='tbl1'><a href='".WCF_SELF."' class='small2'>".$txt['modul_acp_revive']."</a></td>";
+					echo"<td align='right' class='tbl1'><a href='".ACP."show_character.php?player=".$data['guid']."' class='small2'>".$txt['modul_acp_revive']."</a></td>";
 					echo"<td align='right' class='tbl1'>";
 					if ($data['online'] == 0) { echo $txt['modul_acp_game_off']; } else { echo $txt['modul_acp_game_on']; }
 					echo"</td></tr>";	

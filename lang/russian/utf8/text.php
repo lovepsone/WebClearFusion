@@ -268,6 +268,13 @@ $txt = array(
 'modul_acp_game_status'		=>'Игравой статус',
 'modul_acp_no_char'		=>'На вашей учетной записи не созданы персонажи',
 
+'modul_acp_char'		=>'Персонаж',
+'modul_acp_char_talents'	=>'Таланты',
+'modul_acp_char_skill'		=>'Умения',
+'modul_acp_char_achievements'	=>'Достижения',
+'modul_acp_char_reputation'	=>'Репутация',
+'modul_acp_char_quests'		=>'Квесты',
+
 # остальное
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',
 'fill_field'			=>'<font color=red>Вы не заполнили поле!!!</font>',
