@@ -253,7 +253,7 @@
 			$icon = get_item_icon_from_item_data($item_data);
 			if ($count == 1)
 				{
-					echo'<a style="float: left;" href="?item=g'.$guid.'">';
+					echo"<a style='float: left;' href='".ACP."show_item.php?item=g".$guid."'>";
 					echo"<img class=$style src='$icon' $position></a>";
 				}
 			else
@@ -261,7 +261,7 @@
 					if (empty($position)) { $position = "style=\"position: relative; left: 0px;top: 0px; border: 0px;float: left;\""; }
 
 					echo"\n<div class=$style $position>";
-					echo'<a href="?item=g'.$guid.'"><img class="'.$style.'" src="'.$icon.'"></a>';
+					echo"<a href='".ACP."show_item.php?item=g".$guid."'><img class='".$style."' src='".$icon."'></a>";
 					echo get_border_text($count, 'right', 3, 'bottom', 1);
 					echo"</div>";
 				}
@@ -333,7 +333,7 @@
   			if (!$iconId) { $iconId = db_assoc(db_query("SELECT `SpellIconID` FROM ".DB_SPELL." WHERE `id`='".$entry."'")); }
 
   			$icon = get_spell_icon($iconId['SpellIconID']);
-  			echo'<a href="?spell='.$entry.'"><img'.($style?' class='.$style:'').' src="'.$icon.'"></a>';
+  			echo"<a href='".ACP."show_item.php?spell=".$entry."'><img".($style?' class='.$style:'')." src='".$icon."'></a>";
   			return;
 		}
 ?>
