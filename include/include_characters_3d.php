@@ -45,7 +45,7 @@
 function show_player_3d($char, $char_data){
 ?>
  <div id="model_scene" align="center">
- <object id="wowhead" type="application/x-shockwave-flash" data="http://static.wowhead.com/modelviewer/ModelView.swf" height="300px" width="230px"> 
+ <object id="wowhead" type="application/x-shockwave-flash" data="http://static.wowhead.com/modelviewer/ModelView.swf" height="353px" width="273px"> 
  <param name="quality" value="high">
  <param name="allowscriptaccess" value="always">
  <param name="menu" value="false">

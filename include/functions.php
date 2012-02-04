@@ -116,7 +116,7 @@
 		{
 			global $_SESSION;
 			selectdb(characters_r.$_SESSION['realmd_id']);
- 			$data = db_assoc(db_query("SELECT $fields FROM `character_stats` WHERE `guid`='".$character_id."'"));
+ 			$data = db_assoc(db_query("SELECT * FROM `character_stats` WHERE `guid`='".$character_id."'"));
 			if ($data) { return $data; } else { return false; }		
 		}
 
@@ -273,17 +273,47 @@
 			if ($item_data = get_item_data($guid)) { show_item_by_data($item_data, $style, $posx, $posy); }
 		}
 
-	function show_item_from_char($id, $guid, $style='item', $posx=0, $posy=0)
+	function empty_show_item_from_char($style='item', $posx=0, $posy=0, $empty_item="")
+		{
+ 			switch ($empty_item): 
+				case ("head"):  	$icon = IMAGES_PI."empty_icon/head.png";   	break;
+				case ("neck"):  	$icon = IMAGES_PI."empty_icon/neck.png";   	break;
+				case ("shoulder"):  	$icon = IMAGES_PI."empty_icon/shoulder.png";   	break;
+				case ("back"):  	$icon = IMAGES_PI."empty_icon/back.png";   	break;
+				case ("chest"):  	$icon = IMAGES_PI."empty_icon/chest.png";   	break;
+				case ("shirt"):  	$icon = IMAGES_PI."empty_icon/shirt.png";   	break;
+				case ("tabard"):  	$icon = IMAGES_PI."empty_icon/tabard.png";   	break;
+				case ("wrist"):  	$icon = IMAGES_PI."empty_icon/wrist.png";   	break;
+				case ("gloves"):  	$icon = IMAGES_PI."empty_icon/gloves.png";   	break;
+				case ("belt"):  	$icon = IMAGES_PI."empty_icon/belt.png";   	break;
+				case ("legs"):  	$icon = IMAGES_PI."empty_icon/legs.png";   	break;
+				case ("feet"):  	$icon = IMAGES_PI."empty_icon/feet.png";   	break;
+				case ("finger"):  	$icon = IMAGES_PI."empty_icon/finger.png";   	break;
+				case ("trinket"):  	$icon = IMAGES_PI."empty_icon/trinket.png";   	break;
+				case ("main"):  	$icon = IMAGES_PI."empty_icon/main.png";   	break;
+				case ("off"):  		$icon = IMAGES_PI."empty_icon/off.png";   	break;
+				case ("ranged"):  	$icon = IMAGES_PI."empty_icon/ranged.png";   	break;
+			endswitch;
+
+			if ($posx OR $posy) { $position.= 'style="position: absolute; left: '.$posx.'px; top: '.$posy.'px; border: 0px;"'; }
+			if (empty($position)) { $position = "style=\"position: relative; left: 0px;top: 0px; border: 0px;float: left;\""; }
+			echo"\n<div class=$style $position><img class='".$style."' src='".$icon."'></div>";
+		}
+
+	function show_item_from_char($id, $guid, $style='item', $posx=0, $posy=0, $empty_item)
 		{
 			global $_SESSION;
-			if ($id == 0) {  return; }
-			selectdb(characters_r.$_SESSION['realmd_id']);
-			$item_data = db_assoc(db_query("SELECT `guid` FROM `item_instance`
-							WHERE `owner_guid`='".$guid."' AND (SUBSTRING_INDEX( SUBSTRING_INDEX(`data` , ' ' , 9) , ' ' , -1 )+0)='".$guid."' AND (SUBSTRING_INDEX( SUBSTRING_INDEX(`data` , ' ' , 4) , ' ' , -1 )+0)='".$id."'"));
-
-			reset($item_data);
-			$item_data =  current($item_data);
-			if ($item_data = get_item_data($item_data)) { show_item_by_data($item_data, $style, $posx, $posy); }
+			if ($id != 0)
+				{
+					selectdb(characters_r.$_SESSION['realmd_id']);
+					$item_data = db_assoc(db_query("SELECT `guid` FROM `item_instance`
+									WHERE `owner_guid`='".$guid."' AND (SUBSTRING_INDEX( SUBSTRING_INDEX(`data` , ' ' , 9) , ' ' , -1 )+0)='".$guid."' AND (SUBSTRING_INDEX( SUBSTRING_INDEX(`data` , ' ' , 4) , ' ' , -1 )+0)='".$id."'"));
+		
+					reset($item_data);
+					$item_data =  current($item_data);
+					if ($item_data = get_item_data($item_data)) { show_item_by_data($item_data, $style, $posx, $posy); }
+				}
+			else { empty_show_item_from_char($style, $posx, $posy, $empty_item); }
 		}
 
 	//======================================================================================================
