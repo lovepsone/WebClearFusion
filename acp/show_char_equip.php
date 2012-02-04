@@ -78,10 +78,10 @@
  			echo"<table cellpadding='0' cellspacing='0' width='325px' style='position:absolute; top:43px; left:86px;'>";
 		 	echo"<tbody><tr>";
 		 	echo"<td style='position:absolute; width: 328px; font-size:12px;' align = center><font color='white'><b>".$health." / $maxhealth</b></font></td>";
-		 	echo"<td style='width: 3px; background: url(".IMAGES_BAR."$h_l_on_off.gif) left no-repeat;'></td>";
+		 	echo"<td style='width: 4px; background: url(".IMAGES_BAR."$h_l_on_off.gif) left no-repeat;'></td>";
 		 	echo"<td style='width: ".($h_percent*3.19)."px; height:17px; background: url(".IMAGES_BAR."bar-on.gif) repeat-x;'></td>";
-		 	echo"<td style='width: ".(323-$h_percent*3.19)."px; height:17px; background: url(".IMAGES_BAR."bar-off.gif) repeat-x;'></td>";
-		 	echo"<td style='width: 3px; background: url(".IMAGES_BAR."$h_r_on_off.gif) right no-repeat;'></td></tr>";
+		 	echo"<td style='width: ".(320-$h_percent*3.19)."px; height:17px; background: url(".IMAGES_BAR."bar-off.gif) repeat-x;'></td>";
+		 	echo"<td style='width: 4px; background: url(".IMAGES_BAR."$h_r_on_off.gif) right no-repeat;'></td></tr>";
 		 	echo"</tbody>";
 		 	echo"</table>";
 
@@ -101,10 +101,10 @@
 		 	echo"<table cellpadding='0' cellspacing='0' width='325px' style='position:absolute; top:65px; left:86px'>";
 		 	echo"<tbody>";
 		 	echo"<tr><td style='position:absolute; width: 330px; font-size:12px;' align='center'><font color='white'><b>$power / $maxpower</b></font></td>";
-		 	echo"<td style='width: 3px; height:13px; background: url(".IMAGES_BAR."$m_l_on_off.gif) left no-repeat;'></td>";
+		 	echo"<td style='width: 4px; background: url(".IMAGES_BAR."$m_l_on_off.gif) left no-repeat;'></td>";
 		 	echo"<td style='width: ".($m_percent*3.19)."px; height:17px; background: url(".IMAGES_BAR."$typeSlid-bar-on.gif) repeat-x;'></td>";
-		 	echo"<td style='width: ".(323-$m_percent*3.19)."px; height:17px; background: url(".IMAGES_BAR."bar-off.gif) repeat-x;'></td>";
-		 	echo"<td style='width: 3px; height:13px; background: url(".IMAGES_BAR."$m_r_on_off.gif) right no-repeat;'></td></tr>";
+		 	echo"<td style='width: ".(320-$m_percent*3.19)."px; height:17px; background: url(".IMAGES_BAR."bar-off.gif) repeat-x;'></td>";
+		 	echo"<td style='width: 4px; background: url(".IMAGES_BAR."$m_r_on_off.gif) right no-repeat;'></td></tr>";
 		 	echo"</tbody>";
 		 	echo"</table>";
 
