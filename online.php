@@ -26,9 +26,9 @@
 			opentable();
 			if ($config['namber_realmd'] > 1)
 				{
-					echo"<tr><td align='center' colspan='6'><div class='jsmenu' align='center'><ul>";
-					while ($data_r = db_array($result_r)) { echo"<li style='border-left: 1px solid #202020;'><a href='".WCF_SELF."?realm_id=".$data_r['id']."'>".ucfirst(strtolower($data_r['name']))."</a></li>"; }
-					echo"</ul></div></td></tr>";
+					echo"<tr><td align='center' colspan='6'><ul class='my_tabs'><center>";
+					while ($data_r = db_array($result_r)) { echo"<li><a onclick='return uploadFromHref(this, \"reportContainer\");' href='".WCF_SELF."?realm_id=".$data_r['id']."'>".ucfirst(strtolower($data_r['name']))."</a></li>"; }
+ 					echo"</center></ul>";
 				}
 
 			$result = db_query("SELECT `address`, `port` FROM `realmlist` WHERE `id`='$realm_id'");

@@ -17,26 +17,24 @@
 	// Верхнее меню
 	opentable();
 	echo"<th colspan='4'>".$txt['menu_auth_admin']." - v".$config['rev_admin']."</th>";
-	echo"<tr><td align='center' colspan='4'><div class='jsmenu'><ul>";
-
-	echo"<li style='border-left: 1px solid #202020;'><a href='".WCF_SELF."?contet'>".$txt['menu_admin_content']."</a></li>";
-	echo"<li style='border-left: 1px solid #202020;'><a href='".WCF_SELF."?users'>".$txt['menu_admin_users']."</a></li>";
-	echo"<li style='border-left: 1px solid #202020;'><a href='".WCF_SELF."?system'>".$txt['menu_admin_system']."</a></li>";
-	echo"<li style='border-left: 1px solid #202020;'><a href='".WCF_SELF."?plants'>".$txt['menu_admin_plants']."</a></li>";
-	echo"<li style='border-left: 1px solid #202020;'><a href='".WCF_SELF."?acp'>".$txt['menu_admin_acp']."</a></li>";
-
-	echo"</ul></div></td></tr>";
+	echo"<tr><td align='center' colspan='5'><table><tr>";
+	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?contet'>".$txt['menu_admin_content']."</a></strong></span></td>";
+	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?users'>".$txt['menu_admin_users']."</a></strong></span></td>";
+	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?system'>".$txt['menu_admin_system']."</a></strong></span></td>";
+	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?plants'>".$txt['menu_admin_plants']."</a></strong></span></td>";
+	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?acp'>".$txt['menu_admin_acp']."</a></strong></span></td>";
+	echo"</tr></table><br><hr></td></tr>";
 
 	//==================================================================
 	// Подробное меню
 	$kol_string = 4;
 	for ($i = 1; $i < $kol_string; $i++)
 		{
-			if (isset($_GET['contet'])) admin_page(1,$i);
-			else if (isset($_GET['users'])) admin_page(2,$i);
-			else if (isset($_GET['system'])) admin_page(3,$i);
-			else if (isset($_GET['plants'])) admin_page(4,$i);
-			else if (isset($_GET['acp'])) admin_page(5,$i);
+			if (isset($_GET['contet'])) { admin_page(1,$i); }
+			elseif (isset($_GET['users'])) { admin_page(2,$i); }
+			elseif (isset($_GET['system'])) { admin_page(3,$i); }
+			elseif (isset($_GET['plants'])) { admin_page(4,$i); }
+			elseif (isset($_GET['acp'])) { admin_page(5,$i); }
 		}
 	closetable();
 

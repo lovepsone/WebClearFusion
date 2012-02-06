@@ -312,30 +312,3 @@ hr.side-hr {
 	color: #ff4000;
 	text-align: center;
 }
-
-.jsmenu ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-		}
-
-.jsmenu ul li {
-	position: relative;
-	display: inline;
-	float: left;
-		}
-
-.jsmenu ul li a {
-	display: block;
-	width: 176px;
-	padding: 2px 8px;
-	border: 1px solid #202020;
-	border-left-width: 0;
-	text-decoration: none;
-	background: url(img/menubg.gif) center center repeat-x;
-	font: bold 10px Tahoma;
-		}
-
-.jsmenu ul li a:hover {
-	background: url(img/menubgover.gif) center center repeat-x;
-		}

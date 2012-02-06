@@ -30,7 +30,6 @@
 
  			echo"<ul class='my_tabs'><center>";
  			echo"<li><a onclick='return uploadFromHref(this, \"reportContainer\");' href='".WCF_SELF."?player=".$guid."'>".$txt['modul_acp_char']."</a></li>";
-			//echo'<li><a onclick="return uploadFromHref(this, \'reportContainer\');" href=?player='.$guid.'&tab=3d>Персонаж 3D</a></li>';
  			echo"<li><a onclick='return uploadFromHref(this, \"reportContainer\");' href='".WCF_SELF."?player=".$guid."&tab=talents'>".$txt['modul_acp_char_talents']."</a></li>";
  			echo"<li><a onclick='return uploadFromHref(this, \"reportContainer\");' href='".WCF_SELF."?player=".$guid."&tab=skill'>".$txt['modul_acp_char_skill']."</a></li>";
  			echo"<li><a onclick='return uploadFromHref(this, \"reportContainer\");' href='".WCF_SELF."?player=".$guid."&tab=achievements'>".$txt['modul_acp_char_achievements']."</a></li>";
