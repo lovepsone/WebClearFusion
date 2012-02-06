@@ -28,6 +28,7 @@
 	define("DB_NEWS", DB_PREFIX."news");
 	define("DB_NEWS_CATS", DB_PREFIX."news_cats");
 	define("DB_PANELS", DB_PREFIX."panels");
+	define("DB_RATING", DB_PREFIX."rating");
 	define("DB_SETTINGS", DB_PREFIX."settings");
 	define("DB_SPELL", DB_PREFIX."spell");
 	define("DB_SPELL_DURATION", DB_PREFIX."spell_duration");

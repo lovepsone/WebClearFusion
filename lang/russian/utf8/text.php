@@ -11,6 +11,7 @@
 +--------------------------------------------------------*/
 
 	require_once "zone_names.php";
+	require_once "game_text.php";
 
 $txt = array(
 # тексты в правом и левом меню
@@ -274,6 +275,16 @@ $txt = array(
 'modul_acp_char_achievements'	=>'Достижения',
 'modul_acp_char_reputation'	=>'Репутация',
 'modul_acp_char_quests'		=>'Квесты',
+'modul_acp_char_page_base'	=>'Основные',
+'modul_acp_char_page_defence'	=>'Защита',
+'modul_acp_char_page_melee'	=>'Ближний бой',
+'modul_acp_char_page_ranged'	=>'Дальний бой',
+'modul_acp_char_armor'		=>'Броня:',
+'modul_acp_char_defence'	=>'Защита',
+'modul_acp_char_dodge'		=>'Уклонение:',
+'modul_acp_char_parry'		=>'Парирование:',
+'modul_acp_char_block'		=>'Блок:',
+'modul_acp_char_recilence'	=>'Устойчивость:',
 
 # остальное
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',

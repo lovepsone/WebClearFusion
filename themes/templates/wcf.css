@@ -311,7 +311,7 @@ TABLE.playerName TD.name   {COLOR: #FFFFFF; FONT-SIZE: 14px; FONT-WEIGHT: 600; W
 TABLE.playerName TD.health {COLOR: #FFFFFF; FONT-SIZE: 12px; FONT-WEIGHT: 600; WIDTH: 276px; HEIGHT: 18px;BACKGROUND-IMAGE: url(../../images/player_info/characterframe/bar1.png);}
 TABLE.playerName TD.power  {COLOR: #FFFFFF; FONT-SIZE: 12px; FONT-WEIGHT: 600; WIDTH: 276px; HEIGHT: 17px;BACKGROUND-IMAGE: url(../../images/player_info/characterframe/bar2.png);}
 
-TABLE.playerstats          {FONT-FAMILY: Tahoma; FONT-SIZE: 11px; MARGIN: 0px; border-collapse: collapse;padding: 1px;}
+TABLE.playerstats          {FONT-FAMILY: Tahoma; FONT-SIZE: 11px; MARGIN: 0px; border-collapse: collapse;padding: 1px;BACKGROUND-IMAGE: url(../../images/player_info/bg_stats.png);}
 TABLE.playerstats TD       {BORDER: 1px #666666 solid;}
 TABLE.playerstats TD.head  {COLOR: #FFFFFF;PADDING-LEFT: 8px; font-weight: 700;}
 

@@ -104,6 +104,18 @@
     			return sprintf("<b>%d<img src='".IMAGES."gold.png'>&nbsp;%02d<img src='".IMAGES."silver.png'>&nbsp;%02d<img src='".IMAGES."copper.png'></b>", $g, $s, $c);
     		}
 
+	function get_stat_type_name($i)
+		{
+ 			global $gStatType;
+ 			return isset($gStatType[$i]) ? $gStatType[$i] : "Stat ($i)";
+		}
+
+	function get_resistance($i)
+		{
+ 			global $gResistance;
+ 			return isset($gResistance[$i]) ? $gResistance[$i] : "Resistance ($i)";
+		}
+
 	function get_character($character_id, $fields = "*")
 		{
 			global $_SESSION;
@@ -192,6 +204,12 @@
   			return isset($data[$class]) ? $data[$class] : 'class_'.$class;
 		}
 
+	function get_rating($level)
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT * FROM ".DB_RATING." WHERE `level`='$level'"));
+			return $data;
+		}
 	//======================================================================================================
 	$bwicon_mode = false;
 	function setBwIconMode()   {global $bwicon_mode; $bwicon_mode = true;}

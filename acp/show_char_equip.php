@@ -16,7 +16,7 @@
 	function show_player_equip($guid, $char, $char_data, $char_stat)
 		{
 
- 			global $lang;
+ 			global $txt;
 
  			$char_name = $char['name'];
  			$genderId  = $char['gender'];
@@ -108,6 +108,22 @@
 		 	echo"</tbody>";
 		 	echo"</table>";
 
+ 			echo"<table class='resistances' cellSpacing='0' style='width: 230px; position: absolute; left: 225px; top: 92px;'>";
+			echo"<tbody>";
+			echo"<tr>";
+			render_resist(SCHOOL_FIRE,$char_stat['resFire'],$char);
+			echo"</tr><tr>";
+			render_resist(SCHOOL_NATURE,$char_stat['resNature'],$char);
+			echo"</tr><tr>";
+			render_resist(SCHOOL_FROST,$char_stat['resFrost'],$char);
+			echo"</tr><tr>";
+			render_resist(SCHOOL_SHADOW,$char_stat['resShadow'],$char);
+			echo"</tr><tr>";
+			render_resist(SCHOOL_ARCANE,$char_stat['resArcane'],$char);
+ 			echo"</tr>";
+ 			echo"</tbody>";
+ 			echo"</table>";
+
 			// 3D characters
 		 	echo"<table cellSpacing='0' style='width: 275px; position: absolute; left: 78px; top: 90px;'>";
 		 	echo"<tbody>";
@@ -143,5 +159,5 @@
 			echo"</td>";
 			echo"</tr>";
 			echo"</table>";
-	}
+		}
 ?>
