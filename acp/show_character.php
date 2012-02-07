@@ -13,6 +13,8 @@
 	require_once "../maincore.php";
 	require_once THEMES."templates/acp_header.php";
 
+	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR'])) { redirect(BASEDIR); }
+
 	$config['show_player_3d'] = 1;
 	$guid = intval(@$_REQUEST['player']);
 	$tab  = @$_REQUEST['tab'];

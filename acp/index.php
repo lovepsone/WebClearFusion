@@ -13,6 +13,8 @@
 	require_once "../maincore.php";
 	require_once THEMES."templates/acp_header.php";
 
+	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR'])) { redirect(BASEDIR); }
+
 	selectdb(characters_r.$_SESSION['realmd_id']);
 	$result = db_query("SELECT * FROM `characters` WHERE `account`='".$_SESSION['user_id']."'");
 
