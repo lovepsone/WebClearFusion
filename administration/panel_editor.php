@@ -19,7 +19,7 @@
 		{
 			if ((!in_array($folder, array(".","..")) && strstr($folder, "_panel")) && !strstr($folder, "_panel_acp"))
 				{
-					if (is_dir(PANELS.$folder)) $panel_list[] = $folder;
+					if (is_dir(PANELS.$folder)) { $panel_list[] = $folder; }
 				}
 		}
 	closedir($temp); sort($panel_list); array_unshift($panel_list, "none");
@@ -46,6 +46,7 @@
 				}
 			else
 				{
+					selectdb(wcf);
 					$result = db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='".$panel_side."' ORDER BY `panel_order` DESC LIMIT 1");
 					if (db_num_rows($result) != 0) { $data = db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
 					$result = db_query("INSERT INTO ".DB_PANELS." (`panel_filename`,`panel_type`,`panel_access`,`panel_side`,`panel_order`,)
@@ -56,6 +57,7 @@
 		{
 			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 				{
+					selectdb(wcf);
 					$result = db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_id`='".$_GET['panel_id']."'");
 					if (db_num_rows($result))
 						{
