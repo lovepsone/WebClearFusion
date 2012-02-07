@@ -45,7 +45,7 @@
 						LEFT JOIN ".DB_USERS." ON ".DB_USERS.".`user_id`=".DB_COMMENTS.".`user_id`
 						WHERE `comment_item_id`='".$newsid."' AND `comment_type`='1'");
 			opentable();
-			if (!isset($_SESSION['user_id']) or ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
+			if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
 				{ 
 					echo"<tr><td align='center' colspan='2'><h3>".$txt['modul_newsexp_log_in']."</h3></td></tr>";
 				}
@@ -58,7 +58,7 @@
 				}
 			//=========================
 			// форма отправки коментария
-			if ((isset($_SESSION['user_id']) or ($_SESSION['ip'] == $_SERVER['REMOTE_ADDR'])) AND $allow_comments == 1)
+			if ((isset($_SESSION['user_id']) || ($_SESSION['ip'] == $_SERVER['REMOTE_ADDR'])) && $allow_comments == 1)
 				{
 					if($_POST['comments'])
 						{
