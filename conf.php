@@ -60,13 +60,12 @@ $config =array (
 'cdbName_r2' => 'characters2',
 
 'encoding'=> 'utf8',
-'admin'=>'3',
 
 //==================================================================
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
 'copyright'=>'WebClearFusion v 0.4.63 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [204]',
+'revision'=>'wcf_revision_nr = [205]',
 'rev_admin'=>' 0.02.00',
 'rev_acp'=>' 0.01.10',
 );

@@ -69,7 +69,7 @@
 			echo"</form>";
 
 			echo"<tr><td width='100%'><hr></td></tr>";
-			if ( $_SESSION['gmlevel'] >= $config['admin'] ) { echo"<tr><td align='right'><a href='".ADMIN."administration.php?contet'>".$txt['menu_auth_admin']."</a></td></tr>";}
+			if ( $_SESSION['gmlevel'] >= $config['level_administration'] ) { echo"<tr><td align='right'><a href='".ADMIN."administration.php?contet'>".$txt['menu_auth_admin']."</a></td></tr>";}
 			echo"<tr><td align='right'><a href='".BASEDIR."setuser.php?action=logout'>".$txt['menu_auth_exit']."</a>";
 			closeside();
 

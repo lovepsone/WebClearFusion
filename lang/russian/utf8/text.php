@@ -200,6 +200,10 @@ $txt = array(
 'admin_settings_off_p_title'	=>'Пример:<br>/news.php<br>/forum/index.php',
 'admin_savesettings'		=>'Сохранить',
 
+'admin_setting_other'		=>'Прочие установки',
+'admin_setting_other_k'		=>'Каптча при авторизации',
+'admin_setting_other_lvl_admin'	=>'Минимальный уровень пользователя для входа в режим администрирования',
+
 'admin_slinks_title_add'	=>'Добавить ссылку в навигацию',
 'admin_slinks_title_edit'	=>'Редактировать ссылки меню',
 'admin_slinks_name'		=>'Название:',

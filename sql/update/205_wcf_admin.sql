@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: wcf
 Target Host: localhost
 Target Database: wcf
-Date: 30.01.2012 19:42:10
+Date: 07.02.2012 18:08:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -91,7 +91,7 @@ INSERT INTO `wcf_admin` VALUES ('62', '2', '4', '1', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('63', '3', '4', '1', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('64', '4', '4', '1', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('65', '5', '4', '1', '', '', 'reserved');
-INSERT INTO `wcf_admin` VALUES ('66', '1', '4', '2', '', '', 'reserved');
+INSERT INTO `wcf_admin` VALUES ('66', '1', '4', '2', 'settings_misc.gif', 'Прочие установки', 'settings_other.php');
 INSERT INTO `wcf_admin` VALUES ('67', '2', '4', '2', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('68', '3', '4', '2', '', '', 'reserved');
 INSERT INTO `wcf_admin` VALUES ('69', '4', '4', '2', '', '', 'reserved');
