@@ -294,6 +294,8 @@ $txt = array(
 'modul_acp_char_ach_complete' 	=>'Всего выполнено:',
 'modul_acp_char_ach_last'     	=>'Последние выполненные:',
 
+'modul_acp_char_skill'     	=>'Навыки персонажа',
+
 # остальное
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',
 'fill_field'			=>'<font color=red>Вы не заполнили поле!!!</font>',

@@ -33,6 +33,10 @@
 	define("DB_PANELS", DB_PREFIX."panels");
 	define("DB_RATING", DB_PREFIX."rating");
 	define("DB_SETTINGS", DB_PREFIX."settings");
+	define("DB_SKILL", DB_PREFIX."skill_line");
+	define("DB_SKILL_ABILITY", DB_PREFIX."skill_line_ability");
+	define("DB_SKILL_CAT", DB_PREFIX."skill_line_category");
+	define("DB_SKILL_CLASS_INFO", DB_PREFIX."skill_race_class_info");
 	define("DB_SPELL", DB_PREFIX."spell");
 	define("DB_SPELL_DURATION", DB_PREFIX."spell_duration");
 	define("DB_TALENT_TAB", DB_PREFIX."talent_tab");

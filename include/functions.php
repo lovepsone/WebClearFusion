@@ -210,6 +210,13 @@
 			$data = db_assoc(db_query("SELECT * FROM ".DB_RATING." WHERE `level`='$level'"));
 			return $data;
 		}
+
+	function get_skill_line($id)
+		{
+			selectdb(wcf);
+			$skills = db_assoc(db_query("SELECT * FROM ".DB_SKILL." WHERE `id`='".$id."'"));
+			return $skills;
+		}
 	//======================================================================================================
 	$bwicon_mode = false;
 	function setBwIconMode()   {global $bwicon_mode; $bwicon_mode = true;}

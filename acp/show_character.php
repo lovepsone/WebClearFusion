@@ -40,10 +40,16 @@
  			echo"</center></ul>";
 		}
 
- 	if ($tab == '')
+ 	if ($tab == "")
  		{
   			require_once ACP."show_character/show_char_equip.php";
   			show_player_equip($guid, $char, $char_data, $char_stats);
+ 		}
+
+ 	if ($tab == "skill")
+ 		{
+  			require_once ACP."show_character/show_char_skill.php";
+  			show_player_skills($guid);
  		}
 
 	closetable();
