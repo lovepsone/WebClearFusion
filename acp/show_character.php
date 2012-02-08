@@ -42,7 +42,7 @@
 
  	if ($tab == '')
  		{
-  			require_once ACP."show_char_equip.php";
+  			require_once ACP."show_character/show_char_equip.php";
   			show_player_equip($guid, $char, $char_data, $char_stats);
  		}
 
