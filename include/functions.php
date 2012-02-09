@@ -10,47 +10,22 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	//=============================================================================================================
+	// Все что связано с locale
+	//=============================================================================================================
 	function get_locale($locale)
 		{
   			switch ($locale):
-      			case 0:
-      			$locale = "English";
-      			break;
-  
-    			case 1:
-      			$locale = "Korean";
-      			break;
-    
-    			case 2:
-      			$locale = "French";
-      			break;
-
-    			case 3:
-      			$locale = "German";
-      			break;
-      
-    			case 4:
-      			$locale = "Chinese";
-      			break;
-      
-    			case 5:
-      			$locale = "Taiwanese";
-     			break;
-      
-    			case 6:
-      			$locale = "Spanish";
-      			break;
-      
-    			case 7:
-      			$locale = "Spanish Mexico";
-      			break;
-      
-    			case 8:
-      			$locale = "Russian";
-      			break;
-
+      			case 0: $locale = "English"; 		break;
+    			case 1: $locale = "Korean";		break;
+    			case 2:	$locale = "French";		break;
+			case 3:	$locale = "German";		break;
+    			case 4:	$locale = "Chinese";		break;
+    			case 5:	$locale = "Taiwanese";		break;
+    			case 6:	$locale = "Spanish";		break;
+    			case 7:	$locale = "Spanish Mexico";	break;
+    			case 8:	$locale = "Russian";		break;
   			endswitch;
-
 			return $locale;
 		}
 
@@ -74,48 +49,9 @@
 			return $lang['desc'];
 		}
 
-	function get_expansion($typ)
-    		{
-    			switch ($typ):
-
-        		case 0:
-            		$typ = "World of Warcraft";
-            		break;
-
-        		case 1:
-            		$typ = "The Burning Crusade";
-            		break;
-
-        		case 2:
-           	 	$typ = "Wrath of the Lich King";
-            		break;
-
-    			endswitch;
-    			return $typ;
-    		}
-
-	function get_gold($gold)
-    		{
-		    	$g = floor($gold / (100 * 100));
-		    	$gold = $gold - $g * 100 * 100;
-		    	$s = floor($gold / 100);
-		    	$gold = $gold - $s * 100;
-		    	$c = floor($gold);
-    			return sprintf("<b>%d<img src='".IMAGES."gold.png'>&nbsp;%02d<img src='".IMAGES."silver.png'>&nbsp;%02d<img src='".IMAGES."copper.png'></b>", $g, $s, $c);
-    		}
-
-	function get_stat_type_name($i)
-		{
- 			global $gStatType;
- 			return isset($gStatType[$i]) ? $gStatType[$i] : "Stat ($i)";
-		}
-
-	function get_resistance($i)
-		{
- 			global $gResistance;
- 			return isset($gResistance[$i]) ? $gResistance[$i] : "Resistance ($i)";
-		}
-
+	//=============================================================================================================
+	// Все что связано с characters
+	//=============================================================================================================
 	function get_character($character_id, $fields = "*")
 		{
 			global $_SESSION;
@@ -138,6 +74,9 @@
   			return $c ? $c['name'] : 'Unknown';
 		}
 
+	//=============================================================================================================
+	// Все что связано с players, faction, race, class
+	//=============================================================================================================
 	function get_player_faction($race)
 		{
 			selectdb(wcf);
@@ -161,7 +100,7 @@
 	function get_race_names()
 		{
 			selectdb(wcf);
-			$result = db_query("SELECT `id` AS ARRAY_KEY, `name` FROM ".DB_CHR_RACES."");
+			$result = db_query("SELECT `id` AS ARRAY_KEY, `name` FROM ".DB_CHR_RACES);
 			$data = array();
 			while ($mas_data = db_array($result))
 				{
@@ -204,20 +143,9 @@
   			return isset($data[$class]) ? $data[$class] : 'class_'.$class;
 		}
 
-	function get_rating($level)
-		{
-			selectdb(wcf);
-			$data = db_assoc(db_query("SELECT * FROM ".DB_RATING." WHERE `level`='$level'"));
-			return $data;
-		}
-
-	function get_skill_line($id)
-		{
-			selectdb(wcf);
-			$skills = db_assoc(db_query("SELECT * FROM ".DB_SKILL." WHERE `id`='".$id."'"));
-			return $skills;
-		}
-	//======================================================================================================
+	//=============================================================================================================
+	// Все что связано с item
+	//=============================================================================================================
 	$bwicon_mode = false;
 	function setBwIconMode()   {global $bwicon_mode; $bwicon_mode = true;}
 	function unsetBwIconMode() {global $bwicon_mode; $bwicon_mode = false;}
@@ -341,7 +269,95 @@
 			else { empty_show_item_from_char($style, $posx, $posy, $empty_item); }
 		}
 
-	//======================================================================================================
+	//=============================================================================================================
+	// Все что связано с spell
+	//=============================================================================================================
+	function get_spell_icon_name($icon_id)
+		{
+			selectdb(wcf);
+  			$name = db_assoc(db_query("SELECT `name` FROM ".DB_SPELL_ICON." WHERE `id`='$icon_id'"));
+  			if ($name) { return strtolower($name['name'].".jpg"); } else { return "wowunknownitem01.jpg"; }
+		}
+
+	function get_spell_icon($icon_id)
+		{
+  			global $bwicon_mode;
+  			if ($bwicon_mode) { $dir = "bwicons"; $g_bwicon_mode = 0; } else { $dir = "icons"; }
+  			return IMAGES.$dir."/".get_spell_icon_name($icon_id);
+		}
+
+	function show_spell($entry, $iconId=0, $style=0)
+		{
+			selectdb(wcf);
+  			if (!$iconId) { $iconId = db_assoc(db_query("SELECT `SpellIconID` FROM ".DB_SPELL." WHERE `id`='".$entry."'")); }
+
+  			$icon = get_spell_icon($iconId['SpellIconID']);
+  			echo"<a href='".ACP."show_item.php?spell=".$entry."'><img".($style?' class='.$style:'')." src='".$icon."'></a>";
+  			return;
+		}
+
+	//=============================================================================================================
+	// Все что связано с skill
+	//=============================================================================================================
+	function get_skill_line($id)
+		{
+			selectdb(wcf);
+			$skills = db_assoc(db_query("SELECT * FROM ".DB_SKILL." WHERE `id`='".$id."'"));
+			return $skills;
+		}
+
+	//=============================================================================================================
+	// Другие полезные функции
+	//=============================================================================================================
+	function get_expansion($typ)
+    		{
+    			switch ($typ):
+
+        		case 0:
+            		$typ = "World of Warcraft";
+            		break;
+
+        		case 1:
+            		$typ = "The Burning Crusade";
+            		break;
+
+        		case 2:
+           	 	$typ = "Wrath of the Lich King";
+            		break;
+
+    			endswitch;
+    			return $typ;
+    		}
+
+	function get_gold($gold)
+    		{
+		    	$g = floor($gold / (100 * 100));
+		    	$gold = $gold - $g * 100 * 100;
+		    	$s = floor($gold / 100);
+		    	$gold = $gold - $s * 100;
+		    	$c = floor($gold);
+    			return sprintf("<b>%d<img src='".IMAGES."gold.png'>&nbsp;%02d<img src='".IMAGES."silver.png'>&nbsp;%02d<img src='".IMAGES."copper.png'></b>", $g, $s, $c);
+    		}
+
+	function get_stat_type_name($i)
+		{
+ 			global $gStatType;
+ 			return isset($gStatType[$i]) ? $gStatType[$i] : "Stat ($i)";
+		}
+
+	function get_resistance($i)
+		{
+ 			global $gResistance;
+ 			return isset($gResistance[$i]) ? $gResistance[$i] : "Resistance ($i)";
+		}
+
+	function get_rating($level)
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT * FROM ".DB_RATING." WHERE `level`='$level'"));
+			return $data;
+		}
+
 	function validate_text($text)
 		{
 			$letter = array("'",'"'     ,"<"   ,">"   ,">"   ,"\r","\n"  );
@@ -366,29 +382,5 @@
 			     <div style=\"position: absolute; $posx: ".($dx-1)."px; $posy: ".($dy  )."px; color: black;\">$text</div>
 			     <div style=\"position: absolute; $posx: ".($dx+1)."px; $posy: ".($dy  )."px; color: black;\">$text</div>
 			     <div style=\"position: absolute; $posx: ".($dx  )."px; $posy: ".($dy  )."px; color: white;\">$text</div>";
-		}
-
-	function get_spell_icon_name($icon_id)
-		{
-			selectdb(wcf);
-  			$name = db_assoc(db_query("SELECT `name` FROM ".DB_SPELL_ICON." WHERE `id`='$icon_id'"));
-  			if ($name) { return strtolower($name['name'].".jpg"); } else { return "wowunknownitem01.jpg"; }
-		}
-
-	function get_spell_icon($icon_id)
-		{
-  			global $bwicon_mode;
-  			if ($bwicon_mode) { $dir = "bwicons"; $g_bwicon_mode = 0; } else { $dir = "icons"; }
-  			return IMAGES.$dir."/".get_spell_icon_name($icon_id);
-		}
-
-	function show_spell($entry, $iconId=0, $style=0)
-		{
-			selectdb(wcf);
-  			if (!$iconId) { $iconId = db_assoc(db_query("SELECT `SpellIconID` FROM ".DB_SPELL." WHERE `id`='".$entry."'")); }
-
-  			$icon = get_spell_icon($iconId['SpellIconID']);
-  			echo"<a href='".ACP."show_item.php?spell=".$entry."'><img".($style?' class='.$style:'')." src='".$icon."'></a>";
-  			return;
 		}
 ?>
