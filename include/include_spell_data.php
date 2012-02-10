@@ -1,5 +1,4 @@
 <?php
-include_once("functions.php");
 
 $gSpellEffect = array(
 '1'=>'Instakill',

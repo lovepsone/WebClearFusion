@@ -149,10 +149,10 @@
 	function render_socket($socket)
 		{
    			global $game_text;
-   			if ($socket == 1) { echo"<tr><td class='MetaSock'><a href='?s=i&gem=1'>".$game_text['meta_socket']."</a></td></tr>"; }
-			if ($socket == 2) { echo"<tr><td class='RedSock'><a href='?s=i&gem=2'>".$game_text['red_socket']."</a></td></tr>"; }
-			if ($socket == 4) { echo"<tr><td class='YellowSock'><a href='?s=i&gem=4'>".$game_text['yellow_socket']."</a></td></tr>"; }
-			if ($socket == 8) { echo"<tr><td class='BlueSock'><a href='?s=i&gem=8'>".$game_text['blue_socket']."</a></td></tr>"; }
+   			if ($socket == 1) { echo"<tr><td class='metaSock'><a href='?s=i&gem=1'>".$game_text['meta_socket']."</a></td></tr>"; }
+			if ($socket == 2) { echo"<tr><td class='redSock'><a href='?s=i&gem=2'>".$game_text['red_socket']."</a></td></tr>"; }
+			if ($socket == 4) { echo"<tr><td class='yellowSock'><a href='?s=i&gem=4'>".$game_text['yellow_socket']."</a></td></tr>"; }
+			if ($socket == 8) { echo"<tr><td class='blueSock'><a href='?s=i&gem=8'>".$game_text['blue_socket']."</a></td></tr>"; }
 		}
 
 	// ¬ывод сокета с возможно вставленным камнем

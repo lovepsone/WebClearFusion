@@ -202,11 +202,11 @@ TABLE.item TD.req A      {COLOR: white;}
 TABLE.item TD.SpellStat  {COLOR: #00ff00; }
 TABLE.item TD.name       {white-space: nowrap;}
 TABLE.item TD.Unique     {COLOR: #aaaa00; }
-TABLE.item TD.MetaSock    {background: url(../../images/socket_meta.gif) no-repeat; padding-left: 23px; height: 16px;}
+TABLE.item TD.metaSock    {background: url(../../images/socket_meta.gif) no-repeat; padding-left: 23px; height: 16px;}
 TABLE.item TD.blueSock    {background: url(../../images/socket_blue.gif) no-repeat; padding-left: 23px; height: 16px;}
 TABLE.item TD.redSock     {background: url(../../images/socket_red.gif) no-repeat; padding-left: 23px; height: 16px;}
 TABLE.item TD.yellowSock  {background: url(../../images/socket_yellow.gif) no-repeat; padding-left: 23px; height: 16px;}
-TABLE.item TD.MetaSock   A{COLOR: #CCCCFF;}
+TABLE.item TD.metaSock   A{COLOR: #CCCCFF;}
 TABLE.item TD.blueSock   A{COLOR: #00FFFF;}
 TABLE.item TD.redSock    A{COLOR: #ff0000;}
 TABLE.item TD.yellowSock A{COLOR: #ffff00;}
