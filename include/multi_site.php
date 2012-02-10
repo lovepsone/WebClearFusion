@@ -41,7 +41,7 @@
 	define("DB_LOCK", DB_PREFIX."lock");
 	define("DB_LOCK_TYPE", DB_PREFIX."lock_type");
 	define("DB_LOGS", DB_PREFIX."logs");
-	define("DB_LOCK_MAP", DB_PREFIX."map");
+	define("DB_MAP", DB_PREFIX."map");
 	define("DB_NAVIGATION_LINKS", DB_PREFIX."navigation_links");
 	define("DB_NEWS", DB_PREFIX."news");
 	define("DB_NEWS_CATS", DB_PREFIX."news_cats");

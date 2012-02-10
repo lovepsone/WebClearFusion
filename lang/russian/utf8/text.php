@@ -296,9 +296,23 @@ $txt = array(
 
 'modul_acp_char_skill'     	=>'Навыки персонажа',
 
+'modul_acp_show_reqirement'     =>'Требование',
+'modul_acp_show_horde'     	=>'Орда',
+'modul_acp_show_alliance'     	=>'Альянс',
+'modul_acp_show_no_sell_price' 	=>'Не для продажи',
+'modul_acp_show_sell_price' 	=>'Цена продажи',
+'modul_acp_show_money' 		=>'Деньги:',
+'modul_acp_show_buy_price' 	=>'Цена выкупа',
+'modul_acp_show_this_item_part_of_set' 	=> 'Этот предмет часть комплекта',
 # остальное
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',
 'fill_field'			=>'<font color=red>Вы не заполнили поле!!!</font>',
+
+'days'				=>'д.',
+'hours'				=>'ч.',
+'min' 				=>'мин.',
+'sec' 				=>'сек.',
+'minustime' 			=>'действие',
 
 'up'				=>'Вверх',
 'down'				=>'Вниз',

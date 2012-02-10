@@ -137,10 +137,69 @@
  			return $data;
 		}
 
+	function get_class_name($class, $as_ref=1)
+		{
+   			global $itemClassSubclass;
+   			if ($as_ref) { return "<a href=\"?s=i&class=$class\">".$itemClassSubclass["$class"]."</a>"; }
+			else { return $itemClassSubclass["$class"]; }
+		}
+
 	function get_classes($class)
 		{
   			$data = get_class_names();
   			return isset($data[$class]) ? $data[$class] : 'class_'.$class;
+		}
+
+	function get_subclass_name($class,$subclass, $as_ref=1)
+		{
+  			global $itemClassSubclass;
+  			if ($subclass >= 0)
+  				{
+      					$names = explode(":",$itemClassSubclass["$class"."."."$subclass"]);
+      					if (@$names[1]) { $name = $names[1]; } else { $name = $names[0]; }
+      					if ($as_ref) { return "<a href=\"?s=i&class=$class.$subclass\">".$name."</a>"; } else { return $name; }
+  				}
+  			return get_class_name($class, $as_ref);
+		}
+
+	function get_Short_subclass_Name($class,$subclass, $as_ref=1)
+		{
+			global $itemClassSubclass;
+  			if ($subclass >= 0)
+  				{
+      					$names = explode(":",$itemClassSubclass["$class"."."."$subclass"]);
+      					$name = $names[0];
+      					if ($as_ref) { return "<a href=\"?s=i&class=$class.$subclass\">".$name."</a>"; } else { return $name; }
+  				}
+  			return get_class_name($class, $as_ref);
+		}
+
+	function get_allowable_race($mask)
+		{
+  			$mask&=0x7FF;
+			// Return zero if for all class (or for none
+			if ($mask == 0x7FF OR $mask == 0)
+				{
+					return 0;
+				}
+			else
+				{
+					return get_list_from_array_1(get_race_names(), $mask);
+				}
+		}
+
+	function get_allowable_class($mask)
+		{
+			$mask&=0x5FF;
+			// Return zero if for all class (or for none
+			if ($mask == 0x5FF OR $mask == 0)
+				{
+					return 0;
+				}
+			else
+				{
+					return get_list_from_array_1(get_class_names(), $mask);
+				}
 		}
 
 	//=============================================================================================================
@@ -150,6 +209,16 @@
 	function setBwIconMode()   {global $bwicon_mode; $bwicon_mode = true;}
 	function unsetBwIconMode() {global $bwicon_mode; $bwicon_mode = false;}
 
+	$Quality = array(
+		'0'=>'quality0',
+		'1'=>'quality1',
+		'2'=>'quality2',
+		'3'=>'quality3',
+		'4'=>'quality4',
+		'5'=>'quality5',
+		'6'=>'quality6',
+		'7'=>'quality7');
+
 	function get_item($item_id, $fields = "*")
 		{
   			global $_SESSION, $config;
@@ -158,6 +227,30 @@
   			if ($item) { localise_item($item); }
   			return $item;
 		}
+
+	function get_item_name($item_id)
+		{
+			$item = get_item($item_id, "`entry`, `name`");
+			if ($item) { return $item['name']; } else { return "Unknown item - $item_id"; }
+		}
+
+	function get_item_flags2($item_id)
+		{
+  			global $_SESSION, $config;
+			selectdb(mangos_r.$_SESSION['realmd_id']);
+  			$item = db_assoc(db_query("SELECT `Flags2` FROM `item_template` WHERE `entry`='".$item_id."'"));
+			reset($item);
+			$item = current($item);
+  			return $item;
+		}
+
+	function get_item_set($item_set_id)
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT * FROM ".DB_ITEM_SET." WHERE `id`='".$item_set_id."'"));
+			return $data;
+		}
+
 
 	function get_item_data($guid)
 		{
@@ -179,6 +272,22 @@
   			global $bwicon_mode;
   			if ($bwicon_mode) { $dir = "bwicons"; $g_bwicon_mode = 0; } else { $dir = "icons"; }
   			return IMAGES.$dir."/".get_item_icon_name($icon_id);
+		}
+
+	function get_item_icon_from_item_id($item_id)
+		{
+			global $_SESSION, $bwicon_mode;
+			selectdb(mangos_r.$_SESSION['realmd_id']);
+  			if ($icon = db_assoc(db_query("SELECT `displayid` FROM `item_template` WHERE `entry`='".$item_id."'")))
+				{
+					reset($icon);
+					$icon = current($icon);
+					return get_item_icon($icon, $bwicon_mode);
+				}
+			else
+				{
+  					return IMAGES_ICONS."wowunknownitem01.jpg";
+				}
 		}
 
 	function get_item_icon_from_item_data($item_data)
@@ -222,7 +331,7 @@
 
 	function show_item_by_guid($guid, $style='item', $posx=0, $posy=0)
 		{
-			if ($guid==0) { return; }
+			if ($guid == 0) { return; }
 			if ($item_data = get_item_data($guid)) { show_item_by_data($item_data, $style, $posx, $posy); }
 		}
 
@@ -268,6 +377,74 @@
 				}
 			else { empty_show_item_from_char($style, $posx, $posy, $empty_item); }
 		}
+	function get_random_suffix($id)
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT * FROM ".DB_ITEM_RANDOM_SUFFIX." WHERE `id`='".$id."'"));
+			return $data;
+		}
+
+	function get_random_property($id)
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT * FROM ".DB_ITEM_RANDOM_PROPETY." WHERE `id`='".$id."'"));
+			return $data;
+		}
+
+	function get_scaling_stat_distribution($id)
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT * FROM ".DB_SCALING_STAT_DISTRIBUTION." WHERE `id`='".$id."'"));
+			return $data;
+		}
+
+	function get_scaling_stat_values($level)
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT * FROM ".DB_SCALING_STAT_VALUES." WHERE `level`='".$level."'"));
+			return $data;
+		}
+
+	function get_item_mail($item_id)
+		{
+  			global $config;
+			$item = db_assoc(db_query("SELECT `item` FROM `mail_loot_template` WHERE `entry`='".$item_id."'"));
+			reset($item);
+			$item = current($item);
+  			return $item;
+		}
+
+	function get_item_bonus_text($i, $amount)
+		{
+    			global $iBonus;
+    			$text = @$iBonus[$i];
+    			if ($text == "") { $text = "Err stat $i - %d"; }
+    			if ($i >=0 && $i < 8 && $amount > 0) { return sprintf("+".$text, $amount); }
+    			return sprintf($text, $amount);
+		}
+
+	function get_inventory_type($i, $as_ref=1)
+		{
+  			global $gInventoryType;
+  			$name = @$gInventoryType[$i];
+  			if ($name == "") { $name = "InvType_$i"; }
+  			if ($as_ref) { return "<a href=\"?s=i&type=$i\">".$name."</a>"; } else { return $name; }
+		}
+
+	function text_show_item($entry, $iconId = 0, $style = 0)
+		{
+			global $_SESSION, $config;
+			if (!$iconId)
+				{
+					selectdb(mangos_r.$_SESSION['realmd_id']);
+					$iconId = db_assoc(db_query("SELECT `displayid` FROM `item_template` WHERE `entry`='".$entry."'"));
+					reset($iconId);
+					$iconId = current($iconId);
+				}
+			$icon = get_item_icon($iconId);
+			$text = "<a href='?item=".$entry."'><img".($style?' class='.$style:'')." src='".$icon."'></a>";
+			return $text;
+		}
 
 	//=============================================================================================================
 	// Все что связано с spell
@@ -307,36 +484,208 @@
 		}
 
 	//=============================================================================================================
+	// Все что связано с zone, map, area
+	//=============================================================================================================
+	function get_area($Zone_id, $fields="*")
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT ".$fields." FROM ".DB_ZONES." WHERE `id`='".$Zone_id."'"));
+			return $data;
+		}
+
+	function get_area_name($Zone_id, $as_ref=1)
+		{
+  			$zone = get_area($Zone_id, '`name`');
+  			if ($zone)
+  				{
+    					$name = $zone['name'];
+    					if ($as_ref) { $name = "<a href='?zone=".$Zone_id."'>".$name."</a>"; }
+    
+  				}
+  			else
+				{
+					$name = "Unknown area - $Zone_id";
+				}
+  			return $name;
+		}
+
+	function get_full_area_name($Zone_id, $as_ref=1)
+		{
+  			$zone = get_area($Zone_id, '`name`, `zone_id`');
+  			if ($zone)
+  				{
+    					$name = $zone['name'];
+    					if ($as_ref) { $name = "<a href='?zone=".$Zone_id."'>".$name."</a>"; }
+    					if ($zone['zone_id']) { $name = get_area_name($zone['zone_id'], $as_ref)." - ".$name; }
+  				}
+  			else
+				{
+					$name = "Unknown area - $Zone_id";
+				}
+			return $name;
+		}
+
+	function get_map_name($id)
+		{
+			selectdb(wcf);
+			$result = db_query("SELECT `id` AS ARRAY_KEY, `name` FROM ".DB_MAP);
+			$data = array();
+			while ($mas_data = db_array($result))
+				{
+					$data[$mas_data['ARRAY_KEY']] = $mas_data['name'];
+				}
+ 			return isset($data[$id]) ? $data[$id] : 'map_'.$id;
+		}
+
+	//=============================================================================================================
+	// Все что связано с faction, reputation
+	//=============================================================================================================
+	function get_faction($faction_id, $fields="*")
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT $fields FROM ".DB_FACTION." WHERE `id`='".$faction_id."'"));
+			return $data;
+		}
+
+	function get_faction_name($faction_id, $as_ref=1)
+		{
+			if ($faction = get_faction($faction_id, "`name`"))
+				{
+					$name = $faction['name'];
+				}
+			else
+				{
+					$name = "Faction ($faction_id)";
+				}
+			if ($as_ref)
+				{
+					$name = "<a href='?faction=".$faction_id."'>".$name."</a>";
+				}
+			return $name;
+		}
+
+	function get_faction_template($faction_id)
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT * FROM ".DB_FACTION_FACTION_TEMPLATE." WHERE `id`='".$faction_id."'"));
+			return $data;
+		}
+
+	function get_daction_template_name($faction_id)
+		{
+			if ($faction_id == 0) { return 0; }
+			if ($faction_template = get_faction_template($faction_id))
+				{
+					return get_faction_name($faction_template['faction']);
+				}
+			else
+				{
+					return "Faction template - $faction_id";
+				}
+		}
+	
+	function get_base_reputation_for_faction($faction, $race, $class)
+		{
+			if (empty($faction)) { return 0; }
+			$racemask = 1<<($race -1);
+			$classmask = 1<<($class-1);
+			for ($i=0;$i<4;$i++)
+				{
+					if ($faction['BaseRepRaceMask_'.$i] & $racemask AND ($faction['BaseRepClassMask_'.$i] == 0 OR $faction['BaseRepClassMask_'.$i] & $classmask))
+						{
+							return $faction['BaseRepValue_'.$i];
+						}
+				}
+    			return 0;
+		}
+
+	function get_base_reputation_flag_for_faction($faction, $race, $class)
+		{
+			if (empty($faction)) { return 0; }
+			$racemask  = 1<<($race -1);
+			$classmask = 1<<($class-1);
+			for ($i=0;$i<4;$i++)
+				{
+					if ($faction['BaseRepRaceMask_'.$i] & $racemask AND ($faction['BaseRepClassMask_'.$i] == 0 OR $faction['BaseRepClassMask_'.$i] & $classmask))
+						{
+							return $faction['ReputationFlags_'.$i];
+						}
+				}
+    			return 0;
+		}
+
+	function get_reputation_rank_name($rep)
+		{
+			global $gReputationRank;
+			$text = @$gReputationRank[$rep];
+			if ($text == "") { $text = "Err Rep Rank $rep"; } else { return $text; }
+		}
+
+	function get_reputation_data_from_reputation($rep)
+		{
+			global $gReputationRank;
+			$gBaseRep = -42000;
+			$gRepStep = array(36000, 3000, 3000, 3000, 6000, 12000, 21000, 1000);
+			$current = $gBaseRep;
+			for ($i=0;$i<8;$current+=$gRepStep[$i],$i++)
+				{
+     					if ($current + $gRepStep[$i] > $rep)
+						{
+							return array('rank'=>$i, 'rank_name'=>$gReputationRank[$i], 'rep'=>$rep - $current, 'max'=>$gRepStep[$i]);
+						}
+				}
+			return array('rank'=>7, 'rank_name'=>$gReputationRank[7], 'rep'=>$gRepStep[7], 'max'=>$gRepStep[7]);
+		}
+
+	function get_faction_type($id)
+		{
+			global $gFactionType;
+			return $gFactionType[$id];
+		}
+
+	//=============================================================================================================
 	// Другие полезные функции
 	//=============================================================================================================
+	function get_gem_info($GemId)
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT * FROM ".DB_GEMPROPERTIES." WHERE `id`='".$GemId."'"));
+			return $data;
+		}
+
+	function get_gem_properties($GemProperties)
+		{
+ 			if ($gem = get_gem_info($GemProperties)) { return get_enchantment_desc($gem['spellitemenchantement']); } else { return "Gem Properties id - $GemProperties"; }
+		}
+
+	function get_enchantment($enchantmentId)
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT * FROM ".DB_ITEM_ENCHANT." WHERE `id`='".$enchantmentId."'"));
+			return $data;
+		}
+
+	function get_enchantment_desc($enchantment)
+		{
+			if ($enc = get_enchantment($enchantment))
+				{
+					return "<a href=?enchant=$enchantment>".validate_text($enc['description'])."</a>";
+				}
+			else
+				{
+					return "Enchant $enchantment";
+				}
+		}
+
 	function get_expansion($typ)
     		{
     			switch ($typ):
-
-        		case 0:
-            		$typ = "World of Warcraft";
-            		break;
-
-        		case 1:
-            		$typ = "The Burning Crusade";
-            		break;
-
-        		case 2:
-           	 	$typ = "Wrath of the Lich King";
-            		break;
-
+        		case 0:	$typ = "World of Warcraft";		break;
+        		case 1:	$typ = "The Burning Crusade";		break;
+        		case 2:	$typ = "Wrath of the Lich King";	break;
     			endswitch;
-    			return $typ;
-    		}
 
-	function get_gold($gold)
-    		{
-		    	$g = floor($gold / (100 * 100));
-		    	$gold = $gold - $g * 100 * 100;
-		    	$s = floor($gold / 100);
-		    	$gold = $gold - $s * 100;
-		    	$c = floor($gold);
-    			return sprintf("<b>%d<img src='".IMAGES."gold.png'>&nbsp;%02d<img src='".IMAGES."silver.png'>&nbsp;%02d<img src='".IMAGES."copper.png'></b>", $g, $s, $c);
+    			return $typ;
     		}
 
 	function get_stat_type_name($i)
@@ -349,6 +698,14 @@
 		{
  			global $gResistance;
  			return isset($gResistance[$i]) ? $gResistance[$i] : "Resistance ($i)";
+		}
+
+	function get_resistance_text($i, $amount)
+		{
+    			global $gResistanceType;
+    			$text = @$gResistanceType[$i];
+    			if ($text == "") { $text = "Err resist $i - %d"; }
+    			if ($i >=0 && $i < 7 && $amount > 0) { return sprintf("+".$text, $amount); } else { return sprintf($text, $amount); }
 		}
 
 	function get_rating($level)
@@ -382,5 +739,74 @@
 			     <div style=\"position: absolute; $posx: ".($dx-1)."px; $posy: ".($dy  )."px; color: black;\">$text</div>
 			     <div style=\"position: absolute; $posx: ".($dx+1)."px; $posy: ".($dy  )."px; color: black;\">$text</div>
 			     <div style=\"position: absolute; $posx: ".($dx  )."px; $posy: ".($dy  )."px; color: white;\">$text</div>";
+		}
+
+	function money($many, $height=10)
+		{
+ 			if ($many > 0)
+ 				{
+  					$many = str_pad($many, 12, 0, STR_PAD_LEFT);
+  					$str  = "";
+ 				}
+ 			elseif ($many == 0)
+				{
+  					return "n/a";
+				}
+ 			else
+				{
+  					$many = str_pad(-$many, 12, 0, STR_PAD_LEFT);
+  					$str  = "-";
+ 				}
+			$copper = intval(substr($many, -2));
+			$silver = intval(substr($many, -4, -2));
+			$gold   = intval(substr($many, -11, -4));
+			$hstr = "";
+			if ($height != 14)  { $hstr = "height={$height}px"; }
+			if ($gold  ) { $str.= $gold."<img $hstr src='".IMAGES."gold.gif'> "; }
+			if ($silver) { $str.= $silver."<img $hstr src='".IMAGES."silver.gif'> "; }
+			if ($copper) { $str.= $copper."<img $hstr src='".IMAGES."copper.gif'>"; }
+			return $str;
+		}
+
+	function get_time_text($seconds)
+		{
+			global $txt;
+			$text = "";
+			if ($seconds < 0) { $text.= "$txt[minustime]"; }
+			if ($seconds >= 24*3600) { $text.= intval($seconds/(24*3600))." $txt[days]"; if ($seconds%=24*3600) $text.=" "; }
+			if ($seconds >= 3600) { $text.= intval($seconds/3600)." $txt[hours]"; if ($seconds%=3600) $text.=" "; }
+			if ($seconds >= 60) { $text.= intval($seconds/60)." $txt[min]"; if ($seconds%=60) $text.=" "; }
+			if ($seconds > 0) { $text.= $seconds." $lang[sec]"; }
+			return $text;
+		}
+
+	// составляет список
+	function get_list_from_array($array, $i, $mask, $href)
+		{
+			$text = "";
+			while ($mask)
+				{
+					if ($mask & 1)
+						{
+							$data = @$array[$i]; if ($data == "") $data = "$i";
+							if ($href) { $text.="<a href=\"".sprintf($href, $i)."\">".$data."</a>"; } else { $text.=$data; }
+							if ($mask != 1) { $text.=", "; }
+						}
+					$mask>>=1;
+					$i++;
+				}
+			return $text;
+		}
+
+	// составляет список c 0
+	function get_list_from_array_0($array, $mask, $href="")
+		{
+			return get_list_from_array($array, 0, $mask, $href);
+		}
+
+	// составляет список c 1
+	function get_list_from_array_1($array, $mask, $href="")
+		{
+			return get_list_from_array($array, 1, $mask, $href);
 		}
 ?>

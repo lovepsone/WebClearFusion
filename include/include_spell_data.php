@@ -643,11 +643,12 @@ function getSpellDamageClass($i)
   return $gDmgClass[$i];
 }
 
-function getSpell($spell_id, $fields="*")
-{
-  global $wDB;
-  return $wDB->selectRow("SELECT ".$fields." FROM `wowd_spell` WHERE `id` = ?d", $spell_id);
-}
+	function get_spell($spell_id, $fields="*")
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT ".$fields." FROM ".DB_SPELL." WHERE `id`='".$spell_id."'"));
+			return $data;
+		}
 
 function getSpellName($spell, $as_ref=1)
 {
@@ -670,12 +671,12 @@ function getSpellNameFromId($spellId, $as_ref=1)
   return "Err spell $spellId";
 }
 
-function getSpellDurationData($durationIndex)
-{
-  global $wDB;
-  return $wDB->selectRow("-- CACHE: 1h
-  SELECT * FROM `wowd_spell_duration` WHERE `id` = ?d", $durationIndex);
-}
+	function get_spell_duration_data($durationIndex)
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT * FROM ".DB_SPELL_DURATION." WHERE `id`='".$durationIndex."'"));
+			return $data;
+		}
 
 function getSpellDuration($spell)
 {
@@ -704,25 +705,27 @@ function getSpellDurationText($spell)
   return "";
 }
 
-function getSpellRadius($id)
-{
-  global $wDB;
-  return $wDB->selectRow("-- CACHE: 1h
-  SELECT * FROM `wowd_spell_radius` WHERE `id` = ?d", $id);
-}
+	function get_spell_radius($id)
+		{
+			selectdb(wcf);
+			$data = db_assoc(db_query("SELECT * FROM ".DB_SPELL_RADIUS." WHERE `id`='".$id."'"));
+			return $data;
+		}
 
-function getRadius($index)
-{
-  if ($index==0) return '0';
-
-  $radius = getSpellRadius($index);
-  if (!$radius)
-	return "Err index $index";
-
-  if ($radius['radius_1']==0 OR $radius['radius_1']==$radius['radius_3'])
-    return $radius['radius_3'];
-  return $radius['radius_1']." - ".$radius['radius_3'];
-}
+	function get_radius($index)
+		{
+			if ($index == 0) { return "0"; }
+			$radius = get_spell_radius($index);
+			if (!$radius) { return "Err index $index"; }
+			if ($radius['radius_1'] == 0 OR $radius['radius_1'] == $radius['radius_3'])
+				{
+					return $radius['radius_3'];
+				}
+			else
+				{
+					return $radius['radius_1']." - ".$radius['radius_3'];
+				}
+		}
 
 function getRadiusText($index)
 {
@@ -772,152 +775,165 @@ function getBasePointDesc($spell, $index)
   return $s;
 }
 
-function getSpellData($spell)
-{
-  // Basepoints
-  $s1 = abs($spell['EffectBasePoints_1']+1);
-  $s2 = abs($spell['EffectBasePoints_2']+1);
-  $s3 = abs($spell['EffectBasePoints_3']+1);
-  if ($spell['EffectDieSides_1']>1) $s1.=" - ".abs($spell['EffectBasePoints_1']+$spell['EffectDieSides_1']);
-  if ($spell['EffectDieSides_2']>1) $s2.=" - ".abs($spell['EffectBasePoints_2']+$spell['EffectDieSides_2']);
-  if ($spell['EffectDieSides_3']>1) $s3.=" - ".abs($spell['EffectBasePoints_3']+$spell['EffectDieSides_3']);
-
-  $d  = 0;
-  if ($spell['DurationIndex'])
-   if ($spell_duration = getSpellDurationData($spell['DurationIndex']))
-     $d = $spell_duration['duration_1']/1000;
-
-  // Tick duration
-  $t1 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_1']/1000 : 5;
-  $t2 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_2']/1000 : 5;
-  $t3 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_3']/1000 : 5;
-
-  // Points per tick
-  $o1 = @intval($s1*$d/$t1);
-  $o2 = @intval($s2*$d/$t2);
-  $o3 = @intval($s3*$d/$t3);
-
-  $spellData['t1']=$t1;
-  $spellData['t2']=$t2;
-  $spellData['t3']=$t3;
-  $spellData['o1']=$o1;
-  $spellData['o2']=$o2;
-  $spellData['o3']=$o3;
-  $spellData['s1']=$s1;
-  $spellData['s2']=$s2;
-  $spellData['s3']=$s3;
-  $spellData['m1']=$s1;
-  $spellData['m2']=$s2;
-  $spellData['m3']=$s3;
-  $spellData['x1']= $spell['EffectChainTarget_1'];
-  $spellData['x2']= $spell['EffectChainTarget_2'];
-  $spellData['x3']= $spell['EffectChainTarget_3'];
-//  $spellData['i'] = $spell['MaxAffectedTargets'];
-  $spellData['d'] = getTimeText($d);
-  $spellData['d1']= getTimeText($d);
-  $spellData['d2']= getTimeText($d);
-  $spellData['d3']= getTimeText($d);
-  $spellData['v'] = $spell['AffectedTargetLevel'];
-  $spellData['u'] = $spell['StackAmount'];
-  $spellData['a1']= getRadius($spell['EffectRadiusIndex_1']);
-  $spellData['a2']= getRadius($spell['EffectRadiusIndex_2']);
-  $spellData['a3']= getRadius($spell['EffectRadiusIndex_3']);
-  $spellData['b1']= $spell['EffectPointsPerComboPoint_1'];
-  $spellData['b2']= $spell['EffectPointsPerComboPoint_2'];
-  $spellData['b3']= $spell['EffectPointsPerComboPoint_3'];
-  $spellData['e'] = $spell['EffectMultipleValue_1'];
-  $spellData['e1']= $spell['EffectMultipleValue_1'];
-  $spellData['e2']= $spell['EffectMultipleValue_2'];
-  $spellData['e3']= $spell['EffectMultipleValue_3'];
-  $spellData['f1']= $spell['DmgMultiplier_1'];
-  $spellData['f2']= $spell['DmgMultiplier_2'];
-  $spellData['f3']= $spell['DmgMultiplier_3'];
-  $spellData['q1']= $spell['EffectMiscValue_1'];
-  $spellData['q2']= $spell['EffectMiscValue_2'];
-  $spellData['q3']= $spell['EffectMiscValue_3'];
-  $spellData['h'] = $spell['procChance'];
-  $spellData['n'] = $spell['procCharges'];
-  $spellData['z'] = "<home>";
-  return $spellData;
-}
-
-function spellReplace($spell, $text)
-{
-    $letter = array('${','}');
-    $values = array( '[',']');
-    $text = str_replace($letter, $values, $text);
-
-	$signs = array('+', '-', '/', '*', '%', '^');
-    $data = $text;
-	$pos = 0;
-    $npos = 0;
-	$str = '';
-    $cacheSpellData=array(); // Spell data for spell
-    $lastCount = 1;
-	while (false!==($npos=strpos($data, '$', $pos)))
-	{
-		if ($npos!=$pos)
-			$str .= substr($data, $pos, $npos-$pos);
-		$pos = $npos+1;
-		if ('$' == substr($data, $pos, 1))
+	function get_spell_data($spell)
 		{
-			$str .= '$';
-			$pos++;
-			continue;
+			// Basepoints
+			$s1 = abs($spell['EffectBasePoints_1']+1);
+			$s2 = abs($spell['EffectBasePoints_2']+1);
+			$s3 = abs($spell['EffectBasePoints_3']+1);
+			if ($spell['EffectDieSides_1']>1) { $s1.=" - ".abs($spell['EffectBasePoints_1']+$spell['EffectDieSides_1']); }
+			if ($spell['EffectDieSides_2']>1) { $s2.=" - ".abs($spell['EffectBasePoints_2']+$spell['EffectDieSides_2']); }
+			if ($spell['EffectDieSides_3']>1) { $s3.=" - ".abs($spell['EffectBasePoints_3']+$spell['EffectDieSides_3']); }
+			
+			$d  = 0;
+			if ($spell['DurationIndex'])
+				{
+					if ($spell_duration = get_spell_duration_data($spell['DurationIndex'])) { $d = $spell_duration['duration_1']/1000; }
+				}
+			
+			// Tick duration
+			$t1 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_1']/1000 : 5;
+			$t2 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_2']/1000 : 5;
+			$t3 = $spell['EffectAmplitude_1'] ? $spell['EffectAmplitude_3']/1000 : 5;
+			
+			// Points per tick
+			$o1 = @intval($s1*$d/$t1);
+			$o2 = @intval($s2*$d/$t2);
+			$o3 = @intval($s3*$d/$t3);
+			
+			$spellData['t1']=$t1;
+			$spellData['t2']=$t2;
+			$spellData['t3']=$t3;
+			$spellData['o1']=$o1;
+			$spellData['o2']=$o2;
+			$spellData['o3']=$o3;
+			$spellData['s1']=$s1;
+			$spellData['s2']=$s2;
+			$spellData['s3']=$s3;
+			$spellData['m1']=$s1;
+			$spellData['m2']=$s2;
+			$spellData['m3']=$s3;
+			$spellData['x1']= $spell['EffectChainTarget_1'];
+			$spellData['x2']= $spell['EffectChainTarget_2'];
+			$spellData['x3']= $spell['EffectChainTarget_3'];
+			//$spellData['i'] = $spell['MaxAffectedTargets'];
+			$spellData['d'] = get_time_text($d);
+			$spellData['d1']= get_time_text($d);
+			$spellData['d2']= get_time_text($d);
+			$spellData['d3']= get_time_text($d);
+			$spellData['v'] = $spell['AffectedTargetLevel'];
+			$spellData['u'] = $spell['StackAmount'];
+			$spellData['a1']= get_radius($spell['EffectRadiusIndex_1']);
+			$spellData['a2']= get_radius($spell['EffectRadiusIndex_2']);
+			$spellData['a3']= get_radius($spell['EffectRadiusIndex_3']);
+			$spellData['b1']= $spell['EffectPointsPerComboPoint_1'];
+			$spellData['b2']= $spell['EffectPointsPerComboPoint_2'];
+			$spellData['b3']= $spell['EffectPointsPerComboPoint_3'];
+			$spellData['e'] = $spell['EffectMultipleValue_1'];
+			$spellData['e1']= $spell['EffectMultipleValue_1'];
+			$spellData['e2']= $spell['EffectMultipleValue_2'];
+			$spellData['e3']= $spell['EffectMultipleValue_3'];
+			$spellData['f1']= $spell['DmgMultiplier_1'];
+			$spellData['f2']= $spell['DmgMultiplier_2'];
+			$spellData['f3']= $spell['DmgMultiplier_3'];
+			$spellData['q1']= $spell['EffectMiscValue_1'];
+			$spellData['q2']= $spell['EffectMiscValue_2'];
+			$spellData['q3']= $spell['EffectMiscValue_3'];
+			$spellData['h'] = $spell['procChance'];
+			$spellData['n'] = $spell['procCharges'];
+			$spellData['z'] = "<home>";
+			return $spellData;
 		}
 
-		if (!preg_match('/^((([+\-\/*])(\d+);)?(\d*)(?:([lg].*?:.*?);|(\w\d*)))/', substr($data, $pos), $result))
-			continue;
-		$pos += strlen($result[0]);
-		$op = $result[3];
-		$oparg = $result[4];
-		$lookup = $result[5]? $result[5]:$spell['id'];
-		$var = $result[6] ? $result[6]:$result[7];
-		if (!$var)
-			continue;
-        // l - размер последней величины == 1 ? 0 : 1
-        if ($var[0]=='l')
-        {
-            $select = explode(':', substr($var, 1));
-            $str.=@$select[$lastCount==1 ? 0:1];
-        }
-        // g - пол персонжа
-        else if ($var[0]=='g')
-        {
-            $select = explode(':', substr($var, 1));
-            $str.=$select[0];
-        }
-        else
-        {
-            $spellData = @$cacheSpellData[$lookup];
-            if ($spellData == 0)
-            {
-                if ($lookup == $spell['id']) $cacheSpellData[$lookup] = getSpellData($spell);
-                else                         $cacheSpellData[$lookup] = getSpellData(getSpell($lookup));
-                $spellData = @$cacheSpellData[$lookup];
-            }
-            if ($spellData && $base = @$spellData[strtolower($var)])
-            {
-                if ($op && is_numeric($oparg) && is_numeric($base))
-                {
-                     $equation = $base.$op.$oparg;
-                     eval("\$base = $equation;");
-		        }
-                if (is_numeric($base)) $lastCount = $base;
-            }
-            else
-                $base = $var;
-            $str.=$base;
-        }
-	}
-	$str.= substr($data, $pos);
-	$str = @preg_replace_callback("/\[.+[+\-\/*\d]\]/", 'my_relpace', $str);
-//    $letter = array('*','/','+','-');
-//    $values = array(' * ', ' / ',' + ',' - ');
-//    $str = str_replace($letter, $values, $str);
+	function spell_replace($spell, $text)
+		{
+    			$letter = array('${','}');
+    			$values = array( '[',']');
+			$text = str_replace($letter, $values, $text);
+			$signs = array('+', '-', '/', '*', '%', '^');
+    			$data = $text;
+			$pos = 0;
+			$npos = 0;
+			$str = '';
+			$cacheSpellData=array(); // Spell data for spell
+			$lastCount = 1;
 
-	return($str);//."<br /><br />".$text;
-}
+			while (false!==($npos=strpos($data, '$', $pos)))
+				{
+					if ($npos != $pos) { $str .= substr($data, $pos, $npos-$pos); }
+					$pos = $npos+1;
+					if ('$' == substr($data, $pos, 1))
+						{
+							$str .= '$';
+							$pos++;
+							continue;
+						}
+
+					if (!preg_match('/^((([+\-\/*])(\d+);)?(\d*)(?:([lg].*?:.*?);|(\w\d*)))/', substr($data, $pos), $result))
+						{
+							continue;
+						}
+
+					$pos += strlen($result[0]);
+					$op = $result[3];
+					$oparg = $result[4];
+					$lookup = $result[5]? $result[5]:$spell['id'];
+					$var = $result[6] ? $result[6]:$result[7];
+					if (!$var) { continue; }
+			        	// l - размер последней величины == 1 ? 0 : 1
+					if ($var[0]=='l')
+						{
+							$select = explode(':', substr($var, 1));
+							$str.=@$select[$lastCount==1 ? 0:1];
+						}
+					// g - пол персонжа
+					elseif ($var[0]=='g')
+						{
+							$select = explode(':', substr($var, 1));
+							$str .= $select[0];
+						}
+					else
+						{
+							$spellData = @$cacheSpellData[$lookup];
+							if ($spellData == 0)
+								{
+									if ($lookup == $spell['id'])
+										{
+											$cacheSpellData[$lookup] = get_spell_data($spell);
+										}
+									else
+										{
+											$cacheSpellData[$lookup] = get_spell_data(get_spell($lookup));
+										}
+									$spellData = @$cacheSpellData[$lookup];
+								}
+			
+							if ($spellData && $base = @$spellData[strtolower($var)])
+								{
+									if ($op && is_numeric($oparg) && is_numeric($base))
+										{
+											$equation = $base.$op.$oparg;
+											eval("\$base = $equation;");
+										}
+									if (is_numeric($base)) { $lastCount = $base; }
+								}
+							else
+								{
+									$base = $var;
+								}
+			
+			            			$str .= $base;
+			        		}
+				}
+
+			$str.= substr($data, $pos);
+			$str = @preg_replace_callback("/\[.+[+\-\/*\d]\]/", 'my_relpace', $str);
+			//$letter = array('*','/','+','-');
+			//$values = array(' * ', ' / ',' + ',' - ');
+			//$str = str_replace($letter, $values, $str);
+			
+			return($str);//."<br /><br />".$text;
+		}
 
 function my_relpace($matches)
 {
@@ -926,11 +942,17 @@ function my_relpace($matches)
     return intval($text);
 }
 
-function getSpellDesc($spell)
-{
-  if ($spell['Description']=="") return $spell['SpellName'];
-  return spellReplace($spell, $spell['Description']);
-}
+	function get_spell_desc($spell)
+		{
+			if ($spell['Description'] == "")
+				{
+					return $spell['SpellName'];
+				}
+			else
+				{
+					return spell_replace($spell, $spell['Description']);
+				}
+		}
 
 function getSpellBuff($spell)
 {
@@ -938,13 +960,18 @@ function getSpellBuff($spell)
   return spellReplace($spell, $spell['ToolTip']);
 }
 
-function get_spell_details($spell_id)
-{
-  $spell=getSpell($spell_id);
-  if ($spell)
-    return getSpellDesc($spell);
-  return "Spell id - $spell_id";
-}
+	function get_spell_details($spell_id)
+		{
+			$spell = get_spell($spell_id);
+			if ($spell)
+				{
+					return get_spell_desc($spell);
+				}
+			else
+				{
+					return "Spell id - $spell_id";
+				}
+		}
 
 function getSpellCostText($spell)
 {

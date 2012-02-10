@@ -57,6 +57,7 @@
 	require_once BASEDIR."include/include_item_table.php";
 	require_once BASEDIR."include/include_player_data.php";
 	require_once BASEDIR."include/include_spell_data.php";
+	require_once BASEDIR."include/include_report_generator.php";
 
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup
