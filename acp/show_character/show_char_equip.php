@@ -10,7 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	require_once INCLUDES."include_characters_3d.php";
+	require_once INCLUDES_DATA_WOW."include_characters_3d.php";
 	require_once ACP."show_character/player_info_generator.php";
 
 	function show_player_equip($guid, $char, $char_data, $char_stat)
