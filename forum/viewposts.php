@@ -21,7 +21,7 @@
 			$forum_id = addslashes($_GET["forum_id"]);
 			$thread_id = addslashes($_GET["thread_id"]);
 
-			selectdb(wcf);
+			selectdb("wcf");
   			$result = db_query("SELECT count(`post_date`) as kol FROM ".DB_FORUMS_POSTS." WHERE `forum_id`='$forum_id' AND `thread_id`='$thread_id'");
 			$p_kolzap = db_array($result);
 
@@ -69,7 +69,7 @@
 
 					while ($data = db_array($result))
 						{
-							selectdb(wcf);
+							selectdb("wcf");
  							$result_user = db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`=".$data['user_id']." LIMIT 1");
   							$usr = db_aassoc($result_user);
 
@@ -92,7 +92,7 @@
 				{
 					if($_POST['posts'])
 						{
-							selectdb(wcf);
+							selectdb("wcf");
 							// Создаем сообщение
 							db_query("INSERT INTO ".DB_FORUMS_POSTS."
 										(`forum_id`,`thread_id`,`user_id`,`post_text`) VALUES
