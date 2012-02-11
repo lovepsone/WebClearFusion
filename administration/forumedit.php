@@ -17,7 +17,7 @@
 	// Сохранение позиций форума
 	if ((isset($_GET['type']) && $_GET['type'] == "sections") & (isset($_GET['action']) && $_GET['action'] == "mu") & isset($_GET['order']) & isset($_GET['forum_id']))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
   			$data = db_array(db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='0' AND `forum_order`='".$_GET['order']."'"));
 			$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_id`='".$data['forum_id']."'");
 			$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_id`='".$_GET['forum_id']."'");
@@ -25,7 +25,7 @@
 		}
 	elseif ((isset($_GET['type']) && $_GET['type'] == "sections") & (isset($_GET['action']) && $_GET['action'] == "md") & isset($_GET['order']) & isset($_GET['forum_id']))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$data = db_array(db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='0' AND `forum_order`='".$_GET['order']."'"));
 			$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_id`='".$data['forum_id']."'");
 			$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_id`='".$_GET['forum_id']."'");
@@ -33,7 +33,7 @@
 		}
 	elseif ((isset($_GET['type']) && $_GET['type'] == "forum") & (isset($_GET['action']) && $_GET['action'] == "mu") & isset($_GET['order']) & isset($_GET['forum_id']) & isset($_GET['sections']))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$data = db_array(db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='".$_GET['sections']."' AND `forum_order`='".$_GET['order']."'"));
 			$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_id`='".$data['forum_id']."'");
 			$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_id`='".$_GET['forum_id']."'");
@@ -41,7 +41,7 @@
 		}
 	elseif ((isset($_GET['type']) && $_GET['type'] == "forum") & (isset($_GET['action']) && $_GET['action'] == "md") & isset($_GET['order']) & isset($_GET['forum_id']) & isset($_GET['sections']))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$data = db_array(db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='".$_GET['sections']."' AND `forum_order`='".$_GET['order']."'"));
 			$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_id`='".$data['forum_id']."'");
 			$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_id`='".$_GET['forum_id']."'");
@@ -55,7 +55,7 @@
 			// создание разделов
 			if (isset($_POST['save_sections'])  AND $_POST['sections_name'] != "" AND $_POST['sections_order'] != "")
 				{
-					selectdb(wcf);
+					selectdb("wcf");
 					$result = db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='0' AND `forum_order`='".$_POST['sections_order']."'");
 					$data_create = db_array($result);
 
@@ -74,7 +74,7 @@
 			// создание форумов
 			elseif (isset($_POST['save_forum']) AND $_POST['forum_name'] != "" AND $_POST['forum_order'] != "")
 				{
-					selectdb(wcf);
+					selectdb("wcf");
 					$result = db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='".$_POST['forum_sections']."' AND `forum_order`='".$_POST['forum_order']."'");
 					$data_create = db_array($result);
 
@@ -105,7 +105,7 @@
 			// редактирование разделов
 			if (isset($_GET['type']) && $_GET['type'] == "sections")
 				{
-					selectdb(wcf);
+					selectdb("wcf");
 					$result = db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'");
 					if (db_num_rows($result))
 						{
@@ -115,7 +115,7 @@
 						}
 					if (isset($_POST['save_sections']) AND $_POST['sections_name'] != "")
 						{
-							selectdb(wcf);
+							selectdb("wcf");
 							$result = db_query("UPDATE ".DB_FORUMS." SET `forum_name`='".$_POST['sections_name']."' WHERE (`forum_id`='".$_GET['forum_id']."')");
 
 							if ($result)
@@ -142,7 +142,7 @@
 			// редактирование форумов
 			elseif (isset($_GET['type']) && $_GET['type'] == "forum")
 				{
-					selectdb(wcf);
+					selectdb("wcf");
 					$result = db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'");
 					if (db_num_rows($result))
 						{
@@ -153,7 +153,7 @@
 						}
 					if (isset($_POST['save_forum']) AND $_POST['forum_name'] != "")
 						{
-							selectdb(wcf);
+							selectdb("wcf");
 							$result = db_query("UPDATE ".DB_FORUMS." SET `forum_sections`='".(int)$_POST['forum_sections']."', `forum_name`='".$_POST['forum_name']."', `forum_description`='".$_POST['forum_description']."'  WHERE (`forum_id`='".$_GET['forum_id']."')");
 
 							if ($result)
@@ -192,7 +192,7 @@
 
 			if (isset($_POST['yes']))
 				{
-					selectdb(wcf);
+					selectdb("wcf");
 					db_query("DELETE FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'");
 					db_query("DELETE FROM ".DB_FORUMS_POSTS." WHERE `forum_id`='".$_GET['forum_id']."'");
 					db_query("DELETE FROM ".DB_FORUMS_THREADS." WHERE `forum_id`='".$_GET['forum_id']."'");
@@ -239,7 +239,7 @@
 		{
 			$forum_opts = "";
 
-			selectdb(wcf);
+			selectdb("wcf");
 			$result2 = db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_sections`='0' ORDER BY `forum_order`");
 
 			if (db_num_rows($result2))
@@ -284,7 +284,7 @@
 	$forum_link = WCF_SELF."?type=forum";
 	$i = 1; $k = 1;
 
-	selectdb(wcf);
+	selectdb("wcf");
 	$result = db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_sections`='0' ORDER BY `forum_order`") or trigger_error(mysql_error());
 
 
@@ -339,7 +339,7 @@
 							while ($data2 = db_array($result2))
 								{
 									echo"<tr><td class='tbl1' width='60%'><span class='alt'>".$data2['forum_name']."</span>";
-									echo"[<a href='$aidlink&amp;action=prune&amp;forum_id=".$data2['forum_id']."'>".$txt['admin_forumedit_cleaning']."</a>]<br>";
+									echo"[<a href='".WCF_SELF."?action=prune&amp;forum_id=".$data2['forum_id']."'>".$txt['admin_forumedit_cleaning']."</a>]<br>";
 									echo ($data2['forum_description'] ? "<span class='small2'>".$data2['forum_description']."</span>" : "")."</td>";
 									echo"<td align='center' width='5%' class='tbl2'>".$data2['forum_order']."</td>";
 									echo"<td align='center' width='21%' class='tbl1'>";

@@ -10,7 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	selectdb(realmd);
+	selectdb("realmd");
 	$result = db_query("SELECT * FROM `realmlist` WHERE `id`='".$_SESSION['realmd_id']."'");
 	if($data = db_assoc($result)) { $realm_game_name = $data['name']; }
 
