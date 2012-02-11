@@ -12,9 +12,9 @@
 
 	if (preg_match("/maincore.php/i", $_SERVER['PHP_SELF'])) { die(); }
 
-	//error_reporting(E_ERROR | E_PARSE | E_WARNING | E_NOTICE);
 	error_reporting(E_ALL);
-	//ini_set('display_errors', 0);
+	ini_set('display_errors',0);
+	set_error_handler('user_log');
 
 	//=============================================================================================================
 	// Предотвращения возможных атак через XSS $_GET.
@@ -191,5 +191,26 @@
 				{
 					return false;
 				}
+		}
+
+	function user_log($errno, $errmsg, $file, $line)
+		{
+			$timestamp = time();
+			$timestamp = date("H:i:s d.m.Y", $timestamp);
+
+			$file_mas = explode("\\", $file);
+			$file_count = count($file_mas);
+			$file = $file_mas[$file_count - 1];
+			$file_err = $file_mas[$file_count - 1].".js";
+
+			unlink(BASEDIR."logs/".$file_err);
+			$err_str = "date: ".$timestamp."\n";
+			$err_str .= "error kode: ".$errno."\n"; 
+			$err_str .= "file with an error: ".$file."\n";     
+			$err_str .= "line in the file: ".$line."\n"; 
+			$err_str .= "error message: ".$errmsg."\n";
+			$err_str .= "==================================================\n";
+
+			error_log($err_str, 3, BASEDIR."logs/".$file_err);
 		}
 ?>
