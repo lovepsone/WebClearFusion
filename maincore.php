@@ -10,8 +10,8 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	//error_reporting(E_ERROR | E_PARSE | E_WARNING);
-	error_reporting(E_ERROR);
+	error_reporting(E_ERROR | E_PARSE | E_WARNING);
+	//error_reporting(E_ERROR);
 	//ini_set('display_errors', 0);
 
 	//=============================================================================================================
@@ -53,11 +53,11 @@
 	//=============================================================================================================
 	// Запускаем дополнительные функции и данные\Run additional features and data
 	//=============================================================================================================
-	require_once BASEDIR."include/functions.php";
-	require_once BASEDIR."include/include_item_table.php";
-	require_once BASEDIR."include/include_player_data.php";
-	require_once BASEDIR."include/include_spell_data.php";
-	require_once BASEDIR."include/include_report_generator.php";
+	require_once INCLUDES_DATA_WOW."functions.php";
+	require_once INCLUDES_DATA_WOW."include_item_table.php";
+	require_once INCLUDES_DATA_WOW."include_player_data.php";
+	require_once INCLUDES_DATA_WOW."include_spell_data.php";
+	require_once INCLUDES_DATA_WOW."include_report_generator.php";
 
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup
