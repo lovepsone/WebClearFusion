@@ -17,7 +17,7 @@
 
 	$config['show_player_3d'] = 1;
 	$guid = intval(@$_REQUEST['player']);
-	$tab  = @$_REQUEST['tab'];
+	$tab  = (isset($_REQUEST['tab']) ? @$_REQUEST['tab'] : "");
 	$char = get_character($guid);
 	$char_stats = get_character_stats($guid);
 	opentable();

@@ -357,8 +357,15 @@
 				case ("ranged"):  	$icon = IMAGES_PI."empty_icon/ranged.png";   	break;
 			endswitch;
 
-			if ($posx OR $posy) { $position.= 'style="position: absolute; left: '.$posx.'px; top: '.$posy.'px; border: 0px;"'; }
-			if (empty($position)) { $position = "style=\"position: relative; left: 0px;top: 0px; border: 0px;float: left;\""; }
+			if ($posx OR $posy)
+				{
+					$position .= 'style="position: absolute; left: '.$posx.'px; top: '.$posy.'px; border: 0px;"';
+				}
+			if (empty($position))
+				{
+					$position = "style=\"position: relative; left: 0px;top: 0px; border: 0px;float: left;\"";
+				}
+
 			echo"\n<div class=$style $position><img class='".$style."' src='".$icon."'></div>";
 		}
 
@@ -776,7 +783,7 @@
 			if ($seconds >= 24*3600) { $text.= intval($seconds/(24*3600))." $txt[days]"; if ($seconds%=24*3600) $text.=" "; }
 			if ($seconds >= 3600) { $text.= intval($seconds/3600)." $txt[hours]"; if ($seconds%=3600) $text.=" "; }
 			if ($seconds >= 60) { $text.= intval($seconds/60)." $txt[min]"; if ($seconds%=60) $text.=" "; }
-			if ($seconds > 0) { $text.= $seconds." $lang[sec]"; }
+			if ($seconds > 0) { $text.= $seconds." $txt[sec]"; }
 			return $text;
 		}
 

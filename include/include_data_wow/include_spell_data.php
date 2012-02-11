@@ -654,7 +654,7 @@ function getSpellDamageClass($i)
 
 	function get_spell($spell_id, $fields="*")
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$data = db_assoc(db_query("SELECT ".$fields." FROM ".DB_SPELL." WHERE `id`='".$spell_id."'"));
 			return $data;
 		}
@@ -682,7 +682,7 @@ function getSpellNameFromId($spellId, $as_ref=1)
 
 	function get_spell_duration_data($durationIndex)
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$data = db_assoc(db_query("SELECT * FROM ".DB_SPELL_DURATION." WHERE `id`='".$durationIndex."'"));
 			return $data;
 		}
@@ -716,7 +716,7 @@ function getSpellDurationText($spell)
 
 	function get_spell_radius($id)
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$data = db_assoc(db_query("SELECT * FROM ".DB_SPELL_RADIUS." WHERE `id`='".$id."'"));
 			return $data;
 		}

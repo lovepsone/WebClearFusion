@@ -14,7 +14,7 @@
 	$index_link = false; $admin_nav_opts = ""; $current_page = 0;
 
 	openside();
-	selectdb(wcf);
+	selectdb("wcf");
 	$result = db_query("SELECT * FROM ".DB_ADMIN."  WHERE `admin_link`!='reserved' ORDER BY `admin_page` DESC, `admin_title` ASC");
 	$rows = db_num_rows($result);
 
