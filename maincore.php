@@ -208,6 +208,16 @@
 			$timestamp = time();
 			$timestamp = date("H:i:s d.m.Y", $timestamp);
 
+			$open = @fopen(BASEDIR."logs/".$file_err, "r");
+			if (!$open)
+				{
+					mkdir(BASEDIR."logs/", 0700);
+  				}
+			else
+				{
+					fclose($open);
+				}
+
 			$file_mas = explode("\\", $file);
 			$file_count = count($file_mas);
 			$file = $file_mas[$file_count - 1];
