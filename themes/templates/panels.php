@@ -52,7 +52,7 @@
 
 			if ($p_sql)
 				{
-					selectdb(wcf);
+					selectdb("wcf");
 					$p_res = mysql_query("SELECT `panel_filename`, `panel_side`, `panel_type` FROM ".DB_PANELS."
 								WHERE `panel_status`='1'".$p_sql." ORDER BY `panel_side`, `panel_order`");
 					if (db_num_rows($p_res))
@@ -117,7 +117,7 @@
 
 			if ($p_acp_sql)
 				{
-					selectdb(wcf);
+					selectdb("wcf");
 					$p_acp_res = mysql_query("SELECT `panel_filename`, `panel_side`, `panel_type` FROM ".DB_ACP_PANELS."
 								WHERE `panel_status`='1'".$p_acp_sql." ORDER BY `panel_side`, `panel_order`");
 					if (db_num_rows($p_acp_res))

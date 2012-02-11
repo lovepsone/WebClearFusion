@@ -15,7 +15,7 @@
 
 	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR'])) { redirect(BASEDIR); }
 
-	selectdb(characters_r.$_SESSION['realmd_id']);
+	selectdb("characters_r".$_SESSION['realmd_id']);
 	$result = db_query("SELECT * FROM `characters` WHERE `account`='".$_SESSION['user_id']."'");
 
 	opentable();

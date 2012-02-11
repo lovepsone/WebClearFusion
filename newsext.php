@@ -20,7 +20,7 @@
 		{
 			$newsid = addslashes($_GET["id"]);
 
-			selectdb(wcf);
+			selectdb("wcf");
   			$result = db_query("SELECT * FROM ".DB_NEWS." 
 						LEFT JOIN ".DB_NEWS_CATS." ON `news_cat_id`=`news_cat`
 						LEFT JOIN ".DB_USERS." ON ".DB_USERS.".`user_id`=".DB_NEWS.".`news_author`

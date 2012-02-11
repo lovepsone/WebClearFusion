@@ -13,7 +13,7 @@
 	require_once "maincore.php";
 	require_once THEMES."templates/header.php";
 
-	selectdb(realmd);
+	selectdb("realmd");
 	$result_r = db_query("SELECT * FROM `realmlist`");
 
 	if (!isset($_GET['realm_id']) && !isnum($_GET['realm_id']))
@@ -39,7 +39,7 @@
 			if ($fp) { echo"<img src='".IMAGES."online.gif' align='absmiddle' alt='online'>"; } else { echo"<img src='".IMAGES."offline.gif' align='absmiddle' alt='ofline'>"; }
 			echo"</td></tr>";
 
-			selectdb(characters_r.$realm_id);
+			selectdb("characters_r".$realm_id);
 			$result1 = db_query("SELECT * FROM `saved_variables`");
 
 			if ($data1 = db_assoc($result1))

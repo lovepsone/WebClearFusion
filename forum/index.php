@@ -13,7 +13,7 @@
 	require_once "../maincore.php";
 	require_once THEMES."templates/header.php";
 
-	selectdb(wcf);
+	selectdb("wcf");
 	$result = mysql_query("SELECT f.*, f2.`forum_name` AS `forum_sections_name`, u.`user_id`, u.`user_name`,
 					t.`thread_id`, t.`thread_lastuser`, t.`thread_lastpostid`, t.`thread_subject`,
 					p.`post_id`, p.`post_id`, p.`post_date`

@@ -13,7 +13,7 @@
 	require_once "maincore.php";
 	require_once THEMES."templates/header.php";
 
-	selectdb(wcf);
+	selectdb("wcf");
   	$result = db_query("SELECT count(`news_date`) as number FROM ".DB_NEWS);
 	$kolzap = db_array($result);
 

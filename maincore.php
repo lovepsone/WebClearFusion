@@ -10,8 +10,10 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	error_reporting(E_ERROR | E_PARSE | E_WARNING);
-	//error_reporting(E_ERROR);
+	if (preg_match("/maincore.php/i", $_SERVER['PHP_SELF'])) { die(); }
+
+	//error_reporting(E_ERROR | E_PARSE | E_WARNING | E_NOTICE);
+	error_reporting(E_ALL);
 	//ini_set('display_errors', 0);
 
 	//=============================================================================================================
@@ -72,7 +74,7 @@
 	//=============================================================================================================
 	// Запускаем настройки\Run the setup
 	//=============================================================================================================
-	selectdb(wcf);
+	selectdb("wcf");
 	$result = db_query("SELECT * FROM ".DB_SETTINGS."");
 	if ($result)
 		{
@@ -83,7 +85,7 @@
 		}
 	else { die("Settings do not exist or no connection to base mysql. May not correctly configured conf.php."); }
 
-	selectdb(realmd);
+	selectdb("realmd");
 	$config['namber_realmd'] = db_num_rows(db_query("SELECT * FROM `realmlist`"));
 	$config['defult_realmd_id'] = db_result(db_query("SELECT `id` FROM `realmlist`"),0);
 

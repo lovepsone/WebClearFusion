@@ -24,7 +24,7 @@
 
 			//======================================
 			// Проверка на каптча
-			if ($config['Kcaptcha_enable'] == 1) 
+			if ($config['kcaptcha_enable_auth'] == 1) 
   				{
    					echo"<tr><td colspan='2' align='center'><br><iframe src='./include/kcaptcha.php' marginheight='0' marginwidth='0' width='100' height='40' frameborder='0' scrolling='no' allowtransparency='true'></iframe></td></tr>"; 
    					echo"<tr><td colspan='2' align='center'><br><input type='text' name='kapcha_code' class='textbox'></td></tr>";
@@ -32,7 +32,7 @@
 			echo"<tr><td colspan='2' align='center'><br><input type='submit' class='button' value='".$txt['menu_auth_enter']."'></td></tr>";
      			echo"<tr><td height='30' colspan='2' align='left' valign='middle'><img src='".IMAGES."admin.png' align='absmiddle'>&nbsp;&nbsp;&nbsp;<a href='".BASEDIR."register.php'>".$txt['menu_auth_reg']."</a></td></tr>";
 
-     			if (($config['pass_remember'] == 'on') AND ($mail_method != 'test'))
+     			if ($config['pass_remember'] == "on")
 					{
      						echo"<tr><td height='30' colspan='2' align='left' valign='middle'><img src='".IMAGES."mail.png' align='absmiddle'>&nbsp;&nbsp;&nbsp;<a href='".BASEDIR."index.php'>".$txt['menu_auth_remember_pass']."</a></td></tr>";
 		   			}
@@ -43,7 +43,7 @@
 		{
 			//======================================
 			// занесение юзера в таблицу
-			selectdb(wcf);
+			selectdb("wcf");
 			db_query("UPDATE ".DB_USERS." SET `user_online`='1' WHERE  `user_id`='".$_SESSION['user_id']."'");
 
  			$query_user = db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`=".$_SESSION['user_id']." LIMIT 1");
@@ -55,7 +55,7 @@
   			echo"<tr><td align='left'>".$txt['menu_auth_ip']."</td></tr>";
   			echo"<tr><td align='left'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
 
-			selectdb(realmd);
+			selectdb("realmd");
 			$result = db_query("SELECT * FROM `realmlist`");
 			$realms_list = "";
 			while ($data = db_array($result))
@@ -75,7 +75,7 @@
 
 			//======================================
 			// чистка онлайна
-			selectdb(wcf);
+			selectdb("wcf");
 			$clear_user = db_query("SELECT * FROM ".DB_USERS."");
 
 			while ($user = db_array($clear_user))

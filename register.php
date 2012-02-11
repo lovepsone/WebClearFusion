@@ -22,7 +22,7 @@
 
 			//==========================================================
 			// Проверка на повторность учетной записи
-			selectdb(realmd);
+			selectdb("realmd");
       			$result1 = db_query("SELECT count(`username`) as kol FROM `account` WHERE `username` = '".strtoupper($_POST['new_acc'])."'");
       			$data1 = db_assoc($result1);
 
@@ -55,7 +55,7 @@
 
    			if ($errors == 0)
 				{
-					selectdb(realmd);
+					selectdb("realmd");
       	 				db_query("INSERT INTO `account` (`username`,`sha_pass_hash`,`email`,`last_ip`,`locked`,`expansion`)
 					VALUES (UPPER('".$_POST['new_acc']."'),SHA1(CONCAT(UPPER('".$_POST['new_acc']."'),':',UPPER('".$_POST['pass1']."'))),'".$_POST['email']."','".$_SERVER['REMOTE_ADDR']."','0','".$def_exp_acc."')");
 
@@ -82,7 +82,7 @@
 
 					//======================================
 					// занесение юзера в таблицу
-					selectdb(wcf);
+					selectdb("wcf");
 					$result3 = db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`='".$_SESSION['user_id']."' AND `user_name`='".$_SESSION['user_name']."'");
 
 					if ($result3['user_id'] <> $_SESSION['user_id'])
@@ -100,7 +100,7 @@
 
 	if ($config['registration_ip_limit'] > 0 AND $config['permit_registration'] == 1)
 		{
-			selectdb(realmd);
+			selectdb("realmd");
    			$result = db_query("SELECT COUNT(`id`) AS kol FROM `account` WHERE `last_ip`='".$_SERVER['REMOTE_ADDR']."'"); 
    			$data = db_assoc($result);
 

@@ -19,7 +19,7 @@
 	if (!isset($_GET['action']) AND isset($_GET['forum_id']))
 		{
 			$forum_id = addslashes($_GET["forum_id"]);
-			selectdb(wcf);
+			selectdb("wcf");
   			$result = db_query("SELECT count(`post_date`) as kol FROM `wcf_forums_posts` WHERE `forum_id`='$forum_id'");
 			$thr_kolzap = db_array($result);
 
@@ -59,7 +59,7 @@
 				{
 					while($data = db_array($result))
 						{
-							selectdb(wcf);
+							selectdb("wcf");
 							$last_post =  mysql_query("SELECT * FROM ".DB_FORUMS_POSTS.",`wcf_users`
 											WHERE ".DB_FORUMS_POSTS.".`post_id`='".$data['thread_lastpostid']."'
 											AND `wcf_users`.`user_id`='".$data['thread_lastuser']."' LIMIT 1");
@@ -101,7 +101,7 @@
 
     			if (isset($_POST['thread']))
 				{
-					selectdb(wcf);
+					selectdb("wcf");
 					// Создание темы
 					db_query("INSERT INTO ".DB_FORUMS_THREADS."
 							(`forum_id`,`thread_subject`,`thread_author`,`thread_lastpostid`,`thread_lastuser`,`thread_postcount`)

@@ -49,7 +49,7 @@
 	define("DB_QUEST_INFO", DB_PREFIX."quest_info");
 	define("DB_QUESTSORT", DB_PREFIX."quest_sort");
 	define("DB_QUESTXP", DB_PREFIX."questxp");
-	define("DB_PANELS", DB_PREFIX."random_property_points");
+	define("DB_RANDOM_PROPERTY_POINTS", DB_PREFIX."random_property_points");
 	define("DB_RATING", DB_PREFIX."rating");
 	define("DB_SCALING_STAT_DISTRIBUTION", DB_PREFIX."scaling_stat_distribution");
 	define("DB_SCALING_STAT_VALUES", DB_PREFIX."scaling_stat_values");

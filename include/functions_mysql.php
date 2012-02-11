@@ -179,7 +179,7 @@
 	// 8 - unlock ip
 	// 9 - antierror
 
-	function logs($log_account,$log_character,$log_mode,$log_email,$log_resultat,$log_note,$log_old_data)
+	function logs($log_account, $log_character, $log_mode, $log_email, $log_resultat, $log_note, $log_old_data)
 		{
 			global $_SERVER;
 			if (($log_account == '') OR ($log_account == 0))
@@ -191,7 +191,7 @@
 					$log_character = 0;
 				}
 
-			selectdb(wcf);
+			selectdb("wcf");
 			db_query("INSERT ".DB_LOGS." (`ip`, `account`, `character`, `mode`, `email`, `resultat`, `note`, `old_data`)
 				VALUES ('".$_SERVER['REMOTE_ADDR']."', ".$log_account.", ".$log_character.", ".$log_mode.", '".$log_email."', '".$log_resultat."', '".$log_note."', '".$log_old_data."')");
 

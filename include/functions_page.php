@@ -91,7 +91,7 @@
 	// функция, создающая админку, берет данные из базы mysql
 	function admin_page($admin_page,$admin_string)
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$administration = db_query("SELECT * FROM ".DB_ADMIN." WHERE `admin_page`='$admin_page' AND `admin_string`='$admin_string'") or trigger_error(mysql_error());
 			echo"<tr>";
 			while ($page_contet = db_array($administration))
