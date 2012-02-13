@@ -357,6 +357,8 @@
 				case ("ranged"):  	$icon = IMAGES_PI."empty_icon/ranged.png";   	break;
 			endswitch;
 
+			$position = '';
+
 			if ($posx OR $posy)
 				{
 					$position .= 'style="position: absolute; left: '.$posx.'px; top: '.$posy.'px; border: 0px;"';

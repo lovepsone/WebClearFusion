@@ -27,9 +27,9 @@
 
 	if (isset($_POST['auth_name']) && $_POST['auth_name'] != "") 
    		{
-			$password= SHA1(strtoupper(addslashes($_POST['auth_name']).':'.addslashes($_POST['auth_pass'])));
+			$password = SHA1(strtoupper(addslashes($_POST['auth_name']).':'.addslashes($_POST['auth_pass'])));
 
-			selectdb(realmd);
+			selectdb("realmd");
    			$result = db_query('SELECT * FROM `account` WHERE `username`="'.strtoupper(addslashes($_POST['auth_name'])).'" AND sha_pass_hash ="'.$password.'"');
 
    			if ((mysql_num_rows($result) == 1) AND ($CapchaInput == 1))
@@ -45,7 +45,7 @@
 					
 					//======================================
 					// занесение юзера в таблицу
-					selectdb(wcf);
+					selectdb("wcf");
 					$result = db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`='".$_SESSION['user_id']."' AND `user_name`='".$_SESSION['user_name']."'");
 
 					if ($result['user_id'] != $_SESSION['user_id'])

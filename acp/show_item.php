@@ -27,7 +27,7 @@
     			$entry = intval($str);
 		}
 	$page  = intval(@$_REQUEST['page']);
-	$mark  = @$_REQUEST['mark'];
+	//$mark  = @$_REQUEST['mark'];
 
 	$item = get_item($entry);
 	opentable();
