@@ -207,8 +207,9 @@
 			global $exclude_list_errors;
 			$timestamp = time();
 			$timestamp = date("H:i:s d.m.Y", $timestamp);
-
+			$file_max_sixe = 4*1042;
 			$open = @fopen(BASEDIR."logs/".$file_err, "r");
+
 			if (!$open)
 				{
 					mkdir(BASEDIR."logs/", 0700);
@@ -223,7 +224,11 @@
 			$file = $file_mas[$file_count - 1];
 			$file_err = $file_mas[$file_count - 1].".js";
 
-			unlink(BASEDIR."logs/".$file_err);
+			if (is_file(BASEDIR."logs/".$file_err) && filesize(BASEDIR."logs/".$file_err) >= $file_max_sixe)
+				{
+					unlink(BASEDIR."logs/".$file_err);
+				}
+
 			$err_str = "date: ".$timestamp."\n";
 			$err_str .= "error kode: ".$errno."\n"; 
 			$err_str .= "file with an error: ".$file."\n";     
