@@ -25,7 +25,9 @@
 		{
 			global $access,$txt;
 
+			$list = "";
     			reset($access);
+
 			if ($data == "")
 				{
 					for ($i=1;$i <= count($access);$i++)
