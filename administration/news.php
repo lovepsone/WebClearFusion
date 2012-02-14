@@ -23,7 +23,7 @@
 
 			if ((isset($_POST['news_subject']) && $_POST['news_subject'] != "") AND (isset($_POST['news_text']) && $_POST['news_text'] != "") AND (isset($_POST['news_text_ext']) && $_POST['news_text_ext'] != ""))
 				{
-					selectdb(wcf);
+					selectdb("wcf");
 					$result = db_query("INSERT INTO ".DB_NEWS." (`news_author`,`news_subject`,`news_show_cat`,`news_cat`,`news_text`,`news_text_extended`,`news_visibility`,`news_allow_comments`)
 						values ('".$_SESSION['user_id']."','".stripinput($_POST['news_subject'])."','".$news_show_cat."','".$_POST['news_cat']."','".addslash($_POST['news_text'])."','".addslash($_POST['news_text_ext'])."','".$news_visibility."','".$news_comments."')");
 					if ($result) {redirect(WCF_SELF);}
@@ -42,7 +42,7 @@
 
 			if ((isset($_POST['news_subject']) && $_POST['news_subject'] != "") AND (isset($_POST['news_text']) && $_POST['news_text'] != "") AND (isset($_POST['news_text_ext']) && $_POST['news_text_ext'] != ""))
 				{
-					selectdb(wcf);
+					selectdb("wcf");
 					$result = db_query("UPDATE ".DB_NEWS." SET `news_author`='".$_SESSION['user_id']."', `news_subject`='".stripinput($_POST['news_subject'])."', `news_show_cat`='".$news_show_cat."', `news_cat`='".$_POST['news_cat']."',
 								`news_text`='".addslash($_POST['news_text'])."', `news_text_extended`='".addslash($_POST['news_text_ext'])."', `news_visibility`='".$news_visibility."', `news_allow_comments`='".$news_comments."' WHERE `news_id`='".$_POST['news_id']."'");
 		
@@ -56,7 +56,7 @@
 		}
 	elseif (isset($_POST['delete']) && (isset($_POST['news_id']) && isnum($_POST['news_id'])))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$result = db_query("DELETE FROM ".DB_NEWS." WHERE `news_id`='".$_POST['news_id']."'");
 			$result = db_query("DELETE FROM ".DB_COMMENTS."  WHERE `comment_item_id`='".$_POST['news_id']."' and `comment_type`='1'");
 			redirect(WCF_SELF."?status=del");
@@ -75,7 +75,7 @@
 			$txt_button = $txt['admin_newsmaker_add'];
 		}
 
-	selectdb(wcf);
+	selectdb("wcf");
 	$result = db_query("SELECT * FROM ".DB_NEWS);
 
 	if (db_num_rows($result) != 0)
