@@ -33,10 +33,9 @@
 
 			$result = db_query("SELECT `address`, `port` FROM `realmlist` WHERE `id`='$realm_id'");
 			$data = db_assoc($result);
-			$fp = @fsockopen($data['address'], $data['port'], $errno, $errstr, 1);
 
 			echo"<tr><td align='center' colspan='6'>";
-			if ($fp) { echo"<img src='".IMAGES."online.gif' align='absmiddle' alt='online'>"; } else { echo"<img src='".IMAGES."offline.gif' align='absmiddle' alt='ofline'>"; }
+			if (@fsockopen($data['address'], $data['port'], $errno, $errstr, 1)) { echo"<img src='".IMAGES."online.gif' align='absmiddle' alt='online'>"; } else { echo"<img src='".IMAGES."offline.gif' align='absmiddle' alt='ofline'>"; }
 			echo"</td></tr>";
 
 			selectdb("characters_r".$realm_id);
@@ -68,7 +67,7 @@
 			if ($kolzap['kol'] > $config['page_online'])
     				{
     					$page_len_online = $config['page_online'];
-    					if (!isset($_GET['page']) or ($_GET['page'] == '')) { $start_rec_online = 0; } else { $start_rec_online = ((int) $_GET['page'] - 1)*$config['page_online']; }
+    					if (!isset($_GET['page']) or ($_GET['page'] == "")) { $start_rec_online = 0; } else { $start_rec_online = ((int) $_GET['page'] - 1)*$config['page_online']; }
     				}
 			else
     				{
