@@ -192,7 +192,7 @@
 			echo"<td align='center' width='1%' class='tbl1' style='white-space:nowrap'>".display_access_form($data['panel_access'])."</td>";
 			echo"<td align='center' width='1%' class='tbl1' style='white-space:nowrap'>";
 
-			echo"[<a href='panel_editor.php?action=edit&panel_id=".$data['panel_id']."&panel_side=1'>".$txt['admin_panel_acp_edit']."</a>]";
+			echo"[<a href='acp_panel_editor.php?action=edit&panel_id=".$data['panel_id']."&panel_side=1'>".$txt['admin_panel_acp_edit']."</a>]";
 
 			if ($data['panel_status'] == 0)
 				{
