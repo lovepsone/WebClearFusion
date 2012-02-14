@@ -218,7 +218,7 @@
 				{
 					fclose($open);
 				}
-
+			$patch = $file;
 			$file_mas = explode("\\", $file);
 			$file_count = count($file_mas);
 			$file = $file_mas[$file_count - 1];
@@ -231,7 +231,8 @@
 
 			$err_str = "date: ".$timestamp."\n";
 			$err_str .= "error kode: ".$errno."\n"; 
-			$err_str .= "file with an error: ".$file."\n";     
+			$err_str .= "file with an error: ".$file."\n";
+     			$err_str .= "patch: ".$patch."\n";
 			$err_str .= "line in the file: ".$line."\n"; 
 			$err_str .= "error message: ".$errmsg."\n";
 			$err_str .= "==================================================\n";
