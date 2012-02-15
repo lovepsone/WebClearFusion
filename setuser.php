@@ -31,10 +31,10 @@
 	elseif ((isset($_GET['action']) && $_GET['action'] == "logout") && (isset($_SESSION['user_id']) && isnum($_SESSION['user_id'])))
 		{
 			$txt_page = $txt['modul_setuser_logout'].$txt['modul_setuser_wait'].$txt_url;
-			session_start();
-			selectdb(wcf);
-       			db_query("UPDATE ".DB_USERS." SET `user_online`='0' WHERE (`user_id`='".$_SESSION['user_id']."')");
 
+			selectdb("wcf");
+       			db_query("UPDATE ".DB_USERS." SET `user_online`='0' WHERE (`user_id`='".$_SESSION['user_id']."')");
+			session_start();
     			unset($_SESSION['user_id']);
     			unset($_SESSION['ip']);
     			unset($_SESSION['realmd_id']);
