@@ -15,43 +15,46 @@
    	require_once INCLUDES."tinymce.php";
    	echo $advanced_script;
 
-	if (isset($_POST['save']) && (!isset($_GET['action']) && $_GET['action'] != "edit"))
+	if (isset($_POST['save']))
 		{
-			$news_visibility = isnum($_POST['news_visibility']) ? $_POST['news_visibility'] : "-1";
-			$news_show_cat = isset($_POST['news_show_cat']) ? "1" : "0";
-			$news_comments = isset($_POST['news_comments']) ? "1" : "0";
-
-			if ((isset($_POST['news_subject']) && $_POST['news_subject'] != "") AND (isset($_POST['news_text']) && $_POST['news_text'] != "") AND (isset($_POST['news_text_ext']) && $_POST['news_text_ext'] != ""))
+			if (!isset($_GET['action']) && $_GET['action'] != "edit")
 				{
-					selectdb("wcf");
-					$result = db_query("INSERT INTO ".DB_NEWS." (`news_author`,`news_subject`,`news_show_cat`,`news_cat`,`news_text`,`news_text_extended`,`news_visibility`,`news_allow_comments`)
-						values ('".$_SESSION['user_id']."','".stripinput($_POST['news_subject'])."','".$news_show_cat."','".$_POST['news_cat']."','".addslash($_POST['news_text'])."','".addslash($_POST['news_text_ext'])."','".$news_visibility."','".$news_comments."')");
-					if ($result) {redirect(WCF_SELF);}
-				}
-			else
-				{
-					$errors = 1;
-					redirect(WCF_SELF."?errors=".$errors);
-				}
-		}
-	elseif (isset($_POST['save']) && (isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_POST['news_id']) && isnum($_POST['news_id'])))
-		{
-			$news_visibility = isnum($_POST['news_visibility']) ? $_POST['news_visibility'] : "-1";
-			$news_show_cat = isset($_POST['news_show_cat']) ? "1" : "0";
-			$news_comments = isset($_POST['news_comments']) ? "1" : "0";
-
-			if ((isset($_POST['news_subject']) && $_POST['news_subject'] != "") AND (isset($_POST['news_text']) && $_POST['news_text'] != "") AND (isset($_POST['news_text_ext']) && $_POST['news_text_ext'] != ""))
-				{
-					selectdb("wcf");
-					$result = db_query("UPDATE ".DB_NEWS." SET `news_author`='".$_SESSION['user_id']."', `news_subject`='".stripinput($_POST['news_subject'])."', `news_show_cat`='".$news_show_cat."', `news_cat`='".$_POST['news_cat']."',
-								`news_text`='".addslash($_POST['news_text'])."', `news_text_extended`='".addslash($_POST['news_text_ext'])."', `news_visibility`='".$news_visibility."', `news_allow_comments`='".$news_comments."' WHERE `news_id`='".$_POST['news_id']."'");
+					$news_visibility = isnum($_POST['news_visibility']) ? $_POST['news_visibility'] : "-1";
+					$news_show_cat = isset($_POST['news_show_cat']) ? "1" : "0";
+					$news_comments = isset($_POST['news_comments']) ? "1" : "0";
 		
-					if ($result) {redirect(WCF_SELF);}
+					if ((isset($_POST['news_subject']) && $_POST['news_subject'] != "") AND (isset($_POST['news_text']) && $_POST['news_text'] != "") AND (isset($_POST['news_text_ext']) && $_POST['news_text_ext'] != ""))
+						{
+							selectdb("wcf");
+							$result = db_query("INSERT INTO ".DB_NEWS." (`news_author`,`news_subject`,`news_show_cat`,`news_cat`,`news_text`,`news_text_extended`,`news_visibility`,`news_allow_comments`)
+								values ('".$_SESSION['user_id']."','".stripinput($_POST['news_subject'])."','".$news_show_cat."','".$_POST['news_cat']."','".addslash($_POST['news_text'])."','".addslash($_POST['news_text_ext'])."','".$news_visibility."','".$news_comments."')");
+							if ($result) {redirect(WCF_SELF);}
+						}
+					else
+						{
+							$errors = 1;
+							redirect(WCF_SELF."?errors=".$errors);
+						}
 				}
-			else
+			elseif (isset($_POST['save']) && (isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_POST['news_id']) && isnum($_POST['news_id'])))
 				{
-					$errors = 1;
-					redirect(WCF_SELF."?errors=".$errors);
+					$news_visibility = isnum($_POST['news_visibility']) ? $_POST['news_visibility'] : "-1";
+					$news_show_cat = isset($_POST['news_show_cat']) ? "1" : "0";
+					$news_comments = isset($_POST['news_comments']) ? "1" : "0";
+		
+					if ((isset($_POST['news_subject']) && $_POST['news_subject'] != "") AND (isset($_POST['news_text']) && $_POST['news_text'] != "") AND (isset($_POST['news_text_ext']) && $_POST['news_text_ext'] != ""))
+						{
+							selectdb("wcf");
+							$result = db_query("UPDATE ".DB_NEWS." SET `news_author`='".$_SESSION['user_id']."', `news_subject`='".stripinput($_POST['news_subject'])."', `news_show_cat`='".$news_show_cat."', `news_cat`='".$_POST['news_cat']."',
+										`news_text`='".addslash($_POST['news_text'])."', `news_text_extended`='".addslash($_POST['news_text_ext'])."', `news_visibility`='".$news_visibility."', `news_allow_comments`='".$news_comments."' WHERE `news_id`='".$_POST['news_id']."'");
+				
+							if ($result) {redirect(WCF_SELF);}
+						}
+					else
+						{
+							$errors = 1;
+							redirect(WCF_SELF."?errors=".$errors);
+						}
 				}
 		}
 	elseif (isset($_POST['delete']) && (isset($_POST['news_id']) && isnum($_POST['news_id'])))
@@ -62,7 +65,7 @@
 			redirect(WCF_SELF."?status=del");
 			redirect(WCF_SELF);
 		}
-	elseif (!isset($_POST['save']) && (!isset($_GET['action']) && $_GET['action'] != "edit"))
+	else
 		{
 			$news_id = "";
 			$news_subject = "";
@@ -118,7 +121,7 @@
 					redirect(WCF_SELF);
 				}
 		}
-	if ($errors == 1 AND isset($_GET['errors']))
+	if (isset($_GET['errors']) && isnum($_GET['errors']))
 		{
 			opentable();
 		       	echo"<tr><td align='center' class='small'><h3>".$txt['admin_newsmaker_not_fields']."</h3></td></tr>";
