@@ -59,7 +59,7 @@
 	require_once INCLUDES_DATA_WOW."include_item_table.php";
 	require_once INCLUDES_DATA_WOW."include_player_data.php";
 	require_once INCLUDES_DATA_WOW."include_spell_data.php";
-	require_once INCLUDES_DATA_WOW."include_report_generator.php";
+	//require_once INCLUDES_DATA_WOW."include_report_generator.php";
 
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup

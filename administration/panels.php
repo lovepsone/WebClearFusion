@@ -15,7 +15,7 @@
 
 	if (isset($_GET['action']) && $_GET['action'] == "refresh")
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$i = 1;
 			$result = db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='1' ORDER BY `panel_order`");
 
@@ -53,7 +53,7 @@
 
 	if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$data = db_assoc(db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_id`='".$_GET['panel_id']."'"));
 			$result = db_query("DELETE FROM ".DB_PANELS." WHERE `panel_id`='".$_GET['panel_id']."'");
 			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_side`='".$data['panel_side']."' AND `panel_order`>='".$data['panel_order']."'");
@@ -61,12 +61,12 @@
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "setstatus") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$result = db_query("UPDATE ".DB_PANELS." SET `panel_status`='".intval($_GET['status'])."' WHERE `panel_id`='".$_GET['panel_id']."'");
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "mup") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$data = db_assoc(db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='".intval($_GET['panel_side'])."' AND `panel_order`='".intval($_GET['order'])."'"));
 			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order+1 WHERE `panel_id`='".$data['panel_id']."'");
 			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_id`='".$_GET['panel_id']."'");
@@ -74,7 +74,7 @@
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "mdown") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$data = db_assoc(db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='".intval($_GET['panel_side'])."' AND `panel_order`='".intval($_GET['order'])."'"));
 			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_id`='".$data['panel_id']."'");
 			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order+1 WHERE `panel_id`='".$_GET['panel_id']."'");
@@ -82,7 +82,7 @@
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "mleft") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$result = db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='1' ORDER BY `panel_order` DESC LIMIT 1");
 			if (db_num_rows($result) != 0) { $data = db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
 			$result = db_query("UPDATE ".DB_PANELS." SET `panel_side`='1', `panel_order`='$neworder' WHERE `panel_id`='".$_GET['panel_id']."'");
@@ -91,7 +91,7 @@
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "mright") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$result = db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='4' ORDER BY `panel_order` DESC LIMIT 1");
 			if (db_num_rows($result) != 0) { $data = db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
 			$result = db_query("UPDATE ".DB_PANELS." SET `panel_side`='4', `panel_order`='$neworder' WHERE `panel_id`='".$_GET['panel_id']."'");
@@ -100,7 +100,7 @@
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "mupper") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$result = db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='2' ORDER BY `panel_order` DESC LIMIT 1");
 			if (db_num_rows($result) != 0) { $data = db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
 			$result = db_query("UPDATE ".DB_PANELS." SET `panel_side`='2', `panel_order`='$neworder' WHERE `panel_id`='".$_GET['panel_id']."'");
@@ -109,7 +109,7 @@
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "mlower") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$result = db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='3' ORDER BY `panel_order` DESC LIMIT 1");
 			if (db_num_rows($result) != 0) { $data = db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
 			$result = db_query("UPDATE ".DB_PANELS." SET `panel_side`='3', `panel_order`='$neworder' WHERE `panel_id`='".$_GET['panel_id']."'");
@@ -129,7 +129,7 @@
 	echo"</tr>";
 
 	$ps = 1; $i = 1; $k = 0;
-	selectdb(wcf);
+	selectdb("wcf");
 	$result = db_query("SELECT * FROM ".DB_PANELS." ORDER BY `panel_side`,`panel_order`");
 	while ($data = db_array($result))
 		{

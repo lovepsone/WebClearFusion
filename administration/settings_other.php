@@ -15,14 +15,14 @@
 
 	if (isset($_POST['savesettings']))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['kcaptcha_enable_auth'])."' WHERE `settings_name`='kcaptcha_enable_auth'");
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['level_administration'])."' WHERE `settings_name`='level_administration'");
 			redirect(WCF_SELF);
 		}
 
 	$settings = array();
-	selectdb(wcf);
+	selectdb("wcf");
 	$result = db_query("SELECT * FROM ".DB_SETTINGS."");
 
 	while ($data = db_array($result))

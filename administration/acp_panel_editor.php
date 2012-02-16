@@ -41,7 +41,7 @@
 
 			if (isset($_GET['panel_id']) && isnum($_GET['panel_id']))
 				{
-					selectdb(wcf);
+					selectdb("wcf");
 					$result = db_query("UPDATE ".DB_ACP_PANELS." SET `panel_filename`='".$panel_filename."', `panel_access`='".$panel_access."', WHERE panel_id='".$_GET['panel_id']."'");
 				}
 			else

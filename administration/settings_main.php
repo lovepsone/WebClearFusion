@@ -15,7 +15,7 @@
 
 	if (isset($_POST['savesettings']))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['servername'])."' WHERE `settings_name`='servername'");
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['serverurl']).(strrchr($_POST['serverurl'],"/") != "/" ? "/" : "")."' WHERE `settings_name`='serverurl'");
 			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['serverbanner'])."' WHERE `settings_name`='serverbanner'");
@@ -31,7 +31,7 @@
 		}
 
 	$settings = array();
-	selectdb(wcf);
+	selectdb("wcf");
 	$result = db_query("SELECT * FROM ".DB_SETTINGS."");
 
 	while ($data = db_array($result))

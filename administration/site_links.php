@@ -16,7 +16,7 @@
 	if (isset($_GET['action']) && $_GET['action'] == "refresh")
 		{
 			$i = 1;
-			selectdb(wcf);
+			selectdb("wcf");
 			$result = db_query("SELECT * FROM ".DB_NAVIGATION_LINKS." ORDER BY `link_order`");
 			while ($data = db_array($result))
 				{
@@ -27,7 +27,7 @@
 		}
 	elseif ((isset($_GET['action']) && $_GET['action'] == "moveup") && (isset($_GET['link_id']) && isnum($_GET['link_id'])))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$data = db_assoc(db_query("SELECT `link_id` FROM ".DB_NAVIGATION_LINKS." WHERE `link_order`='".intval($_GET['order'])."'"));
 			$result = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order+1 WHERE `link_id`='".$data['link_id']."'");
 			$result = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order-1 WHERE `link_id`='".$_GET['link_id']."'");
@@ -35,7 +35,7 @@
 		}
 	elseif ((isset($_GET['action']) && $_GET['action'] == "movedown") && (isset($_GET['link_id']) && isnum($_GET['link_id'])))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$data = db_assoc(db_query("SELECT `link_id` FROM ".DB_NAVIGATION_LINKS." WHERE `link_order`='".intval($_GET['order'])."'"));
 			$result = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order-1 WHERE `link_id`='".$data['link_id']."'");
 			$result = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order+1 WHERE `link_id`='".$_GET['link_id']."'");
@@ -43,7 +43,7 @@
 		}
 	elseif ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['link_id']) && isnum($_GET['link_id'])))
 		{
-			selectdb(wcf);
+			selectdb("wcf");
 			$data = db_assoc(db_query("SELECT `link_order` FROM ".DB_NAVIGATION_LINKS." WHERE `link_id`='".$_GET['link_id']."'"));
 			$result = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order-1 WHERE `link_order`>'".$data['link_order']."'");
 			$result = db_query("DELETE FROM ".DB_NAVIGATION_LINKS." WHERE `link_id`='".$_GET['link_id']."'");
@@ -53,7 +53,7 @@
 		{
 			if (isset($_POST['savelink']))
 					{
-						selectdb(wcf);
+						selectdb("wcf");
 						$link_name = stripinput($_POST['link_name']);
 						$link_url = stripinput($_POST['link_url']);
 						$link_visibility = isnum($_POST['link_visibility']) ? $_POST['link_visibility'] : "-1";
@@ -95,7 +95,7 @@
 
 			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['link_id']) && isnum($_GET['link_id'])))
 					{
-						selectdb(wcf);
+						selectdb("wcf");
 						$result = db_query("SELECT * FROM ".DB_NAVIGATION_LINKS." WHERE `link_id`='".$_GET['link_id']."'");
 		
 						if (db_num_rows($result))
@@ -145,7 +145,7 @@
 			echo"<td align='center' width='25%' class='small' style='white-space:nowrap'><strong>".$txt['admin_slinks_settings_url']."</strong></td></tr>";
 			echo"<tr><td colspan='5'><hr></td></tr>";
 
-			selectdb(wcf);
+			selectdb("wcf");
 			$result = db_query("SELECT * FROM ".DB_NAVIGATION_LINKS." ORDER BY `link_order`");
 			if (db_num_rows($result))
 				{
