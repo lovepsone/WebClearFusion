@@ -26,7 +26,7 @@
     			$item_data = 0;
     			$entry = intval($str);
 		}
-	$page  = intval(@$_REQUEST['page']);
+	$page  = isset($_REQUEST['page']) ? intval(@$_REQUEST['page']) : "";
 	//$mark  = @$_REQUEST['mark'];
 
 	$item = get_item($entry);
