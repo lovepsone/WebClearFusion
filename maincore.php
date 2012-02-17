@@ -209,13 +209,12 @@
 			$timestamp = time(); // определяем дату лого
 			$timestamp = date("H:i:s d.m.Y", $timestamp);
 			$file_max_sixe = 4*1042; // размер лога
-			$open = @fopen(BASEDIR."logs/".$file_err, "r"); // проверяем существует ли папка logs
-
 			$patch = $file; // путь к файлу
 			$file_mas = explode("\\", $file);
 			$file_count = count($file_mas);
 			$file = $file_mas[$file_count - 1];
 			$file_err = $file_mas[$file_count - 1].".js"; // называем файл лога
+			$open = @fopen(BASEDIR."logs/".$file_err, "r"); // проверяем существует ли папка logs
 
 			$err_msg_mass = explode(" ", $errmsg);
 			$err_in_function_exclude = $err_msg_mass[0];
