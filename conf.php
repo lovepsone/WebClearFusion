@@ -59,13 +59,14 @@ $config = array(
 'cpassword_r2' => 'mangos',
 'cdbName_r2' => 'characters2',
 
-'encoding'=> 'utf8',
+'encoding' => 'utf8',
+'use_tab_mode' => '1',          // Tabbed report mode (cswowd)
 
 //==================================================================
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
 'copyright'=>'WebClearFusion v 0.4.63 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [238]',
+'revision'=>'wcf_revision_nr = [239]',
 'rev_admin'=>' 0.02.00',
 'rev_acp'=>' 0.01.11',
 );

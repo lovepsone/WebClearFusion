@@ -21,6 +21,7 @@
 	echo"<link href='".THEMES."templates/wcf.css' type=text/css rel=stylesheet />";
 	echo"<meta http-equiv='content-type' content='text/html; charset=$code_page' />";
 	echo"<script type='text/javascript' src='".INCLUDES."js/jscript.js'></script>";
+	echo"<script type='text/javascript' src='".INCLUDES."js/utils.js'></script>";
 	echo"</head><body>";
 
 	require_once THEMES."templates/panels.php";

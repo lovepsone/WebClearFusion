@@ -264,30 +264,34 @@ class ReportGenerator{
     }
 };
 
-//==============================================================================
-// Tabbed report functions
-//==============================================================================
-$tab_mode = 2; // disabled
-function createReportTab()
-{
-    global $tab_mode, $config, $ajaxmode;
-    if(!$config['use_tab_mode'] || $ajaxmode)
-        return;
-    echo '<script type="text/javascript">report_hideHeaders()</script>';
-    echo '<br><ul class=my_tabs id="report_tabs"></ul>';
-    $tab_mode = 1; // First page select
-}
-function addTab($header, $mark)
-{
-    global $tab_mode;
-    if ($tab_mode > 1) return;
-    if (isset($_REQUEST['mark']))
-        $selected = $mark==$_REQUEST['mark'] ? 1 : 0;
-    else
-        $selected = $tab_mode?1:0;
-    echo '<script type="text/javascript">report_addTab("'.$header.'", "'.$mark.'", '.$selected.');</script>';
-    $tab_mode = 0; // disable select page
-}
+	//==============================================================================
+	// Tabbed report functions
+	//==============================================================================
+	$tab_mode = 2; // disabled
+	function create_report_tab()
+		{
+			global $tab_mode, $config, $ajaxmode;
+			if(!$config['use_tab_mode'] || $ajaxmode) { return; }
+			echo"<script type='text/javascript'>".report_hideHeaders()."</script>";
+			echo"<br><ul class='my_tabs' id='report_tabs'></ul>";
+			$tab_mode = 1; // First page select
+		}
+
+	function add_tab($header, $mark)
+		{
+			global $tab_mode;
+			if ($tab_mode > 1) { return; }
+			if (isset($_REQUEST['mark']))
+				{
+					$selected = $mark==$_REQUEST['mark'] ? 1 : 0;
+				}
+			else
+				{
+					$selected = $tab_mode?1:0;
+				}
+			echo '<script type="text/javascript">report_addTab("'.$header.'", "'.$mark.'", '.$selected.');</script>';
+			$tab_mode = 0; // disable select page
+		}
 
 // Get some data
 function getRefrenceItemLoot($entry)

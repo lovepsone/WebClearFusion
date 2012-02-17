@@ -13,7 +13,7 @@
 	if (preg_match("/maincore.php/i", $_SERVER['PHP_SELF'])) { die(); }
 
 	error_reporting(E_ALL);
-	ini_set('display_errors',0);
+	ini_set('display_errors',1);
 	set_error_handler('user_log');
 
 	//=============================================================================================================
@@ -59,7 +59,7 @@
 	require_once INCLUDES_DATA_WOW."include_item_table.php";
 	require_once INCLUDES_DATA_WOW."include_player_data.php";
 	require_once INCLUDES_DATA_WOW."include_spell_data.php";
-	//require_once INCLUDES_DATA_WOW."include_report_generator.php";
+	require_once INCLUDES_DATA_WOW."include_report_generator.php";
 
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup
