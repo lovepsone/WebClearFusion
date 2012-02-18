@@ -51,6 +51,11 @@
   			require_once ACP."show_character/show_char_skill.php";
   			show_player_skills($guid);
  		}
+	if ($tab == "reputation")
+		{
+			require_once ACP."show_character/show_char_reputation.php";
+			show_player_reputation($guid, $class, $race);
+		}
 
 	closetable();
 

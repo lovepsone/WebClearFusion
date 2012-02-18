@@ -289,13 +289,11 @@ $txt = array(
 'modul_acp_char_parry'		=>'Парирование:',
 'modul_acp_char_block'		=>'Блок:',
 'modul_acp_char_recilence'	=>'Устойчивость:',
-
 'modul_acp_char_ach_total'	=>'Обзор',
 'modul_acp_char_ach_complete' 	=>'Всего выполнено:',
 'modul_acp_char_ach_last'     	=>'Последние выполненные:',
-
 'modul_acp_char_skill'     	=>'Навыки персонажа',
-
+'modul_acp_show_reputation'  	=>'Репутация персонажа',
 'modul_acp_show_reqirement'     =>'Требование',
 'modul_acp_show_horde'     	=>'Орда',
 'modul_acp_show_alliance'     	=>'Альянс',
@@ -304,6 +302,7 @@ $txt = array(
 'modul_acp_show_money' 		=>'Деньги:',
 'modul_acp_show_buy_price' 	=>'Цена выкупа',
 'modul_acp_show_this_item_part_of_set' 	=> 'Этот предмет часть комплекта',
+
 # остальное
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',
 'fill_field'			=>'<font color=red>Вы не заполнили поле!!!</font>',
