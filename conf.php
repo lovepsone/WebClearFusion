@@ -61,17 +61,17 @@ $config = array(
 
 'encoding' => 'utf8',
 'use_tab_mode' => '1',          // Tabbed report mode (cswowd)
+'talent_calc_max_level' => '80',
+'errors_reporting' => '1',
 
 //==================================================================
 // Ревизия и копирайт wcf (запрещается менять)
 //==================================================================
 'copyright'=>'WebClearFusion v 0.4.63 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [247]',
+'revision'=>'wcf_revision_nr = [248]',
 'rev_admin'=>' 0.02.00',
 'rev_acp'=>' 0.01.12',
 );
-
-$config['talent_calc_max_level'] = 80;
 
 define("DB_PREFIX", "wcf_");
 ?>

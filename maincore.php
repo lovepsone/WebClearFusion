@@ -208,11 +208,12 @@
 
 	function user_log($errno, $errmsg, $file, $line)
 		{
-			global $exclude_errors;
+			global $exclude_errors, $config;
 
+			if ($config['errors_reporting'] == "0") { return; }
 			$timestamp = time(); // определяем дату лого
 			$timestamp = date("H:i:s d.m.Y", $timestamp);
-			$file_max_sixe = 4*1042; // размер лога
+			$file_max_sixe = 1*1042; // размер лога
 			$patch = $file; // путь к файлу
 
 			$file_mas = explode("\\", $file);
