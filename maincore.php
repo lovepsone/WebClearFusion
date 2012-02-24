@@ -202,7 +202,8 @@
 	//=============================================================================================================
 	$exclude_errors = array(
 		'2'=> 'fsockopen()', 	// выключаем показ ошибки с сокетами
-		'2048'=> 'date()'	// выключаем показ ошибки с датой
+		'2048'=> 'date()',	// выключаем показ ошибки с датой
+		'2'=> 'filemtime()'	// выключаем показ ошибки с временем
 	);
 
 	function user_log($errno, $errmsg, $file, $line)
@@ -213,10 +214,12 @@
 			$timestamp = date("H:i:s d.m.Y", $timestamp);
 			$file_max_sixe = 4*1042; // размер лога
 			$patch = $file; // путь к файлу
+
 			$file_mas = explode("\\", $file);
 			$file_count = count($file_mas);
 			$file = $file_mas[$file_count - 1];
 			$file_err = $file_mas[$file_count - 1].".js"; // называем файл лога
+
 			$open = @fopen(BASEDIR."logs/".$file_err, "r"); // проверяем существует ли папка logs
 
 			$err_msg_mass = explode(" ", $errmsg);
