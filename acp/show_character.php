@@ -45,6 +45,11 @@
   			require_once ACP."show_character/show_char_equip.php";
   			show_player_equip($guid, $char, $char_data, $char_stats);
  		}
+	if ($tab == "talents")
+		{
+  			require_once ACP."show_character/show_char_talents.php";
+			show_player_talents($guid, $class, $char['level'], $char['activeSpec']);
+		}
 
  	if ($tab == "skill")
  		{

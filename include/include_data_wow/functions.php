@@ -10,6 +10,67 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	/**
+	 * Convert a PHP scalar, array or hash to JS scalar/array/hash. This function is
+	 * an analog of json_encode(), but it can work with a non-UTF8 input and does not
+	 * analyze the passed data. Output format must be fully JSON compatible.
+	 *
+	 * @param mixed $a   Any structure to convert to JS.
+	 * @return string    JavaScript equivalent structure.
+	*/
+	function php2js($a=false)
+		{
+			if (is_null($a)) { return 'null'; }
+			if ($a === false) { return 'false'; }
+			if ($a === true) { return 'true'; }
+			if (is_scalar($a))
+				{
+					if (is_float($a))
+						{
+							// Always use "." for floats.
+							$a = str_replace(",", ".", strval($a));
+						}
+        // All scalars are converted to strings to avoid indeterminism.
+        // PHP's "1" and 1 are equal for all PHP operators, but
+        // JS's "1" and 1 are not. So if we pass "1" or 1 from the PHP backend,
+        // we should get the same result in the JS frontend (string).
+        // Character replacements for JSON.
+			static $jsonReplaces = array(
+            			array("\\", "/", "\n", "\t", "\r", "\b", "\f", '"'),
+            			array('\\\\', '\\/', '\\n', '\\t', '\\r', '\\b', '\\f', '\"')
+        		);
+			return '"' . str_replace($jsonReplaces[0], $jsonReplaces[1], $a) . '"';
+				}
+			$isList = true;
+
+			for ($i = 0, reset($a); $i < count($a); $i++, next($a))
+				{
+					if (key($a) !== $i)
+						{
+							$isList = false;
+							break;
+						}
+				}
+			$result = array();
+			if ($isList)
+				{
+					foreach ($a as $v)
+						{
+							$result[] = php2js($v);
+						}
+					return '[ ' . join(', ', $result) . ' ]'."\n";
+				}
+			else
+				{
+					foreach ($a as $k => $v)
+						{
+							$result[] = php2js($k) . ': ' . php2js($v);
+						}
+					return '{ ' . join(', ', $result) . ' }';
+				}
+		}
+
+
 	//=============================================================================================================
 	// Все что связано с locale
 	//=============================================================================================================
@@ -817,5 +878,51 @@
 	function get_list_from_array_1($array, $mask, $href="")
 		{
 			return get_list_from_array($array, 1, $mask, $href);
+		}
+
+	function get_talent_name($id)
+		{
+			$data = array();
+			selectdb("wcf");
+			$result = db_query("SELECT `id` AS ARRAY_KEY, `name` FROM ".DB_TALENT_TAB);
+			while ($data = db_array($result))
+				{
+					$l[$data['ARRAY_KEY']] = $data['name'];
+				}
+			return isset($l[$id]) ? $l[$id] : 'talent_'.$id;
+		}
+
+	function get_family_image($family)
+		{
+			selectdb("wcf");
+			$result = db_query("SELECT `id` AS ARRAY_KEY, `icon` FROM ".DB_CREATURE_FAMILY);
+			while ($data = db_array($result)) { $l[$data['ARRAY_KEY']] = $data['icon']; }
+			if (isset($l[$family]))
+				{
+					return IMAGES_ICONS.strtolower($l[$family]).".jpg";
+				}
+			else
+				{
+					return IMAGES_ICONS."wowunknownitem01.jpg";
+				}
+		}
+
+	function get_creature_family_names()
+		{
+			selectdb("wcf");
+			$result = db_query("SELECT `id` AS ARRAY_KEY, `name` FROM ".DB_CREATURE_FAMILY);
+			while ($data = db_array($result)) { $l[$data['ARRAY_KEY']] = $data['name']; }
+			return $l;
+		}
+
+	function get_creature_family($family, $as_ref=1)
+		{
+			$l = get_creature_family_names();
+			$name = isset($l[$family]) ? $l[$family] : 'family_'.$family;
+			if ($as_ref)
+				{
+					return '<a href="?s=n&family='.$family.'">'.$name.'</a>';
+				}
+			return $name;
 		}
 ?>
