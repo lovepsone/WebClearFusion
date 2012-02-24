@@ -903,7 +903,7 @@ function getBasePointDesc($spell, $index)
 						}
 					else
 						{
-							$spellData = @$cacheSpellData[$lookup];
+							$spellData = (isset($cacheSpellData[$lookup]) ? @$cacheSpellData[$lookup] : "");
 							if ($spellData == 0)
 								{
 									if ($lookup == $spell['id'])
