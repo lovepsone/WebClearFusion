@@ -18,7 +18,7 @@
 
 			selectdb("wcf");
 			$result = db_query("SELECT `id` FROM ".DB_TALENT_TAB." WHERE `class_mask`='".$class_mask[$class]."' ORDER BY `tab`");
-			$tab_set_count = 3; $i=0;
+			$tab_set_count = 3; $i=0; $tab_set = array();
 
 			while ($data = db_assoc($result))
 				{
@@ -29,19 +29,20 @@
 			if (!$tab_set) { return; }
 
 			$bild = "";
+
 			for ($i=0; $i<$tab_set_count; $i++)
 				{
 					$result = db_query("SELECT `TalentID`, `TalentTab` AS ARRAY_KEY_1, `Row` AS ARRAY_KEY_2, `Col` AS ARRAY_KEY_3, `Rank_1`, `Rank_2`, `Rank_3`, `Rank_4`, `Rank_5` FROM ".DB_TALENTS." WHERE `TalentTab`='".$tab_set[$i]."' ORDER BY `TalentTab`, `Row`, `Col`");
-					while ($data = db_array($result))
+
+					while ($data = db_assoc($result))
 						{
-							$tinfo['ARRAY_KEY_1']['ARRAY_KEY_2']['ARRAY_KEY_2'] = array(
-									"TalentID" => $data['TalentID'],
-									"Rank_1" => $data['Rank_1'],
-									"Rank_2" => $data['Rank_2'],
-									"Rank_3" => $data['Rank_3'],
-									"Rank_4" => $data['Rank_4'],
-									"Rank_5" => $data['Rank_5'],
-							);
+							$tinfo[$data['ARRAY_KEY_1']][$data['ARRAY_KEY_2']][$data['ARRAY_KEY_3']] = array(
+								"TalentID" => $data['TalentID'],
+								"Rank_1" => $data['Rank_1'],
+								"Rank_2" => $data['Rank_2'],
+								"Rank_3" => $data['Rank_3'],
+								"Rank_4" => $data['Rank_4'],
+								"Rank_5" => $data['Rank_5']);
 						}
 				}
 
@@ -50,17 +51,15 @@
 			$max = 0;
 			$name = "Undefined";
 
-			selectdb("characters_r".$_SESSION['realmd_id']);
-
-			//foreach($tab_set as $i=>$tab)
-			/*for ($i=0; $i<=$tab_set_count; $i++)
+			for ($i=0; $i<$tab_set_count; $i++)
 				{
 					foreach($tinfo[$tab_set[$i]] as $row=>$rows)
 						{
 							foreach($rows as $col=>$data)
 								{
+									selectdb("characters_r".$_SESSION['realmd_id']);
 									$rank = db_assoc(db_query("SELECT `current_rank`  FROM `character_talent` WHERE `guid`='$guid' and `spec`='$spec' AND `talent_id`='".$data['TalentID']."'"));
-
+									$rank = $rank['current_rank'];
 									if (isset($rank)) { ++$rank; } else { $rank = 0; }
 									$bild .= $rank;
 									$points[$i]+=$rank;
@@ -69,13 +68,13 @@
 						}
 					if ($points[$i] > $max) { $max = $points[$i]; $name = get_talent_name($tab_set[$i]); }
 				}
-			return array('calc_bild'=>$bild, 'points'=>$points, 'total'=>$total, 'name'=>$name);*/
+			return array('calc_bild'=>$bild, 'points'=>$points, 'total'=>$total, 'name'=>$name);
 		}
 
 	function include_talent_script($class, $petId, $maxLevel, $header, $ver = "335")
 		{
 			global $game_text, $config;
-			//$tab_set = 0;
+			$tab_set = array();
   			$class_mask = array(1 => 1, 2 => 2, 3 => 4, 4 => 8, 5 => 16, 6 => 32, 7 => 64, 8 => 128, 9 => 256, 11 => 1024);
 			// Create tabs list
 			if ($class)
