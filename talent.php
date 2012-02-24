@@ -17,9 +17,9 @@
 	// Скрипт предназначен для вывода талантов игрока
 	//==============================================================================
 
-	$talent = strtolower(@$_REQUEST['talent']);
+	$talent = (isset($_REQUEST['talent']) ? strtolower(@$_REQUEST['talent']) : "");
 	if (isset($_REQUEST['pet'])) { $pid = intval($_REQUEST['pet']); } else { $pid = -1; }
-	$bild  = @$_REQUEST['bild'];
+	$bild  = (isset($_REQUEST['bild']) ? @$_REQUEST['bild'] : "");
 	$cid = 0;
 	$link = '?talent';
 	$header = '';

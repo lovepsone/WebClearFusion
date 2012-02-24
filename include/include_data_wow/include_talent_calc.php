@@ -14,50 +14,62 @@
 		{
 			global $_SESSION, $talentTabId;
 
+			$class_mask = array(1 => 1, 2 => 2, 3 => 4, 4 => 8, 5 => 16, 6 => 32, 7 => 64, 8 => 128, 9 => 256, 11 => 1024);
+
 			selectdb("wcf");
-			$tab_set = db_assoc(db_query("SELECT `id` FROM ".DB_TALENT_TAB." WHERE `class_mask` & 1<<($class-1) ORDER BY `tab`"));
-			reset($tab_set);
-			$tab_set = current($tab_set);
+			$result = db_query("SELECT `id` FROM ".DB_TALENT_TAB." WHERE `class_mask`='".$class_mask[$class]."' ORDER BY `tab`");
+			$tab_set_count = 3; $i=0;
+
+			while ($data = db_assoc($result))
+				{
+					$tab_set[$i] = $data['id'];
+					$i++;
+				}
+
 			if (!$tab_set) { return; }
 
 			$bild = "";
-			$result = db_query("SELECT `TalentID`, `TalentTab` AS ARRAY_KEY_1, `Row` AS ARRAY_KEY_2, `Col` AS ARRAY_KEY_3, `Rank_1`, `Rank_2`, `Rank_3`, `Rank_4`, `Rank_5` FROM ".DB_TALENTS." WHERE `TalentTab` IN ($tab_set) ORDER BY `TalentTab`, `Row`, `Col`");
-			while ($data = db_array($result))
+			for ($i=0; $i<$tab_set_count; $i++)
 				{
-					$tinfo['ARRAY_KEY_1']['ARRAY_KEY_2']['ARRAY_KEY_2'] = array(
+					$result = db_query("SELECT `TalentID`, `TalentTab` AS ARRAY_KEY_1, `Row` AS ARRAY_KEY_2, `Col` AS ARRAY_KEY_3, `Rank_1`, `Rank_2`, `Rank_3`, `Rank_4`, `Rank_5` FROM ".DB_TALENTS." WHERE `TalentTab`='".$tab_set[$i]."' ORDER BY `TalentTab`, `Row`, `Col`");
+					while ($data = db_array($result))
+						{
+							$tinfo['ARRAY_KEY_1']['ARRAY_KEY_2']['ARRAY_KEY_2'] = array(
 									"TalentID" => $data['TalentID'],
 									"Rank_1" => $data['Rank_1'],
 									"Rank_2" => $data['Rank_2'],
 									"Rank_3" => $data['Rank_3'],
 									"Rank_4" => $data['Rank_4'],
 									"Rank_5" => $data['Rank_5'],
-					);
+							);
+						}
 				}
+
 			$points = array(0, 0, 0);
 			$total  = 0;
 			$max = 0;
 			$name = "Undefined";
 
 			selectdb("characters_r".$_SESSION['realmd_id']);
-			//$tab = $tab_set;
-			foreach($tab_set as $i=>$tab)
-			//for ($i=0; $i<=2; $i++)
+
+			//foreach($tab_set as $i=>$tab)
+			/*for ($i=0; $i<=$tab_set_count; $i++)
 				{
-					foreach($tinfo[$tab] as $row=>$rows)
+					foreach($tinfo[$tab_set[$i]] as $row=>$rows)
 						{
 							foreach($rows as $col=>$data)
 								{
 									$rank = db_assoc(db_query("SELECT `current_rank`  FROM `character_talent` WHERE `guid`='$guid' and `spec`='$spec' AND `talent_id`='".$data['TalentID']."'"));
-							if ($rank) echo"1"; else echo"2";
+
 									if (isset($rank)) { ++$rank; } else { $rank = 0; }
 									$bild .= $rank;
 									$points[$i]+=$rank;
 									$total+=$rank;
 								}
 						}
-					if ($points[$i] > $max) { $max = $points[$i]; $name = get_talent_name($tab); }
+					if ($points[$i] > $max) { $max = $points[$i]; $name = get_talent_name($tab_set[$i]); }
 				}
-			return array('calc_bild'=>$bild, 'points'=>$points, 'total'=>$total, 'name'=>$name);
+			return array('calc_bild'=>$bild, 'points'=>$points, 'total'=>$total, 'name'=>$name);*/
 		}
 
 	function include_talent_script($class, $petId, $maxLevel, $header, $ver = "335")
