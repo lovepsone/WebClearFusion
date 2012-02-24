@@ -146,7 +146,7 @@
 			echo"<tr><td colspan='5'><hr></td></tr>";
 
 			selectdb("wcf");
-			$result = db_query("SELECT * FROM ".DB_NAVIGATION_LINKS." ORDER BY `link_order`");
+			$result = db_query("SELECT * FROM ".DB_NAVIGATION_LINKS." WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`");
 			if (db_num_rows($result))
 				{
 					$i = 0; $k = 1;
