@@ -3,7 +3,7 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
-| Filename: protect.php
+| Filename: include_protect.php
 | Author: Кот_ДаWINчи
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 

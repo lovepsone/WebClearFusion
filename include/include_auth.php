@@ -3,7 +3,7 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
-| Filename: auth.php
+| Filename: include_auth.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 

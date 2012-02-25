@@ -3,7 +3,7 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
-| Filename: access_list.php
+| Filename: include_access_list.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 

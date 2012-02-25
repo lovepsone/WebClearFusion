@@ -42,7 +42,7 @@
 	//=============================================================================================================
 	// Запускаем основные функции и многоузловое определение\Run the basic functions and determination of multisite
 	//=============================================================================================================
-	require_once BASEDIR."include/multi_site.php";
+	require_once BASEDIR."include/include_multi_site.php";
 	require_once BASEDIR."include/functions_files.php";
 	require_once BASEDIR."include/functions_img.php";
 	require_once BASEDIR."include/functions_mysql.php";
@@ -50,7 +50,7 @@
 	require_once BASEDIR."include/functions_text_process.php";
 	require_once BASEDIR."include/functions_theme.php";
 	require_once BASEDIR."include/functions_users.php";
-	require_once BASEDIR."include/access_list.php";
+	require_once BASEDIR."include/include_access_list.php";
 
 	//=============================================================================================================
 	// Запускаем дополнительные функции и данные\Run additional features and data
@@ -93,8 +93,8 @@
 	$config['namber_realmd'] = db_num_rows(db_query("SELECT * FROM `realmlist`"));
 	$config['defult_realmd_id'] = db_result(db_query("SELECT `id` FROM `realmlist`"),0);
 
-	require_once BASEDIR."include/auth.php";
-	require_once BASEDIR."include/protect.php";
+	require_once BASEDIR."include/include_auth.php";
+	require_once BASEDIR."include/include_protect.php";
 
 	//=============================================================================================================
 	// Выбор нужной кодировки\When choosing a character encoding
