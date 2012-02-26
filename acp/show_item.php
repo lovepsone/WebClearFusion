@@ -16,7 +16,7 @@
 	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']) || !isset($_SESSION['realmd_id'])) { redirect(BASEDIR); }
 
 	$ajaxmode = 0;
-	$str = isset(@$_REQUEST['item']) ? @$_REQUEST['item'] : "";
+	$str = isset($_REQUEST['item']) ? @$_REQUEST['item'] : "";
 
 	if (substr($str,0,1) == 'g')
 		{
