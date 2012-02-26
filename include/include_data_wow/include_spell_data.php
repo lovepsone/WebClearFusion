@@ -917,7 +917,7 @@ function getBasePointDesc($spell, $index)
 									$spellData = @$cacheSpellData[$lookup];
 								}
 			
-							if ($spellData && $base = @$spellData[strtolower($var)])
+							if ($spellData && $base = (isset($spellData[strtolower($var)]) ? @$spellData[strtolower($var)] : ""))
 								{
 									if ($op && is_numeric($oparg) && is_numeric($base))
 										{
