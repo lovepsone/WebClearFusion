@@ -14,7 +14,7 @@
 	require_once THEMES."templates/acp_header.php";
 
 	$ajaxmode = 0;
-	$str = @$_REQUEST['item'];
+	$str = isset(@$_REQUEST['item']) ? @$_REQUEST['item'] : "";
 
 	if (substr($str,0,1) == 'g')
 		{
