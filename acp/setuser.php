@@ -11,6 +11,6 @@
 +--------------------------------------------------------*/
 
 	require_once "../maincore.php";
-	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR'])) { redirect(BASEDIR); }
+	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']) || !isset($_SESSION['realmd_id'])) { redirect(BASEDIR); }
 	redirect("../setuser.php?action=out_acp");
 ?>
