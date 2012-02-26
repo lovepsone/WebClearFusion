@@ -641,7 +641,7 @@
 			return $data;
 		}
 
-	function get_daction_template_name($faction_id)
+	function get_faction_template_name($faction_id)
 		{
 			if ($faction_id == 0) { return 0; }
 			if ($faction_template = get_faction_template($faction_id))
