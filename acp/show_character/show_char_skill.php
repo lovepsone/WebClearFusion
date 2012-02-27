@@ -38,7 +38,7 @@
 			if ($skillcount)
 				{
 					selectdb("characters_r".$_SESSION['realmd_id']);
-					$result = db_query("SELECT * FROM `character_skills` WHERE `guid`=$guid");
+					$result = db_query("SELECT * FROM `character_skills` WHERE `guid`='$guid'");
 
 					while ($data = db_array($result))
  						{
@@ -89,7 +89,7 @@
       								{
         								if ($skill['Description'] != "")
 										{
-		  									$tip = "<table class='skilltip'><tr class='top'><td>".$skill['Name']."</td></tr><tr><td>".$skill['Description']."</td></tr></table>";
+		  									$tip = "<table class=skilltip><tr class=top><td>".$skill['Name']."</td></tr><tr><td>".$skill['Description']."</td></tr></table>";
           										echo"<tr ".add_tooltip($tip,'BORDER, false, STICKY, false').">";
         									}
 									else { echo"<tr>"; }
