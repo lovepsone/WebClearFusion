@@ -50,7 +50,7 @@
 				{
 					if ($t['details'])
 						{
-							$tip = "<table class='skilltip'><tr class='top'><td>".$t['name']."</td></tr><tr><td>".$t['details']."</td></tr></table>";
+							$tip = "<table class=skilltip><tr class=top><td>".$t['name']."</td></tr><tr><td>".$t['details']."</td></tr></table>";
 							echo"<tr ".add_tooltip($tip, 'STICKY, false, BORDER, false').">";
 						}
 					else echo"<tr>";
