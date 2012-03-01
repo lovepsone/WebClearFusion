@@ -539,7 +539,7 @@
   			if (!$iconId) { $iconId = db_assoc(db_query("SELECT `SpellIconID` FROM ".DB_SPELL." WHERE `id`='".$entry."'")); }
 
   			$icon = get_spell_icon($iconId['SpellIconID']);
-  			echo"<a href='".ACP."show_item.php?spell=".$entry."'><img".($style?' class='.$style:'')." src='".$icon."'></a>";
+  			echo"<a href='".ACP."show_spell.php?spell=".$entry."'><img".($style?' class='.$style:'')." src='".$icon."'></a>";
   			return;
 		}
 

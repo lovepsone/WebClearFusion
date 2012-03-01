@@ -463,174 +463,236 @@ $gSpellAuraName = array(
 	'283'=>"MOD_HEALING_RECEIVED"
 );
 
-function getSpellFamilyNames()
-{
-  global $wDB;
-  return $wDB->selectCol('-- CACHE: 1h
-  SELECT `spell_family` AS ARRAY_KEY, `name` FROM `wowd_chr_classes`');
-}
+	function get_spell_family_names()
+		{
+			selectdb("wcf");
+			$result = db_query("SELECT `spell_family` AS ARRAY_KEY, `name` FROM ".DB_CHR_CLASSES);
+			$data = array();
+			while ($mas_data = db_array($result))
+				{
+					$data[$mas_data['ARRAY_KEY']] = $mas_data['name'];
+				}
+			return $data;
+		}
 
-function getSpellFamilyName($i)
-{
-  $l = getSpellFamilyNames();
-  return isset($l[$i]) ? $l[$i] : 'Family_'.$i;
-}
+	function get_spell_family_name($i)
+		{
+			$l = get_spell_family_names();
+			return isset($l[$i]) ? $l[$i] : 'Family_'.$i;
+		}
 
-function getRatingList($mask)
-{
-  global $gRatingNames;
-  return getListFromArray_1($gRatingNames, $mask);
-}
+	function get_rating_list($mask)
+		{
+			global $gRatingNames;
+			return get_list_from_array_1($gRatingNames, $mask);
+		}
 
-function getSpellRange($id)
-{
-  global $wDB;
-  return $wDB->selectRow("-- CACHE: 1h
-  SELECT * FROM `wowd_spell_range` WHERE `id` = ?d", $id);
-}
+	function get_spell_range($id)
+		{
+			$data = db_assoc(db_query("SELECT * FROM ".DB_SPELL_RANGE." WHERE `id`='".$id."'"));
+			return $data;
+		}
 
-function getRange($index)
-{
-  $range = getSpellRange($index);
-  if ($range == 0)
-    return "Err index $index";
+	function get_range($index)
+		{
+			$range = get_spell_range($index);
+			if ($range == 0) { return "Err index $index"; }
 
-  if ($range['minRange']==0 OR $range['minRange']==$range['maxRange'])
-    return $range['maxRange'];
-  return $range['minRange'].' - '.$range['maxRange'];
-}
+			if ($range['minRange']==0 OR $range['minRange']==$range['maxRange'])
+				{
+					return $range['maxRange'];
+				}
+			else
+				{
+					return $range['minRange'].' - '.$range['maxRange'];
+				}
+		}
 
-function getRangeText($index)
-{
-  $range =  getSpellRange($index);
-  if ($range == 0)
-    return "Err index $index";
+	function get_range_text($index)
+		{
+			$range = get_spell_range($index);
+			if ($range == 0) { return "Err index $index"; }
 
-  if ($range['minRange']==0 OR $range['minRange']==$range['maxRange'])
-    return $range['maxRange'].' yds ('.$range['name'].')';
-  return $range['minRange'].' - '.$range['maxRange'].' yds ('.$range['name'].')';
-}
+			if ($range['minRange']==0 OR $range['minRange']==$range['maxRange'])
+				{
+					return $range['maxRange'].' yds ('.$range['name'].')';
+				}
+			else
+				{
+					return $range['minRange'].' - '.$range['maxRange'].' yds ('.$range['name'].')';
+				}
+		}
 
-//*****************************************
-// Totem Category
-//*****************************************
-function getTotemCategory($i, $as_ref=1)
-{
-  global $wDB;
-  $gTotemCategory = $wDB->selectCol('-- CACHE: 1h
-  SELECT `id` AS ARRAY_KEY, `name` FROM `wowd_totem_category`');
+	//*****************************************
+	// Totem Category
+	//*****************************************
+	function get_totem_category($i, $as_ref=1)
+		{
+			selectdb("wcf");
+			$result = db_query("SELECT `id` AS ARRAY_KEY, `name` FROM ".DB_TOTEM_CAT);
+			$data = array();
+			while ($mas_data = db_array($result))
+				{
+					$data[$mas_data['ARRAY_KEY']] = $mas_data['name'];
+				}
 
-  $name = @$gTotemCategory[$i];
-  if ($name == "")
-      $name = "Category_$i";
-  if ($as_ref)
-      return "<a href=\"?s=i&totem=$i\">".$name."</a>";
-  return $name;
-}
+			$name = @$data[$i];
+			if ($name == "") { $name = "Category_$i"; }
+			if ($as_ref)
+				{
+					return "<a href=\"?s=i&totem=$i\">".$name."</a>";
+				}
+			else
+				{
+					return $name;
+				}
+		}
 
-function getRuneName($i)
-{
-  global $gRuneName;
-  if (empty($gRuneName[$i]))
-    return "Rune_".$i;
-  return $gRuneName[$i];
-}
+	function get_rune_name($i)
+		{
+			global $gRuneName;
+			if (empty($gRuneName[$i])) { return "Rune_".$i; } else { return $gRuneName[$i]; }
+		}
 
-function getTargetsList($mask)
-{
-  global $gTargetsList;
-  return getListFromArray_1($gTargetsList, $mask);
-}
+	function get_targets_list($mask)
+		{
+			global $gTargetsList;
+			return get_list_from_array_1($gTargetsList, $mask);
+		}
 
-//***************************************
-// Form functions
-//***************************************
-function getFormNames()
-{
-    global $wDB;
-	return $wDB->selectCol('-- CACHE: 1h
-	SELECT `id` AS ARRAY_KEY, `name` FROM `wowd_spell_shapeshift`');
-}
+	//***************************************
+	// Form functions
+	//***************************************
+	function get_form_names()
+		{
+			selectdb("wcf");
+			$result = db_query("SELECT `id` AS ARRAY_KEY, `name` FROM ".DB_SPELL_SHAPESSHIFT);
+			$data = array();
+			while ($mas_data = db_array($result))
+				{
+					$data[$mas_data['ARRAY_KEY']] = $mas_data['name'];
+				}
+			return $data;
+		}
 
-function getForm($i, $as_ref=1)
-{
-  $gSpellSnapeshiftForm = getFormNames();
-  $name = @$gSpellSnapeshiftForm[$i];
-  if ($name == "") $name = "Form_$i";
-  if ($as_ref)
-      return "<a href=\"?s=s&form=$i\">".$name."</a>";
-  return $name;
-}
+	function get_form($i, $as_ref=1)
+		{
+			$gSpellSnapeshiftForm = get_form_names();
+			$name = @$gSpellSnapeshiftForm[$i];
+			if ($name == "") { $name = "Form_$i"; }
+			if ($as_ref)
+				{
+					return "<a href=\"?s=s&form=$i\">".$name."</a>";
+				}
+			else
+				{
+					return $name;
+				}
+		}
 
-function getAllowableForm($mask, $as_ref=1)
-{
-  $gSpellSnapeshiftForm = getFormNames();
-  if ($as_ref)
-      return getListFromArray_1($gSpellSnapeshiftForm, $mask, "?s=s&form=%d");
-  return getListFromArray_1($gSpellSnapeshiftForm, $mask);
-}
+	function get_allowable_form($mask, $as_ref=1)
+		{
+			$gSpellSnapeshiftForm = get_form_names();
+			if ($as_ref)
+				{
+					return get_list_from_array_1($gSpellSnapeshiftForm, $mask, "?s=s&form=%d");
+				}
+			else
+				{
+					return get_list_from_array_1($gSpellSnapeshiftForm, $mask);
+				}
+		}
 
-function getCategoryName($i, $as_ref=1)
-{
-  if ($as_ref)
-    return "<a href=\"?s=s&cat=$i\">".$i."</a>";
-  return "$i";
-}
+	function get_category_name($i, $as_ref=1)
+		{
+			if ($as_ref)
+				{
+					return "<a href=\"?s=s&cat=$i\">".$i."</a>";
+				}
+ 			else
+				{
+					return "$i";
+				}
+		}
 
-function getPowerTypeName($index)
-{
-  global $gSpellPowerType;
-  if ($index >= 0 && $index < 5)
-    return $gSpellPowerType[$index];
-  return $gSpellPowerType[-1];
-}
+	function get_power_type_name($index)
+		{
+			global $gSpellPowerType;
 
-function getSpellEffectName($i)
-{
-  global $gSpellEffect;
-  return $gSpellEffect[$i];
-}
+			if ($index >= 0 && $index < 5)
+				{
+					return $gSpellPowerType[$index];
+				}
+			else
+				{
+					return $gSpellPowerType[-1];
+				}
+		}
 
-function getSpellAuraName($i)
-{
-  global $gSpellAuraName;
-  return $gSpellAuraName[$i];
-}
+	function get_spell_effect_name($i)
+	{
+		global $gSpellEffect;
+		return $gSpellEffect[$i];
+	}
 
-function getSpellModName($i)
-{
-  global $gSpellModsType;
-  return $gSpellModsType[$i];
-}
+	function get_spell_aura_name($i)
+		{
+  			global $gSpellAuraName;
+  			return $gSpellAuraName[$i];
+		}
 
-function getDispelName($i, $as_ref=1)
-{
-  global $wDB;
-  $d = $wDB->selectCol('-- CACHE: 1h
-  SELECT `id` AS ARRAY_KEY, `name` FROM `wowd_spell_dispel_type`');
-  $name = isset($d[$i]) ? $d[$i] : 'Dispell_'.$i;
-  if ($as_ref && $i)
-      return "<a href=\"?s=s&dispel=$i\">$name</a>";
-  return $name;
-}
+	function get_spell_mod_name($i)
+		{
+			global $gSpellModsType;
+			return $gSpellModsType[$i];
+		}
 
-function getMechanicName($i, $as_ref=1)
-{
-  global $gSpellMechanic;
-  $name = @$gSpellMechanic[$i];
-  if (!$name) $name = "Mechanic_$i";
-  if ($as_ref && $i)
-      return "<a href=\"?s=s&mech=$i\">$name</a>";
-  return $name;
-}
+	function get_dispel_name($i, $as_ref=1)
+		{
+			selectdb("wcf");
+			$result = db_query("SELECT `id` AS ARRAY_KEY, `name` FROM ".DB_SPELL_DISPEL_TYPE);
+			$data = array();
+			while ($mas_data = db_array($result))
+				{
+					$data[$mas_data['ARRAY_KEY']] = $mas_data['name'];
+				}
+			$name = isset($data[$i]) ? $data[$i] : 'Dispell_'.$i;
+			if ($as_ref && $i)
+				{
+					return "<a href=\"?s=s&dispel=$i\">$name</a>";
+				}
+			else
+				{
+					return $name;
+				}
+		}
 
-function getLaungageName($i)
-{
-  global $wDB;
-  $l = $wDB->selectCol('-- CACHE: 1h
-  SELECT `id` AS ARRAY_KEY, `name` FROM `wowd_languages`');
-  return isset($l[$i]) ? $l[$i] : 'Laungage_'.$i;
-}
+	function get_mechanic_name($i, $as_ref=1)
+		{
+			global $gSpellMechanic;
+			$name = @$gSpellMechanic[$i];
+			if (!$name) { $name = "Mechanic_$i"; }
+			if ($as_ref && $i)
+				{
+					return "<a href=\"?s=s&mech=$i\">$name</a>";
+				}
+			else
+				{
+					return $name;
+				}
+		}
+
+	function get_laungage_name($i)
+		{
+			selectdb("wcf");
+			$result = db_query("SELECT `id` AS ARRAY_KEY, `name` FROM ".DB_LANGUAGES);
+			$data = array();
+			while ($mas_data = db_array($result))
+				{
+					$data[$mas_data['ARRAY_KEY']] = $mas_data['name'];
+				}
+			return isset($data[$i]) ? $data[$i] : 'Laungage_'.$i;
+		}
 
 	function get_School($i)
 		{
@@ -640,17 +702,17 @@ function getLaungageName($i)
   			return $name;
 		}
 
-function getSpellSchool($mask)
-{
-  global $gSpellSchool;
-  return getListFromArray_0($gSpellSchool, $mask);
-}
+	function get_spell_school($mask)
+		{
+			global $gSpellSchool;
+			return get_list_from_array_0($gSpellSchool, $mask);
+		}
 
-function getSpellDamageClass($i)
-{
-  global $gDmgClass;
-  return $gDmgClass[$i];
-}
+	function get_spell_damage_class($i)
+		{
+			global $gDmgClass;
+			return $gDmgClass[$i];
+		}
 
 	function get_spell($spell_id, $fields="*")
 		{
@@ -659,26 +721,38 @@ function getSpellDamageClass($i)
 			return $data;
 		}
 
-function getSpellName($spell, $as_ref=1)
-{
-  if ($spell)
-  {
-    $name = $spell['SpellName'];
-    if ($as_ref)
-        $name = "<a href=\"?spell=$spell[id]\">".$name."</a>";
-    if ($spell['Rank']!="")
-        $name.="<br><div class=srank>".$spell['Rank']."</div>";
-    return $name;
-  }
-  return "No spell";
-}
+	function get_spell_name($spell, $as_ref=1)
+		{
+			if ($spell)
+				{
+					$name = $spell['SpellName'];
+    					if ($as_ref)
+						{
+							$name = "<a href=\"?spell=$spell[id]\">".$name."</a>";
+						}
+					if ($spell['Rank'] != "")
+						{
+							$name.="<br><div class=srank>".$spell['Rank']."</div>";
+						}
+					return $name;
+ 				}
+			else
+				{
+					return "No spell";
+				}
+		}
 
-function getSpellNameFromId($spellId, $as_ref=1)
-{
-  if ($spell = getSpell($spellId))
-    return getSpellName($spell, $as_ref);
-  return "Err spell $spellId";
-}
+	function get_spell_name_from_id($spellId, $as_ref=1)
+		{
+			if ($spell = get_spell($spellId))
+				{
+					return get_spell_name($spell, $as_ref);
+				}
+			else
+				{
+					return "Err spell $spellId";
+				}
+		}
 
 	function get_spell_duration_data($durationIndex)
 		{
@@ -687,32 +761,39 @@ function getSpellNameFromId($spellId, $as_ref=1)
 			return $data;
 		}
 
-function getSpellDuration($spell)
-{
-  if ($spell['DurationIndex'])
-   if ($spell_duration = getSpellDurationData($spell['DurationIndex']))
-     return  $spell_duration['duration_1']/1000;
-  return '';
-}
+	function get_spell_duration($spell)
+		{
+			if ($spell['DurationIndex'])
+				{
+					if ($spell_duration = get_spell_duration_data($spell['DurationIndex']))
+						{
+							return  $spell_duration['duration_1']/1000;
+						}
+				}
+			else
+				{
+					return "";
+				}
+		}
 
-function getSpellDurationText($spell)
-{
-  if ($spell['DurationIndex'])
-  {
-   if ($spell_duration = getSpellDurationData($spell['DurationIndex']))
-   {
-     if ($spell_duration['duration_1'] == -1)
-         return "Unlimited";
-//     if ($spell_duration['duration_1'] == ($spell_duration['duration_3'])
-//         return getTimeText($spell_duration['duration_1']/1000);
-     // TODO fix it
-     return  getTimeText($spell_duration['duration_1']/1000);
-   }
-   else
-     return "Err index ".$spell['DurationIndex'];
-  }
-  return "";
-}
+	function get_spell_duration_text($spell)
+		{
+			if ($spell['DurationIndex'])
+				{
+					if ($spell_duration = get_spell_duration_data($spell['DurationIndex']))
+						{
+							if ($spell_duration['duration_1'] == -1) { return "Unlimited"; }
+							//if ($spell_duration['duration_1'] == ($spell_duration['duration_3']) { return get_time_text($spell_duration['duration_1']/1000); }
+							// TODO fix it
+							return  get_time_text($spell_duration['duration_1']/1000);
+						}
+					else
+						{
+							return "Err index ".$spell['DurationIndex'];
+						}
+				}
+			return "";
+		}
 
 	function get_spell_radius($id)
 		{
@@ -736,53 +817,59 @@ function getSpellDurationText($spell)
 				}
 		}
 
-function getRadiusText($index)
-{
-  return getRadius($index).' yds';
-}
+	function get_radius_text($index)
+		{
+			return get_radius($index).' yds';
+		}
 
-function getSpellCooldown($spell)
-{
-  if ($spell['RecoveryTime'] > $spell['CategoryRecoveryTime'])
-    return $spell['RecoveryTime'];
-  else
-    return $spell['CategoryRecoveryTime'];
-}
+	function get_spell_cooldown($spell)
+		{
+			if ($spell['RecoveryTime'] > $spell['CategoryRecoveryTime'])
+				{
+					return $spell['RecoveryTime'];
+				}
+			else
+				{
+					return $spell['CategoryRecoveryTime'];
+				}
+		}
 
-function getSpellCastTime($id)
-{
-  global $wDB;
-  return $wDB->selectRow("-- CACHE: 1h
-  SELECT * FROM `wowd_spell_cast_time` WHERE `id` = ?d", $id);
-}
+	function get_spell_cast_time($id)
+		{
+			selectdb("wcf");
+			$data = db_assoc(db_query("SELECT * FROM ".DB_SPELL_CAST_TIME." WHERE `id`='".$id."'"));
+			return $data;
+		}
 
-function getCastTimeText($spell)
-{
-  $cast_time = getSpellCastTime($spell['CastingTimeIndex']);
-  $time = @$cast_time['time_1']/1000;
-  if ($time)
-    return $time." sec cast";
-  else
-    return "Instant Cast";
-}
+	function get_cast_time_text($spell)
+		{
+			$cast_time = get_spell_cast_time($spell['CastingTimeIndex']);
+			$time = @$cast_time['time_1']/1000;
+			if ($time) { return $time." sec cast"; } else { return "Instant Cast"; }
+		}
 
-function getBasePointDesc($spell, $index)
-{
-  if (empty($spell))
-      return;
-  $s = $spell['EffectBasePoints_'.$index]+1;
-  if ($spell['EffectDieSides_'.$index] > 1)
-    $s.=" - ".abs($spell['EffectBasePoints_'.$index]+$spell['EffectDieSides_'.$index]);
+	function get_base_point_desc($spell, $index)
+		{
+			if (empty($spell)) { return; }
+			$s = $spell['EffectBasePoints_'.$index]+1;
+			if ($spell['EffectDieSides_'.$index] > 1)
+				{
+					$s.=" - ".abs($spell['EffectBasePoints_'.$index]+$spell['EffectDieSides_'.$index]);
+				}
 
-  if ($spell['EffectRealPointsPerLevel_'.$index])
-    $s.=" + lvl*".$spell['EffectRealPointsPerLevel_'.$index];
-// ”величивает только макс рандомное значение
-// if ($spell['EffectDicePerLevel_'.$index])
-//   $s.=" + lvl*".$spell['EffectDicePerLevel_'.$index];
-  if ($spell['EffectPointsPerComboPoint_'.$index])
-    $s." + combo*".$spell['EffectPointsPerComboPoint_'.$index];
-  return $s;
-}
+			if ($spell['EffectRealPointsPerLevel_'.$index])
+				{
+					$s.=" + lvl*".$spell['EffectRealPointsPerLevel_'.$index];
+				}
+			// ”величивает только макс рандомное значение
+			//if ($spell['EffectDicePerLevel_'.$index]) { $s.=" + lvl*".$spell['EffectDicePerLevel_'.$index]; }
+
+			if ($spell['EffectPointsPerComboPoint_'.$index])
+				{
+					$s." + combo*".$spell['EffectPointsPerComboPoint_'.$index];
+				}
+			return $s;
+		}
 
 	function get_spell_data($spell)
 		{
@@ -944,12 +1031,12 @@ function getBasePointDesc($spell, $index)
 			return($str);//."<br /><br />".$text;
 		}
 
-function my_relpace($matches)
-{
-    $text = str_replace( array('[',']'), array('', ''), $matches[0]);
-    eval("\$text = abs(".$text.");");
-    return intval($text);
-}
+	function my_relpace($matches)
+		{
+			$text = str_replace( array('[',']'), array('', ''), $matches[0]);
+			eval("\$text = abs(".$text.");");
+			return intval($text);
+		}
 
 	function get_spell_desc($spell)
 		{
@@ -963,11 +1050,17 @@ function my_relpace($matches)
 				}
 		}
 
-function getSpellBuff($spell)
-{
-  if ($spell['ToolTip']=="") return "";
-  return spellReplace($spell, $spell['ToolTip']);
-}
+	function get_spell_buff($spell)
+		{
+			if ($spell['ToolTip'] == "")
+				{
+					return "";
+				}
+			else
+				{
+					return spell_replace($spell, $spell['ToolTip']);
+				}
+		}
 
 	function get_spell_details($spell_id)
 		{
@@ -982,26 +1075,31 @@ function getSpellBuff($spell)
 				}
 		}
 
-function getSpellCostText($spell)
-{
-  // «аполн€ем стоимость заклинани€
-  $powerType = getPowerTypeName($spell['powerType']);
-  $powerCost = "";
-  if ($spell['AttributesEx'] & 2)
-    $powerCost = "Uses 100% ".$powerType;
-  else
-  {
-    if ($spell['ManaCostPercentage'])
-      $powerCost = $spell['ManaCostPercentage']."% of base";
-    else if ($spell['manaCost'])
-      $powerCost = $spell['manaCost'];
-    if ($powerCost)
-    {
-      $powerCost.= " ".$powerType;
-      if ($spell['manaPerSecond'])
-        $powerCost.= " plus ".$spell['manaPerSecond']." per sec";
-    }
-  }
-  return $powerCost;
-}
+	function get_spell_cost_text($spell)
+		{
+			// «аполн€ем стоимость заклинани€
+			$powerType = get_power_type_name($spell['powerType']);
+			$powerCost = "";
+			if ($spell['AttributesEx'] & 2)
+				{
+					$powerCost = "Uses 100% ".$powerType;
+				}
+			else
+				{
+					if ($spell['ManaCostPercentage'])
+						{
+							$powerCost = $spell['ManaCostPercentage']."% of base";
+						}
+					elseif ($spell['manaCost'])
+						{
+							$powerCost = $spell['manaCost'];
+						}
+					if ($powerCost)
+						{
+							$powerCost.= " ".$powerType;
+							if ($spell['manaPerSecond']) { $powerCost.= " plus ".$spell['manaPerSecond']." per sec"; }
+						}
+				}
+			return $powerCost;
+		}
 ?>
