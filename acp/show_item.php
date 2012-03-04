@@ -78,6 +78,7 @@
 							echo"</table></td></tr>";
    						}
 				}
+			create_report_tab();
 		}
 
 	closetable();

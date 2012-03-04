@@ -149,19 +149,20 @@ class ReportGenerator{
             if (!$this->disable_mark) addTab($tabName, $this->mark);
         }
     }
-    // Remove column if all data zero
-    function removeIfAllZero($fname, $field)
-    {
-        $set = 0;
-        foreach($this->data_array as &$v) if (!isset($v[$fname]) OR $v[$fname]) {$set = 1;break;}
-        if (!$set) $this->removeField($field);
-    }
-    // Remove field
-    function removeField($name)
-    {
-        if ($id = array_search($name, $this->fields))
-            unset($this->fields[$id]);
-    }
+	// Remove column if all data zero
+	function remove_if_all_zero($fname, $field)
+		{
+			$set = 0;
+			foreach($this->data_array as &$v) { if (!isset($v[$fname]) OR $v[$fname]) { $set = 1;break; } }
+			if (!$set) { $this->remove_field($field); }
+		}
+
+	// Remove field
+	function remove_field($name)
+		{
+			if ($id = array_search($name, $this->fields)) { unset($this->fields[$id]); }
+		}
+
     // Expand placeholders func
     function expandPlaceholdersCallback($m)
     {
@@ -198,7 +199,7 @@ class ReportGenerator{
         return $this->_doPlaceholders(array_pop($this->query_args));
     }
     // Database depend requirest generator
-    function doRequirest($where)
+    function do_requirest($where)
     {
         global $config;
         $locale = $config['locales_lang'];
@@ -272,8 +273,8 @@ class ReportGenerator{
 		{
 			global $tab_mode, $config, $ajaxmode;
 			if(!$config['use_tab_mode'] || $ajaxmode) { return; }
-			echo"<script type='text/javascript'>".report_hideHeaders()."</script>";
-			echo"<br><ul class='my_tabs' id='report_tabs'></ul>";
+			echo'<script type="text/javascript">report_hideHeaders()</script>';
+			echo'<br><ul class=my_tabs id="report_tabs"></ul>';
 			$tab_mode = 1; // First page select
 		}
 
@@ -594,158 +595,184 @@ class LootReportGenerator extends ReportGenerator{
 	//=================================================================
 	// Item report functions and methods
 	//=================================================================
-function r_itemIcon($data) {echo text_show_item($data['entry'], $data['displayid']);}
-function r_itemName($data)
-{
-  global $Quality;
-  echo '<a class="'.$Quality[$data['Quality']].'" href="?item='.$data['entry'].'">'.(@$data['name_loc']?$data['name_loc']:$data['name']).'</a>';
-}
-function r_itemLevel($data)   {echo $data['ItemLevel'];}
-function r_itemReqLevel($data){echo $data['RequiredLevel'];}
-function r_itemGemProp($data) {echo ($data['GemProperties']?getGemProperties($data['GemProperties']):'n/a');}
-function r_itemArmor($data)   {echo $data['armor'];}
-function r_itemBlock($data)   {echo $data['block'];}
-function r_itemDPS($data)     {echo $data['dps'] != 0 ? number_format($data['dps'], 2, '.', ''):'n/a';}
-function r_itemAmmoDPS($data) {echo $data['adps'] != 0 ? number_format($data['adps'], 2, '.', ''):'n/a';}
-function r_itemSpeed($data)   {echo number_format($data['delay']/1000.00, 2, '.', '');}
-function r_itemSlots($data)   {echo $data['ContainerSlots'].' slot';}
-function r_itemDesc($data)    {echo (@$data['description_loc']?$data['description_loc']:$data['description']);}
-function r_itemSClass($data)  {echo getSubclassName($data['class'], $data['subclass'], 0);}
-function r_itemInvType($data) {echo getInventoryType($data['InventoryType'], 0);}
-function r_itemRecipe($data)  {$ritem = getRecipeItem($data); echo ($ritem ? text_show_item($ritem['entry'], $ritem['displayid']):'-');}
-function r_itemSpells($data)
-{
-  global $UseorEquip;
-  for ($i=1;$i<=5;$i++)
-  {
-    if ($id = $data['spellid_'.$i])
-      if ($desc = get_spell_details($id))
-        echo '<a href="?spell='.$id.'">'.$UseorEquip[$data['spelltrigger_'.$i]].' '.$desc.'</a><br>';
-  }
-}
-function r_itemRepRank($data) {echo $data['RequiredReputationFaction']?getReputationRankName($data['RequiredReputationRank']):'n/a';}
-function r_itemFlag($data)    {echo dechex($data['Flags']);}
+	function r_item_icon($data) {echo text_show_item($data['entry'], $data['displayid']);}
+	function r_item_name($data)
+		{
+			global $Quality;
+			echo '<a class="'.$Quality[$data['Quality']].'" href="?item='.$data['entry'].'">'.(@$data['name_loc']?$data['name_loc']:$data['name']).'</a>';
+		}
+	function r_item_level($data)   {echo $data['ItemLevel'];}
+	function r_item_req_level($data){echo $data['RequiredLevel'];}
+	function r_item_gem_prop($data) {echo ($data['GemProperties']?getGemProperties($data['GemProperties']):'n/a');}
+	function r_item_armor($data)   {echo $data['armor'];}
+	function r_item_block($data)   {echo $data['block'];}
+	function r_item_DPS($data)     {echo $data['dps'] != 0 ? number_format($data['dps'], 2, '.', ''):'n/a';}
+	function r_item_ammo_DPS($data) {echo $data['adps'] != 0 ? number_format($data['adps'], 2, '.', ''):'n/a';}
+	function r_item_speed($data)   {echo number_format($data['delay']/1000.00, 2, '.', '');}
+	function r_item_slots($data)   {echo $data['ContainerSlots'].' slot';}
+	function r_item_desc($data)    {echo (@$data['description_loc']?$data['description_loc']:$data['description']);}
+	function r_item_s_class($data)  {echo getSubclassName($data['class'], $data['subclass'], 0);}
+	function r_item_inv_type($data) {echo getInventoryType($data['InventoryType'], 0);}
+	function r_item_recipe($data)  {$ritem = getRecipeItem($data); echo ($ritem ? text_show_item($ritem['entry'], $ritem['displayid']):'-');}
 
-// Vendor
-function r_vendorCost($data)
-{
-    $flags2 = getItemFlags2($data['entry']);
-  if ($data['ExtendedCost']>0)
-  {
-       $cost = getExtendCost($data['ExtendedCost']);
-       if ($flags2&ITEM_FLAGS2_EXT_COST_REQUIRES_GOLD)
-            echo money($data['BuyPrice']).''.r_excostCost($cost);
-    else
-      r_excostCost($cost);
-  }
-  else
-    echo money($data['BuyPrice']);
-}
-function r_vendorCount($data) {echo $data['sold_count']?$data['sold_count']:'∞';}
-function r_vendorTime($data)  {echo $data['incrtime']?getTimeText($data['incrtime']):'';}
+	function r_item_spells($data)
+		{
+			global $UseorEquip;
+			for ($i=1;$i<=5;$i++)
+				{
+					if ($id = $data['spellid_'.$i])
+						{
+							if ($desc = get_spell_details($id)) { echo '<a href="?spell='.$id.'">'.$UseorEquip[$data['spelltrigger_'.$i]].' '.$desc.'</a><br>'; }
+  						}
+				}
+		}
 
-// NPC report generator config
-$item_report = array(
-'ITEM_REPORT_ICON'       =>array('class'=>'i_ico','sort'=>'',        'text'=>'',                       'draw'=>'r_itemIcon',     'sort_str'=>'',                             'fields'=>'`displayid`'      ),
-'ITEM_REPORT_NAME'       =>array('class'=>'left', 'sort'=>'name',    'text'=>$lang['item_name'],       'draw'=>'r_itemName',     'sort_str'=>'`name`',                       'fields'=>'`Quality`, `name`'),
-'ITEM_REPORT_LEVEL'      =>array('class'=>'small','sort'=>'i_level', 'text'=>$lang['item_level'],      'draw'=>'r_itemLevel',    'sort_str'=>'`ItemLevel` DESC, `name`',     'fields'=>'`ItemLevel`'      ),
-'ITEM_REPORT_REQLEVEL'   =>array('class'=>'small','sort'=>'level',   'text'=>$lang['item_req_level'],  'draw'=>'r_itemReqLevel', 'sort_str'=>'`RequiredLevel` DESC, `name`', 'fields'=>'`RequiredLevel`'  ),
-'ITEM_REPORT_GEMPROPETY' =>array('class'=>'left', 'sort'=>'gem_prop','text'=>$lang['item_gem_details'],'draw'=>'r_itemGemProp',  'sort_str'=>'`GemProperties`',              'fields'=>'`GemProperties`'),
-'ITEM_REPORT_ARMOR'      =>array('class'=>'',     'sort'=>'armor',   'text'=>$lang['item_armor'],      'draw'=>'r_itemArmor',    'sort_str'=>'`armor` DESC',                 'fields'=>'`armor`'),
-'ITEM_REPORT_BLOCK'      =>array('class'=>'',     'sort'=>'block',   'text'=>$lang['item_block'],      'draw'=>'r_itemBlock',    'sort_str'=>'`block` DESC',                 'fields'=>'`block`'),
-'ITEM_REPORT_DPS'        =>array('class'=>'',     'sort'=>'dps',     'text'=>$lang['item_dps'],        'draw'=>'r_itemDPS',      'sort_str'=>'`dps` DESC',                   'fields'=>'(500*(`dmg_min1`+`dmg_max1`) / `delay`) AS `dps`'),
-'ITEM_REPORT_AMMO_DPS'   =>array('class'=>'',     'sort'=>'adps',    'text'=>$lang['item_dps'],        'draw'=>'r_itemAmmoDPS',  'sort_str'=>'`adps` DESC',                  'fields'=>'((`dmg_min1`+`dmg_max1`)/2) AS `adps`'),
-'ITEM_REPORT_SPEED'      =>array('class'=>'',     'sort'=>'speed',   'text'=>$lang['item_speed'],      'draw'=>'r_itemSpeed',    'sort_str'=>'`delay` DESC',                 'fields'=>'`delay`'),
-'ITEM_REPORT_NUM_SLOTS'  =>array('class'=>'',     'sort'=>'bag_slot','text'=>$lang['item_slot_num'],   'draw'=>'r_itemSlots',    'sort_str'=>'`ContainerSlots` DESC',        'fields'=>'`ContainerSlots`'),
-'ITEM_REPORT_DESCRIPTION'=>array('class'=>'left', 'sort'=>'desc',    'text'=>$lang['item_desc'],       'draw'=>'r_itemDesc',     'sort_str'=>'`description` DESC',           'fields'=>'`description`'),
-'ITEM_REPORT_SUBCLASS'   =>array('class'=>'',     'sort'=>'subclass','text'=>$lang['item_type'],       'draw'=>'r_itemSClass',   'sort_str'=>'`subclass` DESC',              'fields'=>'`class`, `subclass`'),
-'ITEM_REPORT_SLOTTYPE'   =>array('class'=>'',     'sort'=>'type',    'text'=>$lang['item_slot'],       'draw'=>'r_itemInvType',  'sort_str'=>'`InventoryType` DESC',         'fields'=>'`InventoryType`'),
-'ITEM_REPORT_RECIPE_ITEM'=>array('class'=>'i_ico','sort'=>'',        'text'=>'',                       'draw'=>'r_itemRecipe',   'sort_str'=>'',                             'fields'=>'`spellid_1`, `spellid_2`, `class`'),
-'ITEM_REPORT_SPELL'      =>array('class'=>'left', 'sort'=>'',        'text'=>$lang['item_spells'],     'draw'=>'r_itemSpells',   'sort_str'=>'', 'fields'=>'`spellid_1`, `spelltrigger_1`, `spellid_2`, `spelltrigger_2`, `spellid_3`, `spelltrigger_3`, `spellid_4`, `spelltrigger_4`, `spellid_5`, `spelltrigger_5`'),
-'ITEM_REPORT_REQREP_RANK'=>array('class'=>'',     'sort'=>'rep_rank','text'=>$lang['item_faction_rank'],'draw'=>'r_itemRepRank', 'sort_str'=>'`RequiredReputationRank` DESC', 'fields'=>'`RequiredReputationFaction`, `RequiredReputationRank`'),
-'ITEM_REPORT_FLAGS'      =>array('class'=>'',     'sort'=>'',        'text'=>'flag',                   'draw'=>'r_itemFlag',     'sort_str'=>'',                             'fields'=>'`Flags`'),
-// If set vendor class type
-'VENDOR_REPORT_COST'   =>array('class'=>'', 'sort'=>'cost',    'text'=>$lang['item_cost'],       'draw'=>'r_vendorCost',   'sort_str'=>'`ExtendedCost`, `BuyPrice`',   'fields'=>'`ExtendedCost`, `BuyPrice`'),
-'VENDOR_REPORT_COUNT'  =>array('class'=>'', 'sort'=>'count',   'text'=>$lang['item_count'],      'draw'=>'r_vendorCount',  'sort_str'=>'`sold_count`, `name`',         'fields'=>'`npc_vendor`.`maxcount` AS `sold_count`'),
-'VENDOR_REPORT_INCTIME'=>array('class'=>'', 'sort'=>'time',    'text'=>$lang['item_incrtime'],   'draw'=>'r_vendorTime',   'sort_str'=>'`incrtime`, `name`',           'fields'=>'`incrtime`'),
-// If set loot class type
-'LOOT_REPORT_CHANCE'=>array('class'=>'', 'sort'=>'chance', 'text'=>$lang['loot_chance'], 'draw'=>'r_lootChance', 'sort_str'=>'ABS(`ChanceOrQuestChance`) DESC, `name`', 'fields'=>'`ChanceOrQuestChance`, `mincountOrRef`'),
-'LOOT_REPORT_REQ'   =>array('class'=>'', 'sort'=>'',       'text'=>$lang['loot_require'],'draw'=>'r_lootRequire','sort_str'=>'', 'fields'=>'`lootcondition`, `condition_value1`, `condition_value2`'),
-);
+	function r_item_rep_rank($data) { echo $data['RequiredReputationFaction']?get_reputation_rank_name($data['RequiredReputationRank']):'n/a'; }
+	function r_item_flag($data)    { echo dechex($data['Flags']); }
 
-// Item localisation flags (for allow disable some fields localisation if need)
-define('ITEM_LOCALE_NAME', 0x01);
-define('ITEM_LOCALE_DESCRIPTION', 0x02);
-define('ITEM_LOCALE_ALL', ITEM_LOCALE_NAME | ITEM_LOCALE_DESCRIPTION);
+	// Vendor
+	function r_vendor_cost($data)
+		{
+    			$flags2 = get_item_flags2($data['entry']);
+			if ($data['ExtendedCost']>0)
+				{
+					$cost = get_extend_cost($data['ExtendedCost']);
+					if ($flags2&ITEM_FLAGS2_EXT_COST_REQUIRES_GOLD) { echo money($data['BuyPrice']).''.r_excost_cost($cost); } else { r_excost_cost($cost); }
+				}
+			else
+				{
+					echo money($data['BuyPrice']);
+				}
+		}
 
-// Item report class
-class ItemReportGenerator extends ReportGenerator{
- var $dolocale = ITEM_LOCALE_ALL;
- function ItemReportGenerator($type='')
- {
-  global $item_report, $dDB;
-  $this->db = &$dDB;
-     $this->column_conf =&$item_report;
-  $this->db_fields = '`item_template`.`entry`';
-  switch ($type){
-   case 'vendor' :   $this->table = '(`item_template` join `npc_vendor` ON `item_template`.`entry` = `npc_vendor`.`item`)'; break;
-   case 'loot':      $this->table = '(`item_loot_template` right join `item_template` ON `item_template`.`entry` = `item_loot_template`.`entry`)'; break;
-   case 'disenchant':$this->table = '(`disenchant_loot_template` right join `item_template` ON `item_template`.`DisenchantID` = `disenchant_loot_template`.`entry`)'; break;
-   case 'milling':   $this->table = '(`milling_loot_template` right join `item_template` ON `item_template`.`entry` = `milling_loot_template`.`entry`)'; break;
-   case 'prospect':  $this->table = '(`prospecting_loot_template` right join `item_template` ON `item_template`.`entry` = `prospecting_loot_template`.`entry`)'; break;
-   default:          $this->table = '`item_template`'; break;
-  }
- }
- function disableNameLocalisation() {$this->dolocale &= ~ITEM_LOCALE_NAME;}
- function localiseRequirest($locale, &$tables, &$fields, &$sort_str)
- {
-   $tables .= ' LEFT JOIN `locales_item` ON `item_template`.`entry` = `locales_item`.`entry`';
-   if ($this->dolocale & ITEM_LOCALE_NAME)
-   {
-    $fields  = str_replace('`name`','`name`, `locales_item`.`name_loc'.$locale.'` AS `name_loc`', $fields);
-    $sort_str = str_replace('`name`', '`name_loc`, `name`', $sort_str);
-   }
-   if ($this->dolocale & ITEM_LOCALE_DESCRIPTION)
-   {
-    $fields  = str_replace('`description`','`description`, `locales_item`.`description_loc'.$locale."` AS `description_loc`", $fields);
-    $sort_str = str_replace('`description` DESC', '`description_loc` DESC, `name` DESC', $sort_str);
-   }
- }
- function vendorItemList($entry)
- {
-   $this->doRequirest('`npc_vendor`.`entry` = ?d', $entry);
-   $this->removeIfAllZero('sold_count', 'VENDOR_REPORT_COUNT');
-   $this->removeIfAllZero('incrtime',   'VENDOR_REPORT_INCTIME');
- }
- function useSpell($entry)
- {
-   $this->doRequirest('(`spellid_1` = ?d OR `spellid_2` = ?d OR `spellid_3` = ?d OR `spellid_4` = ?d OR `spellid_5` = ?d) AND `spellid_1` <> 483', $entry, $entry, $entry, $entry, $entry);
- }
- function recipeSpell($entry)
- {
-   $this->doRequirest('`spellid_1` = 483 AND `spellid_2` = ?d', $entry);
- }
- function socketBonus($entry)
- {
-   $this->doRequirest('`SocketBonus` = ?d', $entry);
- }
- function enchantByGems($entry)
- {
-   global $wDB;
-   if ($list = $wDB->selectCol("SELECT `id` FROM `wowd_gemproperties` WHERE `spellitemenchantement` = ?d", $entry))
-     $this->doRequirest('`GemProperties` IN (?a)', $list);
- }
- function requireReputation($entry)
- {
-   $this->doRequirest('`RequiredReputationFaction` = ?d', $entry);
- }
- function lootItem($entry)
- {
-  $ref_loot =& getRefrenceItemLoot($entry);
-  $this->doRequirest('(`item` = ?d  AND `mincountOrRef` > 0) { OR -`mincountOrRef` IN (?a) } GROUP BY `entry`', $entry, count($ref_loot)==0 ? DBSIMPLE_SKIP:array_keys($ref_loot));
-  $this->removeIfAllZero('lootcondition', 'LOOT_REPORT_REQ');
- }
-}
+	function r_vendor_count($data) { echo $data['sold_count']?$data['sold_count']:'∞'; }
+	function r_vendor_time($data)  { echo $data['incrtime']?get_time_text($data['incrtime']):'';} 
+
+	// NPC report generator config
+	$item_report = array(
+	'ITEM_REPORT_ICON'       =>array('class'=>'i_ico','sort'=>'',        'text'=>'',                       'draw'=>'r_itemIcon',     'sort_str'=>'',                             'fields'=>'`displayid`'      ),
+	'ITEM_REPORT_NAME'       =>array('class'=>'left', 'sort'=>'name',    'text'=>$lang['item_name'],       'draw'=>'r_itemName',     'sort_str'=>'`name`',                       'fields'=>'`Quality`, `name`'),
+	'ITEM_REPORT_LEVEL'      =>array('class'=>'small','sort'=>'i_level', 'text'=>$lang['item_level'],      'draw'=>'r_itemLevel',    'sort_str'=>'`ItemLevel` DESC, `name`',     'fields'=>'`ItemLevel`'      ),
+	'ITEM_REPORT_REQLEVEL'   =>array('class'=>'small','sort'=>'level',   'text'=>$lang['item_req_level'],  'draw'=>'r_itemReqLevel', 'sort_str'=>'`RequiredLevel` DESC, `name`', 'fields'=>'`RequiredLevel`'  ),
+	'ITEM_REPORT_GEMPROPETY' =>array('class'=>'left', 'sort'=>'gem_prop','text'=>$lang['item_gem_details'],'draw'=>'r_itemGemProp',  'sort_str'=>'`GemProperties`',              'fields'=>'`GemProperties`'),
+	'ITEM_REPORT_ARMOR'      =>array('class'=>'',     'sort'=>'armor',   'text'=>$lang['item_armor'],      'draw'=>'r_itemArmor',    'sort_str'=>'`armor` DESC',                 'fields'=>'`armor`'),
+	'ITEM_REPORT_BLOCK'      =>array('class'=>'',     'sort'=>'block',   'text'=>$lang['item_block'],      'draw'=>'r_itemBlock',    'sort_str'=>'`block` DESC',                 'fields'=>'`block`'),
+	'ITEM_REPORT_DPS'        =>array('class'=>'',     'sort'=>'dps',     'text'=>$lang['item_dps'],        'draw'=>'r_itemDPS',      'sort_str'=>'`dps` DESC',                   'fields'=>'(500*(`dmg_min1`+`dmg_max1`) / `delay`) AS `dps`'),
+	'ITEM_REPORT_AMMO_DPS'   =>array('class'=>'',     'sort'=>'adps',    'text'=>$lang['item_dps'],        'draw'=>'r_itemAmmoDPS',  'sort_str'=>'`adps` DESC',                  'fields'=>'((`dmg_min1`+`dmg_max1`)/2) AS `adps`'),
+	'ITEM_REPORT_SPEED'      =>array('class'=>'',     'sort'=>'speed',   'text'=>$lang['item_speed'],      'draw'=>'r_itemSpeed',    'sort_str'=>'`delay` DESC',                 'fields'=>'`delay`'),
+	'ITEM_REPORT_NUM_SLOTS'  =>array('class'=>'',     'sort'=>'bag_slot','text'=>$lang['item_slot_num'],   'draw'=>'r_itemSlots',    'sort_str'=>'`ContainerSlots` DESC',        'fields'=>'`ContainerSlots`'),
+	'ITEM_REPORT_DESCRIPTION'=>array('class'=>'left', 'sort'=>'desc',    'text'=>$lang['item_desc'],       'draw'=>'r_itemDesc',     'sort_str'=>'`description` DESC',           'fields'=>'`description`'),
+	'ITEM_REPORT_SUBCLASS'   =>array('class'=>'',     'sort'=>'subclass','text'=>$lang['item_type'],       'draw'=>'r_itemSClass',   'sort_str'=>'`subclass` DESC',              'fields'=>'`class`, `subclass`'),
+	'ITEM_REPORT_SLOTTYPE'   =>array('class'=>'',     'sort'=>'type',    'text'=>$lang['item_slot'],       'draw'=>'r_itemInvType',  'sort_str'=>'`InventoryType` DESC',         'fields'=>'`InventoryType`'),
+	'ITEM_REPORT_RECIPE_ITEM'=>array('class'=>'i_ico','sort'=>'',        'text'=>'',                       'draw'=>'r_itemRecipe',   'sort_str'=>'',                             'fields'=>'`spellid_1`, `spellid_2`, `class`'),
+	'ITEM_REPORT_SPELL'      =>array('class'=>'left', 'sort'=>'',        'text'=>$lang['item_spells'],     'draw'=>'r_itemSpells',   'sort_str'=>'', 'fields'=>'`spellid_1`, `spelltrigger_1`, `spellid_2`, `spelltrigger_2`, `spellid_3`, `spelltrigger_3`, `spellid_4`, `spelltrigger_4`, `spellid_5`, `spelltrigger_5`'),
+	'ITEM_REPORT_REQREP_RANK'=>array('class'=>'',     'sort'=>'rep_rank','text'=>$lang['item_faction_rank'],'draw'=>'r_itemRepRank', 'sort_str'=>'`RequiredReputationRank` DESC', 'fields'=>'`RequiredReputationFaction`, `RequiredReputationRank`'),
+	'ITEM_REPORT_FLAGS'      =>array('class'=>'',     'sort'=>'',        'text'=>'flag',                   'draw'=>'r_itemFlag',     'sort_str'=>'',                             'fields'=>'`Flags`'),
+	// If set vendor class type
+	'VENDOR_REPORT_COST'   =>array('class'=>'', 'sort'=>'cost',    'text'=>$lang['item_cost'],       'draw'=>'r_vendorCost',   'sort_str'=>'`ExtendedCost`, `BuyPrice`',   'fields'=>'`ExtendedCost`, `BuyPrice`'),
+	'VENDOR_REPORT_COUNT'  =>array('class'=>'', 'sort'=>'count',   'text'=>$lang['item_count'],      'draw'=>'r_vendorCount',  'sort_str'=>'`sold_count`, `name`',         'fields'=>'`npc_vendor`.`maxcount` AS `sold_count`'),
+	'VENDOR_REPORT_INCTIME'=>array('class'=>'', 'sort'=>'time',    'text'=>$lang['item_incrtime'],   'draw'=>'r_vendorTime',   'sort_str'=>'`incrtime`, `name`',           'fields'=>'`incrtime`'),
+	// If set loot class type
+	'LOOT_REPORT_CHANCE'=>array('class'=>'', 'sort'=>'chance', 'text'=>$lang['loot_chance'], 'draw'=>'r_lootChance', 'sort_str'=>'ABS(`ChanceOrQuestChance`) DESC, `name`', 'fields'=>'`ChanceOrQuestChance`, `mincountOrRef`'),
+	'LOOT_REPORT_REQ'   =>array('class'=>'', 'sort'=>'',       'text'=>$lang['loot_require'],'draw'=>'r_lootRequire','sort_str'=>'', 'fields'=>'`lootcondition`, `condition_value1`, `condition_value2`'),
+	);
+	
+	// Item localisation flags (for allow disable some fields localisation if need)
+	define('ITEM_LOCALE_NAME', 0x01);
+	define('ITEM_LOCALE_DESCRIPTION', 0x02);
+	define('ITEM_LOCALE_ALL', ITEM_LOCALE_NAME | ITEM_LOCALE_DESCRIPTION);
+
+	// Item report class
+	class item_report_generator extends ReportGenerator
+		{
+
+			var $dolocale = ITEM_LOCALE_ALL;
+			function item_report_generator($type='')
+				{
+					global $item_report, $_SESSION;
+					$this->db = &selectdb("mangos_r".$_SESSION['realmd_id']);
+					$this->column_conf =&$item_report;
+					$this->db_fields = '`item_template`.`entry`';
+					switch ($type)
+						{
+							case 'vendor' :   $this->table = '(`item_template` join `npc_vendor` ON `item_template`.`entry` = `npc_vendor`.`item`)'; break;
+							case 'loot':      $this->table = '(`item_loot_template` right join `item_template` ON `item_template`.`entry` = `item_loot_template`.`entry`)'; break;
+							case 'disenchant':$this->table = '(`disenchant_loot_template` right join `item_template` ON `item_template`.`DisenchantID` = `disenchant_loot_template`.`entry`)'; break;
+							case 'milling':   $this->table = '(`milling_loot_template` right join `item_template` ON `item_template`.`entry` = `milling_loot_template`.`entry`)'; break;
+							case 'prospect':  $this->table = '(`prospecting_loot_template` right join `item_template` ON `item_template`.`entry` = `prospecting_loot_template`.`entry`)'; break;
+							default:          $this->table = '`item_template`'; break;
+						}
+				}
+
+ 			function disable_name_localisation() 
+				{
+					$this->dolocale &= ~ITEM_LOCALE_NAME;
+				}
+
+			function localise_requirest($locale, &$tables, &$fields, &$sort_str)
+				{
+					$tables .= ' LEFT JOIN `locales_item` ON `item_template`.`entry` = `locales_item`.`entry`';
+					if ($this->dolocale & ITEM_LOCALE_NAME)
+						{
+							$fields  = str_replace('`name`','`name`, `locales_item`.`name_loc'.$locale.'` AS `name_loc`', $fields);
+							$sort_str = str_replace('`name`', '`name_loc`, `name`', $sort_str);
+						}
+					if ($this->dolocale & ITEM_LOCALE_DESCRIPTION)
+						{
+							$fields  = str_replace('`description`','`description`, `locales_item`.`description_loc'.$locale."` AS `description_loc`", $fields);
+							$sort_str = str_replace('`description` DESC', '`description_loc` DESC, `name` DESC', $sort_str);
+						}
+				}
+
+			function vendor_item_list($entry)
+				{
+					$this->do_requirest('`npc_vendor`.`entry`=$entry');
+					$this->remove_if_all_zero('sold_count', 'VENDOR_REPORT_COUNT');
+					$this->remove_if_all_zero('incrtime',   'VENDOR_REPORT_INCTIME');
+				}
+
+			function use_spell($entry)
+				{
+					$this->do_requirest('(`spellid_1` =$entry OR `spellid_2` =$entry OR `spellid_3` =$entry OR `spellid_4` =$entry OR `spellid_5` =$entry) AND `spellid_1` <> 483');
+				}
+
+			function recipe_spell($entry)
+				{
+					$this->do_requirest('`spellid_1` = 483 AND `spellid_2` =$entry');
+				}
+
+			function socket_bonus($entry)
+				{
+					$this->do_requirest('`SocketBonus` =$entry');
+				}
+
+			function enchant_by_gems($entry)
+				{
+					selectdb("wcf");
+					if ($list = db_assoc(db_query("SELECT `id` FROM ".DB_GEMPROPERTIES." WHERE `spellitemenchantement`='$entry'")))
+						{
+							reset($list);
+							$item = current($list);
+							// нужно фиксить
+							$this->do_requirest('`GemProperties` IN ($list)');
+						}
+				}
+
+			function require_reputation($entry)
+				{
+					$this->do_requirest('`RequiredReputationFaction` =$entry');
+				}
+
+			function loot_item($entry)
+				{
+					$ref_loot =& get_refrence_item_loot($entry);
+					//$ref_loot = count($ref_loot)==0 ? DBSIMPLE_SKIP:array_keys($ref_loot);
+					$ref_loot = count($ref_loot)==0 ? "" :array_keys($ref_loot);
+					$this->do_requirest('(`item` = $entry  AND `mincountOrRef` > 0) { OR -`mincountOrRef` IN ($ref_loot) } GROUP BY `entry`');
+					$this->remove_if_all_zero('lootcondition', 'LOOT_REPORT_REQ');
+				}
+
+		}
 
 //=================================================================
 // Spell trainer list report functions and methods
@@ -793,10 +820,10 @@ class NPCTrainerReportGenerator extends ReportGenerator{
  }
  function trainSpell($entry)
  {
-  $this->doRequirest('`entry` = ?d', $entry);
-  $this->removeIfAllZero('reqlevel', 'TRAIN_REPORT_LEVEL');
-  $this->removeIfAllZero('reqskill', 'TRAIN_REPORT_SKILL');
-  $this->removeIfAllZero('reqskillvalue', 'TRAIN_REPORT_VALUE');
+  $this->do_requirest('`entry` = ?d', $entry);
+  $this->remove_if_all_zero('reqlevel', 'TRAIN_REPORT_LEVEL');
+  $this->remove_if_all_zero('reqskill', 'TRAIN_REPORT_SKILL');
+  $this->remove_if_all_zero('reqskillvalue', 'TRAIN_REPORT_VALUE');
  }
 }
 
@@ -1027,46 +1054,46 @@ class CreatureReportGenerator extends ReportGenerator{
     $rows_2 = $dDB->selectCol('SELECT `creature_id` FROM `creature_ai_scripts` WHERE (`action1_type` = 11 AND `action1_param1`=?d) OR (`action2_type` = 11 AND `action2_param1`=?d) OR (`action3_type` = 11 AND `action3_param1`=?d)', $entry, $entry, $entry);
     $casters = array_unique(array_merge($rows_1, $rows_2));
     if (count($casters))
-       $this->doRequirest('`creature_template`.`entry` in (?a)', $casters);
+       $this->do_requirest('`creature_template`.`entry` in (?a)', $casters);
  }
  function inFaction($entry)
  {
   global $wDB;
   if ($templatesId =& getFactionTemplates($entry))
-    $this->doRequirest('`faction_A` in (?a) OR `faction_H` in (?a)', $templatesId, $templatesId);
+    $this->do_requirest('`faction_A` in (?a) OR `faction_H` in (?a)', $templatesId, $templatesId);
  }
  function soldItem($entry, $price)
  {
   $this->db_fields.=', '.$price.' AS `BuyPrice`';
-  $this->doRequirest('`item` = ?d', $entry);
-  $this->removeIfAllZero('sold_count', 'VENDOR_REPORT_COUNT');
-  $this->removeIfAllZero('incrtime',   'VENDOR_REPORT_INCTIME');
+  $this->do_requirest('`item` = ?d', $entry);
+  $this->remove_if_all_zero('sold_count', 'VENDOR_REPORT_COUNT');
+  $this->remove_if_all_zero('incrtime',   'VENDOR_REPORT_INCTIME');
  }
  function trainSpell($entry)
  {
-  $this->doRequirest('`spell` = ?d', $entry);
-  $this->removeIfAllZero('reqskill', 'TRAINER_REPORT_SKILL');
+  $this->do_requirest('`spell` = ?d', $entry);
+  $this->remove_if_all_zero('reqskill', 'TRAINER_REPORT_SKILL');
  }
  function kreditGroup($entry)
  {
-  $this->doRequirest('`KillCredit1` = ?d OR `KillCredit2` = ?d', $entry, $entry);
+  $this->do_requirest('`KillCredit1` = ?d OR `KillCredit2` = ?d', $entry, $entry);
  }
  function lootItem($entry)
  {
   $ref_loot =& getRefrenceItemLoot($entry);
-  $this->doRequirest('(`item` = ?d  AND `mincountOrRef` > 0) { OR -`mincountOrRef` IN (?a) } GROUP BY `entry`', $entry, count($ref_loot)==0 ? DBSIMPLE_SKIP:array_keys($ref_loot));
-  $this->removeIfAllZero('lootcondition', 'LOOT_REPORT_REQ');
+  $this->do_requirest('(`item` = ?d  AND `mincountOrRef` > 0) { OR -`mincountOrRef` IN (?a) } GROUP BY `entry`', $entry, count($ref_loot)==0 ? DBSIMPLE_SKIP:array_keys($ref_loot));
+  $this->remove_if_all_zero('lootcondition', 'LOOT_REPORT_REQ');
  }
  // Position
  function onMap($entry)
  {
-  $this->doRequirest('`map` = ?d GROUP BY `id`', $entry);
+  $this->do_requirest('`map` = ?d GROUP BY `id`', $entry);
  }
  function onArea($area_data)
  {
   $this->setManualPagenateMode();
   $this->addFieldsRequirest('`map`, `position_x`, `position_y`, `position_z`');
-  $this->doRequirest('`map` = ?d AND `position_x` > ?d AND `position_x` < ?d AND `position_y` > ?d AND `position_y` < ?d', $area_data[0], $area_data[5], $area_data[4], $area_data[3], $area_data[2]);
+  $this->do_requirest('`map` = ?d AND `position_x` > ?d AND `position_x` < ?d AND `position_y` > ?d AND `position_y` < ?d', $area_data[0], $area_data[5], $area_data[4], $area_data[3], $area_data[2]);
   $setId = array();
   foreach($this->data_array as $id=>$c)
   {
@@ -1080,11 +1107,11 @@ class CreatureReportGenerator extends ReportGenerator{
  // Reputation
  function rewardFactionReputation($id)
  {
-  $this->doRequirest('`RewOnKillRepFaction1` = ?d OR `RewOnKillRepFaction2` = ?d', $id, $id);
+  $this->do_requirest('`RewOnKillRepFaction1` = ?d OR `RewOnKillRepFaction2` = ?d', $id, $id);
  }
  function rewardNpcFactionReputation($entry)
  {
-  $this->doRequirest('`creature_id` = ?d', $entry);
+  $this->do_requirest('`creature_id` = ?d', $entry);
  }
 }
 
@@ -1148,7 +1175,7 @@ class GameobjectReportGenerator extends ReportGenerator{
  }
  function castSpell($entry)
  {
-   $this->doRequirest(
+   $this->do_requirest(
    '(`type` = ?d AND `data3`  = ?d) OR
     (`type` = ?d AND `data10` = ?d) OR
     (`type` = ?d AND `data1`  = ?d) OR
@@ -1164,28 +1191,28 @@ class GameobjectReportGenerator extends ReportGenerator{
  {
   global $wDB;
   if ($templatesId =& getFactionTemplates($entry))
-    $this->doRequirest('`faction` in (?a)', $templatesId);
+    $this->do_requirest('`faction` in (?a)', $templatesId);
  }
  function spellFocus($entry)
  {
-  $this->doRequirest('`type` = ?d AND `data0` = ?d', GAMEOBJECT_TYPE_SPELL_FOCUS, $entry);
+  $this->do_requirest('`type` = ?d AND `data0` = ?d', GAMEOBJECT_TYPE_SPELL_FOCUS, $entry);
  }
  function lootItem($entry)
  {
   $ref_loot =& getRefrenceItemLoot($entry);
-  $this->doRequirest('(`item` = ?d  AND `mincountOrRef` > 0) { OR -`mincountOrRef` IN (?a) } GROUP BY `entry`', $entry, count($ref_loot)==0 ? DBSIMPLE_SKIP:array_keys($ref_loot));
-  $this->removeIfAllZero('lootcondition', 'LOOT_REPORT_REQ');
+  $this->do_requirest('(`item` = ?d  AND `mincountOrRef` > 0) { OR -`mincountOrRef` IN (?a) } GROUP BY `entry`', $entry, count($ref_loot)==0 ? DBSIMPLE_SKIP:array_keys($ref_loot));
+  $this->remove_if_all_zero('lootcondition', 'LOOT_REPORT_REQ');
  }
  // Position
  function onMap($entry)
  {
-  $this->doRequirest('`map` = ?d GROUP BY `id`', $entry);
+  $this->do_requirest('`map` = ?d GROUP BY `id`', $entry);
  }
  function onArea($area_data)
  {
   $this->setManualPagenateMode();
   $this->addFieldsRequirest('`map`, `position_x`, `position_y`, `position_z`');
-  $this->doRequirest('`map` = ?d AND `position_x` > ?d AND `position_x` < ?d AND `position_y` > ?d AND `position_y` < ?d', $area_data[0], $area_data[5], $area_data[4], $area_data[3], $area_data[2]);
+  $this->do_requirest('`map` = ?d AND `position_x` > ?d AND `position_x` < ?d AND `position_y` > ?d AND `position_y` < ?d', $area_data[0], $area_data[5], $area_data[4], $area_data[3], $area_data[2]);
   $setId = array();
   foreach($this->data_array as $id=>$c)
   {
@@ -1419,55 +1446,55 @@ class QuestReportGenerator extends ReportGenerator{
  // Create quest givers/take list by entry
  function getGiveTakeList($entry)
  {
-  $this->doRequirest('`id` = ?d', $entry);
+  $this->do_requirest('`id` = ?d', $entry);
  }
  // Create quest list require GO for comlete
  function requireGO($entry)
  {
-  $this->doRequirest('`ReqCreatureOrGOId1`= ?d OR `ReqCreatureOrGOId2`= ?d OR `ReqCreatureOrGOId3`= ?d OR `ReqCreatureOrGOId4`= ?d', -$entry, -$entry, -$entry, -$entry);
+  $this->do_requirest('`ReqCreatureOrGOId1`= ?d OR `ReqCreatureOrGOId2`= ?d OR `ReqCreatureOrGOId3`= ?d OR `ReqCreatureOrGOId4`= ?d', -$entry, -$entry, -$entry, -$entry);
  }
  // Create quest list require GO for comlete
  function requireCreature($entry)
  {
-  $this->doRequirest('`ReqCreatureOrGOId1`= ?d OR `ReqCreatureOrGOId2`= ?d OR `ReqCreatureOrGOId3`= ?d OR `ReqCreatureOrGOId4`= ?d', $entry, $entry, $entry, $entry);
+  $this->do_requirest('`ReqCreatureOrGOId1`= ?d OR `ReqCreatureOrGOId2`= ?d OR `ReqCreatureOrGOId3`= ?d OR `ReqCreatureOrGOId4`= ?d', $entry, $entry, $entry, $entry);
  }
  function oneQuest($entry)
  {
-  $this->doRequirest('`quest_template`.`entry` = ?d', $entry);
+  $this->do_requirest('`quest_template`.`entry` = ?d', $entry);
  }
  // Create quest list require item for comlete
  function requireItem($entry, $giveQuest)
  {
-  $this->doRequirest('(`ReqItemId1`= ?d OR `ReqItemId2`= ?d OR `ReqItemId3`= ?d OR `ReqItemId4`= ?d OR `ReqItemId5`= ?d OR `ReqItemId6`= ?d OR `ReqSourceId1`= ?d OR `ReqSourceId2`= ?d OR `ReqSourceId3`= ?d OR `ReqSourceId4`= ?d) AND `quest_template`.`entry` <> ?d', $entry, $entry, $entry, $entry, $entry, $entry, $entry, $entry, $entry, $entry, $giveQuest);
+  $this->do_requirest('(`ReqItemId1`= ?d OR `ReqItemId2`= ?d OR `ReqItemId3`= ?d OR `ReqItemId4`= ?d OR `ReqItemId5`= ?d OR `ReqItemId6`= ?d OR `ReqSourceId1`= ?d OR `ReqSourceId2`= ?d OR `ReqSourceId3`= ?d OR `ReqSourceId4`= ?d) AND `quest_template`.`entry` <> ?d', $entry, $entry, $entry, $entry, $entry, $entry, $entry, $entry, $entry, $entry, $giveQuest);
  }
  // Create quest list prowide item at take
  function provideItem($entry, $giveQuest)
  {
-  $this->doRequirest('`SrcItemId` = ?d AND `quest_template`.`entry` <> ?d', $entry, $giveQuest);
+  $this->do_requirest('`SrcItemId` = ?d AND `quest_template`.`entry` <> ?d', $entry, $giveQuest);
  }
  // Create quest list reward item
  function rewardItem($entry)
  {
-  $this->doRequirest('`RewItemId1`= ?d OR `RewItemId2`= ?d OR `RewItemId3`= ?d OR `RewItemId4`= ?d OR
+  $this->do_requirest('`RewItemId1`= ?d OR `RewItemId2`= ?d OR `RewItemId3`= ?d OR `RewItemId4`= ?d OR
   `RewChoiceItemId1`= ?d OR`RewChoiceItemId2`= ?d OR `RewChoiceItemId3`= ?d OR `RewChoiceItemId4`= ?d OR `RewChoiceItemId5`= ?d OR  `RewChoiceItemId6`= ?d',
   $entry, $entry, $entry, $entry, $entry, $entry, $entry, $entry, $entry, $entry);
  }
  // Create quest list cast/reward spell
  function rewardSpell($entry)
  {
-  $this->doRequirest('`RewSpell` = ?d OR `RewSpellCast` = ?d', $entry, $entry);
+  $this->do_requirest('`RewSpell` = ?d OR `RewSpellCast` = ?d', $entry, $entry);
  }
  // Return quest list where exist faction reputation reward
  function rewardReputation($entry)
  {
-  $this->doRequirest('`RewRepFaction1`= ?d OR `RewRepFaction2`= ?d OR `RewRepFaction3`= ?d OR `RewRepFaction4`= ?d OR `RewRepFaction5`= ?d', $entry, $entry, $entry, $entry, $entry);
+  $this->do_requirest('`RewRepFaction1`= ?d OR `RewRepFaction2`= ?d OR `RewRepFaction3`= ?d OR `RewRepFaction4`= ?d OR `RewRepFaction5`= ?d', $entry, $entry, $entry, $entry, $entry);
  }
  // Mail loot
  function lootItem($entry)
  {
   $ref_loot =& getRefrenceItemLoot($entry);
-  $this->doRequirest('(`item` = ?d  AND `mincountOrRef` > 0) { OR -`mincountOrRef` IN (?a) } GROUP BY `entry`', $entry, count($ref_loot)==0 ? DBSIMPLE_SKIP:array_keys($ref_loot));
-  $this->removeIfAllZero('lootcondition', 'LOOT_REPORT_REQ');
+  $this->do_requirest('(`item` = ?d  AND `mincountOrRef` > 0) { OR -`mincountOrRef` IN (?a) } GROUP BY `entry`', $entry, count($ref_loot)==0 ? DBSIMPLE_SKIP:array_keys($ref_loot));
+  $this->remove_if_all_zero('lootcondition', 'LOOT_REPORT_REQ');
  }
 
 }
@@ -1576,7 +1603,7 @@ class SpellReportGenerator extends ReportGenerator{
  function summonGO($entry)
  {
   $effList = array(50, 76, 104, 105, 106, 107);
-  $this->doRequirest(
+  $this->do_requirest(
   '(`EffectMiscValue_1` = ?d AND `Effect_1` IN (?a)) OR
    (`EffectMiscValue_2` = ?d AND `Effect_2` IN (?a)) OR
    (`EffectMiscValue_3` = ?d AND `Effect_3` IN (?a))', $entry, $effList, $entry, $effList, $entry, $effList);
@@ -1584,7 +1611,7 @@ class SpellReportGenerator extends ReportGenerator{
  function summonCreature($entry)
  {
   $effList = array(28, 56, 90, 93, 134);
-  $this->doRequirest(
+  $this->do_requirest(
   '(`EffectMiscValue_1` = ?d AND `Effect_1` IN (?a)) OR
    (`EffectMiscValue_2` = ?d AND `Effect_2` IN (?a)) OR
    (`EffectMiscValue_3` = ?d AND `Effect_3` IN (?a))', $entry, $effList, $entry, $effList, $entry, $effList);
@@ -1592,7 +1619,7 @@ class SpellReportGenerator extends ReportGenerator{
  // List of spells use item as reagent
  function useRegent($entry)
  {
-  $this->doRequirest('`Reagent_1` = ?d OR `Reagent_2`=?d OR `Reagent_3`=?d OR `Reagent_4`=?d OR `Reagent_5`=?d OR `Reagent_6`=?d OR `Reagent_7`=?d OR `Reagent_8`=?d', $entry, $entry, $entry, $entry, $entry, $entry, $entry, $entry);
+  $this->do_requirest('`Reagent_1` = ?d OR `Reagent_2`=?d OR `Reagent_3`=?d OR `Reagent_4`=?d OR `Reagent_5`=?d OR `Reagent_6`=?d OR `Reagent_7`=?d OR `Reagent_8`=?d', $entry, $entry, $entry, $entry, $entry, $entry, $entry, $entry);
   $create = 0;
   foreach($this->data_array as &$data)
     if ($data['EffectItemType_1'] OR $data['EffectItemType_2'] OR $data['EffectItemType_3'])
@@ -1603,7 +1630,7 @@ class SpellReportGenerator extends ReportGenerator{
  function createItem($entry)
  {
   $eff_list = array(107, 108, 109, 112);
-  $this->doRequirest(
+  $this->do_requirest(
   '(`EffectItemType_1` = ?d AND EffectApplyAuraName_1 NOT IN (?a)) OR
    (`EffectItemType_2` = ?d AND EffectApplyAuraName_1 NOT IN (?a)) OR
    (`EffectItemType_3` = ?d AND EffectApplyAuraName_1 NOT IN (?a))', $entry, $eff_list, $entry, $eff_list, $entry, $eff_list);
@@ -1611,14 +1638,14 @@ class SpellReportGenerator extends ReportGenerator{
  // List os spells give faction reputation
  function giveReputation($entry)
  {
-  $this->doRequirest(
+  $this->do_requirest(
   '(`EffectMiscValue_1` = ?d AND `Effect_1` = 103) OR
    (`EffectMiscValue_2` = ?d AND `Effect_2` = 103) OR
    (`EffectMiscValue_3` = ?d AND `Effect_3` = 103)', $entry, $entry, $entry);
  }
  function triggerFromSpells($entry)
  {
-  $this->doRequirest(
+  $this->do_requirest(
   '`EffectTriggerSpell_1` = ?d OR
    `EffectTriggerSpell_2` = ?d OR
    `EffectTriggerSpell_3` = ?d', $entry, $entry, $entry);
@@ -1626,14 +1653,14 @@ class SpellReportGenerator extends ReportGenerator{
  function enchantFromSpells($entry)
  {
   $effList = array(53, 54, 92);
-  $this->doRequirest(
+  $this->do_requirest(
   '(`EffectMiscValue_1` = ?d AND `Effect_1` IN (?a)) OR
    (`EffectMiscValue_2` = ?d AND `Effect_2` IN (?a)) OR
    (`EffectMiscValue_3` = ?d AND `Effect_3` IN (?a))', $entry, $effList, $entry, $effList, $entry, $effList);
  }
  function affectedBySpells($family, $maskA, $maskB, $maskC)
  {
-  $this->doRequirest(
+  $this->do_requirest(
   '`SpellFamilyName` = ?d AND
    (
      (`EffectApplyAuraName_1` IN (107, 108) AND ( (`EffectSpellClassMaskA_1` & ?d) OR (`EffectSpellClassMaskA_2` & ?d) OR (`EffectSpellClassMaskA_3` & ?d) ) ) OR
@@ -1651,7 +1678,7 @@ class SpellReportGenerator extends ReportGenerator{
   for ($i=1;$i<=3;$i++)
     $spell_list = array_merge($spell_list, $dDB->selectCol('SELECT `action1_param'.$i.'` as `id` FROM `creature_ai_scripts` WHERE `creature_id` = ?d AND `action'.$i.'_type` = 11', $creature['entry']));
   if (count($spell_list))
-    $this->doRequirest('`id` IN (?a)', array_unique($spell_list));
+    $this->do_requirest('`id` IN (?a)', array_unique($spell_list));
  }
  function doSkillList($skill)
  {
@@ -1660,7 +1687,7 @@ class SpellReportGenerator extends ReportGenerator{
        $spells = getPlayerSpells($_REQUEST['guid']);
        $this->rowCallback = 'playerSpellCallback';
     }
-    $this->doRequirest('`skillId` = ?d', $skill);
+    $this->do_requirest('`skillId` = ?d', $skill);
  }
  function lootItem($entry)
  {
@@ -1668,7 +1695,7 @@ class SpellReportGenerator extends ReportGenerator{
   $ref_loot =& getRefrenceItemLoot($entry);
   $spells = $dDB->select("SELECT `entry` AS ARRAY_KEY, `ChanceOrQuestChance`, `mincountOrRef` FROM `spell_loot_template` WHERE (`item` = ?d  AND `mincountOrRef` > 0) { OR -`mincountOrRef` IN (?a) }", $entry, count($ref_loot)==0 ? DBSIMPLE_SKIP:array_keys($ref_loot));
   if ($spells)
-      $this->doRequirest('`id` IN (?a)', array_keys($spells));
+      $this->do_requirest('`id` IN (?a)', array_keys($spells));
  }
 }
 
@@ -1698,7 +1725,7 @@ class GlyphReportGenerator extends ReportGenerator{
  }
  function useSpell($entry)
  {
-  $this->doRequirest('`SpellId` = ?d', $entry);
+  $this->do_requirest('`SpellId` = ?d', $entry);
  }
 }
 
@@ -1733,7 +1760,7 @@ class RandomSuffixReportGenerator extends ReportGenerator{
  }
  function enchantFrom($entry)
  {
-  $this->doRequirest('`EnchantID_1` = ?d OR `EnchantID_2` = ?d OR `EnchantID_3` = ?d', $entry, $entry, $entry);
+  $this->do_requirest('`EnchantID_1` = ?d OR `EnchantID_2` = ?d OR `EnchantID_3` = ?d', $entry, $entry, $entry);
  }
 }
 
@@ -1768,7 +1795,7 @@ class RandomPropetyReportGenerator extends ReportGenerator{
  }
  function enchantFrom($entry)
  {
-  $this->doRequirest('`EnchantID_1` = ?d OR `EnchantID_2` = ?d OR `EnchantID_3` = ?d OR `EnchantID_4` = ?d OR `EnchantID_5` = ?d', $entry, $entry, $entry, $entry, $entry);
+  $this->do_requirest('`EnchantID_1` = ?d OR `EnchantID_2` = ?d OR `EnchantID_3` = ?d OR `EnchantID_4` = ?d OR `EnchantID_5` = ?d', $entry, $entry, $entry, $entry, $entry);
  }
 }
 
@@ -1825,7 +1852,7 @@ class LockReportGenerator extends ReportGenerator{
  }
  function haveItemAsKey($entry)
  {
-  $this->doRequirest(
+  $this->do_requirest(
   '(`keytype_0` = 1 AND `key_0` = ?d) OR
    (`keytype_1` = 1 AND `key_1` = ?d) OR
    (`keytype_2` = 1 AND `key_2` = ?d) OR
@@ -1878,7 +1905,7 @@ class ExCostReportGenerator extends ReportGenerator{
  }
  function useItemAsCost($entry)
  {
-  $this->doRequirest(
+  $this->do_requirest(
   '`reqitem_1` = ?d OR
    `reqitem_2` = ?d OR
    `reqitem_3` = ?d OR
@@ -1947,7 +1974,7 @@ class ItemSetReportGenerator extends ReportGenerator{
  }
  function useSpell($entry)
  {
-  $this->doRequirest(
+  $this->do_requirest(
   '`spell_1` = ?d OR `spell_2` = ?d OR `spell_3` = ?d OR `spell_4` = ?d OR
    `spell_5` = ?d OR `spell_6` = ?d OR `spell_7` = ?d OR `spell_8` = ?d', $entry, $entry, $entry, $entry, $entry,  $entry, $entry, $entry);
  }
@@ -2004,8 +2031,8 @@ class EnchantReportGenerator extends ReportGenerator{
  }
  function useSpell($entry)
  {
-  $this->doRequirest('`spellid_1` = ?d OR `spellid_2` = ?d OR `spellid_3` = ?d', $entry, $entry, $entry);
-  $this->removeIfAllZero('GemID', 'ENCH_REPORT_GEM');
+  $this->do_requirest('`spellid_1` = ?d OR `spellid_2` = ?d OR `spellid_3` = ?d', $entry, $entry, $entry);
+  $this->remove_if_all_zero('GemID', 'ENCH_REPORT_GEM');
  }
 }
 
@@ -2032,7 +2059,7 @@ class TalentReportGenerator extends ReportGenerator{
  }
  function useSpell($entry)
  {
-  $this->doRequirest('`Rank_1` = ?d OR `Rank_2` = ?d OR `Rank_3` = ?d OR `Rank_4` = ?d OR `Rank_5` = ?d', $entry, $entry, $entry, $entry, $entry);
+  $this->do_requirest('`Rank_1` = ?d OR `Rank_2` = ?d OR `Rank_3` = ?d OR `Rank_4` = ?d OR `Rank_5` = ?d', $entry, $entry, $entry, $entry, $entry);
  }
 }
 //=================================================================
@@ -2056,11 +2083,11 @@ class ZoneReportGenerator extends ReportGenerator{
  }
  function parentZone($entry)
  {
-  $this->doRequirest('`id` = ?d', $entry);
+  $this->do_requirest('`id` = ?d', $entry);
  }
  function subZones($entry)
  {
-  $this->doRequirest('`zone_id` = ?d', $entry);
+  $this->do_requirest('`zone_id` = ?d', $entry);
  }
 }
 
@@ -2108,11 +2135,11 @@ class AreaTriggerReportGenerator extends ReportGenerator{
  }
  function onMap($entry)
  {
-  $this->doRequirest('`target_map` = ?d', $entry);
+  $this->do_requirest('`target_map` = ?d', $entry);
  }
  function onArea($area_data)
  {
-  $this->doRequirest('`target_map` = ?d AND `target_position_x` > ?d AND `target_position_x` < ?d AND `target_position_y` > ?d AND `target_position_y` < ?d', $area_data[0], $area_data[5], $area_data[4], $area_data[3], $area_data[2]);
+  $this->do_requirest('`target_map` = ?d AND `target_position_x` > ?d AND `target_position_x` < ?d AND `target_position_y` > ?d AND `target_position_y` < ?d', $area_data[0], $area_data[5], $area_data[4], $area_data[3], $area_data[2]);
  }
 }
 
@@ -2184,16 +2211,16 @@ class PlayerReportGenerator extends ReportGenerator{
  }
  function online()
  {
-  $this->doRequirest('`online` <> 0 AND NOT `extra_flags`&'.PLAYER_EXTRA_GM_INVISIBLE);
+  $this->do_requirest('`online` <> 0 AND NOT `extra_flags`&'.PLAYER_EXTRA_GM_INVISIBLE);
  }
  // Select guild members by guild guid
  function guildMembers($gguid)
  {
-  $this->doRequirest('`guildid` = ?d', $gguid);
+  $this->do_requirest('`guildid` = ?d', $gguid);
  }
  function itemOwner($id)
  {
-  $this->doRequirest("(SUBSTRING_INDEX( SUBSTRING_INDEX(`item_instance`.`data` , ' ' , ?d) , ' ' , -1 )+0) = ?d", ITEM_FIELD_ENTRY + 1, $id);
+  $this->do_requirest("(SUBSTRING_INDEX( SUBSTRING_INDEX(`item_instance`.`data` , ' ' , ?d) , ' ' , -1 )+0) = ?d", ITEM_FIELD_ENTRY + 1, $id);
  }
 }
 ?>
