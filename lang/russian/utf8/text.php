@@ -303,6 +303,8 @@ $txt = array(
 'modul_acp_show_buy_price' 	=>'Цена выкупа',
 'modul_acp_show_this_item_part_of_set' 	=> 'Этот предмет часть комплекта',
 
+'modul_acp_show_detail_info' 	=>'Подробная информация',
+
 # остальное
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',
 'fill_field'			=>'<font color=red>Вы не заполнили поле!!!</font>',

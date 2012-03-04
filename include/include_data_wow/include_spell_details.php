@@ -425,7 +425,7 @@
 		{
 			global $txt;
    			echo'<table class=details align=center><tbody>';
-   			echo'<tr><td colspan=4 class=head>'.$txt['detail_info'].'</td></tr>';
+   			echo'<tr><td colspan=4 class=head>'.$txt['modul_acp_show_detail_info'].'</td></tr>';
    			echo'<tr><th>Name</th><td colspan=2>'.$spell['SpellName'].'</td><td align=right>'.$spell['Rank'].'</td></tr>';
 
    			if ($spell['Description'])
