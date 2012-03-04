@@ -546,11 +546,38 @@
 	//=============================================================================================================
 	// Все что связано с skill
 	//=============================================================================================================
+	function get_skill_line_ability($spellId)
+		{
+			selectdb("wcf");
+			$data = db_assoc(db_query("SELECT * FROM ".DB_SKILL_ABILITY." WHERE `spellId`='$spellId'"));
+			return $data;
+		}
+
 	function get_skill_line($id)
 		{
 			selectdb("wcf");
 			$skills = db_assoc(db_query("SELECT * FROM ".DB_SKILL." WHERE `id`='".$id."'"));
 			return $skills;
+		}
+
+	function get_Skill_Name($skillId, $as_ref=1)
+		{
+			$skillLine = get_skill_line($skillId);
+			if ($skillLine)
+				{
+					if ($as_ref)
+						{
+							return "<a href=\"?skill=$skillId\">".$skillLine['Name']."</a>";
+						}
+					else
+						{
+							return $skillLine['Name'];
+						}
+				}
+			else
+				{
+					return "";
+				}
 		}
 
 	//=============================================================================================================
