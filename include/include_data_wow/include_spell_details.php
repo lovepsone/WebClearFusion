@@ -424,7 +424,7 @@
 	function create_spell_details($spell)
 		{
 			global $txt;
-   			echo'<table class=details width=600><tbody>';
+   			echo'<table class=details align=center><tbody>';
    			echo'<tr><td colspan=4 class=head>'.$txt['detail_info'].'</td></tr>';
    			echo'<tr><th>Name</th><td colspan=2>'.$spell['SpellName'].'</td><td align=right>'.$spell['Rank'].'</td></tr>';
 
