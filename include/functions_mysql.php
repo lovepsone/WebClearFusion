@@ -137,8 +137,8 @@
 			$result = @mysql_result($query, $row);
 			if (!$result)
 				{
-						echo mysql_error();
-						return false;
+					echo mysql_error();
+					return false;
 				}
 			else
 				{
@@ -162,6 +162,23 @@
 					return $rows;
 				}
 		}
+
+	/*function select_page($query)
+		{
+			$result = db_query($query);
+			if (!db_num_rows($result)) { return; }
+
+			$result = mysql_fetch_object($result);
+			if (!$result)
+				{
+					echo mysql_error();
+					return false;
+				}
+			else
+				{
+					return $result;
+				}
+		}*/
 
 	//=============================================================================================
 	// функция работает с логами, добавляет их в бд.

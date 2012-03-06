@@ -1,6 +1,5 @@
 <?php
 
-
 // Report generator class (класс генератора отчётов)
 class ReportGenerator{
     var $mark  = '';          // Report uniquie id
@@ -163,62 +162,74 @@ class ReportGenerator{
 			if ($id = array_search($name, $this->fields)) { unset($this->fields[$id]); }
 		}
 
-    // Expand placeholders func
-    function expandPlaceholdersCallback($m)
-    {
-        if (!empty($m[2]))
-        {
-            $value = array_pop($this->query_args);
-            switch ($m[3]) {
-             case 'a':  return join(', ', $value);
-             case 'd':  return intval($value);
-             case 'u':  return sprintf('%u',$value);
-             case 'f':  return str_replace(',', '.', floatval($value));
-            }
-            return $value;
-        }
-        if (isset($m[1]) && strlen($block=$m[1]))
-        {
-            if (current($this->query_args) === DBSIMPLE_SKIP)
-            {
-                array_pop($this->query_args);
-                return '';
-            }
-            return $this->_doPlaceholders($block);
-        }
-        return $m[0];
-    }
-    function _doPlaceholders($query)
-    {
-        $re = '{(?>\{( (?> (?>[^{}]+)  |  (?R) )* )\}) | (?>(\?) ( [duaf]? ))}sx';
-        return preg_replace_callback($re, array(&$this,'expandPlaceholdersCallback'), $query);
-    }
-    function expandPlaceholders($data)
-    {
-        $this->query_args = array_reverse($data);
-        return $this->_doPlaceholders(array_pop($this->query_args));
-    }
-    // Database depend requirest generator
-    function do_requirest($where)
-    {
-        global $config;
-        $locale = $config['locales_lang'];
-        $where_filter = $this->expandPlaceholders(func_get_args());
-        $tables  = $this->table;
-        $fields  = $this->getFieldsRequirest();
-        $sort_str= $this->getSortRequirest();
-        if ($locale)
-            $this->localiseRequirest($locale, $tables, $fields, $sort_str);
-        $reqString = 'SELECT '.$fields.' FROM '.$tables.' WHERE '.$where_filter.$sort_str.$this->getLimitRequirest();
-//        echo "<br />".$reqString."<br />";
-        if ($this->size_limit > 0)
-            $this->data_array = $this->db->selectPage($this->total_data, $reqString);
-        else
-        {
-            $this->data_array = $this->db->select($reqString);
-            $this->total_data = count($this->data_array);
-        }
-    }
+	// Expand placeholders func
+	function expand_placeholders_callback($m)
+		{
+			if (!empty($m[2]))
+				{
+					$value = array_pop($this->query_args);
+					switch ($m[3])
+						{
+             						case 'a':  return join(', ', $value);
+             						case 'd':  return intval($value);
+             						case 'u':  return sprintf('%u',$value);
+             						case 'f':  return str_replace(',', '.', floatval($value));
+            					}
+            				return $value;
+        			}
+       			if (isset($m[1]) && strlen($block=$m[1]))
+        			{
+            				if (current($this->query_args) === DBSIMPLE_SKIP)
+            					{
+                					array_pop($this->query_args);
+               	 					return '';
+            					}
+            				return $this->_do_placeholders($block);
+        			}
+        		return $m[0];
+   		}
+
+	function _do_placeholders($query)
+		{
+			$re = '{(?>\{( (?> (?>[^{}]+)  |  (?R) )* )\}) | (?>(\?) ( [duaf]? ))}sx';
+        		return preg_replace_callback($re, array(&$this,'expand_placeholders_callback'), $query);
+   		}
+
+	function expand_placeholders($data)
+		{
+			$this->query_args = array_reverse($data);
+			return $this->_do_placeholders(array_pop($this->query_args));
+		}
+
+	// Database depend requirest generator
+	function do_requirest($where)
+		{
+			global $config;
+			// нужно написать доп. функцию для определения языка, пока что будет русский
+			// $locale = $config['locales_lang'];
+			$locale = 8;
+			$where_filter = $this->expand_placeholders(func_get_args());
+			$tables  = $this->table;
+			$fields  = $this->get_fields_requirest();
+			$sort_str= $this->get_sort_requirest();
+			if ($locale)
+				{
+            				$this->localise_requirest($locale, $tables, $fields, $sort_str);
+				}
+			$reqString = 'SELECT '.$fields.' FROM '.$tables.' WHERE '.$where_filter.$sort_str.$this->get_limit_requirest();
+			echo "<br />".$reqString."<br />";
+			if ($this->size_limit > 0)
+				{
+            				$this->data_array = $this->db->selectPage($this->total_data, $reqString);
+					//$this->data_array = $this->db->select_page($reqString);
+				}
+        		else
+        			{
+            				$this->data_array = $this->db->select($reqString);
+            				$this->total_data = count($this->data_array);
+        			}
+    		}
+
     // Manually slice on page
     function setManualPagenateMode() {if ($this->size_limit >=0) $this->size_limit =-$this->size_limit;}
     function slicePage()
@@ -228,41 +239,57 @@ class ReportGenerator{
         $this->size_limit = -$this->size_limit;
         $this->data_array = array_slice($this->data_array,($this->page-1)*$this->size_limit, $this->size_limit);
     }
-    // Localise fields requirement and sort
-    function localiseRequirest($locale, &$fields, &$sort){return;}
-    // Build fields list depend from config
-    function getFieldsRequirest()
-    {
-        if ($this->db_fields=='*')
-            return '*';
-        $r = $this->db_fields;
-        foreach($this->fields as $f)
-            if ($data = $this->column_conf[$f]['fields'])
-                $r.=', '.$data;
-        return join(',', array_unique(explode(',', $r)));
-    }
+
+	// Localise fields requirement and sort
+	function localise_requirest($locale, &$fields, &$sort) { return; }
+
+	// Build fields list depend from config
+	function get_fields_requirest()
+		{
+			if ($this->db_fields=='*') { return '*'; }
+			$r = $this->db_fields;
+			foreach($this->fields as $f)
+				{
+					if ($data = $this->column_conf[$f]['fields']) { $r.=', '.$data; }
+				}
+        		return join(',', array_unique(explode(',', $r)));
+    		}
+
     function addFieldsRequirest($f)
     {
         if ($this->db_fields=='*')
             return;
         $this->db_fields.=', '.$f;
     }
-    // Get sort requirest depend from config
-    function getSortRequirest()
-    {
-        if ($this->sort_method)
-            foreach($this->column_conf as $c)
-                if ($this->sort_method==$c['sort'])
-                    return ' ORDER BY '.$c['sort_str'];
-        return '';
-    }
-    // Get limit requirest depend from page and page size
-    function getLimitRequirest()
-    {
-        if ($this->size_limit > 0)
-            return ' LIMIT '.(($this->page-1)*$this->size_limit).', '.$this->size_limit;
-        return '';
-    }
+
+	// Get sort requirest depend from config
+	function get_sort_requirest()
+		{
+			if ($this->sort_method)
+				{
+					foreach($this->column_conf as $c)
+						{
+                					if ($this->sort_method==$c['sort']) { return ' ORDER BY '.$c['sort_str']; }
+						}
+				}
+			else
+				{
+        				return '';
+    				}
+		}
+
+	// Get limit requirest depend from page and page size
+	function get_limit_requirest()
+		{
+			if ($this->size_limit > 0)
+				{
+            				return ' LIMIT '.(($this->page-1)*$this->size_limit).', '.$this->size_limit;
+				}
+			else
+				{
+        				return '';
+				}
+    		}
 };
 
 	//==============================================================================
@@ -2036,32 +2063,36 @@ class EnchantReportGenerator extends ReportGenerator{
  }
 }
 
-//=================================================================
-// Talents list report functions and methods
-//=================================================================
-function r_talentId($data)   {echo $data['TalentTab'];}
-function r_talentName($data) {echo getTalentName($data['TalentTab']);}
-$talent_report = array(
-'TALENT_REPORT_ID'   =>array('class'=>'small','sort'=>'', 'text'=>$lang['talent_id'],  'draw'=>'r_talentId',   'sort_str'=>'', 'fields'=>'`TalentTab`'),
-'TALENT_REPORT_NAME' =>array('class'=>'left', 'sort'=>'', 'text'=>$lang['talent_name'],'draw'=>'r_talentName', 'sort_str'=>'','fields'=>'`TalentTab`'),
-);
+	//=================================================================
+	// Talents list report functions and methods
+	//=================================================================
+	function r_talent_id($data)   { echo $data['TalentTab']; }
+	function r_talent_name($data) { echo get_talent_name($data['TalentTab']); }
+	$talent_report = array(
+	'TALENT_REPORT_ID'   =>array('class'=>'small','sort'=>'', 'text'=>$lang['talent_id'],  'draw'=>'r_talentId',   'sort_str'=>'', 'fields'=>'`TalentTab`'),
+	'TALENT_REPORT_NAME' =>array('class'=>'left', 'sort'=>'', 'text'=>$lang['talent_name'],'draw'=>'r_talentName', 'sort_str'=>'','fields'=>'`TalentTab`'),
+	);
 
-class TalentReportGenerator extends ReportGenerator{
- // Database depend requirest generator
- // Select only reuire for report fields from database
- function TalentReportGenerator($type='')
- {
-  global $talent_report, $wDB;
-  $this->db = &$wDB;
-  $this->column_conf =&$talent_report;
-  $this->table = '`wowd_talents`';
-  $this->db_fields = '`TalentID`';
- }
- function useSpell($entry)
- {
-  $this->do_requirest('`Rank_1` = ?d OR `Rank_2` = ?d OR `Rank_3` = ?d OR `Rank_4` = ?d OR `Rank_5` = ?d', $entry, $entry, $entry, $entry, $entry);
- }
-}
+	class talent_report_generator extends ReportGenerator
+		{
+			// Database depend requirest generator
+			// Select only reuire for report fields from database
+			function Talent_report_generator($type='')
+				{
+					global $talent_report;
+					$this->db = &selectdb("wcf");
+					$this->column_conf =&$talent_report;
+					$this->table = DB_TALENTS;
+					$this->db_fields = '`TalentID`';
+				}
+
+			function use_spell($entry)
+				{
+					//$this->do_requirest('`Rank_1`=$entry OR `Rank_2`=$entry OR `Rank_3`=$entry OR `Rank_4`=$entry OR `Rank_5`=$entry');
+					$this->do_requirest('`Rank_1` = ?d OR `Rank_2` = ?d OR `Rank_3` = ?d OR `Rank_4` = ?d OR `Rank_5` = ?d', $entry, $entry, $entry, $entry, $entry);
+				}
+		}
+
 //=================================================================
 // Zones list report functions and methods
 //=================================================================

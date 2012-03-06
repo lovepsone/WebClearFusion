@@ -21,6 +21,7 @@
 
 	$spell = get_spell($entry);
 	$ajaxmode = 0;
+	$config['fade_limit'] = 30;
 	opentable();
 
 	if (!$spell)
@@ -58,6 +59,8 @@
 					create_spell_details($spell);
 					echo"</td></tr>";
 				}
+
+			create_report_tab();
 		}
 	closetable();
 
