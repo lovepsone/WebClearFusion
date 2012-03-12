@@ -79,6 +79,10 @@
 	//===============================================
 	define("ACP", BASEDIR."acp/");
 	define("ADMIN", BASEDIR."administration/");
+	if ($config['type_content'] = 1 || $config['type_content'] = 2)
+		{
+			define("CONTENT_WOW", BASEDIR."contentwow/"); // подключаем контент под сервер WOW
+		}
 	define("FORUM", BASEDIR."forum/");
 	define("IMAGES_ACP", BASEDIR."acp/images/");
 	define("IMAGES", BASEDIR."images/");
