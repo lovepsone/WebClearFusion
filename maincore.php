@@ -88,16 +88,14 @@
 	//=============================================================================================================
 	// Выбор нужной кодировки\When choosing a character encoding
 	//=============================================================================================================
-	if ($config['encoding'] == 'cp1251') $code_page = 'windows-1251';
-   		else $code_page = 'utf-8';
+	if ($config['encoding'] == 'cp1251') { $code_page = 'windows-1251'; } else { $code_page = 'utf-8'; }
 
 	//=============================================================================================================
 	// Выбор нужного языка\Choosing the right language
 	//=============================================================================================================
-	if (isset($_GET['lang'])) $config['lang'] = $_GET['lang'];
-       					$_SESSION['lang'] = $config['lang'];
+	if (isset($_GET['lang'])) { $config['lang'] = $_GET['lang']; } else { $_SESSION['lang'] = $config['lang']; }
 
-	if ($config['lang']) require "lang/".$config['lang']."/".$config['encoding']."/text.php";
+	if ($config['lang']) { require "lang/".$config['lang']."/".$config['encoding']."/text.php"; }
 
 	//=============================================================================================================
 	// Установка нужной темы\Setting the right topic
@@ -105,10 +103,8 @@
 	$cssfile = THEMES.$config['theme']."/style.css";
 	$themefile = THEMES.$config['theme']."/theme.php";
 
-	if (file_exists($themefile)) include($themefile);
-   		else include(THEMES."default/theme.php");
-
-	if (!file_exists($cssfile)) $cssfile = THEMES."default/style.css";
+	if (file_exists($themefile)) { include($themefile); } else { include(THEMES."default/theme.php"); }
+	if (!file_exists($cssfile)) { $cssfile = THEMES."default/style.css"; }
 
 //=====================================================================================================================
 // Ниже представлены функции защиты и работы сайта\Below are the security features of the site and
