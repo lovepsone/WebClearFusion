@@ -31,7 +31,8 @@
 
 	foreach($cname as $c=>$name)
 		{
-			echo '<a href="?talent='.$name.'" '.add_tooltip(get_classes($c)).'><img class=item src="'.get_class_image($c).'"></a>&nbsp;';
+			echo'<a href="?talent='.$name.'" '.add_tooltip(get_classes($c)).'><img class=item src="'.get_class_image($c).'"></a>&nbsp;';
+
 			if ($talent==$name)
 				{
 					$header = get_classes($c);
@@ -47,7 +48,7 @@
 		{
 			$f = $data['id'];
 			$c = $data['category'];
-			echo '<a href="?talent&pet='.$c.'" '.add_tooltip(get_creature_family($f,0)).'><img class=item src="'.get_family_image($f).'"></a>&nbsp;';
+			echo'<a href="?talent&pet='.$c.'" '.add_tooltip(get_creature_family($f,0)).'><img class=item src="'.get_family_image($f).'"></a>&nbsp;';
 			if ($pid==$c)
 				{
 					$header = get_creature_family($f);
