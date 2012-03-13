@@ -702,7 +702,7 @@ function renderRangedSpeed($char_data)
 	function show_player_auras_from_db($guid)
 		{
 			global $_SESSION;
-			selectdb("characters_r".$_SESSION['realmd_id']);
+			selectdb("characters");
 
  			$buffs  = db_query("SELECT `spell` FROM `character_aura` WHERE `guid`='".$guid."' GROUP BY `spell`");
 

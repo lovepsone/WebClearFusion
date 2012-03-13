@@ -73,12 +73,12 @@
 
 	function show_player_reputation($guid, $class, $race)
 		{
-			global $txt, $game_text, $_SESSION;
+			global $txt, $game_text;
 
 			// Load player reputation
 			$repdata = array();
 			$rep_tree = array();
-			selectdb("characters_r".$_SESSION['realmd_id']);
+			selectdb("characters");
 			$result = db_query("SELECT `faction` AS ARRAY_KEY, `standing`, `flags` FROM `character_reputation` WHERE `guid`='".$guid."'");
 
 			if(!$result)

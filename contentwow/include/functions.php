@@ -92,14 +92,14 @@
 
 	function localise_item(&$item)
 		{
-  			global $_SESSION, $config;
+  			global $config;
 
 			// нужно написать доп. функцию для определения языка, пока что будет русский
    			//$locale = $config['lang'];
 			$locale = 8;
    			if ($locale == 0 OR $item['entry'] == 0) { return; }
 
-			selectdb("mangos_r".$_SESSION['realmd_id']);
+			selectdb("mangos");
    			$lang = db_assoc(db_query("SELECT `name_loc".$locale."` AS `name`, `description_loc".$locale."` AS `desc` FROM `locales_item` WHERE `entry`='".$item['entry']."'"));
 
    			if ($lang)
@@ -115,16 +115,14 @@
 	//=============================================================================================================
 	function get_character($character_id, $fields = "*")
 		{
-			global $_SESSION;
-			selectdb("characters_r".$_SESSION['realmd_id']);
+			selectdb("characters");
  			$data = db_assoc(db_query("SELECT $fields FROM `characters` WHERE `guid`='".$character_id."'"));
 			if ($data) { return $data; } else { return false; }
 		}
 
 	function get_character_stats($character_id, $fields = "*")
 		{
-			global $_SESSION;
-			selectdb("characters_r".$_SESSION['realmd_id']);
+			selectdb("characters");
  			$data = db_assoc(db_query("SELECT * FROM `character_stats` WHERE `guid`='".$character_id."'"));
 			if ($data) { return $data; } else { return false; }		
 		}
@@ -282,8 +280,8 @@
 
 	function get_item($item_id, $fields = "*")
 		{
-  			global $_SESSION, $config;
-			selectdb("mangos_r".$_SESSION['realmd_id']);
+  			global $config;
+			selectdb("mangos");
   			$item = db_assoc(db_query("SELECT $fields FROM `item_template` WHERE `entry`='".$item_id."'"));
   			if ($item) { localise_item($item); }
   			return $item;
@@ -297,8 +295,8 @@
 
 	function get_item_flags2($item_id)
 		{
-  			global $_SESSION, $config;
-			selectdb("mangos_r".$_SESSION['realmd_id']);
+  			global $config;
+			selectdb("mangos");
   			$item = db_assoc(db_query("SELECT `Flags2` FROM `item_template` WHERE `entry`='".$item_id."'"));
 			reset($item);
 			$item = current($item);
@@ -315,8 +313,7 @@
 
 	function get_item_data($guid)
 		{
-			global $_SESSION;
-			selectdb("characters_r".$_SESSION['realmd_id']);
+			selectdb("characters");
 			$data = db_assoc(db_query("SELECT `data` FROM `item_instance` WHERE `guid`='".$guid."'"));
  			return explode(" ", $data['data']);
 		}
@@ -337,8 +334,8 @@
 
 	function get_item_icon_from_item_id($item_id)
 		{
-			global $_SESSION, $bwicon_mode;
-			selectdb("mangos_r".$_SESSION['realmd_id']);
+			global $bwicon_mode;
+			selectdb("mangos");
   			if ($icon = db_assoc(db_query("SELECT `displayid` FROM `item_template` WHERE `entry`='".$item_id."'")))
 				{
 					reset($icon);
@@ -434,10 +431,9 @@
 
 	function show_item_from_char($id, $guid, $style='item', $posx=0, $posy=0, $empty_item)
 		{
-			global $_SESSION;
 			if ($id != 0)
 				{
-					selectdb("characters_r".$_SESSION['realmd_id']);
+					selectdb("characters");
 					$item_data = db_assoc(db_query("SELECT `guid` FROM `item_instance`
 									WHERE `owner_guid`='".$guid."' AND (SUBSTRING_INDEX( SUBSTRING_INDEX(`data` , ' ' , 9) , ' ' , -1 )+0)='".$guid."' AND (SUBSTRING_INDEX( SUBSTRING_INDEX(`data` , ' ' , 4) , ' ' , -1 )+0)='".$id."'"));
 		
@@ -503,10 +499,10 @@
 
 	function text_show_item($entry, $iconId = 0, $style = 0)
 		{
-			global $_SESSION, $config;
+			global $config;
 			if (!$iconId)
 				{
-					selectdb("mangos_r".$_SESSION['realmd_id']);
+					selectdb("mangos");
 					$iconId = db_assoc(db_query("SELECT `displayid` FROM `item_template` WHERE `entry`='".$entry."'"));
 					reset($iconId);
 					$iconId = current($iconId);

@@ -14,51 +14,37 @@
 	// функция коннекта к базе 
 	function selectdb($date_base)
 		{
-  			global $config;
-  
+  			global $config_db_connect, $config;
+
   			switch ($date_base):
 
   			case ("wcf"):
-  			$db = $config['wdbName'];
-  			$ip = $config['whostname'];
-  			$userdb = $config['wusername'];
-  			$pw = $config['wpassword'];
+		  	$db = $config_db_connect['wdbname'];
+		  	$ip = $config_db_connect['whostname'];
+		  	$userdb = $config_db_connect['wusername'];
+		  	$pw = $config_db_connect['wpassword'];
   			break;
 
   			case ("realmd"):
-  			$db = $config['rdbName'];
-  			$ip = $config['rhostname'];
-  			$userdb = $config['rusername'];
-  			$pw = $config['rpassword'];
-  			break;
+		  	$db = $config_db_connect['rdbname'];
+		  	$ip = $config_db_connect['rhostname'];
+		  	$userdb = $config_db_connect['rusername'];
+		  	$pw = $config_db_connect['rpassword'];
+		  	break;
 
-  			case ("characters_r1"):
-  			$db = $config['cdbName_r1'];
-  			$ip = $config['chostname_r1'];
-  			$userdb = $config['cusername_r1'];
-  			$pw = $config['cpassword_r1'];
-  			break;
+  			case ("characters"):
+		  	$db = $config_db_connect['cdbname'];
+		  	$ip = $config_db_connect['chostname'];
+		  	$userdb = $config_db_connect['cusername'];
+		  	$pw = $config_db_connect['cpassword'];
+		  	break;
 
-   			case ("mangos_r1"):
-  			$db = $config['dbName_r1'];
-  			$ip = $config['hostname_r1'];
-  			$userdb = $config['username_r1'];
-  			$pw = $config['password_r1'];
-  			break;
-
-  			case ("characters_r2"):
-  			$db = $config['cdbName_r2'];
-  			$ip = $config['chostname_r2'];
-  			$userdb = $config['cusername_r2'];
-  			$pw = $config['cpassword_r2'];
-  			break;
-
-   			case ("mangos_r2"):
-  			$db = $config['dbName'];
-  			$ip = $config['hostname'];
-  			$userdb = $config['username'];
-  			$pw = $config['password'];
-  			break;
+   			case ("mangos"):
+			$db = $config_db_connect['dbname'];
+		  	$ip = $config_db_connect['hostname'];
+		  	$userdb = $config_db_connect['username'];
+		  	$pw = $config_db_connect['password'];
+		  	break;
 
   			endswitch;
   

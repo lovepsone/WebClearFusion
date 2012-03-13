@@ -79,7 +79,7 @@
 	//===============================================
 	define("ACP", BASEDIR."acp/");
 	define("ADMIN", BASEDIR."administration/");
-	if ($config['type_content'] = 1 || $config['type_content'] = 2)
+	if ($config['type_server'] = '1' || $config['type_server'] = '2')
 		{
 			define("CONTENT_WOW", BASEDIR."contentwow/"); // подключаем контент под сервер WOW
 		}

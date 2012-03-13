@@ -96,8 +96,7 @@
 
 	function get_character_level($character_id)
 		{
-			global $_SESSION;
-			selectdb(characters_r.$_SESSION['realmd_id']);
+			selectdb("characters");
 
   			if ($lvl = db_query("SELECT `level` FROM `characters` WHERE `guid`='".$character_id."'"))
 				{
@@ -433,12 +432,12 @@
 				}
 
 			// Вывод резистов
-			if ($item['holy_res'  ]) echo"<tr><td>".get_resistance_text(1, $item['holy_res'  ])."</td></tr>";
-			if ($item['fire_res'  ]) echo"<tr><td>".get_resistance_text(2, $item['fire_res'  ])."</td></tr>";
-			if ($item['nature_res']) echo"<tr><td>".get_resistance_text(3, $item['nature_res'])."</td></tr>";
-			if ($item['frost_res' ]) echo"<tr><td>".get_resistance_text(4, $item['frost_res' ])."</td></tr>";
-			if ($item['shadow_res']) echo"<tr><td>".get_resistance_text(5, $item['shadow_res'])."</td></tr>";
-			if ($item['arcane_res']) echo"<tr><td>".get_resistance_text(6, $item['arcane_res'])."</td></tr>";
+			if ($item['holy_res'  ]) { echo"<tr><td>".get_resistance_text(1, $item['holy_res'  ])."</td></tr>"; }
+			if ($item['fire_res'  ]) { echo"<tr><td>".get_resistance_text(2, $item['fire_res'  ])."</td></tr>"; }
+			if ($item['nature_res']) { echo"<tr><td>".get_resistance_text(3, $item['nature_res'])."</td></tr>"; }
+			if ($item['frost_res' ]) { echo"<tr><td>".get_resistance_text(4, $item['frost_res' ])."</td></tr>"; }
+			if ($item['shadow_res']) { echo"<tr><td>".get_resistance_text(5, $item['shadow_res'])."</td></tr>"; }
+			if ($item['arcane_res']) { echo"<tr><td>".get_resistance_text(6, $item['arcane_res'])."</td></tr>"; }
 			// Описание камней
 			if ($item['GemProperties'])
 				{

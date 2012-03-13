@@ -38,7 +38,7 @@
 			if (@fsockopen($data['address'], $data['port'], $errno, $errstr, 1)) { echo"<img src='".IMAGES."online.gif' align='absmiddle' alt='online'>"; } else { echo"<img src='".IMAGES."offline.gif' align='absmiddle' alt='ofline'>"; }
 			echo"</td></tr>";
 
-			selectdb("characters_r".$realm_id);
+			selectdb("characters");
 			$result1 = db_query("SELECT * FROM `saved_variables`");
 
 			if ($data1 = db_assoc($result1))

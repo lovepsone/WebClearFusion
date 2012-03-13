@@ -14,8 +14,7 @@
 	// получаем displayid вещи
 	function wowhead_did($item)
 		{
-			global $_SESSION;
-			selectdb("mangos_r".$_SESSION['realmd_id']);
+			selectdb("mangos");
     			$displayid = db_assoc(db_query("SELECT `displayid` FROM `item_template` WHERE `entry`='".$item."'"));
     			echo $displayid['displayid'];
 		}

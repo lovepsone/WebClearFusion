@@ -12,15 +12,14 @@
 
 	function get_character_skills($guid_id)
 		{
-			global $_SESSION;
-			selectdb("characters_r".$_SESSION['realmd_id']);
+			selectdb("characters");
 			$char_skills = db_array(db_query("SELECT * FROM `character_skills` WHERE `guid`='".$guid_id."'"));
 			return $char_skills;
 		}
 
 	function show_player_skills($guid)
 		{
-			global $txt, $_SESSION;
+			global $txt;
 			selectdb("wcf");
 			$result = db_query("SELECT `id` AS ARRAY_KEY, `name`, `order` FROM ".DB_SKILL_CAT."");
 			$skill_category = array(); $skill_name = array();
@@ -37,7 +36,7 @@
 
 			if ($skillcount)
 				{
-					selectdb("characters_r".$_SESSION['realmd_id']);
+					selectdb("characters");
 					$result = db_query("SELECT * FROM `character_skills` WHERE `guid`='$guid'");
 
 					while ($data = db_array($result))

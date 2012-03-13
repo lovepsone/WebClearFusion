@@ -10,74 +10,75 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-$config = array(
-//==================================================================
-// База сайта (WCF)
-//==================================================================
-'whostname' => '127.0.0.1',
-'wusername' => 'mangos',
-'wpassword' => 'mangos',
-'wdbName' => 'wcf',
+	$config_db_connect = array();
+	//==================================================================
+	// База сайта (wcf)
+	//==================================================================
+	$config_db_connect['whostname'] = '127.0.0.1';
+	$config_db_connect['wusername'] = 'mangos';
+	$config_db_connect['wpassword'] = 'mangos';
+	$config_db_connect['wdbname']= 'wcf';
 
-//==================================================================
-// База реалм (realmd)
-//==================================================================
-'rhostname' => '127.0.0.1',
-'rusername' => 'mangos',
-'rpassword' => 'mangos',
-'rdbName' =>'realmd',
+	$config = array(
+	//==================================================================
+	// encoding
+	//==================================================================
+	'encoding' => 'utf8',
+	'use_tab_mode' => '1',          // Tabbed report mode (cswowd)
+	'talent_calc_max_level' => '80',
+	'errors_reporting' => '1',
+	
+	//==================================================================
+	// Тип wcf: 0 - обычный,
+	// 1 - поддержка World of Warcraft LK(mangos)
+	// 2 - поддержка World of Warcraft LK(trynity)(пока не поддерживается) 
+	//==================================================================
+	'type_server' => '1',
+	
+	//==================================================================
+	// Ревизия и копирайт wcf (запрещается менять)
+	//==================================================================
+	'copyright' => 'WebClearFusion v 0.4.63 from LovePSone 2010-2011',
+	'revision' => 'wcf_revision_nr = [272]',
+	'rev_admin' => ' 0.02.00',
+	'rev_acp' => ' 0.02.00'
+	);
 
-//==================================================================
-// База мира (mangos_r1)
-//==================================================================
-'hostname_r1' => '127.0.0.1',
-'username_r1' => 'mangos',
-'password_r1' => 'mangos',
-'dbName_r1' => 'mangos',
+	define("DB_PREFIX", "wcf_");
 
-//==================================================================
-// База персанажей (characters_1)
-//==================================================================
-'chostname_r1' => '127.0.0.1',
-'cusername_r1' => 'mangos',
-'cpassword_r1' => 'mangos',
-'cdbName_r1' => 'characters',
+	//==================================================================
+	// далее скриптовка на поддержку сервера(мультиреалмость)
+	//==================================================================
+	if (isset($_SESSION['realmd_id']))
+		{
+			$r_id = $_SESSION['realmd_id'];
+		}
+	elseif (isset($_GET['realm_id']) && isnum($_GET['realm_id']))
+		{
+			$r_id = addslashes($_GET["realm_id"]);
+		}
+	else
+		{
+			$r_id = 1;
+		}
+	if ($config['type_server'] = '1' || $config['type_server'] = '2')
+		{
+			require_once "contentwow/realmlist.php";
 
-//==================================================================
-// База мира (mangos_r2)
-//==================================================================
-'hostname_r2' => '127.0.0.1',
-'username_r2' => 'mangos',
-'password_r2' => 'mangos',
-'dbName_r2' => 'mangos2',
-
-//==================================================================
-// База персанажей (characters_r2)
-//==================================================================
-'chostname_r2' => '127.0.0.1',
-'cusername_r2' => 'mangos',
-'cpassword_r2' => 'mangos',
-'cdbName_r2' => 'characters2',
-
-'encoding' => 'utf8',
-'use_tab_mode' => '1',          // Tabbed report mode (cswowd)
-'talent_calc_max_level' => '80',
-'errors_reporting' => '1',
-
-//==================================================================
-// Тип wcf: 0-обычный, 1-поддержка World of Warcraft LK(mangos)
-// 2-поддержка World of Warcraft LK(trynity)(пока не поддерживается) 
-//==================================================================
-'type_content' => '1',
-
-//==================================================================
-// Ревизия и копирайт wcf (запрещается менять)
-//==================================================================
-'copyright'=>'WebClearFusion v 0.4.63 from LovePSone 2010-2011',
-'revision'=>'wcf_revision_nr = [271]',
-'rev_admin'=>' 0.02.00',
-'rev_acp'=>' 0.02.00',
-);
-
-define("DB_PREFIX", "wcf_");
+			//==================================================================
+			// База мира (mangos)
+			//==================================================================
+			$config_db_connect['hostname'] = $realms[$r_id]['hostname'];
+			$config_db_connect['username'] = $realms[$r_id]['username'];
+			$config_db_connect['password'] = $realms[$r_id]['password'];
+			$config_db_connect['dbname'] = $realms[$r_id]['dbname'];
+		
+			//==================================================================
+			// База персанажей (characters)
+			//==================================================================
+			$config_db_connect['chostname'] = $realms[$r_id]['chostname'];
+			$config_db_connect['cusername'] = $realms[$r_id]['cusername'];
+			$config_db_connect['cpassword'] = $realms[$r_id]['cpassword'];
+			$config_db_connect['cdbname'] = $realms[$r_id]['cdbname'];
+		}
 ?>
