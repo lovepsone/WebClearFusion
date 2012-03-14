@@ -13,10 +13,7 @@
 	require_once "maincore.php";
 	require_once THEMES."templates/header.php";
 
-	if ($config['type_server'] = '1' || $config['type_server'] = '2')
-		{
-			require_once CONTENT_WOW."talent.php";
-		}
+	include_files_cw('talent.php');
 
 	require_once THEMES."templates/footer.php";
 ?>
