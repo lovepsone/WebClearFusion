@@ -139,9 +139,9 @@
 												}
 											if ($p_data['panel_type'] == "file")
 												{
-													if (file_exists(PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php"))
+													if (file_exists(CONTENT_WOW."panels/".$p_data['panel_filename']."/".$p_data['panel_filename'].".php"))
 														{
-															include PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php";
+															include CONTENT_WOW."panels/".$p_data['panel_filename']."/".$p_data['panel_filename'].".php";
 														}
 												}
 								}
