@@ -11,6 +11,7 @@
 +--------------------------------------------------------*/
 
 	$config_db_connect = array();
+	$config = array();
 	//==================================================================
 	// База сайта (wcf)
 	//==================================================================
@@ -19,30 +20,29 @@
 	$config_db_connect['wpassword'] = 'mangos';
 	$config_db_connect['wdbname']= 'wcf';
 
-	$config = array(
 	//==================================================================
 	// encoding
 	//==================================================================
-	'encoding' => 'utf8',
-	'use_tab_mode' => '1',          // Tabbed report mode (cswowd)
-	'talent_calc_max_level' => '80',
-	'errors_reporting' => '1',
+	$config['encoding'] = 'utf8';
+
+	$config['use_tab_mode'] = '1';          // Tabbed report mode (cswowd)
+	$config['talent_calc_max_level'] = '80';
+	$config['errors_reporting'] = '1';
 	
 	//==================================================================
 	// Тип wcf: 0 - обычный,
 	// 1 - поддержка World of Warcraft LK(mangos)
 	// 2 - поддержка World of Warcraft LK(trynity)(пока не поддерживается) 
 	//==================================================================
-	'type_server' => '1',
+	$config['type_server'] = '1';
 	
 	//==================================================================
 	// Ревизия и копирайт wcf (запрещается менять)
 	//==================================================================
-	'copyright' => 'WebClearFusion v 0.4.63 from LovePSone 2010-2011',
-	'revision' => 'wcf_revision_nr = [280]',
-	'rev_admin' => ' 0.02.00',
-	'rev_acp' => ' 0.02.00'
-	);
+	$config['copyright'] = 'WebClearFusion v 0.4.63 from LovePSone 2010-2011';
+	$config['revision'] = 'wcf_revision_nr = [281]';
+	$config['rev_admin'] = ' 0.02.00';
+	$config['rev_acp'] = ' 0.02.00';
 
 	define("DB_PREFIX", "wcf_");
 
