@@ -3,12 +3,16 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
-| Filename: include_files.php
+| Filename: core.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
+
+	selectdb("realmd");
+	$config['namber_realmd'] = db_num_rows(db_query("SELECT * FROM `realmlist`"));
+	$config['defult_realmd_id'] = db_result(db_query("SELECT `id` FROM `realmlist`"),0);
 
 	//=============================================================================================================
 	// Запускаем дополнительные функции и данные\Run additional features and data

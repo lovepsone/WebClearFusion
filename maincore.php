@@ -52,7 +52,11 @@
 	require_once BASEDIR."include/functions_users.php";
 	require_once BASEDIR."include/include_access_list.php";
 
-	require_once CONTENT_WOW."include/include_files.php";
+	if ($config['type_server'] = '1' || $config['type_server'] = '2')
+		{
+			require_once CONTENT_WOW."realmlist.php";
+			require_once CONTENT_WOW."core.php";
+		}
 
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup

@@ -77,12 +77,7 @@
 	//===============================================
 	// Пути определения папок
 	//===============================================
-	define("ACP", BASEDIR."acp/");
 	define("ADMIN", BASEDIR."administration/");
-	if ($config['type_server'] = '1' || $config['type_server'] = '2')
-		{
-			define("CONTENT_WOW", BASEDIR."contentwow/"); // подключаем контент под сервер WOW
-		}
 	define("FORUM", BASEDIR."forum/");
 	define("IMAGES_ACP", BASEDIR."acp/images/");
 	define("IMAGES", BASEDIR."images/");
@@ -97,4 +92,10 @@
 	define("LANG", BASEDIR."lang/");
 	define("PANELS", BASEDIR."panels/");
 	define("THEMES", BASEDIR."themes/");
+
+	if ($config['type_server'] = '1' || $config['type_server'] = '2')
+		{
+			define("CONTENT_WOW", BASEDIR."contentwow/"); // подключаем контент под сервер WOW
+			define("ACP", BASEDIR."acp/");
+		}
 ?>
