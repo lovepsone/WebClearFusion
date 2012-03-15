@@ -18,7 +18,10 @@
        				{
        					$CapchaInput = 1;
        				}
-    			else { $CapchaInput = 0; }
+    			else 
+				{
+					$CapchaInput = 0;
+				}
    		}
 	elseif ($config['kcaptcha_enable_auth'] == 0)
 		{
@@ -46,11 +49,11 @@
 					//======================================
 					// занесение юзера в таблицу
 					selectdb("wcf");
-					$result = db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`='".$_SESSION['user_id']."' AND `user_name`='".$_SESSION['user_name']."'");
+					$data = db_assoc(db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`='".$_SESSION['user_id']."' AND `user_name`='".$_SESSION['user_name']."'"));
 
-					if ($result['user_id'] != $_SESSION['user_id'])
+					if ($data['user_id'] != $_SESSION['user_id'])
 						{
-							db_query("INSERT INTO ".DB_USERS." (`user_id`,`user_name`,`user_online`) VALUES ('".$_SESSION['user_id']."','".$_SESSION['user_name']."','1')");
+							db_query("INSERT INTO ".DB_USERS." (`user_id`,`user_name`) VALUES ('".$_SESSION['user_id']."','".$_SESSION['user_name']."')");
 						}
 
        				}

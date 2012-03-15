@@ -179,7 +179,6 @@ DROP TABLE IF EXISTS `wcf_users`;
 CREATE TABLE `wcf_users` (
   `user_id` int(11) unsigned NOT NULL auto_increment,
   `user_name` varchar(32) collate utf8_unicode_ci NOT NULL default '',
-  `user_online` tinyint(3) unsigned NOT NULL default '0',
   `user_avatar` varchar(100) collate utf8_unicode_ci NOT NULL default '',
   PRIMARY KEY  (`user_id`),
   UNIQUE KEY `idx_user_name` (`user_name`)

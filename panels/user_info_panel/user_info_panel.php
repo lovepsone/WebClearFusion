@@ -39,13 +39,8 @@
 			echo"</form>";
 			closeside();
 		}
-	else if (isset($_SESSION['user_id']) or ($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
+	else if (isset($_SESSION['user_id']) || ($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
 		{
-			//======================================
-			// занесение юзера в таблицу
-			selectdb("wcf");
-			db_query("UPDATE ".DB_USERS." SET `user_online`='1' WHERE  `user_id`='".$_SESSION['user_id']."'");
-
  			$query_user = db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`=".$_SESSION['user_id']." LIMIT 1");
   			$res_user = db_assoc($query_user);
 
@@ -72,15 +67,5 @@
 			if ( $_SESSION['gmlevel'] >= $config['level_administration'] ) { echo"<tr><td align='right'><a href='".ADMIN."administration.php?contet'>".$txt['menu_auth_admin']."</a></td></tr>";}
 			echo"<tr><td align='right'><a href='".BASEDIR."setuser.php?action=logout'>".$txt['menu_auth_exit']."</a>";
 			closeside();
-
-			//======================================
-			// чистка онлайна
-			selectdb("wcf");
-			$clear_user = db_query("SELECT * FROM ".DB_USERS."");
-
-			while ($user = db_array($clear_user))
-				{
-					if ($user['user_id'] != $_SESSION['user_id']) { db_query("UPDATE ".DB_USERS." SET `user_online`='0' WHERE  `user_id`='".$user['user_id']."'"); }
-				}
 		}
 ?>
