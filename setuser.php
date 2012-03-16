@@ -38,37 +38,12 @@
     			session_destroy();
 			$opening_page = BASEDIR.$config['opening_page'];
 		}
-	elseif ((isset($_GET['action']) && $_GET['action'] == "login") && (isset($_GET['realmd_id']) && isnum($_GET['realmd_id'])))
+	elseif ($config['type_server'] = '1' || $config['type_server'] = '2')
 		{
-			selectdb("realmd");
-			$check_ban_acc = db_query("SELECT * FROM `account_banned` WHERE `id`='".$_SESSION['user_id']."' AND `active`='1'");
-			$check_ban_ip = db_query("SELECT * FROM `ip_banned` WHERE `ip`='".$_SESSION['ip']."'");
+			// function in wow content
+			login_or_out_acp_table();
+		}
 
-			if (db_num_rows($check_ban_acc))
-				{
-					$data_ban_acc = db_assoc($check_ban_acc);
-					$txt_page = $txt['modul_setuser_ban_acc'].$data_ban_acc['banreason'];
-					$opening_page = BASEDIR.$config['opening_page'];	
-				}
-			elseif (db_num_rows($check_ban_ip))
-				{
-					$data_ban_ip = db_assoc($check_ban_ip);
-					$txt_page = $txt['modul_setuser_ban_ip'].$data_ban_ip['banreason'];
-					$opening_page = BASEDIR.$config['opening_page'];
-				}
-			else
-				{
-					$txt_page = $txt['modul_setuser_login'].$txt['modul_setuser_wait'];
-					$opening_page = ACP."index.php";
-					$_SESSION['realmd_id'] = $_GET['realmd_id'];
-				}
-		}
-	elseif (isset($_GET['action']) && $_GET['action'] == "out_acp")
-		{
-    			unset($_SESSION['realmd_id']);
-			$txt_page = $txt['modul_setuser_out_acp'].$txt['modul_setuser_wait'].$txt_url;
-			$opening_page = BASEDIR.$config['opening_page'];
-		}
 
 	echo"<table width='800' align='center' class='tbl-border center'><tr><td>";
 	opentable();

@@ -55,8 +55,8 @@
 	if ($config['type_server'] = '1' || $config['type_server'] = '2')
 		{
 			require_once CONTENT_WOW."realmlist.php";
-			require_once CONTENT_WOW."core.php";
 		}
+	require_once CONTENT_WOW."core.php";
 
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup
