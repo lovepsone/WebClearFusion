@@ -50,18 +50,7 @@
   			echo"<tr><td align='left'>".$txt['menu_auth_ip']."</td></tr>";
   			echo"<tr><td align='left'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
 
-			selectdb("realmd");
-			$result = db_query("SELECT * FROM `realmlist`");
-			$realms_list = "";
-			while ($data = db_array($result))
-				{
-					$realms_list .= "<option value='".$data['id']."'>".$data['name']."</option>";
-				}
-			echo"<form method='post'>";
-			echo"<tr><td width='100%'><hr></td></tr>";
-			echo"<tr><td align='center'>".$txt['menu_auth_log_in_acp']."<br><select name='realm_id' class='textbox' style='width:150px'>".$realms_list."</select></td></tr>";
-			echo"<tr><td align='center'><input type='submit' name='log_in_acp' value='".$txt['menu_auth_enter']."' class='button' /></td></tr>";
-			echo"</form>";
+			show_realms_table();
 
 			echo"<tr><td width='100%'><hr></td></tr>";
 			if ( $_SESSION['gmlevel'] >= $config['level_administration'] ) { echo"<tr><td align='right'><a href='".ADMIN."administration.php?contet'>".$txt['menu_auth_admin']."</a></td></tr>";}
