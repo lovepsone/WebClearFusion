@@ -10,11 +10,8 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	if (isset($_POST['log_in_acp']) AND (isset($_POST['realm_id']) && isnum($_POST['realm_id'])))
-		{
-			redirect(BASEDIR."setuser.php?action=login&realmd_id=".$_POST['realm_id']);
-		}
-	if (!isset($_SESSION['user_id']) or ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
+	redirect_realm_form();
+	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
 		{
   			openside();
 			echo"<form name='loginform' method='post' action='".WCF_SELF."'>";

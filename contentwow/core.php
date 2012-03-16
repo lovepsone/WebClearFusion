@@ -65,6 +65,19 @@
 				}
 		}
 
+	function redirect_realm_form()
+		{
+			global $_POST;
+
+			if ($config['type_server'] = '1' || $config['type_server'] = '2')
+				{
+					if (isset($_POST['log_in_acp']) && (isset($_POST['realm_id']) && isnum($_POST['realm_id'])))
+						{
+							redirect(BASEDIR."setuser.php?action=login&realmd_id=".$_POST['realm_id']);
+						}
+				}
+		}
+
 	function login_or_out_acp_table()
 		{
 			global $_GET, $_SESSION, $txt_page, $txt, $opening_page, $config, $txt_url;
