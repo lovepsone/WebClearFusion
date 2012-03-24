@@ -1,17 +1,17 @@
 = WebClearFusion -- README =
-
+Описание на двух языках (ru,en).
 Автор проекта:
 	Lovepsone (<lovepsone@mail.ru>) и frostzhenya (<sexplay2009@mail.ru>)
 
 Назначение проекта:
 	Создание Web-обвязки для сервера Mangos.
 
-Опиание проекта:
+Описание проекта:
 	Сайт разделен на основные 2 части: Main Content и WOW Content.
 
 	Кратко о частях:
 
-	Main Content содержит в себе некоторые подчасти: Оновной контент, Админка, Форум.
+	Main Content содержит в себе некоторые подчасти: Оcновной контент, Админка, Форум.
 	 Оcновной контент - есть главная часть сайта, в которой содержитя сердце сайта: в оcновном запуск модулей и функций и тд.
 	 Админка (Site Control Panel) - предназначена для управления новостями, панелями, ссылками и тд.
 	 Форум - предназначен для обмена сообщениями, выяснения кокого-то преследующего вопроса.
@@ -22,6 +22,20 @@
 Проект тестируется на исходниках от rsa (ветка mangosr2) <https://github.com/mangosR2/mangos>
 В дальнейшем планируется поддерживать проект trynitycore.
 
+Установка движка:
+	Cоздать базу данных с любым своим названием (я то прописал бы wcf).
+	Далее настроить conf.php:
+	 $config_db_connect['whostname'] = '127.0.0.1'; - хост, то есть ип адрес.
+	 $config_db_connect['wusername'] = ''; имя соединения к бд.
+	 $config_db_connect['wpassword'] = ''; пароль соединения к бд.
+	 $config_db_connect['wdbname']= 'wcf'; сама база, в данном случаи wcf.
+	Далее выбираем тип сайта : $config['type_server'] = 'пишим сюда число'; - Если пропишим '0', то сайт будет обычный, т.е без модулей вов, и настройка на этом закончится!
+	Если пропишим 1 или 2 (1-mangos, 2-trynity), сайт начнет поддерживать контент WoW, тогда продолжаем настройки.
+	Далее нам надо прописать конект к базе персонажей, реалмов, и миру.
+	Лезем в www\contentwow\realmlist.php и настраеваем (пояснять настройку не буду, так как она аналогична настройке conf.php).
+	Если есть какие-то вопросы задавайте сдесь или пишите на мыло (<lovepsone@mail.ru>).
+
+
 Особые благодарности:
 	frostzhenya (за доступ к репозиторию и идею создания)
 	lovepsone (за создание проекта и его поддержку)
@@ -29,3 +43,48 @@
 	TIMzs (за идеи с его лк)
 	Камекадзе (за идеи)
 	Chester (за идеи)
+
+
+Description in two languages (ru,en). Technical translation is bad, I speak, so that might meet the description of the error.
+Project author:
+	Lovepsone (<lovepsone@mail.ru>) and frostzhenya (<sexplay2009@mail.ru>)
+
+Purpose of Project:
+	Creating a Web-binding for the server Mangos.
+
+Description of Project:
+	The site is divided into two main parts: Main Content and WOW Content.
+
+	Briefly about the parts:
+
+	Main Content contains several subparts: Onovnoy content, Admin, Forum.
+	 Its main content - is the main part of the site, in which the heart soderzhitya site: Its main run in the modules and functions, and so on.
+	 Admin (Site Control Panel) - designed to manage the news, panels, links, and so on.
+	 Forum - is designed for messaging, kokogo clarify something haunting question.
+
+	WOW Content contains the ACP, the data on WOW. This part can be turned off if you want to use a different site themes.
+	 ACP (Account Control Panel) - designed to manage the accounts of players and characters.
+
+The project is being tested at the source code of rsa (branch mangosr2) <https://github.com/mangosR2/mangos>
+In the future we plan to support the project trynitycore.
+
+Installing the engine:
+	Create a database with any of his name (I ordered it to wcf).
+	Next, adjust the conf.php:
+	 $config_db_connect ['whostname'] = '127 .0.0.1 '; - host, that is, u e.
+	 $config_db_connect ['wusername'] =''; name for the connection to the database.
+	 $config_db_connect ['wpassword'] =''; connection password to the database.
+	 $config_db_connect ['wdbname'] = 'wcf'; the base itself, in this case wcf.
+	Next, select the type of site: $ config ['type_server'] = 'pishim number here' - If you list the '0 ', the site will be normal, ie no modules Islands, and setup on this end!
+	If you list the 1 or 2 (1-mangos, two-trynity), the site will maintain the content of WoW, then continue configuration.
+	Next, we need to prescribe konekt to the base characters, realms, and the world.
+	We climb into www \ contentwow \ realmlist.php and nastraevaem (I will not explain the setting, since it is similar to conf.php).
+	If you have any questions ask here to see prices or write to the soap (<lovepsone@mail.ru>).
+
+Special thanks to:
+	frostzhenya (for access to the repository and the idea of ??creating a)
+	lovepsone (for the creation of the project and its support)
+	Кот_ДаWINчи (for direction in the development of the project)
+	TIMzs (for ideas)
+	Камекадзе (for ideas)
+	Chester (for ideas)
