@@ -37,10 +37,6 @@
 				{
 					require_once CONTENT_WOW.$patch;
 				}
-			/*else
-				{
-					
-				}*/
 			return;
 		}
 
@@ -113,5 +109,39 @@
 					$txt_page = $txt['modul_setuser_out_acp'].$txt['modul_setuser_wait'].$txt_url;
 					$opening_page = BASEDIR.$config['opening_page'];
 				}
+		}
+
+	function auth()
+		{
+			global $_SESSION, $_SERVER, $_POST, $config, $CapchaInput, $password;
+
+			selectdb("realmd");
+   			$result = db_query('SELECT * FROM `account` WHERE `username`="'.strtoupper(addslashes($_POST['auth_name'])).'" AND `sha_pass_hash`="'.$password.'"');
+
+   			if ((mysql_num_rows($result) == 1) && ($CapchaInput == 1))
+      				{
+					$data = db_assoc($result);
+       					$_SESSION['user_id'] = (int)$data['id'];
+       					$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+       					$_SESSION['user_name'] = strtoupper($_POST['auth_name']);
+       					$_SESSION['password'] = strtoupper($password);
+					$_SESSION['gmlevel'] = (int)$data['gmlevel'];
+       					$_SESSION['lang'] = $config['lang'];
+					unset($_SESSION['captcha_keystring']);
+					
+					//======================================
+					// занесение юзера в таблицу
+					selectdb("wcf");
+					$data = db_assoc(db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`='".$_SESSION['user_id']."' AND `user_name`='".$_SESSION['user_name']."'"));
+
+					if ($data['user_id'] != $_SESSION['user_id'])
+						{
+							db_query("INSERT INTO ".DB_USERS." (`user_id`,`user_name`,`user_sha_pass_hash`) VALUES ('".$_SESSION['user_id']."','".$_SESSION['user_name']."','".$_SESSION['password']."')");
+						}
+					else
+						{
+							$_SESSION['bonuses'] = (int)$data['user_bonuses'];
+						}
+       				}
 		}
 ?>

@@ -99,7 +99,7 @@
 	//=============================================================================================================
 	if (isset($_GET['lang'])) { $config['lang'] = $_GET['lang']; } else { $_SESSION['lang'] = $config['lang']; }
 
-	if ($config['lang']) { require "lang/".$config['lang']."/".$config['encoding']."/text.php"; }
+	if ($config['lang']) { require BASEDIR."lang/".$config['lang']."/".$config['encoding']."/text.php"; }
 
 	//=============================================================================================================
 	// Установка нужной темы\Setting the right topic
