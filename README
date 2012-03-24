@@ -1,39 +1,4 @@
 = WebClearFusion -- README =
-Описание на двух языках (ru,en).
-Автор проекта:
-	Lovepsone (<lovepsone@mail.ru>) и frostzhenya (<sexplay2009@mail.ru>)
-
-Назначение проекта:
-	Создание Web-обвязки для сервера Mangos.
-
-Описание проекта:
-	Сайт разделен на основные 2 части: Main Content и WOW Content.
-
-	Кратко о частях:
-
-	Main Content содержит в себе некоторые подчасти: Оcновной контент, Админка, Форум.
-	 Оcновной контент - есть главная часть сайта, в которой содержитя сердце сайта: в оcновном запуск модулей и функций и тд.
-	 Админка (Site Control Panel) - предназначена для управления новостями, панелями, ссылками и тд.
-	 Форум - предназначен для обмена сообщениями, выяснения кокого-то преследующего вопроса.
- 
-	WOW Content содержит в себе ACP, данные по WOW. Эту часть можно отключить, если вы сайт хотите использовать другую тематику.
-	 ACP (Account Control Panel) – предназначена для управления игроками аккаунтами и персонажами.
-
-Проект тестируется на исходниках от rsa (ветка mangosr2) <https://github.com/mangosR2/mangos>
-В дальнейшем планируется поддерживать проект trynitycore.
-
-Установка движка:
-	прочитайте instal
-
-Особые благодарности:
-	frostzhenya (за доступ к репозиторию и идею создания)
-	lovepsone (за создание проекта и его поддержку)
-	Кот_ДаWINчи (за направление в развитии проекта)
-	TIMzs (за идеи с его лк)
-	Камекадзе (за идеи)
-	Chester (за идеи)
-
-
 Description in two languages (ru,en). Technical translation is bad, I speak, so that might meet the description of the error.
 Project author:
 	Lovepsone (<lovepsone@mail.ru>) and frostzhenya (<sexplay2009@mail.ru>)
