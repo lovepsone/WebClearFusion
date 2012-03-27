@@ -10,6 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	// wow content
 	redirect_realm_form();
 	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
 		{
@@ -46,7 +47,7 @@
 			echo"<tr><td align='right' valign='top' class='avatar'>".avatar_img($res_user['user_avatar'])."</td></tr>";
   			echo"<tr><td align='left'>".$txt['menu_auth_ip']."</td></tr>";
   			echo"<tr><td align='left'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
-
+			// wow content
 			show_realms_table();
 
 			echo"<tr><td width='100%'><hr></td></tr>";

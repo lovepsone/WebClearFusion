@@ -68,7 +68,6 @@ $txt = array(
 'modul_registe_warning_field'	=>'Пожалуйста правильно заполните все поля!',
 'modul_registe_warning_account'	=>'Такая учетная запись уже существует!',
 'modul_register_error'		=>'Ошибка при регистрации!!!',
-'modul_register_sucess'		=>'Вы успешно зарегестрировались! Через 2-4 секунды вас перекинет на главную страницу. Приятной вам игры.',
 
 'modul_setuser_sucess_auth'	=>'Вы вашли как ',
 'modul_setuser_errors_auth'	=>'Вы ввели неверный логин или пароль!',

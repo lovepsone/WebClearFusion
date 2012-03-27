@@ -181,8 +181,10 @@ CREATE TABLE `wcf_users` (
   `user_name` varchar(32) collate utf8_unicode_ci NOT NULL default '',
   `user_sha_pass_hash` varchar(40) collate utf8_unicode_ci NOT NULL default '',
   `user_gmlevel` tinyint(3) unsigned NOT NULL default '0',
+  `email` text collate utf8_unicode_ci,
   `user_avatar` varchar(100) collate utf8_unicode_ci NOT NULL default '',
+  `user_last_ip` varchar(30) collate utf8_unicode_ci NOT NULL default '0.0.0.0',
   `user_bonuses` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`user_id`),
   UNIQUE KEY `idx_user_name` (`user_name`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

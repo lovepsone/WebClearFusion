@@ -40,7 +40,7 @@
 		}
 	elseif ($config['type_server'] = '1' || $config['type_server'] = '2')
 		{
-			// function in wow content
+			// wow content
 			login_or_out_acp_table();
 		}
 
