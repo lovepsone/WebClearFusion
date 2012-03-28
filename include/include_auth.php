@@ -40,7 +40,6 @@
 							unset($_SESSION['captcha_keystring']);
 		       				}
 				}
-			header("Location: http://".$_SERVER['HTTP_HOST']."/setuser.php?action=auth");
-   			exit;
+			redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=auth");
    		}
 ?>
