@@ -13,25 +13,30 @@
 	//=============================================================================================================
 	// функции в основном связаны с content wow
 	//=============================================================================================================
-	selectdb("realmd");
-	$config['namber_realmd'] = db_num_rows(db_query("SELECT * FROM `realmlist`"));
-	$config['defult_realmd_id'] = db_result(db_query("SELECT `id` FROM `realmlist`"),0);
+	if ($config['type_server'] == '1' || $config['type_server'] == '2')
+		{
+			selectdb("realmd");
+			$config['namber_realmd'] = db_num_rows(db_query("SELECT * FROM `realmlist`"));
+			$config['defult_realmd_id'] = db_result(db_query("SELECT `id` FROM `realmlist`"),0);
+		}
 
 	//=============================================================================================================
 	// Запускаем дополнительные функции и данные\Run additional features and data
 	//=============================================================================================================
-	require_once CONTENT_WOW."include/include_simple_cacher.php";
-	require_once CONTENT_WOW."include/functions.php";
-	require_once CONTENT_WOW."include/include_item_table.php";
-	require_once CONTENT_WOW."include/include_player_data.php";
-	require_once CONTENT_WOW."include/include_spell_data.php";
-	require_once CONTENT_WOW."include/include_spell_details.php";
-	require_once CONTENT_WOW."include/include_spell_table.php";
-	require_once CONTENT_WOW."include/include_report_generator.php";
-	require_once CONTENT_WOW."include/ajax_tooltip.php";
-	require_once CONTENT_WOW."include/include_talent_calc.php";
-	require_once CONTENT_WOW."include/include_talent_table.php";
-
+	if ($config['type_server'] == '1' || $config['type_server'] == '2')
+		{
+			require_once CONTENT_WOW."include/include_simple_cacher.php";
+			require_once CONTENT_WOW."include/functions.php";
+			require_once CONTENT_WOW."include/include_item_table.php";
+			require_once CONTENT_WOW."include/include_player_data.php";
+			require_once CONTENT_WOW."include/include_spell_data.php";
+			require_once CONTENT_WOW."include/include_spell_details.php";
+			require_once CONTENT_WOW."include/include_spell_table.php";
+			require_once CONTENT_WOW."include/include_report_generator.php";
+			require_once CONTENT_WOW."include/ajax_tooltip.php";
+			require_once CONTENT_WOW."include/include_talent_calc.php";
+			require_once CONTENT_WOW."include/include_talent_table.php";
+		}
 	//=============================================================================================================
 	// функция для импорта файлов content wow
 	//=============================================================================================================
@@ -39,7 +44,7 @@
 		{
 			global $config, $txt;
 
-			if ($config['type_server'] = '1' || $config['type_server'] = '2')
+			if ($config['type_server'] == '1' || $config['type_server'] == '2')
 				{
 					require_once CONTENT_WOW.$patch;
 				}
@@ -53,7 +58,7 @@
 		{
 			global $config, $txt;
 
-			if ($config['type_server'] = '1' || $config['type_server'] = '2')
+			if ($config['type_server'] == '1' || $config['type_server'] == '2')
 				{
 					selectdb("realmd");
 					$result = db_query("SELECT * FROM `realmlist`");
@@ -75,9 +80,9 @@
 	//=============================================================================================================
 	function redirect_realm_form()
 		{
-			global $_POST;
+			global $_POST, $config;
 
-			if ($config['type_server'] = '1' || $config['type_server'] = '2')
+			if ($config['type_server'] == '1' || $config['type_server'] == '2')
 				{
 					if (isset($_POST['log_in_acp']) && (isset($_POST['realm_id']) && isnum($_POST['realm_id'])))
 						{

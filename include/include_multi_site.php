@@ -93,9 +93,7 @@
 	define("PANELS", BASEDIR."panels/");
 	define("THEMES", BASEDIR."themes/");
 
-	if ($config['type_server'] = '1' || $config['type_server'] = '2')
-		{
-			define("CONTENT_WOW", BASEDIR."contentwow/"); // подключаем контент под сервер WOW
-			define("ACP", BASEDIR."acp/");
-		}
+	// подключаем контент под сервер WOW
+	define("CONTENT_WOW", BASEDIR."contentwow/");
+	define("ACP", BASEDIR."acp/");
 ?>

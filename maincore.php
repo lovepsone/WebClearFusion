@@ -52,10 +52,11 @@
 	require_once BASEDIR."include/functions_users.php";
 	require_once BASEDIR."include/include_access_list.php";
 
-	if ($config['type_server'] = '1' || $config['type_server'] = '2')
+	if ($config['type_server'] == '1' || $config['type_server'] == '2')
 		{
 			require_once CONTENT_WOW."realmlist.php";
 		}
+
 	require_once CONTENT_WOW."core.php";
 
 	//=============================================================================================================
@@ -81,10 +82,6 @@
 				}
 		}
 	else { die("Settings do not exist or no connection to base mysql. May not correctly configured conf.php."); }
-
-	selectdb("realmd");
-	$config['namber_realmd'] = db_num_rows(db_query("SELECT * FROM `realmlist`"));
-	$config['defult_realmd_id'] = db_result(db_query("SELECT `id` FROM `realmlist`"),0);
 
 	require_once BASEDIR."include/include_auth.php";
 	require_once BASEDIR."include/include_protect.php";
@@ -243,4 +240,5 @@
 					error_log($err_str, 3, BASEDIR."logs/".$file_err);
 				}
 		}
+
 ?>

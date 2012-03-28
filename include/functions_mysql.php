@@ -26,24 +26,33 @@
   			break;
 
   			case ("realmd"):
-		  	$db = $config_db_connect['rdbname'];
-		  	$ip = $config_db_connect['rhostname'];
-		  	$userdb = $config_db_connect['rusername'];
-		  	$pw = $config_db_connect['rpassword'];
+			if ($config['type_server'] == '1' || $config['type_server'] == '2')
+				{
+				  	$db = $config_db_connect['rdbname'];
+				  	$ip = $config_db_connect['rhostname'];
+				  	$userdb = $config_db_connect['rusername'];
+				  	$pw = $config_db_connect['rpassword'];
+				}
 		  	break;
 
   			case ("characters"):
-		  	$db = $config_db_connect['cdbname'];
-		  	$ip = $config_db_connect['chostname'];
-		  	$userdb = $config_db_connect['cusername'];
-		  	$pw = $config_db_connect['cpassword'];
+			if ($config['type_server'] == '1' || $config['type_server'] == '2')
+				{
+				  	$db = $config_db_connect['cdbname'];
+				  	$ip = $config_db_connect['chostname'];
+				  	$userdb = $config_db_connect['cusername'];
+				  	$pw = $config_db_connect['cpassword'];
+				}
 		  	break;
 
    			case ("mangos"):
-			$db = $config_db_connect['dbname'];
-		  	$ip = $config_db_connect['hostname'];
-		  	$userdb = $config_db_connect['username'];
-		  	$pw = $config_db_connect['password'];
+			if ($config['type_server'] == '1' || $config['type_server'] == '2')
+				{
+					$db = $config_db_connect['dbname'];
+				  	$ip = $config_db_connect['hostname'];
+				  	$userdb = $config_db_connect['username'];
+				  	$pw = $config_db_connect['password'];
+				}
 		  	break;
 
   			endswitch;
@@ -149,23 +158,6 @@
 				}
 		}
 
-	/*function select_page($query)
-		{
-			$result = db_query($query);
-			if (!db_num_rows($result)) { return; }
-
-			$result = mysql_fetch_object($result);
-			if (!$result)
-				{
-					echo mysql_error();
-					return false;
-				}
-			else
-				{
-					return $result;
-				}
-		}*/
-
 	//=============================================================================================
 	// функция работает с логами, добавляет их в бд.
 	// Значения поля mode в запросе:
@@ -183,7 +175,7 @@
 	function logs($log_account, $log_character, $log_mode, $log_email, $log_resultat, $log_note, $log_old_data)
 		{
 			global $_SERVER;
-			if (($log_account == '') OR ($log_account == 0))
+			if (($log_account == '') || ($log_account == 0))
 				{
 					$log_account = $_SESSION['user_id'];
 				}
