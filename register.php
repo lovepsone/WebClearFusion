@@ -53,7 +53,7 @@
 					redirect(WCF_SELF."?errors=".$errors);
        				}
 
-			if ($config['type_server'] = '1' || $config['type_server'] = '2')
+			if ($config['type_server'] == '1' || $config['type_server'] == '2')
 				{
 					// wow content
 					create_acc();
