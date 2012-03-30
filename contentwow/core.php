@@ -33,7 +33,6 @@
 			require_once CONTENT_WOW."include/include_spell_details.php";
 			require_once CONTENT_WOW."include/include_spell_table.php";
 			require_once CONTENT_WOW."include/include_report_generator.php";
-			require_once CONTENT_WOW."include/ajax_tooltip.php";
 			require_once CONTENT_WOW."include/include_talent_calc.php";
 			require_once CONTENT_WOW."include/include_talent_table.php";
 		}

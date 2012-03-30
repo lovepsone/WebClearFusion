@@ -16,3 +16,4 @@
 
 	echo"</body>";
 ?>
+<script type="text/javascript">parseHref(document);</script>

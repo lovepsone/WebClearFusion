@@ -200,7 +200,7 @@ function parseHref(element)
 // Upload data as HTML in obj.innerHTML via ajax functions
 //
 function ajaxCacheHtml(element, url) {
-	my_AJAX.addCache(element.innerHTML, 'ajax.php'+url);
+	my_AJAX.addCache(element.innerHTML, '../../ajax.php'+url);
 }
 
 function ajaxCacheHtmlId(elementId, url) {
@@ -222,7 +222,7 @@ function uploadHtml(url, element)
 		execHTMLScripts(obj);
 		parseHref(obj);
 	}
-	my_AJAX.GETupload('ajax.php'+url, callback);
+	my_AJAX.GETupload('../../ajax.php'+url, callback);
 }
 //
 // Report tabs support functions

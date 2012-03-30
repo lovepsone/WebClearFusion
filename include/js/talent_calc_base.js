@@ -276,7 +276,7 @@ function tc_renderTree(element)
 			text+= '<img id="brd" src="../../images/talentcalc/'+m.frame+'" style="position: absolute; left: 0px; top: 0px;">';
 			text+= '<div id="rnk" style="position: absolute; left: 34px; top: 38px; color:'+m.color+';">'+ tc_bild[id] + '/' + d.max + '</div>';
 			if (d.depend)
-				text+= '<img id="arw" src="../../../../images/talentcalc/'+d.depend.img+'-'+m.arrow+'.gif" style="position: absolute; border: 0px; left: '+d.depend.x+'px; top: '+d.depend.y+'px;">';
+				text+= '<img id="arw" src="../../images/talentcalc/'+d.depend.img+'-'+m.arrow+'.gif" style="position: absolute; border: 0px; left: '+d.depend.x+'px; top: '+d.depend.y+'px;">';
 			text+= '</div>';
 		}
 		text+= '</td>';

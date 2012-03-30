@@ -13,7 +13,7 @@
 	if (preg_match("/maincore.php/i", $_SERVER['PHP_SELF'])) { die(); }
 
 	error_reporting(E_ALL);
-	ini_set('display_errors',1);
+	ini_set('display_errors',0);
 	set_error_handler('user_log');
 
 	//=============================================================================================================
