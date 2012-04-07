@@ -26,7 +26,7 @@ $txt = array(
 'menu_auth_re_enter'		=>'Введите аккаунт и пароль заново!',
 'menu_auth_e_mail'		=>'E-Mail',
 'menu_auth_ip'			=>'ИП-Адрес',
-'menu_auth_log_in_acp'		=>'Вход в ACP',
+'menu_auth_log_in_acp'		=>'Выберете мир',
 'menu_auth_admin'		=>'Админка',
 'menu_auth_exit'		=>'Выйти',
 

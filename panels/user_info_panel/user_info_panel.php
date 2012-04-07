@@ -47,9 +47,6 @@
 			echo"<tr><td align='right' valign='top' class='avatar'>".avatar_img($res_user['user_avatar'])."</td></tr>";
   			echo"<tr><td align='left'>".$txt['menu_auth_ip']."</td></tr>";
   			echo"<tr><td align='left'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
-			// wow content
-			show_realms_table();
-
 			echo"<tr><td width='100%'><hr></td></tr>";
 			if ( $_SESSION['gmlevel'] >= $config['level_administration'] ) { echo"<tr><td align='right'><a href='".ADMIN."administration.php?contet'>".$txt['menu_auth_admin']."</a></td></tr>";}
 			echo"<tr><td align='right'><a href='".BASEDIR."setuser.php?action=logout'>".$txt['menu_auth_exit']."</a>";

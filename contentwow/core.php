@@ -68,8 +68,8 @@
 						}
 					echo"<form method='post'>";
 					echo"<tr><td width='100%'><hr></td></tr>";
-					echo"<tr><td align='center'>".$txt['menu_auth_log_in_acp']."<br><select name='realm_id' class='textbox' style='width:150px'>".$realms_list."</select></td></tr>";
-					echo"<tr><td align='center'><input type='submit' name='log_in_acp' value='".$txt['menu_auth_enter']."' class='button' /></td></tr>";
+					echo"<tr><td align='center'>".$txt['menu_auth_log_in_acp']."<br><br><select name='realm_id' class='textbox' style='width:150px'>".$realms_list."</select></td></tr>";
+					echo"<tr><td align='center'><br><input type='submit' name='log_in_acp' value='".$txt['menu_auth_enter']."' class='button' /></td></tr>";
 					echo"</form>";
 				}
 		}
