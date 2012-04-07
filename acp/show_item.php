@@ -45,7 +45,7 @@
   				{
    					$icon = get_item_icon($item['displayid']);
    					echo"<tr><td valign='top' align='right' width='35%'>";
-   					echo"<br><a id='no_tip' href='?item=".$entry."'><img height='64' width='64' border='0' src='".$icon."'></a></td>";
+   					echo"<a id='no_tip' href='?item=".$entry."'><img height='64' width='64' border='0' src='".$icon."'></a></td>";
    					echo"<td>";generate_item_table($item,$item_data,0);echo"</td></tr>";
 
 					if ($item['minMoneyLoot']) { echo"<b>".$txt['modul_acp_show_money']."</b>&nbsp;".money($item['minMoneyLoot']); }
