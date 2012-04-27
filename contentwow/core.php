@@ -33,6 +33,7 @@
 	//=============================================================================================================
 	// Запускаем дополнительные функции и данные\Run additional features and data
 	//=============================================================================================================
+	require_once CONTENT_WOW."include/include_defult_const.php";
 	require_once CONTENT_WOW."include/include_simple_cacher.php";
 	require_once CONTENT_WOW."include/functions.php";
 	require_once CONTENT_WOW."include/include_item_table.php";
