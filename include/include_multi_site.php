@@ -16,6 +16,7 @@
 	define("DB_ACHIEVEMENT", DB_PREFIX."achievement");
 	define("DB_ACHIEVEMENT_CAT", DB_PREFIX."achievement_category");
 	define("DB_ACHIEVEMENT_CRIT", DB_PREFIX."achievement_criteria");
+	define("DB_ACP_NAVIGATION_LINKS", DB_PREFIX."acp_navigation_links");
 	define("DB_ACP_PANELS", DB_PREFIX."acp_panels");
 	define("DB_ADMIN", DB_PREFIX."admin");
 	define("DB_CHR_CLASSES", DB_PREFIX."chr_classes");

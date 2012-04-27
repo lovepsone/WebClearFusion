@@ -12,7 +12,7 @@
 
 	openside();
 	selectdb("wcf");
-	$result = db_query("SELECT `link_name`, `link_url`, `link_visibility` FROM ".DB_NAVIGATION_LINKS." WHERE `link_position`='3' ORDER BY `link_order`");
+	$result = db_query("SELECT `link_name`, `link_url`, `link_visibility` FROM ".DB_ACP_NAVIGATION_LINKS." WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`");
 
 	if (db_num_rows($result))
 		{
