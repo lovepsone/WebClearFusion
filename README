@@ -7,17 +7,7 @@ Purpose of Project:
 	Creating a Web-binding for the server Mangos.
 
 Description of Project:
-	The site is divided into two main parts: Main Content and WOW Content.
-
-	Briefly about the parts:
-
-	Main Content contains several subparts: Onovnoy content, Admin, Forum.
-	 Its main content - is the main part of the site, in which the heart soderzhitya site: Its main run in the modules and functions, and so on.
-	 Admin (Site Control Panel) - designed to manage the news, panels, links, and so on.
-	 Forum - is designed for messaging, kokogo clarify something haunting question.
-
-	WOW Content contains the ACP, the data on WOW. This part can be turned off if you want to use a different site themes.
-	 ACP (Account Control Panel) - designed to manage the accounts of players and characters.
+	No description project.
 
 The project is being tested at the source code of rsa (branch mangosr2) <https://github.com/mangosR2/mangos>
 In the future we plan to support the project trynitycore.
