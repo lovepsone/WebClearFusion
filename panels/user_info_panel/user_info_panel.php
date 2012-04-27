@@ -10,8 +10,6 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	// wow content
-	redirect_realm_form();
 	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
 		{
   			openside();

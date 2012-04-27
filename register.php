@@ -21,10 +21,7 @@
 			//==========================================================
 			// ѕроверка на повторность учетной записи
 			selectdb("wcf");
-			$query = "SELECT count(`username`) as kol FROM ".DB_USERS." WHERE `user_name` = '".strtoupper($_POST['new_acc'])."'";
-			$result1 = ($config['type_server'] != '1' || $config['type_server'] != '2') ? db_query($query) : count_only_acc($_POST['new_acc']);
-
-      			$data1 = db_assoc($result1);
+			$data1 = db_assoc(db_query("SELECT count(`username`) as kol FROM ".DB_USERS." WHERE `user_name` = '".strtoupper($_POST['new_acc'])."'"));
 
       			if ($data1['kol'] > 0)
 				{
@@ -53,11 +50,6 @@
 					redirect(WCF_SELF."?errors=".$errors);
        				}
 
-			if ($config['type_server'] == '1' || $config['type_server'] == '2')
-				{
-					// wow content
-					create_acc();
-				}
 			selectdb("wcf");
       	 		db_query("INSERT INTO ".DB_USERS." (`user_name`,`user_sha_pass_hash`,`email`,`user_last_ip`) VALUES (UPPER('".$_POST['new_acc']."'),SHA1(CONCAT(UPPER('".$_POST['new_acc']."'),':',UPPER('".$_POST['pass1']."'))),'".$_POST['email']."','".$_SERVER['REMOTE_ADDR']."')");
        			$result2 = db_query("SELECT * FROM ".DB_USERS." WHERE `user_name`='".strtoupper($_POST['new_acc'])."' AND user_sha_pass_hash ='".SHA1(strtoupper($_POST['new_acc']).':'.strtoupper($_POST['pass1']))."'");
@@ -69,6 +61,7 @@
           				$_SESSION['user_name'] = strtoupper($_POST['new_acc']);
           				$_SESSION['password'] = strtoupper(SHA1(strtoupper($_POST['new_acc']).':'.strtoupper($_POST['pass1'])));
 		          		$_SESSION['gmlevel'] = $data2['user_gmlevel'];
+					$_SESSION['email'] = $_POST['email'];
 		       			$_SESSION['lang'] = $config['lang'];
 		          		$log_account   =  $_SESSION['user_id'];
 		          		$log_character =  0;
