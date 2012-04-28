@@ -10,6 +10,9 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	require_once "include/show_maincore.php";
+	require_once THEMES."templates/acp_header.php";
+
 	//==============================================================================
 	// Скрипт предназначен для вывода талантов игрока
 	//==============================================================================
@@ -69,4 +72,5 @@
 	echo'</center></div>';
 	closetable();
 
+	require_once THEMES."templates/footer.php";
 ?>

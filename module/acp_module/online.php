@@ -10,6 +10,9 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	require_once "include/show_maincore.php";
+	require_once THEMES."templates/acp_header.php";
+
 	selectdb("realmd");
 	$result_r = db_query("SELECT * FROM `realmlist`");
 
@@ -106,4 +109,6 @@
 				}
 			closetable();
 		}
+
+	require_once THEMES."templates/footer.php";
 ?>

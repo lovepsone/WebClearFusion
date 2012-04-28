@@ -10,7 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	require_once "../maincore.php";
+	require_once "include/show_maincore.php";
 	require_once THEMES."templates/acp_header.php";
 
 	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']) || !isset($_SESSION['realmd_id'])) { redirect(BASEDIR); }
@@ -42,23 +42,23 @@
 
  	if ($tab == "")
  		{
-  			require_once ACP."show_character/show_char_equip.php";
+  			require_once $modules['acp_module']."show_character/show_char_equip.php";
   			show_player_equip($guid, $char, $char_data, $char_stats);
  		}
 	if ($tab == "talents")
 		{
-  			require_once ACP."show_character/show_char_talents.php";
+  			require_once $modules['acp_module']."show_character/show_char_talents.php";
 			show_player_talents($guid, $class, $char['level'], $char['activeSpec']);
 		}
 
  	if ($tab == "skill")
  		{
-  			require_once ACP."show_character/show_char_skill.php";
+  			require_once $modules['acp_module']."show_character/show_char_skill.php";
   			show_player_skills($guid);
  		}
 	if ($tab == "reputation")
 		{
-			require_once ACP."show_character/show_char_reputation.php";
+			require_once $modules['acp_module']."show_character/show_char_reputation.php";
 			show_player_reputation($guid, $class, $race);
 		}
 
