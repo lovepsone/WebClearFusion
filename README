@@ -7,7 +7,9 @@ Purpose of Project:
 	Creating a Web-binding for the server Mangos.
 
 Description of Project:
-	No description project.
+	Project references written in languages ??such as php, html and js.
+	The project originally was written by the server WoW. In this time of the server scripts have been translated into a common module (acp_module), ie scripts do not depend on the engine itself.
+	The structure of the writing of much izmenilas.Teper project can be used for other purposes, ie remove acp_module.
 
 The project is being tested at the source code of rsa (branch mangosr2) <https://github.com/mangosR2/mangos>
 In the future we plan to support the project trynitycore.
@@ -16,7 +18,7 @@ Installing the engine:
 	read instal.
 
 Special thanks to:
-	frostzhenya (for access to the repository and the idea of ??creating a)
+	frostzhenya (for access to the repository and the idea of creating)
 	lovepsone (for the creation of the project and its support)
 	Кот_ДаWINчи (for direction in the development of the project)
 	TIMzs (for ideas)

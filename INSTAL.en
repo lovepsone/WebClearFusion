@@ -4,8 +4,6 @@
 	 $config_db_connect ['wusername'] =''; name for the connection to the database.
 	 $config_db_connect ['wpassword'] =''; connection password to the database.
 	 $config_db_connect ['wdbname'] = 'wcf'; the base itself, in this case wcf.
-	Next, select the type of site: $ config ['type_server'] = 'pishim number here' - If you list the '0 ', the site will be normal, ie no modules Islands, and setup on this end!
-	If you list the 1 or 2 (1-mangos, two-trynity), the site will maintain the content of WoW, then continue configuration.
-	Next, we need to prescribe konekt to the base characters, realms, and the world.
-	We climb into www \ contentwow \ realmlist.php and nastraevaem (I will not explain the setting, since it is similar to conf.php).
-	If you have any questions ask here to see prices or write to the soap (<lovepsone@mail.ru>).
+	Next, we need to create a connection to the database of characters, realms, and the world.
+	We climb into www\module\include\realmlist.php and set up (I will not explain the setting, since it is similar to conf.php).
+	If you have any questions ask here or write to Soap (<lovepsone@mail.ru>).
