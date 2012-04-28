@@ -47,20 +47,6 @@
 	require_once $modules['acp_module']."include/include_talent_calc.php";
 	require_once $modules['acp_module']."include/include_talent_table.php";
 
-	//=============================================================================================================
-	// функция для импорта файлов content wow
-	//=============================================================================================================
-	function include_files_cw($patch)
-		{
-			global $config, $txt;
-
-			if ($config['type_server'] == '1' || $config['type_server'] == '2')
-				{
-					require_once $modules['acp_module'].$patch;
-				}
-			return;
-		}
-
 
 	//=============================================================================================================
 	// функция аторизации и логаута в ACP

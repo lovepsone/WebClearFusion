@@ -31,7 +31,6 @@
 	//===============================================
 	define("ADMIN", BASEDIR."administration/");
 	define("FORUM", BASEDIR."forum/");
-	define("IMAGES_ACP", BASEDIR."acp/images/");
 	define("IMAGES", BASEDIR."images/");
 	define("IMAGES_N", BASEDIR."images/news/");
 	define("IMAGES_NC", BASEDIR."images/news_cat/");
