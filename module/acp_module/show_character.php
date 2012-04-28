@@ -11,7 +11,7 @@
 +--------------------------------------------------------*/
 
 	require_once "include/show_maincore.php";
-	require_once THEMES."templates/acp_header.php";
+	require_once $modules['acp_module']."templates/acp_header.php";
 
 	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']) || !isset($_SESSION['realmd_id'])) { redirect(BASEDIR); }
 
