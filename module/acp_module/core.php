@@ -10,8 +10,10 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	require_once $modules['acp_module']."include/realmlist.php";
+
 	//=============================================================================================================
-	// функции в основном связаны с content wow
+	// функции в основном связаны с realmlist
 	//=============================================================================================================
 	selectdb("realmd");
 	$config['namber_realmd'] = db_num_rows(db_query("SELECT * FROM `realmlist`"));
@@ -33,17 +35,17 @@
 	//=============================================================================================================
 	// Запускаем дополнительные функции и данные\Run additional features and data
 	//=============================================================================================================
-	require_once CONTENT_WOW."include/include_defult_const.php";
-	require_once CONTENT_WOW."include/include_simple_cacher.php";
-	require_once CONTENT_WOW."include/functions.php";
-	require_once CONTENT_WOW."include/include_item_table.php";
-	require_once CONTENT_WOW."include/include_player_data.php";
-	require_once CONTENT_WOW."include/include_spell_data.php";
-	require_once CONTENT_WOW."include/include_spell_details.php";
-	require_once CONTENT_WOW."include/include_spell_table.php";
-	require_once CONTENT_WOW."include/include_report_generator.php";
-	require_once CONTENT_WOW."include/include_talent_calc.php";
-	require_once CONTENT_WOW."include/include_talent_table.php";
+	require_once $modules['acp_module']."include/include_defult_const.php";
+	require_once $modules['acp_module']."include/include_simple_cacher.php";
+	require_once $modules['acp_module']."include/functions.php";
+	require_once $modules['acp_module']."include/include_item_table.php";
+	require_once $modules['acp_module']."include/include_player_data.php";
+	require_once $modules['acp_module']."include/include_spell_data.php";
+	require_once $modules['acp_module']."include/include_spell_details.php";
+	require_once $modules['acp_module']."include/include_spell_table.php";
+	require_once $modules['acp_module']."include/include_report_generator.php";
+	require_once $modules['acp_module']."include/include_talent_calc.php";
+	require_once $modules['acp_module']."include/include_talent_table.php";
 
 	//=============================================================================================================
 	// функция для импорта файлов content wow
@@ -54,7 +56,7 @@
 
 			if ($config['type_server'] == '1' || $config['type_server'] == '2')
 				{
-					require_once CONTENT_WOW.$patch;
+					require_once $modules['acp_module'].$patch;
 				}
 			return;
 		}
@@ -65,7 +67,7 @@
 	//=============================================================================================================
 	function login_or_out_acp_table()
 		{
-			global $_GET, $_SESSION, $txt_page, $txt, $opening_page, $config, $txt_url;
+			global $_GET, $_SESSION, $txt_page, $txt, $opening_page, $config, $txt_url, $modules;
 
 			if ((isset($_GET['action']) && $_GET['action'] == "login") && (isset($_GET['realmd_id']) && isnum($_GET['realmd_id'])))
 				{
@@ -88,7 +90,7 @@
 					else
 						{
 							$txt_page = $txt['modul_setuser_login'].$txt['modul_setuser_wait'];
-							$opening_page = ACP."index.php";
+							$opening_page = $modules['acp_module']."index.php";
 							$_SESSION['realmd_id'] = $_GET['realmd_id'];
 						}
 				}

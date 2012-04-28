@@ -40,12 +40,8 @@
 	define("IMAGES_BAR", BASEDIR."images/bar/");
 	define("IMAGES_ICONS", BASEDIR."images/icons/");
 	define("INCLUDES", BASEDIR."include/");
-	define("INCLUDES_DATA_WOW", BASEDIR."include/include_data_wow/");
 	define("LANG", BASEDIR."lang/");
+	define("MODULE", BASEDIR."module/");
 	define("PANELS", BASEDIR."panels/");
 	define("THEMES", BASEDIR."themes/");
-
-	// подключаем контент под сервер WOW
-	define("CONTENT_WOW", BASEDIR."contentwow/");
-	define("ACP", BASEDIR."acp/");
 ?>

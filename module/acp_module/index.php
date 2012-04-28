@@ -10,7 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	require_once "../maincore.php";
+	require_once "include/show_maincore.php";
 	require_once THEMES."templates/acp_header.php";
 
 	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']) || !isset($_SESSION['realmd_id'])) { redirect(BASEDIR); }
@@ -40,7 +40,7 @@
 					echo"<td width='1%' class='tbl1'><img width='20' src='".get_class_image($data['class'])."'></td>";
 					echo"<td align='right' class='tbl1'>".money($data['money'])."</td>";
 					echo"<td align='right' class='tbl1'>".$zones[$data['zone']]."</td>";
-					echo"<td align='right' class='tbl1'><a href='".ACP."show_character.php?player=".$data['guid']."' class='small2'>".$txt['modul_acp_revive']."</a></td>";
+					echo"<td align='right' class='tbl1'><a href='".$modules['acp_module']."show_character.php?player=".$data['guid']."' class='small2'>".$txt['modul_acp_revive']."</a></td>";
 					echo"<td align='right' class='tbl1'>";
 					if ($data['online'] == 0) { echo $txt['modul_acp_game_off']; } else { echo $txt['modul_acp_game_on']; }
 					echo"</td></tr>";	
