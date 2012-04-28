@@ -13,7 +13,14 @@
 	require_once "maincore.php";
 	// Режим запроса
 	$ajaxmode = 1;
-	$ajax_modules['tip'] = CONTENT_WOW."include/ajax_tooltip.php";
+	// подключаем ajax если имеется в модуле
+	for ($i=0;$i < count($module_list);$i++)
+		{
+			if ($module_list[$i] != "none")
+				{
+					require MODULE.$module_list[$i]."/ajax.php";
+				}
+		}
 
 	// Получаем имя первой переменной запроса
 	$mode = $_SERVER["QUERY_STRING"];
