@@ -31,7 +31,7 @@
 								}
 							else
 								{
-									echo" <a href='".ACP.$data['link_url']."' class='side'>".$data['link_name']."</a>";
+									echo" <a href='".$modules['acp_module'].$data['link_url']."' class='side'>".$data['link_name']."</a>";
 								}
 							echo"</td></tr>";
 						}
