@@ -23,7 +23,7 @@
 			$txt_page = $txt['modul_setuser_sucess_auth'].ucfirst(strtolower($_SESSION['user_name'])).$txt['modul_setuser_wait'].$txt_url;
 			$opening_page = BASEDIR.$config['opening_page'];
 		}
-	elseif ((isset($_GET['action']) && $_GET['action'] == "auth") && (!isset($_SESSION['user_id']) && isnum($_SESSION['user_id'])))
+	elseif (isset($_GET['action']) && $_GET['action'] == "error")
 		{
 			$txt_page = $txt['modul_setuser_errors_auth'].$txt['modul_setuser_wait'].$txt_url;
 			$opening_page = BASEDIR.$config['opening_page'];
@@ -35,6 +35,10 @@
     			unset($_SESSION['user_id']);
     			unset($_SESSION['ip']);
     			unset($_SESSION['realmd_id']);
+			unset($_SESSION['user_name']);
+			unset($_SESSION['password']);
+			unset($_SESSION['gmlevel']);
+			unset($_SESSION['bonuses']);
     			session_destroy();
 			$opening_page = BASEDIR.$config['opening_page'];
 		}
