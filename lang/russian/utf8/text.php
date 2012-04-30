@@ -304,6 +304,8 @@ $txt = array(
 
 'modul_acp_show_detail_info' 	=>'Подробная информация',
 
+'modul_acp_outh' 		=>'Выйти из АСР',
+
 # остальное
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',
 'fill_field'			=>'<font color=red>Вы не заполнили поле!!!</font>',

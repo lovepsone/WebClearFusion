@@ -38,11 +38,6 @@
     			session_destroy();
 			$opening_page = BASEDIR.$config['opening_page'];
 		}
-	elseif ($config['type_server'] = '1' || $config['type_server'] = '2')
-		{
-			// wow content
-			login_or_out_acp_table();
-		}
 
 
 	echo"<table width='800' align='center' class='tbl-border center'><tr><td>";

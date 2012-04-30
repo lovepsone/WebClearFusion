@@ -16,6 +16,12 @@
 
 	if (db_num_rows($result))
 		{
+			if (isset($_SESSION['user_id']) || ($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']) || isset($_SESSION['realmd_id']))
+				{
+					echo"<tr><td width='100%' valign='middle'>";
+					echo" <a href='".$modules['acp_module']."setuser.php?action=out_acp' class='side'>".$txt['modul_acp_outh']."</a>";
+					echo"</td></tr>";
+				}
 			while($data = db_array($result))
 				{
 					if (check_user($data['link_visibility']))

@@ -12,7 +12,7 @@
 
 	if (isset($_POST['log_in_acp']) && (isset($_POST['realm_id']) && isnum($_POST['realm_id'])))
 		{
-			redirect(BASEDIR."setuser.php?action=login&realmd_id=".$_POST['realm_id']);
+			redirect($modules['acp_module']."setuser.php?action=login&realmd_id=".$_POST['realm_id']);
 		}
 	if (isset($_SESSION['user_id']) || ($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
 		{

@@ -46,45 +46,4 @@
 	require_once $modules['acp_module']."include/include_report_generator.php";
 	require_once $modules['acp_module']."include/include_talent_calc.php";
 	require_once $modules['acp_module']."include/include_talent_table.php";
-
-
-	//=============================================================================================================
-	// функция аторизации и логаута в ACP
-	//=============================================================================================================
-	function login_or_out_acp_table()
-		{
-			global $_GET, $_SESSION, $txt_page, $txt, $opening_page, $config, $txt_url, $modules;
-
-			if ((isset($_GET['action']) && $_GET['action'] == "login") && (isset($_GET['realmd_id']) && isnum($_GET['realmd_id'])))
-				{
-					selectdb("realmd");
-					$check_ban_acc = db_query("SELECT * FROM `account_banned` WHERE `id`='".$_SESSION['user_id']."' AND `active`='1'");
-					$check_ban_ip = db_query("SELECT * FROM `ip_banned` WHERE `ip`='".$_SESSION['ip']."'");
-		
-					if (db_num_rows($check_ban_acc))
-						{
-							$data_ban_acc = db_assoc($check_ban_acc);
-							$txt_page = $txt['modul_setuser_ban_acc'].$data_ban_acc['banreason'];
-							$opening_page = BASEDIR.$config['opening_page'];	
-						}
-					elseif (db_num_rows($check_ban_ip))
-						{
-							$data_ban_ip = db_assoc($check_ban_ip);
-							$txt_page = $txt['modul_setuser_ban_ip'].$data_ban_ip['banreason'];
-							$opening_page = BASEDIR.$config['opening_page'];
-						}
-					else
-						{
-							$txt_page = $txt['modul_setuser_login'].$txt['modul_setuser_wait'];
-							$opening_page = $modules['acp_module']."index.php";
-							$_SESSION['realmd_id'] = $_GET['realmd_id'];
-						}
-				}
-			elseif (isset($_GET['action']) && $_GET['action'] == "out_acp")
-				{
-		    			unset($_SESSION['realmd_id']);
-					$txt_page = $txt['modul_setuser_out_acp'].$txt['modul_setuser_wait'].$txt_url;
-					$opening_page = BASEDIR.$config['opening_page'];
-				}
-		}
 ?>
