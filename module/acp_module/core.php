@@ -22,7 +22,8 @@
 	//=============================================================================================================
 	// проверяем существует ли account данного пользователя при авторизации на сайте
 	//=============================================================================================================
-	if (isset($_SESSION['user_id']) || $_SESSION['ip'] == $_SERVER['REMOTE_ADDR'])
+	$user_ip = isset($_SESSION['ip']) ? @$_SESSION['ip'] : "";
+	if (isset($_SESSION['user_id']) || $user_ip == $_SERVER['REMOTE_ADDR'])
 		{
 			selectdb("realmd");
 			$data = db_assoc(db_query("SELECT count(`username`) as kol FROM `account` WHERE `username` = '".strtoupper($_SESSION['user_name'])."'"));

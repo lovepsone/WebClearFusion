@@ -10,11 +10,13 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	$user_ip = isset($_SESSION['ip']) ? @$_SESSION['ip'] : "";
+
 	if (isset($_POST['log_in_acp']) && (isset($_POST['realm_id']) && isnum($_POST['realm_id'])))
 		{
 			redirect($modules['acp_module']."setuser.php?action=login&realmd_id=".$_POST['realm_id']);
 		}
-	if (isset($_SESSION['user_id']) || ($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
+	elseif (isset($_SESSION['user_id']) || ($user_ip == $_SERVER['REMOTE_ADDR']))
 		{
 			openside();
 			echo"<tr><td valign='middle'><img src='".PANELS."auth_acp_panel/auth_acp_panel.png' width='170'></td></tr>";
