@@ -17,6 +17,7 @@
 	require_once THEMES."templates/header.php";
 
 	$txt_url = "[<a href='".BASEDIR.$config['opening_page']."'>".$txt['modul_setuser_link']."</a>]";
+	$txt_url2 = "[<a href='".BASEDIR.$modules['acp_module']."'>".$txt['modul_setuser_link']."</a>]";
 
 	if ((isset($_GET['action']) && $_GET['action'] == "login") && (isset($_GET['realmd_id']) && isnum($_GET['realmd_id'])))
 		{
@@ -38,7 +39,7 @@
 				}
 			else
 				{
-					$txt_page = $txt['modul_setuser_login'].$txt['modul_setuser_wait'];
+					$txt_page = $txt['modul_setuser_login'].$txt['modul_setuser_wait'].$txt_url2;
 					$opening_page = $modules['acp_module']."index.php";
 					$_SESSION['realmd_id'] = $_GET['realmd_id'];
 				}
