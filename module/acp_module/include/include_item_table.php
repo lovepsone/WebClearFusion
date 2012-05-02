@@ -96,7 +96,7 @@
 
 	function get_character_level($character_id)
 		{
-			selectdb("characters");
+			SelectDataBase("characters");
 
   			if ($lvl = db_query("SELECT `level` FROM `characters` WHERE `guid`='".$character_id."'"))
 				{

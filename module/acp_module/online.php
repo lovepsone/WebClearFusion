@@ -13,7 +13,7 @@
 	require_once "include/show_maincore.php";
 	require_once $modules['acp_module']."templates/acp_header.php";
 
-	selectdb("realmd");
+	SelectDataBase("realmd");
 	$result_r = db_query("SELECT * FROM `realmlist`");
 
 	if (!isset($_GET['realm_id']) && !isnum($_GET['realm_id']))
@@ -38,7 +38,7 @@
 			if (@fsockopen($data['address'], $data['port'], $errno, $errstr, 1)) { echo"<img src='".IMAGES."online.gif' align='absmiddle' alt='online'>"; } else { echo"<img src='".IMAGES."offline.gif' align='absmiddle' alt='ofline'>"; }
 			echo"</td></tr>";
 
-			selectdb("characters");
+			SelectDataBase("characters");
 			$result1 = db_query("SELECT * FROM `saved_variables`");
 
 			if ($data1 = db_assoc($result1))

@@ -12,7 +12,7 @@
 
 	function get_character_skills($guid_id)
 		{
-			selectdb("characters");
+			SelectDataBase("characters");
 			$char_skills = db_array(db_query("SELECT * FROM `character_skills` WHERE `guid`='".$guid_id."'"));
 			return $char_skills;
 		}
@@ -36,7 +36,7 @@
 
 			if ($skillcount)
 				{
-					selectdb("characters");
+					SelectDataBase("characters");
 					$result = db_query("SELECT * FROM `character_skills` WHERE `guid`='$guid'");
 
 					while ($data = db_array($result))

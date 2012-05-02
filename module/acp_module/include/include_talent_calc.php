@@ -57,7 +57,7 @@
 						{
 							foreach($rows as $col=>$data)
 								{
-									selectdb("characters");
+									SelectDataBase("characters");
 									$rank = db_assoc(db_query("SELECT `current_rank`  FROM `character_talent` WHERE `guid`='$guid' and `spec`='$spec' AND `talent_id`='".$data['TalentID']."'"));
 									$rank = $rank['current_rank'];
 									if (isset($rank)) { ++$rank; } else { $rank = 0; }

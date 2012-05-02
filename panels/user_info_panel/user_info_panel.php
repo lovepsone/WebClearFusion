@@ -37,6 +37,7 @@
 		}
 	else if (isset($_SESSION['user_id']) || ($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
 		{
+			selectdb("wcf");
  			$query_user = db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`=".$_SESSION['user_id']." LIMIT 1");
   			$res_user = db_assoc($query_user);
 

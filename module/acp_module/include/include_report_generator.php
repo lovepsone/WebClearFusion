@@ -717,7 +717,7 @@ class LootReportGenerator extends ReportGenerator{
 			function item_report_generator($type='')
 				{
 					global $item_report, $_SESSION;
-					$this->db = &selectdb("mangos");
+					$this->db = &SelectDataBase("mangos");
 					$this->column_conf =&$item_report;
 					$this->db_fields = '`item_template`.`entry`';
 					switch ($type)

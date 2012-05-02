@@ -21,7 +21,7 @@
 			openside();
 			echo"<tr><td valign='middle'><img src='".PANELS."auth_acp_panel/auth_acp_panel.png' width='170'></td></tr>";
 
-			selectdb("realmd");
+			SelectDataBase("realmd");
 			$result_list = db_query("SELECT * FROM `realmlist`");
 			$realms_list = "";
 
