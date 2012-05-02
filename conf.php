@@ -30,17 +30,10 @@
 	$config['errors_reporting'] = '1';
 	
 	//==================================================================
-	// Тип wcf: 0 - обычный,
-	// 1 - поддержка World of Warcraft LK(mangos)
-	// 2 - поддержка World of Warcraft LK(trynity)
-	//==================================================================
-	$config['type_server'] = '1';
-	
-	//==================================================================
 	// Ревизия и копирайт wcf (запрещается менять)
 	//==================================================================
-	$config['copyright'] = 'WebClearFusion v 0.4.63 from LovePSone 2010-2011';
-	$config['revision'] = 'wcf_revision_nr = [322]';
+	$config['copyright'] = 'WebClearFusion v 0.4.73 from LovePSone 2010-2011';
+	$config['revision'] = 'wcf_revision_nr = [323]';
 	$config['rev_admin'] = ' 0.02.00';
 	$config['rev_acp'] = ' 0.02.00';
 

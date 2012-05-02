@@ -363,6 +363,7 @@
 
 	function show_item_by_data($item_data, $style='item', $posx=0, $posy=0)
 		{
+			global $modules;
 			$guid = $item_data[ITEM_FIELD_GUID];
 			if (@$item_data[ITEM_FIELD_TYPE] == TYPE_ITEM) { $count = $item_data[ITEM_FIELD_STACK_COUNT]; }
 			elseif (@$item_data[ITEM_FIELD_TYPE] == TYPE_CONTAINER) { $count = $item_data[CONTAINER_FIELD_NUM_SLOTS]; }
@@ -531,6 +532,7 @@
 
 	function show_spell($entry, $iconId=0, $style=0)
 		{
+			global $modules;
 			selectdb("wcf");
   			if (!$iconId) { $iconId = db_assoc(db_query("SELECT `SpellIconID` FROM ".DB_SPELL." WHERE `id`='".$entry."'")); }
 
