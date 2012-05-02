@@ -26,33 +26,24 @@
   			break;
 
   			case ("realmd"):
-			if ($config['type_server'] == '1' || $config['type_server'] == '2')
-				{
-				  	$db = $config_db_connect['rdbname'];
-				  	$ip = $config_db_connect['rhostname'];
-				  	$userdb = $config_db_connect['rusername'];
-				  	$pw = $config_db_connect['rpassword'];
-				}
+			$db = $config_db_connect['rdbname'];
+			$ip = $config_db_connect['rhostname'];
+			$userdb = $config_db_connect['rusername'];
+			$pw = $config_db_connect['rpassword'];
 		  	break;
 
   			case ("characters"):
-			if ($config['type_server'] == '1' || $config['type_server'] == '2')
-				{
-				  	$db = $config_db_connect['cdbname'];
-				  	$ip = $config_db_connect['chostname'];
-				  	$userdb = $config_db_connect['cusername'];
-				  	$pw = $config_db_connect['cpassword'];
-				}
+			$db = $config_db_connect['cdbname'];
+			$ip = $config_db_connect['chostname'];
+			$userdb = $config_db_connect['cusername'];
+			$pw = $config_db_connect['cpassword'];
 		  	break;
 
    			case ("mangos"):
-			if ($config['type_server'] == '1' || $config['type_server'] == '2')
-				{
-					$db = $config_db_connect['dbname'];
-				  	$ip = $config_db_connect['hostname'];
-				  	$userdb = $config_db_connect['username'];
-				  	$pw = $config_db_connect['password'];
-				}
+			$db = $config_db_connect['dbname'];
+			$ip = $config_db_connect['hostname'];
+			$userdb = $config_db_connect['username'];
+			$pw = $config_db_connect['password'];
 		  	break;
 
   			endswitch;
