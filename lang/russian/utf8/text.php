@@ -10,9 +10,6 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	require_once "zone_names.php";
-	require_once "game_text.php";
-
 $txt = array(
 # тексты в правом и левом меню
 'menu_auth_title'		=>'Авторизуйтесь или зарегистрируйтесь',
@@ -29,22 +26,6 @@ $txt = array(
 'menu_auth_log_in_acp'		=>'Выберете мир',
 'menu_auth_admin'		=>'Админка',
 'menu_auth_exit'		=>'Выйти',
-
-'menu_acp_info_acc'		=>'Учётная запись:',
-'menu_acp_info_type_acc'	=>'Тип учётной записи:',
-'menu_acp_info_access'		=>'Права доступа:',
-'menu_acp_info_reg_mail'	=>'Регистрационный E-mail:',
-'menu_acp_info_lang'		=>'Язык клиента:',
-'menu_acp_info_online'		=>'игровой статус:',
-'menu_acp_info_game_on'		=>'В игре',
-'menu_acp_info_game_off'	=>'В не игры',
-'menu_acp_info_date_reg'	=>'Дата регистрации:',
-'menu_acp_info_date_game'	=>'Дата последнего посещения:',
-'menu_acp_info_last_ip'		=>'Последний IP-адрес:',
-'menu_acp_info_linking_ip'	=>'Привязка к IP-адресу:',
-'menu_acp_info_linking_ip_on'	=>'Включена',
-'menu_acp_info_linking_ip_off'	=>'<font color=green>Выключена</font>',
-'menu_acp_info_game_realm'	=>'Игровой реалм:',
 
 # тексты в стандартных модулях
 'modul_news_no_news'		=>'<b>Нет новостей</b>',
@@ -168,21 +149,6 @@ $txt = array(
 'admin_paneledit_t_add'		=>'Добавить панель',
 'admin_paneledit_t_edit'	=>'Редактировать панель',
 
-'admin_panel_acp_control'	=>'Управление панелями',
-'admin_panel_acp_name'		=>'Название панели',
-'admin_panel_acp_place'		=>'Место',
-'admin_panel_acp_position'	=>'Положение',
-'admin_panel_acp_type'		=>'Тип',
-'admin_panel_acp_show'		=>'Доступ',
-'admin_panel_acp_options'	=>'Опции',
-'admin_panel_acp_edit'		=>'Редактировать',
-'admin_panel_acp_switch_off'	=>'ВЫКЛ',
-'admin_panel_acp_switch_on'	=>'ВКЛ',
-'admin_panel_acp_del'		=>'Удалить',
-'admin_panel_acp_del_n_y'	=>'Удалить эту панель?',
-'admin_panel_acp_add'		=>'Добавить новую панель',
-'admin_panel_acp_refresh'	=>'Обновить порядок панелей',
-
 'admin_settings'		=>'Настройки',
 'admin_settings_nameserver'	=>'Название сайта:',
 'admin_settings_urlserver'	=>'URL сайта:',
@@ -258,53 +224,6 @@ $txt = array(
 'forum_quick_reply'		=>'Отправить',
 'forum_log'			=>'Авторизуйтесь чтобы оставлять сообщения на форуме!',
 'forum_from'			=>'от',
-
-#ACP
-'modul_acp_game_on'		=>'<font color=green>В игре</font>',
-'modul_acp_game_off'		=>'Вне игры',
-'modul_acp_revive'		=>'Просмотреть персонажа',
-'modul_acp_level'		=>'Уровень',
-'modul_acp_name'		=>'Имя',
-'modul_acp_race'		=>'Раса',
-'modul_acp_class'		=>'Класс',
-'modul_acp_money'		=>'Деньги',
-'modul_acp_position'		=>'Позиция',
-'modul_acp_game_status'		=>'Игравой статус',
-'modul_acp_no_char'		=>'На вашей учетной записи не созданы персонажи',
-
-'modul_acp_char'		=>'Персонаж',
-'modul_acp_char_talents'	=>'Таланты',
-'modul_acp_char_skill'		=>'Умения',
-'modul_acp_char_achievements'	=>'Достижения',
-'modul_acp_char_reputation'	=>'Репутация',
-'modul_acp_char_quests'		=>'Квесты',
-'modul_acp_char_page_base'	=>'Основные',
-'modul_acp_char_page_defence'	=>'Защита',
-'modul_acp_char_page_melee'	=>'Ближний бой',
-'modul_acp_char_page_ranged'	=>'Дальний бой',
-'modul_acp_char_armor'		=>'Броня:',
-'modul_acp_char_defence'	=>'Защита',
-'modul_acp_char_dodge'		=>'Уклонение:',
-'modul_acp_char_parry'		=>'Парирование:',
-'modul_acp_char_block'		=>'Блок:',
-'modul_acp_char_recilence'	=>'Устойчивость:',
-'modul_acp_char_ach_total'	=>'Обзор',
-'modul_acp_char_ach_complete' 	=>'Всего выполнено:',
-'modul_acp_char_ach_last'     	=>'Последние выполненные:',
-'modul_acp_char_skill'     	=>'Навыки персонажа',
-'modul_acp_show_reputation'  	=>'Репутация персонажа',
-'modul_acp_show_reqirement'     =>'Требование',
-'modul_acp_show_horde'     	=>'Орда',
-'modul_acp_show_alliance'     	=>'Альянс',
-'modul_acp_show_no_sell_price' 	=>'Не для продажи',
-'modul_acp_show_sell_price' 	=>'Цена продажи',
-'modul_acp_show_money' 		=>'Деньги:',
-'modul_acp_show_buy_price' 	=>'Цена выкупа',
-'modul_acp_show_this_item_part_of_set' 	=> 'Этот предмет часть комплекта',
-
-'modul_acp_show_detail_info' 	=>'Подробная информация',
-
-'modul_acp_outh' 		=>'Выйти из АСР',
 
 # остальное
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',

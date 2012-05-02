@@ -47,4 +47,6 @@
 	require_once $modules['acp_module']."include/include_report_generator.php";
 	require_once $modules['acp_module']."include/include_talent_calc.php";
 	require_once $modules['acp_module']."include/include_talent_table.php";
+
+	if ($config['lang']) { require_once $modules['acp_module']."lang/".$config['lang']."/".$config['encoding']."/text.php"; }
 ?>
