@@ -10,17 +10,17 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	require_once INCLUDES."include_administration_list.php";
+
 	$pages = array(1 => false, 2 => false, 3 => false, 4 => false, 5 => false); 
 	$index_link = false; $admin_nav_opts = ""; $current_page = 0;
 
 	openside();
-	selectdb("wcf");
-	$result = db_query("SELECT * FROM ".DB_ADMIN."  WHERE `admin_link`!='reserved' ORDER BY `admin_page` DESC, `admin_title` ASC");
-	$rows = db_num_rows($result);
 
-	while ($data = db_array($result))
+	reset($admin_list);
+	while (list($id, $data) = each($admin_list))
 		{		
-			$pages[$data['admin_page']] .= "<option value='".ADMIN.$data['admin_link']."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", $data['admin_title'])."</option>";
+			$pages[$data[1]] .= "<option value='".ADMIN.$data[5]."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", $txt[$data[4]])."</option>";
 		}
 
 	$content = false;
@@ -35,7 +35,7 @@
 			if ($page)
 				{
 					if ($i == 1) {$t = 'content';} elseif ($i == 2) {$t = 'users';}
-					elseif ($i == 3) {$t = 'system';} elseif ($i == 4) {$t = 'plants';} elseif ($i == 5) {$t = 'acp';}
+					elseif ($i == 3) {$t = 'system';} elseif ($i == 4) {$t = 'plants';} elseif ($i == 5) {$t = 'module';}
 
 					$admin_pages = true;
 					echo"<form action='".WCF_SELF."'>";

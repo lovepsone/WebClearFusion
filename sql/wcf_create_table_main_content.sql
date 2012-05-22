@@ -9,21 +9,6 @@ Date: 14.03.2012 16:02:37
 
 SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
--- Table structure for wcf_admin
--- ----------------------------
-DROP TABLE IF EXISTS `wcf_admin`;
-CREATE TABLE `wcf_admin` (
-  `admin_id` int(11) unsigned NOT NULL auto_increment,
-  `admin_colum` int(11) unsigned NOT NULL default '0',
-  `admin_page` int(11) unsigned NOT NULL default '0',
-  `admin_string` int(11) unsigned NOT NULL default '0',
-  `admin_image` varchar(50) character set utf8 collate utf8_unicode_ci NOT NULL default '',
-  `admin_title` longtext character set utf8 collate utf8_unicode_ci NOT NULL,
-  `admin_link` varchar(100) character set utf8 collate utf8_unicode_ci NOT NULL default 'reserved',
-  PRIMARY KEY  (`admin_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8;
-
--- ----------------------------
 -- Table structure for wcf_comments
 -- ----------------------------
 DROP TABLE IF EXISTS `wcf_comments`;
