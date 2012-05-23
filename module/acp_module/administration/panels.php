@@ -3,14 +3,14 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
-| Filename: acp_panels.php
+| Filename: panels.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	require_once "../maincore.php";
+	require_once "../include/show_maincore.php";
 	require_once THEMES."templates/admin_header.php";
 
 	if (isset($_GET['action']) && $_GET['action'] == "refresh")
@@ -192,7 +192,7 @@
 			echo"<td align='center' width='1%' class='tbl1' style='white-space:nowrap'>".display_access_form($data['panel_access'])."</td>";
 			echo"<td align='center' width='1%' class='tbl1' style='white-space:nowrap'>";
 
-			echo"[<a href='acp_panel_editor.php?action=edit&panel_id=".$data['panel_id']."&panel_side=1'>".$txt['admin_panel_acp_edit']."</a>]";
+			echo"[<a href='".$modules['acp_module']."administration/panel_editor.php?action=edit&panel_id=".$data['panel_id']."&panel_side=1'>".$txt['admin_panel_acp_edit']."</a>]";
 
 			if ($data['panel_status'] == 0)
 				{
@@ -207,7 +207,7 @@
 			$i++; $k++;
 		}
 
-		echo"<div style='text-align:center;margin-top:5px'>[ <a href='acp_panel_editor.php'>".$txt['admin_panel_acp_add']."</a> ]";
+		echo"<div style='text-align:center;margin-top:5px'>[ <a href='".$modules['acp_module']."administration/panel_editor.php'>".$txt['admin_panel_acp_add']."</a> ]";
 		echo"[ <a href='".WCF_SELF."?action=refresh'>".$txt['admin_panel_acp_refresh']."</a> ]</div>";
 
 	closetable();

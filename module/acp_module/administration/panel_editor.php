@@ -3,23 +3,23 @@
 | WebClearFusion Content Management System
 | Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
-| Filename: acp_panel_editor.php
+| Filename: panel_editor.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	require_once "../maincore.php";
+	require_once "../include/show_maincore.php";
 	require_once THEMES."templates/admin_header.php";
 
-
-	$temp = opendir(PANELS);
+	$patch_open = $modules['acp_module']."panels/";
+	$temp = opendir($patch_open);
 	while ($folder = readdir($temp))
 		{
-			if (!in_array($folder, array(".","..")) && strstr($folder, "_panel_acp"))
+			if (!in_array($folder, array(".","..")) && strstr($folder, "_panel"))
 				{
-					if (is_dir(PANELS.$folder)) $panel_list[] = $folder;
+					if (is_dir($patch_open.$folder)) { $panel_list[] = $folder; }
 				}
 		}
 	closedir($temp); sort($panel_list); array_unshift($panel_list, "none");
