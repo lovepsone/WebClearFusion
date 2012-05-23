@@ -100,7 +100,7 @@ CREATE TABLE `wcf_navigation_links` (
   `link_position` tinyint(1) unsigned NOT NULL default '1',
   `link_order` smallint(2) unsigned NOT NULL default '0',
   PRIMARY KEY  (`link_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for wcf_news
