@@ -22,6 +22,21 @@
 		{		
 			$pages[$data[1]] .= "<option value='".ADMIN.$data[5]."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", $txt[$data[4]])."</option>";
 		}
+	// дабавляем к навигации если имеются файлы в модулях
+	$maf = array();
+	for ($i=1;$i <= count($modules);$i++)
+		{
+			$patch_module[$i] = $modules[$module_list[$i]];
+			$patch[$i] = $modules[$module_list[$i]]."administration/";
+			$maf[$i] = admin_files_page($patch[$i]);
+
+			while (list($id, $data) = each($maf))
+				{
+					$m_exp = explode('.', $data[0]);
+					$name = $m_exp[0];
+					$pages[5] .= "<option value='".$patch[$i].$data[0]."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", $name)."</option>";
+				}
+		}
 
 	$content = false;
 	for ($i = 1; $i < 6; $i++)

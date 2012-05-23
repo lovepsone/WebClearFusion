@@ -86,47 +86,78 @@
 			$text .= "</tr></table>";
 			return $text;
 		}
+	//=============================================================================================
+	// функция чтения элементов каталога и заносит их в массив
+	function admin_files_page($patch)
+		{
+			$temp = opendir($patch);
+			while (false !== ($file = readdir($temp)))
+				{ 
+					if (!in_array($file, array(".","..")) && !strstr($file, "_")) { $file_list[] = $file; }
+				}
+			closedir($temp); sort($file_list);
+			return $file_list;
+		}
 
 	//=============================================================================================
 	// функция, создающая админку, берет данные из массива
 	function admin_page($page,$string,$list)
 		{
-			global $txt;
+			global $txt, $modules, $module_list;
+
 			echo"<tr>";
 			reset($list);
 			while (list($id, $data) = each($list))
 				{
-					if ($data[0] == 1 && $data[1] == $page && $data[2] == $string)
+					if ($data[0] == 1 && $data[1] == $page && $page != 5 && $data[2] == $string)
 						{
 							echo"<td width='25%' align='center'>";
 							echo"<a href='".ADMIN.$data[5]."'>";
 							echo"<img src='".ADMIN."images/".$data[3]."' align='absmiddle'>";
 							echo"<br>".$txt[$data[4]]."</td>";
 						}
-					if ($data[0] == 2 && $data[1] == $page && $data[2] == $string)
+					if ($data[0] == 2 && $data[1] == $page && $page != 5 && $data[2] == $string)
 						{
 							echo"<td width='25%' align='center'>";
 							echo"<a href='".ADMIN.$data[5]."'>";
 							echo"<img src='".ADMIN."images/".$data[3]."' align='absmiddle'>";
 							echo"<br>".$txt[$data[4]]."</td>";
 						}
-					if ($data[0] == 3 && $data[1] == $page && $data[2] == $string)
+					if ($data[0] == 3 && $data[1] == $page && $page != 5 && $data[2] == $string)
 						{
 							echo"<td width='25%' align='center'>";
 							echo"<a href='".ADMIN.$data[5]."'>";
 							echo"<img src='".ADMIN."images/".$data[3]."' align='absmiddle'>";
 							echo"<br>".$txt[$data[4]]."</td>";
 						}
-					if ($data[0] == 4 && $data[1] == $page && $data[2] == $string)
+					if ($data[0] == 4 && $data[1] == $page && $page != 5 && $data[2] == $string)
 						{
 							echo"<td width='25%' align='center'>";
 							echo"<a href='".ADMIN.$data[5]."'>";
 							echo"<img src='".ADMIN."images/".$data[3]."' align='absmiddle'>";
 							echo"<br>".$txt[$data[4]]."</td>";
 						}
-					if ($data[0] == 5 && $data[1] == $page && $data[2] == $string)
+				}
+			$maf = array(); $k = 1;
+			for ($i=1;$i <= count($modules);$i++)
+				{
+					$patch_module[$i] = $modules[$module_list[$i]];
+					$patch[$i] = $modules[$module_list[$i]]."administration/";
+					$maf[$i] = admin_files_page($patch[$i]);
+
+					while (list($id, $data) = each($maf))
 						{
-						// нужно придумать систему
+							if ($k == 4) { $k = 1; }
+							if ($page == 5 && $k == $string)
+								{
+									$m_exp = explode('.', $data[0]);
+									$name = $m_exp[0];
+									echo"<td width='25%' align='center'>";
+									echo"<a href='".$patch[$i].$data[0]."'>";
+									echo"<img src='".$patch_module[$i]."images/admin/".$name.".gif' align='absmiddle'>";
+									echo"<br>".$name."</td>";
+								}
+							$k++;
 						}
 				}
 					echo"</tr>";
