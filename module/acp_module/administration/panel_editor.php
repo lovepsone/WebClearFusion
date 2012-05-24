@@ -13,16 +13,33 @@
 	require_once "../include/show_maincore.php";
 	require_once THEMES."templates/admin_header.php";
 
+	selectdb("wcf"); $panel_list = array();
 	$patch_open = $modules['acp_module']."panels/";
 	$temp = opendir($patch_open);
 	while ($folder = readdir($temp))
 		{
-			if (!in_array($folder, array(".","..")) && strstr($folder, "_panel"))
+			if (!in_array($folder, array(".","..")) && strstr($folder, "_panel") && !strstr($folder, "_panel_wc"))
 				{
-					if (is_dir($patch_open.$folder)) { $panel_list[] = $folder; }
+					$result = db_query("SELECT * FROM ".DB_ACP_PANELS." WHERE `panel_filename`='".$folder."'");
+
+					if (is_dir($patch_open.$folder) && db_num_rows($result) == 0)
+						{
+							$panel_list[] = $folder;
+						}
 				}
 		}
-	closedir($temp); sort($panel_list); array_unshift($panel_list, "none");
+	closedir($temp);
+
+	if (count($panel_list) != 0) 
+		{
+			sort($panel_list);
+			array_unshift($panel_list, "none");
+		}
+	else
+		{
+			$panel_list[] = "none";
+			sort($panel_list);
+		}
 
 	if (isset($_POST['save']))
 		{

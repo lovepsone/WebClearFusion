@@ -33,7 +33,7 @@
 	// Ревизия и копирайт wcf (запрещается менять)
 	//==================================================================
 	$config['copyright'] = 'WebClearFusion v 0.4.73 from LovePSone 2010-2011';
-	$config['revision'] = 'wcf_revision_nr = [335]';
+	$config['revision'] = 'wcf_revision_nr = [336]';
 	$config['rev_admin'] = ' 0.02.00';
 	$config['rev_acp'] = ' 0.02.00';
 
