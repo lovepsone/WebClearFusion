@@ -13,16 +13,32 @@
 	require_once "../maincore.php";
 	require_once THEMES."templates/admin_header.php";
 
-
-	$temp = opendir(PANELS);
+	selectdb("wcf");
+	$temp = opendir(PANELS); $panel_list = array();
 	while ($folder = readdir($temp))
 		{
-			if ((!in_array($folder, array(".","..")) && strstr($folder, "_panel")) && !strstr($folder, "_panel_acp"))
+			if ((!in_array($folder, array(".","..")) && strstr($folder, "_panel")))
 				{
-					if (is_dir(PANELS.$folder)) { $panel_list[] = $folder; }
+					$result = db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_filename`='".$folder."'");
+
+					if (is_dir(PANELS.$folder) && db_num_rows($result) == 0)
+						{
+							$panel_list[] = $folder;
+						}
 				}
 		}
-	closedir($temp); sort($panel_list); array_unshift($panel_list, "none");
+	closedir($temp);
+
+	if (count($panel_list) != 0) 
+		{
+			sort($panel_list);
+			array_unshift($panel_list, "none");
+		}
+	else
+		{
+			$panel_list[] = "none";
+			sort($panel_list);
+		}
 
 	if (isset($_POST['save']))
 		{
