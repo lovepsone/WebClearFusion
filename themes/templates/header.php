@@ -22,6 +22,7 @@
 	echo"<link href='".THEMES."templates/cs_powered.css' type=text/css rel=stylesheet />";
 	echo"<meta http-equiv='content-type' content='text/html; charset=$code_page' />";
 	echo"<script type='text/javascript' src='".INCLUDES."js/jscript.js'></script>";
+	echo"<script type='text/javascript' src='".INCLUDES."js/jquery.js'></script>";
 	echo"<script type='text/javascript' src='".INCLUDES."js/ajax.js'></script>";
 	echo"<script type='text/javascript' src='".INCLUDES."js/utils.js'></script>";
 	echo"<script type='text/javascript' src='".INCLUDES."js/my_tooltip.js'></script>";
