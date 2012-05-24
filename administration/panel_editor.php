@@ -40,6 +40,26 @@
 			sort($panel_list);
 		}
 
+	// ищем панели типа wc
+	for ($i=1;$i <= count($modules);$i++)
+		{
+			$patch = $modules[$module_list[$i]]."/panels/";
+			$temp = opendir($patch);
+			while ($folder = readdir($temp))
+				{
+					if ((!in_array($folder, array(".","..")) && strstr($folder, "_panel_wc")))
+						{
+							$result = db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_filename`='".$folder."'");
+
+							if (is_dir($patch.$folder) && db_num_rows($result) == 0)
+								{
+									$panel_list[] .= $folder;
+								}
+						}
+				}
+			closedir($temp); sort($panel_list);
+		}
+
 	if (isset($_POST['save']))
 		{
 			if ($_POST['panel_filename'] == "none")
