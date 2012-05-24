@@ -91,7 +91,7 @@
 
 					// определяем пути к файлам модулей, и заносим в массив для проверки панелей типа wc
 					selectdb("wcf");
-					$list_p = array();
+					$list_p = array(); $list_m = array();
 					for ($i=1;$i <= count($modules);$i++)
 						{
 							$patch_p[$i] = $modules[$module_list[$i]]."/panels/";
