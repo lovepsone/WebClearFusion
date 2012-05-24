@@ -90,13 +90,13 @@
 		{
 			for ($i=1;$i <= count($modules);$i++)
 				{
-					$patch_p[$i] = $modules[$list[$i]]."/panels/";
+					$patch_p[$i] = $modules[$mlist[$i]]."/panels/";
 					if (file_exists($patch_p[$i].$pname."/".$pname.".php"))
 						{
 							$pfile = $patch_p[$i].$pname."/".$pname.".php";
 							break;
 						}
 				}
-			return $pfile;
+			if (file_exists($pfile)) { return $pfile; } else { return false; }
 		}
 ?>

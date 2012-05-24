@@ -79,9 +79,9 @@
 														{
 															include PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php";
 														}
-													else
+													elseif (($fpm=include_panel_wc($modules,$module_list,$p_data['panel_filename'])) != false)
 														{
-															include include_panel_wc($modules,$module_list,$p_data['panel_filename']);
+															include $fpm;
 														}
 												}
 								}
@@ -107,9 +107,10 @@
 												}
 										}
 								}
-							closedir($temp_p); sort($list_m);
+							closedir($temp_p);
 							if (count($list_m) != 0)
 								{
+									sort($list_m);
 									$list_p[$i] = $list_m;
 								}
 						}
