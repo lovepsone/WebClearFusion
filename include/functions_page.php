@@ -138,29 +138,62 @@
 							echo"<br>".$txt[$data[4]]."</td>";
 						}
 				}
-			$maf = array(); $k = 1;
+			echo"</tr><tr>";
+
+			$maf = array(); $s = 1; $k=1;
 			for ($i=1;$i <= count($modules);$i++)
 				{
 					$patch_module[$i] = $modules[$module_list[$i]];
 					$patch[$i] = $modules[$module_list[$i]]."administration/";
-					$maf[$i] = admin_files_page($patch[$i]);
+					$maf = admin_files_page($patch[$i]);
 
-					while (list($id, $data) = each($maf))
+					for ($j=0; $j < count($maf); $j++)
 						{
-							if ($k == 4) { $k = 1; }
-							if ($page == 5 && $k == $string)
+							if ($page == 5 && $s == $string && $k == 1)
 								{
-									$m_exp = explode('.', $data[0]);
+									$m_exp = explode('.', $maf[$j]);
 									$name = $m_exp[0];
 									echo"<td width='25%' align='center'>";
-									echo"<a href='".$patch[$i].$data[0]."'>";
+									echo"<a href='".$patch[$i].$maf[$j]."'>";
 									echo"<img src='".$patch_module[$i]."images/admin/".$name.".gif' align='absmiddle'>";
 									echo"<br>".$name."</td>";
+								}
+							if ($page == 5 && $s == $string && $k == 2)
+								{
+									$m_exp = explode('.', $maf[$j]);
+									$name = $m_exp[0];
+									echo"<td width='25%' align='center'>";
+									echo"<a href='".$patch[$i].$maf[$j]."'>";
+									echo"<img src='".$patch_module[$i]."images/admin/".$name.".gif' align='absmiddle'>";
+									echo"<br>".$name."</td>";
+								}
+							if ($page == 5 && $s == $string && $k == 3)
+								{
+									$m_exp = explode('.', $maf[$j]);
+									$name = $m_exp[0];
+									echo"<td width='25%' align='center'>";
+									echo"<a href='".$patch[$i].$maf[$j]."'>";
+									echo"<img src='".$patch_module[$i]."images/admin/".$name.".gif' align='absmiddle'>";
+									echo"<br>".$name."</td>";
+								}
+							if ($page == 5 && $s == $string && $k == 4)
+								{
+									$m_exp = explode('.', $maf[$j]);
+									$name = $m_exp[0];
+									echo"<td width='25%' align='center'>";
+									echo"<a href='".$patch[$i].$maf[$j]."'>";
+									echo"<img src='".$patch_module[$i]."images/admin/".$name.".gif' align='absmiddle'>";
+									echo"<br>".$name."</td>";
+								}
+							if ($k == 4)
+								{
+									$k = 1; $s++;
+									echo "</tr><tr>";
 								}
 							$k++;
 						}
 				}
-					echo"</tr>";
+			echo"</tr>";
 		}
 
 	//=============================================================================================

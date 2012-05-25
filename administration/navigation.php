@@ -28,13 +28,13 @@
 		{
 			$patch_module[$i] = $modules[$module_list[$i]];
 			$patch[$i] = $modules[$module_list[$i]]."administration/";
-			$maf[$i] = admin_files_page($patch[$i]);
+			$maf = admin_files_page($patch[$i]);
 
-			while (list($id, $data) = each($maf))
+			for ($i=0; $i < count($maf); $i++)
 				{
-					$m_exp = explode('.', $data[0]);
+					$m_exp = explode('.', $maf[$i]);
 					$name = $m_exp[0];
-					$pages[5] .= "<option value='".$patch[$i].$data[0]."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", $name)."</option>";
+					$pages[5] .= "<option value='".$patch[$i].$maf[$i]."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", $name)."</option>";
 				}
 		}
 
