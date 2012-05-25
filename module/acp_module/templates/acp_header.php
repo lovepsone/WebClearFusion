@@ -18,8 +18,8 @@
 	echo"<head><link rel='SHORTCUT ICON' href='".IMAGES."favicon.ico' />";
 	echo"<title>".$config['servername']."</title>";
 	echo"<link href='".$cssfile."' type=text/css rel=stylesheet />";
-	echo"<link href='".THEMES."templates/wcf.css' type=text/css rel=stylesheet />";
-	echo"<link href='".THEMES."templates/cs_powered.css' type=text/css rel=stylesheet />";
+	echo"<link href='".$modules['acp_module']."templates/wcf.css' type=text/css rel=stylesheet />";
+	echo"<link href='".$modules['acp_module']."templates/cs_powered.css' type=text/css rel=stylesheet />";
 	echo"<meta http-equiv='content-type' content='text/html; charset=$code_page' />";
 	echo"<script type='text/javascript' src='".INCLUDES."js/jscript.js'></script>";
 	echo"<script type='text/javascript' src='".INCLUDES."js/ajax.js'></script>";

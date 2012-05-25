@@ -124,26 +124,26 @@ TABLE.report TD.rep_bar          {FONT-WEIGHT: 800; font-size: 10px; color: #FFF
 
 TABLE.sublist       {BORDER:#CCC0FF 0px solid; FONT-SIZE: 13px; MARGIN: 0px; COLOR: #000000; border-collapse: collapse; border-spacing: 0; WIDTH: 100%;}
 /* Reputation bar style */
-div.rep_bar        {width: 100%;height:14px;background:transparent url(../../images/bar/bar-mana.gif) repeat-x scroll 0 0;position:relative;text-align: left;border: 0px; margin: 0px; }
+div.rep_bar        {width: 100%;height:14px;background:transparent url(../images/bar/bar-mana.gif) repeat-x scroll 0 0;position:relative;text-align: left;border: 0px; margin: 0px; }
 div.rep_bar b      {height:14px;position:absolute;}
-div.rep_bar b.rep0 {background:transparent url(../../images/bar/bar-hated.gif) repeat-x scroll 0 0;}
-div.rep_bar b.rep1 {background:transparent url(../../images/bar/bar-hostile.gif) repeat-x scroll 0 0;}
-div.rep_bar b.rep2 {background:transparent url(../../images/bar/bar-unfriendly.gif) repeat-x scroll 0 0;}
-div.rep_bar b.rep3 {background:transparent url(../../images/bar/bar-neutral.gif) repeat-x scroll 0 0;}
-div.rep_bar b.rep4 {background:transparent url(../../images/bar/bar-friendly.gif) repeat-x scroll 0 0;}
-div.rep_bar b.rep5 {background:transparent url(../../images/bar/bar-honored.gif) repeat-x scroll 0 0;}
-div.rep_bar b.rep6 {background:transparent url(../../images/bar/bar-revered.gif) repeat-x scroll 0 0;}
-div.rep_bar b.rep7 {background:transparent url(../../images/bar/bar-exalted.gif) repeat-x scroll 0 0;}
+div.rep_bar b.rep0 {background:transparent url(../images/bar/bar-hated.gif) repeat-x scroll 0 0;}
+div.rep_bar b.rep1 {background:transparent url(../images/bar/bar-hostile.gif) repeat-x scroll 0 0;}
+div.rep_bar b.rep2 {background:transparent url(../images/bar/bar-unfriendly.gif) repeat-x scroll 0 0;}
+div.rep_bar b.rep3 {background:transparent url(../images/bar/bar-neutral.gif) repeat-x scroll 0 0;}
+div.rep_bar b.rep4 {background:transparent url(../images/bar/bar-friendly.gif) repeat-x scroll 0 0;}
+div.rep_bar b.rep5 {background:transparent url(../images/bar/bar-honored.gif) repeat-x scroll 0 0;}
+div.rep_bar b.rep6 {background:transparent url(../images/bar/bar-revered.gif) repeat-x scroll 0 0;}
+div.rep_bar b.rep7 {background:transparent url(../images/bar/bar-exalted.gif) repeat-x scroll 0 0;}
 div.rep_bar span   {position:absolute; text-align:center; width:100%;}
 
 /* Skill bar style */
-div.skill_bar      {width: 100%;height:14px;background:transparent url(../../images/bar/bar-mana.gif) repeat-x scroll 0 0;position:relative;text-align: left;border:0px solid black;}
+div.skill_bar      {width: 100%;height:14px;background:transparent url(../images/bar/bar-mana.gif) repeat-x scroll 0 0;position:relative;text-align: left;border:0px solid black;}
 div.skill_bar b    {height:14px;position:absolute;}
-div.skill_bar b.s1 {background:transparent url(../../images/bar/bar-grey.gif) repeat-x scroll 0 0;}
+div.skill_bar b.s1 {background:transparent url(../images/bar/bar-grey.gif) repeat-x scroll 0 0;}
 div.skill_bar span {position:absolute; text-align:center; width:100%;}
 
 /* Live search table style */
-TABLE.livesearch    {BORDER:#000000 1px solid; color: #000000; background: url(../../images/bar/ls_data.gif); FONT-SIZE: 13px; border-collapse: collapse;}
+TABLE.livesearch    {BORDER:#000000 1px solid; color: #000000; background: url(../images/bar/ls_data.gif); FONT-SIZE: 13px; border-collapse: collapse;}
 TABLE.livesearch A  {font-weight: normal; text-decoration: none; display: block; width: auto;}
 TABLE.livesearch B  {text-decoration: underline;}
 TABLE.livesearch TR {BORDER:#330000 1px solid; height: 23px;}
@@ -161,7 +161,7 @@ TABLE.stat TD.st_data     {color: #FFFFCC; BORDER: 0px; padding: 0px; text-align
 TABLE.stat TD.st_datab    {color: #FFFFCC; BORDER: 0px; padding: 0px; text-align: center; vertical-align: top;}
 
 /* Ajax tooltip style */
-div.loading                 {color: #FFFFFF; background: url(../../images/ajax-loader.gif); width: 32px; height: 32px; }
+div.loading                 {color: #FFFFFF; background: url(../images/ajax-loader.gif); width: 32px; height: 32px; }
 TABLE.tooltip               {color: #FFFFFF; background: #282828;}
 TABLE.tooltip               {BORDER-RIGHT: #888 2px solid; BORDER-TOP: #eee 2px solid; BORDER-LEFT: #eee 2px solid; BORDER-BOTTOM: #888 2px solid;}
 TABLE.tooltip TD            {padding: 0px;}
@@ -202,10 +202,10 @@ TABLE.item TD.req A      {COLOR: white;}
 TABLE.item TD.SpellStat  {COLOR: #00ff00; }
 TABLE.item TD.name       {white-space: nowrap;}
 TABLE.item TD.Unique     {COLOR: #aaaa00; }
-TABLE.item TD.metaSock    {background: url(../../images/socket_meta.gif) no-repeat; padding-left: 23px; height: 16px;}
-TABLE.item TD.blueSock    {background: url(../../images/socket_blue.gif) no-repeat; padding-left: 23px; height: 16px;}
-TABLE.item TD.redSock     {background: url(../../images/socket_red.gif) no-repeat; padding-left: 23px; height: 16px;}
-TABLE.item TD.yellowSock  {background: url(../../images/socket_yellow.gif) no-repeat; padding-left: 23px; height: 16px;}
+TABLE.item TD.metaSock    {background: url(../images/socket_meta.gif) no-repeat; padding-left: 23px; height: 16px;}
+TABLE.item TD.blueSock    {background: url(../images/socket_blue.gif) no-repeat; padding-left: 23px; height: 16px;}
+TABLE.item TD.redSock     {background: url(../images/socket_red.gif) no-repeat; padding-left: 23px; height: 16px;}
+TABLE.item TD.yellowSock  {background: url(../images/socket_yellow.gif) no-repeat; padding-left: 23px; height: 16px;}
 TABLE.item TD.metaSock   A{COLOR: #CCCCFF;}
 TABLE.item TD.blueSock   A{COLOR: #00FFFF;}
 TABLE.item TD.redSock    A{COLOR: #ff0000;}
@@ -308,20 +308,20 @@ TABLE.character {BORDER-RIGHT: #888 2px solid; BORDER-TOP: #eee 2px solid; FONT-
 TABLE.playerName           {WIDTH: 276px; FONT-FAMILY: Tahoma; BORDER: 0px; border-collapse: collapse;}
 TABLE.playerName TD        {text-align: center; vertical-align: middle; padding: 0px; BORDER: 0px;}
 TABLE.playerName TD.name   {COLOR: #FFFFFF; FONT-SIZE: 14px; FONT-WEIGHT: 600; WIDTH: 276px; HEIGHT: 20px;}
-TABLE.playerName TD.health {COLOR: #FFFFFF; FONT-SIZE: 12px; FONT-WEIGHT: 600; WIDTH: 276px; HEIGHT: 18px;BACKGROUND-IMAGE: url(../../images/player_info/characterframe/bar1.png);}
-TABLE.playerName TD.power  {COLOR: #FFFFFF; FONT-SIZE: 12px; FONT-WEIGHT: 600; WIDTH: 276px; HEIGHT: 17px;BACKGROUND-IMAGE: url(../../images/player_info/characterframe/bar2.png);}
+TABLE.playerName TD.health {COLOR: #FFFFFF; FONT-SIZE: 12px; FONT-WEIGHT: 600; WIDTH: 276px; HEIGHT: 18px;BACKGROUND-IMAGE: url(../images/player_info/characterframe/bar1.png);}
+TABLE.playerName TD.power  {COLOR: #FFFFFF; FONT-SIZE: 12px; FONT-WEIGHT: 600; WIDTH: 276px; HEIGHT: 17px;BACKGROUND-IMAGE: url(../images/player_info/characterframe/bar2.png);}
 
-TABLE.playerstats          {FONT-FAMILY: Tahoma; FONT-SIZE: 11px; MARGIN: 0px; border-collapse: collapse;padding: 1px;BACKGROUND-IMAGE: url(../../images/player_info/bg_stats.png);}
+TABLE.playerstats          {FONT-FAMILY: Tahoma; FONT-SIZE: 11px; MARGIN: 0px; border-collapse: collapse;padding: 1px;BACKGROUND-IMAGE: url(../images/player_info/bg_stats.png);}
 TABLE.playerstats TD       {BORDER: 1px #666666 solid;}
 TABLE.playerstats TD.head  {COLOR: #FFFFFF;PADDING-LEFT: 8px; font-weight: 700;}
 
 TABLE.resistances           {FONT-FAMILY: Tahoma; FONT-SIZE: 11px; COLOR: #0fd621;}
 TABLE.resistances TD        {text-align: center; vertical-align: bottom; padding: 0px; BORDER: 0px;}
-TABLE.resistances TD.fire   {width: 25px; height: 38px; BACKGROUND: url(../../images/player_info/characterframe/fire.gif) no-repeat center top;}
-TABLE.resistances TD.nature {width: 25px; height: 38px; BACKGROUND: url(../../images/player_info/characterframe/nature.gif) no-repeat center top;}
-TABLE.resistances TD.frost  {width: 25px; height: 38px; BACKGROUND: url(../../images/player_info/characterframe/frost.gif) no-repeat center top;}
-TABLE.resistances TD.shadow {width: 25px; height: 38px; BACKGROUND: url(../../images/player_info/characterframe/shadow.gif) no-repeat center top;}
-TABLE.resistances TD.arcane {width: 25px; height: 38px; BACKGROUND: url(../../images/player_info/characterframe/arcane.gif) no-repeat center top;}
+TABLE.resistances TD.fire   {width: 25px; height: 38px; BACKGROUND: url(../images/player_info/characterframe/fire.gif) no-repeat center top;}
+TABLE.resistances TD.nature {width: 25px; height: 38px; BACKGROUND: url(../images/player_info/characterframe/nature.gif) no-repeat center top;}
+TABLE.resistances TD.frost  {width: 25px; height: 38px; BACKGROUND: url(../images/player_info/characterframe/frost.gif) no-repeat center top;}
+TABLE.resistances TD.shadow {width: 25px; height: 38px; BACKGROUND: url(../images/player_info/characterframe/shadow.gif) no-repeat center top;}
+TABLE.resistances TD.arcane {width: 25px; height: 38px; BACKGROUND: url(../images/player_info/characterframe/arcane.gif) no-repeat center top;}
 
 TABLE.stattext     {WIDTH: 100%; FONT-FAMILY: Tahoma; FONT-SIZE: 11px; BORDER: 0; border-collapse: collapse;}
 TABLE.stattext  TD {COLOR: #dfb900; TEXT-ALIGN:  left; PADDING: 0px; PADDING-LEFT:  5px; BORDER: 0px;}
@@ -349,7 +349,7 @@ TABLE.skillBody TD.skillname   {COLOR: #FFFFCC; BACKGROUND-COLOR: #484848; BORDE
 TABLE.skillBody TD.skilltop    {COLOR: #ffdd00; BACKGROUND-COLOR: #330066; FONT-SIZE: 16px; FONT-WEIGHT: 800;  TEXT-ALIGN: center;}
 TABLE.skillBody TD.skillbottom {COLOR: #000000; BACKGROUND-COLOR: #aaaaaa; FONT-SIZE: 13px; TEXT-ALIGN: center;}
 TABLE.skillBody TD.skillsubname{COLOR: #FFFFCC; WIDTH: 135px; padding-left: 10px; padding-right: 5px;}
-TABLE.skillBody TD.skillbar    {COLOR: #FFFFCC; WIDTH: 200px; HEIGHT: 17px; BACKGROUND: url(../../images/player_info/characterframe/skill_bar_bg.gif) #000000 no-repeat; text-align: center; }
+TABLE.skillBody TD.skillbar    {COLOR: #FFFFCC; WIDTH: 200px; HEIGHT: 17px; BACKGROUND: url(../images/player_info/characterframe/skill_bar_bg.gif) #000000 no-repeat; text-align: center; }
 TABLE.skillBody TD A:link      {COLOR: #FF9900; TEXT-DECORATION: none; FONT-SIZE: 12px;}
 TABLE.skillBody TD A:visited   {COLOR: #FF9900; TEXT-DECORATION: none; FONT-SIZE: 12px;}
 
@@ -384,46 +384,46 @@ table.achievement TD         {vertical-align: top;}
 table.achievement TD.a_cat   {min-width: 169px; width: 169px; font-size: 11px; font-weight: bold; text-align: left;}
 table.achievement TD.a_data  {min-width: 673px; width: 673px; font-size: 14px; text-align: center; padding: 0;}
 
-div.a_topcat              {height: 10px; background: url(../../images/achievement/achv_lnav_top.gif); font-size: 1px;}
-div.a_bodycat             {background: url(../../images/achievement/achv_lnav_bg.jpg);}
+div.a_topcat              {height: 10px; background: url(../images/achievement/achv_lnav_top.gif); font-size: 1px;}
+div.a_bodycat             {background: url(../images/achievement/achv_lnav_bg.jpg);}
 div.a_bodycat     A       {color: #5B3906; padding: 4px 0px 4px 15px; display: block; text-decoration: none; min-height: 14px;}
 div.a_bodycat     A.sub   {color: #660000; padding: 4px 0px 4px 20px; background: transparent;}
-div.a_bodycat     A:hover {color: #330000;background: url(../../images/achievement/h_sel_bg.jpg) no-repeat scroll 50% 50%;}
-div.a_bodycat_sel         {background: url(../../images/achievement/achv_sel_sub.jpg) no-repeat scroll 100% 100%;}
-div.a_bodycat_sel A       {color: #FFE46C;padding: 4px 0px 4px 15px;background: url(../../images/achievement/achv_lnav_sel.gif) scroll 100% 0px no-repeat;display: block;text-decoration: none;min-height: 14px;height: 100%;}
+div.a_bodycat     A:hover {color: #330000;background: url(../images/achievement/h_sel_bg.jpg) no-repeat scroll 50% 50%;}
+div.a_bodycat_sel         {background: url(../images/achievement/achv_sel_sub.jpg) no-repeat scroll 100% 100%;}
+div.a_bodycat_sel A       {color: #FFE46C;padding: 4px 0px 4px 15px;background: url(../images/achievement/achv_lnav_sel.gif) scroll 100% 0px no-repeat;display: block;text-decoration: none;min-height: 14px;height: 100%;}
 div.a_bodycat_sel A:hover {color: #FFCC00;}
 div.a_bodycat_sel A.sub   {color: #FFFFFF; padding: 4px 0px 4px 20px; background: transparent;}
-div.a_bodycat_sel A.sel   {color: #E7D6B8; padding: 4px 0px 4px 20px; background: url(../../images/achievement/achv_sub_selected.gif) scroll 100% 0 no-repeat;}
-div.a_bottomcat           {height: 4px; background: url(../../images/achievement/achv_lnav_btm.gif) scroll 0% 100%; font-size: 1px;}
+div.a_bodycat_sel A.sel   {color: #E7D6B8; padding: 4px 0px 4px 20px; background: url(../images/achievement/achv_sub_selected.gif) scroll 100% 0 no-repeat;}
+div.a_bottomcat           {height: 4px; background: url(../images/achievement/achv_lnav_btm.gif) scroll 0% 100%; font-size: 1px;}
 
-div.a_topdata           {height: 8px; background: url(../../images/achievement/achv_rcol_top.gif) no-repeat; font-size: 1px;}
-div.a_bdydata           {background: url(../../images/achievement/achv_rcol_bg.jpg) repeat-y; padding: 2px 0 10px 0;}
-div.a_btmdata           {height: 5px; background: url(../../images/achievement/achv_rcol_btm.gif) no-repeat; font-size: 1px;}
+div.a_topdata           {height: 8px; background: url(../images/achievement/achv_rcol_top.gif) no-repeat; font-size: 1px;}
+div.a_bdydata           {background: url(../images/achievement/achv_rcol_bg.jpg) repeat-y; padding: 2px 0 10px 0;}
+div.a_btmdata           {height: 5px; background: url(../images/achievement/achv_rcol_btm.gif) no-repeat; font-size: 1px;}
 
 .ach_show        {width: 673px; padding-bottom: 17px; cursor: pointer; position: relative;}
 .ach_show div    {margin: 0 auto; text-align: center;}
-.ach_show        {color: #554223; background: url(../../images/achievement/achievement_bg.jpg) scroll 50% bottom; border-top: 1px #CC9E4E solid;}
-.ach_show.locked {color: #D8D6BB; background: url(../../images/achievement/achievement_bg_locked.jpg) scroll 50% bottom; border-top: 1px #74623E solid;}
-.ach_show.select {color: #554223; background: url(../../images/achievement/achievement_bg_sel.jpg) scroll 50% bottom;}
-.select.locked   {color: #000000; background: url(../../images/achievement/achievement_bg_locked_sel.jpg) scroll 50% bottom;}
-.ach_show         .ach_point {background: url(../../images/achievement/points_compl.png) transparent no-repeat;}
-.ach_show.locked  .ach_point {background: url(../../images/achievement/points.png) transparent no-repeat;}
+.ach_show        {color: #554223; background: url(../images/achievement/achievement_bg.jpg) scroll 50% bottom; border-top: 1px #CC9E4E solid;}
+.ach_show.locked {color: #D8D6BB; background: url(../images/achievement/achievement_bg_locked.jpg) scroll 50% bottom; border-top: 1px #74623E solid;}
+.ach_show.select {color: #554223; background: url(../images/achievement/achievement_bg_sel.jpg) scroll 50% bottom;}
+.select.locked   {color: #000000; background: url(../images/achievement/achievement_bg_locked_sel.jpg) scroll 50% bottom;}
+.ach_show         .ach_point {background: url(../images/achievement/points_compl.png) transparent no-repeat;}
+.ach_show.locked  .ach_point {background: url(../images/achievement/points.png) transparent no-repeat;}
 .ach_show         .ach_req   {display: block;}
 .ach_show.select  .ach_req   {display: block;}
 .ach_show         .sub.compl {color: #669200;}
 .ach_show.locked  .sub.compl {color: #99FFFF;}
 
 div.ach_stats, .ach_stats_name {text-align: left; font-weight: bold; font-size: 11px;}
-div.ach_stats_name  {color: #FFFF99; background: url(../../images/achievement/zebra_darker.jpg);  padding: 5px 10px;}
-div.ach_stats       {color: #000000; background: url(../../images/achievement/zebra_dark.jpg);  padding: 5px 20px; cursor: pointer;}
-div.ach_stats.second{background: url(../../images/achievement/zebra_light.jpg);}
-div.ach_stats:hover {background: url(../../images/achievement/zebra_light_flip.jpg);}
+div.ach_stats_name  {color: #FFFF99; background: url(../images/achievement/zebra_darker.jpg);  padding: 5px 10px;}
+div.ach_stats       {color: #000000; background: url(../images/achievement/zebra_dark.jpg);  padding: 5px 20px; cursor: pointer;}
+div.ach_stats.second{background: url(../images/achievement/zebra_light.jpg);}
+div.ach_stats:hover {background: url(../images/achievement/zebra_light_flip.jpg);}
 
 div.ach_s_list      {text-align: justify; font-size: 12px; color: #000000; padding: 0 20px; width: 633px;}
 div.ach_progress    {width: 32.33%; padding: 5px 1% 0 0; float: left; font-weight: bold;}
 div.ach_bar         {border: 1px solid #CA8E16; background: #1D3A45;position: relative; height: 14px;}
 div.ach_bar div.pr  {color: #FFFFFF; font-size: 11px; font-weight: bold; position: relative; text-align: center;}
-div.ach_bar div.bar {background: url(../../images/achievement/progress_blue.jpg); height: 100%; position: absolute; left: 0px;}
+div.ach_bar div.bar {background: url(../images/achievement/progress_blue.jpg); height: 100%; position: absolute; left: 0px;}
 
 div.a_last_c         {color: #7D6357; font-size: 12px; padding: 0 0 0 10px; clear: both; cursor: default;}
 div.a_last_c B       {color: #000000;}
@@ -431,24 +431,24 @@ div.a_last_cdate     {color: #000000; float: right; text-align:right; padding-le
 div.a_last_cdate img {position: relative; top: 2px;}
 
 img.ach_icon    {position: absolute; top:7px; left:22px; width: 48px;}
-div.ach_frame   {position: absolute; background: url(../../images/achievement/fst_iconframe.png); top: -3px; left:10px; width: 72px; height: 72px;}
+div.ach_frame   {position: absolute; background: url(../images/achievement/fst_iconframe.png); top: -3px; left:10px; width: 72px; height: 72px;}
 div.ach_point   {position: absolute; top: 5px; right: 10px; padding-top: 20px; width: 64px; height: 64px; color: #FFFFCC; font: 18px bold;}
 div.ach_title   {font-weight: bold; padding-top: 12px; width: 80%;}
 div.ach_desc    {padding: 5px; width: 75%;}
 div.ach_date    {font-size: 10px; font-weight: bold;}
 div.ach_req     {width: 80%; padding: 20px 30px 5px 30px; font-size: 12px;}
 div.ach_req .sub        {float: left; width: 249px; text-align: left; padding-left: 20px;}
-div.ach_req .sub.compl  {font-weight: bold;  background: url(../../images/achievement/compl.png) transparent no-repeat scroll 0 2px;}
+div.ach_req .sub.compl  {font-weight: bold;  background: url(../images/achievement/compl.png) transparent no-repeat scroll 0 2px;}
 div.ach_req .sub.bar    {width: 100%; padding: 0px;}
-div.ach_reward  {color: #FFFFFF; font-size: 12px; background: url(../../images/achievement/title_bg.png) no-repeat scroll 50% 100%; position: absolute; left: 0px; bottom: 0px; width: 100%; padding: 10px 0px 2px;}
+div.ach_reward  {color: #FFFFFF; font-size: 12px; background: url(../images/achievement/title_bg.png) no-repeat scroll 50% 100%; position: absolute; left: 0px; bottom: 0px; width: 100%; padding: 10px 0px 2px;}
 div.ach_value   {float: right;}
 
 /* Tabs*/
 .reportContainer {border: 0px solid #778;}
 .my_tabs     {font-size: 12px; padding: 3px 0; margin: 0 0 1px 0; text-align: left;list-style-type: none; white-space: nowrap;}
 .my_tabs li  {display: inline;margin: 0; color: #2d2b2b;font-weight: bold;}
-.my_tabs li          a{cursor: pointer;text-decoration: none;padding: 4px 7px; margin-right: 2px; border: 1px solid #778; border-bottom: 2px solid #778; background: url(../../images/tabs/shade.gif) top left repeat-x;}
-.my_tabs li.selected a{background-image: url(../../images/tabs/shadeactive.gif);border-bottom-color: white;}
+.my_tabs li          a{cursor: pointer;text-decoration: none;padding: 4px 7px; margin-right: 2px; border: 1px solid #778; border-bottom: 2px solid #778; background: url(../images/tabs/shade.gif) top left repeat-x;}
+.my_tabs li.selected a{background-image: url(../images/tabs/shadeactive.gif);border-bottom-color: white;}
 .my_tabs li          a:hover{text-decoration: underline;}
 .my_tabs li.selected a:hover{text-decoration: none;}
 

@@ -151,8 +151,8 @@
 	function get_faction_image($race)
 		{
 			$faction = get_player_faction($race);
- 			if ($faction == 0) return "<img width='20' src='".IMAGES_PI."factions_img/alliance.gif'>";
- 			if ($faction == 1) return "<img width='20' src='".IMAGES_PI."factions_img/horde.gif'>";
+ 			if ($faction == 0) return "<img width='20' src='".IMG_PI."factions_img/alliance.gif'>";
+ 			if ($faction == 1) return "<img width='20' src='".IMG_PI."factions_img/horde.gif'>";
  			return 0;
 		}
 
@@ -176,12 +176,12 @@
 
 	function get_race_image($race, $genderid)
 		{
- 			return IMAGES_PI."race_img/".$race."_".$genderid.".gif";
+ 			return IMG_PI."race_img/".$race."_".$genderid.".gif";
 		}
 
 	function get_class_image($class)
 		{
- 			return IMAGES_PI."class_img/".$class.".gif";
+ 			return IMG_PI."class_img/".$class.".gif";
 		}
 
 	function get_class_names()
@@ -329,7 +329,7 @@
 		{
   			global $bwicon_mode;
   			if ($bwicon_mode) { $dir = "bwicons"; $g_bwicon_mode = 0; } else { $dir = "icons"; }
-  			return IMAGES.$dir."/".get_item_icon_name($icon_id);
+  			return IMG.$dir."/".get_item_icon_name($icon_id);
 		}
 
 	function get_item_icon_from_item_id($item_id)
@@ -344,7 +344,7 @@
 				}
 			else
 				{
-  					return IMAGES_ICONS."wowunknownitem01.jpg";
+  					return IMG_ICONS."wowunknownitem01.jpg";
 				}
 		}
 
@@ -356,7 +356,7 @@
 				}
 			else
 				{
- 					return IMAGES_ICONS."wowunknownitem01.jpg";
+ 					return IMG_ICONS."wowunknownitem01.jpg";
 				}
 
 		}
@@ -397,23 +397,23 @@
 	function empty_show_item_from_char($style='item', $posx=0, $posy=0, $empty_item="")
 		{
  			switch ($empty_item): 
-				case ("head"):  	$icon = IMAGES_PI."empty_icon/head.png";   	break;
-				case ("neck"):  	$icon = IMAGES_PI."empty_icon/neck.png";   	break;
-				case ("shoulder"):  	$icon = IMAGES_PI."empty_icon/shoulder.png";   	break;
-				case ("back"):  	$icon = IMAGES_PI."empty_icon/back.png";   	break;
-				case ("chest"):  	$icon = IMAGES_PI."empty_icon/chest.png";   	break;
-				case ("shirt"):  	$icon = IMAGES_PI."empty_icon/shirt.png";   	break;
-				case ("tabard"):  	$icon = IMAGES_PI."empty_icon/tabard.png";   	break;
-				case ("wrist"):  	$icon = IMAGES_PI."empty_icon/wrist.png";   	break;
-				case ("gloves"):  	$icon = IMAGES_PI."empty_icon/gloves.png";   	break;
-				case ("belt"):  	$icon = IMAGES_PI."empty_icon/belt.png";   	break;
-				case ("legs"):  	$icon = IMAGES_PI."empty_icon/legs.png";   	break;
-				case ("feet"):  	$icon = IMAGES_PI."empty_icon/feet.png";   	break;
-				case ("finger"):  	$icon = IMAGES_PI."empty_icon/finger.png";   	break;
-				case ("trinket"):  	$icon = IMAGES_PI."empty_icon/trinket.png";   	break;
-				case ("main"):  	$icon = IMAGES_PI."empty_icon/main.png";   	break;
-				case ("off"):  		$icon = IMAGES_PI."empty_icon/off.png";   	break;
-				case ("ranged"):  	$icon = IMAGES_PI."empty_icon/ranged.png";   	break;
+				case ("head"):  	$icon = IMG_PI."empty_icon/head.png";   	break;
+				case ("neck"):  	$icon = IMG_PI."empty_icon/neck.png";   	break;
+				case ("shoulder"):  	$icon = IMG_PI."empty_icon/shoulder.png";   	break;
+				case ("back"):  	$icon = IMG_PI."empty_icon/back.png";   	break;
+				case ("chest"):  	$icon = IMG_PI."empty_icon/chest.png";   	break;
+				case ("shirt"):  	$icon = IMG_PI."empty_icon/shirt.png";   	break;
+				case ("tabard"):  	$icon = IMG_PI."empty_icon/tabard.png";   	break;
+				case ("wrist"):  	$icon = IMG_PI."empty_icon/wrist.png";   	break;
+				case ("gloves"):  	$icon = IMG_PI."empty_icon/gloves.png";   	break;
+				case ("belt"):  	$icon = IMG_PI."empty_icon/belt.png";   	break;
+				case ("legs"):  	$icon = IMG_PI."empty_icon/legs.png";   	break;
+				case ("feet"):  	$icon = IMG_PI."empty_icon/feet.png";   	break;
+				case ("finger"):  	$icon = IMG_PI."empty_icon/finger.png";   	break;
+				case ("trinket"):  	$icon = IMG_PI."empty_icon/trinket.png";   	break;
+				case ("main"):  	$icon = IMG_PI."empty_icon/main.png";   	break;
+				case ("off"):  		$icon = IMG_PI."empty_icon/off.png";   	break;
+				case ("ranged"):  	$icon = IMG_PI."empty_icon/ranged.png";   	break;
 			endswitch;
 
 			$position = '';
@@ -527,7 +527,7 @@
 		{
   			global $bwicon_mode;
   			if ($bwicon_mode) { $dir = "bwicons"; $g_bwicon_mode = 0; } else { $dir = "icons"; }
-  			return IMAGES.$dir."/".get_spell_icon_name($icon_id);
+  			return IMG.$dir."/".get_spell_icon_name($icon_id);
 		}
 
 	function show_spell($entry, $iconId=0, $style=0)
@@ -857,9 +857,9 @@
 			$gold   = intval(substr($many, -11, -4));
 			$hstr = "";
 			if ($height != 14)  { $hstr = "height={$height}px"; }
-			if ($gold  ) { $str.= $gold."<img $hstr src='".IMAGES."gold.gif'> "; }
-			if ($silver) { $str.= $silver."<img $hstr src='".IMAGES."silver.gif'> "; }
-			if ($copper) { $str.= $copper."<img $hstr src='".IMAGES."copper.gif'>"; }
+			if ($gold  ) { $str.= $gold."<img $hstr src='".IMG."gold.gif'> "; }
+			if ($silver) { $str.= $silver."<img $hstr src='".IMG."silver.gif'> "; }
+			if ($copper) { $str.= $copper."<img $hstr src='".IMG."copper.gif'>"; }
 			return $str;
 		}
 
@@ -924,11 +924,11 @@
 			while ($data = db_array($result)) { $l[$data['ARRAY_KEY']] = $data['icon']; }
 			if (isset($l[$family]))
 				{
-					return IMAGES_ICONS.strtolower($l[$family]).".jpg";
+					return IMG_ICONS.strtolower($l[$family]).".jpg";
 				}
 			else
 				{
-					return IMAGES_ICONS."wowunknownitem01.jpg";
+					return IMG_ICONS."wowunknownitem01.jpg";
 				}
 		}
 

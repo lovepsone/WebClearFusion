@@ -1,17 +1,17 @@
-div.loading                {color: #FFFFFF; background: url(../../images/ajax-loader.gif); width: 32px; height: 32px; }
+div.loading                {color: #FFFFFF; background: url(../images/ajax-loader.gif); width: 32px; height: 32px; }
 
 TABLE.tooltip              {padding: 4px; BORDER: 0px solid;  BACKGROUND-COLOR: transparent; border-collapse: collapse;}
 TABLE.tooltip TD           {FONT-FAMILY: Tahoma; COLOR: #ffffff; font-size: 12px; padding: 0px;}
 TABLE.tooltip TD A         {text-decoration: none;}
-TABLE.tooltip TD.tiptopl   {WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(../../images/tooltip.png)   0%  0% no-repeat;}
-TABLE.tooltip TD.tiptop    {WIDTH: auto;HEIGHT:  8px;BACKGROUND: url(../../images/tooltip.png)  50%  0% no-repeat;}
-TABLE.tooltip TD.tiptopr   {WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(../../images/tooltip.png) 100%  0% no-repeat;}
-TABLE.tooltip TD.tipl      {WIDTH:  8px;HEIGHT: auto;BACKGROUND: url(../../images/tooltip.png)   0% 50% no-repeat;}
-TABLE.tooltip TD.tipbody   {FONT-SIZE: 12px; BACKGROUND: url(../../images/tooltip.png)  50% 50% no-repeat; padding: 2px;}
-TABLE.tooltip TD.tipr      {WIDTH:  8px;HEIGHT: auto;BACKGROUND: url(../../images/tooltip.png) 100%  50% no-repeat;}
-TABLE.tooltip TD.tipbottoml{WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(../../images/tooltip.png)   0% 100% no-repeat;}
-TABLE.tooltip TD.tipbottom {WIDTH: auto;HEIGHT:  8px;BACKGROUND: url(../../images/tooltip.png)  50% 100% no-repeat;}
-TABLE.tooltip TD.tipbottomr{WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(../../images/tooltip.png) 100% 100% no-repeat;}
+TABLE.tooltip TD.tiptopl   {WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(../images/tooltip.png)   0%  0% no-repeat;}
+TABLE.tooltip TD.tiptop    {WIDTH: auto;HEIGHT:  8px;BACKGROUND: url(../images/tooltip.png)  50%  0% no-repeat;}
+TABLE.tooltip TD.tiptopr   {WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(../images/tooltip.png) 100%  0% no-repeat;}
+TABLE.tooltip TD.tipl      {WIDTH:  8px;HEIGHT: auto;BACKGROUND: url(../images/tooltip.png)   0% 50% no-repeat;}
+TABLE.tooltip TD.tipbody   {FONT-SIZE: 12px; BACKGROUND: url(../images/tooltip.png)  50% 50% no-repeat; padding: 2px;}
+TABLE.tooltip TD.tipr      {WIDTH:  8px;HEIGHT: auto;BACKGROUND: url(../images/tooltip.png) 100%  50% no-repeat;}
+TABLE.tooltip TD.tipbottoml{WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(../images/tooltip.png)   0% 100% no-repeat;}
+TABLE.tooltip TD.tipbottom {WIDTH: auto;HEIGHT:  8px;BACKGROUND: url(../images/tooltip.png)  50% 100% no-repeat;}
+TABLE.tooltip TD.tipbottomr{WIDTH:  8px;HEIGHT:  8px;BACKGROUND: url(../images/tooltip.png) 100% 100% no-repeat;}
 
 /* Item info table style */
 SPAN.quality0  {COLOR: #808080; FONT-WEIGHT: bold;}
@@ -26,10 +26,10 @@ TABLE.item A             {COLOR: #00ff00; }
 TABLE.item TD.req A      {COLOR: #FFFFFF; }
 TABLE.item TD.SpellStat  {COLOR: #00ff00; }
 TABLE.item TD.Unique     {COLOR: #aaaa00; }
-TABLE.item TD.MetaSock   {COLOR: #CCCCFF; background: url(../../images/socket_meta.gif) no-repeat scroll left center; padding-left: 23px; height: 17px;}
-TABLE.item TD.blueSock   {COLOR: #00FFFF; background: url(../../images/socket_blue.gif) no-repeat scroll left center; padding-left: 23px; height: 17px;}
-TABLE.item TD.redSock    {COLOR: #ff0000; background: url(../../images/socket_red.gif) no-repeat scroll left center; padding-left: 23px; height: 17px;}
-TABLE.item TD.yellowSock {COLOR: #ffff00; background: url(../../images/socket_yellow.gif) no-repeat scroll left center; padding-left: 23px; height: 17px;}
+TABLE.item TD.MetaSock   {COLOR: #CCCCFF; background: url(../images/socket_meta.gif) no-repeat scroll left center; padding-left: 23px; height: 17px;}
+TABLE.item TD.blueSock   {COLOR: #00FFFF; background: url(../images/socket_blue.gif) no-repeat scroll left center; padding-left: 23px; height: 17px;}
+TABLE.item TD.redSock    {COLOR: #ff0000; background: url(../images/socket_red.gif) no-repeat scroll left center; padding-left: 23px; height: 17px;}
+TABLE.item TD.yellowSock {COLOR: #ffff00; background: url(../images/socket_yellow.gif) no-repeat scroll left center; padding-left: 23px; height: 17px;}
 TABLE.item TD.EnchantSock{COLOR: #00ff00; }
 TABLE.item TD.disBonus   {COLOR: #CCCCCC; }
 TABLE.item TD.itemsetname{COLOR: #CC9933; }

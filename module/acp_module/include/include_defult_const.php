@@ -66,4 +66,8 @@
 	//===============================================
 	// Пути определения папок
 	//===============================================
+	define("IMG", $modules['acp_module']."images/");
+	define("IMG_PI", $modules['acp_module']."images/player_info/");
+	define("IMG_ICONS", $modules['acp_module']."images/icons/");
+	define("IMG_BAR", $modules['acp_module']."images/bar/");
 ?>

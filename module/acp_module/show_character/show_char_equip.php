@@ -59,8 +59,8 @@
  			echo"<tbody><tr><td width='420px' height='560px' align='left' valign='top'>";
  			echo"<div style=\"position: relative; border: 0px; left: 0px; top: 0px;\">";
  			if (get_race($race)) { $frame = $genderId."_".$race.".gif"; } else { $frame="TempPortrait.gif"; }
- 			echo"<img src='".IMAGES_PI."characterframe/".$frame."' style=\"position: absolute; border: 0px; left: 9px; top: 6px; width: 73px;\">";
- 			echo"<img src='".IMAGES_PI."characterframe/characterframe.png' style=\"position: absolute; border: 0px; left: 0px; top: 0px;\">";
+ 			echo"<img src='".IMG_PI."characterframe/".$frame."' style=\"position: absolute; border: 0px; left: 9px; top: 6px; width: 73px;\">";
+ 			echo"<img src='".IMG_PI."characterframe/characterframe.png' style=\"position: absolute; border: 0px; left: 0px; top: 0px;\">";
 
  			echo"<table cellspacing='0' class='playerName' style='position: absolute; left: 100px; top: 20px;'>";
  			echo"<tbody>";
@@ -78,10 +78,10 @@
  			echo"<table cellpadding='0' cellspacing='0' width='325px' style='position:absolute; top:43px; left:86px;'>";
 		 	echo"<tbody><tr>";
 		 	echo"<td style='position:absolute; width: 328px; font-size:12px;' align = center><font color='white'><b>".$health." / $maxhealth</b></font></td>";
-		 	echo"<td style='width: 4px; background: url(".IMAGES_BAR."$h_l_on_off.gif) left no-repeat;'></td>";
-		 	echo"<td style='width: ".($h_percent*3.19)."px; height:17px; background: url(".IMAGES_BAR."bar-on.gif) repeat-x;'></td>";
-		 	echo"<td style='width: ".(320-$h_percent*3.19)."px; height:17px; background: url(".IMAGES_BAR."bar-off.gif) repeat-x;'></td>";
-		 	echo"<td style='width: 4px; background: url(".IMAGES_BAR."$h_r_on_off.gif) right no-repeat;'></td></tr>";
+		 	echo"<td style='width: 4px; background: url(".IMG_BAR."$h_l_on_off.gif) left no-repeat;'></td>";
+		 	echo"<td style='width: ".($h_percent*3.19)."px; height:17px; background: url(".IMG_BAR."bar-on.gif) repeat-x;'></td>";
+		 	echo"<td style='width: ".(320-$h_percent*3.19)."px; height:17px; background: url(".IMG_BAR."bar-off.gif) repeat-x;'></td>";
+		 	echo"<td style='width: 4px; background: url(".IMG_BAR."$h_r_on_off.gif) right no-repeat;'></td></tr>";
 		 	echo"</tbody>";
 		 	echo"</table>";
 
@@ -101,10 +101,10 @@
 		 	echo"<table cellpadding='0' cellspacing='0' width='325px' style='position:absolute; top:65px; left:86px'>";
 		 	echo"<tbody>";
 		 	echo"<tr><td style='position:absolute; width: 330px; font-size:12px;' align='center'><font color='white'><b>$power / $maxpower</b></font></td>";
-		 	echo"<td style='width: 4px; background: url(".IMAGES_BAR."$m_l_on_off.gif) left no-repeat;'></td>";
-		 	echo"<td style='width: ".($m_percent*3.19)."px; height:17px; background: url(".IMAGES_BAR."$typeSlid-bar-on.gif) repeat-x;'></td>";
-		 	echo"<td style='width: ".(320-$m_percent*3.19)."px; height:17px; background: url(".IMAGES_BAR."bar-off.gif) repeat-x;'></td>";
-		 	echo"<td style='width: 4px; background: url(".IMAGES_BAR."$m_r_on_off.gif) right no-repeat;'></td></tr>";
+		 	echo"<td style='width: 4px; background: url(".IMG_BAR."$m_l_on_off.gif) left no-repeat;'></td>";
+		 	echo"<td style='width: ".($m_percent*3.19)."px; height:17px; background: url(".IMG_BAR."$typeSlid-bar-on.gif) repeat-x;'></td>";
+		 	echo"<td style='width: ".(320-$m_percent*3.19)."px; height:17px; background: url(".IMG_BAR."bar-off.gif) repeat-x;'></td>";
+		 	echo"<td style='width: 4px; background: url(".IMG_BAR."$m_r_on_off.gif) right no-repeat;'></td></tr>";
 		 	echo"</tbody>";
 		 	echo"</table>";
 

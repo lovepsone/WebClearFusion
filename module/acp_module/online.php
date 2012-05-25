@@ -35,7 +35,7 @@
 			$data = db_assoc($result);
 
 			echo"<tr><td align='center' colspan='6'>";
-			if (@fsockopen($data['address'], $data['port'], $errno, $errstr, 1)) { echo"<img src='".IMAGES."online.gif' align='absmiddle' alt='online'>"; } else { echo"<img src='".IMAGES."offline.gif' align='absmiddle' alt='ofline'>"; }
+			if (@fsockopen($data['address'], $data['port'], $errno, $errstr, 1)) { echo"<img src='".IMG."online.gif' align='absmiddle' alt='online'>"; } else { echo"<img src='".IMG."offline.gif' align='absmiddle' alt='ofline'>"; }
 			echo"</td></tr>";
 
 			SelectDataBase("characters");
