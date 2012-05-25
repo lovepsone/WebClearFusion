@@ -35,9 +35,6 @@
 	define("IMAGES_N", BASEDIR."images/news/");
 	define("IMAGES_NC", BASEDIR."images/news_cat/");
 	define("IMAGES_A", BASEDIR."images/avatars/");
-	define("IMAGES_PI", BASEDIR."images/player_info/");
-	define("IMAGES_BAR", BASEDIR."images/bar/");
-	define("IMAGES_ICONS", BASEDIR."images/icons/");
 	define("INCLUDES", BASEDIR."include/");
 	define("LANG", BASEDIR."lang/");
 	define("MODULE", BASEDIR."module/");
