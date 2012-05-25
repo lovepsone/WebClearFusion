@@ -145,7 +145,7 @@ CREATE TABLE `wcf_panels` (
   `panel_status` tinyint(1) unsigned NOT NULL default '1',
   `panel_display` tinyint(1) unsigned NOT NULL default '0',
   PRIMARY KEY  (`panel_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for wcf_settings
