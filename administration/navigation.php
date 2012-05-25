@@ -26,15 +26,14 @@
 	$maf = array();
 	for ($i=1;$i <= count($modules);$i++)
 		{
-			$patch_module[$i] = $modules[$module_list[$i]];
 			$patch[$i] = $modules[$module_list[$i]]."administration/";
 			$maf = admin_files_page($patch[$i]);
 
-			for ($i=0; $i < count($maf); $i++)
+			for ($j=0; $j < count($maf); $j++)
 				{
-					$m_exp = explode('.', $maf[$i]);
+					$m_exp = explode('.', $maf[$j]);
 					$name = $m_exp[0];
-					$pages[5] .= "<option value='".$patch[$i].$maf[$i]."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", $name)."</option>";
+					$pages[5] .= "<option value='".$patch[$i].$maf[$j]."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", $name)."</option>";
 				}
 		}
 

@@ -19,12 +19,13 @@
   			switch ($date_base):
 
   			case ("wcf"):
-		  	$db = $config_db_connect['wdbname'];
-		  	$ip = $config_db_connect['whostname'];
-		  	$userdb = $config_db_connect['wusername'];
-		  	$pw = $config_db_connect['wpassword'];
-  			break;
-
+				{
+				  	$db = $config_db_connect['wdbname'];
+				  	$ip = $config_db_connect['whostname'];
+				  	$userdb = $config_db_connect['wusername'];
+				  	$pw = $config_db_connect['wpassword'];
+		  			break;
+				}
 
   			endswitch;
   

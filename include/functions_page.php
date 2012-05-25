@@ -15,13 +15,19 @@
 	function display_access_form($access)
 		{
 			global $txt;
-			if ($access == -1) { return $txt['genl']; }
-			else if ($access == 0) { return $txt['user']; }
-			else if ($access == 1) { return $txt['moderator']; }
-			else if ($access == 2) { return $txt['vebmaster']; }
-			else if ($access == 3) { return $txt['administrator']; }
-			else if ($access == 4) { return $txt['superadministrator']; }
-			else { return false; }
+
+  			switch ($access):
+
+  			case (-1): $result = $txt['genl']; break;
+  			case (0): $result = $txt['user']; break;
+  			case (1): $result = $txt['moderator']; break;
+  			case (2): $result = $txt['vebmaster']; break;
+  			case (3): $result = $txt['administrator']; break;
+  			case (4): $result = $txt['superadministrator']; break;
+
+  			endswitch;
+
+			return $result;
 		}
 
 	//=============================================================================================
