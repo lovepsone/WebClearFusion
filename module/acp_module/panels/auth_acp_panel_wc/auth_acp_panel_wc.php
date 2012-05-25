@@ -19,7 +19,7 @@
 	elseif (isset($_SESSION['user_id']) || ($user_ip == $_SERVER['REMOTE_ADDR']))
 		{
 			openside();
-			echo"<tr><td valign='middle'><img src='".PANELS."auth_acp_panel/auth_acp_panel.png' width='170'></td></tr>";
+			echo"<tr><td valign='middle'><img src='".$modules['acp_module']."panels/auth_acp_panel_wc/auth_acp_panel.png' width='170'></td></tr>";
 
 			SelectDataBase("realmd");
 			$result_list = db_query("SELECT * FROM `realmlist`");
