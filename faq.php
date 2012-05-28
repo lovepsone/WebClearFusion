@@ -58,10 +58,10 @@
 					if ($rows)
 						{
 							$i = 0; $ii = 1; $columns = 4; $faq_content = "";
-							echo"<table cellpadding='0' cellspacing='0' width='100%'><tr>";
+							echo"<tr>";
 
 							$result = db_query("SELECT `faq_id`, `faq_question`, `faq_answer` FROM ".DB_FAQS." WHERE `faq_cat_id`='".$_GET['cat_id']."' ORDER BY `faq_question`");
-							$numrows = db_rows($result);
+							$numrows = db_num_rows($result);
 
 							while ($data = db_array($result))
 								{
@@ -73,7 +73,7 @@
 									$faq_content .= "</div>";
 									$i++; $ii++;
 								}
-							echo"</tr></table>";
+							echo"</tr>";
 							echo"<div style='margin:5px'></div>";
 							echo"<div class='tbl-border' style='padding:1px'>".$faq_content."</div>";
 
