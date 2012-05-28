@@ -187,6 +187,23 @@ $txt = array(
 'admin_slinks_no_url'		=>'Нет ссылок',
 'admin_slinks_refresh'		=>'Обновить порядок ссылок ',
 
+'admin_faq_add_cats' 		=>'Добавить FAQ категорию',
+'admin_faq_edit_cats' 		=>'Править FAQ категорию',
+'admin_faq_name_cats' 		=>'Название категории',
+'admin_faq_description' 	=>'Описание категории',
+'admin_faq_choice_cats'		=>'Категории',
+'admin_faq_question'		=>'Вопрос',
+'admin_faq_reply'		=>'Ответ',
+'admin_faq_cast_quest'		=>'Категория / Вопрос',
+'admin_faq_option'		=>'Опции',
+'admin_faq_change'		=>'Изменить',
+'admin_faq_del'			=>'Удалить',
+'admin_faq_no_create'		=>'FAQ не добавлены.',
+'admin_faq_no_cats'		=>'Нет категорий.',
+'admin_faq_del_cats'		=>'Удалить эту FAQ категорию?',
+'admin_faq_del_q'		=>'Удалить эту FAQ?',
+'admin_faq_save' 		=>'Сохранить',
+
 # тексты при логах
 'log'				=>'Логи',
 'log_title_date'		=>'Дата',
@@ -225,6 +242,12 @@ $txt = array(
 'forum_log'			=>'Авторизуйтесь чтобы оставлять сообщения на форуме!',
 'forum_from'			=>'от',
 
+#faq
+'faq_name' 			=>'FAQ (Часто Задаваемые Вопросы)',
+'faq_up' 			=>'Вверх',
+'faq_cats_errors' 		=>'Категории не найдены.',
+'faq_data_notise'		=>'Данная категория пуста.',
+
 # остальное
 'errors'			=>'<font color=red>Неведомая ошибка!!!</font>',
 'fill_field'			=>'<font color=red>Вы не заполнили поле!!!</font>',
@@ -247,7 +270,7 @@ $txt = array(
 'no_links'			=>'Нет ссылок',
 'php'				=>'PHP',
 'file'				=>'Файл',
-'mainpanel_in_module'		=>'В вашем модуле имеется панель, которая подключается в основные панели, тип ее wc.<br>Что б решить проблему перейдите по ссылке и установите панель:',
+'mainpanel_in_module'		=>'В вашем модуле имеется панель, которая подключается в основные панели, тип ее wc.<br>Что бы решить проблему перейдите по ссылке и установите панель:',
 
 'genl'				=>'Общий',
 'user'				=>'Пользователь',
@@ -264,5 +287,6 @@ $txt = array(
 'sl'				=>'Навигация сайта',
 'st'				=>'Главные установки',
 'sm'				=>'Прочие установки',
+'fq'				=>'FAQ',
 );
 ?>

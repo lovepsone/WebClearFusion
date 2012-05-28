@@ -24,6 +24,29 @@ CREATE TABLE `wcf_comments` (
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
+-- Table structure for `wcf_faqs`
+-- ----------------------------
+DROP TABLE IF EXISTS `wcf_faqs`;
+CREATE TABLE `wcf_faqs` (
+  `faq_id` mediumint(8) unsigned NOT NULL auto_increment,
+  `faq_cat_id` mediumint(8) unsigned NOT NULL default '0',
+  `faq_question` varchar(200) collate utf8_unicode_ci NOT NULL default '',
+  `faq_answer` text collate utf8_unicode_ci NOT NULL,
+  PRIMARY KEY  (`faq_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Table structure for `wcf_faq_cats`
+-- ----------------------------
+DROP TABLE IF EXISTS `wcf_faq_cats`;
+CREATE TABLE `wcf_faq_cats` (
+  `faq_cat_id` mediumint(8) unsigned NOT NULL auto_increment,
+  `faq_cat_name` varchar(200) collate utf8_unicode_ci NOT NULL default '',
+  `faq_cat_description` varchar(250) collate utf8_unicode_ci NOT NULL default '',
+  PRIMARY KEY  (`faq_cat_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
 -- Table structure for wcf_forums
 -- ----------------------------
 DROP TABLE IF EXISTS `wcf_forums`;
