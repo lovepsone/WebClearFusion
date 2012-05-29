@@ -1,17 +1,4 @@
-﻿/*
-MySQL Data Transfer
-Source Host: localhost
-Source Database: wcf
-Target Host: localhost
-Target Database: wcf
-Date: 14.03.2012 16:02:37
-*/
-
-SET FOREIGN_KEY_CHECKS=0;
--- ----------------------------
--- Table structure for wcf_comments
--- ----------------------------
-DROP TABLE IF EXISTS `wcf_comments`;
+﻿DROP TABLE IF EXISTS `wcf_comments`;
 CREATE TABLE `wcf_comments` (
   `comment_id` int(11) unsigned NOT NULL auto_increment,
   `comment_item_id` int(11) unsigned default '0',
@@ -23,9 +10,6 @@ CREATE TABLE `wcf_comments` (
   UNIQUE KEY `comment_id` (`comment_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- ----------------------------
--- Table structure for `wcf_faqs`
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_faqs`;
 CREATE TABLE `wcf_faqs` (
   `faq_id` mediumint(8) unsigned NOT NULL auto_increment,
@@ -35,9 +19,6 @@ CREATE TABLE `wcf_faqs` (
   PRIMARY KEY  (`faq_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- ----------------------------
--- Table structure for `wcf_faq_cats`
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_faq_cats`;
 CREATE TABLE `wcf_faq_cats` (
   `faq_cat_id` mediumint(8) unsigned NOT NULL auto_increment,
@@ -46,9 +27,6 @@ CREATE TABLE `wcf_faq_cats` (
   PRIMARY KEY  (`faq_cat_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- ----------------------------
--- Table structure for wcf_forums
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_forums`;
 CREATE TABLE `wcf_forums` (
   `forum_id` int(11) unsigned NOT NULL auto_increment,
@@ -64,9 +42,6 @@ CREATE TABLE `wcf_forums` (
   KEY `forum_threadcount` (`forum_threadcount`)
 ) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- ----------------------------
--- Table structure for wcf_forums_posts
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_forums_posts`;
 CREATE TABLE `wcf_forums_posts` (
   `forum_id` int(11) default NULL,
@@ -78,9 +53,6 @@ CREATE TABLE `wcf_forums_posts` (
   PRIMARY KEY  (`post_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- ----------------------------
--- Table structure for wcf_forums_threads
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_forums_threads`;
 CREATE TABLE `wcf_forums_threads` (
   `forum_id` int(11) default NULL,
@@ -95,9 +67,6 @@ CREATE TABLE `wcf_forums_threads` (
   KEY `thread_postcount` (`thread_postcount`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- ----------------------------
--- Table structure for wcf_logs
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_logs`;
 CREATE TABLE `wcf_logs` (
   `date` timestamp NOT NULL default CURRENT_TIMESTAMP,
@@ -111,9 +80,6 @@ CREATE TABLE `wcf_logs` (
   `old_data` longtext collate utf8_unicode_ci
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- ----------------------------
--- Table structure for wcf_navigation_links
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_navigation_links`;
 CREATE TABLE `wcf_navigation_links` (
   `link_id` int(11) unsigned NOT NULL auto_increment,
@@ -125,9 +91,6 @@ CREATE TABLE `wcf_navigation_links` (
   PRIMARY KEY  (`link_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- ----------------------------
--- Table structure for wcf_news
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_news`;
 CREATE TABLE `wcf_news` (
   `news_id` int(11) unsigned NOT NULL auto_increment,
@@ -143,9 +106,6 @@ CREATE TABLE `wcf_news` (
   PRIMARY KEY  (`news_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- ----------------------------
--- Table structure for wcf_news_cats
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_news_cats`;
 CREATE TABLE `wcf_news_cats` (
   `news_cat_id` int(11) unsigned NOT NULL auto_increment,
@@ -154,9 +114,6 @@ CREATE TABLE `wcf_news_cats` (
   PRIMARY KEY  (`news_cat_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- ----------------------------
--- Table structure for wcf_panels
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_panels`;
 CREATE TABLE `wcf_panels` (
   `panel_id` mediumint(8) unsigned NOT NULL auto_increment,
@@ -170,9 +127,6 @@ CREATE TABLE `wcf_panels` (
   PRIMARY KEY  (`panel_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Table structure for wcf_settings
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_settings`;
 CREATE TABLE `wcf_settings` (
   `settings_name` varchar(200) collate utf8_unicode_ci NOT NULL default '',
@@ -180,9 +134,6 @@ CREATE TABLE `wcf_settings` (
   PRIMARY KEY  (`settings_name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- ----------------------------
--- Table structure for wcf_users
--- ----------------------------
 DROP TABLE IF EXISTS `wcf_users`;
 CREATE TABLE `wcf_users` (
   `user_id` int(11) unsigned NOT NULL auto_increment,
