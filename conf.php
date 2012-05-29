@@ -24,18 +24,14 @@
 	// encoding
 	//==================================================================
 	$config['encoding'] = 'utf8';
-
-	$config['use_tab_mode'] = '1';          // Tabbed report mode (cswowd)
-	$config['talent_calc_max_level'] = '80';
 	$config['errors_reporting'] = '1';
 	
 	//==================================================================
 	// Ревизия и копирайт wcf (запрещается менять)
 	//==================================================================
-	$config['copyright'] = 'WebClearFusion v 0.4.83 from LovePSone 2010-2011';
-	$config['revision'] = 'wcf_revision_nr = [348]';
+	$config['copyright'] = 'WebClearFusion v 0.5.00 from LovePSone 2010-2011';
+	$config['revision'] = 'wcf_revision_nr = [349]';
 	$config['rev_admin'] = ' 0.02.00';
-	$config['rev_acp'] = ' 0.02.00';
 
 	define("DB_PREFIX", "wcf_");
 ?>
