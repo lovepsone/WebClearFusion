@@ -149,7 +149,7 @@
 			$faq_cat_action = WCF_SELF;
 			$faq_question = "";
 			$faq_answer = "";
-			$faq_title = $txt['500'];
+			$faq_title = $txt['admin_faq_add'];
 			$faq_action = WCF_SELF;
 		}
 

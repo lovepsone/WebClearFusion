@@ -198,6 +198,7 @@ $txt = array(
 'admin_faq_option'		=>'Опции',
 'admin_faq_change'		=>'Изменить',
 'admin_faq_del'			=>'Удалить',
+'admin_faq_add'			=>'Добавить FAQ',
 'admin_faq_no_create'		=>'FAQ не добавлены.',
 'admin_faq_no_cats'		=>'Нет категорий.',
 'admin_faq_del_cats'		=>'Удалить эту FAQ категорию?',
