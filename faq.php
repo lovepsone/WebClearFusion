@@ -29,10 +29,10 @@
 
 							$num = db_count("(faq_id)", DB_FAQS, "faq_cat_id='".$data['faq_cat_id']."'");
 
-							echo"<td valign='top'><a href='".WCF_SELF."?cat_id=".$data['faq_cat_id']."'>".$data['faq_cat_name']."</a> <span class='small2'>($num)</span>";
+							echo"<td valign='top' align='center'><a href='".WCF_SELF."?cat_id=".$data['faq_cat_id']."'><b>".$data['faq_cat_name']."</b></a> <span class='small2'>($num)</span>";
 							if ($data['faq_cat_description'])
 								{
-									echo"<br /><span class='small'>".$data['faq_cat_description']."</span>";
+									echo"<br /><span class='small2'>".$data['faq_cat_description']."</span>";
 								}
 							echo"</td>";
 							$i++;

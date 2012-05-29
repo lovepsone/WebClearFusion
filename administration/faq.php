@@ -249,7 +249,7 @@
 						{
 							echo"<tr><td colspan='2'>";
 							echo"<div id='box_".$data['faq_cat_id']."' style='display:none'>";
-							echo"<tr><td class='tbl'>".$txt['admin_faq_no_create']."</td></tr>";
+							echo"<tr><td class='alt' align='center'>".$txt['admin_faq_no_create']."</td></tr>";
 							echo"</div></td></tr>";
 						}
 				}
