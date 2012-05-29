@@ -1,5 +1,4 @@
 ﻿= WebClearFusion -- README =
-Описание на двух языках (ru,en).
 Автор проекта:
 	Lovepsone (<lovepsone@mail.ru>) и frostzhenya (<sexplay2009@mail.ru>)
 
@@ -8,11 +7,7 @@
 
 Описание проекта:
 	Прект написан на таких языках как php, html и js. 
-	Проект изначально писался под сервер WoW. В данном времени скрипты под сервер переведены в обычный модуль(acp_module), т.е. скрипты не зависят от самого движка.
-	Структура с момента написаня сильно изменилась.Теперь проект можно использовать и в других целях, т.е. удалить acp_module.
-
-Проект тестируется на исходниках от rsa (ветка mangosr2) <https://github.com/mangosR2/mangos>
-В дальнейшем планируется поддерживать проект trynitycore.
+	Проект изначально писался под сервер WoW. В данном времени скрипты под сервер переведены в обычный модуль(acp_module <https://github.com/frostzhenya/acp_module>), т.е. скрипты не зависят от самого движка.
 
 Установка движка:
 	прочитайте instal
@@ -20,36 +15,3 @@
 Особые благодарности:
 	frostzhenya (за доступ к репозиторию и идею создания)
 	lovepsone (за создание проекта и его поддержку)
-	Кот_ДаWINчи (за направление в развитии проекта)
-	TIMzs (за идеи с его лк)
-	Камекадзе (за идеи)
-	Chester (за идеи)
-
-
-
-= WebClearFusion -- README =
-Description in two languages (ru,en). Technical translation is bad, I speak, so that might meet the description of the error.
-Project author:
-	Lovepsone (<lovepsone@mail.ru>) and frostzhenya (<sexplay2009@mail.ru>)
-
-Purpose of Project:
-	Creating a Web-binding for the server Mangos.
-
-Description of Project:
-	Project references written in languages ??such as php, html and js.
-	The project originally was written by the server WoW. In this time of the server scripts have been translated into a common module (acp_module), ie scripts do not depend on the engine itself.
-	The structure of the writing of much izmenilas.Teper project can be used for other purposes, ie remove acp_module.
-
-The project is being tested at the source code of rsa (branch mangosr2) <https://github.com/mangosR2/mangos>
-In the future we plan to support the project trynitycore.
-
-Installing the engine:
-	read instal.
-
-Special thanks to:
-	frostzhenya (for access to the repository and the idea of creating)
-	lovepsone (for the creation of the project and its support)
-	Кот_ДаWINчи (for direction in the development of the project)
-	TIMzs (for ideas)
-	Камекадзе (for ideas)
-	Chester (for ideas)
