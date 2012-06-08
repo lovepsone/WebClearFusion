@@ -47,10 +47,15 @@
 	// MySQL database functions
 	function db_query($query)
 		{
+			global $config;
 			$result = @mysql_query($query);
+
 			if (!$result)
 				{
-					echo mysql_error();
+					$mysql_er = mysql_error();
+					if (mysql_error() == "") { $mysql_er = 'unspecified error'; }
+					$debugs = new WCFDebug($config);
+					$debugs->writeSql('Errors: mysql_query: %s -> file: %s ', $mysql_er, WCF_SELF);
 					return false;
 				}
 			else 
@@ -71,10 +76,15 @@
 	// функция возвращает ассоциативный массив с названиями индексов 
 	function db_assoc($query)
 		{
+			global $config;
+			$query_s = $query;
 			$result = @mysql_fetch_assoc($query);
 			if (!$result) 
 				{
-					echo mysql_error();
+					$mysql_er = mysql_error();
+					if (mysql_error() == "") { $mysql_er = 'unspecified error'; }
+					$debugs = new WCFDebug($config);
+					$debugs->writeSql('Errors: mysql_fetch_assoc: %s -> file: %s ', $mysql_er, WCF_SELF);
 					return false;
 				}
 			else
@@ -87,10 +97,14 @@
 	// функция возвращает массив с обработанным рядом результата запроса 
 	function db_array($query)
 		{
+			global $config;
 			$result = @mysql_fetch_array($query);
 			if (!$result) 
 				{
-					echo mysql_error();
+					$mysql_er = mysql_error();
+					if (mysql_error() == "") { $mysql_er = 'unspecified error'; }
+					$debugs = new WCFDebug($config);
+					$debugs->writeSql('Errors: mysql_fetch_array: %s -> file: %s ', $mysql_er, WCF_SELF);
 					return false;
 				}
 			else
@@ -101,10 +115,14 @@
 
 	function db_result($query, $row)
 		{
+			global $config;
 			$result = @mysql_result($query, $row);
 			if (!$result)
 				{
-					echo mysql_error();
+					$mysql_er = mysql_error();
+					if (mysql_error() == "") { $mysql_er = 'unspecified error'; }
+					$debugs = new WCFDebug($config);
+					$debugs->writeSql('Errors: mysql_result: %s -> file: %s ', $mysql_er, WCF_SELF);
 					return false;
 				}
 			else
@@ -115,12 +133,16 @@
 
 	function db_count($field, $table, $conditions = "")
 		{
+			global $config;
 			$cond = ($conditions ? " WHERE ".$conditions : "");
 			$result = @mysql_query("SELECT Count".$field." FROM ".$table.$cond);
 
 			if (!$result)
 				{
-					echo mysql_error();
+					$mysql_er = mysql_error();
+					if (mysql_error() == "") { $mysql_er = 'unspecified error'; }
+					$debugs = new WCFDebug($config);
+					$debugs->writeSql('Errors: mysql_query_count: %s -> file: %s ', $mysql_er, WCF_SELF);
 					return false;
 				}
 			else

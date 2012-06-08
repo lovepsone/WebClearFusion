@@ -42,6 +42,7 @@
 	//=============================================================================================================
 	// Запускаем основные функции и многоузловое определение\Run the basic functions and determination of multisite
 	//=============================================================================================================
+	require_once BASEDIR."include/classes/class.debug.php";
 	require_once BASEDIR."include/include_multi_site.php";
 	require_once BASEDIR."include/functions_files.php";
 	require_once BASEDIR."include/functions_img.php";
@@ -215,23 +216,23 @@
 			$file = $file_mas[$file_count - 1];
 			$file_err = $file_mas[$file_count - 1].".js"; // называем файл лога
 
-			$open = @fopen(BASEDIR."logs/".$file_err, "r"); // проверяем существует ли папка logs
+			$open = @fopen(BASEDIR."cache/logs/".$file_err, "r"); // проверяем существует ли папка logs
 
 			$err_msg_mass = explode(" ", $errmsg);
 			$err_in_function_exclude = $err_msg_mass[0];
 
 			if (!$open)
 				{
-					mkdir(BASEDIR."logs/", 0700);
+					mkdir(BASEDIR."cache/logs/", 0700);
   				}
 			else
 				{
 					fclose($open);
 				}
 
-			if (is_file(BASEDIR."logs/".$file_err) && filesize(BASEDIR."logs/".$file_err) >= $file_max_sixe)
+			if (is_file(BASEDIR."cache/logs/".$file_err) && filesize(BASEDIR."cache/logs/".$file_err) >= $file_max_sixe)
 				{
-					unlink(BASEDIR."logs/".$file_err);
+					unlink(BASEDIR."cache/logs/".$file_err);
 				}
 
 			$err_str = "date: ".$timestamp."\n";
@@ -244,7 +245,7 @@
 
 			if ($exclude_errors[$errno] != $err_in_function_exclude)
 				{
-					error_log($err_str, 3, BASEDIR."logs/".$file_err);
+					error_log($err_str, 3, BASEDIR."cache/logs/".$file_err);
 				}
 		}
 
