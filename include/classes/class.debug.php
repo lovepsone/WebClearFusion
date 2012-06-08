@@ -4,7 +4,7 @@
 | Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
 | Filename: class.debug.php
-| Author: lovepsone
+| Author: lovepsone, Shadez 
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
