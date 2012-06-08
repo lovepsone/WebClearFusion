@@ -1,6 +1,6 @@
 ﻿= WebClearFusion -- README =
 Автор проекта:
-	Lovepsone (<lovepsone@mail.ru>) и frostzhenya (<sexplay2009@mail.ru>)
+	Lovepsone (<lovepsone@gmail.com>) и frostzhenya (<sexplay2009@mail.ru>)
 
 Назначение проекта:
 	Создание Web-обвязки для сервера Mangos.
@@ -10,7 +10,7 @@
 	Проект изначально писался под сервер WoW. В данном времени скрипты под сервер переведены в обычный модуль(acp_module <https://github.com/frostzhenya/acp_module>), т.е. скрипты не зависят от самого движка.
 
 Установка движка:
-	прочитайте instal
+	прочитайте install
 
 Особые благодарности:
 	frostzhenya (за доступ к репозиторию и идею создания)
