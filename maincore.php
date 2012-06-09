@@ -66,6 +66,7 @@
 	//=============================================================================================================
 	// Запускаем настройки\Run the setup
 	//=============================================================================================================
+	$debugs = new WCFDebug($config);
 	selectdb("wcf");
 	$result = db_query("SELECT * FROM ".DB_SETTINGS."");
 	if ($result)
@@ -74,6 +75,7 @@
 				{
 					$config[$data['settings_name']] = $data['settings_value'];
 				}
+			$debugs -> writeLog('Settings: succesful loading');
 		}
 	else { die("Settings do not exist or no connection to base mysql. May not correctly configured conf.php."); }
 
@@ -84,13 +86,14 @@
 	// Выбор нужной кодировки\When choosing a character encoding
 	//=============================================================================================================
 	if ($config['encoding'] == 'cp1251') { $code_page = 'windows-1251'; } else { $code_page = 'utf-8'; }
+	$debugs -> writeLog('Encoding: %s', $code_page);
 
 	//=============================================================================================================
 	// Выбор нужного языка\Choosing the right language
 	//=============================================================================================================
 	if (isset($_GET['lang'])) { $config['lang'] = $_GET['lang']; } else { $_SESSION['lang'] = $config['lang']; }
-
 	if ($config['lang']) { require BASEDIR."lang/".$config['lang']."/".$config['encoding']."/text.php"; }
+	$debugs -> writeLog('Lang: %s', $_SESSION['lang']);
 
 	//=============================================================================================================
 	// Установка нужной темы\Setting the right topic
@@ -98,7 +101,16 @@
 	$cssfile = THEMES.$config['theme']."/style.css";
 	$themefile = THEMES.$config['theme']."/theme.php";
 
-	if (file_exists($themefile)) { include($themefile); } else { include(THEMES."default/theme.php"); }
+	if (file_exists($themefile))
+		{
+			$debugs -> writeLog('Theme: sucessful loading %s ', $config['theme']);
+			include($themefile);
+		}
+	else
+		{
+			$debugs -> writeError('Teme: error loading %s', $config['theme']);
+			include(THEMES."default/theme.php");
+		}
 	if (!file_exists($cssfile)) { $cssfile = THEMES."default/style.css"; }
 
 //=====================================================================================================================

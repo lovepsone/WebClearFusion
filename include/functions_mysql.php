@@ -81,10 +81,7 @@
 			$result = @mysql_fetch_assoc($query);
 			if (!$result) 
 				{
-					$mysql_er = mysql_error();
-					if (mysql_error() == "") { $mysql_er = 'unspecified error'; }
-					$debugs = new WCFDebug($config);
-					$debugs->writeSql('Errors: mysql_fetch_assoc: %s -> file: %s ', $mysql_er, WCF_SELF);
+					echo mysql_error();
 					return false;
 				}
 			else
@@ -101,10 +98,7 @@
 			$result = @mysql_fetch_array($query);
 			if (!$result) 
 				{
-					$mysql_er = mysql_error();
-					if (mysql_error() == "") { $mysql_er = 'unspecified error'; }
-					$debugs = new WCFDebug($config);
-					$debugs->writeSql('Errors: mysql_fetch_array: %s -> file: %s ', $mysql_er, WCF_SELF);
+					echo mysql_error();
 					return false;
 				}
 			else
