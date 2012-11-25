@@ -14,7 +14,6 @@
 
 	error_reporting(E_ALL);
 	ini_set('display_errors',0);
-	set_error_handler('user_log');
 
 	//=============================================================================================================
 	// Предотвращения возможных атак через XSS $_GET.
@@ -215,64 +214,6 @@
 		if (strlen($text) > $length) $text = substr($text, 0, ($length-3))."...";
 		$text = str_replace($dec, $enc, $text);
 		return $text;
-	}
-
-
-	//=============================================================================================================
-	// Функция создает логи, вылавливая ошибки
-	//=============================================================================================================
-	$exclude_errors = array(
-		'2'=> 'fsockopen()', 	// выключаем показ ошибки с сокетами
-		'2048'=> 'date()',	// выключаем показ ошибки с датой
-		'2'=> 'filemtime()',	// выключаем показ ошибки с временем
-		'2'=> 'Division',	// выключаем показ ошибки с делением на 0
-	);
-
-	function user_log($errno, $errmsg, $file, $line)
-	{
-		global $exclude_errors, $config;
-
-		if ($config['errors_reporting'] == "0") { return; }
-		$timestamp = time(); // определяем дату лого
-		$timestamp = date("H:i:s d.m.Y", $timestamp);
-		$file_max_sixe = 1*1042; // размер лога
-		$patch = $file; // путь к файлу
-
-		$file_mas = explode("\\", $file);
-		$file_count = count($file_mas);
-		$file = $file_mas[$file_count - 1];
-		$file_err = $file_mas[$file_count - 1].".js"; // называем файл лога
-		$open = @fopen(BASEDIR."cache/logs/".$file_err, "r"); // проверяем существует ли папка logs
-
-		$err_msg_mass = explode(" ", $errmsg);
-		$err_in_function_exclude = $err_msg_mass[0];
-
-		if (!$open)
-		{
-			mkdir(BASEDIR."cache/logs/", 0700);
-  		}
-		else
-		{
-			fclose($open);
-		}
-
-		if (is_file(BASEDIR."cache/logs/".$file_err) && filesize(BASEDIR."cache/logs/".$file_err) >= $file_max_sixe)
-		{
-			unlink(BASEDIR."cache/logs/".$file_err);
-		}
-
-		$err_str = "date: ".$timestamp."\n";
-		$err_str .= "error kode: ".$errno."\n"; 
-		$err_str .= "file with an error: ".$file."\n";
-     		$err_str .= "patch: ".$patch."\n";
-		$err_str .= "line in the file: ".$line."\n"; 
-		$err_str .= "error message: ".$errmsg."\n";
-		$err_str .= "==================================================\n";
-
-		if ($exclude_errors[$errno] != $err_in_function_exclude)
-		{
-			error_log($err_str, 3, BASEDIR."cache/logs/".$file_err);
-		}
 	}
 
 	//=============================================================================================================
