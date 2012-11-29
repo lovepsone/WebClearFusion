@@ -14,7 +14,7 @@
 		{
 	  		global $config, $_SESSION, $_POST;
 
-			if ($config['kcaptcha_enable_auth'] == 1)
+			if (WCF::$settings['kcaptcha_enable_auth'] == 1)
    				{
 		    			if (isset($_SESSION['captcha_keystring']) && isset($_POST['kapcha_code']) && (strtolower($_SESSION['captcha_keystring']) == strtolower($_POST['kapcha_code'])))
 		       				{
@@ -25,7 +25,7 @@
 							return 0;
 						}
    				}
-			elseif ($config['kcaptcha_enable_auth'] == 0)
+			elseif (WCF::$settings['kcaptcha_enable_auth'] == 0)
 				{
 					return 1;
 				}

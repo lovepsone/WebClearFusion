@@ -10,6 +10,5 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	session_start();
-	echo'<a href="kcaptcha.php"  title="Press to reload!"><img src="./kcaptcha/index.php?'.session_name().'='.session_id().'" border="0" align="absmiddle"></a>';
+	echo'<a href="kcaptcha.php"><img src="./kcaptcha/index.php?'.session_name().'='.session_id().'" border="0" align="absmiddle"></a>';
 ?>

@@ -31,11 +31,11 @@
 					$_SESSION['bonuses'] = (int)$data['user_bonuses'];
 		       			$_SESSION['lang'] = $config['lang'];
 					unset($_SESSION['captcha_keystring']);
-					redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=auth");
+					WCF::redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=auth");
 		       		}
 			else
 				{
-					redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=error");
+					WCF::redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=error");
 				}
 			
    		}
