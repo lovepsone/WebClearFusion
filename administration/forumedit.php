@@ -305,7 +305,7 @@
 														{
 															echo"<a href='".WCF_SELF."?type=forum&action=md&order=$down&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".$txt['down']."</a>";
 														}
-													elseif ($k < db_num_rows($result2))
+													elseif ($k < WCF::$DB->db_num_rows($result2))
 														{
 															echo"<a href='".WCF_SELF."?type=forum&action=mu&order=$up&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".$txt['up']."</a>";
 															echo"<a href='".WCF_SELF."?type=forum&action=md&order=$down&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".$txt['down']."</a>";
