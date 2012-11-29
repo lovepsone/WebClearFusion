@@ -15,26 +15,25 @@
 
 	if (isset($_POST['savesettings']))
 		{
-			selectdb("wcf");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['servername'])."' WHERE `settings_name`='servername'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['serverurl']).(strrchr($_POST['serverurl'],"/") != "/" ? "/" : "")."' WHERE `settings_name`='serverurl'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['serverbanner'])."' WHERE `settings_name`='serverbanner'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".addslashes($_POST['intro'])."' WHERE `settings_name`='serverintro'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['opening_page'])."' WHERE `settings_name`='default_module'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['langset'])."' WHERE `settings_name`='lang'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".$_POST['themesset']."' WHERE `settings_name`='theme'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_left'])."' WHERE `settings_name`='exclude_left'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_upper'])."' WHERE `settings_name`='exclude_upper'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_lower'])."' WHERE `settings_name`='exclude_lower'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_right'])."' WHERE `settings_name`='exclude_right'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['servername'])."' WHERE `settings_name`='servername'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['serverurl']).(strrchr($_POST['serverurl'],"/") != "/" ? "/" : "")."' WHERE `settings_name`='serverurl'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['serverbanner'])."' WHERE `settings_name`='serverbanner'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".addslashes($_POST['intro'])."' WHERE `settings_name`='serverintro'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['opening_page'])."' WHERE `settings_name`='default_module'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['langset'])."' WHERE `settings_name`='lang'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".$_POST['themesset']."' WHERE `settings_name`='theme'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_left'])."' WHERE `settings_name`='exclude_left'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_upper'])."' WHERE `settings_name`='exclude_upper'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_lower'])."' WHERE `settings_name`='exclude_lower'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['exclude_right'])."' WHERE `settings_name`='exclude_right'");
 			redirect(WCF_SELF);
 		}
 
 	$settings = array();
 	selectdb("wcf");
-	$result = db_query("SELECT * FROM ".DB_SETTINGS."");
+	$result = WCF::$DB->db_query("SELECT * FROM ".DB_SETTINGS."");
 
-	while ($data = db_array($result))
+	while ($data = WCF::$DB->db_array($result))
 		{
 			$settings[$data['settings_name']] = $data['settings_value'];
 		}

@@ -18,12 +18,11 @@
    		{
 			$password = SHA1(strtoupper(addslashes($_POST['auth_name']).':'.addslashes($_POST['auth_pass'])));
 
-			selectdb("wcf");
-   			$result = db_query("SELECT * FROM ".DB_USERS." WHERE `user_name`='".strtoupper(addslashes($_POST['auth_name']))."' AND `user_sha_pass_hash` ='".$password."'");
+   			$result = WCF::$DB->db_query("SELECT * FROM ".DB_USERS." WHERE `user_name`='".strtoupper(addslashes($_POST['auth_name']))."' AND `user_sha_pass_hash` ='".$password."'");
 
-		   	if (db_num_rows($result) == 1 && $CapchaInput == 1)
+		   	if (WCF::$DB->db_num_rows($result) == 1 && $CapchaInput == 1)
 		      		{
-					$data = db_assoc($result);
+					$data = WCF::$DB->db_assoc($result);
 		       			$_SESSION['user_id'] = (int)$data['user_id'];
 		       			$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
 		       			$_SESSION['user_name'] = strtoupper($_POST['auth_name']);

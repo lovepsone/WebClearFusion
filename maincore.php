@@ -11,9 +11,7 @@
 +--------------------------------------------------------*/
 
 	if (preg_match("/maincore.php/i", $_SERVER['PHP_SELF'])) { die(); }
-
 	error_reporting(E_ALL);
-	ini_set('display_errors',0);
 
 	//=============================================================================================================
 	// Предотвращения возможных атак через XSS $_GET.
@@ -35,40 +33,26 @@
 		$folder_level .= "../"; $i++;
 		if ($i == 7) { die("Config file not found"); }
 	}
-	require_once $folder_level."conf.php";
-	//require_once $folder_level."include/load_wcf.php";
 	define("BASEDIR", $folder_level);
 
 	//=============================================================================================================
-	// Запускаем основные функции и многоузловое определение\Run the basic functions and determination of multisite
+	// Запускаем основные функции и классы\Run the basic functions and classes
 	//=============================================================================================================
+	if(!@include(BASEDIR.'include/class.wcf.php'))
+		die('<b>Error:</b> unable to load WCF class!');
+	
+	WCF::InitializeWCF();
 
-	if (@!include(BASEDIR.'include/classes/class.debug.php'))
-	{
-		die('No include/classes/class.debug');
-	}
-	else
-	{
-		$DEBUGS = new WCFDebug($config);
-		if (@!include(BASEDIR.'include/include_multi_site.php'))
-			$DEBUGS -> writeError('include_multi_site');
-		if (@!include(BASEDIR.'include/functions_files.php'))
-			$DEBUGS -> writeError('functions_files');
-		if (@!include(BASEDIR.'include/functions_img.php'))
-			$DEBUGS -> writeError('functions_img');
-		if (@!include(BASEDIR.'include/functions_mysql.php'))
-			$DEBUGS -> writeError('functions_mysql');
-		if (@!include(BASEDIR.'include/functions_page.php'))
-			$DEBUGS -> writeError('functions_page');
-		if (@!include(BASEDIR.'include/functions_text_process.php'))
-			$DEBUGS -> writeError('functions_text_process');
-		if (@!include(BASEDIR.'include/functions_theme.php'))
-			$DEBUGS -> writeError('functions_theme');
-		if (@!include(BASEDIR.'include/functions_users.php'))
-			$DEBUGS -> writeError('functions_users');
-		if (@!include(BASEDIR.'include/include_access_list.php'))
-			$DEBUGS -> writeError('include_access_list');
-	}
+	if (@!include(BASEDIR.'include/defines.php'))
+		die('<b>Error:</b> unable to load defines.php!');
+
+
+// временно подгружаем остальное
+require BASEDIR."include/functions_theme.php";
+require BASEDIR."include/functions_users.php";
+require BASEDIR."include/functions_page.php";
+require BASEDIR."include/functions_img.php";
+
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup
 	//=============================================================================================================
@@ -82,50 +66,50 @@
 	//=============================================================================================================
 	// Запускаем настройки\Run the setup
 	//=============================================================================================================
-	selectdb("wcf");
-	$result = db_query("SELECT * FROM ".DB_SETTINGS."");
+	$result = WCF::$DB->db_query("SELECT * FROM ".DB_SETTINGS);
 	if ($result)
 	{
-		while ($data = db_array($result))
+		while ($data = WCF::$DB->db_array($result))
 		{
-			$config[$data['settings_name']] = $data['settings_value'];
+			WCF::$settings[$data['settings_name']] = $data['settings_value'];
 		}
 	}
+
 	else { die("Settings do not exist or no connection to base mysql. May not correctly configured conf.php."); }
 
 	require_once BASEDIR."include/include_auth.php";
-	require_once BASEDIR."include/include_protect.php";
 
 	//=============================================================================================================
 	// Выбор нужной кодировки\When choosing a character encoding
 	//=============================================================================================================
-	if ($config['encoding'] == 'cp1251') { $code_page = 'windows-1251'; } else { $code_page = 'utf-8'; }
-	$DEBUGS -> writeLog('Encoding %s', $code_page);
+	if (WCF::$settings['encoding'] == 'cp1251') { WCF::$settings['code_page'] = 'windows-1251'; } else { WCF::$settings['code_page'] = 'utf-8'; }
 
 	//=============================================================================================================
 	// Выбор нужного языка\Choosing the right language
 	//=============================================================================================================
-	if (isset($_GET['lang'])) { $config['lang'] = $_GET['lang']; } else { $_SESSION['lang'] = $config['lang']; }
-	if ($config['lang']) { require BASEDIR."lang/".$config['lang']."/".$config['encoding']."/text.php"; }
-	$DEBUGS -> writeLog('Lang %s', $_SESSION['lang']);
+	//if (isset($_GET['lang'])) { $config['lang'] = $_GET['lang']; } else { $_SESSION['lang'] = $config['lang']; }
+	//if ($config['lang']) { require BASEDIR."lang/".$config['lang']."/".$config['encoding']."/text.php"; }
+	require BASEDIR."lang/".WCF::$settings['lang']."/".WCF::$settings['encoding']."/text.php";
 
 	//=============================================================================================================
 	// Установка нужной темы\Setting the right topic
 	//=============================================================================================================
-	$cssfile = THEMES.$config['theme']."/style.css";
-	$themefile = THEMES.$config['theme']."/theme.php";
+	WCF::$settings['themefile'] = THEMES.WCF::$settings['theme']."/theme.php";
+	WCF::$settings['cssfile'] = THEMES.WCF::$settings['theme']."/style.css";
 
-	if (file_exists($themefile))
+	if (!file_exists(WCF::$settings['themefile']) && !file_exists(WCF::$settings['cssfile']))
 	{
-		$DEBUGS -> writeLog('Theme sucessful loading %s ', $config['theme']);
-		include($themefile);
+		WCF::Log()->writeError('maincore: unable to load [themefile:%s] and [cssfile:%s]',WCF::$settings['themefile'],WCF::$settings['cssfile']);
+		WCF::$settings['themefile'] = THEMES."default/theme.php";
+		WCF::$settings['cssfile'] = THEMES."default/style.css";
+
 	}
-	else
-	{
-		$DEBUGS -> writeError('Theme error loading %s', $config['theme']);
-		include(THEMES."default/theme.php");
-	}
-	if (!file_exists($cssfile)) { $cssfile = THEMES."default/style.css"; }
+	@include(WCF::$settings['themefile']);
+
+	//=============================================================================================================
+	// Подключаем модули\Include in modules
+	//=============================================================================================================
+	require_once BASEDIR."module.php";
 
 //=====================================================================================================================
 // Ниже представлены функции защиты и работы сайта\Below are the security features of the site and
@@ -215,9 +199,4 @@
 		$text = str_replace($dec, $enc, $text);
 		return $text;
 	}
-
-	//=============================================================================================================
-	// Подключаем модули\Include in modules
-	//=============================================================================================================
-	require_once BASEDIR."module.php";
 ?>

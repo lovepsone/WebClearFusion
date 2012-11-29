@@ -16,24 +16,23 @@
    			
 	echo $advanced_script;
 
-	if (!isset($_GET['action']) AND isset($_GET['forum_id']))
+	if (!isset($_GET['action']) && isset($_GET['forum_id']))
 		{
 			$forum_id = addslashes($_GET["forum_id"]);
-			selectdb("wcf");
-  			$result = db_query("SELECT count(`post_date`) as kol FROM `wcf_forums_posts` WHERE `forum_id`='$forum_id'");
-			$thr_kolzap = db_array($result);
+  			$result = WCF::$DB->db_query("SELECT count(`post_date`) as kol FROM `wcf_forums_posts` WHERE `forum_id`='$forum_id'");
+			$thr_kolzap = WCF::$DB->db_array($result);
 
-			if ($thr_kolzap['kol'] > $config['page_forum_threads'])
+			if ($thr_kolzap['kol'] > WCF::$settings['page_forum_threads'])
 				{
-    					$page_len_thr = $config['page_forum_threads'];
+    					$page_len_thr = WCF::$settings['page_forum_threads'];
  
-    					if (!isset($_GET['page']) or ($_GET['page'] == ''))
+    					if (!isset($_GET['page']) || ($_GET['page'] == ''))
 						{
 							$start_rec_thr = 0;
 						}
 					else
 						{
-							$start_rec_thr = ((int)$_GET['page']-1)*$config['page_forum_threads'];
+							$start_rec_thr = ((int)$_GET['page']-1)*WCF::$settings['page_forum_threads'];
 						}
 				}
 			else
@@ -42,7 +41,7 @@
 					$start_rec_thr = 0;
 				}
 
-			$result = db_query("SELECT * FROM ".DB_FORUMS_THREADS." 
+			$result = WCF::$DB->db_query("SELECT * FROM ".DB_FORUMS_THREADS." 
 						LEFT JOIN ".DB_FORUMS_POSTS." ON ".DB_FORUMS_POSTS.".`post_id`=".DB_FORUMS_THREADS.".`thread_lastpostid`
 						LEFT JOIN `wcf_users` ON `wcf_users`.`user_id`=".DB_FORUMS_THREADS.".`thread_author`
 						WHERE ".DB_FORUMS_THREADS.".`forum_id`='$forum_id'
@@ -55,15 +54,15 @@
 			echo"<th width='10%' class='forum-caption'>".$txt['forum_column_views']."</th></tr>";
 			echo"<tr><th width='100%' colspan='5' align='left'><a href='".FORUM."viewforum.php?action=newthread&forum_id=$forum_id'>".$txt['forum_create_theme']."</a></th></tr>";
 
-			if (db_num_rows($result) > 0 )
+			if (WCF::$DB->db_num_rows($result) > 0 )
 				{
 					while($data = db_array($result))
 						{
 							selectdb("wcf");
-							$last_post =  mysql_query("SELECT * FROM ".DB_FORUMS_POSTS.",`wcf_users`
+							$last_post =  WCF::$DB->db_query("SELECT * FROM ".DB_FORUMS_POSTS.",`wcf_users`
 											WHERE ".DB_FORUMS_POSTS.".`post_id`='".$data['thread_lastpostid']."'
 											AND `wcf_users`.`user_id`='".$data['thread_lastuser']."' LIMIT 1");
-							$last_post = mysql_fetch_assoc($last_post);
+							$last_post = WCF::$DB->db_assoc($last_post);
 
 							echo"<tr><td width='4%' align='left' class='tbl1'></td>";
           						echo"<td align='left' class='tbl1'>&nbsp;&nbsp;<a href='".FORUM."viewposts.php?thread_id=".$data['thread_id']."&forum_id=".$forum_id."'>".$data['thread_subject']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($data['user_name']))."</td>";
@@ -75,7 +74,7 @@
 						{
   							$page_counter_thr = ceil($thr_kolzap['kol'] / $config['page_forum_threads']);
 
-   							if (!isset($_GET['page']) OR ($_GET['page'] == '') OR ($_GET['page'] == '_')) { $tp3 = 1; } else { $tp3 = (int)$_GET['page']; }
+   							if (!isset($_GET['page']) || ($_GET['page'] == '') || ($_GET['page'] == '_')) { $tp3 = 1; } else { $tp3 = (int)$_GET['page']; }
  							echo"<tr><td colspan='3' align='center' valign='middle' >".show_page(FORUM.'viewforum.php?forum_id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";
   						}
 				}
@@ -87,7 +86,7 @@
 		}
 	//=========================
 	// форма создания темы
-	elseif ((isset($_GET['action']) && $_GET['action'] == "newthread") AND isset($_GET['forum_id']))
+	elseif ((isset($_GET['action']) && $_GET['action'] == "newthread") && isset($_GET['forum_id']))
 		{
 			$forum_id = addslashes($_GET["forum_id"]);
 
@@ -101,22 +100,21 @@
 
     			if (isset($_POST['thread']))
 				{
-					selectdb("wcf");
 					// Создание темы
-					db_query("INSERT INTO ".DB_FORUMS_THREADS."
+					WCF::$DB->db_query("INSERT INTO ".DB_FORUMS_THREADS."
 							(`forum_id`,`thread_subject`,`thread_author`,`thread_lastpostid`,`thread_lastuser`,`thread_postcount`)
 							VALUES ('$forum_id','".$_POST['thread_subject']."','".$_SESSION['user_id']."','0','".$_SESSION['user_id']."','1')");
 					$thread_id = mysql_insert_id();// Прикрепляем id темы
 
 					// Добавляем сообщение
-					db_query("INSERT INTO ".DB_FORUMS_POSTS." (`forum_id`,`thread_id`,`user_id`,`post_text`) VALUES ('$forum_id','$thread_id','".$_SESSION['user_id']."','".addslash($_POST['thread'])."')");
+					WCF::$DB->db_query("INSERT INTO ".DB_FORUMS_POSTS." (`forum_id`,`thread_id`,`user_id`,`post_text`) VALUES ('$forum_id','$thread_id','".$_SESSION['user_id']."','".addslash($_POST['thread'])."')");
 					$t_lastpost_id = mysql_insert_id();// Прикрепляем id сообщения
 
 					// Обновляем тему с целю добавить Id сообщения
-					db_query("UPDATE ".DB_FORUMS_THREADS." SET `thread_lastpostid`='$t_lastpost_id' WHERE (`thread_id`='$thread_id')");
+					WCF::$DB->db_query("UPDATE ".DB_FORUMS_THREADS." SET `thread_lastpostid`='$t_lastpost_id' WHERE (`thread_id`='$thread_id')");
 
 					// Обновляем сам форум с целю обнов кол-во собщений
-					db_query("UPDATE ".DB_FORUMS." SET `forum_lastpostid`='$t_lastpost_id',`forum_postcount`=forum_postcount+1, `forum_threadcount`=forum_threadcount+1 WHERE (`forum_id`='$forum_id')");
+					WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_lastpostid`='$t_lastpost_id',`forum_postcount`=forum_postcount+1, `forum_threadcount`=forum_threadcount+1 WHERE (`forum_id`='$forum_id')");
 
 					echo"<tr><td align='center'><img src='".IMAGES."ajax-loader.gif'/></td></tr>";
 					return_form(10,'viewposts.php?thread_id='.$thread_id.'&forum_id='.$forum_id);

@@ -15,8 +15,7 @@
 
 	if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['cat_id']) && isnum($_GET['cat_id'])))
 		{
-			selectdb("wcf");
-			$result = db_query("DELETE FROM ".DB_NEWS_CATS." WHERE `news_cat_id`='".$_GET['cat_id']."'");
+			$result = WCF::$DB->db_query("DELETE FROM ".DB_NEWS_CATS." WHERE `news_cat_id`='".$_GET['cat_id']."'");
 			redirect(WCF_SELF."?status=dy");
 		}
 	elseif (isset($_POST['save_news_cat']))
@@ -28,25 +27,22 @@
 				{
 					if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['cat_id']) && isnum($_GET['cat_id'])))
 						{
-							selectdb("wcf");
-							$result = db_query("UPDATE ".DB_NEWS_CATS." SET `news_cat_name`='$news_cat_name', `news_cat_image`='$news_cat_image' WHERE `news_cat_id`='".$_GET['cat_id']."'");
+							$result = WCF::$DB->db_query("UPDATE ".DB_NEWS_CATS." SET `news_cat_name`='$news_cat_name', `news_cat_image`='$news_cat_image' WHERE `news_cat_id`='".$_GET['cat_id']."'");
 							redirect(WCF_SELF."?status=su");
 						}
 					else
 						{
-							selectdb("wcf");
-							$result = db_query("INSERT INTO ".DB_NEWS_CATS." (`news_cat_name`, `news_cat_image`) VALUES ('".$news_cat_name."', '".$news_cat_image."')");
+							$result = WCF::$DB->db_query("INSERT INTO ".DB_NEWS_CATS." (`news_cat_name`, `news_cat_image`) VALUES ('".$news_cat_name."', '".$news_cat_image."')");
 							redirect(WCF_SELF."?status=sn");
 						}
 				} 
 		}
 	elseif ((isset($_GET['action']) && $_GET['action'] == "edit")  && (isset($_GET['cat_id']) && isnum($_GET['cat_id'])))
 		{
-			selectdb("wcf");
-			$result = db_query("SELECT * FROM ".DB_NEWS_CATS." WHERE `news_cat_id`='".$_GET['cat_id']."'");
-			if (db_num_rows($result))
+			$result = WCF::$DB->db_query("SELECT * FROM ".DB_NEWS_CATS." WHERE `news_cat_id`='".$_GET['cat_id']."'");
+			if (WCF::$DB->db_num_rows($result))
 				{
-					$data = db_assoc($result);
+					$data = WCF::$DB->db_assoc($result);
 					$news_cat_name = $data['news_cat_name'];
 					$news_cat_image = $data['news_cat_image'];
 					$txt_page = $txt['admin_newscat_edit_n'];
@@ -83,16 +79,15 @@
 	//============================================================
 	// 2-ая форма
 	opentable();
-	selectdb("wcf");
-	$result = db_query("SELECT * FROM ".DB_NEWS_CATS." ORDER BY `news_cat_name`");
-	$rows = db_num_rows($result);
+	$result = WCF::$DB->db_query("SELECT * FROM ".DB_NEWS_CATS." ORDER BY `news_cat_name`");
+	$rows = WCF::$DB->db_num_rows($result);
 
 	if ($rows != 0)
 		{
 			$counter = 0; $columns = 6;
 			echo"<tr>";
 
-			while ($data = db_array($result))
+			while ($data = WCF::$DB->db_array($result))
 				{
 					if ($counter != 0 && ($counter % $columns == 0)) echo "</tr>\n<tr>\n";
 

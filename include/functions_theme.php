@@ -67,22 +67,21 @@
 	//=============================================================================================
 	// функция для вывода банера
 	function showbanners()
-		{
-			global $config;
-			ob_start();
+	{
+		ob_start();
 
-			if ($config['serverbanner'])
-				{
-					echo "<a href='".$config['serverurl']."'><img src='".BASEDIR.$config['serverbanner']."' alt='".$config['servername']."' style='border: 0;' /></a>\n";
-				}
-			else
-				{
-					echo "<a href='".$config['serverurl']."'>".$config['servername']."</a>\n";
-				}	
-			$output = ob_get_contents();
-			ob_end_clean();
-			return $output;
+		if (WCF::$settings['serverbanner'])
+		{
+			echo "<a href='".WCF::$settings['serverurl']."'><img src='".BASEDIR.WCF::$settings['serverbanner']."' alt='".WCF::$settings['servername']."' style='border: 0;' /></a>\n";
 		}
+		else
+		{
+			echo "<a href='".WCF::$settings['serverurl']."'>".WCF::$settings['servername']."</a>\n";
+		}	
+		$output = ob_get_contents();
+		ob_end_clean();
+		return $output;
+	}
 
 	//=============================================================================================
 	// функция для включения панелей из модуля типа wc

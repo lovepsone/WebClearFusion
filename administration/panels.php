@@ -17,36 +17,36 @@
 		{
 			selectdb("wcf");
 			$i = 1;
-			$result = db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='1' ORDER BY `panel_order`");
+			$result = WCF::$DB->db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='1' ORDER BY `panel_order`");
 
-			while ($data = db_array($result))
+			while ($data = WCF::$DB->db_array($result))
 				{
-					$result2 = db_query("UPDATE ".DB_PANELS." SET `panel_order`='$i' WHERE `panel_id`='".$data['panel_id']."'");
+					$result2 = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`='$i' WHERE `panel_id`='".$data['panel_id']."'");
 					$i++;
 				}
 			$i = 1;
 
-			$result = db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='2' ORDER BY `panel_order`");
+			$result = WCF::$DB->db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='2' ORDER BY `panel_order`");
 
-			while ($data = db_array($result))
+			while ($data = WCF::$DB->db_array($result))
 				{
-					$result2 = db_query("UPDATE ".DB_PANELS." SET `panel_order`='$i' WHERE `panel_id`='".$data['panel_id']."'");
+					$result2 = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`='$i' WHERE `panel_id`='".$data['panel_id']."'");
 					$i++;
 				}
 			$i = 1;
-			$result = db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='3' ORDER BY `panel_order`");
+			$result = WCF::$DB->db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='3' ORDER BY `panel_order`");
 
-			while ($data = db_array($result))
+			while ($data = WCF::$DB->db_array($result))
 				{
-					$result2 = db_query("UPDATE ".DB_PANELS." SET `panel_order`='$i' WHERE `panel_id`='".$data['panel_id']."'");
+					$result2 = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`='$i' WHERE `panel_id`='".$data['panel_id']."'");
 					$i++;
 				}
 			$i = 1;
-			$result = db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='4' ORDER BY `panel_order`");
+			$result = WCF::$DB->db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='4' ORDER BY `panel_order`");
 
-			while ($data = db_array($result))
+			while ($data = WCF::$DB->db_array($result))
 				{
-					$result2 = db_query("UPDATE ".DB_PANELS." SET `panel_order`='$i' WHERE `panel_id`='".$data['panel_id']."'");
+					$result2 = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`='$i' WHERE `panel_id`='".$data['panel_id']."'");
 					$i++;
 				}
 		}
@@ -54,66 +54,66 @@
 	if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
 			selectdb("wcf");
-			$data = db_assoc(db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_id`='".$_GET['panel_id']."'"));
-			$result = db_query("DELETE FROM ".DB_PANELS." WHERE `panel_id`='".$_GET['panel_id']."'");
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_side`='".$data['panel_side']."' AND `panel_order`>='".$data['panel_order']."'");
+			$data = WCF::$DB->db_assoc(WCF::$DB->db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_id`='".$_GET['panel_id']."'"));
+			$result = WCF::$DB->db_query("DELETE FROM ".DB_PANELS." WHERE `panel_id`='".$_GET['panel_id']."'");
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_side`='".$data['panel_side']."' AND `panel_order`>='".$data['panel_order']."'");
 			redirect(WCF_SELF);
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "setstatus") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
 			selectdb("wcf");
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_status`='".intval($_GET['status'])."' WHERE `panel_id`='".$_GET['panel_id']."'");
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_status`='".intval($_GET['status'])."' WHERE `panel_id`='".$_GET['panel_id']."'");
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "mup") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
 			selectdb("wcf");
-			$data = db_assoc(db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='".intval($_GET['panel_side'])."' AND `panel_order`='".intval($_GET['order'])."'"));
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order+1 WHERE `panel_id`='".$data['panel_id']."'");
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_id`='".$_GET['panel_id']."'");
+			$data = WCF::$DB->db_assoc(WCF::$DB->db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='".intval($_GET['panel_side'])."' AND `panel_order`='".intval($_GET['order'])."'"));
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order+1 WHERE `panel_id`='".$data['panel_id']."'");
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_id`='".$_GET['panel_id']."'");
 			redirect(WCF_SELF);
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "mdown") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
 			selectdb("wcf");
-			$data = db_assoc(db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='".intval($_GET['panel_side'])."' AND `panel_order`='".intval($_GET['order'])."'"));
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_id`='".$data['panel_id']."'");
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order+1 WHERE `panel_id`='".$_GET['panel_id']."'");
+			$data = WCF::$DB->db_assoc(WCF::$DB->db_query("SELECT `panel_id` FROM ".DB_PANELS." WHERE `panel_side`='".intval($_GET['panel_side'])."' AND `panel_order`='".intval($_GET['order'])."'"));
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_id`='".$data['panel_id']."'");
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order+1 WHERE `panel_id`='".$_GET['panel_id']."'");
 			redirect(WCF_SELF);
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "mleft") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
 			selectdb("wcf");
-			$result = db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='1' ORDER BY `panel_order` DESC LIMIT 1");
-			if (db_num_rows($result) != 0) { $data = db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_side`='1', `panel_order`='$neworder' WHERE `panel_id`='".$_GET['panel_id']."'");
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_side`='4' AND `panel_order`>='".intval($_GET['order'])."'");
+			$result = WCF::$DB->db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='1' ORDER BY `panel_order` DESC LIMIT 1");
+			if (WCF::$DB->db_num_rows($result) != 0) { $data = WCF::$DB->db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_side`='1', `panel_order`='$neworder' WHERE `panel_id`='".$_GET['panel_id']."'");
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_side`='4' AND `panel_order`>='".intval($_GET['order'])."'");
 			redirect(WCF_SELF);
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "mright") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
 			selectdb("wcf");
-			$result = db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='4' ORDER BY `panel_order` DESC LIMIT 1");
-			if (db_num_rows($result) != 0) { $data = db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_side`='4', `panel_order`='$neworder' WHERE `panel_id`='".$_GET['panel_id']."'");
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_side`='1' AND `panel_order`>='".intval($_GET['order'])."'");
+			$result = WCF::$DB->db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='4' ORDER BY `panel_order` DESC LIMIT 1");
+			if (WCF::$DB->db_num_rows($result) != 0) { $data = WCF::$DB->db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_side`='4', `panel_order`='$neworder' WHERE `panel_id`='".$_GET['panel_id']."'");
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_side`='1' AND `panel_order`>='".intval($_GET['order'])."'");
 			redirect(WCF_SELF);
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "mupper") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
 			selectdb("wcf");
-			$result = db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='2' ORDER BY `panel_order` DESC LIMIT 1");
-			if (db_num_rows($result) != 0) { $data = db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_side`='2', `panel_order`='$neworder' WHERE `panel_id`='".$_GET['panel_id']."'");
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_side`='3' AND `panel_order`>='".intval($_GET['order'])."'");
+			$result = WCF::$DB->db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='2' ORDER BY `panel_order` DESC LIMIT 1");
+			if (WCF::$DB->db_num_rows($result) != 0) { $data = WCF::$DB->db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_side`='2', `panel_order`='$neworder' WHERE `panel_id`='".$_GET['panel_id']."'");
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_side`='3' AND `panel_order`>='".intval($_GET['order'])."'");
 			redirect(WCF_SELF);
 		}
 	if ((isset($_GET['action']) && $_GET['action'] == "mlower") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 		{
 			selectdb("wcf");
-			$result = db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='3' ORDER BY `panel_order` DESC LIMIT 1");
-			if (db_num_rows($result) != 0) { $data = db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_side`='3', `panel_order`='$neworder' WHERE `panel_id`='".$_GET['panel_id']."'");
-			$result = db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_side`='2' AND `panel_order`>='".intval($_GET['order'])."'");
+			$result = WCF::$DB->db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='3' ORDER BY `panel_order` DESC LIMIT 1");
+			if (WCF::$DB->db_num_rows($result) != 0) { $data = WCF::$DB->db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_side`='3', `panel_order`='$neworder' WHERE `panel_id`='".$_GET['panel_id']."'");
+			$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_order`=panel_order-1 WHERE `panel_side`='2' AND `panel_order`>='".intval($_GET['order'])."'");
 			redirect(WCF_SELF);
 		}
 
@@ -130,10 +130,10 @@
 
 	$ps = 1; $i = 1; $k = 0;
 	selectdb("wcf");
-	$result = db_query("SELECT * FROM ".DB_PANELS." ORDER BY `panel_side`,`panel_order`");
-	while ($data = db_array($result))
+	$result = WCF::$DB->db_query("SELECT * FROM ".DB_PANELS." ORDER BY `panel_side`,`panel_order`");
+	while ($data = WCF::$DB->db_array($result))
 		{
-			$numrows = db_count("(panel_id)", DB_PANELS, "panel_side='".$data['panel_side']."'");
+			$numrows = WCF::$DB->db_count("(panel_id)", DB_PANELS, "panel_side='".$data['panel_side']."'");
 			if ($ps != $data['panel_side']) { $ps = $data['panel_side']; $i = 1; }
 
 			if ($numrows != 1)

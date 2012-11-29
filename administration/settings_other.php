@@ -15,17 +15,16 @@
 
 	if (isset($_POST['savesettings']))
 		{
-			selectdb("wcf");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['kcaptcha_enable_auth'])."' WHERE `settings_name`='kcaptcha_enable_auth'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['level_administration'])."' WHERE `settings_name`='level_administration'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['kcaptcha_enable_auth'])."' WHERE `settings_name`='kcaptcha_enable_auth'");
+			WCF::$DB->db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['level_administration'])."' WHERE `settings_name`='level_administration'");
 			redirect(WCF_SELF);
 		}
 
 	$settings = array();
 	selectdb("wcf");
-	$result = db_query("SELECT * FROM ".DB_SETTINGS."");
+	$result = WCF::$DB->db_query("SELECT * FROM ".DB_SETTINGS."");
 
-	while ($data = db_array($result))
+	while ($data = WCF::$DB->db_array($result))
 		{
 			$settings[$data['settings_name']] = $data['settings_value'];
 		}

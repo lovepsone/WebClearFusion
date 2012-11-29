@@ -1,0 +1,146 @@
+<strong>SQL</strong> [29-11-2012 13:49:19]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:49:19]: Query[SELECT * FROM wcf_users WHERE `user_name`='LOVEPSONE' AND `user_sha_pass_hash` ='549fad275db9cb8458e3bc14575684d7a38a3c72'] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:49:19]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:49:21]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:49:21]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR panel_side='2' OR panel_side='3' OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:49:21]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:49:21]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:33]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:33]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR panel_side='2' OR panel_side='3' OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:33]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:33]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:33]: Query[SELECT count(`news_date`) as number FROM wcf_news] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:33]: Query[SELECT * FROM wcf_news LEFT JOIN wcf_news_cats ON `news_cat_id`=`news_cat` LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_news.`news_author` ORDER BY `news_date` DESC limit 0,2] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:36]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:42]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:42]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR panel_side='2' OR panel_side='3' OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:42]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:42]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:42]: Query[SELECT count(`news_date`) as number FROM wcf_news] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:42]: Query[SELECT * FROM wcf_news LEFT JOIN wcf_news_cats ON `news_cat_id`=`news_cat` LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_news.`news_author` ORDER BY `news_date` DESC limit 0,2] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:47]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:47]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR (panel_side='2' AND panel_display='1') OR (panel_side='3' AND panel_display='1') OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:47]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:47]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:47]: Query[SELECT f.*, f2.`forum_name` AS `forum_sections_name`, u.`user_id`, u.`user_name`,
+					t.`thread_id`, t.`thread_lastuser`, t.`thread_lastpostid`, t.`thread_subject`,
+					p.`post_id`, p.`post_id`, p.`post_date`
+					FROM wcf_forums f
+					LEFT JOIN wcf_forums f2 ON f.`forum_sections` = f2.`forum_id`
+					LEFT JOIN wcf_forums_threads t ON t.`thread_lastpostid`=f.`forum_lastpostid`
+					LEFT JOIN wcf_users u ON u.`user_id`=t.`thread_lastuser`
+					LEFT JOIN wcf_forums_posts p ON p.`post_id`=t.`thread_lastpostid`
+					WHERE f.`forum_sections`!='0' GROUP BY f.`forum_id` ORDER BY f2.`forum_order` ASC, f.`forum_order` ASC] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:49]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:49]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR (panel_side='2' AND panel_display='1') OR (panel_side='3' AND panel_display='1') OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:49]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:50:49]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:52:50]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:52:50]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR (panel_side='2' AND panel_display='1') OR (panel_side='3' AND panel_display='1') OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:52:50]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:52:50]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:52:50]: Query[SELECT `faq_cat_id`, `faq_cat_name`, `faq_cat_description` FROM wcf_faq_cats ORDER BY `faq_cat_name`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:49]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:49]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR (panel_side='2' AND panel_display='1') OR (panel_side='3' AND panel_display='1') OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:49]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:49]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:49]: Query[SELECT `faq_cat_id`, `faq_cat_name`, `faq_cat_description` FROM wcf_faq_cats ORDER BY `faq_cat_name`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:50]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:50]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR (panel_side='2' AND panel_display='1') OR (panel_side='3' AND panel_display='1') OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:50]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:50]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:50]: Query[SELECT `faq_cat_id`, `faq_cat_name`, `faq_cat_description` FROM wcf_faq_cats ORDER BY `faq_cat_name`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:53]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:53]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:53]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR panel_side='2' OR panel_side='3' OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:53]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:53]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:53]: Query[SELECT count(`news_date`) as number FROM wcf_news] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:53]: Query[SELECT * FROM wcf_news LEFT JOIN wcf_news_cats ON `news_cat_id`=`news_cat` LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_news.`news_author` ORDER BY `news_date` DESC limit 0,2] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:55]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:55]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR (panel_side='2' AND panel_display='1') OR (panel_side='3' AND panel_display='1') OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:55]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:56]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:56]: Query[SELECT * FROM wcf_news 
+						LEFT JOIN wcf_news_cats ON `news_cat_id`=`news_cat`
+						LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_news.`news_author`
+						WHERE `news_id`='1' limit 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:54:56]: Query[SELECT * FROM wcf_comments
+						LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_comments.`user_id`
+						WHERE `comment_item_id`='1' AND `comment_type`='1'] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:55:26]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:55:26]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR (panel_side='2' AND panel_display='1') OR (panel_side='3' AND panel_display='1') OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:55:26]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:55:26]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:55:26]: Query[SELECT * FROM wcf_news 
+						LEFT JOIN wcf_news_cats ON `news_cat_id`=`news_cat`
+						LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_news.`news_author`
+						WHERE `news_id`='1' limit 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:55:26]: Query[SELECT * FROM wcf_comments
+						LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_comments.`user_id`
+						WHERE `comment_item_id`='1' AND `comment_type`='1'] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:47]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:47]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR (panel_side='2' AND panel_display='1') OR (panel_side='3' AND panel_display='1') OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:47]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:47]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:47]: Query[SELECT `faq_cat_id`, `faq_cat_name`, `faq_cat_description` FROM wcf_faq_cats ORDER BY `faq_cat_name`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:48]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:48]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:48]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR panel_side='2' OR panel_side='3' OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:48]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:48]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:48]: Query[SELECT count(`news_date`) as number FROM wcf_news] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:48]: Query[SELECT * FROM wcf_news LEFT JOIN wcf_news_cats ON `news_cat_id`=`news_cat` LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_news.`news_author` ORDER BY `news_date` DESC limit 0,2] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:50]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:50]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR (panel_side='2' AND panel_display='1') OR (panel_side='3' AND panel_display='1') OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:50]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:50]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:50]: Query[SELECT * FROM wcf_news 
+						LEFT JOIN wcf_news_cats ON `news_cat_id`=`news_cat`
+						LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_news.`news_author`
+						WHERE `news_id`='4' limit 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:56:50]: Query[SELECT * FROM wcf_comments
+						LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_comments.`user_id`
+						WHERE `comment_item_id`='4' AND `comment_type`='1'] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:12]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:12]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:12]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR panel_side='2' OR panel_side='3' OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:12]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:12]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:12]: Query[SELECT count(`news_date`) as number FROM wcf_news] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:12]: Query[SELECT * FROM wcf_news LEFT JOIN wcf_news_cats ON `news_cat_id`=`news_cat` LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_news.`news_author` ORDER BY `news_date` DESC limit 0,2] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:16]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:16]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR (panel_side='2' AND panel_display='1') OR (panel_side='3' AND panel_display='1') OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:16]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:16]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:16]: Query[SELECT * FROM wcf_news 
+						LEFT JOIN wcf_news_cats ON `news_cat_id`=`news_cat`
+						LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_news.`news_author`
+						WHERE `news_id`='1' limit 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:16]: Query[SELECT * FROM wcf_comments
+						LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_comments.`user_id`
+						WHERE `comment_item_id`='1' AND `comment_type`='1'] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:57:29]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 13:59:01]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:00:19]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:00:54]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:09:19]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:09:22]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:09:22]: Query[SELECT * FROM wcf_news] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:09:22]: Query[SELECT * FROM wcf_news_cats] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:09:34]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:09:35]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:09:35]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:09:35]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR panel_side='2' OR panel_side='3' OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:09:35]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:09:35]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:09:35]: Query[SELECT count(`news_date`) as number FROM wcf_news] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:09:35]: Query[SELECT * FROM wcf_news LEFT JOIN wcf_news_cats ON `news_cat_id`=`news_cat` LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_news.`news_author` ORDER BY `news_date` DESC limit 0,2] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:14:54]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:14:56]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:14:56]: Query[SELECT * FROM wcf_settings] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:14:56]: Query[SELECT `panel_filename`, `panel_side`, `panel_type` FROM wcf_panels WHERE `panel_status`='1' AND (panel_side='1' OR panel_side='2' OR panel_side='3' OR panel_side='4') ORDER BY `panel_side`, `panel_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:14:56]: Query[SELECT `link_name`, `link_url`, `link_visibility` FROM wcf_navigation_links WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:14:56]: Query[SELECT * FROM wcf_users WHERE `user_id`=5 LIMIT 1] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:14:56]: Query[SELECT count(`news_date`) as number FROM wcf_news] is successful completed<br />
+<strong>SQL</strong> [29-11-2012 14:14:56]: Query[SELECT * FROM wcf_news LEFT JOIN wcf_news_cats ON `news_cat_id`=`news_cat` LEFT JOIN wcf_users ON wcf_users.`user_id`=wcf_news.`news_author` ORDER BY `news_date` DESC limit 0,2] is successful completed<br />

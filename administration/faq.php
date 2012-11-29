@@ -17,8 +17,7 @@
 
 	if ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['faq_cat_id']) && isnum($_GET['faq_cat_id'])) && (isset($_GET['t']) && $_GET['t'] == "cat"))
 		{
-			selectdb("wcf");
-			$result = db_count("(faq_cat_id)", DB_FAQS, "faq_cat_id='".$_GET['faq_cat_id']."'");
+			$result = WCF::$DB->db_count("(faq_cat_id)", DB_FAQS, "faq_cat_id='".$_GET['faq_cat_id']."'");
 
 			if (!empty($result))
 				{
@@ -26,15 +25,14 @@
 				}
 			else
 				{
-					$result = db_query("DELETE FROM ".DB_FAQ_CATS." WHERE `faq_cat_id`='".$_GET['faq_cat_id']."'");
+					$result = WCF::$DB->db_query("DELETE FROM ".DB_FAQ_CATS." WHERE `faq_cat_id`='".$_GET['faq_cat_id']."'");
 					redirect(WCF_SELF."?status=delcy");
 				}
 		}
 	elseif ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['faq_id']) && isnum($_GET['faq_id'])) && (isset($_GET['t']) && $_GET['t'] == "faq"))
 		{
-			selectdb("wcf");
-			$faq_count = db_count("(faq_id)", DB_FAQS, "faq_id='".$_GET['faq_id']."'");
-			$result = db_query("DELETE FROM ".DB_FAQS." WHERE `faq_id`='".$_GET['faq_id']."'");
+			$faq_count = WCF::$DB->db_count("(faq_id)", DB_FAQS, "faq_id='".$_GET['faq_id']."'");
+			$result = WCF::$DB->db_query("DELETE FROM ".DB_FAQS." WHERE `faq_id`='".$_GET['faq_id']."'");
 			if ($faq_count)
 				{
 					redirect(WCF_SELF."?faq_cat_id=".intval($_GET['faq_cat_id'])."&status=del");
@@ -46,7 +44,6 @@
 		}
 	elseif (isset($_POST['save_cat']))
 		{
-			selectdb("wcf");
 			$faq_cat_name = stripinput($_POST['faq_cat_name']);
 			$faq_cat_description = stripinput($_POST['faq_cat_description']);
 
@@ -54,12 +51,12 @@
 				{
 					if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['faq_cat_id']) && isnum($_GET['faq_cat_id'])) && (isset($_GET['t']) && $_GET['t'] == "cat"))
 						{
-							$result = db_query("UPDATE ".DB_FAQ_CATS." SET `faq_cat_name`='$faq_cat_name', `faq_cat_description`='$faq_cat_description' WHERE `faq_cat_id`='".$_GET['faq_cat_id']."'");
+							$result = WCF::$DB->db_query("UPDATE ".DB_FAQ_CATS." SET `faq_cat_name`='$faq_cat_name', `faq_cat_description`='$faq_cat_description' WHERE `faq_cat_id`='".$_GET['faq_cat_id']."'");
 							redirect(WCF_SELF."?status=scu");
 						}
 					else
 						{
-							$result = db_query("INSERT INTO ".DB_FAQ_CATS." (`faq_cat_name`, `faq_cat_description`) VALUES('$faq_cat_name', '$faq_cat_description')");
+							$result = WCF::$DB->db_query("INSERT INTO ".DB_FAQ_CATS." (`faq_cat_name`, `faq_cat_description`) VALUES('$faq_cat_name', '$faq_cat_description')");
 							redirect(WCF_SELF."?status=scn");
 						}
 				}
@@ -70,7 +67,6 @@
 		}
 	elseif (isset($_POST['save_faq']))
 		{
-			selectdb("wcf");
 			$faq_cat = intval($_POST['faq_cat']);
 			$faq_question = stripinput($_POST['faq_question']);
 			$faq_answer = addslash($_POST['faq_answer']);
@@ -79,12 +75,12 @@
 				{
 					if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['faq_id']) && isnum($_GET['faq_id'])) && (isset($_GET['t']) && $_GET['t'] == "faq"))
 						{
-							$result = db_query("UPDATE ".DB_FAQS." SET `faq_cat_id`='$faq_cat', `faq_question`='$faq_question', `faq_answer`='$faq_answer' WHERE `faq_id`='".$_GET['faq_id']."'");
+							$result = WCF::$DB->db_query("UPDATE ".DB_FAQS." SET `faq_cat_id`='$faq_cat', `faq_question`='$faq_question', `faq_answer`='$faq_answer' WHERE `faq_id`='".$_GET['faq_id']."'");
 							redirect(WCF_SELF."?faq_cat_id=$faq_cat&status=su");
 						}
 					else
 						{
-							$result = db_query("INSERT INTO ".DB_FAQS." (`faq_cat_id`, `faq_question`, `faq_answer`) VALUES ('$faq_cat', '$faq_question', '$faq_answer')");
+							$result = WCF::$DB->db_query("INSERT INTO ".DB_FAQS." (`faq_cat_id`, `faq_question`, `faq_answer`) VALUES ('$faq_cat', '$faq_question', '$faq_answer')");
 							redirect(WCF_SELF."?faq_cat_id=$faq_cat&status=sn");
 						}
 				}
@@ -95,13 +91,12 @@
 		}
 	elseif (isset($_GET['action']) && $_GET['action'] == "edit")
 		{
-			selectdb("wcf");
 			if ((isset($_GET['faq_cat_id']) && isnum($_GET['faq_cat_id'])) && (isset($_GET['t']) && $_GET['t'] == "cat"))
 				{
-					$result = db_query("SELECT `faq_cat_id`, `faq_cat_name`, `faq_cat_description` FROM ".DB_FAQ_CATS." WHERE `faq_cat_id`='".$_GET['faq_cat_id']."'");
-					if (db_num_rows($result))
+					$result = WCF::$DB->db_query("SELECT `faq_cat_id`, `faq_cat_name`, `faq_cat_description` FROM ".DB_FAQ_CATS." WHERE `faq_cat_id`='".$_GET['faq_cat_id']."'");
+					if (WCF::$DB->db_num_rows($result))
 						{
-							$data = db_assoc($result);
+							$data = WCF::$DB->db_assoc($result);
 							$faq_cat_id = $data['faq_cat_id'];
 							$faq_cat_name = $data['faq_cat_name'];
 							$faq_cat_description = $data['faq_cat_description'];
@@ -120,10 +115,10 @@
 				}
 			elseif ((isset($_GET['faq_id']) && isnum($_GET['faq_id'])) && (isset($_GET['t']) && $_GET['t'] == "faq"))
 				{
-					$result = db_query("SELECT `faq_id`, `faq_question`, `faq_answer` FROM ".DB_FAQS." WHERE `faq_id`='".$_GET['faq_id']."'");
-					if (db_num_rows($result))
+					$result = WCF::$DB->db_query("SELECT `faq_id`, `faq_question`, `faq_answer` FROM ".DB_FAQS." WHERE `faq_id`='".$_GET['faq_id']."'");
+					if (WCF::$DB->db_num_rows($result))
 						{
-							$data = db_assoc($result);
+							$data = WCF::$DB->db_assoc($result);
 							$faq_cat_name = "";
 							$faq_cat_description = "";
 							$faq_cat_title = $txt['420'];
@@ -172,12 +167,11 @@
 
 	if (!isset($_GET['t']) || $_GET['t'] != "cat")
 		{
-			selectdb("wcf");
 			$cat_opts = ""; $sel = "";
-			$result2 = db_query("SELECT `faq_cat_id`, `faq_cat_name` FROM ".DB_FAQ_CATS." ORDER BY `faq_cat_name`");
-			if (db_num_rows($result2) != 0)
+			$result2 = WCF::$DB->db_query("SELECT `faq_cat_id`, `faq_cat_name` FROM ".DB_FAQ_CATS." ORDER BY `faq_cat_name`");
+			if (WCF::$DB->db_num_rows($result2) != 0)
 				{
-					while ($data2 = db_array($result2))
+					while ($data2 = WCF::$DB->db_array($result2))
 						{
 							if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['faq_cat_id']) && isnum($_GET['faq_cat_id'])) && $_GET['t'] == "faq")
 								{
@@ -206,16 +200,16 @@
 				}
 		}
 
-	opentable(); selectdb("wcf");
-	$result = db_query("SELECT `faq_cat_id`, `faq_cat_name` FROM ".DB_FAQ_CATS." ORDER BY `faq_cat_name`");
+	opentable();
+	$result = WCF::$DB->db_query("SELECT `faq_cat_id`, `faq_cat_name` FROM ".DB_FAQ_CATS." ORDER BY `faq_cat_name`");
 
-	if (db_num_rows($result) != 0)
+	if (WCF::$DB->db_num_rows($result) != 0)
 		{
 			echo"<tr><th width='50%' class='forum-caption'>".$txt['admin_faq_cast_quest']."</th>";
 			echo"<th width='50%' class='forum-caption'>".$txt['admin_faq_option']."</th></tr>";
 			echo"<tr><td colspan='2' height='1'></td></tr>";
 
-			while ($data = db_array($result))
+			while ($data = WCF::$DB->db_array($result))
 				{
 					if (!isset($_GET['faq_cat_id']) || !isnum($_GET['faq_cat_id'])) { $_GET['faq_cat_id'] = 0; }
 					if ($data['faq_cat_id'] == $_GET['faq_cat_id']) { $p_img = "off"; $div = ""; } else { $p_img = "on"; $div = "style='display:none'"; }
@@ -227,13 +221,13 @@
 					echo"<a href='".WCF_SELF."?action=delete&faq_cat_id=".$data['faq_cat_id']."&t=cat' onclick=\"return confirm('".$txt['admin_faq_del_cats']."');\"><b>".$txt['admin_faq_del']."</b></a></td>";
 					echo"</tr>";
 
-					$result2 = db_query("SELECT `faq_id`, `faq_question`, `faq_answer` FROM ".DB_FAQS." WHERE `faq_cat_id`='".$data['faq_cat_id']."' ORDER BY `faq_id`");
-					if (db_num_rows($result2) != 0)
+					$result2 = WCF::$DB->db_query("SELECT `faq_id`, `faq_question`, `faq_answer` FROM ".DB_FAQS." WHERE `faq_cat_id`='".$data['faq_cat_id']."' ORDER BY `faq_id`");
+					if (WCF::$DB->db_num_rows($result2) != 0)
 						{
 							echo"<tr><td colspan='2'>";
 							echo"<div id='box_".$data['faq_cat_id']."'".$div.">";
 
-							while ($data2 = db_array($result2))
+							while ($data2 = WCF::$DB->db_array($result2))
 								{
 									echo"<tr><td class='alt' align='center'><strong>".$data2['faq_question']."</strong></td>";
 									echo"<td align='center' class='alt' width='80'>";

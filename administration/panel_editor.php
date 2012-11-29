@@ -13,15 +13,14 @@
 	require_once "../maincore.php";
 	require_once THEMES."templates/admin_header.php";
 
-	selectdb("wcf");
 	$temp = opendir(PANELS); $panel_list = array();
 	while ($folder = readdir($temp))
 		{
 			if ((!in_array($folder, array(".","..")) && strstr($folder, "_panel")))
 				{
-					$result = db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_filename`='".$folder."'");
+					$result = WCF::$DB->db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_filename`='".$folder."'");
 
-					if (is_dir(PANELS.$folder) && db_num_rows($result) == 0)
+					if (is_dir(PANELS.$folder) && WCF::$DB->db_num_rows($result) == 0)
 						{
 							$panel_list[] = $folder;
 						}
@@ -49,9 +48,9 @@
 				{
 					if ((!in_array($folder, array(".","..")) && strstr($folder, "_panel_wc")))
 						{
-							$result = db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_filename`='".$folder."'");
+							$result = WCF::$DB->db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_filename`='".$folder."'");
 
-							if (is_dir($patch.$folder) && db_num_rows($result) == 0)
+							if (is_dir($patch.$folder) && WCF::$DB->db_num_rows($result) == 0)
 								{
 									$panel_list[] .= $folder;
 								}
@@ -78,14 +77,14 @@
 			if (isset($_GET['panel_id']) && isnum($_GET['panel_id']))
 				{
 					selectdb("wcf");
-					$result = db_query("UPDATE ".DB_PANELS." SET `panel_filename`='".$panel_filename."', `panel_access`='".$panel_access."', WHERE panel_id='".$_GET['panel_id']."'");
+					$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_filename`='".$panel_filename."', `panel_access`='".$panel_access."', WHERE panel_id='".$_GET['panel_id']."'");
 				}
 			else
 				{
 					selectdb("wcf");
-					$result = db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='".$panel_side."' ORDER BY `panel_order` DESC LIMIT 1");
-					if (db_num_rows($result) != 0) { $data = db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
-					$result = db_query("INSERT INTO ".DB_PANELS." (`panel_filename`,`panel_type`,`panel_access`,`panel_side`,`panel_order`)
+					$result = WCF::$DB->db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='".$panel_side."' ORDER BY `panel_order` DESC LIMIT 1");
+					if (WCF::$DB->db_num_rows($result) != 0) { $data = WCF::$DB->db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
+					$result = WCF::$DB->db_query("INSERT INTO ".DB_PANELS." (`panel_filename`,`panel_type`,`panel_access`,`panel_side`,`panel_order`)
 										VALUES ('".$panel_filename."','".$panel_type."','".$panel_access."', '".$panel_side."', '".$neworder."')");
 					redirect(WCF_SELF);
 				}
@@ -95,10 +94,10 @@
 			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
 				{
 					selectdb("wcf");
-					$result = db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_id`='".$_GET['panel_id']."'");
-					if (db_num_rows($result))
+					$result = WCF::$DB->db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_id`='".$_GET['panel_id']."'");
+					if (WCF::$DB->db_num_rows($result))
 						{
-							$data = db_assoc($result);
+							$data = WCF::$DB->db_assoc($result);
 							$panel_filename = $data['panel_filename'];
 							$panel_type = $data['panel_type'];
 							$panel_side = $data['panel_side'];

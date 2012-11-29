@@ -13,7 +13,7 @@
 	if ($config['serverintro'] != "")
 		{
 			opentable();
-			echo stripslashes($config['serverintro']);
+			echo stripslashes(WCF::$settings['serverintro']);
 			closetable();
 		}
 ?>

@@ -1,17 +1,18 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2012 lovepsone
 +--------------------------------------------------------+
-| Filename: index.php
+| Filename: clas.util.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	require_once "maincore.php";
+class WCFUtil
+{
 
-	redirect(WCF::$settings['opening_page']);
+}
 
 ?>

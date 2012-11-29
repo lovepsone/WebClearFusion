@@ -13,8 +13,7 @@
 	require_once "../maincore.php";
 	require_once THEMES."templates/header.php";
 
-	selectdb("wcf");
-	$result = mysql_query("SELECT f.*, f2.`forum_name` AS `forum_sections_name`, u.`user_id`, u.`user_name`,
+	$result = WCF::$DB->db_query("SELECT f.*, f2.`forum_name` AS `forum_sections_name`, u.`user_id`, u.`user_name`,
 					t.`thread_id`, t.`thread_lastuser`, t.`thread_lastpostid`, t.`thread_subject`,
 					p.`post_id`, p.`post_id`, p.`post_date`
 					FROM ".DB_FORUMS." f
@@ -26,7 +25,7 @@
 	$current_cat = "";
 	opentable();
 
-	if (db_num_rows($result) != 0)
+	if (WCF::$DB->db_num_rows($result) != 0)
 		{
    			echo"<tr><th width='4%'></th>";
 			echo"<th width='60%' class='forum-caption'>".$txt['forum_column_section']."</th>";
@@ -34,7 +33,7 @@
 			echo"<th width='5%' class='forum-caption'>".$txt['forum_column_so']."</th>";
 			echo"<th width='10%' class='forum-caption'>".$txt['forum_column_posts']."</th></tr>";
 
-			while ($data = db_array($result))
+			while ($data = WCF::$DB->db_array($result))
 				{
 					if ($data['forum_sections_name'] != $current_cat)
 						{
