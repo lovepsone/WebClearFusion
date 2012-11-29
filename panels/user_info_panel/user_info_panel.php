@@ -22,7 +22,11 @@
 			// Проверка на каптча
 			if (WCF::$settings['kcaptcha_enable_auth'] == 1) 
   				{
-   					echo"<tr><td colspan='2' align='center'><br><iframe src='./include/kcaptcha.php' marginheight='0' marginwidth='0' width='100' height='40' frameborder='0' scrolling='no' allowtransparency='true'></iframe></td></tr>"; 
+					echo"<tr><td colspan='2' align='center'><br><img id='siimage' style='border: 1px solid #000' src='".S_KCAPTCHA."securimage_show.php?sid=".md5(uniqid())."'/><br>";
+					echo"<object type='application/x-shockwave-flash' data='".S_KCAPTCHA."securimage_play.swf?bgcol=#ffffff&amp;icon_file=".S_KCAPTCHA."images/audio_icon.png&amp;audio_file=".S_KCAPTCHA."securimage_play.php' height='16' width='16'>";
+					echo"<param name='movie' value='".S_KCAPTCHA."securimage/securimage_play.swf?bgcol=#ffffff&amp;icon_file=".S_KCAPTCHA."securimage/images/audio_icon.png&amp;audio_file=".S_KCAPTCHA."securimage/securimage_play.php' /></object>";
+					echo"<a href='#' onclick='document.getElementById('siimage').src = '".S_KCAPTCHA."securimage_show.php?sid=' + Math.random(); this.blur(); return false'>";
+					echo"<img src='".S_KCAPTCHA."images/refresh.png' height='16' width='16' onclick='this.blur()'/></a></td></tr>";
    					echo"<tr><td colspan='2' align='center'><br><input type='text' name='kapcha_code' class='textbox'></td></tr>";
   				}
 			echo"<tr><td colspan='2' align='center'><br><input type='submit' class='button' value='".$txt['menu_auth_enter']."'></td></tr>";

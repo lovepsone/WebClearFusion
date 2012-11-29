@@ -42,4 +42,5 @@
 	define("MODULE", BASEDIR."module/");
 	define("PANELS", BASEDIR."panels/");
 	define("THEMES", BASEDIR."themes/");
+	define("S_KCAPTCHA", BASEDIR."include/securimage/");
 ?>
