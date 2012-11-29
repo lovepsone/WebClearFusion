@@ -71,12 +71,11 @@ $WCFConfig['mysql']['prefix']  	= 'wcf_';
 
 $WCFConfig['settings']['useDebug']  	= true;
 $WCFConfig['settings']['logLevel']  	= 3;
-$WCFConfig['settings']['configVersion'] = '291120121';
+$WCFConfig['settings']['configVersion'] = '291120122';
 $WCFConfig['settings']['encoding'] 	= 'UTF8';
 $WCFConfig['settings']['defaultLocale'] = 'russian';
 
 
 $WCFConfig['title']['copyright'] 	= 'WebClearFusion v 1.0.10 from LovePSone 2010-2011';
-$WCFConfig['title']['revision_wcf'] 	= 'wcf_revision_nr = [360]';
 $WCFConfig['title']['revision_admin'] 	= ' 1.00.00';
 ?>

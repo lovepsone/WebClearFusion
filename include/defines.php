@@ -20,7 +20,7 @@
 	define("DB_FORUMS", DB_PREFIX."forums");
 	define("DB_FORUMS_POSTS", DB_PREFIX."forums_posts");
 	define("DB_FORUMS_THREADS", DB_PREFIX."forums_threads");
-	define("DB_LOGS", DB_PREFIX."logs");
+	define("DB_VERSIONS", DB_PREFIX."db_version");
 	define("DB_NAVIGATION_LINKS", DB_PREFIX."navigation_links");
 	define("DB_NEWS", DB_PREFIX."news");
 	define("DB_NEWS_CATS", DB_PREFIX."news_cats");

@@ -46,6 +46,24 @@
 	if (@!include(BASEDIR.'include/defines.php'))
 		die('<b>Error:</b> unable to load defines.php!');
 
+	if(!@include(BASEDIR.'include/revision_nr.php'))
+		die('<b>Error:</b> unable to load revision file!');
+
+	//=============================================================================================================
+	// Проверяем DbVersion,revision,config version\Check DbVersion,revision,config version
+	//=============================================================================================================
+	$dbVersion = WCF::$DB->db_assoc(WCF::$DB->db_query("SELECT * FROM ".DB_VERSIONS));
+	$dbVer = $dbVersion['version'];
+	$errorDBVersion = sprintf('Current version is %s but expected %s.<br />
+		Apply all neccessary updates from \'sql/updates\' folder and refresh this page.',($dbVer) ? "'" . $dbVer . "'" : 'not defined', "'" . DB_VERSION . "'");
+	if($dbVersion['version'] != DB_VERSION)
+		die($errorDBVersion);
+
+	if(!defined('WCF_REVISION'))
+		die('<b>Revision error:</b> unable to detect WCF revision!');
+
+	if(!defined('CONFIG_VERSION') || !isset(WCF::$settings['configVersion']))
+		die('<b>ConfigVersion error:</b> unable to detect Configuration version!');
 
 // временно подгружаем остальное
 require BASEDIR."include/functions_theme.php";
