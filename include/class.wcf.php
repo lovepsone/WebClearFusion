@@ -51,6 +51,92 @@ class WCF
 	{
 		return self::$debug;
 	}
+
+
+	//=============================================================================================================
+	// Предотвращения возможных атак через XSS $_GET.
+	//=============================================================================================================
+	function stripget($check_url)
+	{
+		$return = false;
+		if (is_array($check_url))
+		{
+			foreach ($check_url as $value)
+			{
+				$return = self::stripget($value);
+				if ($return == true) { return true; }
+			}
+		}
+		else
+		{
+			$check_url = str_replace("\"", "", $check_url);
+			$check_url = str_replace("\'", "", $check_url);
+
+			if ((preg_match("/<[^>]*script*\"?[^>]*>/i", $check_url)) || (preg_match("/<[^>]*object*\"?[^>]*>/i", $check_url)) ||
+			(preg_match("/<[^>]*iframe*\"?[^>]*>/i", $check_url)) || (preg_match("/<[^>]*applet*\"?[^>]*>/i", $check_url)) ||
+			(preg_match("/<[^>]*meta*\"?[^>]*>/i", $check_url)) || (preg_match("/<[^>]*style*\"?[^>]*>/i", $check_url)) ||
+			(preg_match("/<[^>]*form*\"?[^>]*>/i", $check_url)) || (preg_match("/\([^>]*\"?[^)]*\)/i", $check_url)))
+			{
+				$return = true;
+			}
+		}
+		return $return;
+	}
+
+	//=============================================================================================
+	// Функция перенаправляющая на $location страницу 
+	function redirect($location, $script = false)
+	{
+		if (!$script)
+		{
+			header("Location: ".str_replace("&amp;", "&", $location));
+			exit;
+		}
+		else
+		{
+			echo "<script type='text/javascript'>document.location.href='".str_replace("&amp;", "&", $location)."'</script>\n";
+			exit;
+		}
+	}
+
+	//=============================================================================================================
+	// Функция чистит URL, предотвращает сбой в глобальных переменных
+	//=============================================================================================================
+	function cleanurl($url)
+	{
+		$bad_entities = array("&", "\"", "'", '\"', "\'", "<", ">", "(", ")", "*");
+		$safe_entities = array("&amp;", "", "", "", "", "", "", "", "", "");
+		$url = str_replace($bad_entities, $safe_entities, $url);
+		return $url;
+	}
+
+	//=============================================================================================================
+	// Функция проверяет ввод чисел
+	//=============================================================================================================
+	function isnum($value)
+	{
+		if (!is_array($value))
+		{
+			return (preg_match("/^[0-9]+$/", $value));
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	//=============================================================================================================
+	// Trim a line of text to a preferred length
+	//=============================================================================================================
+	function trimlink($text, $length)
+	{
+		$dec = array("&", "\"", "'", "\\", '\"', "\'", "<", ">");
+		$enc = array("&amp;", "&quot;", "&#39;", "&#92;", "&quot;", "&#39;", "&lt;", "&gt;");
+		$text = str_replace($enc, $dec, $text);
+		if (strlen($text) > $length) $text = substr($text, 0, ($length-3))."...";
+		$text = str_replace($dec, $enc, $text);
+		return $text;
+	}
 }
 
 ?>

@@ -14,11 +14,6 @@
 	error_reporting(E_ALL);
 
 	//=============================================================================================================
-	// Предотвращения возможных атак через XSS $_GET.
-	//=============================================================================================================
-	if (stripget($_GET)) { die("Prevented a XSS attack through a GET variable!"); }
-
-	//=============================================================================================================
 	// Запускаем сессию\Start the session
 	//=============================================================================================================
 	session_start();
@@ -65,6 +60,11 @@
 	if(!defined('CONFIG_VERSION') || !isset(WCF::$settings['configVersion']))
 		die('<b>ConfigVersion error:</b> unable to detect Configuration version!');
 
+	//=============================================================================================================
+	// Предотвращения возможных атак через XSS $_GET.
+	//=============================================================================================================
+	if (WCF::stripget($_GET)) { die("Prevented a XSS attack through a GET variable!"); }
+
 // временно подгружаем остальное
 require BASEDIR."include/functions_theme.php";
 require BASEDIR."include/functions_users.php";
@@ -74,8 +74,8 @@ require BASEDIR."include/functions_img.php";
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup
 	//=============================================================================================================
-	$_SERVER['QUERY_STRING'] = isset($_SERVER['QUERY_STRING']) ? cleanurl($_SERVER['QUERY_STRING']) : "";
-	$_SERVER['PHP_SELF'] = cleanurl($_SERVER['PHP_SELF']);
+	$_SERVER['QUERY_STRING'] = isset($_SERVER['QUERY_STRING']) ? WCF::cleanurl($_SERVER['QUERY_STRING']) : "";
+	$_SERVER['PHP_SELF'] = WCF::cleanurl($_SERVER['PHP_SELF']);
 
 	define("IN_WCF", TRUE);
 	define("WCF_QUERY", isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : "");
@@ -128,93 +128,4 @@ require BASEDIR."include/functions_img.php";
 	// Подключаем модули\Include in modules
 	//=============================================================================================================
 	require_once BASEDIR."module.php";
-
-//=====================================================================================================================
-// Ниже представлены функции защиты и работы сайта\Below are the security features of the site and
-//=====================================================================================================================
-
-	//=============================================================================================================
-	// Предотвращения возможных атак через XSS $_GET.
-	//=============================================================================================================
-	function stripget($check_url)
-	{
-		$return = false;
-		if (is_array($check_url))
-		{
-			foreach ($check_url as $value)
-			{
-				$return = stripget($value);
-				if ($return == true) { return true; }
-			}
-		}
-		else
-		{
-			$check_url = str_replace("\"", "", $check_url);
-			$check_url = str_replace("\'", "", $check_url);
-
-			if ((preg_match("/<[^>]*script*\"?[^>]*>/i", $check_url)) || (preg_match("/<[^>]*object*\"?[^>]*>/i", $check_url)) ||
-			(preg_match("/<[^>]*iframe*\"?[^>]*>/i", $check_url)) || (preg_match("/<[^>]*applet*\"?[^>]*>/i", $check_url)) ||
-			(preg_match("/<[^>]*meta*\"?[^>]*>/i", $check_url)) || (preg_match("/<[^>]*style*\"?[^>]*>/i", $check_url)) ||
-			(preg_match("/<[^>]*form*\"?[^>]*>/i", $check_url)) || (preg_match("/\([^>]*\"?[^)]*\)/i", $check_url)))
-			{
-				$return = true;
-			}
-		}
-		return $return;
-	}
-
-	//=============================================================================================
-	// Функция перенаправляющая на $location страницу 
-	function redirect($location, $script = false)
-	{
-		if (!$script)
-		{
-			header("Location: ".str_replace("&amp;", "&", $location));
-			exit;
-		}
-		else
-		{
-			echo "<script type='text/javascript'>document.location.href='".str_replace("&amp;", "&", $location)."'</script>\n";
-			exit;
-		}
-	}
-
-	//=============================================================================================================
-	// Функция чистит URL, предотвращает сбой в глобальных переменных
-	//=============================================================================================================
-	function cleanurl($url)
-	{
-		$bad_entities = array("&", "\"", "'", '\"', "\'", "<", ">", "(", ")", "*");
-		$safe_entities = array("&amp;", "", "", "", "", "", "", "", "", "");
-		$url = str_replace($bad_entities, $safe_entities, $url);
-		return $url;
-	}
-
-	//=============================================================================================================
-	// Функция проверяет ввод чисел
-	//=============================================================================================================
-	function isnum($value)
-	{
-		if (!is_array($value))
-		{
-			return (preg_match("/^[0-9]+$/", $value));
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	//=============================================================================================================
-	// Trim a line of text to a preferred length
-	//=============================================================================================================
-	function trimlink($text, $length)
-	{
-		$dec = array("&", "\"", "'", "\\", '\"', "\'", "<", ">");
-		$enc = array("&amp;", "&quot;", "&#39;", "&#92;", "&quot;", "&#39;", "&lt;", "&gt;");
-		$text = str_replace($enc, $dec, $text);
-		if (strlen($text) > $length) $text = substr($text, 0, ($length-3))."...";
-		$text = str_replace($dec, $enc, $text);
-		return $text;
-	}
 ?>
