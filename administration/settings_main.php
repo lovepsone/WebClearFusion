@@ -30,7 +30,6 @@
 		}
 
 	$settings = array();
-	selectdb("wcf");
 	$result = WCF::$DB->db_query("SELECT * FROM ".DB_SETTINGS."");
 
 	while ($data = WCF::$DB->db_array($result))
