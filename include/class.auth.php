@@ -106,5 +106,19 @@ class WCFAuth
 		}
 		return 0;
 	}
+
+	public function CheckRepetition($user)
+	{
+		$data = WCF::$DB->db_assoc(WCF::$DB->db_query("SELECT count(`username`) as kol FROM ".DB_USERS." WHERE `user_name` = '".strtoupper($user)));
+		if ($data['kol'] > 0)
+			return true;
+		return false;
+	}
+
+	public function CheckLimiIP($ip)
+	{
+		$data = WCF::$DB->db_assoc(WCF::$DB->db_query("SELECT COUNT(`id`) AS kol FROM ".DB_USERS." WHERE `user_last_ip`='".$ip."'"));
+		return $data['kol'];
+	}
 }
 ?>
