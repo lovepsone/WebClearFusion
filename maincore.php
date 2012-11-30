@@ -96,6 +96,16 @@ require BASEDIR."include/functions_img.php";
 	else { die("Settings do not exist or no connection to base mysql. May not correctly configured conf.php."); }
 
 	//=============================================================================================================
+	// Проверка на стандартные панели\Check for standard panels
+	//=============================================================================================================
+	$result = WCF::$DB->db_query("SELECT `panel_status` FROM ".DB_PANELS." WHERE `panel_filename`='user_info_panel'");
+	if(WCF::$DB->db_num_rows($result) == 0)
+		die('<b>Panel error:</b> the DB is not the standard panel[user_info_panel]');
+	$data = WCF::$DB->db_assoc($result);
+	if($data['panel_status'])
+		die('<b>Panel error:</b> user_info_panel panel not included');
+
+	//=============================================================================================================
 	// Выбор нужной кодировки\When choosing a character encoding
 	//=============================================================================================================
 	if (WCF::$settings['encoding'] == 'cp1251') { WCF::$settings['code_page'] = 'windows-1251'; } else { WCF::$settings['code_page'] = 'utf-8'; }
