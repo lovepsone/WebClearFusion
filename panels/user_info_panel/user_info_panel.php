@@ -50,7 +50,7 @@
   			echo"<tr><td align='left'>".$txt['menu_auth_ip']."</td></tr>";
   			echo"<tr><td align='left'>".$_SERVER['REMOTE_ADDR']."</td></tr>";
 			echo"<tr><td width='100%'><hr></td></tr>";
-			if ( $_SESSION['gmlevel'] >= WCF::$settings['level_administration'] ) { echo"<tr><td align='right'><a href='".ADMIN."administration.php?contet'>".$txt['menu_auth_admin']."</a></td></tr>";}
+			if($AUTH->GMLevel() >= WCF::$settings['level_administration'] ) { echo"<tr><td align='right'><a href='".ADMIN."administration.php?contet'>".$txt['menu_auth_admin']."</a></td></tr>";}
 			echo"<tr><td align='right'><a href='".BASEDIR."setuser.php?action=logout'>".$txt['menu_auth_exit']."</a>";
 			closeside();
 		}

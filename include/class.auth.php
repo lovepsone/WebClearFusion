@@ -12,12 +12,13 @@
 
 class WCFAuth
 {
-	public $username;
-	public $password;
 	public $shaHash;
 	public $securimage;
 	public $post_kcaptcha;
 
+	public $username;
+	public $password;
+	public $gmlvl;
 	public function AuthUser()
 	{
 		if(!$this->username || !$this->password)
@@ -25,7 +26,7 @@ class WCFAuth
 			WCF::Log()->writeError('%s : username or password not defined', __METHOD__);
 			return false;
 		}
-		$result = WCF::$DB->db_query("SELECT `user_sha_pass_hash` FROM ".DB_USERS." WHERE `user_name`='$this->username' LIMIT 1");
+		$result = WCF::$DB->db_query("SELECT `user_id`,`user_sha_pass_hash`,`user_gmlevel` FROM ".DB_USERS." WHERE `user_name`='$this->username' LIMIT 1");
 		$data = WCF::$DB->db_assoc($result);
 		if(!$result)
 		{
@@ -43,8 +44,8 @@ class WCFAuth
 			$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
 			$_SESSION['gmlevel'] = (int)$data['user_gmlevel'];
 			$_SESSION['user_name']  = $this->username;
-			$_SESSION['bonuses'] = (int)$data['user_bonuses'];
 			$_SESSION['lang'] = WCF::$settings['lang'];
+			WCF::$DB->db_query("UPDATE ".DB_USERS." SET `user_last_ip`='".$_SESSION['ip']."' WHERE `user_name`='$this->username' LIMIT 1");
 			return true;
         	}
 	}
@@ -53,10 +54,9 @@ class WCFAuth
 	{
     		unset($_SESSION['user_id']);
     		unset($_SESSION['ip']);
+		unset($_SESSION['gmlevel']);
 		unset($_SESSION['user_name']);
 		unset($_SESSION['password']);
-		unset($_SESSION['gmlevel']);
-		unset($_SESSION['bonuses']);
 		return true;
     	}
 
@@ -86,6 +86,25 @@ class WCFAuth
 		}
 		$this->shaHash = SHA1(strtoupper(addslashes($this->username)).':'.strtoupper(addslashes($this->password)));
 		return strtoupper($this->shaHash);
+	}
+
+	public function GMLevel()
+	{
+		if (isset($_SESSION['gmlevel']))
+			return $_SESSION['gmlevel'];
+		else
+			return -1;
+	}
+
+	public function InfoUser()
+	{
+		if(isset($_SESSION['user_name']))
+		{
+			$result = WCF::$DB->db_query("SELECT `user_id`, `email`, `user_avatar`, `user_last_ip`, `user_bonuses` FROM ".DB_USERS." WHERE `user_name`='".$_SESSION['user_name']."' LIMIT 1");
+			$data = WCF::$DB->db_assoc($result);
+			return $data;
+		}
+		return 0;
 	}
 }
 ?>
