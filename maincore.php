@@ -102,7 +102,7 @@ require BASEDIR."include/functions_img.php";
 	if(WCF::$DB->db_num_rows($result) == 0)
 		die('<b>Panel error:</b> the DB is not the standard panel[user_info_panel]');
 	$data = WCF::$DB->db_assoc($result);
-	if($data['panel_status'])
+	if(!$data['panel_status'])
 		die('<b>Panel error:</b> user_info_panel panel not included');
 
 	//=============================================================================================================
