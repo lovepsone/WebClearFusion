@@ -184,12 +184,12 @@ class Securimage
      * The width of the captcha image
      * @var int
      */
-    public $image_width = 215;
+    public $image_width = 100;
     /**
      * The height of the captcha image
      * @var int
      */
-    public $image_height = 80;
+    public $image_height = 40;
     /**
      * The type of the image, default = png
      * @var int
