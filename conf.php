@@ -70,7 +70,7 @@ $WCFConfig['mysql']['prefix']  	= 'wcf_';
 ##############################################################################################
 
 $WCFConfig['settings']['useDebug']  	= true;
-$WCFConfig['settings']['logLevel']  	= 3;
+$WCFConfig['settings']['logLevel']  	= 1;
 $WCFConfig['settings']['configVersion'] = '291120122';
 $WCFConfig['settings']['encoding'] 	= 'UTF8';
 $WCFConfig['settings']['defaultLocale'] = 'russian';

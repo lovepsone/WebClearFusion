@@ -10,24 +10,6 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	function check_kcaptcha_enable()
-	{
-	  	global $_SESSION, $_POST;
-
-		if (WCF::$settings['kcaptcha_enable_auth'] == 1 && isset($_POST['kapcha_code']))
-   		{
-			require_once S_KCAPTCHA."securimage.php";
-			$securimage = new Securimage();
-			if ($securimage->check($_POST['kapcha_code']) == true)
-				return true;
-   		}
-		elseif (WCF::$settings['kcaptcha_enable_auth'] == 0)
-		{
-			return true;
-		}
-		return false;
-	}
-
 	function check_user($visibility)
 		{
 	  		global $_SESSION;

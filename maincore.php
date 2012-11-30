@@ -95,8 +95,6 @@ require BASEDIR."include/functions_img.php";
 
 	else { die("Settings do not exist or no connection to base mysql. May not correctly configured conf.php."); }
 
-	require_once BASEDIR."include/include_auth.php";
-
 	//=============================================================================================================
 	// Выбор нужной кодировки\When choosing a character encoding
 	//=============================================================================================================
@@ -123,6 +121,27 @@ require BASEDIR."include/functions_img.php";
 
 	}
 	@include(WCF::$settings['themefile']);
+
+	//=============================================================================================================
+	// подгружаем остальное\To loading
+	//=============================================================================================================
+	if(!@include(BASEDIR.'include/class.auth.php'))
+		die('<b>Error:</b> unable to load Auth class!');
+	else
+		$AUTH = new WCFAuth();
+
+	if (isset($_POST['auth_name']) && isset($_POST['auth_pass'])) 
+   	{
+		$AUTH->username = $_POST['auth_name'];
+		$AUTH->password = $_POST['auth_pass'];
+
+		if(WCF::$settings['kcaptcha_enable_auth'] == 1)
+			$AUTH->post_kcaptcha = $_POST['kapcha_code'];
+		if($AUTH->AuthUser())
+			WCF::redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=auth");
+		else
+			WCF::redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=error");
+	}
 
 	//=============================================================================================================
 	// Подключаем модули\Include in modules
