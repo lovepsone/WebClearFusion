@@ -153,6 +153,39 @@ require BASEDIR."include/functions_img.php";
 			WCF::redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=error");
 	}
 
+	// создаем класс смарти
+	if(!@include(BASEDIR.'include/smarty/Smarty.class.php'))
+		die('<b>Error:</b> unable to load Smarty lib!');
+	else
+	{
+		//$SMARTY = new Smarty();
+
+		class WCFSmarty extends Smarty
+		{
+			function Smarty_WCF()
+			{
+				$this->Smarty();
+				// Папки с шаблонами, кэшом шаблонов и настройками
+				$this->template_dir = THEMES.WCF::$settings['theme'].'/';
+				$this->compile_dir = BASEDIR.'/cache/themes/'.WCF::$settings['theme'].'/';
+				$this->config_dir = BASEDIR.'/configs/'; // ЛОКАЛКА
+				$this->cache_dir = BASEDIR.'/cache/';
+				// Режим отладки
+				$this->debugging = false;
+				// Разделители
+				$this->left_delimiter = '{';
+				$this->right_delimiter = '}';
+				// Общее Кэширование, для этого сайта не работает
+				$this->caching = false;
+			}
+
+
+		}
+	}
+
+	// Объект шаблонизатора
+	$SMARTY = new WCFSmarty('wcf');
+
 	//=============================================================================================================
 	// Подключаем модули\Include in modules
 	//=============================================================================================================
