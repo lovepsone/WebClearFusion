@@ -23,7 +23,7 @@ class WCFTemplates
 
 	//=============================================================================================
 	// функция исключает понели на отдельных страницах, установленых в настройках
-	public function CheckPanelStatus($side)
+	private function CheckPanelStatus($side)
 	{
 		$exclude_list = "";
 		if ($side == "left")
@@ -65,6 +65,30 @@ class WCFTemplates
 		}
 		else
 			return true;
+	}
+
+	public function CheckPanelDisplay()
+	{
+		if (self::CheckPanelStatus("left"))
+		{
+			$panel_sql = "panel_side='1'";
+		}
+		if (self::CheckPanelStatus("upper"))
+		{
+			$panel_sql .= ($panel_sql ? " OR " : "");
+			$panel_sql .= (WCF::$settings['opening_page'] != START_PAGE ? "(panel_side='2' AND panel_display='1')" : "panel_side='2'");
+		}
+		if (self::CheckPanelStatus("lower"))
+		{
+			$panel_sql .= ($panel_sql ? " OR " : "");
+			$panel_sql .= (WCF::$settings['opening_page'] != START_PAGE ? "(panel_side='3' AND panel_display='1')" : "panel_side='3'");
+		}
+		if (self::CheckPanelStatus("right"))
+		{
+					$panel_sql .= ($panel_sql ? " OR " : "")."panel_side='4'";
+		}
+		$panel_sql = ($panel_sql ? " AND (".$panel_sql.")" : false);
+		return $panel_sql;
 	}
 }
 
