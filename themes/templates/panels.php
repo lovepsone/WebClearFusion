@@ -66,32 +66,7 @@
 				$p_arr[$current_side] .= ob_get_contents();
 				ob_end_clean();
 			}
-
-			// определяем пути к файлам модулей, и заносим в массив для проверки панелей типа wc
-			$list_p = array(); $list_m = array();
-			for ($i=1;$i <= count($modules);$i++)
-			{
-				$patch_p[$i] = $modules[$module_list[$i]]."/panels/";
-				$temp_p = opendir($patch_p[$i]);
-				while ($folder_p = readdir($temp_p))
-				{
-					if ((!in_array($folder_p, array(".","..")) && strstr($folder_p, "_panel_wc")))
-					{
-						$result = WCF::$DB->db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_filename`='".$folder_p."'");
-						if (is_dir($patch_p[$i].$folder_p) && WCF::$DB->db_num_rows($result) != 1)
-						{
-							$list_m[] = $folder_p;
-						}
-										}
-					}
-					closedir($temp_p);
-					if (count($list_m) != 0)
-					{
-						sort($list_m);
-						$list_p[$i] = $list_m;
-					}
-				}
-			if (count($list_p) != 0 && isset($_SESSION['user_id']) && $_SESSION['gmlevel'] >= WCF::$settings['level_administration'] && isnum($_SESSION['gmlevel']))
+			if (count($TEMPLATES->CheckPanelModule($modules,$module_list)) != 0 && isset($_SESSION['user_id']) && $_SESSION['gmlevel'] >= WCF::$settings['level_administration'] && isnum($_SESSION['gmlevel']))
 			{
 				$p_arr[2] .= "<div id='close-message'><div class='admin-message'>".$txt['mainpanel_in_module']."<a href='".ADMIN."panel_editor.php'>link</a></div></div>";
 			}
