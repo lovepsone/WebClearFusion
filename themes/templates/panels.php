@@ -29,21 +29,21 @@
 
 	if (!defined("EXCLUDE_PANEL_USERS") && !defined("ADMIN_PANEL") && !defined("ACP_PANEL") && defined("MAIN_PANEL"))
 	{
-		if (check_panel_status("left"))
+		if ($TEMPLATES->CheckPanelStatus("left"))
 		{
 			$p_sql = "panel_side='1'";
 		}
-		if (check_panel_status("upper"))
+		if ($TEMPLATES->CheckPanelStatus("upper"))
 		{
 			$p_sql .= ($p_sql ? " OR " : "");
 			$p_sql .= (WCF::$settings['opening_page'] != START_PAGE ? "(panel_side='2' AND panel_display='1')" : "panel_side='2'");
 		}
-		if (check_panel_status("lower"))
+		if ($TEMPLATES->CheckPanelStatus("lower"))
 		{
 			$p_sql .= ($p_sql ? " OR " : "");
 			$p_sql .= (WCF::$settings['opening_page'] != START_PAGE ? "(panel_side='3' AND panel_display='1')" : "panel_side='3'");
 		}
-		if (check_panel_status("right"))
+		if ($TEMPLATES->CheckPanelStatus("right"))
 		{
 					$p_sql .= ($p_sql ? " OR " : "")."panel_side='4'";
 		}
@@ -111,7 +111,7 @@
 						$list_p[$i] = $list_m;
 					}
 				}
-			if (count($list_p) != 0 && isset($_SESSION['user_id']) && $_SESSION['gmlevel'] >= $config['level_administration'] && isnum($_SESSION['gmlevel']))
+			if (count($list_p) != 0 && isset($_SESSION['user_id']) && $_SESSION['gmlevel'] >= WCF::$settings['level_administration'] && isnum($_SESSION['gmlevel']))
 			{
 				$p_arr[2] .= "<div id='close-message'><div class='admin-message'>".$txt['mainpanel_in_module']."<a href='".ADMIN."panel_editor.php'>link</a></div></div>";
 			}

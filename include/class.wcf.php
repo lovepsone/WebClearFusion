@@ -17,6 +17,7 @@ class WCF
 	public static $mysql = array();
 	public static $DB = null;
 	public static $title = null;
+	public static $SMARTY = null;
 
 	public static function InitializeWCF()
 	{
@@ -32,6 +33,26 @@ class WCF
 		{
 			die('<b>Error</b>: unable to load debug class!');
         	}
+		if(!@require_once(BASEDIR.'include/smarty/Smarty.class.php'))
+		{
+			die('<b>Error:</b> unable to load Smarty lib!');
+		}
+
+		self::$SMARTY = new Smarty();
+		// Папки с шаблонами, кэшом шаблонов и настройками
+		//$SMARTY->template_dir = THEMES.WCF::$settings['theme'].'/phtml/';
+		//$SMARTY->compile_dir = BASEDIR.'cache/themes/'.WCF::$settings['theme'].'/';
+		self::$SMARTY->config_dir = BASEDIR.'/lang/';
+		self::$SMARTY->cache_dir = BASEDIR.'cache/';
+		// Режим отладки
+		$SMARTY->debugging = false;
+		// Разделители
+		$SMARTY->left_delimiter = '{';
+		$SMARTY->right_delimiter = '}';
+		// Общее Кэширование, для этого сайта не работает
+		$SMARTY->caching = true;
+		$SMARTY->cache_lifetime = 10;
+
 
 		self::$mysql = $WCFConfig['mysql'];
 		define("DB_PREFIX", self::$mysql['prefix']);
@@ -45,6 +66,17 @@ class WCF
 		}
 
 		
+	}
+
+	public static function StartSmarty($dir_template, $dir_compile)
+	{
+		if (self::$SMARTY != null)
+		{
+			self::$SMARTY->template_dir = $dir_template;
+			self::$SMARTY->compile_dir = $dir_compile;
+			return true;
+		}
+		return false;
 	}
 
 	public static function Log()

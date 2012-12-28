@@ -70,6 +70,8 @@ require BASEDIR."include/functions_theme.php";
 require BASEDIR."include/functions_users.php";
 require BASEDIR."include/functions_page.php";
 require BASEDIR."include/functions_img.php";
+require BASEDIR."include/functions_files.php";
+require BASEDIR."include/functions_text_process.php";
 
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup
@@ -132,6 +134,12 @@ require BASEDIR."include/functions_img.php";
 	}
 	@include(WCF::$settings['themefile']);
 
+
+	if(!@include(BASEDIR.'include/class.templates.php'))
+		die('<b>Error:</b> unable to load Templates class!');
+	else
+		$TEMPLATES = new WCFTemplates();
+
 	//=============================================================================================================
 	// подгружаем остальное\To loading
 	//=============================================================================================================
@@ -153,38 +161,9 @@ require BASEDIR."include/functions_img.php";
 			WCF::redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=error");
 	}
 
-	// создаем класс смарти
-	if(!@include(BASEDIR.'include/smarty/Smarty.class.php'))
-		die('<b>Error:</b> unable to load Smarty lib!');
-	else
-	{
-		//$SMARTY = new Smarty();
-
-		class WCFSmarty extends Smarty
-		{
-			function Smarty_WCF()
-			{
-				$this->Smarty();
-				// Папки с шаблонами, кэшом шаблонов и настройками
-				$this->template_dir = THEMES.WCF::$settings['theme'].'/';
-				$this->compile_dir = BASEDIR.'/cache/themes/'.WCF::$settings['theme'].'/';
-				$this->config_dir = BASEDIR.'/configs/'; // ЛОКАЛКА
-				$this->cache_dir = BASEDIR.'/cache/';
-				// Режим отладки
-				$this->debugging = false;
-				// Разделители
-				$this->left_delimiter = '{';
-				$this->right_delimiter = '}';
-				// Общее Кэширование, для этого сайта не работает
-				$this->caching = false;
-			}
 
 
-		}
-	}
-
-	// Объект шаблонизатора
-	$SMARTY = new WCFSmarty('wcf');
+	WCF::StartSmarty(THEMES.WCF::$settings['theme'].'/phtml/',BASEDIR.'cache/themes/'.WCF::$settings['theme'].'/');
 
 	//=============================================================================================================
 	// Подключаем модули\Include in modules
