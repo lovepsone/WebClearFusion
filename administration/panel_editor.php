@@ -71,17 +71,15 @@
 					$panel_type = "file";
 				}
 
-			$panel_side = isnum($_POST['panel_side']) ? $_POST['panel_side'] : "1";
-			$panel_access = isnum($_POST['panel_access']) ? $_POST['panel_access'] : "0";
+			$panel_side = WCF::isnum($_POST['panel_side']) ? $_POST['panel_side'] : "1";
+			$panel_access = WCF::isnum($_POST['panel_access']) ? $_POST['panel_access'] : "0";
 
-			if (isset($_GET['panel_id']) && isnum($_GET['panel_id']))
+			if (isset($_GET['panel_id']) && WCF::isnum($_GET['panel_id']))
 				{
-					selectdb("wcf");
 					$result = WCF::$DB->db_query("UPDATE ".DB_PANELS." SET `panel_filename`='".$panel_filename."', `panel_access`='".$panel_access."', WHERE panel_id='".$_GET['panel_id']."'");
 				}
 			else
 				{
-					selectdb("wcf");
 					$result = WCF::$DB->db_query("SELECT `panel_order` FROM ".DB_PANELS." WHERE `panel_side`='".$panel_side."' ORDER BY `panel_order` DESC LIMIT 1");
 					if (WCF::$DB->db_num_rows($result) != 0) { $data = WCF::$DB->db_assoc($result); $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
 					$result = WCF::$DB->db_query("INSERT INTO ".DB_PANELS." (`panel_filename`,`panel_type`,`panel_access`,`panel_side`,`panel_order`)
@@ -91,9 +89,8 @@
 		}
 	else
 		{
-			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['panel_id']) && isnum($_GET['panel_id'])))
+			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['panel_id']) && WCF::isnum($_GET['panel_id'])))
 				{
-					selectdb("wcf");
 					$result = WCF::$DB->db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_id`='".$_GET['panel_id']."'");
 					if (WCF::$DB->db_num_rows($result))
 						{
@@ -109,7 +106,7 @@
 							redirect(WCF_SELF);
 						}
 				}
-			if (isset($_GET['panel_id']) && isnum($_GET['panel_id']))
+			if (isset($_GET['panel_id']) && WCF::isnum($_GET['panel_id']))
 				{
 					$action = WCF_SELF."?panel_id=".$_GET['panel_id'];
 				}
@@ -127,7 +124,7 @@
 			echo"<form name='editform' method='post' action='$action'>";
 			echo"<tr><td align='center' class='small' colspan='2'>".$txt_page."</td></tr>";
 		
-			if (isset($_GET['panel_id']) && isnum($_GET['panel_id']))
+			if (isset($_GET['panel_id']) && WCF::isnum($_GET['panel_id']))
 				{
 					if ($panel_type == "file")
 						{
@@ -153,7 +150,7 @@
 					echo"</select></td></tr>";
 				}
 		
-			if (!isset($_GET['panel_id']) || !isnum($_GET['panel_id']))
+			if (!isset($_GET['panel_id']) || !WCF::isnum($_GET['panel_id']))
 				{
 					echo"<tr><td width='50%' align='right' class='small'>".$txt['admin_paneledit_position']."</td>";
 					echo"<td width='50%' align='left'><select name='panel_side' class='textbox' style='width:150px;' onchange=\"showopts(this.options[this.selectedIndex].value);\">";
