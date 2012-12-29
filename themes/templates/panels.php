@@ -29,8 +29,7 @@
 
 	if (!defined("EXCLUDE_PANEL_USERS") && !defined("ADMIN_PANEL") && !defined("ACP_PANEL") && defined("MAIN_PANEL"))
 	{
-		$p_sql = $TEMPLATES->CheckPanelDisplay();
-		if ($p_sql)
+		if ($p_sql = $TEMPLATES->CheckPanelDisplay())
 		{
 			// выводим обычные панели
 			$p_res = WCF::$DB->db_query("SELECT `panel_filename`, `panel_side`, `panel_type` FROM ".DB_PANELS." WHERE `panel_status`='1'".$p_sql." ORDER BY `panel_side`, `panel_order`");
@@ -57,7 +56,7 @@
 						{
 							include PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php";
 						}
-						elseif (($fpm=include_panel_wc($modules,$module_list,$p_data['panel_filename'])) != false)
+						elseif (($fpm=$TEMPLATES->IncludePanelWC($modules,$module_list,$p_data['panel_filename'])) != false)
 						{
 							include $fpm;
 						}
