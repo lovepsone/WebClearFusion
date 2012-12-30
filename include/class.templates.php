@@ -67,7 +67,7 @@ class WCFTemplates
 			return true;
 	}
 
-	public function CheckPanelDisplay()
+	private function CheckPanelDisplay()
 	{
 		if (self::CheckPanelStatus("left"))
 		{
@@ -91,7 +91,7 @@ class WCFTemplates
 		return $panel_sql;
 	}
 
-	public function CheckPanelModule($modules,$module_list)
+	private function CheckPanelModule($modules,$module_list)
 	{
 		// определяем пути к файлам модулей, и заносим в массив для проверки панелей типа wc
 		$list_p = array(); $list_m = array();
@@ -122,7 +122,7 @@ class WCFTemplates
 
 	//=============================================================================================
 	// функция для включения панелей из модуля типа wc
-	public function IncludePanelWC($modules, $mlist, $pname)
+	private function IncludePanelWC($modules, $mlist, $pname)
 		{
 			for ($i=1;$i <= count($modules);$i++)
 				{
@@ -135,6 +135,51 @@ class WCFTemplates
 				}
 			if (file_exists($pfile)) { return $pfile; } else { return false; }
 		}
+
+	public function PanelDisplayArray($modules,$module_list)
+	{
+		$p_sql = false;
+		$p_arr = array(1 => false, 2 => false, 3 => false, 4 => false);
+
+		if ($p_sql = self::CheckPanelDisplay())
+		{
+			// выводим обычные панели
+			$p_res = WCF::$DB->db_query("SELECT `panel_filename`, `panel_side`, `panel_type` FROM ".DB_PANELS." WHERE `panel_status`='1'".$p_sql." ORDER BY `panel_side`, `panel_order`");
+			if (WCF::$DB->db_num_rows($p_res))
+			{
+				$current_side = 0;
+				while ($p_data = WCF::$DB->db_array($p_res))
+				{
+					if ($current_side == 0)
+					{
+						ob_start();
+						$current_side = $p_data['panel_side'];
+					}
+					if ($current_side > 0 && $current_side != $p_data['panel_side'])
+					{
+						$p_arr[$current_side] = ob_get_contents();
+						ob_end_clean();
+						$current_side = $p_data['panel_side'];
+						ob_start();
+					}
+					if ($p_data['panel_type'] == "file")
+					{
+						if (file_exists(PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php"))
+						{
+							include PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php";
+						}
+						elseif (($fpm = self::IncludePanelWC($modules,$module_list,$p_data['panel_filename'])) != false)
+						{
+							include $fpm;
+						}
+					}
+				}
+				$p_arr[$current_side] .= ob_get_contents();
+				ob_end_clean();
+			}
+		}
+		return $p_arr;
+	}
 }
 
 ?>
