@@ -31,7 +31,7 @@
 	elseif ((isset($_GET['action']) && $_GET['action'] == "logout") && (isset($_SESSION['user_id']) && WCF::isnum($_SESSION['user_id'])))
 		{
 			$txt_page = $txt['modul_setuser_logout'].$txt['modul_setuser_wait'].$txt_url;
-			if($AUTH->CloseSession())
+			if(WCF::$AUTH->CloseSession())
     				session_destroy();
 			$opening_page = BASEDIR.WCF::$settings['opening_page'];
 		}

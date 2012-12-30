@@ -18,6 +18,7 @@ class WCF
 	public static $DB = null;
 	public static $title = null;
 	public static $SMARTY = null;
+	public static $AUTH = null;
 
 	public static function InitializeWCF()
 	{
@@ -37,13 +38,12 @@ class WCF
 		{
 			die('<b>Error:</b> unable to load Smarty lib!');
 		}
+		if(!@include(BASEDIR.'include/class.auth.php'))
+		{
+			die('<b>Error:</b> unable to load Auth class!');
+		}
 
 		self::$SMARTY = new Smarty();
-		// Папки с шаблонами, кэшом шаблонов и настройками
-		//$SMARTY->template_dir = THEMES.WCF::$settings['theme'].'/phtml/';
-		//$SMARTY->compile_dir = BASEDIR.'cache/themes/'.WCF::$settings['theme'].'/';
-		self::$SMARTY->config_dir = BASEDIR.'/lang/';
-		self::$SMARTY->cache_dir = BASEDIR.'cache/';
 		// Режим отладки
 		$SMARTY->debugging = false;
 		// Разделители
@@ -53,7 +53,7 @@ class WCF
 		$SMARTY->caching = true;
 		$SMARTY->cache_lifetime = 10;
 
-
+		self::$AUTH = new WCFAuth();
 		self::$mysql = $WCFConfig['mysql'];
 		define("DB_PREFIX", self::$mysql['prefix']);
 		self::$settings = $WCFConfig['settings'];
@@ -68,12 +68,15 @@ class WCF
 		
 	}
 
-	public static function StartSmarty($dir_template, $dir_compile)
+	public static function StartSmarty($dir_template, $dir_compile,$dir_lang)
 	{
 		if (self::$SMARTY != null)
 		{
+			// Папки с шаблонами, кэшом шаблонов и настройками
 			self::$SMARTY->template_dir = $dir_template;
 			self::$SMARTY->compile_dir = $dir_compile;
+			self::$SMARTY->config_dir = $dir_lang;
+			self::$SMARTY->cache_dir = BASEDIR.'cache/';
 			return true;
 		}
 		return false;

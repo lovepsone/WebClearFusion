@@ -19,6 +19,7 @@ class WCFAuth
 	public $username;
 	public $password;
 	public $gmlvl;
+
 	public function AuthUser()
 	{
 		if(!$this->username || !$this->password)
