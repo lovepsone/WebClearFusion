@@ -11,34 +11,35 @@
 +--------------------------------------------------------*/
 
 	openside();
-	$result = WCF::$DB->db_query("SELECT `link_name`, `link_url`, `link_visibility` FROM ".DB_NAVIGATION_LINKS." WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`");
+	selectdb("wcf");
+	$result = db_query("SELECT `link_name`, `link_url`, `link_visibility` FROM ".DB_NAVIGATION_LINKS." WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`");
 
-	if (WCF::$DB->db_num_rows($result))
-	{
-		while($data = WCF::$DB->db_array($result))
+	if (db_num_rows($result))
 		{
-			if (check_user($data['link_visibility']))
-			{
-				echo"<tr><td width='100%' valign='middle'>";
-				if ($data['link_name'] != "---" && $data['link_url'] == "---")
+			while($data = db_array($result))
 				{
-					echo"<div class='side-label'><strong>".$data['link_name']."</strong></div>";
+					if (check_user($data['link_visibility']))
+						{
+							echo"<tr><td width='100%' valign='middle'>";
+							if ($data['link_name'] != "---" && $data['link_url'] == "---")
+								{
+									echo"<div class='side-label'><strong>".$data['link_name']."</strong></div>";
+								}
+							else if ($data['link_name'] == "---" && $data['link_url'] == "---")
+								{
+									echo"<hr class='side-hr' />";
+								}
+							else
+								{
+									echo" <a href='".BASEDIR.$data['link_url']."' class='side'>".$data['link_name']."</a>";
+								}
+							echo"</td></tr>";
+						}
 				}
-				else if ($data['link_name'] == "---" && $data['link_url'] == "---")
-				{
-					echo"<hr class='side-hr' />";
-				}
-				else
-				{
-					echo" <a href='".BASEDIR.$data['link_url']."' class='side'>".$data['link_name']."</a>";
-				}
-					echo"</td></tr>";
-				}
-			}
 		}
 	else
-	{
-		echo $txt['no_links'];
-	}
+		{
+			echo $txt['no_links'];
+		}
        	closeside();
 ?>

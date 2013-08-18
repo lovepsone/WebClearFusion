@@ -10,10 +10,10 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	if (WCF::$settings['serverintro'] != "")
+	if ($config['serverintro'] != "")
 		{
 			opentable();
-			echo stripslashes(WCF::$settings['serverintro']);
+			echo stripslashes($config['serverintro']);
 			closetable();
 		}
 ?>

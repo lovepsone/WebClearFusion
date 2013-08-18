@@ -16,39 +16,44 @@
 	if (isset($_GET['action']) && $_GET['action'] == "refresh")
 		{
 			$i = 1;
-			$result = WCF::$DB->db_query("SELECT * FROM ".DB_NAVIGATION_LINKS." ORDER BY `link_order`");
-			while ($data = WCF::$DB->db_array($result))
+			selectdb("wcf");
+			$result = db_query("SELECT * FROM ".DB_NAVIGATION_LINKS." ORDER BY `link_order`");
+			while ($data = db_array($result))
 				{
-					$result2 = WCF::$DB->db_query("UPDATE ".DB_NAVIGATION_LINKS." SET link_order='$i' WHERE link_id='".$data['link_id']."'");
+					$result2 = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET link_order='$i' WHERE link_id='".$data['link_id']."'");
 					$i++;
 				}
 			redirect(WCF_SELF);
 		}
 	elseif ((isset($_GET['action']) && $_GET['action'] == "moveup") && (isset($_GET['link_id']) && isnum($_GET['link_id'])))
 		{
-			$data = WCF::$DB->db_assoc(WCF::$DB->db_query("SELECT `link_id` FROM ".DB_NAVIGATION_LINKS." WHERE `link_order`='".intval($_GET['order'])."'"));
-			$result = WCF::$DB->db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order+1 WHERE `link_id`='".$data['link_id']."'");
-			$result = WCF::$DB->db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order-1 WHERE `link_id`='".$_GET['link_id']."'");
+			selectdb("wcf");
+			$data = db_assoc(db_query("SELECT `link_id` FROM ".DB_NAVIGATION_LINKS." WHERE `link_order`='".intval($_GET['order'])."'"));
+			$result = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order+1 WHERE `link_id`='".$data['link_id']."'");
+			$result = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order-1 WHERE `link_id`='".$_GET['link_id']."'");
 			redirect(WCF_SELF);
 		}
 	elseif ((isset($_GET['action']) && $_GET['action'] == "movedown") && (isset($_GET['link_id']) && isnum($_GET['link_id'])))
 		{
-			$data = WCF::$DB->db_assoc(WCF::$DB->db_query("SELECT `link_id` FROM ".DB_NAVIGATION_LINKS." WHERE `link_order`='".intval($_GET['order'])."'"));
-			$result = WCF::$DB->db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order-1 WHERE `link_id`='".$data['link_id']."'");
-			$result = WCF::$DB->db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order+1 WHERE `link_id`='".$_GET['link_id']."'");
+			selectdb("wcf");
+			$data = db_assoc(db_query("SELECT `link_id` FROM ".DB_NAVIGATION_LINKS." WHERE `link_order`='".intval($_GET['order'])."'"));
+			$result = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order-1 WHERE `link_id`='".$data['link_id']."'");
+			$result = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order+1 WHERE `link_id`='".$_GET['link_id']."'");
 			redirect(WCF_SELF);
 		}
 	elseif ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['link_id']) && isnum($_GET['link_id'])))
 		{
-			$data = WCF::$DB->db_assoc(WCF::$DB->db_query("SELECT `link_order` FROM ".DB_NAVIGATION_LINKS." WHERE `link_id`='".$_GET['link_id']."'"));
-			$result = WCF::$DB->db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order-1 WHERE `link_order`>'".$data['link_order']."'");
-			$result = WCF::$DB->db_query("DELETE FROM ".DB_NAVIGATION_LINKS." WHERE `link_id`='".$_GET['link_id']."'");
+			selectdb("wcf");
+			$data = db_assoc(db_query("SELECT `link_order` FROM ".DB_NAVIGATION_LINKS." WHERE `link_id`='".$_GET['link_id']."'"));
+			$result = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order-1 WHERE `link_order`>'".$data['link_order']."'");
+			$result = db_query("DELETE FROM ".DB_NAVIGATION_LINKS." WHERE `link_id`='".$_GET['link_id']."'");
 			redirect(WCF_SELF."?status=del");
 		}
 	else
 		{
 			if (isset($_POST['savelink']))
 					{
+						selectdb("wcf");
 						$link_name = stripinput($_POST['link_name']);
 						$link_url = stripinput($_POST['link_url']);
 						$link_visibility = isnum($_POST['link_visibility']) ? $_POST['link_visibility'] : "-1";
@@ -59,7 +64,7 @@
 							{
 								if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['link_id']) && isnum($_GET['link_id'])))
 									{
-										$old_link_order = WCF::$DB->db_result(WCF::$DB->db_query("SELECT `link_order` FROM ".DB_NAVIGATION_LINKS." WHERE `link_id`='".$_GET['link_id']."'"), 0);
+										$old_link_order = db_result(db_query("SELECT `link_order` FROM ".DB_NAVIGATION_LINKS." WHERE `link_id`='".$_GET['link_id']."'"), 0);
 		
 										if ($link_order > $old_link_order)
 											{
@@ -70,15 +75,15 @@
 												$result = dbquery("UPDATE ".DB_NAVIGATION_LINKS." SET `link_order`=link_order+1 WHERE `link_order`<'$old_link_order' AND `link_order`>='$link_order'");
 											}
 		
-										$result = WCF::$DB->db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_name`='$link_name', `link_url`='$link_url', `link_visibility`='$link_visibility', `link_position`='$link_position', `link_order`='$link_order' WHERE `link_id`='".$_GET['link_id']."'");
+										$result = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET `link_name`='$link_name', `link_url`='$link_url', `link_visibility`='$link_visibility', `link_position`='$link_position', `link_order`='$link_order' WHERE `link_id`='".$_GET['link_id']."'");
 										redirect(WCF_SELF."?status=su");
 									}
 								else
 									{
-										if (!$link_order) { $link_order = WCF::$DB->db_result(WCF::$DB->db_query("SELECT MAX(`link_order`) FROM ".DB_NAVIGATION_LINKS.""), 0) + 1; }
+										if (!$link_order) { $link_order = db_result(db_query("SELECT MAX(`link_order`) FROM ".DB_NAVIGATION_LINKS.""), 0) + 1; }
 		
-										$result = WCF::$DB->db_query("UPDATE ".DB_NAVIGATION_LINKS." SET link_order=link_order+1 WHERE link_order>='$link_order'");
-										$result = WCF::$DB->db_query("INSERT INTO ".DB_NAVIGATION_LINKS." (`link_name`, `link_url`, `link_visibility`, `link_position`, `link_order`) VALUES ('".$link_name."', '".$link_url."', '".$link_visibility."', '".$link_position."', '".$link_order."')");
+										$result = db_query("UPDATE ".DB_NAVIGATION_LINKS." SET link_order=link_order+1 WHERE link_order>='$link_order'");
+										$result = db_query("INSERT INTO ".DB_NAVIGATION_LINKS." (`link_name`, `link_url`, `link_visibility`, `link_position`, `link_order`) VALUES ('".$link_name."', '".$link_url."', '".$link_visibility."', '".$link_position."', '".$link_order."')");
 										redirect(WCF_SELF."?status=sn");
 									}
 							}
@@ -90,11 +95,12 @@
 
 			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['link_id']) && isnum($_GET['link_id'])))
 					{
-						$result = WCF::$DB->db_query("SELECT * FROM ".DB_NAVIGATION_LINKS." WHERE `link_id`='".$_GET['link_id']."'");
+						selectdb("wcf");
+						$result = db_query("SELECT * FROM ".DB_NAVIGATION_LINKS." WHERE `link_id`='".$_GET['link_id']."'");
 		
-						if (WCF::$DB->db_num_rows($result))
+						if (db_num_rows($result))
 							{
-								$data = WCF::$DB->db_assoc($result);
+								$data = db_assoc($result);
 								$link_name = $data['link_name'];
 								$link_url = $data['link_url'];
 								$link_order = $data['link_order'];
@@ -139,12 +145,13 @@
 			echo"<td align='center' width='25%' class='small' style='white-space:nowrap'><strong>".$txt['admin_slinks_settings_url']."</strong></td></tr>";
 			echo"<tr><td colspan='5'><hr></td></tr>";
 
-			$result = WCF::$DB->db_query("SELECT * FROM ".DB_NAVIGATION_LINKS." WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`");
-			if (WCF::$DB->db_num_rows($result))
+			selectdb("wcf");
+			$result = db_query("SELECT * FROM ".DB_NAVIGATION_LINKS." WHERE `link_position`='1' OR `link_position`='2' ORDER BY `link_order`");
+			if (db_num_rows($result))
 				{
 					$i = 0; $k = 1;
 		
-					while($data = WCF::$DB->db_array($result))
+					while($data = db_array($result))
 						{
 							echo"<tr><td class='tbl1'>";
 		
@@ -173,7 +180,7 @@
 							echo"<td align='center' width='1%' class='tbl1' style='white-space:nowrap'>".$data['link_order']."</td>";
 							echo"<td align='center' width='1%' class='tbl1' style='white-space:nowrap'>";
 		
-							if (WCF::$DB->db_num_rows($result) != 1)
+							if (db_num_rows($result) != 1)
 								{
 									$up = $data['link_order'] - 1;
 									$down = $data['link_order'] + 1;
@@ -182,7 +189,7 @@
 										{
 											echo"<a href='".WCF_SELF."?action=movedown&order=$down&link_id=".$data['link_id']."'>".$txt['down']."</a>";
 										}
-									elseif ($k < WCF::$DB->db_num_rows($result))
+									elseif ($k < db_num_rows($result))
 										{
 											echo"<a href='".WCF_SELF."?action=moveup&order=$up&link_id=".$data['link_id']."'>".$txt['up']."</a>";
 											echo"<a href='".WCF_SELF."?action=movedown&order=$down&link_id=".$data['link_id']."'>".$txt['down']."</a>";
@@ -204,7 +211,7 @@
 				{
 					echo"<tr><td align='center' colspan='5' class='small'>".$txt['admin_slinks_no_url']."</td></tr>";
 				}
-			if (WCF::$DB->db_num_rows($result)) { echo"<div style='text-align:center;margin-top:5px'>[ <a href='".WCF_SELF."?action=refresh'>".$txt['admin_slinks_refresh']."</a> ]</div>"; }
+			if (db_num_rows($result)) { echo"<div style='text-align:center;margin-top:5px'>[ <a href='".WCF_SELF."?action=refresh'>".$txt['admin_slinks_refresh']."</a> ]</div>"; }
 			closetable();
 		}
 

@@ -11,7 +11,5 @@
 +--------------------------------------------------------*/
 
 	require_once "maincore.php";
-
-	WCF::redirect(WCF::$settings['opening_page']);
-
+	redirect($config['opening_page']);
 ?>

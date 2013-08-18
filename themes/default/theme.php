@@ -19,6 +19,7 @@
 			global $config, $txt;
 
 			echo"<table cellpadding='0' cellspacing='0' width='100%'>";
+			//echo"<tr><td class='full-header' align='center'><img src='".THEMES."/".$config['theme']."/img/baners.png' alt='".$config['servername']."' style='border: 0;' /></td></tr>";
 			echo"<tr><td class='full-header' align='center'>".showbanners()."</td></tr>";
 			echo"</table>";
 
@@ -29,8 +30,7 @@
 			echo"</tr></table>";
 	
 			echo"<br><br>";
-			echo"<div class='copyright'><hr width='90%'><font size=-1>".WCF::$title['copyright']."</font></div><br>";
-
+			echo"<div class='copyright'><hr width='90%'><font size=-1>".$config['copyright']."</font></div><br>";
 		}
 
 	//==========================================

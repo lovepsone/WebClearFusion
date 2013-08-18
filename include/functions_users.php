@@ -10,6 +10,27 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	function check_kcaptcha_enable()
+		{
+	  		global $config, $_SESSION, $_POST;
+
+			if ($config['kcaptcha_enable_auth'] == 1)
+   				{
+		    			if (isset($_SESSION['captcha_keystring']) && isset($_POST['kapcha_code']) && (strtolower($_SESSION['captcha_keystring']) == strtolower($_POST['kapcha_code'])))
+		       				{
+		       					return 1;
+		       				}
+		    			else 
+						{
+							return 0;
+						}
+   				}
+			elseif ($config['kcaptcha_enable_auth'] == 0)
+				{
+					return 1;
+				}
+		}
+
 	function check_user($visibility)
 		{
 	  		global $_SESSION;

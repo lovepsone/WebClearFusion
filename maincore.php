@@ -11,7 +11,14 @@
 +--------------------------------------------------------*/
 
 	if (preg_match("/maincore.php/i", $_SERVER['PHP_SELF'])) { die(); }
+
 	error_reporting(E_ALL);
+	ini_set('display_errors',0);
+
+	//=============================================================================================================
+	// Предотвращения возможных атак через XSS $_GET.
+	//=============================================================================================================
+	if (stripget($_GET)) { die("Prevented a XSS attack through a GET variable!"); }
 
 	//=============================================================================================================
 	// Запускаем сессию\Start the session
@@ -28,56 +35,45 @@
 		$folder_level .= "../"; $i++;
 		if ($i == 7) { die("Config file not found"); }
 	}
+	require_once $folder_level."conf.php";
+	//require_once $folder_level."include/load_wcf.php";
 	define("BASEDIR", $folder_level);
 
 	//=============================================================================================================
-	// Запускаем основные функции и классы\Run the basic functions and classes
+	// Запускаем основные функции и многоузловое определение\Run the basic functions and determination of multisite
 	//=============================================================================================================
-	if(!@include(BASEDIR.'include/class.wcf.php'))
-		die('<b>Error:</b> unable to load WCF class!');
-	
-	WCF::InitializeWCF();
 
-	if (@!include(BASEDIR.'include/defines.php'))
-		die('<b>Error:</b> unable to load defines.php!');
-
-	if(!@include(BASEDIR.'include/revision_nr.php'))
-		die('<b>Error:</b> unable to load revision file!');
-
-	//=============================================================================================================
-	// Проверяем DbVersion,revision,config version\Check DbVersion,revision,config version
-	//=============================================================================================================
-	$dbVersion = WCF::$DB->db_assoc(WCF::$DB->db_query("SELECT * FROM ".DB_VERSIONS));
-	$dbVer = $dbVersion['version'];
-	$errorDBVersion = sprintf('Current version is %s but expected %s.<br />
-		Apply all neccessary updates from \'sql/updates\' folder and refresh this page.',($dbVer) ? "'" . $dbVer . "'" : 'not defined', "'" . DB_VERSION . "'");
-	if($dbVersion['version'] != DB_VERSION)
-		die($errorDBVersion);
-
-	if(!defined('WCF_REVISION'))
-		die('<b>Revision error:</b> unable to detect WCF revision!');
-
-	if(!defined('CONFIG_VERSION') || !isset(WCF::$settings['configVersion']))
-		die('<b>ConfigVersion error:</b> unable to detect Configuration version!');
-
-	//=============================================================================================================
-	// Предотвращения возможных атак через XSS $_GET.
-	//=============================================================================================================
-	if (WCF::stripget($_GET)) { die("Prevented a XSS attack through a GET variable!"); }
-
-// временно подгружаем остальное
-require BASEDIR."include/functions_theme.php";
-require BASEDIR."include/functions_users.php";
-require BASEDIR."include/functions_page.php";
-require BASEDIR."include/functions_img.php";
-require BASEDIR."include/functions_files.php";
-require BASEDIR."include/functions_text_process.php";
-
+	if (@!include(BASEDIR.'include/classes/class.debug.php'))
+	{
+		die('No include/classes/class.debug');
+	}
+	else
+	{
+		$DEBUGS = new WCFDebug($config);
+		if (@!include(BASEDIR.'include/include_multi_site.php'))
+			$DEBUGS -> writeError('include_multi_site');
+		if (@!include(BASEDIR.'include/functions_files.php'))
+			$DEBUGS -> writeError('functions_files');
+		if (@!include(BASEDIR.'include/functions_img.php'))
+			$DEBUGS -> writeError('functions_img');
+		if (@!include(BASEDIR.'include/functions_mysql.php'))
+			$DEBUGS -> writeError('functions_mysql');
+		if (@!include(BASEDIR.'include/functions_page.php'))
+			$DEBUGS -> writeError('functions_page');
+		if (@!include(BASEDIR.'include/functions_text_process.php'))
+			$DEBUGS -> writeError('functions_text_process');
+		if (@!include(BASEDIR.'include/functions_theme.php'))
+			$DEBUGS -> writeError('functions_theme');
+		if (@!include(BASEDIR.'include/functions_users.php'))
+			$DEBUGS -> writeError('functions_users');
+		if (@!include(BASEDIR.'include/include_access_list.php'))
+			$DEBUGS -> writeError('include_access_list');
+	}
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup
 	//=============================================================================================================
-	$_SERVER['QUERY_STRING'] = isset($_SERVER['QUERY_STRING']) ? WCF::cleanurl($_SERVER['QUERY_STRING']) : "";
-	$_SERVER['PHP_SELF'] = WCF::cleanurl($_SERVER['PHP_SELF']);
+	$_SERVER['QUERY_STRING'] = isset($_SERVER['QUERY_STRING']) ? cleanurl($_SERVER['QUERY_STRING']) : "";
+	$_SERVER['PHP_SELF'] = cleanurl($_SERVER['PHP_SELF']);
 
 	define("IN_WCF", TRUE);
 	define("WCF_QUERY", isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : "");
@@ -86,79 +82,139 @@ require BASEDIR."include/functions_text_process.php";
 	//=============================================================================================================
 	// Запускаем настройки\Run the setup
 	//=============================================================================================================
-	$result = WCF::$DB->db_query("SELECT * FROM ".DB_SETTINGS);
+	selectdb("wcf");
+	$result = db_query("SELECT * FROM ".DB_SETTINGS."");
 	if ($result)
 	{
-		while ($data = WCF::$DB->db_array($result))
+		while ($data = db_array($result))
 		{
-			WCF::$settings[$data['settings_name']] = $data['settings_value'];
+			$config[$data['settings_name']] = $data['settings_value'];
 		}
 	}
-
 	else { die("Settings do not exist or no connection to base mysql. May not correctly configured conf.php."); }
 
-	//=============================================================================================================
-	// Проверка на стандартные панели\Check for standard panels
-	//=============================================================================================================
-	$result = WCF::$DB->db_query("SELECT `panel_status` FROM ".DB_PANELS." WHERE `panel_filename`='user_info_panel'");
-	if(WCF::$DB->db_num_rows($result) == 0)
-		die('<b>Panel error:</b> the DB is not the standard panel[user_info_panel]');
-	$data = WCF::$DB->db_assoc($result);
-	if(!$data['panel_status'])
-		die('<b>Panel error:</b> user_info_panel panel not included');
+	require_once BASEDIR."include/include_auth.php";
+	require_once BASEDIR."include/include_protect.php";
 
 	//=============================================================================================================
 	// Выбор нужной кодировки\When choosing a character encoding
 	//=============================================================================================================
-	if (WCF::$settings['encoding'] == 'cp1251') { WCF::$settings['code_page'] = 'windows-1251'; } else { WCF::$settings['code_page'] = 'utf-8'; }
+	if ($config['encoding'] == 'cp1251') { $code_page = 'windows-1251'; } else { $code_page = 'utf-8'; }
+	$DEBUGS -> writeLog('Encoding %s', $code_page);
 
 	//=============================================================================================================
 	// Выбор нужного языка\Choosing the right language
 	//=============================================================================================================
-	//if (isset($_GET['lang'])) { $config['lang'] = $_GET['lang']; } else { $_SESSION['lang'] = $config['lang']; }
-	//if ($config['lang']) { require BASEDIR."lang/".$config['lang']."/".$config['encoding']."/text.php"; }
-	require BASEDIR."lang/".WCF::$settings['lang']."/".WCF::$settings['encoding']."/text.php";
+	if (isset($_GET['lang'])) { $config['lang'] = $_GET['lang']; } else { $_SESSION['lang'] = $config['lang']; }
+	if ($config['lang']) { require BASEDIR."lang/".$config['lang']."/".$config['encoding']."/text.php"; }
+	$DEBUGS -> writeLog('Lang %s', $_SESSION['lang']);
 
 	//=============================================================================================================
 	// Установка нужной темы\Setting the right topic
 	//=============================================================================================================
-	WCF::$settings['themefile'] = THEMES.WCF::$settings['theme']."/theme.php";
-	WCF::$settings['cssfile'] = THEMES.WCF::$settings['theme']."/style.css";
+	$cssfile = THEMES.$config['theme']."/style.css";
+	$themefile = THEMES.$config['theme']."/theme.php";
 
-	if (!file_exists(WCF::$settings['themefile']) && !file_exists(WCF::$settings['cssfile']))
+	if (file_exists($themefile))
 	{
-		WCF::Log()->writeError('maincore: unable to load [themefile:%s] and [cssfile:%s]',WCF::$settings['themefile'],WCF::$settings['cssfile']);
-		WCF::$settings['themefile'] = THEMES."default/theme.php";
-		WCF::$settings['cssfile'] = THEMES."default/style.css";
-
+		$DEBUGS -> writeLog('Theme sucessful loading %s ', $config['theme']);
+		include($themefile);
 	}
-	@include(WCF::$settings['themefile']);
-
-
-	if(!@include(BASEDIR.'include/class.templates.php'))
-		die('<b>Error:</b> unable to load Templates class!');
 	else
-		$TEMPLATES = new WCFTemplates();
+	{
+		$DEBUGS -> writeError('Theme error loading %s', $config['theme']);
+		include(THEMES."default/theme.php");
+	}
+	if (!file_exists($cssfile)) { $cssfile = THEMES."default/style.css"; }
+
+//=====================================================================================================================
+// Ниже представлены функции защиты и работы сайта\Below are the security features of the site and
+//=====================================================================================================================
 
 	//=============================================================================================================
-	// подгружаем остальное\To loading
+	// Предотвращения возможных атак через XSS $_GET.
 	//=============================================================================================================
-	if (isset($_POST['auth_name']) && isset($_POST['auth_pass'])) 
-   	{
-		WCF::$AUTH->username = $_POST['auth_name'];
-		WCF::$AUTH->password = $_POST['auth_pass'];
-
-		if(WCF::$settings['kcaptcha_enable_auth'] == 1)
-			WCF::$AUTH->post_kcaptcha = $_POST['kapcha_code'];
-		if(WCF::$AUTH->AuthUser())
-			WCF::redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=auth");
+	function stripget($check_url)
+	{
+		$return = false;
+		if (is_array($check_url))
+		{
+			foreach ($check_url as $value)
+			{
+				$return = stripget($value);
+				if ($return == true) { return true; }
+			}
+		}
 		else
-			WCF::redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=error");
+		{
+			$check_url = str_replace("\"", "", $check_url);
+			$check_url = str_replace("\'", "", $check_url);
+
+			if ((preg_match("/<[^>]*script*\"?[^>]*>/i", $check_url)) || (preg_match("/<[^>]*object*\"?[^>]*>/i", $check_url)) ||
+			(preg_match("/<[^>]*iframe*\"?[^>]*>/i", $check_url)) || (preg_match("/<[^>]*applet*\"?[^>]*>/i", $check_url)) ||
+			(preg_match("/<[^>]*meta*\"?[^>]*>/i", $check_url)) || (preg_match("/<[^>]*style*\"?[^>]*>/i", $check_url)) ||
+			(preg_match("/<[^>]*form*\"?[^>]*>/i", $check_url)) || (preg_match("/\([^>]*\"?[^)]*\)/i", $check_url)))
+			{
+				$return = true;
+			}
+		}
+		return $return;
 	}
 
+	//=============================================================================================
+	// Функция перенаправляющая на $location страницу 
+	function redirect($location, $script = false)
+	{
+		if (!$script)
+		{
+			header("Location: ".str_replace("&amp;", "&", $location));
+			exit;
+		}
+		else
+		{
+			echo "<script type='text/javascript'>document.location.href='".str_replace("&amp;", "&", $location)."'</script>\n";
+			exit;
+		}
+	}
 
+	//=============================================================================================================
+	// Функция чистит URL, предотвращает сбой в глобальных переменных
+	//=============================================================================================================
+	function cleanurl($url)
+	{
+		$bad_entities = array("&", "\"", "'", '\"', "\'", "<", ">", "(", ")", "*");
+		$safe_entities = array("&amp;", "", "", "", "", "", "", "", "", "");
+		$url = str_replace($bad_entities, $safe_entities, $url);
+		return $url;
+	}
 
-	WCF::StartSmarty(THEMES.WCF::$settings['theme'].'/phtml/', BASEDIR.'cache/themes/'.WCF::$settings['theme'].'/', BASEDIR.'lang/');
+	//=============================================================================================================
+	// Функция проверяет ввод чисел
+	//=============================================================================================================
+	function isnum($value)
+	{
+		if (!is_array($value))
+		{
+			return (preg_match("/^[0-9]+$/", $value));
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	//=============================================================================================================
+	// Trim a line of text to a preferred length
+	//=============================================================================================================
+	function trimlink($text, $length)
+	{
+		$dec = array("&", "\"", "'", "\\", '\"', "\'", "<", ">");
+		$enc = array("&amp;", "&quot;", "&#39;", "&#92;", "&quot;", "&#39;", "&lt;", "&gt;");
+		$text = str_replace($enc, $dec, $text);
+		if (strlen($text) > $length) $text = substr($text, 0, ($length-3))."...";
+		$text = str_replace($dec, $enc, $text);
+		return $text;
+	}
 
 	//=============================================================================================================
 	// Подключаем модули\Include in modules

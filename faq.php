@@ -16,18 +16,18 @@
 	if (!isset($_GET['cat_id']) || !isnum($_GET['cat_id']))
 		{
 			opentable();
-			$result = WCF::$DB->db_query("SELECT `faq_cat_id`, `faq_cat_name`, `faq_cat_description` FROM ".DB_FAQ_CATS." ORDER BY `faq_cat_name`");
-			$rows = WCF::$DB->db_num_rows($result);
+			$result = db_query("SELECT `faq_cat_id`, `faq_cat_name`, `faq_cat_description` FROM ".DB_FAQ_CATS." ORDER BY `faq_cat_name`");
+			$rows = db_num_rows($result);
 			if ($rows)
 				{
 					$columns = 2; $i = 0;
 					echo"<tr>";
 
-					while($data = WCF::$DB->db_array($result))
+					while($data = db_array($result))
 						{
 							if ($i != 0 && ($i % $columns == 0)) { echo"</tr><tr>"; }
 
-							$num = WCF::$DB->db_count("(faq_id)", DB_FAQS, "faq_cat_id='".$data['faq_cat_id']."'");
+							$num = db_count("(faq_id)", DB_FAQS, "faq_cat_id='".$data['faq_cat_id']."'");
 
 							echo"<td valign='top' align='center'><a href='".WCF_SELF."?cat_id=".$data['faq_cat_id']."'><b>".$data['faq_cat_name']."</b></a> <span class='small2'>($num)</span>";
 							if ($data['faq_cat_description'])
@@ -47,23 +47,23 @@
 		}
 	else
 		{
-			if ($data = WCF::$DB->db_assoc(WCF::$DB->db_query("SELECT `faq_cat_name` FROM ".DB_FAQ_CATS." WHERE `faq_cat_id`='".$_GET['cat_id']."'")))
+			if ($data = db_assoc(db_query("SELECT `faq_cat_name` FROM ".DB_FAQ_CATS." WHERE `faq_cat_id`='".$_GET['cat_id']."'")))
 				{
 					opentable();
 					echo"<tr><td class='tbl2'><a href='".WCF_SELF."'>".$txt['faq_name']."</a> &gt;";
 					echo"<a href='".WCF_SELF."?cat_id=".$_GET['cat_id']."'>".$data['faq_cat_name']."</a></td>";
 					echo"</tr>";
 
-					$rows = WCF::$DB->db_count("(faq_id)", DB_FAQS, "faq_cat_id='".$_GET['cat_id']."'");
+					$rows = db_count("(faq_id)", DB_FAQS, "faq_cat_id='".$_GET['cat_id']."'");
 					if ($rows)
 						{
 							$i = 0; $ii = 1; $columns = 4; $faq_content = "";
 							echo"<tr>";
 
-							$result = WCF::$DB->db_query("SELECT `faq_id`, `faq_question`, `faq_answer` FROM ".DB_FAQS." WHERE `faq_cat_id`='".$_GET['cat_id']."' ORDER BY `faq_question`");
-							$numrows = WCF::$DB->db_num_rows($result);
+							$result = db_query("SELECT `faq_id`, `faq_question`, `faq_answer` FROM ".DB_FAQS." WHERE `faq_cat_id`='".$_GET['cat_id']."' ORDER BY `faq_question`");
+							$numrows = db_num_rows($result);
 
-							while ($data = WCF::$DB->db_array($result))
+							while ($data = db_array($result))
 								{
 									if ($i != 0 && ($i % $columns == 0)) { echo"</tr><tr>"; }
 									echo"<td class='tbl1' width='25%'><a href='#faq_".$data['faq_id']."'>".$data['faq_question']."</a></td>";

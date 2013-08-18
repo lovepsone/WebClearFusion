@@ -18,33 +18,36 @@
 			$sections_name = trim(stripinput($_POST['sections_name']));
 			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['forum_id']) && isnum($_GET['forum_id'])) && (isset($_GET['type']) && $_GET['type'] == "sections"))
 				{
-					$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_name`='$sections_name' WHERE `forum_id`='".$_GET['forum_id']."'");
+					selectdb("wcf");
+					$result = db_query("UPDATE ".DB_FORUMS." SET `forum_name`='$sections_name' WHERE `forum_id`='".$_GET['forum_id']."'");
 					redirect(WCF_SELF."?status=savecu");
 				}
 			else
 				{
 					if ($sections_name)
 						{
+							selectdb("wcf");
 							$sections_order = isnum($_POST['sections_order']) ? $_POST['sections_order'] : "";
 							if(!$sections_order)
 								{
-									$sections_order = WCF::$DB->db_result(WCF::$DB->db_query("SELECT MAX(forum_order) FROM ".DB_FORUMS." WHERE `forum_sections`='0'"),0)+1;
+									$sections_order = db_result(db_query("SELECT MAX(forum_order) FROM ".DB_FORUMS." WHERE `forum_sections`='0'"),0)+1;
 								}
-							$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET forum_order=forum_order+1 WHERE `forum_sections`='0' AND `forum_order`>='$sections_order'");
-							$result = WCF::$DB->db_query("INSERT INTO ".DB_FORUMS." (`forum_sections`, `forum_order`, `forum_name`) VALUES ('0', '$sections_order', '$sections_name')");
+							$result = db_query("UPDATE ".DB_FORUMS." SET forum_order=forum_order+1 WHERE `forum_sections`='0' AND `forum_order`>='$sections_order'");
+							$result = db_query("INSERT INTO ".DB_FORUMS." (`forum_sections`, `forum_order`, `forum_name`) VALUES ('0', '$sections_order', '$sections_name')");
 							redirect(WCF_SELF."?status=savecn");
 						}
 				}
 		}
 	elseif (isset($_POST['save_forum']))
 		{
+			selectdb("wcf");
 			$forum_name = trim(stripinput($_POST['forum_name']));
 			$forum_description = trim(stripinput($_POST['forum_description']));
 			$forum_sections = isnum($_POST['forum_sections']) ? $_POST['forum_sections'] : 0;
 
 			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['forum_id']) && isnum($_GET['forum_id'])) && (isset($_GET['type']) && $_GET['type'] == "forum"))
 				{
-					$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET  `forum_sections`='$forum_sections', `forum_name`='$forum_name', `forum_description`='$forum_description' WHERE `forum_id`='".$_GET['forum_id']."'");
+					$result = db_query("UPDATE ".DB_FORUMS." SET  `forum_sections`='$forum_sections', `forum_name`='$forum_name', `forum_description`='$forum_description' WHERE `forum_id`='".$_GET['forum_id']."'");
 					redirect(WCF_SELF."?status=savefu");
 				}
 			else
@@ -54,10 +57,10 @@
 							$forum_order = isnum($_POST['forum_order']) ? $_POST['forum_order'] : "";
 							if(!$forum_order)
 								{
-									$forum_order = WCF::$DB->db_result(db_query("SELECT MAX(forum_order) FROM ".DB_FORUMS." WHERE `forum_sections`='$forum_sections'"),0)+1;
+									$forum_order = db_result(db_query("SELECT MAX(forum_order) FROM ".DB_FORUMS." WHERE `forum_sections`='$forum_sections'"),0)+1;
 								}
-							$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_sections`='$forum_sections' AND `forum_order`>='$forum_order'");
-							$result = WCF::$DB->db_query("INSERT INTO ".DB_FORUMS." (`forum_sections`, `forum_order`, `forum_name`, `forum_description`) VALUES ('$forum_sections', '$forum_order', '$forum_name', '$forum_description')");
+							$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_sections`='$forum_sections' AND `forum_order`>='$forum_order'");
+							$result = db_query("INSERT INTO ".DB_FORUMS." (`forum_sections`, `forum_order`, `forum_name`, `forum_description`) VALUES ('$forum_sections', '$forum_order', '$forum_name', '$forum_description')");
 							redirect(WCF_SELF."?status=savefn");
 						}
 					else
@@ -68,43 +71,46 @@
 		}
 	elseif ((isset($_GET['action']) && $_GET['action'] == "mu") && (isset($_GET['forum_id']) && isnum($_GET['forum_id'])) && (isset($_GET['order']) && isnum($_GET['order'])))
 		{
+			selectdb("wcf");
 			if (isset($_GET['type']) && $_GET['type'] == "sections")
 				{
-					$data = WCF::$DB->db_array(db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='0' AND `forum_order`='".$_GET['order']."'"));
-					$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_id`='".$data['forum_id']."'");
-					$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_id`='".$_GET['forum_id']."'");
+					$data = db_array(db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='0' AND `forum_order`='".$_GET['order']."'"));
+					$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_id`='".$data['forum_id']."'");
+					$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_id`='".$_GET['forum_id']."'");
 				}
 			elseif ((isset($_GET['type']) && $_GET['type'] == "forum") && (isset($_GET['sections']) && isnum($_GET['sections'])))
 				{
-					$data = WCF::$DB->db_array(db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='".$_GET['sections']."' AND `forum_order`='".$_GET['order']."'"));
-					$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_id`='".$data['forum_id']."'");
-					$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_id`='".$_GET['forum_id']."'");
+					$data = db_array(db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='".$_GET['sections']."' AND `forum_order`='".$_GET['order']."'"));
+					$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_id`='".$data['forum_id']."'");
+					$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_id`='".$_GET['forum_id']."'");
 				}
 			redirect(WCF_SELF);
 		}
 	elseif ((isset($_GET['action']) && $_GET['action'] == "md") && (isset($_GET['forum_id']) && isnum($_GET['forum_id'])) && (isset($_GET['order']) && isnum($_GET['order'])))
 		{
+			selectdb("wcf");
 			if (isset($_GET['type']) && $_GET['type'] == "sections")
 				{
-					$data = WCF::$DB->db_array(db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='0' AND `forum_order`='".$_GET['order']."'"));
-					$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_id`='".$data['forum_id']."'");
-					$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_id`='".$_GET['forum_id']."'");
+					$data = db_array(db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='0' AND `forum_order`='".$_GET['order']."'"));
+					$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_id`='".$data['forum_id']."'");
+					$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_id`='".$_GET['forum_id']."'");
 				}
 			elseif ((isset($_GET['type']) && $_GET['type'] == "forum") && (isset($_GET['sections']) && isnum($_GET['sections'])))
 				{
-					$data = WCF::$DB->db_array(db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='".$_GET['sections']."' AND `forum_order`='".$_GET['order']."'"));
-					$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_id`='".$data['forum_id']."'");
-					$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_id`='".$_GET['forum_id']."'");
+					$data = db_array(db_query("SELECT `forum_id` FROM ".DB_FORUMS." WHERE `forum_sections`='".$_GET['sections']."' AND `forum_order`='".$_GET['order']."'"));
+					$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_id`='".$data['forum_id']."'");
+					$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order+1 WHERE `forum_id`='".$_GET['forum_id']."'");
 				}
 			redirect(WCF_SELF);
 		}
 	elseif ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['forum_id']) && isnum($_GET['forum_id'])) && (isset($_GET['type']) && $_GET['type'] == "sections"))
 		{
-			if (!WCF::$DB->db_count("(forum_id)", DB_FORUMS, "forum_sections='".$_GET['forum_id']."'"))
+			selectdb("wcf");
+			if (!db_count("(forum_id)", DB_FORUMS, "forum_sections='".$_GET['forum_id']."'"))
 				{
-					$data = WCF::$DB->db_array(db_query("SELECT forum_order FROM ".DB_FORUMS." WHERE forum_id='".$_GET['forum_id']."'"));
-					$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_sections`='0' AND `forum_order`>'".$data['forum_order']."'");
-					$result = WCF::$DB->db_query("DELETE FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'");
+					$data = db_array(db_query("SELECT forum_order FROM ".DB_FORUMS." WHERE forum_id='".$_GET['forum_id']."'"));
+					$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_sections`='0' AND `forum_order`>'".$data['forum_order']."'");
+					$result = db_query("DELETE FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'");
 					redirect(WCF_SELF."?status=delcy");
 				}
 			else
@@ -114,11 +120,12 @@
 		}
 	elseif ((isset($_GET['action']) && $_GET['action'] == "delete") && (isset($_GET['forum_id']) && isnum($_GET['forum_id'])) && (isset($_GET['type']) && $_GET['type'] == "forum"))
 		{
-			if (!WCF::$DB->db_count("(thread_id)", DB_FORUMS_THREADS, "forum_id='".$_GET['forum_id']."'"))
+			selectdb("wcf");
+			if (!db_count("(thread_id)", DB_FORUMS_THREADS, "forum_id='".$_GET['forum_id']."'"))
 				{
-					$data = WCF::$DB->db_array(db_query("SELECT `forum_sections` FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'"));
-					$result = WCF::$DB->db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_sections`='".$data['forum_sections']."' AND `forum_order`>'".$data['forum_order']."'");
-					$result = WCF::$DB->db_query("DELETE FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'");
+					$data = db_array(db_query("SELECT `forum_sections` FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'"));
+					$result = db_query("UPDATE ".DB_FORUMS." SET `forum_order`=forum_order-1 WHERE `forum_sections`='".$data['forum_sections']."' AND `forum_order`>'".$data['forum_order']."'");
+					$result = db_query("DELETE FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'");
 					redirect(WCF_SELF."?status=delfy");
 				}
 			else
@@ -128,14 +135,15 @@
 		}
 	else
 		{
+			selectdb("wcf");
 			if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_GET['forum_id']) && isnum($_GET['forum_id'])))
 				{
 					if (isset($_GET['type']) && $_GET['type'] == "sections")
 						{
-							$result = WCF::$DB->db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'");
-							if (WCF::$DB->db_num_rows($result))
+							$result = db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'");
+							if (db_num_rows($result))
 								{
-									$data = WCF::$DB->db_array($result);
+									$data = db_array($result);
 									$sections_title = $txt['admin_forumedit_edit_f_s'];
 									$sections_name = $data['forum_name'];
 								}
@@ -146,10 +154,10 @@
 						}
 					elseif (isset($_GET['type']) && $_GET['type'] == "forum")
 						{
-							$result = WCF::$DB->db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'");
-							if (WCF::$DB->db_num_rows($result))
+							$result = db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_id`='".$_GET['forum_id']."'");
+							if (db_num_rows($result))
 								{
-									$data = WCF::$DB->db_array($result);
+									$data = db_array($result);
 									$forum_title = $txt['admin_forumedit_edit_f_f'];
 									$forum_name = $data['forum_name'];
 									$forum_description = $data['forum_description'];
@@ -196,11 +204,12 @@
 				{
 					$forum_opts = "";
 		
-					$result2 = WCF::$DB->db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_sections`='0' ORDER BY `forum_order`");
+					selectdb("wcf");
+					$result2 = db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_sections`='0' ORDER BY `forum_order`");
 		
-					if (WCF::$DB->db_num_rows($result2))
+					if (db_num_rows($result2))
 						{
-							while ($data2 = WCF::$DB->db_array($result2))
+							while ($data2 = db_array($result2))
 								{
 									$forum_opts .= "<option value='".$data2['forum_id']."'>".$data2['forum_name']."</option>";
 								}
@@ -237,10 +246,12 @@
 			//======================================================
 			// 3-я форма связана с позициями разделов и форумов
 			$i = 1; $k = 1;
-			$result = WCF::$DB->db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_sections`='0' ORDER BY `forum_order`");
+		
+			selectdb("wcf");
+			$result = db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_sections`='0' ORDER BY `forum_order`");
 		
 		
-			if (WCF::$DB->db_num_rows($result) != 0)
+			if (db_num_rows($result) != 0)
 				{
 					opentable();
 		   			echo"<tr><th width='60%' class='forum-caption'>".$txt['admin_forumedit_cat_or_forum']."</th>";
@@ -249,14 +260,14 @@
 					echo"<th width='10%' class='forum-caption'>".$txt['admin_forumedit_options']."</th></tr>";
 		
 					$i = 1;
-					while ($data = WCF::$DB->db_array($result))
+					while ($data = db_array($result))
 						{
 							echo"<tr><td colspan='4'><hr></td></tr>";
 							echo"<tr><td width='60%' class='small'><strong>".$data['forum_name']."</strong></td>";
 							echo"<td align='center' width='5%' class='small'>".$data['forum_order']."</td>";
 							echo"<td align='center' width='21%' class='small'>";
 		
-							if (WCF::$DB->db_num_rows($result) != 1)
+							if (db_num_rows($result) != 1)
 								{
 									$up = $data['forum_order'] - 1;
 									$down = $data['forum_order'] + 1;
@@ -265,7 +276,7 @@
 										{
 											echo"<a href='".WCF_SELF."?type=sections&action=md&order=".$down."&forum_id=".$data['forum_id']."'>".$txt['down']."</a>";
 										}
-									elseif ($i < WCF::$DB->db_num_rows($result))
+									elseif ($i < db_num_rows($result))
 										{
 											echo"<a href='".WCF_SELF."?type=sections&action=mu&order=$up&forum_id=".$data['forum_id']."'>".$txt['up']."</a>";
 											echo"<a href='".WCF_SELF."?type=sections&action=md&order=$down&forum_id=".$data['forum_id']."'>".$txt['down']."</a>";
@@ -283,12 +294,12 @@
 							echo"<a href='".WCF_SELF."?type=sections&action=delete&forum_id=".$data['forum_id']."'>".$txt['admin_forumedit_del']."</a></td></tr>";
 							echo"<tr><td colspan='4'><hr></td></tr>";
 		
-							$result2 = WCF::$DB->db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_sections`='".$data['forum_id']."' ORDER BY `forum_order`");
+							$result2 = db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_sections`='".$data['forum_id']."' ORDER BY `forum_order`");
 		
-							if (WCF::$DB->db_num_rows($result2))
+							if (db_num_rows($result2))
 								{
 									$k = 1;
-									while ($data2 = WCF::$DB->db_array($result2))
+									while ($data2 = db_array($result2))
 										{
 											echo"<tr><td class='tbl1' width='60%'><span class='alt'>".$data2['forum_name']."</span>";
 											echo"[<a href='".WCF_SELF."?action=prune&forum_id=".$data2['forum_id']."'>".$txt['admin_forumedit_cleaning']."</a>]<br>";
@@ -296,7 +307,7 @@
 											echo"<td align='center' width='5%' class='tbl2'>".$data2['forum_order']."</td>";
 											echo"<td align='center' width='21%' class='tbl1'>";
 		
-											if (WCF::$DB->db_num_rows($result2) != 1)
+											if (db_num_rows($result2) != 1)
 												{
 													$up = $data2['forum_order'] - 1;
 													$down = $data2['forum_order'] + 1;
@@ -305,7 +316,7 @@
 														{
 															echo"<a href='".WCF_SELF."?type=forum&action=md&order=$down&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".$txt['down']."</a>";
 														}
-													elseif ($k < WCF::$DB->db_num_rows($result2))
+													elseif ($k < db_num_rows($result2))
 														{
 															echo"<a href='".WCF_SELF."?type=forum&action=mu&order=$up&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".$txt['up']."</a>";
 															echo"<a href='".WCF_SELF."?type=forum&action=md&order=$down&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".$txt['down']."</a>";

@@ -17,7 +17,7 @@
 	//==================================================================
 	// Верхнее меню
 	opentable();
-	echo"<th colspan='4'>".$txt['menu_auth_admin']." - v".WCF::$title['revision_admin']."</th>";
+	echo"<th colspan='4'>".$txt['menu_auth_admin']." - v".$config['rev_admin']."</th>";
 	echo"<tr><td align='center' colspan='5'><table><tr>";
 	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?contet'>".$txt['menu_admin_content']."</a></strong></span></td>";
 	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?users'>".$txt['menu_admin_users']."</a></strong></span></td>";
@@ -31,13 +31,13 @@
 	$kol_string = 5;
 
 	for ($i = 1; $i < $kol_string; $i++)
-	{
-		if (isset($_GET['contet'])) { admin_page(1,$i,$admin_list); }
-		elseif (isset($_GET['users'])) { admin_page(2,$i,$admin_list); }
-		elseif (isset($_GET['system'])) { admin_page(3,$i,$admin_list); }
-		elseif (isset($_GET['plants'])) { admin_page(4,$i,$admin_list); }
-		elseif (isset($_GET['module'])) { admin_page(5,$i,$admin_list); }
-	}
+		{
+			if (isset($_GET['contet'])) { admin_page(1,$i,$admin_list); }
+			elseif (isset($_GET['users'])) { admin_page(2,$i,$admin_list); }
+			elseif (isset($_GET['system'])) { admin_page(3,$i,$admin_list); }
+			elseif (isset($_GET['plants'])) { admin_page(4,$i,$admin_list); }
+			elseif (isset($_GET['module'])) { admin_page(5,$i,$admin_list); }
+		}
 	closetable();
 
 	require_once THEMES."templates/footer.php";

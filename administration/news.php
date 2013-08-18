@@ -25,7 +25,8 @@
 		
 					if ((isset($_POST['news_subject']) && $_POST['news_subject'] != "") AND (isset($_POST['news_text']) && $_POST['news_text'] != "") AND (isset($_POST['news_text_ext']) && $_POST['news_text_ext'] != ""))
 						{
-							$result = WCF::$DB->db_query("INSERT INTO ".DB_NEWS." (`news_author`,`news_subject`,`news_show_cat`,`news_cat`,`news_text`,`news_text_extended`,`news_visibility`,`news_allow_comments`)
+							selectdb("wcf");
+							$result = db_query("INSERT INTO ".DB_NEWS." (`news_author`,`news_subject`,`news_show_cat`,`news_cat`,`news_text`,`news_text_extended`,`news_visibility`,`news_allow_comments`)
 								values ('".$_SESSION['user_id']."','".stripinput($_POST['news_subject'])."','".$news_show_cat."','".$_POST['news_cat']."','".addslash($_POST['news_text'])."','".addslash($_POST['news_text_ext'])."','".$news_visibility."','".$news_comments."')");
 							if ($result) {redirect(WCF_SELF);}
 						}
@@ -43,7 +44,8 @@
 		
 					if ((isset($_POST['news_subject']) && $_POST['news_subject'] != "") AND (isset($_POST['news_text']) && $_POST['news_text'] != "") AND (isset($_POST['news_text_ext']) && $_POST['news_text_ext'] != ""))
 						{
-							$result = WCF::$DB->db_query("UPDATE ".DB_NEWS." SET `news_author`='".$_SESSION['user_id']."', `news_subject`='".stripinput($_POST['news_subject'])."', `news_show_cat`='".$news_show_cat."', `news_cat`='".$_POST['news_cat']."',
+							selectdb("wcf");
+							$result = db_query("UPDATE ".DB_NEWS." SET `news_author`='".$_SESSION['user_id']."', `news_subject`='".stripinput($_POST['news_subject'])."', `news_show_cat`='".$news_show_cat."', `news_cat`='".$_POST['news_cat']."',
 										`news_text`='".addslash($_POST['news_text'])."', `news_text_extended`='".addslash($_POST['news_text_ext'])."', `news_visibility`='".$news_visibility."', `news_allow_comments`='".$news_comments."' WHERE `news_id`='".$_POST['news_id']."'");
 				
 							if ($result) {redirect(WCF_SELF);}
@@ -57,8 +59,9 @@
 		}
 	elseif (isset($_POST['delete']) && (isset($_POST['news_id']) && isnum($_POST['news_id'])))
 		{
-			$result = WCF::$DB->db_query("DELETE FROM ".DB_NEWS." WHERE `news_id`='".$_POST['news_id']."'");
-			$result = WCF::$DB->db_query("DELETE FROM ".DB_COMMENTS."  WHERE `comment_item_id`='".$_POST['news_id']."' and `comment_type`='1'");
+			selectdb("wcf");
+			$result = db_query("DELETE FROM ".DB_NEWS." WHERE `news_id`='".$_POST['news_id']."'");
+			$result = db_query("DELETE FROM ".DB_COMMENTS."  WHERE `comment_item_id`='".$_POST['news_id']."' and `comment_type`='1'");
 			redirect(WCF_SELF."?status=del");
 			redirect(WCF_SELF);
 		}
@@ -75,12 +78,13 @@
 			$txt_button = $txt['admin_newsmaker_add'];
 		}
 
-	$result = WCF::$DB->db_query("SELECT * FROM ".DB_NEWS);
+	selectdb("wcf");
+	$result = db_query("SELECT * FROM ".DB_NEWS);
 
-	if (WCF::$DB->db_num_rows($result) != 0)
+	if (db_num_rows($result) != 0)
 		{
 			$editlist = "";
-			while ($data = WCF::$DB->db_array($result))
+			while ($data = db_array($result))
 				{
 					$editlist .= "<option value='".$data['news_id']."'>".$data['news_subject']."</option>";
 				}
@@ -98,10 +102,10 @@
 
 	if ((isset($_GET['action']) && $_GET['action'] == "edit") && (isset($_POST['news_id']) && isnum($_POST['news_id'])) || (isset($_GET['news_id']) && isnum($_GET['news_id'])))
 		{
-			$result1 = WCF::$DB->db_query("SELECT * FROM ".DB_NEWS." WHERE `news_id`='".(isset($_POST['news_id']) ? $_POST['news_id'] : $_GET['news_id'])."' LIMIT 1");
-			if (WCF::$DB->db_num_rows($result1))
+			$result1 = db_query("SELECT * FROM ".DB_NEWS." WHERE `news_id`='".(isset($_POST['news_id']) ? $_POST['news_id'] : $_GET['news_id'])."' LIMIT 1");
+			if (db_num_rows($result1))
 				{
-					$data1 = WCF::$DB->db_assoc($result1);
+					$data1 = db_assoc($result1);
 					$news_id = $data1['news_id'];
 					$news_subject = $data1['news_subject'];
 					$news_cat = $data1['news_cat'];
@@ -126,9 +130,9 @@
 		}
 	else
 		{
-			$result = WCF::$DB->db_query("SELECT * FROM ".DB_NEWS_CATS."");
+			$result = db_query("SELECT * FROM ".DB_NEWS_CATS."");
 			$news_cat_list = "";
-			while ($data = WCF::$DB->db_array($result))
+			while ($data = db_array($result))
 				{
 	  				$news_cat_list .= "<option value=".$data['news_cat_id'].">".$data['news_cat_name']."</option>";
 				}

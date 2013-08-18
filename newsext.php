@@ -20,12 +20,13 @@
 		{
 			$newsid = addslashes($_GET["id"]);
 
-  			$result = WCF::$DB->db_query("SELECT * FROM ".DB_NEWS." 
+			selectdb("wcf");
+  			$result = db_query("SELECT * FROM ".DB_NEWS." 
 						LEFT JOIN ".DB_NEWS_CATS." ON `news_cat_id`=`news_cat`
 						LEFT JOIN ".DB_USERS." ON ".DB_USERS.".`user_id`=".DB_NEWS.".`news_author`
 						WHERE `news_id`='".$newsid."' limit 1");
 
-			$data = WCF::$DB->db_assoc($result);
+			$data = db_assoc($result);
 			$allow_comments = $data['news_allow_comments'];
 
 			if ($data['news_show_cat'] == 1)
@@ -40,7 +41,7 @@
           		echo"<tr><td align='left'>&nbsp;".$txt['modul_news_creation_date']."&nbsp;".$data['news_date']."&nbsp;".$txt['modul_news_author']."&nbsp;".ucfirst(strtolower($data['user_name']))."&nbsp;<br><hr></td></tr>";
 			closetable();
 
-			$result = WCF::$DB->db_query("SELECT * FROM ".DB_COMMENTS."
+			$result = db_query("SELECT * FROM ".DB_COMMENTS."
 						LEFT JOIN ".DB_USERS." ON ".DB_USERS.".`user_id`=".DB_COMMENTS.".`user_id`
 						WHERE `comment_item_id`='".$newsid."' AND `comment_type`='1'");
 			opentable();
@@ -49,7 +50,7 @@
 					echo"<tr><td align='center' colspan='2'><h3>".$txt['modul_newsexp_log_in']."</h3></td></tr>";
 				}
 
-			while ($data = WCF::$DB->db_array($result))
+			while ($data = db_array($result))
 				{
 					echo"<tr><td align='left' width='120' class='tbl2'>".ucfirst(strtolower($data['user_name']))."<br>".avatar_img($data['user_avatar'])."</td>";
 					echo"<td align='left' class='tbl1'>".stripslashes($data['comment_message'])."</td></tr>";
@@ -62,7 +63,7 @@
 					if($_POST['comments'])
 						{
 							// Создаем коммент
-							WCF::$DB->db_query("INSERT INTO `wcf_comments`
+							db_query("INSERT INTO `wcf_comments`
 									(`comment_item_id`,`comment_type`,`user_id`,`comment_message`)
 									VALUES ('".$newsid."','1','".$_SESSION['user_id']."','".addslash($_POST['comments'])."')");
 
