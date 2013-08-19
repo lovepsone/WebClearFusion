@@ -20,20 +20,20 @@ $WCFConfig['title'] = array();
 
 ##############################################################################################
 # MySQL Database Configuration
-# $WCFConfig['mysql']['hostname']
-# $WCFConfig['mysql']['username']
-# $WCFConfig['mysql']['password']
-# $WCFConfig['mysql']['dbname']
-# $WCFConfig['mysql']['charset']
-# $WCFConfig['mysql']['prefix']
+# 	$WCFConfig['mysql']['hostname']
+# 	$WCFConfig['mysql']['username']
+# 	$WCFConfig['mysql']['password']
+# 	$WCFConfig['mysql']['dbname']
+# 	$WCFConfig['mysql']['charset']
+# 	$WCFConfig['mysql']['prefix']
 #
 # Database connection settings for different databases
-# Default:
-# host: localhost
-# user: root
-# pass:
-# charset: UTF8
-# prefix: wcf_
+# 	Default:
+# 	host: localhost
+# 	user: root
+# 	pass:
+# 	charset: UTF8
+# 	prefix: wcf_
 ##############################################################################################
 
 $WCFConfig['mysql']['hostname'] = '127.0.0.1';
@@ -47,30 +47,30 @@ $WCFConfig['mysql']['prefix'] = 'wcf_';
 # WebClearFusion configuration
 #
 # useDebug
-# Debug log module enabled/disabled
-# Default: false (Disabled)
-# true (Enabled)
+# 	Debug log module enabled/disabled
+# 	Default: 0 (Disabled)
+# 		 1 (Enabled)
 #
 # logLevel
-# Logging level
-# Default: 2 (Full debug)
-# 1 (Errors only)
+# 	Logging level
+# 	Default: 2 (Full debug)
+# 	1 (Errors only)
 #
 # configVersion
-# Configuration file version. This option must not be changed (only by commits)!
-# Default: DDMMYYYYNN (day, month, year, changes count)
+# 	Configuration file version. This option must not be changed (only by commits)!
+# 	Default: DDMMYYYYNN (day, month, year, changes count)
 #
 # encoding
-# Coding site
-# Default: UTF8 (Recommended)
-# cp1251
+# 	Coding site
+# 	Default: UTF8 (Recommended)
+# 		 cp1251
 #
 # defaultLocale
-# Site default locale
-# Default: Russian
+# 	Site default locale
+# 	Default: Russian
 ##############################################################################################
 
-$WCFConfig['settings']['useDebug'] = true;
+$WCFConfig['settings']['useDebug'] = 1;
 $WCFConfig['settings']['logLevel'] = 1;
 $WCFConfig['settings']['configVersion'] = '291120122';
 $WCFConfig['settings']['encoding'] = 'UTF8';
