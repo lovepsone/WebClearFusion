@@ -43,9 +43,9 @@
 	// Запускаем основные функции и многоузловое определение\Run the basic functions and determination of multisite
 	//=============================================================================================================
 
-	if (@!include(BASEDIR.'include/classes/class.debug.php'))
+	if (@!include(BASEDIR.'include/class.debug.php'))
 	{
-		die('No include/classes/class.debug');
+		die('No include/class.debug');
 	}
 	else
 	{
