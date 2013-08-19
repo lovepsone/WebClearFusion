@@ -67,19 +67,6 @@ CREATE TABLE `wcf_forums_threads` (
   KEY `thread_postcount` (`thread_postcount`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-DROP TABLE IF EXISTS `wcf_logs`;
-CREATE TABLE `wcf_logs` (
-  `date` timestamp NOT NULL default CURRENT_TIMESTAMP,
-  `ip` varchar(15) collate utf8_unicode_ci NOT NULL,
-  `account` int(11) unsigned NOT NULL,
-  `character` int(11) unsigned default NULL,
-  `mode` tinyint(3) unsigned NOT NULL,
-  `email` varchar(100) collate utf8_unicode_ci default NULL,
-  `resultat` longtext collate utf8_unicode_ci,
-  `note` longtext collate utf8_unicode_ci,
-  `old_data` longtext collate utf8_unicode_ci
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 DROP TABLE IF EXISTS `wcf_navigation_links`;
 CREATE TABLE `wcf_navigation_links` (
   `link_id` int(11) unsigned NOT NULL auto_increment,
