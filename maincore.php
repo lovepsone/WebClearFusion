@@ -94,7 +94,6 @@
 	else { die("Settings do not exist or no connection to base mysql. May not correctly configured conf.php."); }
 
 	require_once BASEDIR."include/include_auth.php";
-	require_once BASEDIR."include/include_protect.php";
 
 	//=============================================================================================================
 	// Выбор нужной кодировки\When choosing a character encoding
