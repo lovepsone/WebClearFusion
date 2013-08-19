@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: maincore.php
 | Author: lovepsone
@@ -13,7 +13,7 @@
 	if (preg_match("/maincore.php/i", $_SERVER['PHP_SELF'])) { die(); }
 
 	error_reporting(E_ALL);
-	ini_set('display_errors',0);
+	//ini_set('display_errors',0);
 
 	//=============================================================================================================
 	// Предотвращения возможных атак через XSS $_GET.
@@ -50,8 +50,8 @@
 	else
 	{
 		$DEBUGS = new WCFDebug($config);
-		if (@!include(BASEDIR.'include/include_multi_site.php'))
-			$DEBUGS -> writeError('include_multi_site');
+		if (@!include(BASEDIR.'include/defines.php'))
+			$DEBUGS -> writeError('defines');
 		if (@!include(BASEDIR.'include/functions_files.php'))
 			$DEBUGS -> writeError('functions_files');
 		if (@!include(BASEDIR.'include/functions_img.php'))

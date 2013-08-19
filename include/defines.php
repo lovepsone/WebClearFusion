@@ -1,9 +1,9 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
-| Filename: include_multi_site.php
+| Filename: defines.php
 | Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
