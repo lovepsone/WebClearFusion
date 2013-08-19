@@ -17,126 +17,126 @@
 	$start_page = "";
 
 	while ($base_url_count != 0)
-		{
-			$current = $url_count - $base_url_count;
-			$start_page .= "/".$script_url[$current];
-			$base_url_count--;
-		}
+	{
+		$current = $url_count - $base_url_count;
+		$start_page .= "/".$script_url[$current];
+		$base_url_count--;
+	}
 
 	define("START_PAGE", substr(preg_replace("#(&amp;|\?)(s_action=edit&amp;shout_id=)([0-9]+)#s", "", $start_page), 1));
 
 	$p_sql = false; $p_arr = array(1 => false, 2 => false, 3 => false, 4 => false);
 
 	if (!defined("EXCLUDE_PANEL_USERS") && !defined("ADMIN_PANEL") && !defined("ACP_PANEL") && defined("MAIN_PANEL"))
+	{
+		if (check_panel_status("left"))
 		{
-			if (check_panel_status("left"))
-				{
-					$p_sql = "panel_side='1'";
-				}
-			if (check_panel_status("upper"))
-				{
-					$p_sql .= ($p_sql ? " OR " : "");
-					$p_sql .= ($config['opening_page'] != START_PAGE ? "(panel_side='2' AND panel_display='1')" : "panel_side='2'");
-				}
-			if (check_panel_status("lower"))
-				{
+			$p_sql = "panel_side='1'";
+		}
+		if (check_panel_status("upper"))
+		{
+			$p_sql .= ($p_sql ? " OR " : "");
+			$p_sql .= ($config['opening_page'] != START_PAGE ? "(panel_side='2' AND panel_display='1')" : "panel_side='2'");
+		}
+		if (check_panel_status("lower"))
+		{
 					$p_sql .= ($p_sql ? " OR " : "");
 					$p_sql .= ($config['opening_page'] != START_PAGE ? "(panel_side='3' AND panel_display='1')" : "panel_side='3'");
-				}
-			if (check_panel_status("right"))
-				{
-					$p_sql .= ($p_sql ? " OR " : "")."panel_side='4'";
-				}
+		}
+		if (check_panel_status("right"))
+		{
+			$p_sql .= ($p_sql ? " OR " : "")."panel_side='4'";
+		}
 
-			$p_sql = ($p_sql ? " AND (".$p_sql.")" : false);
+		$p_sql = ($p_sql ? " AND (".$p_sql.")" : false);
 
-			if ($p_sql)
-				{
-					// выводим обычные панели
-					selectdb("wcf");
-					$p_res = db_query("SELECT `panel_filename`, `panel_side`, `panel_type` FROM ".DB_PANELS."
+		if ($p_sql)
+		{
+			// выводим обычные панели
+			selectdb("wcf");
+			$p_res = db_query("SELECT `panel_filename`, `panel_side`, `panel_type` FROM ".DB_PANELS."
 								WHERE `panel_status`='1'".$p_sql." ORDER BY `panel_side`, `panel_order`");
-					if (db_num_rows($p_res))
+			if (db_num_rows($p_res))
+			{
+				$current_side = 0;
+				while ($p_data = db_array($p_res))
+				{
+					if ($current_side == 0)
+					{
+						ob_start();
+						$current_side = $p_data['panel_side'];
+					}
+					if ($current_side > 0 && $current_side != $p_data['panel_side'])
+					{
+						$p_arr[$current_side] = ob_get_contents();
+						ob_end_clean();
+						$current_side = $p_data['panel_side'];
+						ob_start();
+					}
+					if ($p_data['panel_type'] == "file")
+					{
+						if (file_exists(PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php"))
 						{
-							$current_side = 0;
-							while ($p_data = db_array($p_res))
-								{
-									if ($current_side == 0)
-										{
-											ob_start();
-											$current_side = $p_data['panel_side'];
-										}
-											if ($current_side > 0 && $current_side != $p_data['panel_side'])
-												{
-													$p_arr[$current_side] = ob_get_contents();
-													ob_end_clean();
-													$current_side = $p_data['panel_side'];
-													ob_start();
-												}
-											if ($p_data['panel_type'] == "file")
-												{
-													if (file_exists(PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php"))
-														{
-															include PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php";
-														}
-													elseif (($fpm=include_panel_wc($modules,$module_list,$p_data['panel_filename'])) != false)
-														{
-															include $fpm;
-														}
-												}
-								}
-							$p_arr[$current_side] .= ob_get_contents();
-							ob_end_clean();
+							include PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php";
 						}
-
-					// определяем пути к файлам модулей, и заносим в массив для проверки панелей типа wc
-					selectdb("wcf");
-					$list_p = array(); $list_m = array();
-					for ($i=1;$i <= count($modules);$i++)
+						elseif (($fpm=include_panel_wc($modules,$module_list,$p_data['panel_filename'])) != false)
 						{
-							$patch_p[$i] = $modules[$module_list[$i]]."/panels/";
-							$temp_p = opendir($patch_p[$i]);
-							while ($folder_p = readdir($temp_p))
-								{
-									if ((!in_array($folder_p, array(".","..")) && strstr($folder_p, "_panel_wc")))
-										{
-											$result = db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_filename`='".$folder_p."'");
-											if (is_dir($patch_p[$i].$folder_p) && db_num_rows($result) != 1)
-												{
-													$list_m[] = $folder_p;
+							include $fpm;
+						}
 												}
-										}
-								}
-							closedir($temp_p);
-							if (count($list_m) != 0)
-								{
-									sort($list_m);
-									$list_p[$i] = $list_m;
-								}
-						}
-					if (count($list_p) != 0 && isset($_SESSION['user_id']) && $_SESSION['gmlevel'] >= $config['level_administration'] && isnum($_SESSION['gmlevel']))
-						{
-							$p_arr[2] .= "<div id='close-message'><div class='admin-message'>".$txt['mainpanel_in_module']."<a href='".ADMIN."panel_editor.php'>link</a></div></div>";
-						}
+					}
+					$p_arr[$current_side] .= ob_get_contents();
+					ob_end_clean();
 				}
+
+				// определяем пути к файлам модулей, и заносим в массив для проверки панелей типа wc
+				selectdb("wcf");
+				$list_p = array(); $list_m = array();
+				for ($i=1;$i <= count($modules);$i++)
+				{
+					$patch_p[$i] = $modules[$module_list[$i]]."/panels/";
+					$temp_p = opendir($patch_p[$i]);
+					while ($folder_p = readdir($temp_p))
+					{
+						if ((!in_array($folder_p, array(".","..")) && strstr($folder_p, "_panel_wc")))
+						{
+							$result = db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_filename`='".$folder_p."'");
+							if (is_dir($patch_p[$i].$folder_p) && db_num_rows($result) != 1)
+							{
+								$list_m[] = $folder_p;
+							}
+						}
+					}
+					closedir($temp_p);
+					if (count($list_m) != 0)
+					{
+						sort($list_m);
+						$list_p[$i] = $list_m;
+					}
+				}
+				if (count($list_p) != 0 && isset($_SESSION['user_id']) && $_SESSION['gmlevel'] >= $config['level_administration'] && isnum($_SESSION['gmlevel']))
+				{
+					$p_arr[2] .= "<div id='close-message'><div class='admin-message'>".$txt['mainpanel_in_module']."<a href='".ADMIN."panel_editor.php'>link</a></div></div>";
+				}
+			}
 		}
 	elseif (!defined("EXCLUDE_PANEL_USERS") && defined("ADMIN_PANEL") && !defined("ACP_PANEL") && !defined("MAIN_PANEL"))
-		{
-			ob_start();
-			require_once ADMIN."navigation.php";
-			$p_arr[1] = ob_get_contents();
-			ob_end_clean();
-		}
+	{
+		ob_start();
+		require_once ADMIN."navigation.php";
+		$p_arr[1] = ob_get_contents();
+		ob_end_clean();
+	}
 	elseif (!defined("EXCLUDE_PANEL_USERS") && !defined("ADMIN_PANEL") && !defined("MAIN_PANEL"))
+	{
+		for ($i=0;$i < count($module_list);$i++)
 		{
-			for ($i=0;$i < count($module_list);$i++)
-				{
-					if ($module_list[$i] != "none")
-						{
-							require MODULE.$module_list[$i]."/templates/panels.php";
-						}
-				}
+			if ($module_list[$i] != "none")
+			{
+				require MODULE.$module_list[$i]."/templates/panels.php";
+			}
 		}
+	}
 
 	/*if (!defined("ADMIN_PANEL"))
 		{
