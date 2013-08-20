@@ -12,7 +12,7 @@
 
 	//=============================================================================================
 	// функция исключает понели на отдельных страницах, установленых в настройках
-	function check_panel_status($side)
+	function CheckPanelStatus($side)
 	{
 		global $config;
 
@@ -87,7 +87,7 @@
 
 	//=============================================================================================
 	// функция для включения панелей из модуля типа wc
-	function include_panel_wc($modules, $mlist, $pname)
+	function IncludePanelWC($modules, $mlist, $pname)
 	{
 		for ($i=1;$i <= count($modules);$i++)
 		{

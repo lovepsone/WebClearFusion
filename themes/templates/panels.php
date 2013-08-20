@@ -29,21 +29,21 @@
 
 	if (!defined("EXCLUDE_PANEL_USERS") && !defined("ADMIN_PANEL") && !defined("ACP_PANEL") && defined("MAIN_PANEL"))
 	{
-		if (check_panel_status("left"))
+		if (CheckPanelStatus("left"))
 		{
 			$p_sql = "panel_side='1'";
 		}
-		if (check_panel_status("upper"))
+		if (CheckPanelStatus("upper"))
 		{
 			$p_sql .= ($p_sql ? " OR " : "");
 			$p_sql .= ($config['opening_page'] != START_PAGE ? "(panel_side='2' AND panel_display='1')" : "panel_side='2'");
 		}
-		if (check_panel_status("lower"))
+		if (CheckPanelStatus("lower"))
 		{
 					$p_sql .= ($p_sql ? " OR " : "");
 					$p_sql .= ($config['opening_page'] != START_PAGE ? "(panel_side='3' AND panel_display='1')" : "panel_side='3'");
 		}
-		if (check_panel_status("right"))
+		if (CheckPanelStatus("right"))
 		{
 			$p_sql .= ($p_sql ? " OR " : "")."panel_side='4'";
 		}
@@ -79,7 +79,7 @@
 						{
 							include PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php";
 						}
-						elseif (($fpm=include_panel_wc($modules,$module_list,$p_data['panel_filename'])) != false)
+						elseif (($fpm = IncludePanelWC($modules,$module_list,$p_data['panel_filename'])) != false)
 						{
 							include $fpm;
 						}
