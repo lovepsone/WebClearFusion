@@ -73,7 +73,7 @@
 
 		if ($config['serverbanner'])
 		{
-			echo "<a href='".$config['serverurl']."'><img src='".BASEDIR.$config['serverbanner']."' alt='".$config['servername']."' style='border: 0;' /></a>\n";
+			echo "<a href='".$config['serverurl']."'><img src='".THEMES.$config['theme']."/".$config['serverbanner']."' alt='".$config['servername']."' style='border: 0;' /></a>\n";
 		}
 		else
 		{

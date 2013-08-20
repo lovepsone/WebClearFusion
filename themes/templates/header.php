@@ -15,7 +15,7 @@
 	define("MAIN_PANEL", true);
 
 	echo"<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Frameset//EN' 'http://www.w3.org/TR/html4/frameset.dtd'>";
-	echo"<head><link rel='SHORTCUT ICON' href='".IMAGES."favicon.ico' />";
+	echo"<head><link rel='SHORTCUT ICON' href='".THEMES.$config['theme']."/favicon.ico' />";
 	echo"<title>".$config['servername']."</title>";
 	echo"<link href='".$cssfile."' type=text/css rel=stylesheet />";
 	echo"<meta http-equiv='content-type' content='text/html; charset=$code_page' />";
