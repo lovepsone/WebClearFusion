@@ -163,4 +163,58 @@
 		}
 		return $list_p;
 	}
+
+	function PanelDisplay($modules, $module_list)
+	{
+		global $_SESSION, $config, $txt;
+
+		$p_sql = CheckPanelDisplay();
+		if ($p_sql)
+		{
+			// выводим обычные панели
+			selectdb("wcf");
+			$p_res = db_query("SELECT `panel_filename`, `panel_side`, `panel_type` FROM ".DB_PANELS." WHERE `panel_status`='1'".$p_sql." ORDER BY `panel_side`, `panel_order`");
+			if (db_num_rows($p_res))
+			{
+				$current_side = 0;
+				while ($p_data = db_array($p_res))
+				{
+					if ($current_side == 0)
+					{
+						ob_start();
+						$current_side = $p_data['panel_side'];
+					}
+					if ($current_side > 0 && $current_side != $p_data['panel_side'])
+					{
+						$p_arr[$current_side] = ob_get_contents();
+						ob_end_clean();
+						$current_side = $p_data['panel_side'];
+						ob_start();
+					}
+					if ($p_data['panel_type'] == "file")
+					{
+						if (file_exists(PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php"))
+						{
+							include PANELS.$p_data['panel_filename']."/".$p_data['panel_filename'].".php";
+						}
+						elseif (($fpm = IncludePanelWC($modules,$module_list,$p_data['panel_filename'])) != false)
+						{
+							include $fpm;
+						}
+					}
+				}
+				$p_arr[$current_side] .= ob_get_contents();
+				ob_end_clean();
+			}
+
+			$list_p = array();
+			$list_p = CheckModulePanelDisplay($modules, $module_list);
+
+			if (count($list_p) != 0 && isset($_SESSION['user_id']) && $_SESSION['gmlevel'] >= $config['level_administration'] && isnum($_SESSION['gmlevel']))
+			{
+				$p_arr[2] .= "<div id='close-message'><div class='admin-message'>".$txt['mainpanel_in_module']."<a href='".ADMIN."panel_editor.php'>link</a></div></div>";
+			}
+		}
+		return $p_arr;
+	}
 ?>
