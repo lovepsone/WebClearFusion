@@ -29,27 +29,7 @@
 
 	if (!defined("EXCLUDE_PANEL_USERS") && !defined("ADMIN_PANEL") && !defined("ACP_PANEL") && defined("MAIN_PANEL"))
 	{
-		if (CheckPanelStatus("left"))
-		{
-			$p_sql = "panel_side='1'";
-		}
-		if (CheckPanelStatus("upper"))
-		{
-			$p_sql .= ($p_sql ? " OR " : "");
-			$p_sql .= ($config['opening_page'] != START_PAGE ? "(panel_side='2' AND panel_display='1')" : "panel_side='2'");
-		}
-		if (CheckPanelStatus("lower"))
-		{
-					$p_sql .= ($p_sql ? " OR " : "");
-					$p_sql .= ($config['opening_page'] != START_PAGE ? "(panel_side='3' AND panel_display='1')" : "panel_side='3'");
-		}
-		if (CheckPanelStatus("right"))
-		{
-			$p_sql .= ($p_sql ? " OR " : "")."panel_side='4'";
-		}
-
-		$p_sql = ($p_sql ? " AND (".$p_sql.")" : false);
-
+		$p_sql = CheckPanelDisplay();
 		if ($p_sql)
 		{
 			// выводим обычные панели
