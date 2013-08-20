@@ -133,4 +133,34 @@
 
 		return ($p_sql ? " AND (".$p_sql.")" : false);
 	}
+
+	function CheckModulePanelDisplay($modules, $module_list)
+	{
+		// определяем пути к файлам модулей, и заносим в массив для проверки панелей типа wc
+		selectdb("wcf");
+		$list_p = array(); $list_m = array();
+		for ($i=1;$i <= count($modules);$i++)
+		{
+			$patch_p[$i] = $modules[$module_list[$i]]."/panels/";
+			$temp_p = opendir($patch_p[$i]);
+			while ($folder_p = readdir($temp_p))
+			{
+				if ((!in_array($folder_p, array(".","..")) && strstr($folder_p, "_panel_wc")))
+				{
+					$result = db_query("SELECT * FROM ".DB_PANELS." WHERE `panel_filename`='".$folder_p."'");
+					if (is_dir($patch_p[$i].$folder_p) && db_num_rows($result) != 1)
+					{
+						$list_m[] = $folder_p;
+					}
+				}
+			}
+			closedir($temp_p);
+			if (count($list_m) != 0)
+			{
+				sort($list_m);
+				$list_p[$i] = $list_m;
+			}
+		}
+		return $list_p;
+	}
 ?>
