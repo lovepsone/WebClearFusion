@@ -58,7 +58,7 @@
 				}
 			//=========================
 			// форма отправки коментария
-			if ((isset($_SESSION['user_id']) || ($_SESSION['ip'] == $_SERVER['REMOTE_ADDR'])) && $allow_comments == 1)
+			if ((isset($_SESSION['user_id']) || (isset($_SESSION['ip']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR'])) && $allow_comments == 1)
 				{
 					if($_POST['comments'])
 						{
