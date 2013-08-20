@@ -96,24 +96,6 @@
 		}
 	}
 
-	/*if (!defined("ADMIN_PANEL"))
-		{
-			$p_arr[2] = "<a id='content' name='content'></a>\n".$p_arr[2];
-			if (iADMIN && $settings['maintenance'])
-				{
-					$p_arr[2] = "<div id='close-message'><div class='admin-message'>".$locale['global_190']."</div></div>\n".$p_arr[2];
-				}
-			if (iSUPERADMIN && file_exists(BASEDIR."setup.php"))
-				{
-					$p_arr[2] = "<div id='close-message'><div class='admin-message'>".$locale['global_198']."</div></div>\n".$p_arr[2];
-				}
-			if (iADMIN && !$userdata['user_admin_password'])
-				{
-					$p_arr[2] = "<div id='close-message'><div class='admin-message'>".$locale['global_199']."</div></div>\n".$p_arr[2];
-				}
-			$p_arr[2] = "<noscript><div class='noscript-message admin-message'>".$locale['global_303']."</div>\n</noscript>\n".$p_arr[2];
-		}*/
-
 	define("LEFT", $p_arr[1]);
 	define("U_CENTER", $p_arr[2]);
 	define("L_CENTER", $p_arr[3]);
