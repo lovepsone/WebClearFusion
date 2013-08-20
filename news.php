@@ -21,7 +21,7 @@
 	{
     		$page_len = $config['page_news'];
  
-    		if (!isset($_GET['page']) or ($_GET['page'] == ''))
+    		if (!isset($_GET['page']) || ($_GET['page'] == ''))
 		{
 			$start_rec = 0;
 		}
@@ -66,7 +66,7 @@
 		{
   			$PageCounter = ceil($kolzap['number'] / $config['page_news']);
 
-   			if (!isset($_GET['page']) OR ($_GET['page'] == '') OR ($_GET['page'] == '_'))
+   			if (!isset($_GET['page']) || ($_GET['page'] == '') || ($_GET['page'] == '_'))
 			{
 				$tp3 = 1;
 			}

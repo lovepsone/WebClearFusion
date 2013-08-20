@@ -16,7 +16,7 @@
 
    	echo $simple_script;
 
-	if (isset($_GET['thread_id']) AND isset($_GET['forum_id']))
+	if (isset($_GET['thread_id']) && isset($_GET['forum_id']))
 		{
 			$forum_id = addslashes($_GET["forum_id"]);
 			$thread_id = addslashes($_GET["thread_id"]);
@@ -63,7 +63,7 @@
 
 			if (db_num_rows($result) > 0 )
 				{
-					$name_thread = db_aassoc($name_thread);
+					$name_thread = db_assoc($name_thread);
 
 					echo"<tr><th width='100%' colspan='2' class='tbl'>".$name_thread['thread_subject']."</th></tr>";
 
@@ -71,9 +71,9 @@
 						{
 							selectdb("wcf");
  							$result_user = db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`=".$data['user_id']." LIMIT 1");
-  							$usr = db_aassoc($result_user);
+  							$usr = db_assoc($result_user);
 
-							echo"<tr><td width='20%' align='left' class='tbl2'>".ucfirst(strtolower($usr['user_name']))."<br>.avatar_img($usr['user_avatar'])."</td>";
+							echo"<tr><td width='20%' align='left' class='tbl2'>".ucfirst(strtolower($usr['user_name']))."<br>".avatar_img($usr['user_avatar'])."</td>";
 							echo"<td width='80%' align='left' class='tbl1'>".stripslashes($data['post_text'])."</td></tr><tr><td colspan='2'><hr></td></tr>";
 						}
 
@@ -81,16 +81,16 @@
 						{
   							$page_counter_p = ceil($p_kolzap['kol'] / $config['page_forum_posts']);
 
-   							if (!isset($_GET['page']) OR ($_GET['page'] == '') OR ($_GET['page'] == '_')) {$tp3 = 1;} else {$tp3 = (int)$_GET['page'];}
+   							if (!isset($_GET['page']) || ($_GET['page'] == '') || ($_GET['page'] == '_')) {$tp3 = 1;} else {$tp3 = (int)$_GET['page'];}
 
  							echo"<tr><td height='30' colspan='3' align='center' valign='middle' >".show_page(FORUM.'viewposts.php?thread_id='.$thread_id.'&forum_id='.$forum_id.'&page=',$tp3,$page_counter_p)."</td></tr>";
   						}
 				}
 			//=========================
 			// форма отправки сообщения
-			if (isset($_SESSION['user_id']) or ($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
+			if (isset($_SESSION['user_id']) || (isset($_SESSION['ip']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
 				{
-					if($_POST['posts'])
+					if(isset($_POST['posts']))
 						{
 							selectdb("wcf");
 							// Создаем сообщение
@@ -118,7 +118,7 @@
 							echo"<tr><td align='center' colspan='2'><input type='submit' class='button' value='".$txt['forum_quick_reply']."'/></td></tr></form>";
 						}
 				}
-			else if (!isset($_SESSION['user_id']) or ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
+			else if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
 				{ 
 					echo"<tr><td align='center' colspan='2'>".$txt['forum_log']."</td></tr>";
 				}
