@@ -43,32 +43,16 @@
 	// Запускаем основные функции и многоузловое определение\Run the basic functions and determination of multisite
 	//=============================================================================================================
 
-	if (@!include(BASEDIR.'include/class.debug.php'))
-	{
-		die('No include/class.debug');
-	}
-	else
-	{
-		$DEBUGS = new WCFDebug($config);
-		if (@!include(BASEDIR.'include/defines.php'))
-			$DEBUGS -> writeError('defines');
-		if (@!include(BASEDIR.'include/functions_files.php'))
-			$DEBUGS -> writeError('functions_files');
-		if (@!include(BASEDIR.'include/functions_img.php'))
-			$DEBUGS -> writeError('functions_img');
-		if (@!include(BASEDIR.'include/functions_mysql.php'))
-			$DEBUGS -> writeError('functions_mysql');
-		if (@!include(BASEDIR.'include/functions_page.php'))
-			$DEBUGS -> writeError('functions_page');
-		if (@!include(BASEDIR.'include/functions_text_process.php'))
-			$DEBUGS -> writeError('functions_text_process');
-		if (@!include(BASEDIR.'include/functions_theme.php'))
-			$DEBUGS -> writeError('functions_theme');
-		if (@!include(BASEDIR.'include/functions_users.php'))
-			$DEBUGS -> writeError('functions_users');
-		if (@!include(BASEDIR.'include/include_access_list.php'))
-			$DEBUGS -> writeError('include_access_list');
-	}
+	@include(BASEDIR.'include/defines.php');
+	@include(BASEDIR.'include/functions_files.php');
+	@include(BASEDIR.'include/functions_img.php');
+	@include(BASEDIR.'include/functions_mysql.php');
+	@include(BASEDIR.'include/functions_page.php');
+	@include(BASEDIR.'include/functions_text_process.php');
+	@include(BASEDIR.'include/functions_theme.php');
+	@include(BASEDIR.'include/functions_users.php');
+	@include(BASEDIR.'include/include_access_list.php');
+
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup
 	//=============================================================================================================
@@ -99,14 +83,12 @@
 	// Выбор нужной кодировки\When choosing a character encoding
 	//=============================================================================================================
 	if ($config['encoding'] == 'cp1251') { $code_page = 'windows-1251'; } else { $code_page = 'utf-8'; }
-	$DEBUGS -> writeLog('Encoding %s', $code_page);
 
 	//=============================================================================================================
 	// Выбор нужного языка\Choosing the right language
 	//=============================================================================================================
 	if (isset($_GET['lang'])) { $config['lang'] = $_GET['lang']; } else { $_SESSION['lang'] = $config['lang']; }
 	if ($config['lang']) { require BASEDIR."lang/".$config['lang']."/".$config['encoding']."/text.php"; }
-	$DEBUGS -> writeLog('Lang %s', $_SESSION['lang']);
 
 	//=============================================================================================================
 	// Установка нужной темы\Setting the right topic
@@ -116,12 +98,10 @@
 
 	if (file_exists($themefile))
 	{
-		$DEBUGS -> writeLog('Theme sucessful loading %s ', $config['theme']);
 		include($themefile);
 	}
 	else
 	{
-		$DEBUGS -> writeError('Theme error loading %s', $config['theme']);
 		include(THEMES."default/theme.php");
 	}
 	if (!file_exists($cssfile)) { $cssfile = THEMES."default/style.css"; }
