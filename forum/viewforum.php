@@ -53,7 +53,9 @@
 			echo"<th width='21%' class='forum-caption'>".$txt['forum_column_last_post']."</th>";
 			echo"<th width='5%' class='forum-caption'>".$txt['forum_column_replies']."</th>";
 			echo"<th width='10%' class='forum-caption'>".$txt['forum_column_views']."</th></tr>";
-			echo"<tr><th width='100%' colspan='5' align='left'><a href='".FORUM."viewforum.php?action=newthread&forum_id=$forum_id'>".$txt['forum_create_theme']."</a></th></tr>";
+
+			if (isset($_SESSION['user_id']) || (isset($_SESSION['ip']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
+				echo"<tr><th width='100%' colspan='5' align='left'><a href='".FORUM."viewforum.php?action=newthread&forum_id=$forum_id'>".$txt['forum_create_theme']."</a></th></tr>";
 
 			if (db_num_rows($result) > 0 )
 				{
