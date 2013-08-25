@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: panel_editor.php
 | Author: lovepsone
@@ -103,7 +103,7 @@
 							$panel_type = $data['panel_type'];
 							$panel_side = $data['panel_side'];
 							$panel_access = $data['panel_access'];
-							$txt_page = $txt['admin_paneledit_t_edit'];
+							WCF::$locale_page = WCF::$locale['admin_paneledit_t_edit'];
 						}
 					else
 						{
@@ -120,19 +120,19 @@
 					$panel_type = "";
 					$panel_side = "";
 					$panel_access = "";
-					$txt_page = $txt['admin_paneledit_t_add'];
+					WCF::$locale_page = WCF::$locale['admin_paneledit_t_add'];
 					$action = WCF_SELF;
 				}
 
 			opentable();
 			echo"<form name='editform' method='post' action='$action'>";
-			echo"<tr><td align='center' class='small' colspan='2'>".$txt_page."</td></tr>";
+			echo"<tr><td align='center' class='small' colspan='2'>".WCF::$locale_page."</td></tr>";
 		
 			if (isset($_GET['panel_id']) && isnum($_GET['panel_id']))
 				{
 					if ($panel_type == "file")
 						{
-							echo"<tr><td width='50%' align='right' class='small'>".$txt['file']."</td>";
+							echo"<tr><td width='50%' align='right' class='small'>".WCF::$locale['file']."</td>";
 							echo"<td width='50%' align='left'><select name='panel_filename' class='textbox' style='width:200px;'>";
 		
 							for ($i=0;$i < count($panel_list);$i++)
@@ -144,7 +144,7 @@
 				}
 			else
 				{
-					echo"<tr><td width='50%' align='right' class='small'>".$txt['admin_paneledit_name']."</td>";
+					echo"<tr><td width='50%' align='right' class='small'>".WCF::$locale['admin_paneledit_name']."</td>";
 					echo"<td width='50%' align='left'><select name='panel_filename' class='textbox' style='width:200px;'>";
 		
 					for ($i=0;$i < count($panel_list);$i++)
@@ -156,17 +156,17 @@
 		
 			if (!isset($_GET['panel_id']) || !isnum($_GET['panel_id']))
 				{
-					echo"<tr><td width='50%' align='right' class='small'>".$txt['admin_paneledit_position']."</td>";
+					echo"<tr><td width='50%' align='right' class='small'>".WCF::$locale['admin_paneledit_position']."</td>";
 					echo"<td width='50%' align='left'><select name='panel_side' class='textbox' style='width:150px;' onchange=\"showopts(this.options[this.selectedIndex].value);\">";
-					echo"<option value='1'".($panel_side == "1" ? " selected='selected'" : "").">".$txt['left']."</option>";
-					echo"<option value='2'".($panel_side == "2" ? " selected='selected'" : "").">".$txt['center']."</option>";
-					echo"<option value='3'".($panel_side == "3" ? " selected='selected'" : "").">".$txt['center_footer']."</option>";
-					echo"<option value='4'".($panel_side == "4" ? " selected='selected'" : "").">".$txt['right']."</option>";
+					echo"<option value='1'".($panel_side == "1" ? " selected='selected'" : "").">".WCF::$locale['left']."</option>";
+					echo"<option value='2'".($panel_side == "2" ? " selected='selected'" : "").">".WCF::$locale['center']."</option>";
+					echo"<option value='3'".($panel_side == "3" ? " selected='selected'" : "").">".WCF::$locale['center_footer']."</option>";
+					echo"<option value='4'".($panel_side == "4" ? " selected='selected'" : "").">".WCF::$locale['right']."</option>";
 					echo"</select></td></tr>";
 				}
-			echo"<tr><td width='50%' align='right' class='small'>".$txt['admin_paneledit_show']."</td>";
+			echo"<tr><td width='50%' align='right' class='small'>".WCF::$locale['admin_paneledit_show']."</td>";
 			echo"<td width='50%' align='left'><select name='panel_access' class='textbox' style='width:150px;'>".access($panel_access)."</select></td></tr>";
-			echo"<tr><td align='center' class='small' colspan='2'><input type='submit' name='save' value='".$txt['admin_paneledit_save']."' class='button' /></td></tr></form>";
+			echo"<tr><td align='center' class='small' colspan='2'><input type='submit' name='save' value='".WCF::$locale['admin_paneledit_save']."' class='button' /></td></tr></form>";
 			closetable();
 		}
 

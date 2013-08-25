@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: administration.php
 | Author: lovepsone
@@ -17,13 +17,13 @@
 	//==================================================================
 	// Верхнее меню
 	opentable();
-	echo"<th colspan='4'>".$txt['menu_auth_admin']." - v".$config['rev_admin']."</th>";
+	echo"<th colspan='4'>".WCF::$locale['menu_auth_admin']." - v".WCF::$cfgTitle['revision_admin']."</th>";
 	echo"<tr><td align='center' colspan='5'><table><tr>";
-	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?contet'>".$txt['menu_admin_content']."</a></strong></span></td>";
-	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?users'>".$txt['menu_admin_users']."</a></strong></span></td>";
-	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?system'>".$txt['menu_admin_system']."</a></strong></span></td>";
-	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?plants'>".$txt['menu_admin_plants']."</a></strong></span></td>";
-	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?module'>".$txt['menu_admin_module']."</a></strong></span></td>";
+	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?contet'>".WCF::$locale['menu_admin_content']."</a></strong></span></td>";
+	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?users'>".WCF::$locale['menu_admin_users']."</a></strong></span></td>";
+	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?system'>".WCF::$locale['menu_admin_system']."</a></strong></span></td>";
+	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?plants'>".WCF::$locale['menu_admin_plants']."</a></strong></span></td>";
+	echo"<td align='center' width='20%'><span class='small'><strong><a href='".WCF_SELF."?module'>".WCF::$locale['menu_admin_module']."</a></strong></span></td>";
 	echo"</tr></table><br><hr></td></tr>";
 
 	//==================================================================

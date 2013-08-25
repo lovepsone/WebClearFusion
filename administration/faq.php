@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: forumedit.php
 | Author: lovepsone
@@ -105,12 +105,12 @@
 							$faq_cat_id = $data['faq_cat_id'];
 							$faq_cat_name = $data['faq_cat_name'];
 							$faq_cat_description = $data['faq_cat_description'];
-							$faq_cat_title = $txt['admin_faq_edit_cats'];
+							$faq_cat_title = WCF::$locale['admin_faq_edit_cats'];
 							$faq_cat_action = WCF_SELF."?action=edit&faq_cat_id=".$data['faq_cat_id']."&t=cat";
 							// --------------------- //
 							$faq_question = "";
 							$faq_answer = "";
-							$faq_title = $txt['admin_faq_add_cats'];
+							$faq_title = WCF::$locale['admin_faq_add_cats'];
 							$faq_action = WCF_SELF;
 						}
 					else
@@ -126,13 +126,13 @@
 							$data = db_assoc($result);
 							$faq_cat_name = "";
 							$faq_cat_description = "";
-							$faq_cat_title = $txt['420'];
+							$faq_cat_title = WCF::$locale['420'];
 							$faq_cat_action = WCF_SELF;
 							// --------------------- //
 							$faq_id = $data['faq_id'];
 							$faq_question = $data['faq_question'];
 							$faq_answer = stripslashes($data['faq_answer']);
-							$faq_title = $txt['501'];
+							$faq_title = WCF::$locale['501'];
 							$faq_action = WCF_SELF."?action=edit&faq_id=".$data['faq_id']."&t=faq";
 						}
 					else
@@ -145,11 +145,11 @@
 		{
 			$faq_cat_name = "";
 			$faq_cat_description = "";
-			$faq_cat_title = $txt['admin_faq_add_cats'];
+			$faq_cat_title = WCF::$locale['admin_faq_add_cats'];
 			$faq_cat_action = WCF_SELF;
 			$faq_question = "";
 			$faq_answer = "";
-			$faq_title = $txt['admin_faq_add'];
+			$faq_title = WCF::$locale['admin_faq_add'];
 			$faq_action = WCF_SELF;
 		}
 
@@ -159,13 +159,13 @@
 			echo"<form name='add_faq_cat' method='post' action='".$faq_cat_action."'>";
 			echo"<tr><td align='center' colspan='2' class='small'>".$faq_cat_title."</td></tr>";
 
-			echo"<tr><td width='50%' align='right' class='small2'>".$txt['admin_faq_name_cats']."&nbsp;</td>";
+			echo"<tr><td width='50%' align='right' class='small2'>".WCF::$locale['admin_faq_name_cats']."&nbsp;</td>";
 			echo"<td align='left'><input type='text' name='faq_cat_name' value='".$faq_cat_name."' class='textbox' style='width:210px' /></td></tr>";
 
-			echo"<tr><td width='50%' align='right' class='small2'>".$txt['admin_faq_description']."&nbsp;</td>";
+			echo"<tr><td width='50%' align='right' class='small2'>".WCF::$locale['admin_faq_description']."&nbsp;</td>";
 			echo"<td align='left'><input type='text' name='faq_cat_description' value='".$faq_cat_description."' class='textbox' style='width:250px;' /></td></tr>";
 
-			echo"<tr><td align='center' colspan='2'><input type='submit' name='save_cat' value='".$txt['admin_faq_save']."' class='button' /></td></tr>";
+			echo"<tr><td align='center' colspan='2'><input type='submit' name='save_cat' value='".WCF::$locale['admin_faq_save']."' class='button' /></td></tr>";
 			echo"</form>";
 			closetable();
 		}
@@ -190,17 +190,17 @@
 					echo"<form name='inputform' method='post' action='".$faq_action."'>";
 					echo"<tr><td align='center' colspan='2' class='small'>".$faq_title."</td></tr>";
 
-					echo"<tr><td width='50%' align='right' class='small2'>".$txt['admin_faq_choice_cats']."&nbsp;</td>";
+					echo"<tr><td width='50%' align='right' class='small2'>".WCF::$locale['admin_faq_choice_cats']."&nbsp;</td>";
 					echo"<td align='left'><select name='faq_cat' class='textbox' style='width:250px;'>".$cat_opts."</select></td></tr>";
 
-					echo"<tr><td width='50%' align='right' class='small2'>".$txt['admin_faq_question']."&nbsp;</td>";
+					echo"<tr><td width='50%' align='right' class='small2'>".WCF::$locale['admin_faq_question']."&nbsp;</td>";
 					echo"<td align='left'><input type='text' name='faq_question' value='".$faq_question."' class='textbox' style='width:330px' /></td></tr>";
 
-					echo"<tr><td align='center' colspan='2' class='small2'>".$txt['admin_faq_reply']."</td></tr>";
+					echo"<tr><td align='center' colspan='2' class='small2'>".WCF::$locale['admin_faq_reply']."</td></tr>";
 					echo"<td align='center' colspan='2'><textarea name='faq_answer' class='textbox'>".phpentities(stripslashes($faq_answer))."</textarea></td></tr>";
 
 					echo"<tr><td align='center' colspan='2'><br />";
-					echo"<input type='submit' name='save_faq' value='".$txt['admin_faq_save']."' class='button' /></td>";
+					echo"<input type='submit' name='save_faq' value='".WCF::$locale['admin_faq_save']."' class='button' /></td>";
 					echo"</tr></form>";
 					closetable();
 				}
@@ -211,8 +211,8 @@
 
 	if (db_num_rows($result) != 0)
 		{
-			echo"<tr><th width='50%' class='forum-caption'>".$txt['admin_faq_cast_quest']."</th>";
-			echo"<th width='50%' class='forum-caption'>".$txt['admin_faq_option']."</th></tr>";
+			echo"<tr><th width='50%' class='forum-caption'>".WCF::$locale['admin_faq_cast_quest']."</th>";
+			echo"<th width='50%' class='forum-caption'>".WCF::$locale['admin_faq_option']."</th></tr>";
 			echo"<tr><td colspan='2' height='1'></td></tr>";
 
 			while ($data = db_array($result))
@@ -223,8 +223,8 @@
 					echo"<tr><td colspan='2'><hr></td></tr>";
 					echo"<tr><td class='small' align='center'><b>".$data['faq_cat_name']."</b></td>";
 					echo"<td class='small' align='center' style='font-weight:normal;'>";
-					echo"<a href='".WCF_SELF."?action=edit&faq_cat_id=".$data['faq_cat_id']."&t=cat'><b>".$txt['admin_faq_change']."</b></a> -";
-					echo"<a href='".WCF_SELF."?action=delete&faq_cat_id=".$data['faq_cat_id']."&t=cat' onclick=\"return confirm('".$txt['admin_faq_del_cats']."');\"><b>".$txt['admin_faq_del']."</b></a></td>";
+					echo"<a href='".WCF_SELF."?action=edit&faq_cat_id=".$data['faq_cat_id']."&t=cat'><b>".WCF::$locale['admin_faq_change']."</b></a> -";
+					echo"<a href='".WCF_SELF."?action=delete&faq_cat_id=".$data['faq_cat_id']."&t=cat' onclick=\"return confirm('".WCF::$locale['admin_faq_del_cats']."');\"><b>".WCF::$locale['admin_faq_del']."</b></a></td>";
 					echo"</tr>";
 
 					$result2 = db_query("SELECT `faq_id`, `faq_question`, `faq_answer` FROM ".DB_FAQS." WHERE `faq_cat_id`='".$data['faq_cat_id']."' ORDER BY `faq_id`");
@@ -237,8 +237,8 @@
 								{
 									echo"<tr><td class='alt' align='center'><strong>".$data2['faq_question']."</strong></td>";
 									echo"<td align='center' class='alt' width='80'>";
-									echo"<a href='".WCF_SELF."?action=edit&faq_cat_id=".$data['faq_cat_id']."&faq_id=".$data2['faq_id']."&t=faq'>".$txt['admin_faq_change']."</a> -";
-									echo"<a href='".WCF_SELF."?action=delete&faq_cat_id=".$data['faq_cat_id']."&faq_id=".$data2['faq_id']."&t=faq' onclick=\"return confirm('".$txt['admin_faq_del_q']."');\">".$txt['admin_faq_del']."</a></td>";
+									echo"<a href='".WCF_SELF."?action=edit&faq_cat_id=".$data['faq_cat_id']."&faq_id=".$data2['faq_id']."&t=faq'>".WCF::$locale['admin_faq_change']."</a> -";
+									echo"<a href='".WCF_SELF."?action=delete&faq_cat_id=".$data['faq_cat_id']."&faq_id=".$data2['faq_id']."&t=faq' onclick=\"return confirm('".WCF::$locale['admin_faq_del_q']."');\">".WCF::$locale['admin_faq_del']."</a></td>";
 									echo"</tr><tr>";
 									echo"<td colspan='2' align='center' class='small2'>".trimlink(stripinput($data2['faq_answer']), 80)."</td></tr>";
 								}
@@ -249,14 +249,14 @@
 						{
 							echo"<tr><td colspan='2'>";
 							echo"<div id='box_".$data['faq_cat_id']."' style='display:none'>";
-							echo"<tr><td class='alt' align='center'>".$txt['admin_faq_no_create']."</td></tr>";
+							echo"<tr><td class='alt' align='center'>".WCF::$locale['admin_faq_no_create']."</td></tr>";
 							echo"</div></td></tr>";
 						}
 				}
 		}
 	else
 		{
-			echo"<div style='text-align:center'>".$txt['admin_faq_no_cats']."<br /></div>";
+			echo"<div style='text-align:center'>".WCF::$locale['admin_faq_no_cats']."<br /></div>";
 		}
 	closetable();
 

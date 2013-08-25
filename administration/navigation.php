@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: navigation.php
 | Author: lovepsone
@@ -20,7 +20,7 @@
 	reset($admin_list);
 	while (list($id, $data) = each($admin_list))
 		{		
-			$pages[$data[1]] .= "<option value='".ADMIN.$data[5]."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", $txt[$data[4]])."</option>";
+			$pages[$data[1]] .= "<option value='".ADMIN.$data[5]."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", WCF::$locale[$data[4]])."</option>";
 		}
 	// дабавляем к навигации если имеются файлы в модулях
 	$maf = array();
@@ -43,7 +43,7 @@
 			$page = $pages[$i];
 			if ($i == 1)
 				{
-					echo" <a href='".ADMIN."administration.php?contet'>".$txt['menu_admin_panel_admin']."</a>";
+					echo" <a href='".ADMIN."administration.php?contet'>".WCF::$locale['menu_admin_panel_admin']."</a>";
 					echo"<hr>";
 				}	
 			if ($page)
@@ -54,14 +54,14 @@
 					$admin_pages = true;
 					echo"<form action='".WCF_SELF."'>";
 					echo"<select onchange='window.location.href=this.value' style='width:100%;' class='textbox'>";
-					echo"<option value='".WCF_SELF."' style='font-style:italic;' selected='selected'>".$txt['menu_admin_'.$t]."</option>";
+					echo"<option value='".WCF_SELF."' style='font-style:italic;' selected='selected'>".WCF::$locale['menu_admin_'.$t]."</option>";
 					echo $page."</select></form>";
 					$content = true;
 				}
 			if ($i == 5)
 				{
 					if ($content) { echo"<hr>"; }
-					echo" <a href='".BASEDIR."index.php'>".$txt['menu_admin_revert']."</a>";
+					echo" <a href='".BASEDIR."index.php'>".WCF::$locale['menu_admin_revert']."</a>";
 				}
 		}
 	closeside();

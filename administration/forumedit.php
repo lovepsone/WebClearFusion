@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: forumedit.php
 | Author: lovepsone
@@ -144,7 +144,7 @@
 							if (db_num_rows($result))
 								{
 									$data = db_array($result);
-									$sections_title = $txt['admin_forumedit_edit_f_s'];
+									$sections_title = WCF::$locale['admin_forumedit_edit_f_s'];
 									$sections_name = $data['forum_name'];
 								}
 							else
@@ -158,7 +158,7 @@
 							if (db_num_rows($result))
 								{
 									$data = db_array($result);
-									$forum_title = $txt['admin_forumedit_edit_f_f'];
+									$forum_title = WCF::$locale['admin_forumedit_edit_f_f'];
 									$forum_name = $data['forum_name'];
 									$forum_description = $data['forum_description'];
 								}
@@ -171,10 +171,10 @@
 			else
 				{
 					$sections_name = "";
-					$sections_title = $txt['admin_forumedit_add_f_s'];
+					$sections_title = WCF::$locale['admin_forumedit_add_f_s'];
 					$forum_name = "";
 					$forum_description = "";
-					$forum_title = $txt['admin_forumedit_add_f_f'];
+					$forum_title = WCF::$locale['admin_forumedit_add_f_f'];
 				}
 			//======================================================
 			// 1-я форма связана с разделами
@@ -183,17 +183,17 @@
 					opentable();
 					echo"<form method='post'>";
 					echo"<tr><td align='center' colspan='2' class='small'>".$sections_title."</td></tr>";
-					echo"<tr><td width='50%' align='right' class='small2'>".$txt['admin_forumedit_name_f_s']."&nbsp;</td>";
+					echo"<tr><td width='50%' align='right' class='small2'>".WCF::$locale['admin_forumedit_name_f_s']."&nbsp;</td>";
 					echo"<td width='50%' align='left' class='small2'><input type='text' name='sections_name' value='".$sections_name."' class='textbox' style='width:230px;'/></td></tr>";
 					echo"<tr><td width='50%' align='right' class='small2'>";
 		
 					if (!isset($_GET['action']) || $_GET['action'] != "edit")
 							{
-								echo $txt['admin_forumedit_order_f_s']."&nbsp;</td>";
+								echo WCF::$locale['admin_forumedit_order_f_s']."&nbsp;</td>";
 								echo"<td width='50%' align='left' class='small2'><input type='text' name='sections_order' class='textbox' style='width:45px;' />";
 							}
 					echo"</td></tr>";
-					echo"<tr><td align='center' colspan='2'><input type='submit' name='save_sections' value='".$txt['admin_forumedit_savesect']."' class='button' /></td></tr>";
+					echo"<tr><td align='center' colspan='2'><input type='submit' name='save_sections' value='".WCF::$locale['admin_forumedit_savesect']."' class='button' /></td></tr>";
 					echo"</form>";
 					closetable();
 				}
@@ -218,25 +218,25 @@
 							echo"<form method='post'>";
 							echo"<tr><td align='center' colspan='2' class='small'>".$forum_title."</td></tr>";
 		
-							echo"<tr><td width='50%' align='right' class='small2'>".$txt['admin_forumedit_name_f_f']."&nbsp;</td>";
+							echo"<tr><td width='50%' align='right' class='small2'>".WCF::$locale['admin_forumedit_name_f_f']."&nbsp;</td>";
 							echo"<td width='50%' align='left' class='small2'><input type='text' name='forum_name' value='".$forum_name."' class='textbox' style='width:230px;'/></td></tr>";
 		
-							echo"<tr><td width='50%' align='right' class='small2'>".$txt['admin_forumedit_descript_f_f']."&nbsp;</td>";
+							echo"<tr><td width='50%' align='right' class='small2'>".WCF::$locale['admin_forumedit_descript_f_f']."&nbsp;</td>";
 							echo"<td width='50%' align='left' class='small2'><input type='text' name='forum_description' value='".$forum_description."' class='textbox' style='width:230px;'/></td></tr>";
 		
-							echo"<tr><td width='50%' align='right' class='small2'>".$txt['admin_forumedit_sections']."&nbsp;</td>";
+							echo"<tr><td width='50%' align='right' class='small2'>".WCF::$locale['admin_forumedit_sections']."&nbsp;</td>";
 							echo"<td width='50%' align='left' class='small2'><select name='forum_sections' class='textbox' style='width:230px;'>".$forum_opts."</select></td></tr>";
 		
 							echo"<tr><td width='50%' align='right' class='small2'>";
 		
 							if (!isset($_GET['action']) || $_GET['action'] != "edit")
 								{
-									echo $txt['admin_forumedit_order_f_s']."&nbsp;</td>";
+									echo WCF::$locale['admin_forumedit_order_f_s']."&nbsp;</td>";
 									echo"<td width='50%' align='left' class='small2'><input type='text' name='forum_order' class='textbox' style='width:45px;' />";
 								}
 							echo"</td></tr>";
 		
-							echo"<tr><td align='center' colspan='2'><input type='submit' name='save_forum' value='".$txt['admin_forumedit_savesect']."' class='button' /></td></tr>";
+							echo"<tr><td align='center' colspan='2'><input type='submit' name='save_forum' value='".WCF::$locale['admin_forumedit_savesect']."' class='button' /></td></tr>";
 		
 							echo"</form>";
 							closetable();
@@ -254,10 +254,10 @@
 			if (db_num_rows($result) != 0)
 				{
 					opentable();
-		   			echo"<tr><th width='60%' class='forum-caption'>".$txt['admin_forumedit_cat_or_forum']."</th>";
+		   			echo"<tr><th width='60%' class='forum-caption'>".WCF::$locale['admin_forumedit_cat_or_forum']."</th>";
 					echo"<th width='5%' class='forum-caption'></th>";
-					echo"<th width='21%' class='forum-caption'>".$txt['admin_forumedit_order']."</th>";
-					echo"<th width='10%' class='forum-caption'>".$txt['admin_forumedit_options']."</th></tr>";
+					echo"<th width='21%' class='forum-caption'>".WCF::$locale['admin_forumedit_order']."</th>";
+					echo"<th width='10%' class='forum-caption'>".WCF::$locale['admin_forumedit_options']."</th></tr>";
 		
 					$i = 1;
 					while ($data = db_array($result))
@@ -274,24 +274,24 @@
 		
 									if ($i == 1)
 										{
-											echo"<a href='".WCF_SELF."?type=sections&action=md&order=".$down."&forum_id=".$data['forum_id']."'>".$txt['down']."</a>";
+											echo"<a href='".WCF_SELF."?type=sections&action=md&order=".$down."&forum_id=".$data['forum_id']."'>".WCF::$locale['down']."</a>";
 										}
 									elseif ($i < db_num_rows($result))
 										{
-											echo"<a href='".WCF_SELF."?type=sections&action=mu&order=$up&forum_id=".$data['forum_id']."'>".$txt['up']."</a>";
-											echo"<a href='".WCF_SELF."?type=sections&action=md&order=$down&forum_id=".$data['forum_id']."'>".$txt['down']."</a>";
+											echo"<a href='".WCF_SELF."?type=sections&action=mu&order=$up&forum_id=".$data['forum_id']."'>".WCF::$locale['up']."</a>";
+											echo"<a href='".WCF_SELF."?type=sections&action=md&order=$down&forum_id=".$data['forum_id']."'>".WCF::$locale['down']."</a>";
 										}
 									else
 										{
-											echo"<a href='".WCF_SELF."?type=sections&action=mu&order=$up&forum_id=".$data['forum_id']."'>".$txt['up']."</a>";
+											echo"<a href='".WCF_SELF."?type=sections&action=mu&order=$up&forum_id=".$data['forum_id']."'>".WCF::$locale['up']."</a>";
 										}
 								}
 							$i++;
 							echo"</td>";
 		
 							echo"<td align='center' width='1%' class='small' style='white-space:nowrap'>";
-							echo"<a href='".WCF_SELF."?type=sections&action=edit&forum_id=".$data['forum_id']."'>".$txt['admin_forumedit_edit']."</a> ::";
-							echo"<a href='".WCF_SELF."?type=sections&action=delete&forum_id=".$data['forum_id']."'>".$txt['admin_forumedit_del']."</a></td></tr>";
+							echo"<a href='".WCF_SELF."?type=sections&action=edit&forum_id=".$data['forum_id']."'>".WCF::$locale['admin_forumedit_edit']."</a> ::";
+							echo"<a href='".WCF_SELF."?type=sections&action=delete&forum_id=".$data['forum_id']."'>".WCF::$locale['admin_forumedit_del']."</a></td></tr>";
 							echo"<tr><td colspan='4'><hr></td></tr>";
 		
 							$result2 = db_query("SELECT * FROM ".DB_FORUMS." WHERE `forum_sections`='".$data['forum_id']."' ORDER BY `forum_order`");
@@ -302,7 +302,7 @@
 									while ($data2 = db_array($result2))
 										{
 											echo"<tr><td class='tbl1' width='60%'><span class='alt'>".$data2['forum_name']."</span>";
-											echo"[<a href='".WCF_SELF."?action=prune&forum_id=".$data2['forum_id']."'>".$txt['admin_forumedit_cleaning']."</a>]<br>";
+											echo"[<a href='".WCF_SELF."?action=prune&forum_id=".$data2['forum_id']."'>".WCF::$locale['admin_forumedit_cleaning']."</a>]<br>";
 											echo ($data2['forum_description'] ? "<span class='small2'>".$data2['forum_description']."</span>" : "")."</td>";
 											echo"<td align='center' width='5%' class='tbl2'>".$data2['forum_order']."</td>";
 											echo"<td align='center' width='21%' class='tbl1'>";
@@ -314,23 +314,23 @@
 		
 													if ($k == 1)
 														{
-															echo"<a href='".WCF_SELF."?type=forum&action=md&order=$down&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".$txt['down']."</a>";
+															echo"<a href='".WCF_SELF."?type=forum&action=md&order=$down&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".WCF::$locale['down']."</a>";
 														}
 													elseif ($k < db_num_rows($result2))
 														{
-															echo"<a href='".WCF_SELF."?type=forum&action=mu&order=$up&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".$txt['up']."</a>";
-															echo"<a href='".WCF_SELF."?type=forum&action=md&order=$down&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".$txt['down']."</a>";
+															echo"<a href='".WCF_SELF."?type=forum&action=mu&order=$up&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".WCF::$locale['up']."</a>";
+															echo"<a href='".WCF_SELF."?type=forum&action=md&order=$down&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".WCF::$locale['down']."</a>";
 														}
 													else
 														{
-															echo"<a href='".WCF_SELF."?type=forum&action=mu&order=$up&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".$txt['up']."</a>";
+															echo"<a href='".WCF_SELF."?type=forum&action=mu&order=$up&forum_id=".$data2['forum_id']."&sections=".$data2['forum_sections']."'>".WCF::$locale['up']."</a>";
 														}
 												}
 											$k++;
 											echo"</td>";
 											echo"<td align='center' width='1%' class='tbl1' style='white-space:nowrap'>";
-											echo"<a href='".WCF_SELF."?type=forum&action=edit&forum_id=".$data2['forum_id']."'>".$txt['admin_forumedit_edit']."</a> ::";
-											echo"<a href='".WCF_SELF."?type=forum&action=delete&forum_id=".$data2['forum_id']."'>".$txt['admin_forumedit_del']."</a></td>";
+											echo"<a href='".WCF_SELF."?type=forum&action=edit&forum_id=".$data2['forum_id']."'>".WCF::$locale['admin_forumedit_edit']."</a> ::";
+											echo"<a href='".WCF_SELF."?type=forum&action=delete&forum_id=".$data2['forum_id']."'>".WCF::$locale['admin_forumedit_del']."</a></td>";
 											echo"</tr>";
 										}
 								}

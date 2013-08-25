@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: settings_other.php
 | Author: lovepsone
@@ -14,43 +14,44 @@
 	require_once THEMES."templates/admin_header.php";
 
 	if (isset($_POST['savesettings']))
-		{
-			selectdb("wcf");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['kcaptcha_enable_auth'])."' WHERE `settings_name`='kcaptcha_enable_auth'");
-			db_query("UPDATE ".DB_SETTINGS." SET `settings_value`='".stripinput($_POST['level_administration'])."' WHERE `settings_name`='level_administration'");
-			redirect(WCF_SELF);
-		}
+	{
+		WCF::$DB->query('UPDATE ?_settings SET `settings_value`= ? WHERE `settings_name`=?', WCF::$TF->stripinput($_POST['kcaptcha_enable_auth']), "kcaptcha_enable_auth");
+		WCF::$DB->query('UPDATE ?_settings SET `settings_value`= ? WHERE `settings_name`=?', WCF::$TF->stripinput($_POST['level_administration']), "level_administration");
+		WCF::redirect(WCF_SELF);
+	}
 
-	$settings = array();
-	selectdb("wcf");
-	$result = db_query("SELECT * FROM ".DB_SETTINGS."");
+	$settings = array(); $kcaptcha_opts = "";
 
-	while ($data = db_array($result))
-		{
-			$settings[$data['settings_name']] = $data['settings_value'];
-		}
+	$rows = WCF::$DB->select(' -- CACHE: 180
+					SELECT * FROM ?_settings');
+
+	foreach ($rows as $numRow => $data)
+	{
+		$settings[$data['settings_name']] = $data['settings_value'];
+	}
+
 	if ($settings['kcaptcha_enable_auth'] == "0")
-		{
-			$kcaptcha_opts .= "<option value='0' selected='selected'>".$txt['no']."</option>";
-			$kcaptcha_opts .= "<option value='1'>".$txt['yes']."</option>";
-		}
+	{
+		$kcaptcha_opts .= "<option value='0' selected='selected'>".WCF::$locale['no']."</option>";
+		$kcaptcha_opts .= "<option value='1'>".WCF::$locale['yes']."</option>";
+	}
 	elseif ($settings['kcaptcha_enable_auth'] == "1")
-		{
-			$kcaptcha_opts .= "<option value='1' selected='selected'>".$txt['yes']."</option>";
-			$kcaptcha_opts .= "<option value='0'>".$txt['no']."</option>";
-		}
+	{
+		$kcaptcha_opts .= "<option value='1' selected='selected'>".WCF::$locale['yes']."</option>";
+		$kcaptcha_opts .= "<option value='0'>".WCF::$locale['no']."</option>";
+	}
 
 	opentable();
 	echo"<form name='settingsform' method='post'>";
-	echo"<tr><td align='center' class='tbl' colspan='2'>".$txt['admin_setting_other']."</td></tr>";
+	echo"<tr><td align='center' class='tbl' colspan='2'>".WCF::$locale['admin_setting_other']."</td></tr>";
 
-	echo"<tr><td align='center' width='50%' class='small'>".$txt['admin_setting_other_k']."</td>";
+	echo"<tr><td align='center' width='50%' class='small'>".WCF::$locale['admin_setting_other_k']."</td>";
 	echo"<td width='50%'><select name='kcaptcha_enable_auth' class='textbox'>".$kcaptcha_opts."</select></td></tr>";
 
-	echo"<tr><td align='center' width='50%' class='small'>".$txt['admin_setting_other_lvl_admin']."</td>";
+	echo"<tr><td align='center' width='50%' class='small'>".WCF::$locale['admin_setting_other_lvl_admin']."</td>";
 	echo"<td width='50%'><select name='level_administration' class='textbox'>".access($settings['level_administration'])."</select></td></tr>";
 
-	echo"<tr><td align='center' colspan='2'><input type='submit' name='savesettings' value='".$txt['admin_savesettings']."' class='button' /></td></tr>";
+	echo"<tr><td align='center' colspan='2'><input type='submit' name='savesettings' value='".WCF::$locale['admin_savesettings']."' class='button' /></td></tr>";
 	echo"</form>";
 	closetable();
 

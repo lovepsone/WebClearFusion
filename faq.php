@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: faq.php
 | Author: lovepsone
@@ -14,11 +14,11 @@
 	require_once THEMES."templates/header.php";
 
 	if (!isset($_GET['cat_id']) || !isnum($_GET['cat_id']))
-		{
-			opentable();
-			$result = db_query("SELECT `faq_cat_id`, `faq_cat_name`, `faq_cat_description` FROM ".DB_FAQ_CATS." ORDER BY `faq_cat_name`");
-			$rows = db_num_rows($result);
-			if ($rows)
+	{
+		opentable();
+		$result = db_query("SELECT `faq_cat_id`, `faq_cat_name`, `faq_cat_description` FROM ".DB_FAQ_CATS." ORDER BY `faq_cat_name`");
+		$rows = db_num_rows($result);
+		if ($rows)
 				{
 					$columns = 2; $i = 0;
 					echo"<tr>";

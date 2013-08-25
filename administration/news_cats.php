@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: news_cats.php
 | Author: lovepsone
@@ -49,7 +49,7 @@
 					$data = db_assoc($result);
 					$news_cat_name = $data['news_cat_name'];
 					$news_cat_image = $data['news_cat_image'];
-					$txt_page = $txt['admin_newscat_edit_n'];
+					WCF::$locale_page = WCF::$locale['admin_newscat_edit_n'];
 				}
 			else
 				{
@@ -60,7 +60,7 @@
 		{
 			$news_cat_name = "";
 			$news_cat_image = "";
-			$txt_page = $txt['admin_newscat_add_n'];
+			WCF::$locale_page = WCF::$locale['admin_newscat_add_n'];
 		}
 
 
@@ -71,12 +71,12 @@
 
 	opentable();
 	echo"<form method='post'>";
-	echo"<tr><td align='center' colspan='2' class='small'>".$txt_page."</td></tr>";
-	echo"<tr><td width='50%' align='right' class='small2'>".$txt['admin_newscat_name']."</td>";
+	echo"<tr><td align='center' colspan='2' class='small'>".WCF::$locale_page."</td></tr>";
+	echo"<tr><td width='50%' align='right' class='small2'>".WCF::$locale['admin_newscat_name']."</td>";
 	echo"<td width='50%' align='left'><input type='text' name='news_cat_name' value='".$news_cat_name."' class='textbox' style='width:200px;' /></td></tr>";
-	echo"<tr><td width='50%' align='right' class='small2'>".$txt['admin_newscat_picture']."</td>";
+	echo"<tr><td width='50%' align='right' class='small2'>".WCF::$locale['admin_newscat_picture']."</td>";
 	echo"<td width='50%' align='left'><select name='news_cat_image' class='textbox' style='width:200px;'>".$image_list."</select></td></tr>";
-	echo"<tr><td align='center' colspan='2'><br/><input type='submit' name='save_news_cat' value='".$txt['admin_newscat_save']."' class='button' /></td></tr>";
+	echo"<tr><td align='center' colspan='2'><br/><input type='submit' name='save_news_cat' value='".WCF::$locale['admin_newscat_save']."' class='button' /></td></tr>";
 	echo"</form>";
 	closetable();
 
@@ -98,18 +98,18 @@
 
 					echo"<td align='center' width='15%' class='small'><strong>".$data['news_cat_name']."</strong><br/><br/>";
 					echo"<img src='".IMAGES_NC.$data['news_cat_image']."' /><br /><br/>";
-					echo"<span class='small2'><a href='".WCF_SELF."?action=edit&cat_id=".$data['news_cat_id']."'>".$txt['admin_newscat_edit']."</a> -\n";
-					echo"<a href='".WCF_SELF."?action=delete&cat_id=".$data['news_cat_id']."' onclick=\"return confirm('".$txt['admin_newscat_del_y']."');\">".$txt['admin_newscat_del']."</a></span></td>";
+					echo"<span class='small2'><a href='".WCF_SELF."?action=edit&cat_id=".$data['news_cat_id']."'>".WCF::$locale['admin_newscat_edit']."</a> -\n";
+					echo"<a href='".WCF_SELF."?action=delete&cat_id=".$data['news_cat_id']."' onclick=\"return confirm('".WCF::$locale['admin_newscat_del_y']."');\">".WCF::$locale['admin_newscat_del']."</a></span></td>";
 					$counter++;
 				}
 			echo"</tr>";
 		}
 	else
 		{
-			echo"<div style='text-align:center'><br/>".$txt['admin_newscat_no_cat']."<br/><br/></div>";
+			echo"<div style='text-align:center'><br/>".WCF::$locale['admin_newscat_no_cat']."<br/><br/></div>";
 		}
 			// нужен новый скрипт, даработка нужна
-			echo"<div style='text-align:center'><br/><a href='".WCF_SELF."'>".$txt['admin_newscat_link_load_img']."</a><br/><br/></div>";
+			echo"<div style='text-align:center'><br/><a href='".WCF_SELF."'>".WCF::$locale['admin_newscat_link_load_img']."</a><br/><br/></div>";
 	closetable();
 
 	require_once THEMES."templates/footer.php";

@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: news.php
 | Author: lovepsone
@@ -75,7 +75,7 @@
 			$news_visibility = "";
 			$news_comments = " checked='checked'";
 			$news_show_cat = " checked='checked'";
-			$txt_button = $txt['admin_newsmaker_add'];
+			WCF::$locale_button = WCF::$locale['admin_newsmaker_add'];
 		}
 
 	selectdb("wcf");
@@ -92,10 +92,10 @@
 			// 1-ая форма
 			opentable();
 			echo"<div style='text-align:center'><form name='selectform' method='post' action='".WCF_SELF."?action=edit'>";
-			echo"<h1>".$txt['admin_newsmaker']."</h1>";
+			echo"<h1>".WCF::$locale['admin_newsmaker']."</h1>";
 			echo"<select name='news_id' class='textbox' style='width:450px'>".$editlist."</select>";
-			echo"<input type='submit' name='edit' value='".$txt['admin_newsmaker_edit']."' class='button' />";
-			echo"<input type='submit' name='delete' value='".$txt['admin_newsmaker_del']."' onclick='return DeleteNews();' class='button' />";
+			echo"<input type='submit' name='edit' value='".WCF::$locale['admin_newsmaker_edit']."' class='button' />";
+			echo"<input type='submit' name='delete' value='".WCF::$locale['admin_newsmaker_del']."' onclick='return DeleteNews();' class='button' />";
 			echo"<br><hr></form></div>";
 			closetable();
 		}
@@ -114,7 +114,7 @@
 					$news_visibility = $data1['news_visibility'];
 					$news_comments = $data1['news_allow_comments'] == "1" ? " checked='checked'" : "";
 					$news_show_cat = $data1['news_show_cat'] == "1" ? " checked='checked'" : "";
-					$txt_button = $txt['admin_newsmaker_edit'];
+					WCF::$locale_button = WCF::$locale['admin_newsmaker_edit'];
 				}
 			else
 				{
@@ -124,7 +124,7 @@
 	if (isset($_GET['errors']) && isnum($_GET['errors']))
 		{
 			opentable();
-		       	echo"<tr><td align='center' class='small'><h3>".$txt['admin_newsmaker_not_fields']."</h3></td></tr>";
+		       	echo"<tr><td align='center' class='small'><h3>".WCF::$locale['admin_newsmaker_not_fields']."</h3></td></tr>";
 			closetable();
 			return_form(30,WCF_SELF);
 		}
@@ -140,27 +140,27 @@
 			// 2-ая форма
 			opentable();
 		       	echo"<form method='post'>";
-		       	echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_teme']."</td>";
+		       	echo"<tr><td align='right' width='20%' class='small'>".WCF::$locale['admin_newsmaker_teme']."</td>";
 			echo"<td align='left' width='80%'><input type='text' name='news_subject' class='textbox' value='".$news_subject."' size='60'></td></tr>";
-			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_cat']."<input name='news_id' class='textbox' value='".$news_id."' type=hidden></td>";
+			echo"<tr><td align='right' width='20%' class='small'>".WCF::$locale['admin_newsmaker_cat']."<input name='news_id' class='textbox' value='".$news_id."' type=hidden></td>";
 		        echo"<td align='left' width='80%'><select name=news_cat class='textbox'>".$news_cat_list."</select></td></tr>";
-			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_show_img_cat']."</td>";
+			echo"<tr><td align='right' width='20%' class='small'>".WCF::$locale['admin_newsmaker_show_img_cat']."</td>";
 		       	echo"<td align='left' width='80%'><input type='checkbox' name='news_show_cat' value='yes'".$news_show_cat." /></td></tr>";
-			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_comments']."</td>";
+			echo"<tr><td align='right' width='20%' class='small'>".WCF::$locale['admin_newsmaker_comments']."</td>";
 		       	echo"<td align='left' width='80%'><input type='checkbox' name='news_comments' value='yes'".$news_comments." /></td></tr>";
-			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_access']."</td>";
+			echo"<tr><td align='right' width='20%' class='small'>".WCF::$locale['admin_newsmaker_access']."</td>";
 		       	echo"<td align='left' width='80%'><select name='news_visibility' class='textbox' style='width:250px'>".access($news_visibility)."</select></td></tr>";
-			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_newsflash']."</td>";
+			echo"<tr><td align='right' width='20%' class='small'>".WCF::$locale['admin_newsmaker_newsflash']."</td>";
 		       	echo"<td align='left' width='80%'><textarea name='news_text'>".$news_text."</textarea></td></tr>";
 			echo"<tr><td colspan='2'><hr></td></tr>";
-			echo"<tr><td align='right' width='20%' class='small'>".$txt['admin_newsmaker_newsfull']."</td>";
+			echo"<tr><td align='right' width='20%' class='small'>".WCF::$locale['admin_newsmaker_newsfull']."</td>";
 		       	echo"<td align='left' width='80%'><textarea name='news_text_ext'>".$news_text_ext."</textarea></td></tr>";
-		       	echo"<tr><td align='center' colspan='2' class='small'><input type='submit' name='save'  class='button' value='".$txt_button."'/></td></tr>";
+		       	echo"<tr><td align='center' colspan='2' class='small'><input type='submit' name='save'  class='button' value='".WCF::$locale_button."'/></td></tr>";
 			echo"</form>";
 			closetable();
 		}
 
-	echo"<script type='text/javascript'>"."function DeleteNews() { return confirm('".$txt['admin_newsmaker_title']."'); }</script>";
+	echo"<script type='text/javascript'>"."function DeleteNews() { return confirm('".WCF::$locale['admin_newsmaker_title']."'); }</script>";
 
 	require_once THEMES."templates/footer.php";
 ?>
