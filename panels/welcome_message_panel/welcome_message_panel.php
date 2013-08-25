@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: user_info_panel.php
 | Author: lovepsone
@@ -10,10 +10,10 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	if ($config['serverintro'] != "")
-		{
-			opentable();
-			echo stripslashes($config['serverintro']);
-			closetable();
-		}
+	if (WCF::$cfgSetting['serverintro'] != "")
+	{
+		opentable();
+		echo stripslashes(WCF::$cfgSetting['serverintro']);
+		closetable();
+	}
 ?>

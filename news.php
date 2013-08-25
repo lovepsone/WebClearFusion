@@ -13,13 +13,13 @@
 	require_once "maincore.php";
 	require_once THEMES."templates/header.php";
 
-	selectdb("wcf");
-  	$result = db_query("SELECT count(`news_date`) as number FROM ".DB_NEWS);
-	$kolzap = db_array($result);
+  	$rows = WCF::$DB->select(' -- CACHE: 180
+					SELECT count(`news_date`) as number FROM ?_news');
+	foreach ($rows as $numRow=>$kolzap) {}
 
-	if ($kolzap['number'] > $config['page_news'])
+	if ($kolzap['number'] > WCF::$cfgSetting['page_news'])
 	{
-    		$page_len = $config['page_news'];
+    		$page_len = WCF::$cfgSetting['page_news'];
  
     		if (!isset($_GET['page']) || ($_GET['page'] == ''))
 		{
@@ -27,7 +27,7 @@
 		}
 		else
 		{
-			$start_rec = ((int)$_GET['page']-1)*$config['page_news'];
+			$start_rec = ((int)$_GET['page']-1)*WCF::$cfgSetting['page_news'];
 		}
 	}
 	else
@@ -36,15 +36,16 @@
 		$start_rec = 0;
 	}
 
-  	$result = db_query("SELECT * FROM ".DB_NEWS." 
-				LEFT JOIN ".DB_NEWS_CATS." ON `news_cat_id`=`news_cat`
-				LEFT JOIN ".DB_USERS." ON ".DB_USERS.".`user_id`=".DB_NEWS.".`news_author`
-				ORDER BY `news_date` DESC limit ".$start_rec.",".$page_len);
+  	$rows = WCF::$DB->select(' -- CACHE: 180
+				SELECT * FROM ?_news
+				LEFT JOIN ?_news_cats ON `news_cat_id`=`news_cat`
+				LEFT JOIN ?_users ON ?_users.`user_id` = ?_news.`news_author`
+				ORDER BY `news_date` DESC limit '.$start_rec.','.$page_len);
 
 	opentable();
-  	if (db_num_rows($result))
+  	if ($rows != null)
 	{
-     		while ($data = db_array($result))
+     		foreach ($rows as $numRow=>$data)
 		{
 			if (check_user($data['news_visibility']))
 			{
@@ -57,14 +58,14 @@
 
           			echo"<tr><td align='left' class='head-table'>".$data['news_subject']."</td></tr>";
 				echo"<tr><td align='left'>".$news_cat_image.stripslashes($data['news_text'])."</td></tr>";
-          			echo"<tr><td align='center'><br>".$txt['modul_news_creation_date']."&nbsp;".$data['news_date']."&nbsp;".$txt['modul_news_author']."&nbsp;
-						".ucfirst(strtolower($data['user_name']))."&nbsp;|&nbsp;<a href='newsext.php?id=".$data['news_id']."'>".$txt['modul_news_read_more']."</a><br><hr></td></tr>";
+          			echo"<tr><td align='center'><br>".WCF::$locale['modul_news_creation_date']."&nbsp;".$data['news_date']."&nbsp;".WCF::$locale['modul_news_author']."&nbsp;
+						".ucfirst(strtolower($data['user_name']))."&nbsp;|&nbsp;<a href='newsext.php?id=".$data['news_id']."'>".WCF::$locale['modul_news_read_more']."</a><br><hr></td></tr>";
 			}
       		}
 
-  		if ($kolzap['number'] > $config['page_news'])
+  		if ($kolzap['number'] > WCF::$cfgSetting['page_news'])
 		{
-  			$PageCounter = ceil($kolzap['number'] / $config['page_news']);
+  			$PageCounter = ceil($kolzap['number'] / WCF::$cfgSetting['page_news']);
 
    			if (!isset($_GET['page']) || ($_GET['page'] == '') || ($_GET['page'] == '_'))
 			{
@@ -79,7 +80,7 @@
    	}
 	else
 	{
-		echo"<tr><td align='center' valign='middle' >".$txt['modul_news_no_news']."</td></tr>";
+		echo"<tr><td align='center' valign='middle' >".WCF::$locale['modul_news_no_news']."</td></tr>";
 	}
 	closetable();
 

@@ -16,17 +16,17 @@
 
    	echo $simple_script;
 
-	if (isset($_GET['id']) && isnum($_GET['id']))
+	if (isset($_GET['id']) && WCF::isnum($_GET['id']))
 	{
 		$newsid = addslashes($_GET["id"]);
 
-		selectdb("wcf");
-  		$result = db_query("SELECT * FROM ".DB_NEWS." 
-				LEFT JOIN ".DB_NEWS_CATS." ON `news_cat_id`=`news_cat`
-				LEFT JOIN ".DB_USERS." ON ".DB_USERS.".`user_id`=".DB_NEWS.".`news_author`
-				WHERE `news_id`='".$newsid."' limit 1");
 
-		$data = db_assoc($result);
+  		$data = WCF::$DB->selectRow(' -- CACHE: 180
+				SELECT * FROM ?_news
+				LEFT JOIN ?_news_cats ON `news_cat_id`=`news_cat`
+				LEFT JOIN ?_users ON ?_users.`user_id`=?_news.`news_author`
+				WHERE `news_id` = ?d', $newsid);
+
 		$allow_comments = $data['news_allow_comments'];
 
 		$news_cat_image = "";
@@ -39,43 +39,43 @@
 		opentable();
           	echo"<tr><td align='left' class='head-table'>".$data['news_subject']."</td></tr>";
 		echo"<tr><td align='left'>".$news_cat_image.stripslashes($data['news_text_extended'])."</td></tr>";
-          	echo"<tr><td align='left'>&nbsp;".$txt['modul_news_creation_date']."&nbsp;".$data['news_date']."&nbsp;".$txt['modul_news_author']."&nbsp;".ucfirst(strtolower($data['user_name']))."&nbsp;<br><hr></td></tr>";
+          	echo"<tr><td align='left'>&nbsp;".WCF::$locale['modul_news_creation_date']."&nbsp;".$data['news_date']."&nbsp;".WCF::$locale['modul_news_author']."&nbsp;".ucfirst(strtolower($data['user_name']))."&nbsp;<br><hr></td></tr>";
 		closetable();
 
-		$result = db_query("SELECT * FROM ".DB_COMMENTS."
-					LEFT JOIN ".DB_USERS." ON ".DB_USERS.".`user_id`=".DB_COMMENTS.".`user_id`
-					WHERE `comment_item_id`='".$newsid."' AND `comment_type`='1'");
+		$rows = WCF::$DB->select(' -- CACHE: 180
+					SELECT * FROM ?_comments
+					LEFT JOIN ?_users ON ?_users.`user_id` = ?_comments.`user_id`
+					WHERE `comment_item_id` = ?d AND `comment_type`=1', $newsid);
 		opentable();
 		if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
 		{ 
-			echo"<tr><td align='center' colspan='2'><h3>".$txt['modul_newsexp_log_in']."</h3></td></tr>";
+			echo"<tr><td align='center' colspan='2'><h3>".WCF::$locale['modul_newsexp_log_in']."</h3></td></tr>";
 		}
 
-		while ($data = db_array($result))
+		foreach ($rows as $numRow => $data)
 		{
 			echo"<tr><td align='left' width='120' class='tbl2'>".ucfirst(strtolower($data['user_name']))."<br>".avatar_img($data['user_avatar'])."</td>";
 			echo"<td align='left' class='tbl1'>".stripslashes($data['comment_message'])."</td></tr>";
-			echo"<tr><td colspan='2'>".$txt['modul_newsexp_date_reply']."&nbsp;".$data['comment_date']."<br><hr></td></tr>";
+			echo"<tr><td colspan='2'>".WCF::$locale['modul_newsexp_date_reply']."&nbsp;".$data['comment_date']."<br><hr></td></tr>";
 		}
+		
 		//=========================
 		// форма отправки коментария
 		if ((isset($_SESSION['user_id']) || (isset($_SESSION['ip']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR'])) && $allow_comments == 1)
 		{
-			if($_POST['comments'])
+			if(isset($_POST['comments']))
 			{
 				// Создаем коммент
-				db_query("INSERT INTO `wcf_comments`
-					(`comment_item_id`,`comment_type`,`user_id`,`comment_message`)
-					VALUES ('".$newsid."','1','".$_SESSION['user_id']."','".addslash($_POST['comments'])."')");
+				WCF::$DB->query('INSERT INTO ?_comments (`comment_item_id`,`comment_type`,`user_id`,`comment_message`) VALUES (?d, 1, ?d, ?)', $newsid, $_SESSION['user_id'], $_POST['comments']);
 
 				echo"<tr><td align='center' colspan='4'><img src='".IMAGES."ajax-loader.gif'/></td></tr>";
-				return_form(5,'newsext.php?id='.$newsid);
+				WCF::ReturnForm(5, 'newsext.php?id='.$newsid);
 			}
 			else 
 			{
 				echo"<form method='post'>";
 				echo"<tr><td align='center' colspan='4'><textarea name='comments'></textarea></td></tr>";
-				echo"<tr><td align='center' colspan='4'><input type='submit' class='button' value='".$txt['forum_quick_reply']."'/></td></tr></form>";
+				echo"<tr><td align='center' colspan='4'><input type='submit' class='button' value='".WCF::$locale['forum_quick_reply']."'/></td></tr></form>";
 			}
 		}
 		closetable();
