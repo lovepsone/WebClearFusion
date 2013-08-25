@@ -78,7 +78,7 @@
   				$page_counter_thr = ceil($thr_kolzap['kol'] / WCF::$cfgSetting['page_forum_threads']);
 
    				if (!isset($_GET['page']) || ($_GET['page'] == '') || ($_GET['page'] == '_')) { $tp3 = 1; } else { $tp3 = (int)$_GET['page']; }
- 				echo"<tr><td colspan='3' align='center' valign='middle' >".WCF::show_page(FORUM.'viewforum.php?forum_id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";
+ 				echo"<tr><td colspan='3' align='center' valign='middle' >".show_page(FORUM.'viewforum.php?forum_id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";
   			}
 		}
 		else
