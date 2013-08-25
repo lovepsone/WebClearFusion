@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2011 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: index.php
 | Author: lovepsone
@@ -11,5 +11,5 @@
 +--------------------------------------------------------*/
 
 	require_once "maincore.php";
-	redirect($config['opening_page']);
+	WCF::redirect(WCF::$cfgSetting['opening_page']);
 ?>

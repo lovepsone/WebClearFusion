@@ -13,12 +13,6 @@
 	if (preg_match("/maincore.php/i", $_SERVER['PHP_SELF'])) { die(); }
 
 	error_reporting(E_ALL);
-	//ini_set('display_errors',0);
-
-	//=============================================================================================================
-	// Предотвращения возможных атак через XSS $_GET.
-	//=============================================================================================================
-	if (stripget($_GET)) { die("Prevented a XSS attack through a GET variable!"); }
 
 	//=============================================================================================================
 	// Запускаем сессию\Start the session
@@ -35,29 +29,74 @@
 		$folder_level .= "../"; $i++;
 		if ($i == 7) { die("Config file not found"); }
 	}
-	require_once $folder_level."conf.php";
-	//require_once $folder_level."include/load_wcf.php";
 	define("BASEDIR", $folder_level);
+	define("ADMIN", BASEDIR."administration/");
+	define("FORUM", BASEDIR."forum/");
+	define("IMAGES", BASEDIR."images/");
+	define("IMAGES_N", BASEDIR."images/news/");
+	define("IMAGES_NC", BASEDIR."images/news_cat/");
+	define("IMAGES_A", BASEDIR."images/avatars/");
+	define("INCLUDES", BASEDIR."include/");
+	define("LANG", BASEDIR."lang/");
+	define("MODULE", BASEDIR."module/");
+	define("PANELS", BASEDIR."panels/");
+	define("THEMES", BASEDIR."themes/");
 
 	//=============================================================================================================
 	// Запускаем основные функции и многоузловое определение\Run the basic functions and determination of multisite
 	//=============================================================================================================
+	if(@!include(BASEDIR.'include/class.wcf.php'))
+		die("<b>Error:</b> can not open class.wcf.php!!!");
 
-	@include(BASEDIR.'include/defines.php');
-	@include(BASEDIR.'include/functions_files.php');
-	@include(BASEDIR.'include/functions_img.php');
-	@include(BASEDIR.'include/functions_mysql.php');
-	@include(BASEDIR.'include/functions_page.php');
-	@include(BASEDIR.'include/functions_text_process.php');
-	@include(BASEDIR.'include/functions_theme.php');
+	WCF::InitWCF();
+	WCF::$DB->setErrorHandler('databaseErrorHandler');
+	WCF::$DB->query('SET NAMES ?', WCF::$cfgMySql['charset']);
+
+	function databaseErrorHandler($message, $info)
+	{
+		// Если использовалась @, ничего не делать.
+		if (!error_reporting()) return;
+		// Выводим подробную информацию об ошибке.
+		echo "SQL Error: $message<br><pre>"; 
+		print_r($info);
+		echo "</pre>";
+		exit();
+	}
+
+	$DBLogger_ = '';
+	WCF::$DB->setLogger('DBLogger');
+	function DBLogger($db, $sql)
+	{
+		global $DBLogger_;
+		$DBLogger_ .= $sql.'<br>';
+		/*$caller = $db->findLibraryCaller();
+		$tip = "at ".@$caller['file'].' line '.@$caller['line'];
+		echo "<xmp title=\"$tip\">"; 
+		print_r($sql); 
+		echo "</xmp>";*/
+		
+	}
+
+	WCF::$DB->setIdentPrefix(DB_PREFIX);
+
+	//=============================================================================================================
+	// Предотвращения возможных атак через XSS $_GET.
+	//=============================================================================================================
+	if (WCF::stripget($_GET))
+		die("Prevented a XSS attack through a GET variable!");
+
+	// временно пока движок не перейдет на новые рельсы
 	@include(BASEDIR.'include/functions_users.php');
+	@include(BASEDIR.'include/functions_img.php');
+	@include(BASEDIR.'include/functions_page.php');
 	@include(BASEDIR.'include/include_access_list.php');
+	@include(BASEDIR.'include/functions_files.php');
 
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup
 	//=============================================================================================================
-	$_SERVER['QUERY_STRING'] = isset($_SERVER['QUERY_STRING']) ? cleanurl($_SERVER['QUERY_STRING']) : "";
-	$_SERVER['PHP_SELF'] = cleanurl($_SERVER['PHP_SELF']);
+	$_SERVER['QUERY_STRING'] = isset($_SERVER['QUERY_STRING']) ? WCF::cleanurl($_SERVER['QUERY_STRING']) : "";
+	$_SERVER['PHP_SELF'] = WCF::cleanurl($_SERVER['PHP_SELF']);
 
 	define("IN_WCF", TRUE);
 	define("WCF_QUERY", isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : "");
@@ -66,137 +105,118 @@
 	//=============================================================================================================
 	// Запускаем настройки\Run the setup
 	//=============================================================================================================
-	selectdb("wcf");
-	$result = db_query("SELECT * FROM ".DB_SETTINGS."");
-	if ($result)
+	$rows = WCF::$DB->select(' -- CACHE: 180
+				SELECT * FROM ?_settings');
+
+	if($rows != null)
 	{
-		while ($data = db_array($result))
-		{
-			$config[$data['settings_name']] = $data['settings_value'];
-		}
+		foreach ($rows as $numRow => $row)
+			WCF::$cfgSetting[$row['settings_name']] = $row['settings_value'];
 	}
-	else { die("Settings do not exist or no connection to base mysql. May not correctly configured conf.php."); }
-
-	require_once BASEDIR."include/include_auth.php";
-
-	//=============================================================================================================
-	// Выбор нужной кодировки\When choosing a character encoding
-	//=============================================================================================================
-	if ($config['encoding'] == 'cp1251') { $code_page = 'windows-1251'; } else { $code_page = 'utf-8'; }
+	else
+	{
+		die("Settings do not exist or no connection to base mysql. May not correctly configured conf.php.");
+	}
 
 	//=============================================================================================================
 	// Выбор нужного языка\Choosing the right language
 	//=============================================================================================================
-	if (isset($_GET['lang'])) { $config['lang'] = $_GET['lang']; } else { $_SESSION['lang'] = $config['lang']; }
-	if ($config['lang']) { require BASEDIR."lang/".$config['lang']."/".$config['encoding']."/text.php"; }
+	if (isset(WCF::$cfgSetting['lang']))
+	{
+		require_once BASEDIR."lang/".WCF::$cfgSetting['lang']."/".WCF::$cfgSetting['encoding']."/text.php";
+		WCF::setLanguage($txt);
+	}
+	else
+	{
+		// требуется добавить сообщение в дебаг
+		require_once BASEDIR."lang/".WCF::$cfgSetting['defaultLocale']."/utf8/text.php";
+		WCF::setLanguage($txt);	
+	}
 
 	//=============================================================================================================
 	// Установка нужной темы\Setting the right topic
 	//=============================================================================================================
-	$cssfile = THEMES.$config['theme']."/style.css";
-	$themefile = THEMES.$config['theme']."/theme.php";
+	WCF::$cfgSetting['_cssfile'] = THEMES.WCF::$cfgSetting['theme']."/style.css";
+	WCF::$cfgSetting['_themefile'] = THEMES.WCF::$cfgSetting['theme']."/theme.php";
 
-	if (file_exists($themefile))
+	if (file_exists(WCF::$cfgSetting['_themefile']))
 	{
-		include($themefile);
+		include(WCF::$cfgSetting['_themefile']);
 	}
 	else
 	{
+		// требуется добавить сообщение в дебаг
 		include(THEMES."default/theme.php");
 	}
-	if (!file_exists($cssfile)) { $cssfile = THEMES."default/style.css"; }
 
-//=====================================================================================================================
-// Ниже представлены функции защиты и работы сайта\Below are the security features of the site and
-//=====================================================================================================================
-
-	//=============================================================================================================
-	// Предотвращения возможных атак через XSS $_GET.
-	//=============================================================================================================
-	function stripget($check_url)
+	if (!file_exists(WCF::$cfgSetting['_cssfile']))
 	{
-		$return = false;
-		if (is_array($check_url))
-		{
-			foreach ($check_url as $value)
-			{
-				$return = stripget($value);
-				if ($return == true) { return true; }
-			}
-		}
-		else
-		{
-			$check_url = str_replace("\"", "", $check_url);
-			$check_url = str_replace("\'", "", $check_url);
-
-			if ((preg_match("/<[^>]*script*\"?[^>]*>/i", $check_url)) || (preg_match("/<[^>]*object*\"?[^>]*>/i", $check_url)) ||
-			(preg_match("/<[^>]*iframe*\"?[^>]*>/i", $check_url)) || (preg_match("/<[^>]*applet*\"?[^>]*>/i", $check_url)) ||
-			(preg_match("/<[^>]*meta*\"?[^>]*>/i", $check_url)) || (preg_match("/<[^>]*style*\"?[^>]*>/i", $check_url)) ||
-			(preg_match("/<[^>]*form*\"?[^>]*>/i", $check_url)) || (preg_match("/\([^>]*\"?[^)]*\)/i", $check_url)))
-			{
-				$return = true;
-			}
-		}
-		return $return;
-	}
-
-	//=============================================================================================
-	// Функция перенаправляющая на $location страницу 
-	function redirect($location, $script = false)
-	{
-		if (!$script)
-		{
-			header("Location: ".str_replace("&amp;", "&", $location));
-			exit;
-		}
-		else
-		{
-			echo "<script type='text/javascript'>document.location.href='".str_replace("&amp;", "&", $location)."'</script>\n";
-			exit;
-		}
-	}
-
-	//=============================================================================================================
-	// Функция чистит URL, предотвращает сбой в глобальных переменных
-	//=============================================================================================================
-	function cleanurl($url)
-	{
-		$bad_entities = array("&", "\"", "'", '\"', "\'", "<", ">", "(", ")", "*");
-		$safe_entities = array("&amp;", "", "", "", "", "", "", "", "", "");
-		$url = str_replace($bad_entities, $safe_entities, $url);
-		return $url;
-	}
-
-	//=============================================================================================================
-	// Функция проверяет ввод чисел
-	//=============================================================================================================
-	function isnum($value)
-	{
-		if (!is_array($value))
-		{
-			return (preg_match("/^[0-9]+$/", $value));
-		}
-		else
-		{
-			return false;
-		}
-	}
-
-	//=============================================================================================================
-	// Trim a line of text to a preferred length
-	//=============================================================================================================
-	function trimlink($text, $length)
-	{
-		$dec = array("&", "\"", "'", "\\", '\"', "\'", "<", ">");
-		$enc = array("&amp;", "&quot;", "&#39;", "&#92;", "&quot;", "&#39;", "&lt;", "&gt;");
-		$text = str_replace($enc, $dec, $text);
-		if (strlen($text) > $length) $text = substr($text, 0, ($length-3))."...";
-		$text = str_replace($dec, $enc, $text);
-		return $text;
+		// требуется добавить сообщение в дебаг
+		WCF::$cfgSetting['_cssfile'] = THEMES."default/style.css";
 	}
 
 	//=============================================================================================================
 	// Подключаем модули\Include in modules
 	//=============================================================================================================
-	require_once BASEDIR."module.php";
+	$temp = opendir(MODULE); $module_list = array();
+	while ($folder = readdir($temp))
+	{
+		if (!in_array($folder, array(".","..")) && strstr($folder, "_module"))
+		{
+			if (is_dir(MODULE.$folder)) { $module_list[] = $folder; }
+		}
+	}
+	closedir($temp);
+
+	if (count($module_list) > 0) 
+	{
+		sort($module_list); array_unshift($module_list, "none");
+	}
+
+	$modules = array();
+	for ($i=0;$i < count($module_list);$i++)
+	{
+		if ($module_list[$i] != "none")
+		{
+			$modules[$module_list[$i]] = MODULE.$module_list[$i]."/";
+			//require MODULE.$module_list[$i]."/core.php";
+		}
+	}
+
+	//=============================================================================================================
+	// Инициализируем framework\Initialize the framework
+	//=============================================================================================================
+	WCF::InitFW();
+
+	//=============================================================================================================
+	// auth
+	//=============================================================================================================
+
+	$CapchaInput = check_kcaptcha_enable();
+
+	if (isset($_POST['auth_name']) && $_POST['auth_name'] != "") 
+   	{
+		$password = SHA1(strtoupper(addslashes($_POST['auth_name']).':'.addslashes($_POST['auth_pass'])));
+
+   		$row = WCF::$DB->selectRow('SELECT * FROM ?_users WHERE `user_name` = ? AND `user_sha_pass_hash` = ?',strtoupper(addslashes($_POST['auth_name'])), $password);
+
+		if ($row != null && $CapchaInput == 1)
+		{
+		       	$_SESSION['user_id'] = (int)$row['user_id'];
+		       	$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+		       	$_SESSION['user_name'] = strtoupper($_POST['auth_name']);
+		       	$_SESSION['password'] = strtoupper($password);
+			$_SESSION['gmlevel'] = (int)$row['user_gmlevel'];
+			$_SESSION['bonuses'] = (int)$row['user_bonuses'];
+		       	$_SESSION['lang'] = WCF::$cfgSetting['lang'];
+			$_SESSION['user_avatar'] = $row['user_avatar'];
+			unset($_SESSION['captcha_keystring']);
+			WCF::redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=auth");
+		}
+		else
+		{
+			WCF::redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=error");
+		}
+			
+   	}
 ?>

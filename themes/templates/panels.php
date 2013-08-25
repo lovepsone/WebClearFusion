@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: panels.php
 | Author: lovepsone
@@ -29,7 +29,7 @@
 
 	if (!defined("EXCLUDE_PANEL_USERS") && !defined("ADMIN_PANEL") && !defined("ACP_PANEL") && defined("MAIN_PANEL"))
 	{
-		$p_arr = PanelDisplay($modules, $module_list);
+		$p_arr = WCF::$FW->PanelDisplay($modules, $module_list);
 
 	}
 	elseif (!defined("EXCLUDE_PANEL_USERS") && defined("ADMIN_PANEL") && !defined("ACP_PANEL") && !defined("MAIN_PANEL"))

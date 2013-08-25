@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: functions_img.php
 | Author: lovepsone

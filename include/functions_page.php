@@ -201,31 +201,4 @@
 				}
 			echo"</tr>";
 		}
-
-	//=============================================================================================
-	// функция возвращает форму (страницу)
-	function return_form($Retime,$url)
-		{
-			echo"<script type='text/javascript'> <!--
-			function exec_refresh()
-				{
-  					window.status = 'reloading...' + myvar;
-  					myvar = myvar + ' .';
-  					var timerID = setTimeout('exec_refresh();', 100);
-  					if (timeout > 0)
-						{
-							timeout -= 1;
-						}
-					else
-						{
-    							clearTimeout(timerID);
-    							window.status = '';
-    							window.location = '$url';
-    						}
-				}
-			var myvar = '';
-			var timeout = '".$Retime."';
-			exec_refresh();
-			//--> </script>";
-		}
 ?>

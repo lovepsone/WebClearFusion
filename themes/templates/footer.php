@@ -15,5 +15,8 @@
 	render_page(false);
 
 	echo"</body>";
+
+	// Dump sql log
+ 	if ($DBLogger_)
+   		echo '<div style="text-align:left; font-size: 11px; color: red">'.$DBLogger_.'</div>';
 ?>
-<script type="text/javascript">parseHref(document);</script>
