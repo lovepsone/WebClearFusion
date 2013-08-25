@@ -17,113 +17,100 @@
    	echo $simple_script;
 
 	if (isset($_GET['thread_id']) && isset($_GET['forum_id']))
+	{
+		$forum_id = addslashes($_GET["forum_id"]);
+		$thread_id = addslashes($_GET["thread_id"]);
+
+  		$rows = WCF::$DB->select(' -- CACHE: 180
+				SELECT count(`post_date`) as kol FROM ?_forums_posts
+				WHERE `forum_id`= ?d AND `thread_id`= ?d', $forum_id, $thread_id);
+
+		foreach ($rows as $numRow=>$p_kolzap) {}
+
+		if ($p_kolzap['kol'] > WCF::$cfgSetting['page_forum_posts'])
 		{
-			$forum_id = addslashes($_GET["forum_id"]);
-			$thread_id = addslashes($_GET["thread_id"]);
-
-			selectdb("wcf");
-  			$result = db_query("SELECT count(`post_date`) as kol FROM ".DB_FORUMS_POSTS." WHERE `forum_id`='$forum_id' AND `thread_id`='$thread_id'");
-			$p_kolzap = db_array($result);
-
-			if ($p_kolzap['kol'] > $config['page_forum_posts'])
-				{
-    					$page_len_p = $config['page_forum_posts'];
+    			$page_len_p = WCF::$cfgSetting['page_forum_posts'];
  
-    					if (!isset($_GET['page']) or ($_GET['page'] == ''))
-						{
-							$start_rec_p = 0;
-						}
-					else
-						{
-							$start_rec_p = ((int)$_GET['page']-1)*$config['page_forum_posts'];
-						}
-				}
+    			if (!isset($_GET['page']) || ($_GET['page'] == ''))
+			{
+				$start_rec_p = 0;
+			}
 			else
-				{
-    					$page_len_p = $p_kolzap['kol'];
-					$start_rec_p = 0;
-				}
-
-			$result = ("SELECT *
-					FROM ".DB_FORUMS_THREADS.",".DB_FORUMS_POSTS." 
-					WHERE ".DB_FORUMS_POSTS.".`forum_id`='$forum_id'
-					AND ".DB_FORUMS_POSTS.".`thread_id`='$thread_id'
-					AND ".DB_FORUMS_THREADS.".`thread_id`='$thread_id'
-					ORDER BY ".DB_FORUMS_POSTS.".`post_date` ASC LIMIT $start_rec_p,$page_len_p");
-
-			$name_thread = db_query($result);
-			$result = db_query($result);
-			opentable();
-			//==============================
-			// Функция добавления просмотров
-			if ($result != 0)
-				{
-					db_query("UPDATE ".DB_FORUMS_THREADS." SET `thread_views`=thread_views+1 WHERE `thread_id`='".$thread_id."'");
-				}
-
-			if (db_num_rows($result) > 0 )
-				{
-					$name_thread = db_assoc($name_thread);
-
-					echo"<tr><th width='100%' colspan='2' class='tbl'>".$name_thread['thread_subject']."</th></tr>";
-
-					while ($data = db_array($result))
-						{
-							selectdb("wcf");
- 							$result_user = db_query("SELECT * FROM ".DB_USERS." WHERE `user_id`=".$data['user_id']." LIMIT 1");
-  							$usr = db_assoc($result_user);
-
-							echo"<tr><td width='20%' align='left' class='tbl2'>".ucfirst(strtolower($usr['user_name']))."<br>".avatar_img($usr['user_avatar'])."</td>";
-							echo"<td width='80%' align='left' class='tbl1'>".stripslashes($data['post_text'])."</td></tr><tr><td colspan='2'><hr></td></tr>";
-						}
-
-  					if ($p_kolzap['kol'] > $config['page_forum_posts'])
-						{
-  							$page_counter_p = ceil($p_kolzap['kol'] / $config['page_forum_posts']);
-
-   							if (!isset($_GET['page']) || ($_GET['page'] == '') || ($_GET['page'] == '_')) {$tp3 = 1;} else {$tp3 = (int)$_GET['page'];}
-
- 							echo"<tr><td height='30' colspan='3' align='center' valign='middle' >".show_page(FORUM.'viewposts.php?thread_id='.$thread_id.'&forum_id='.$forum_id.'&page=',$tp3,$page_counter_p)."</td></tr>";
-  						}
-				}
-			//=========================
-			// форма отправки сообщения
-			if (isset($_SESSION['user_id']) || (isset($_SESSION['ip']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
-				{
-					if(isset($_POST['posts']))
-						{
-							selectdb("wcf");
-							// Создаем сообщение
-							db_query("INSERT INTO ".DB_FORUMS_POSTS."
-										(`forum_id`,`thread_id`,`user_id`,`post_text`) VALUES
-										('$forum_id','$thread_id','".$_SESSION['user_id']."','".addslash($_POST['posts'])."')");
-							$p_post_id = mysql_insert_id(); // Прикрепляем id
-
-							// Обновляем сам форум с целю обнов кол-во собщений
-							db_query("UPDATE ".DB_FORUMS."
-											SET `forum_lastpostid`='$p_post_id',`forum_postcount`=forum_postcount+1
-											WHERE (`forum_id`='$forum_id')") or trigger_error(mysql_error());
-							// Обновляем тему
-							db_query("UPDATE ".DB_FORUMS_THREADS."
-											SET `thread_lastpostid`='$p_post_id', `thread_lastuser`='".$_SESSION['user_id']."', `thread_postcount`=thread_postcount+1
-											WHERE (`forum_id`='$forum_id' AND `thread_id`='$thread_id')");
-
-							echo"<tr><td align='center' colspan='2'><img src='".IMAGES."ajax-loader.gif'/></td></tr>";
-							return_form(5,FORUM.'viewposts.php?thread_id='.$thread_id.'&forum_id='.$forum_id);
-						}
-					else 
-						{
-							echo"<form method='post'>";
-							echo"<tr><td align='center' colspan='2'><textarea name='posts'></textarea></td></tr>";
-							echo"<tr><td align='center' colspan='2'><input type='submit' class='button' value='".$txt['forum_quick_reply']."'/></td></tr></form>";
-						}
-				}
-			else if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
-				{ 
-					echo"<tr><td align='center' colspan='2'>".$txt['forum_log']."</td></tr>";
-				}
-			closetable();
+			{
+				$start_rec_p = ((int)$_GET['page']-1)*WCF::$cfgSetting['page_forum_posts'];
+			}
 		}
+		else
+		{
+    			$page_len_p = $p_kolzap['kol'];
+			$start_rec_p = 0;
+		}
+
+		$rows = WCF::$DB->select(' -- CACHE: 180
+					SELECT *
+					FROM ?_forums_threads,?_forums_posts
+					WHERE ?_forums_posts.`forum_id`= ?d
+					AND ?_forums_posts.`thread_id`= ?d
+					AND ?_forums_threads.`thread_id`= ?d
+					ORDER BY ?_forums_posts.`post_date` ASC LIMIT '.$start_rec_p.','.$page_len_p, $forum_id, $thread_id, $thread_id);
+
+		//$name_thread = db_query($result);
+		//$result = db_query($result);*/
+		opentable();
+
+		if ($rows != null)
+		{
+			WCF::$DB->query('UPDATE ?_forums_threads SET `thread_views`=thread_views+1 WHERE `thread_id`= ?d', $thread_id);
+			$i = 0;
+			foreach ($rows as $numRow=>$data)
+			{
+				if($i == 0)
+					echo"<tr><th width='100%' colspan='2' class='tbl'>".$data['thread_subject']."</th></tr>";
+
+				$row = WCF::$DB->selectRow('SELECT * FROM ?_users WHERE `user_id`=?d',$data['user_id']);
+				echo"<tr><td width='20%' align='left' class='tbl2'>".ucfirst(strtolower($row['user_name']))."<br>".avatar_img($row['user_avatar'])."</td>";
+				echo"<td width='80%' align='left' class='tbl1'>".stripslashes($data['post_text'])."</td></tr><tr><td colspan='2'><hr></td></tr>";
+				$i++;
+			}
+  			if ($p_kolzap['kol'] > WCF::$cfgSetting['page_forum_posts'])
+			{
+  				$page_counter_p = ceil($p_kolzap['kol'] / WCF::$cfgSetting['page_forum_posts']);
+
+   				if (!isset($_GET['page']) || ($_GET['page'] == '') || ($_GET['page'] == '_')) {$tp3 = 1;} else {$tp3 = (int)$_GET['page'];}
+
+ 				echo"<tr><td height='30' colspan='3' align='center' valign='middle' >".show_page(FORUM.'viewposts.php?thread_id='.$thread_id.'&forum_id='.$forum_id.'&page=',$tp3,$page_counter_p)."</td></tr>";
+  			}
+		}
+		//=========================
+		// форма отправки сообщения
+		if (isset($_SESSION['user_id']) || (isset($_SESSION['ip']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
+		{
+			if(isset($_POST['posts']))
+			{
+				// Создаем сообщение
+				WCF::$DB->query('INSERT INTO ?_forums_posts (`forum_id`,`thread_id`,`user_id`,`post_text`) VALUES (?d, ?d, ?d, ?)', $forum_id, $thread_id, $_SESSION['user_id'], $_POST['posts']);
+				$p_post_id = mysql_insert_id(); // Прикрепляем id
+				// Обновляем сам форум с целю обнов кол-во собщений
+				WCF::$DB->query('UPDATE ?_forums SET `forum_lastpostid`= ?d,`forum_postcount`=forum_postcount+1 WHERE (`forum_id`= ?d)', $p_post_id, $forum_id);
+				// Обновляем тему
+				WCF::$DB->query('UPDATE ?_forums_threads SET `thread_lastpostid`= ?d, `thread_lastuser`= ?d, `thread_postcount`=thread_postcount+1 WHERE (`forum_id`= ?d AND `thread_id`= ?d)', $p_post_id, $_SESSION['user_id'], $forum_id, $thread_id);
+
+				echo"<tr><td align='center' colspan='2'><img src='".IMAGES."ajax-loader.gif'/></td></tr>";
+				WCF::ReturnForm(5,FORUM.'viewposts.php?thread_id='.$thread_id.'&forum_id='.$forum_id);
+			}
+			else 
+			{
+				echo"<form method='post'>";
+				echo"<tr><td align='center' colspan='2'><textarea name='posts'></textarea></td></tr>";
+				echo"<tr><td align='center' colspan='2'><input type='submit' class='button' value='".WCF::$locale['forum_quick_reply']."'/></td></tr></form>";
+			}
+		}
+		else if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
+		{ 
+			echo"<tr><td align='center' colspan='2'>".WCF::$locale['forum_log']."</td></tr>";
+		}
+		closetable();
+	}
 
 	require_once THEMES."templates/footer.php";
 ?>
