@@ -98,7 +98,7 @@
 			else 
 			{
 				echo"<form method='post'>";
-				echo"<tr><td align='center' colspan='2'><textarea name='posts'></textarea></td></tr>";
+				echo"<tr><td align='center' colspan='2'><textarea id='Tinymce' name='posts'></textarea></td></tr>";
 				echo"<tr><td align='center' colspan='2'><input type='submit' class='button' value='".WCF::$locale['forum_quick_reply']."'/></td></tr></form>";
 			}
 		}

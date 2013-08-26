@@ -10,7 +10,7 @@
 +--------------------------------------------------------*/
 
 tinymce.init({
-	selector: "textarea",
+	selector: "textarea#Tinymce",
 	language : "ru",
 	theme: "modern",
 	width: 652,

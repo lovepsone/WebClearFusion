@@ -94,7 +94,7 @@
 		echo"<form method='post'>";
        		echo"<tr><td width='15%' align='left' valign='middle'>".WCF::$locale['forum_create_name_theme']."&nbsp;&nbsp;<input type='text' class='textbox' name='thread_subject' size='40'></td></tr>";
 
-		echo"<tr><td><br><textarea name='thread'></textarea></td></tr>";
+		echo"<tr><td><br><textarea id='Tinymce' name='thread'></textarea></td></tr>";
 		echo"<tr><td align='center'><input type='submit' class='button' value='".WCF::$locale['forum_create_theme']."'/></td></tr>";
 		echo"</form>";
 
