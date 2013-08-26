@@ -12,8 +12,6 @@
 
 	require_once "../maincore.php";
 	require_once THEMES."templates/admin_header.php";
-   	require_once INCLUDES."tinymce.php";
-   	echo $advanced_script;
 
 	if (isset($_POST['save']))
 	{

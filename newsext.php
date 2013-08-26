@@ -12,9 +12,6 @@
 
 	require_once "maincore.php";
 	require_once THEMES."templates/header.php";
-	require_once  INCLUDES."tinymce.php";
-
-   	echo $simple_script;
 
 	if (isset($_GET['id']) && WCF::isnum($_GET['id']))
 	{

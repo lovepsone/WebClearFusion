@@ -22,6 +22,8 @@
 	echo"<meta http-equiv='content-type' content='text/html; charset=WCF::getEncodingPage()' />";
 	echo"<script type='text/javascript' src='".INCLUDES."js/jscript.js'></script>";
 	echo"<script type='text/javascript' src='".INCLUDES."js/jquery.js'></script>";
+	echo"<script type='text/javascript' src='".INCLUDES."js/tinymce/tinymce.min.js'></script>";
+	echo"<script type='text/javascript' src='".INCLUDES."js/LoadTinymce.js'></script>";
 	echo"</head><body>";
 
 	require_once THEMES."templates/panels.php";

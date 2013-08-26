@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: viewforum.php
 | Author: lovepsone
@@ -12,9 +12,6 @@
 
 	require_once "../maincore.php";
 	require_once THEMES."templates/header.php";
-	require_once  INCLUDES."tinymce.php";
-   			
-	echo $advanced_script;
 
 	if (!isset($_GET['action']) && isset($_GET['forum_id']))
 	{
