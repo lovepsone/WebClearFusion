@@ -104,7 +104,7 @@
 				SELECT count(`forum_id`) as number FROM ?_forums WHERE forum_sections= ?d', $_GET['forum_id']);
 		foreach ($rows as $numRow=>$Count) {}
 
-		if (!$Count)
+		if (!$Count['number'])
 		{
 			$data = WCF::$DB->selectRow('SELECT forum_order FROM ?_forums WHERE forum_id= ?d', $_GET['forum_id']);
 			WCF::$DB->query('UPDATE ?_forums SET `forum_order`=forum_order-1 WHERE `forum_sections`=0 AND `forum_order`> ?d', $data['forum_order']);
@@ -122,7 +122,7 @@
 				SELECT count(`thread_id`) as number FROM ?_forums_threads WHERE forum_id = ?d', $_GET['forum_id']);
 		foreach ($rows as $numRow=>$Count) {}
 
-		if (!$Count)
+		if (!$Count['number'])
 		{
 			$data = WCF::$DB->selectRow('SELECT `forum_sections` FROM ?_forums WHERE `forum_id`= ?d', $_GET['forum_id']);
 			WCF::$DB->query('UPDATE ?_forums SET `forum_order`=forum_order-1 WHERE `forum_sections`= ?d AND `forum_order`> ?d', $data['forum_sections'], $data['forum_order']);

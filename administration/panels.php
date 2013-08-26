@@ -142,7 +142,7 @@
 			$i = 1;
 		}
 
-		if ($numrows != 1)
+		if ($numrows['number'] != 1)
 		{
 			$up = $data['panel_order'] - 1;
 			$down = $data['panel_order'] + 1;
@@ -151,7 +151,7 @@
 			{
 				$up_down = " <a href='".WCF_SELF."?action=mdown&panel_id=".$data['panel_id']."&panel_side=".$data['panel_side']."&order=$down'>".WCF::$locale['down']."</a>";
 			}
-			else if ($i < $numrows)
+			else if ($i < $numrows['number'])
 			{
 				$up_down = " <a href='".WCF_SELF."?action=mup&panel_id=".$data['panel_id']."&panel_side=".$data['panel_side']."&order=$up'>".WCF::$locale['up']."</a>";
 				$up_down .= " <a href='".WCF_SELF."?action=mdown&panel_id=".$data['panel_id']."&panel_side=".$data['panel_side']."&order=$down'>".WCF::$locale['down']."</a>";

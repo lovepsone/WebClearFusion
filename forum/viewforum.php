@@ -18,10 +18,10 @@
 		$forum_id = addslashes($_GET["forum_id"]);
 
   		$rows = WCF::$DB->select(' -- CACHE: 180
-					SELECT count(`post_date`) as kol FROM ?_forums_posts WHERE `forum_id`=?d', $forum_id);
+					SELECT count(`post_date`) as number FROM ?_forums_posts WHERE `forum_id`=?d', $forum_id);
 		foreach ($rows as $numRow=>$thr_kolzap) {}
 
-		if ($thr_kolzap['kol'] > WCF::$cfgSetting['page_forum_threads'])
+		if ($thr_kolzap['number'] > WCF::$cfgSetting['page_forum_threads'])
 		{
     			$page_len_thr = WCF::$cfgSetting['page_forum_threads'];
  

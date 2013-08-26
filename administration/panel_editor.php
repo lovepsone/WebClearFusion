@@ -81,7 +81,7 @@
 		else
 		{
 			$data = WCF::$DB->selectRow('SELECT `panel_order` FROM ?_panels WHERE `panel_side`= ?d ORDER BY `panel_order` DESC LIMIT 1', $panel_side);
-			if (db_num_rows($result) != 0) { $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
+			if ($data != null) { $neworder = $data['panel_order'] + 1; } else { $neworder = 1; }
 			WCF::$DB->query('INSERT INTO ?_panels (`panel_filename`,`panel_type`,`panel_access`,`panel_side`,`panel_order`)
 										VALUES (?, ?, ?d, ?d, ?d)', $panel_filename, $panel_type, $panel_access, $panel_side, $neworder);
 			WCF::redirect(WCF_SELF);
