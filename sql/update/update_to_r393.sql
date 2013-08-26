@@ -1,0 +1,1 @@
+﻿ALTER TABLE `wcf_forums_threads` CHANGE `thread_views` `thread_views` INT( 11 ) NOT NULL DEFAULT '0';

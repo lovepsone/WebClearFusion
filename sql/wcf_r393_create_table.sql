@@ -59,7 +59,7 @@ CREATE TABLE `wcf_forums_threads` (
   `thread_id` int(11) unsigned NOT NULL auto_increment,
   `thread_subject` longtext collate utf8_unicode_ci,
   `thread_author` int(11) default NULL,
-  `thread_views` int(11) default NULL,
+  `thread_views` int(11) unsigned NOT NULL default '0',
   `thread_lastpostid` int(11) unsigned NOT NULL default '0',
   `thread_lastuser` int(11) unsigned NOT NULL default '0',
   `thread_postcount` int(11) unsigned NOT NULL default '0',
