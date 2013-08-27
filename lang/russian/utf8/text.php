@@ -60,19 +60,6 @@ $txt = array(
 'modul_setuser_ban_acc'		=>'Ваша Учетная запись забанена Администрацияй по причине:',
 'modul_setuser_ban_ip'		=>'Ваша IP-Адрес забанен Администрацияй по причине:',
 
-'modul_online_timers'		=>'Таймеры:',
-'modul_online_points_arena'	=>'Дата начисления очков арены:',
-'modul_online_daily_quests'	=>'Дата сброса ежедневных заданий:',
-'modul_online_weekly_quests'	=>'Дата сброса еженедельных заданий:',
-'modul_online_monthly_quests'	=>'Дата сброса ежемесячных заданий:',
-'modul_online'			=>'онлайн',
-'modul_online_no_char'		=>'Нет игроков со статусом <b>Онлайн</b>',
-'modul_online_level'		=>'Уровень',
-'modul_online_name'		=>'Имя',
-'modul_online_race'		=>'Раса',
-'modul_online_class'		=>'Класс',
-'modul_online_position'		=>'Позиция',
-
 # тексты в меню админки
 'menu_admin_panel_admin'	=>'Панель администратора',
 'menu_admin_revert'		=>'Вернуться на сайт',
