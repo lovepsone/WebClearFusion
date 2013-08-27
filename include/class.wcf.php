@@ -17,7 +17,7 @@ class WCF
 	public static $cfgTitle = array();
 	public static $FW = null; 		// framework
 	public static $TF = null; 		// TextFormatting
-	public static $DEBUG = null; 		// WCFDebug
+	private static $DEBUG = null; 		// WCFDebug
 	public static $templating = null;
 	public static $DB = null; 		// DbSimple
 	public static $locale = array(); 	// txt
@@ -30,12 +30,20 @@ class WCF
 			die('<b>Error</b>: unable to load DbSimple lib!');
 		if(!@include(BASEDIR.'include/class.TextFormatting.php'))
 			die('<b>Error</b>: unable to load TextFormatting file!');
-
+		if(!@require_once(BASEDIR.'include/class.debug.php'))
+			die('<b>Error</b>: unable to load debug file!');
+	
 		self::$cfgSetting = $WCFConfig['settings'];
 		self::$cfgMySql = $WCFConfig['mysql'];
 		self::$cfgTitle = $WCFConfig['title'];
 		self::$DB = DbSimple_Generic::connect("mysql://".self::$cfgMySql['username'].":".self::$cfgMySql['password']."@".self::$cfgMySql['hostname']."/".self::$cfgMySql['dbname']);
 		self::$TF = new TextFormatting();
+		self::$DEBUG = new Debug(array('useDebug' => self::$cfgSetting['useDebug'], 'logLevel' => self::$cfgSetting['logLevel']));
+	}
+
+	public static function Log()
+	{
+        	return self::$DEBUG;
 	}
 
 	public static function InitFW()

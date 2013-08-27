@@ -4,31 +4,28 @@
 | Copyright (C) 2010 - 2013 lovepsone
 +--------------------------------------------------------+
 | Filename: class.debug.php
-| Author: lovepsone, Shadez 
+| Author: lovepsone
 +--------------------------------------------------------+
 | Removal of this copyright header is strictly prohibited 
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-Class WCFDebug
+Class Debug
 {
-	//===========================
-	// Log config
-	//===========================
-	private $config;
+	private $cfg;
 	private $file = '';
-	    
+
 	//===========================
 	// Initializes debugger
 	//===========================
-	public function WCFDebug($config, $file = false)
+	public function Debug($conf, $file = false)
 	{
-		if($config['useDebug'] == false)
+		if($this->cfg['useDebug'] == false)
 		{
 			return;
 		}
-		$this->config = $config;
-		$this->file = BASEDIR."cache/_debug/tmp.dbg";
+		$this->cfg = $conf;
+		$this->file = BASEDIR.'cache/tmp.dbg';
 		if($file)
 		{
 			$this->file = $file;
@@ -37,7 +34,7 @@ Class WCFDebug
 	    
 	public function writeLog($logtext)
 	{
-		if($this->config['useDebug'] == false || $this->config['logLevel'] < 2)
+		if($this->cfg['useDebug'] == false || $this->cfg['logLevel'] < 2)
 		{
 			return;
 		}
@@ -51,7 +48,7 @@ Class WCFDebug
 	    
 	public function writeError($errorText)
 	{
-		if($this->config['useDebug'] == false)
+		if($this->cfg['useDebug'] == false)
 		{
 			return;
 		}
@@ -63,9 +60,9 @@ Class WCFDebug
 		return;
 	}
 	    
-	public function writeSql($sqlText)
+	public function writeRows($sqlText)
 	{
-		if($this->config['useDebug'] == false || $this->config['logLevel'] < 3)
+		if($this->cfg['useDebug'] == false || $this->cfg['logLevel'] < 2)
 		{
 			return;
 		}
@@ -76,20 +73,26 @@ Class WCFDebug
 		self::__writeFile($error_log);
 		return;
 	}
-	    
+    
 	private function AddStyle($type)
 	{
-		if($this->config['useDebug'] == false)
+		if($this->cfg['useDebug'] == false)
 		{
 			return;
 		}
 		switch($type)
 		{
-			case 'debug': $log = sprintf('<strong>DEBUG</strong> [%s]: ', date('d-m-Y H:i:s')); break;
-	            	case 'error': $log = sprintf('<strong>ERROR</strong> [%s]: ', date('d-m-Y H:i:s')); break;
-	            	case 'sql': $log = sprintf('<strong>SQL</strong> [%s]: ', date('d-m-Y H:i:s')); break;
+			case 'debug':
+				$l = sprintf('<strong>DEBUG</strong> [%s]: ', date('d-m-Y H:i:s'));
+				break;
+	            	case 'error':
+				$l = sprintf('<strong>ERROR</strong> [%s]: ', date('d-m-Y H:i:s'));
+				break;
+	            	case 'sql':
+				$l = sprintf('<strong>SQL</strong> [%s]: ', date('d-m-Y H:i:s'));
+				break;
 	        }
-	        return $log;
+	        return $l;
 	}
 	    
 	private function __writeFile($data)

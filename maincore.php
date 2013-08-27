@@ -45,39 +45,31 @@
 	//=============================================================================================================
 	// Запускаем основные функции и многоузловое определение\Run the basic functions and determination of multisite
 	//=============================================================================================================
-	if(@!include(BASEDIR.'include/class.wcf.php'))
+	if(!@include(BASEDIR.'include/class.wcf.php'))
 		die("<b>Error:</b> can not open class.wcf.php!!!");
 
 	WCF::InitWCF();
-	WCF::$DB->setErrorHandler('databaseErrorHandler');
-	WCF::$DB->query('SET NAMES ?', WCF::$cfgMySql['charset']);
 
 	function databaseErrorHandler($message, $info)
 	{
-		// Если использовалась @, ничего не делать.
-		if (!error_reporting()) return;
-		// Выводим подробную информацию об ошибке.
-		echo "SQL Error: $message<br><pre>"; 
+		if (!error_reporting())
+			return;
+		echo "SQL Error: $message<br><pre>";
 		print_r($info);
 		echo "</pre>";
 		exit();
 	}
 
-	$DBLogger_ = '';
-	WCF::$DB->setLogger('DBLogger');
 	function DBLogger($db, $sql)
 	{
-		global $DBLogger_;
-		$DBLogger_ .= $sql.'<br>';
-		/*$caller = $db->findLibraryCaller();
-		$tip = "at ".@$caller['file'].' line '.@$caller['line'];
-		echo "<xmp title=\"$tip\">"; 
-		print_r($sql); 
-		echo "</xmp>";*/
-		
+		WCF::Log()->writeRows('%s\n', $sql);	
 	}
 
+	WCF::$DB->setErrorHandler('databaseErrorHandler');
 	WCF::$DB->setIdentPrefix(DB_PREFIX);
+	WCF::$DB->query('SET NAMES ?', WCF::$cfgMySql['charset']);
+	WCF::$DB->setLogger('DBLogger');
+
 
 	//=============================================================================================================
 	// Предотвращения возможных атак через XSS $_GET.
@@ -128,7 +120,7 @@
 	}
 	else
 	{
-		// требуется добавить сообщение в дебаг
+		WCF::Log()->writeError('Can not loading locale %s', WCF::$cfgSetting['lang']);
 		require_once BASEDIR."lang/".WCF::$cfgSetting['defaultLocale']."/utf8/text.php";
 		WCF::setLanguage($txt);	
 	}
@@ -145,13 +137,13 @@
 	}
 	else
 	{
-		// требуется добавить сообщение в дебаг
+		WCF::Log()->writeError('Can not loading %s',WCF::$cfgSetting['_themefile']);
 		include(THEMES."default/theme.php");
 	}
 
 	if (!file_exists(WCF::$cfgSetting['_cssfile']))
 	{
-		// требуется добавить сообщение в дебаг
+		WCF::Log()->writeError('Can not loading %s', WCF::$cfgSetting['_cssfile']);
 		WCF::$cfgSetting['_cssfile'] = THEMES."default/style.css";
 	}
 

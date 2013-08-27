@@ -48,8 +48,8 @@ $WCFConfig['mysql']['prefix'] = 'wcf_';
 #
 # useDebug
 # 	Debug log module enabled/disabled
-# 	Default: 0 (Disabled)
-# 		 1 (Enabled)
+# 	Default: false (Disabled)
+# 		 true (Enabled)
 #
 # logLevel
 # 	Logging level
@@ -70,9 +70,9 @@ $WCFConfig['mysql']['prefix'] = 'wcf_';
 # 	Default: Russian
 ##############################################################################################
 
-$WCFConfig['settings']['useDebug'] = 1;
-$WCFConfig['settings']['logLevel'] = 1;
-$WCFConfig['settings']['configVersion'] = '291120122';
+$WCFConfig['settings']['useDebug'] = true;
+$WCFConfig['settings']['logLevel'] = 2;
+$WCFConfig['settings']['configVersion'] = '270820133';
 $WCFConfig['settings']['encoding'] = 'UTF8';
 $WCFConfig['settings']['defaultLocale'] = 'russian';
 
