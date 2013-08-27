@@ -27,19 +27,19 @@
 
 	$p_sql = false; $p_arr = array(1 => false, 2 => false, 3 => false, 4 => false);
 
-	if (!defined("EXCLUDE_PANEL_USERS") && !defined("ADMIN_PANEL") && !defined("ACP_PANEL") && defined("MAIN_PANEL"))
+	if (!defined("EXCLUDE_PANEL") && !defined("ADMIN_PANEL") && !defined("ACP_PANEL") && defined("MAIN_PANEL"))
 	{
 		$p_arr = WCF::$FW->PanelDisplay($modules, $module_list);
 
 	}
-	elseif (!defined("EXCLUDE_PANEL_USERS") && defined("ADMIN_PANEL") && !defined("ACP_PANEL") && !defined("MAIN_PANEL"))
+	elseif (!defined("EXCLUDE_PANEL") && defined("ADMIN_PANEL") && !defined("ACP_PANEL") && !defined("MAIN_PANEL"))
 	{
 		ob_start();
 		require_once ADMIN."navigation.php";
 		$p_arr[1] = ob_get_contents();
 		ob_end_clean();
 	}
-	elseif (!defined("EXCLUDE_PANEL_USERS") && !defined("ADMIN_PANEL") && !defined("MAIN_PANEL"))
+	elseif (!defined("EXCLUDE_PANEL") && !defined("ADMIN_PANEL") && !defined("MAIN_PANEL"))
 	{
 		for ($i=0;$i < count($module_list);$i++)
 		{

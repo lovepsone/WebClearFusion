@@ -10,7 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	define("EXCLUDE_PANEL_USERS", true);
+	define("EXCLUDE_PANEL", true);
 
 	require_once "maincore.php";
 	ob_start();
