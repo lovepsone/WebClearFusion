@@ -36,7 +36,7 @@
 		}
 		else
 		{
-    			$page_len_thr = $thr_kolzap['kol'];
+    			$page_len_thr = $thr_kolzap['number'];
 			$start_rec_thr = 0;
 		}
 
@@ -70,9 +70,9 @@
 				echo"<td width='5%' align='center' class='tbl2'>".$data['thread_postcount']."</td>";
 				echo"<td width='11%' align='center' class='tbl2'>".$data['thread_views']."</td></tr>";
 			}
-  			if ($thr_kolzap['kol'] > WCF::$cfgSetting['page_forum_threads'])
+  			if ($thr_kolzap['number'] > WCF::$cfgSetting['page_forum_threads'])
 			{
-  				$page_counter_thr = ceil($thr_kolzap['kol'] / WCF::$cfgSetting['page_forum_threads']);
+  				$page_counter_thr = ceil($thr_kolzap['number'] / WCF::$cfgSetting['page_forum_threads']);
 
    				if (!isset($_GET['page']) || ($_GET['page'] == '') || ($_GET['page'] == '_')) { $tp3 = 1; } else { $tp3 = (int)$_GET['page']; }
  				echo"<tr><td colspan='3' align='center' valign='middle' >".show_page(FORUM.'viewforum.php?forum_id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";

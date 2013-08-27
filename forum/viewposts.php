@@ -39,7 +39,7 @@
 		}
 		else
 		{
-    			$page_len_p = $p_kolzap['kol'];
+    			$page_len_p = $p_kolzap['number'];
 			$start_rec_p = 0;
 		}
 
@@ -69,9 +69,9 @@
 				echo"<td width='80%' align='left' class='tbl1'>".stripslashes($data['post_text'])."</td></tr><tr><td colspan='2'><hr></td></tr>";
 				$i++;
 			}
-  			if ($p_kolzap['kol'] > WCF::$cfgSetting['page_forum_posts'])
+  			if ($p_kolzap['number'] > WCF::$cfgSetting['page_forum_posts'])
 			{
-  				$page_counter_p = ceil($p_kolzap['kol'] / WCF::$cfgSetting['page_forum_posts']);
+  				$page_counter_p = ceil($p_kolzap['number'] / WCF::$cfgSetting['page_forum_posts']);
 
    				if (!isset($_GET['page']) || ($_GET['page'] == '') || ($_GET['page'] == '_')) {$tp3 = 1;} else {$tp3 = (int)$_GET['page'];}
 
