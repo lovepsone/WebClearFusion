@@ -50,12 +50,9 @@
 					AND ?_forums_posts.`thread_id`= ?d
 					AND ?_forums_threads.`thread_id`= ?d
 					ORDER BY ?_forums_posts.`post_date` ASC LIMIT '.$start_rec_p.','.$page_len_p, $forum_id, $thread_id, $thread_id);
-
-		//$name_thread = db_query($result);
-		//$result = db_query($result);*/
 		opentable();
 
-		if ($rows != null)
+		if ($rows != null && WCF::CheckExistPageForum($forum_id, $thread_id))
 		{
 			WCF::$DB->query('UPDATE ?_forums_threads SET `thread_views`=thread_views+1 WHERE `thread_id`= ?d', $thread_id);
 			$i = 0;
@@ -77,6 +74,10 @@
 
  				echo"<tr><td height='30' colspan='3' align='center' valign='middle' >".show_page(FORUM.'viewposts.php?thread_id='.$thread_id.'&forum_id='.$forum_id.'&page=',$tp3,$page_counter_p)."</td></tr>";
   			}
+		}
+		else
+		{
+			WCF::redirect(BASEDIR."404.php");
 		}
 		//=========================
 		// форма отправки сообщения

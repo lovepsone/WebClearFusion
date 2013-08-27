@@ -57,7 +57,7 @@
 		if (isset($_SESSION['user_id']) || (isset($_SESSION['ip']) && $_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
 			echo"<tr><th width='100%' colspan='5' align='left'><a href='".FORUM."viewforum.php?action=newthread&forum_id=$forum_id'>".WCF::$locale['forum_create_theme']."</a></th></tr>";
 
-		if ($rows != null)
+		if ($rows != null && WCF::CheckExistPageForum($forum_id))
 		{
 			foreach ($rows as $numRow => $data)
 			{
@@ -78,9 +78,13 @@
  				echo"<tr><td colspan='3' align='center' valign='middle' >".show_page(FORUM.'viewforum.php?forum_id='.$forum_id.'&page=',$tp3,$page_counter_thr)."</td></tr>";
   			}
 		}
-		else
+		else if(WCF::CheckExistPageForum($forum_id))
 		{
 			echo"<td width='100%' align='center' colspan='5' class='tbl1'><h3>".WCF::$locale['forum_no_temes']."</h3></td>";
+		}
+		else
+		{
+			WCF::redirect(BASEDIR."404.php");
 		}
 		closetable();
 	}

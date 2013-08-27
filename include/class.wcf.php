@@ -66,6 +66,20 @@ class WCF
 		self::$locale = $loc;
 	}
 
+	public static function CheckExistPageForum($Fid = false, $Tid = false, $Pid = false)
+	{
+		if($Fid && !$Tid && !$Pid)
+			$row = self::$DB->selectRow('SELECT * FROM ?_forums WHERE forum_id = ?d', $Fid);
+		else if($Fid && $Tid && !$Pid)
+			$row = self::$DB->selectRow('SELECT * FROM ?_forums_threads WHERE forum_id = ?d AND thread_id = ?d', $Fid, $Tid);
+		else if($Fid && $Tid && $Pid)
+			$row = self::$DB->selectRow('SELECT * FROM ?_forums_posts WHERE forum_id = ?d AND thread_id = ?d AND post_id', $Fid, $Tid, $Pid);
+
+		if($row != null)
+			return 1;
+		return 0;
+	}
+
 	public static function stripget($check_url)
 	{
 		$return = false;
