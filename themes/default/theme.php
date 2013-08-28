@@ -15,6 +15,7 @@
 	function render_page($license = false)
 	{
 		echo"<table cellpadding='0' cellspacing='0' width='100%'>";
+		echo"<tr>".AddMenu()."</tr>";
 		echo"<tr><td class='full-header' align='center'>".WCF::$FW->showbanners()."</td></tr>";
 		echo"</table>";
 
@@ -66,5 +67,25 @@
 		echo"<table cellpadding='0' cellspacing='0' width='100%'><tr>";
 		echo"<td class='scapmain-foot-left'></td><td class='scapmain-foot'></td><td class='scapmain-foot-right'></td>";
 		echo"</tr></table><br>";
+	}
+
+	function AddMenu()
+	{
+		$rows = WCF::$DB->select(' -- CACHE: 180
+			SELECT * FROM ?_navigation_links WHERE link_position = 1 ORDER BY link_order ASC');
+
+		if ($rows != null)
+		{
+			echo"<td id='menu' width='100%'><ul>";
+			foreach ($rows as $numRow => $data)
+			{
+				if (check_user($data['link_visibility']) && $data['link_url'] != "---" && $data['link_name'] != "---")
+					echo"<li><a href='".BASEDIR.$data['link_url']."'><span>".$data['link_name']."</span></a></li>";
+			}
+			echo"</ul></td>";
+		}
+		else
+			echo WCF::$locale['no_links'];
+			
 	}
 ?>

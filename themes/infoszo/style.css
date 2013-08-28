@@ -324,3 +324,38 @@ hr.side-hr {
 	padding: 3px 4px 5px 4px;
 	margin-bottom: 5px;
 }
+
+/*===============================
+| Все что связано с верхним меню
+===============================*/
+#menu{
+	width:100%;
+	height:60px;
+	background:url(img/menu_bg.png) repeat-x;
+}
+#menu ul{
+	list-style:none;
+	margin:0 auto;
+}
+#menu li{
+	list-style:none;
+	display:block;
+	float:left;
+	height:60px;
+	line-height:60px;
+}
+#menu li a{
+	display:block;
+	float:left;
+	color:#a7a7a7;
+	text-transform:uppercase;
+	font-size:11px;
+	font-weight:bold;
+	line-height:60px;
+	text-decoration:none;
+	padding:0 15px;				
+}
+#menu li a:hover, #menu li a.current{
+	color:#fff;
+	background:url(img/menu_h.png) no-repeat bottom;	
+}
