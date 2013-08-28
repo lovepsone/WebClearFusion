@@ -109,7 +109,7 @@
 	// функция, создающая админку, берет данные из массива
 	function admin_page($page,$string,$list)
 		{
-			global $txt, $modules, $module_list;
+			global $modules, $module_list;
 
 			echo"<tr>";
 			reset($list);
@@ -120,28 +120,28 @@
 							echo"<td width='25%' align='center'>";
 							echo"<a href='".ADMIN.$data[5]."'>";
 							echo"<img src='".ADMIN."images/".$data[3]."' align='absmiddle'>";
-							echo"<br>".$txt[$data[4]]."</td>";
+							echo"<br>".WCF::$locale[$data[4]]."</td>";
 						}
 					if ($data[0] == 2 && $data[1] == $page && $page != 5 && $data[2] == $string)
 						{
 							echo"<td width='25%' align='center'>";
 							echo"<a href='".ADMIN.$data[5]."'>";
 							echo"<img src='".ADMIN."images/".$data[3]."' align='absmiddle'>";
-							echo"<br>".$txt[$data[4]]."</td>";
+							echo"<br>".WCF::$locale[$data[4]]."</td>";
 						}
 					if ($data[0] == 3 && $data[1] == $page && $page != 5 && $data[2] == $string)
 						{
 							echo"<td width='25%' align='center'>";
 							echo"<a href='".ADMIN.$data[5]."'>";
 							echo"<img src='".ADMIN."images/".$data[3]."' align='absmiddle'>";
-							echo"<br>".$txt[$data[4]]."</td>";
+							echo"<br>".WCF::$locale[$data[4]]."</td>";
 						}
 					if ($data[0] == 4 && $data[1] == $page && $page != 5 && $data[2] == $string)
 						{
 							echo"<td width='25%' align='center'>";
 							echo"<a href='".ADMIN.$data[5]."'>";
 							echo"<img src='".ADMIN."images/".$data[3]."' align='absmiddle'>";
-							echo"<br>".$txt[$data[4]]."</td>";
+							echo"<br>".WCF::$locale[$data[4]]."</td>";
 						}
 				}
 			echo"</tr><tr>";
