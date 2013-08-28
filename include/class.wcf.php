@@ -36,7 +36,25 @@ class WCF
 		self::$cfgSetting = $WCFConfig['settings'];
 		self::$cfgMySql = $WCFConfig['mysql'];
 		self::$cfgTitle = $WCFConfig['title'];
+
 		self::$DB = DbSimple_Generic::connect("mysql://".self::$cfgMySql['username'].":".self::$cfgMySql['password']."@".self::$cfgMySql['hostname']."/".self::$cfgMySql['dbname']);
+		self::$DB->setIdentPrefix(DB_PREFIX);
+		self::$DB->query('SET NAMES ?', self::$cfgMySql['charset']);
+
+		//load settings
+		$rows = self::$DB->select(' -- CACHE: 180
+				SELECT * FROM ?_settings');
+
+		if($rows != null)
+		{
+			foreach ($rows as $numRow => $row)
+				self::$cfgSetting[$row['settings_name']] = $row['settings_value'];
+		}
+		else
+		{
+			die('<b>Error</b>:Site settings have been uploaded! Check the data in the database!');
+		}
+
 		self::$TF = new TextFormatting();
 		self::$DEBUG = new Debug(array('useDebug' => self::$cfgSetting['useDebug'], 'logLevel' => self::$cfgSetting['logLevel']));
 	}

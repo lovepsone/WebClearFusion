@@ -66,8 +66,6 @@
 	}
 
 	WCF::$DB->setErrorHandler('databaseErrorHandler');
-	WCF::$DB->setIdentPrefix(DB_PREFIX);
-	WCF::$DB->query('SET NAMES ?', WCF::$cfgMySql['charset']);
 	WCF::$DB->setLogger('DBLogger');
 
 
@@ -95,33 +93,17 @@
 	define("WCF_SELF", basename($_SERVER['PHP_SELF']));
 
 	//=============================================================================================================
-	// Запускаем настройки\Run the setup
-	//=============================================================================================================
-	$rows = WCF::$DB->select(' -- CACHE: 180
-				SELECT * FROM ?_settings');
-
-	if($rows != null)
-	{
-		foreach ($rows as $numRow => $row)
-			WCF::$cfgSetting[$row['settings_name']] = $row['settings_value'];
-	}
-	else
-	{
-		die("Settings do not exist or no connection to base mysql. May not correctly configured conf.php.");
-	}
-
-	//=============================================================================================================
 	// Выбор нужного языка\Choosing the right language
 	//=============================================================================================================
 	if (isset(WCF::$cfgSetting['lang']))
 	{
-		require_once BASEDIR."lang/".WCF::$cfgSetting['lang']."/".WCF::$cfgSetting['encoding']."/text.php";
+		require_once BASEDIR.'lang/'.WCF::$cfgSetting['lang'].'/text.'.WCF::$cfgSetting['encoding'].'.php';
 		WCF::setLanguage($txt);
 	}
 	else
 	{
 		WCF::Log()->writeError('Can not loading locale %s', WCF::$cfgSetting['lang']);
-		require_once BASEDIR."lang/".WCF::$cfgSetting['defaultLocale']."/utf8/text.php";
+		require_once BASEDIR."lang/".WCF::$cfgSetting['defaultLocale']."/text.utf8.php";
 		WCF::setLanguage($txt);	
 	}
 
