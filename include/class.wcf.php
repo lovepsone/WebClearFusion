@@ -61,13 +61,13 @@ class WCF
 		// load langs
 		if (isset(self::$cfgSetting['lang']))
 		{
-			require_once BASEDIR.'lang/'.self::$cfgSetting['lang'].'/text.'.self::$cfgSetting['encoding'].'.php';
+			require_once (BASEDIR.'lang/'.self::$cfgSetting['lang'].'/text.'.self::$cfgSetting['encoding'].'.php');
 			self::$locale = $txt;
 		}
 		else
 		{
+			require_once (BASEDIR.'lang/'.self::$cfgSetting['defaultLocale'].'/text.UTF8.php');
 			self::Log()->writeError('Can not loading locale %s', self::$cfgSetting['lang']);
-			require_once BASEDIR."lang/".self::$cfgSetting['defaultLocale']."/text.utf8.php";
 			self::$locale = $txt;	
 		}
 	}
@@ -90,11 +90,6 @@ class WCF
 			return 'windows-1251';
 		else 
 			return 'utf-8';
-	}
-
-	public static function setLanguage($loc)
-	{
-		self::$locale = $loc;
 	}
 
 	public static function CheckExistPageForum($Fid = false, $Tid = false, $Pid = false)
