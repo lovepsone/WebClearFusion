@@ -93,21 +93,6 @@
 	define("WCF_SELF", basename($_SERVER['PHP_SELF']));
 
 	//=============================================================================================================
-	// Выбор нужного языка\Choosing the right language
-	//=============================================================================================================
-	if (isset(WCF::$cfgSetting['lang']))
-	{
-		require_once BASEDIR.'lang/'.WCF::$cfgSetting['lang'].'/text.'.WCF::$cfgSetting['encoding'].'.php';
-		WCF::setLanguage($txt);
-	}
-	else
-	{
-		WCF::Log()->writeError('Can not loading locale %s', WCF::$cfgSetting['lang']);
-		require_once BASEDIR."lang/".WCF::$cfgSetting['defaultLocale']."/text.utf8.php";
-		WCF::setLanguage($txt);	
-	}
-
-	//=============================================================================================================
 	// Установка нужной темы\Setting the right topic
 	//=============================================================================================================
 	WCF::$cfgSetting['_cssfile'] = THEMES.WCF::$cfgSetting['theme']."/style.css";

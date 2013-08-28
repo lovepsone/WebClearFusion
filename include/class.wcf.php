@@ -57,6 +57,19 @@ class WCF
 
 		self::$TF = new TextFormatting();
 		self::$DEBUG = new Debug(array('useDebug' => self::$cfgSetting['useDebug'], 'logLevel' => self::$cfgSetting['logLevel']));
+
+		// load langs
+		if (isset(self::$cfgSetting['lang']))
+		{
+			require_once BASEDIR.'lang/'.self::$cfgSetting['lang'].'/text.'.self::$cfgSetting['encoding'].'.php';
+			self::$locale = $txt;
+		}
+		else
+		{
+			self::Log()->writeError('Can not loading locale %s', self::$cfgSetting['lang']);
+			require_once BASEDIR."lang/".self::$cfgSetting['defaultLocale']."/text.utf8.php";
+			self::$locale = $txt;	
+		}
 	}
 
 	public static function Log()

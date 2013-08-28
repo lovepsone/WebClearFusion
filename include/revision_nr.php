@@ -1,5 +1,5 @@
 <?php
-define('WCF_REVISION', 405);
+define('WCF_REVISION', 406);
 define('DB_VERSION', 'wcf_r393');
 define('CONFIG_VERSION', '270820133');
 ?>
