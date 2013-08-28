@@ -14,16 +14,14 @@
 	// функция, показывающая доступ
 	function display_access_form($access)
 		{
-			global $txt;
-
   			switch ($access):
 
-  			case (-1): $result = $txt['genl']; break;
-  			case (0): $result = $txt['user']; break;
-  			case (1): $result = $txt['moderator']; break;
-  			case (2): $result = $txt['vebmaster']; break;
-  			case (3): $result = $txt['administrator']; break;
-  			case (4): $result = $txt['superadministrator']; break;
+  			case (-1): $result = WCF::$locale['genl']; break;
+  			case (0): $result = WCF::$locale['user']; break;
+  			case (1): $result = WCF::$locale['moderator']; break;
+  			case (2): $result = WCF::$locale['vebmaster']; break;
+  			case (3): $result = WCF::$locale['administrator']; break;
+  			case (4): $result = WCF::$locale['superadministrator']; break;
 
   			endswitch;
 

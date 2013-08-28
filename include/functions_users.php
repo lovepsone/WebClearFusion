@@ -44,7 +44,7 @@
 
 	function access($data)
 		{
-			global $access,$txt;
+			global $access;
 
 			$list = "";
     			reset($access);
@@ -53,7 +53,7 @@
 				{
 					for ($i=1;$i <= count($access);$i++)
 						{
-							$list .= "<option value='".$access[$i]['access']."'>".$txt[$access[$i]['txt']]."</option>";
+							$list .= "<option value='".$access[$i]['access']."'>".WCF::$locale[$access[$i]['txt']]."</option>";
 						}
 
 				}
@@ -61,7 +61,7 @@
 				{
 					for ($i=1;$i <= count($access);$i++)
 						{
-							$list .= "<option value='".$access[$i]['access']."'".($data == $access[$i]['access'] ? " selected='selected'" : "").">".$txt[$access[$i]['txt']]."</option>";
+							$list .= "<option value='".$access[$i]['access']."'".($data == $access[$i]['access'] ? " selected='selected'" : "").">".WCF::$locale[$access[$i]['txt']]."</option>";
 						}
 				}
 			return $list;
