@@ -146,7 +146,7 @@
 		echo"<td align='left' width='80%'><textarea id='Tinymce' name='news_text'>".$news_text."</textarea></td></tr>";
 		echo"<tr><td colspan='2'><hr></td></tr>";
 		echo"<tr><td align='right' width='20%' class='small'>".WCF::$locale['admin_newsmaker_newsfull']."</td>";
-		echo"<td align='left' width='80%'><textarea id='Tinymce' name='news_text_ext'>".$news_text_ext."</textarea></td></tr>";
+		echo"<td align='left' width='80%'><textarea id='TinymceFull' name='news_text_ext'>".$news_text_ext."</textarea></td></tr>";
 		echo"<tr><td align='center' colspan='2' class='small'><input type='submit' name='save'  class='button' value='".$txt_button."'/></td></tr>";
 		echo"</form>";
 		closetable();
