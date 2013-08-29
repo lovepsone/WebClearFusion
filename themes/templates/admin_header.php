@@ -28,5 +28,6 @@
 	echo"</head><body>";
 
 	require_once THEMES."templates/panels.php";
+	require_once THEMES.'templates/AdminSettingList.php';
 	ob_start();
 ?>
