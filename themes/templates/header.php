@@ -24,6 +24,11 @@
 	echo"<script type='text/javascript' src='".INCLUDES."js/jquery.js'></script>";
 	echo"<script type='text/javascript' src='".INCLUDES."js/tinymce/tinymce.min.js'></script>";
 	echo"<script type='text/javascript' src='".INCLUDES."js/LoadTinymce.js'></script>";
+	echo"<script type='text/javascript' src='".INCLUDES."js/jquery.js'></script>";
+	echo"<script type='text/javascript' src='".INCLUDES."js/jquery.bgiframe.js'></script>";
+	echo"<script type='text/javascript' src='".INCLUDES."js/jquery.dimensions.js'></script>";
+	echo"<script type='text/javascript' src='".INCLUDES."js/jquery.tooltip.js'></script>";
+	echo"<script type='text/javascript' src='".INCLUDES."js/LoadTooltips.js'></script>";
 	echo"</head><body>";
 
 	require_once THEMES."templates/panels.php";

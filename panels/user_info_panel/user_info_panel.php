@@ -26,7 +26,7 @@
    			echo"<tr><td colspan='2' align='center'><br><input type='text' name='kapcha_code' class='textbox'></td></tr>";
   		}
 		echo"<tr><td colspan='2' align='center'><br><input type='submit' class='button' value='".WCF::$locale['menu_auth_enter']."'></td></tr>";
-     		echo"<tr><td height='30' colspan='2' align='left' valign='middle'><img src='".IMAGES."register.png' align='absmiddle'>&nbsp;&nbsp;&nbsp;<a href='".BASEDIR."register.php'>".WCF::$locale['menu_auth_reg']."</a></td></tr>";
+     		echo"<tr><td height='30' colspan='2' align='left' valign='middle'><img src='".IMAGES."register.png' align='absmiddle'>&nbsp;&nbsp;&nbsp;<a href='".BASEDIR."register.php' title='Test tool tip'>".WCF::$locale['menu_auth_reg']."</a></td></tr>";
 
      		if (WCF::$cfgSetting['pass_remember'] == "on")
 		{

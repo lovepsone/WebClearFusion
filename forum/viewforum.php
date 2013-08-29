@@ -65,7 +65,7 @@
 						SELECT * FROM ?_forums_posts, ?_users WHERE ?_forums_posts.`post_id` = ?d AND ?_users.`user_id` = ?d LIMIT 1', $data['thread_lastpostid'], $data['thread_lastuser']);
 
 				echo"<tr><td width='4%' align='left' class='tbl1'></td>";
-          			echo"<td align='left' class='tbl1'>&nbsp;&nbsp;<a href='".FORUM."viewposts.php?thread_id=".$data['thread_id']."&forum_id=".$forum_id."'>".$data['thread_subject']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($data['user_name']))."</td>";
+          			echo"<td align='left' class='tbl1'>&nbsp;&nbsp;<a href='".FORUM."viewposts.php?thread_id=".$data['thread_id']."&forum_id=".$forum_id."' >".$data['thread_subject']."</a><br>&nbsp;&nbsp;".ucfirst(strtolower($data['user_name']))."</td>";
 				echo"<td width='21%' align='left' class='tbl1'>&nbsp;&nbsp;".$last_post['post_date']."<br>&nbsp;&nbsp;".WCF::$locale['forum_from']."&nbsp;&nbsp;".ucfirst(strtolower($last_post['user_name']))."</td>";
 				echo"<td width='5%' align='center' class='tbl2'>".$data['thread_postcount']."</td>";
 				echo"<td width='11%' align='center' class='tbl2'>".$data['thread_views']."</td></tr>";

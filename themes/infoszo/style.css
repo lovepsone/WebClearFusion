@@ -359,3 +359,20 @@ hr.side-hr {
 	color:#fff;
 	background:url(img/menu_h.png) no-repeat bottom;	
 }
+
+/*===============================
+| Все что связано с tooltip
+===============================*/
+
+#tooltip {
+	position: absolute;
+	z-index: 3000;
+	background:url(img/menu_bg.png) repeat-x;
+	padding: 0 2px;
+	opacity: 0.85;
+	color:#a7a7a7;
+	-moz-border-radius: 0px 10px 10px 10px; /* закругление для старых Mozilla Firefox */
+	-webkit-border-radius: 0px 10px 10px 10px; /* закругл. для старых Chrome и Safari */
+	-khtml-border-radius: 0px 10px 10px 10px; /* закругл.для брауз.Konquerer сист. Linux */
+	border-radius: 0px 10px 10px 10px; /* закругление углов для всех, кто понимает */
+}

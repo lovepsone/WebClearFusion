@@ -49,7 +49,7 @@
 			echo"<td width='21%' align='left' class='tbl1'>";
 			if ($data['thread_subject'] != "")
 			{
-				echo"<a href='".FORUM."viewposts.php?thread_id=".$data['thread_id']."&forum_id=".$data['forum_id']."'><b>".WCF::$TF->substring($data['thread_subject'],0,30)."...</b></a>";
+				echo"<a href='".FORUM."viewposts.php?thread_id=".$data['thread_id']."&forum_id=".$data['forum_id']."' title='".$data['thread_subject']."'><b>".WCF::$TF->substring($data['thread_subject'],0,30)."...</b></a>";
 				echo"<br>&nbsp;&nbsp;".WCF::$locale['forum_from']."&nbsp;".ucfirst(strtolower($data['user_name']))."<br>&nbsp;&nbsp;".$data['post_date'];
 			}
 			else
