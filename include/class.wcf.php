@@ -70,18 +70,15 @@ class WCF
 			self::Log()->writeError('Can not loading locale %s', self::$cfgSetting['lang']);
 			self::$locale = $txt;	
 		}
+
+		if(!@include(BASEDIR.'include/class.framework.php'))
+			die('<b>Error</b>: unable to load framework file!');
+		self::$FW = new Framework();
 	}
 
 	public static function Log()
 	{
         	return self::$DEBUG;
-	}
-
-	public static function InitFW()
-	{
-		if(!@include(BASEDIR.'include/class.framework.php'))
-			die('<b>Error</b>: unable to load framework file!');
-		self::$FW = new Framework();
 	}
 
 	public static function getEncodingPage()
