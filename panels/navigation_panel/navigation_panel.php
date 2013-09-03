@@ -10,7 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	openside();
+	openside(WCF::$locale['title_menu']);
 
 	$rows = WCF::$DB->select(' -- CACHE: 180
 		SELECT `link_name`, `link_url`, `link_visibility` FROM ?_navigation_links WHERE `link_position`=1 OR `link_position`=2 ORDER BY `link_order`');

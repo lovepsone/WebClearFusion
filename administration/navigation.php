@@ -28,7 +28,7 @@
 	for ($i = 1; $i < count($AdminSettingList['plants']) + 1; $i++)
 		$pages[4] .= "<option value='".ADMIN.$AdminSettingList['plants'][$i]['file']."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", WCF::$locale[$AdminSettingList['plants'][$i]['txt']])."</option>";
 
-	openside();
+	openside(WCF::$locale['title_admin']);
 
 	$content = false;
 	for ($i = 1; $i < 5; $i++)

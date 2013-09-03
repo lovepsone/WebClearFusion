@@ -12,7 +12,7 @@
 
 	if (!isset($_SESSION['user_id']) || ($_SESSION['ip'] != $_SERVER['REMOTE_ADDR']))
 	{
-  		openside();
+  		openside(WCF::$locale['title_auth']);
 		echo"<form name='loginform' method='post' action='".WCF_SELF."'>";
 		echo"<tr><td colspan='2' align='center'>".WCF::$locale['menu_auth_title']."<br><br></td></tr>";
   		echo"<tr><td colspan='2' align='center'>".WCF::$locale['menu_auth_account']."<br><input type='text' name='auth_name' class='textbox'></td></tr>";
@@ -26,7 +26,7 @@
    			echo"<tr><td colspan='2' align='center'><br><input type='text' name='kapcha_code' class='textbox'></td></tr>";
   		}
 		echo"<tr><td colspan='2' align='center'><br><input type='submit' class='button' value='".WCF::$locale['menu_auth_enter']."'></td></tr>";
-     		echo"<tr><td height='30' colspan='2' align='left' valign='middle'><img src='".IMAGES."register.png' align='absmiddle'>&nbsp;&nbsp;&nbsp;<a href='".BASEDIR."register.php' title='Test tool tip'>".WCF::$locale['menu_auth_reg']."</a></td></tr>";
+     		echo"<tr><td height='30' colspan='2' align='left' valign='middle'><img src='".IMAGES."register.png' align='absmiddle'>&nbsp;&nbsp;&nbsp;<a href='".BASEDIR."register.php'>".WCF::$locale['menu_auth_reg']."</a></td></tr>";
 
      		if (WCF::$cfgSetting['pass_remember'] == "on")
 		{
@@ -37,7 +37,7 @@
 	}
 	else if (isset($_SESSION['user_id']) || ($_SESSION['ip'] == $_SERVER['REMOTE_ADDR']))
 	{
-		openside();
+		openside(WCF::$locale['title_auth']);
 		echo"<tr><td align='left'>".WCF::$locale['menu_auth_greeting']."&nbsp;".ucfirst(strtolower($_SESSION['user_name']))."</td></tr>";
 		echo"<tr><td align='right' valign='top' class='avatar'>".avatar_img($_SESSION['user_avatar'])."</td></tr>";
   		echo"<tr><td align='left'>".WCF::$locale['menu_auth_ip']."</td></tr>";

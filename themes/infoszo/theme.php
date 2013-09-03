@@ -50,10 +50,10 @@
 		echo"</tr></table><br>";
 	}
 
-	function openside()
+	function openside($title = '')
 	{
 		echo"<table cellpadding='0' cellspacing='0' width='100%'><tr>";
-		echo"<td class='scapmain-top-left'></td><td class='scapmain-top'></td><td class='scapmain-top-right'></td>\n";
+		echo"<td class='scapmain-top-left'></td><td class='scapmain-top'>$title</td><td class='scapmain-top-right'></td>\n";
 		echo"</tr></table>";
 
 		echo"<table cellpadding='0' cellspacing='0' width='100%'>";
