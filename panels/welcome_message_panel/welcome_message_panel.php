@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2013 lovepsone
+| Copyright (C) 2010 - 2014 lovepsone
 +--------------------------------------------------------+
 | Filename: user_info_panel.php
 | Author: lovepsone
@@ -12,7 +12,7 @@
 
 	if (WCF::$cfgSetting['serverintro'] != "")
 	{
-		opentable();
+		opentable(WCF::getLocale('panel', 2));
 		echo stripslashes(WCF::$cfgSetting['serverintro']);
 		closetable();
 	}

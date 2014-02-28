@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2013 lovepsone
+| Copyright (C) 2010 - 2014 lovepsone
 +--------------------------------------------------------+
 | Filename: class.wcf.php
 | Author: lovepsone
@@ -15,12 +15,17 @@ class WCF
 	public static $cfgSetting = array();
 	public static $cfgMySql = array();
 	public static $cfgTitle = array();
-	public static $FW = null; 		// framework
+
 	public static $TF = null; 		// TextFormatting
 	private static $DEBUG = null; 		// WCFDebug
 	public static $templating = null;
 	public static $DB = null; 		// DbSimple
-	public static $locale = array(); 	// txt
+
+	//
+	public static $ST = null;		// SettingTheme
+	
+	private static $lang = array();		// locale
+	private static $xmlLang = null;
 
 	public static function InitWCF()
 	{
@@ -34,8 +39,8 @@ class WCF
 			die('<b>Error</b>: unable to load debug file!');
 	
 		self::$cfgSetting = $WCFConfig['settings'];
-		self::$cfgMySql = $WCFConfig['mysql'];
-		self::$cfgTitle = $WCFConfig['title'];
+		self::$cfgMySql   = $WCFConfig['mysql'];
+		self::$cfgTitle   = $WCFConfig['title'];
 
 		self::$DB = DbSimple_Generic::connect("mysql://".self::$cfgMySql['username'].":".self::$cfgMySql['password']."@".self::$cfgMySql['hostname']."/".self::$cfgMySql['dbname']);
 		self::$DB->setIdentPrefix(DB_PREFIX);
@@ -59,21 +64,42 @@ class WCF
 		self::$DEBUG = new Debug(array('useDebug' => self::$cfgSetting['useDebug'], 'logLevel' => self::$cfgSetting['logLevel']));
 
 		// load langs
-		if (isset(self::$cfgSetting['lang']))
+		if (!isset(self::$cfgSetting['lang']) || !file_exists(BASEDIR.'lang/'.self::$cfgSetting['lang'].'.xml'))
 		{
-			require_once (BASEDIR.'lang/'.self::$cfgSetting['lang'].'/text.'.self::$cfgSetting['encoding'].'.php');
-			self::$locale = $txt;
+			self::$xmlLang = simplexml_load_file(BASEDIR.'lang/'.self::$cfgSetting['defaultLocale'].'.xml');
+			self::Log()->writeError('Can not loading locale %s', self::$cfgSetting['lang']);
 		}
 		else
 		{
-			require_once (BASEDIR.'lang/'.self::$cfgSetting['defaultLocale'].'/text.UTF8.php');
-			self::Log()->writeError('Can not loading locale %s', self::$cfgSetting['lang']);
-			self::$locale = $txt;	
+			self::$xmlLang = simplexml_load_file(BASEDIR.'lang/'.self::$cfgSetting['lang'].'.xml');
 		}
 
-		if(!@include(BASEDIR.'include/class.framework.php'))
-			die('<b>Error</b>: unable to load framework file!');
-		self::$FW = new Framework();
+		//
+		if(!@include(INCLUDES.'class.SettingTheme.php'))
+			die('<b>Error</b>: unable to load SettingTheme file!');
+		self::$ST = new SettingTheme();
+	}
+
+	public static function CheckGroup($group)
+	{
+		return true;
+	}
+
+	/*
+	* $CountFullIntem - количество новостей/коментов/постов/форумов и тд.
+	* $NameItem - название категории (новость/коменты/форум)
+	* $Page
+	*/
+	public static function getCountItem($CountFullIntem, $NameItem, $Page)
+	{
+		if ($CountFullIntem > self::$cfgSetting[$NameItem])
+		{
+    			if (!isset($Page) || ($Page == ''))
+				return array('PageLen' => self::$cfgSetting[$NameItem], 'StartRec' => 0);
+			else
+				return array('PageLen' => self::$cfgSetting[$NameItem], 'StartRec' => ((int)$Page-1)*self::$cfgSetting[$NameItem]);
+		}
+		return array('PageLen' => $CountFullIntem, 'StartRec' => 0);
 	}
 
 	public static function Log()
@@ -85,8 +111,13 @@ class WCF
 	{
 		if (self::$cfgSetting['encoding'] == 'cp1251')
 			return 'windows-1251';
-		else 
-			return 'utf-8';
+		return 'utf-8';
+	}
+
+	public static function getLocale($section, $id)
+	{
+		
+		return self::$xmlLang->$section->lang[$id]['name'];
 	}
 
 	public static function CheckExistPageForum($Fid = false, $Tid = false, $Pid = false)

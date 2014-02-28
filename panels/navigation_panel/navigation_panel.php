@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2013 lovepsone
+| Copyright (C) 2010 - 2014 lovepsone
 +--------------------------------------------------------+
 | Filename: navigation_panel.php
 | Author: lovepsone
@@ -10,18 +10,18 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	openside(WCF::$locale['title_menu']);
+	openside(WCF::getLocale('panel', 0));
 
 	$rows = WCF::$DB->select(' -- CACHE: 180
 		SELECT `link_name`, `link_url`, `link_visibility` FROM ?_navigation_links WHERE `link_position`=1 OR `link_position`=2 ORDER BY `link_order`');
 
 	if ($rows != null)
 	{
+		echo "<div id='navigation'>\n";
 		foreach ($rows as $numRow => $data)
 		{
-			if (check_user($data['link_visibility']))
+			if (WCF::CheckGroup($data['link_visibility']))
 			{
-				echo"<tr><td width='100%' valign='middle'>";
 				if ($data['link_name'] != "---" && $data['link_url'] == "---")
 				{
 					echo"<div class='side-label'><strong>".$data['link_name']."</strong></div>";
@@ -34,13 +34,13 @@
 				{
 					echo" <a href='".BASEDIR.$data['link_url']."' class='side'>".$data['link_name']."</a>";
 				}
-				echo"</td></tr>";
 			}
 		}
+		echo "</div>\n";
 	}
 	else
 	{
-			echo WCF::$locale['no_links'];
+			echo WCF::getLocale('panel', 1);
 	}
        	closeside();
 ?>

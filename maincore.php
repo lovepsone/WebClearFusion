@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2013 lovepsone
+| Copyright (C) 2010 - 2014 lovepsone
 +--------------------------------------------------------+
 | Filename: maincore.php
 | Author: lovepsone
@@ -60,9 +60,12 @@
 		exit();
 	}
 
+	$logsdb = "";
 	function DBLogger($db, $sql)
 	{
-		WCF::Log()->writeRows('%s\n', $sql);	
+		global $logsdb;
+		$logsdb .= $sql.'<br>';
+		//WCF::Log()->writeRows('%s\n', $sql);	
 	}
 
 	WCF::$DB->setErrorHandler('databaseErrorHandler');
@@ -77,7 +80,6 @@
 
 	// временно пока движок не перейдет на новые рельсы
 	@include(BASEDIR.'include/functions_users.php');
-	@include(BASEDIR.'include/functions_img.php');
 	@include(BASEDIR.'include/functions_page.php');
 	@include(BASEDIR.'include/include_access_list.php');
 	@include(BASEDIR.'include/functions_files.php');
@@ -115,62 +117,39 @@
 	}
 
 	//=============================================================================================================
-	// Подключаем модули\Include in modules
-	//=============================================================================================================
-	$temp = opendir(MODULE); $module_list = array();
-	while ($folder = readdir($temp))
-	{
-		if (!in_array($folder, array(".","..")) && strstr($folder, "_module"))
-		{
-			if (is_dir(MODULE.$folder)) { $module_list[] = $folder; }
-		}
-	}
-	closedir($temp);
-
-	if (count($module_list) > 0) 
-	{
-		sort($module_list); array_unshift($module_list, "none");
-	}
-
-	$modules = array();
-	for ($i=0;$i < count($module_list);$i++)
-	{
-		if ($module_list[$i] != "none")
-		{
-			$modules[$module_list[$i]] = MODULE.$module_list[$i]."/";
-			//require MODULE.$module_list[$i]."/core.php";
-		}
-	}
-
-	//=============================================================================================================
 	// auth
 	//=============================================================================================================
-
-	$CapchaInput = check_kcaptcha_enable();
-
 	if (isset($_POST['auth_name']) && $_POST['auth_name'] != "") 
    	{
 		$password = SHA1(strtoupper(addslashes($_POST['auth_name']).':'.addslashes($_POST['auth_pass'])));
 
    		$row = WCF::$DB->selectRow('SELECT * FROM ?_users WHERE `user_name` = ? AND `user_sha_pass_hash` = ?',strtoupper(addslashes($_POST['auth_name'])), $password);
 
-		if ($row != null && $CapchaInput == 1)
+		if ($row != null)
 		{
 		       	$_SESSION['user_id'] = (int)$row['user_id'];
 		       	$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
 		       	$_SESSION['user_name'] = strtoupper($_POST['auth_name']);
 		       	$_SESSION['password'] = strtoupper($password);
 			$_SESSION['gmlevel'] = (int)$row['user_gmlevel'];
-			$_SESSION['bonuses'] = (int)$row['user_bonuses'];
 		       	$_SESSION['lang'] = WCF::$cfgSetting['lang'];
 			$_SESSION['user_avatar'] = $row['user_avatar'];
-			unset($_SESSION['captcha_keystring']);
-			WCF::redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=auth");
+			WCF::redirect("http://".$_SERVER['HTTP_HOST']."/".WCF::$cfgSetting['opening_page']);
 		}
 		else
 		{
-			WCF::redirect("http://".$_SERVER['HTTP_HOST']."/setuser.php?action=error");
+			//WCF::redirect("http://".$_SERVER['HTTP_HOST']."/?action=error");
 		}
 			
    	}
+
+	if ((isset($_GET['action']) && $_GET['action'] == "logout") && (isset($_SESSION['user_id']) && WCF::isnum($_SESSION['user_id'])))
+	{
+    		unset($_SESSION['user_id']);
+    		unset($_SESSION['ip']);
+		unset($_SESSION['user_name']);
+		unset($_SESSION['password']);
+		unset($_SESSION['gmlevel']);
+    		session_destroy();
+	}
 ?>

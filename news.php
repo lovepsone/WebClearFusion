@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2013 lovepsone
+| Copyright (C) 2010 - 2014 lovepsone
 +--------------------------------------------------------+
 | Filename: news.php
 | Author: lovepsone
@@ -16,34 +16,42 @@
   	$rows = WCF::$DB->select(' -- CACHE: 180
 					SELECT count(`news_date`) as number FROM ?_news');
 	foreach ($rows as $numRow=>$kolzap) {}
+	$ItemsPage = array();
+	$ItemsPage = WCF::getCountItem($kolzap['number'], "page_news", (isset($_GET['page']) ? $_GET['page'] : null));
 
-	if ($kolzap['number'] > WCF::$cfgSetting['page_news'])
-	{
-    		$page_len = WCF::$cfgSetting['page_news'];
- 
-    		if (!isset($_GET['page']) || ($_GET['page'] == ''))
-		{
-			$start_rec = 0;
-		}
-		else
-		{
-			$start_rec = ((int)$_GET['page']-1)*WCF::$cfgSetting['page_news'];
-		}
-	}
-	else
-	{
-    		$page_len = $kolzap['number'];
-		$start_rec = 0;
-	}
+
 
   	$rows = WCF::$DB->select(' -- CACHE: 180
 				SELECT * FROM ?_news
 				LEFT JOIN ?_news_cats ON `news_cat_id`=`news_cat`
 				LEFT JOIN ?_users ON ?_users.`user_id` = ?_news.`news_author`
-				ORDER BY `news_date` DESC limit '.$start_rec.','.$page_len);
+				ORDER BY `news_date` DESC limit ?d, ?d', $ItemsPage['StartRec'], $ItemsPage['PageLen']); //'.$start_rec.','.$page_len);
 
-	opentable();
-  	if ($rows != null)
+	if ($rows != null)
+	{
+		foreach ($rows as $numRow=>$data)
+		{
+			$news_subject = "<a name='news_".$data['news_id']."' id='news_".$data['news_id']."'></a>".stripslashes($data['news_subject']);
+			$img_size = @getimagesize(IMAGES_NC.$data['news_cat_image']);
+			$news_cat_image = ($data['news_show_cat'] ? "<img src='".IMAGES_NC.$data['news_cat_image']."' width='".$img_size[0]."' height='".$img_size[1]."' class='news-category' />" : "");
+
+			$news_info = array(
+					"news_id" => $data['news_id'],
+					"user_id" => $data['user_id'],
+					"user_name" => $data['user_name'],
+					"user_status" => $data['user_status'],
+					"news_date" => $data['news_date'],
+					"cat_id" => $data['news_cat'],
+					"cat_name" => $data['news_cat_name'],
+					"cat_image" => $news_cat_image,
+					"news_subject" => $data['news_subject']
+				);
+			RenderNews($news_subject, $data['news_text'], $news_info);
+		}
+	}
+
+	//opentable();
+  	/*if ($rows != null)
 	{
      		foreach ($rows as $numRow=>$data)
 		{
@@ -81,7 +89,7 @@
 	else
 	{
 		echo"<tr><td align='center' valign='middle' >".WCF::$locale['modul_news_no_news']."</td></tr>";
-	}
+	}*/
 	closetable();
 
 	require_once THEMES."templates/footer.php";

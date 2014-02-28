@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locale>
+ <common>
+  <lang id="0" name=""/>
+  <lang id="1" name=""/>
+ </common>
+ <auth>
+  <lang id="0" name="Авторизация"/>
+  <lang id="1" name="Закрыть"/>
+  <lang id="2" name="Логин: "/>
+  <lang id="3" name="Пароль: "/>
+  <lang id="4" name="Войти"/>
+  <lang id="5" name="Регистрация"/>
+  <lang id="6" name="Профиль"/>
+  <lang id="7" name="Выйти"/>
+  <lang id="8" name="Авторизация пользователя"/>
+ </auth>
+ <panel>
+  <lang id="0" name="Меню сайта"/>
+  <lang id="1" name="Сылки не созданы"/>
+  <lang id="2" name="Добро пожаловать"/>
+ </panel>
+ <news>
+  <lang id="0" name=""/>
+  <lang id="1" name=""/>
+ </news>
+</locale>
