@@ -10,6 +10,7 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
+	die('This site is under development!');
 	require_once "maincore.php";
 	WCF::redirect(WCF::$cfgSetting['opening_page']);
 ?>

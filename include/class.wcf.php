@@ -163,7 +163,7 @@ class WCF
 
 	//=============================================================================================
 	// ‘ункци€ перенаправл€юща€ на $location страницу 
-	public static function redirect($location, $script = false)
+	public static function Redirect($location, $script = false)
 	{
 		if (!$script)
 		{

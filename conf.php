@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2012 lovepsone
+| Copyright (C) 2010 - 2014 lovepsone
 +--------------------------------------------------------+
 | Filename: conf.php
 | Author: lovepsone
@@ -81,4 +81,5 @@ $WCFConfig['title']['copyright'] = 'WebClearFusion v 1.0.10 from LovePSone 2010-
 $WCFConfig['title']['revision_admin'] = ' 1.00.00';
 
 define("DB_PREFIX", "wcf_");
+define("COOKIES_PREFIX", "wcf_");
 ?>

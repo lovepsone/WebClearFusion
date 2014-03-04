@@ -95,6 +95,30 @@
 	define("WCF_SELF", basename($_SERVER['PHP_SELF']));
 
 	//=============================================================================================================
+	// auth
+	//=============================================================================================================
+	if(!@include(BASEDIR.'include/class.Auth.php'))
+		die("<b>Error:</b> can not open class.Auth.php!!!");
+	$USER = array();
+
+	if (isset($_POST['auth_name']) && isset($_POST['auth_pass']))
+   	{
+		$AuthUser = new Auth($_POST['auth_name'], $_POST['auth_pass']);
+		$USER = $AuthUser->getDataUser();
+		unset($AuthUser, $_POST['auth_name'], $_POST['auth_pass']);
+		WCF::redirect(WCF::$cfgSetting['opening_page']);
+	}
+	else if(isset($_GET['action']) && $_GET['action'] == "logout")
+	{
+		$USER = Auth::logOutUser();
+		WCF::redirect(WCF::$cfgSetting['opening_page']);
+	}
+	else
+	{
+		$USER = Auth::DataAuthUser();
+	}
+
+	//=============================================================================================================
 	// Установка нужной темы\Setting the right topic
 	//=============================================================================================================
 	WCF::$cfgSetting['_cssfile'] = THEMES.WCF::$cfgSetting['theme']."/style.css";
@@ -116,40 +140,4 @@
 		WCF::$cfgSetting['_cssfile'] = THEMES."default/style.css";
 	}
 
-	//=============================================================================================================
-	// auth
-	//=============================================================================================================
-	if (isset($_POST['auth_name']) && $_POST['auth_name'] != "") 
-   	{
-		$password = SHA1(strtoupper(addslashes($_POST['auth_name']).':'.addslashes($_POST['auth_pass'])));
-
-   		$row = WCF::$DB->selectRow('SELECT * FROM ?_users WHERE `user_name` = ? AND `user_sha_pass_hash` = ?',strtoupper(addslashes($_POST['auth_name'])), $password);
-
-		if ($row != null)
-		{
-		       	$_SESSION['user_id'] = (int)$row['user_id'];
-		       	$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
-		       	$_SESSION['user_name'] = strtoupper($_POST['auth_name']);
-		       	$_SESSION['password'] = strtoupper($password);
-			$_SESSION['gmlevel'] = (int)$row['user_gmlevel'];
-		       	$_SESSION['lang'] = WCF::$cfgSetting['lang'];
-			$_SESSION['user_avatar'] = $row['user_avatar'];
-			WCF::redirect("http://".$_SERVER['HTTP_HOST']."/".WCF::$cfgSetting['opening_page']);
-		}
-		else
-		{
-			//WCF::redirect("http://".$_SERVER['HTTP_HOST']."/?action=error");
-		}
-			
-   	}
-
-	if ((isset($_GET['action']) && $_GET['action'] == "logout") && (isset($_SESSION['user_id']) && WCF::isnum($_SESSION['user_id'])))
-	{
-    		unset($_SESSION['user_id']);
-    		unset($_SESSION['ip']);
-		unset($_SESSION['user_name']);
-		unset($_SESSION['password']);
-		unset($_SESSION['gmlevel']);
-    		session_destroy();
-	}
 ?>

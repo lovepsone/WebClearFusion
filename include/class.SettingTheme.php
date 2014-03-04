@@ -75,7 +75,7 @@ class SettingTheme
 		$res .= "Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'".$link_class.">GNU Affero GPL</a> v3.\n";
 		return $res;
 	}
-
+	
 	private function ExcludePanelList($position)
 	{
 		$epl = "";
