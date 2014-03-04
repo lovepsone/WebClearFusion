@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locale>
  <common>
-  <lang id="0" name=""/>
-  <lang id="1" name=""/>
+  <lang id="0" name="Предыдущая"/>
+  <lang id="1" name="Следующая"/>
+  <lang id="2" name="Страница "/>
+  <lang id="3" name=" из "/>
  </common>
  <auth>
   <lang id="0" name="Авторизация"/>

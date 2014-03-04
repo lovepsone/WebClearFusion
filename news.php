@@ -13,20 +13,17 @@
 	require_once "maincore.php";
 	require_once THEMES."templates/header.php";
 
-  	$rows = WCF::$DB->select(' -- CACHE: 180
-					SELECT count(`news_date`) as number FROM ?_news');
-	foreach ($rows as $numRow=>$kolzap) {}
-	$ItemsPage = array();
-	$ItemsPage = WCF::getCountItem($kolzap['number'], "page_news", (isset($_GET['page']) ? $_GET['page'] : null));
+	$rows = WCF::$DB->selectRow('SELECT count(`news_date`) as CountNews FROM ?_news');
+	$CountNews = $rows['CountNews'];
 
-
+	if (!isset($_GET['rowstart']) || !WCF::isnum($_GET['rowstart'])) { $_GET['rowstart'] = 0; }
 
   	$rows = WCF::$DB->select(' -- CACHE: 180
 				SELECT * FROM ?_news
 				LEFT JOIN ?_news_cats ON `news_cat_id`=`news_cat`
 				LEFT JOIN ?_users ON ?_users.`user_id` = ?_news.`news_author`
-				ORDER BY `news_date` DESC limit ?d, ?d', $ItemsPage['StartRec'], $ItemsPage['PageLen']); //'.$start_rec.','.$page_len);
-
+				ORDER BY `news_date` DESC limit ?d, ?d', $_GET['rowstart'], WCF::$cfgSetting['newsperpage']);
+				
 	if ($rows != null)
 	{
 		foreach ($rows as $numRow=>$data)
@@ -51,6 +48,7 @@
 			echo "<td style='height:5px;background-color:#f6a504;'></td>\n";
 			echo "</tr>\n</table>\n";
 		}
+		if ($CountNews > WCF::$cfgSetting['newsperpage']) echo "<div align='center' style=';margin-top:5px;'>\n".WCF::$ST->MakePageNav($_GET['rowstart'], WCF::$cfgSetting['newsperpage'],$CountNews,3)."\n</div>\n";
 	}
 
 	require_once THEMES."templates/footer.php";

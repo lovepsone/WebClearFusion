@@ -75,6 +75,57 @@ class SettingTheme
 		$res .= "Released as free software without warranties under <a href='http://www.fsf.org/licensing/licenses/agpl-3.0.html'".$link_class.">GNU Affero GPL</a> v3.\n";
 		return $res;
 	}
+
+	public function MakePageNav($start, $count, $total, $range = 0, $link = "", $getname = "rowstart")
+	{
+		if ($link == "") { $link = WCF_SELF."?"; }
+		$pg_cnt = ceil($total / $count);
+		if ($pg_cnt <= 1) { return ""; }
+		$idx_back = $start - $count;
+		$idx_next = $start + $count;
+		$cur_page = ceil(($start + 1) / $count);
+
+		$res = WCF::getLocale('common', 2)." ".$cur_page.WCF::getLocale('common', 3).$pg_cnt.": ";
+		if ($idx_back >= 0)
+		{
+			if ($cur_page > ($range + 1))
+			{
+				$res .= "<a href='".$link.$getname."=0'>1</a>";
+				if ($cur_page != ($range + 2)) { $res .= "..."; }
+			}
+		}
+
+		$idx_fst = max($cur_page - $range, 1);
+		$idx_lst = min($cur_page + $range, $pg_cnt);
+		if ($range == 0)
+		{
+			$idx_fst = 1;
+			$idx_lst = $pg_cnt;
+		}
+
+		for ($i = $idx_fst; $i <= $idx_lst; $i++)
+		{
+			$offset_page = ($i - 1) * $count;
+			if ($i == $cur_page)
+			{
+				$res .= "<span><strong>".$i."</strong></span>";
+			}
+			else
+			{
+				$res .= "<a href='".$link.$getname."=".$offset_page."'>".$i."</a>";
+			}
+		}
+		if ($idx_next < $total)
+		{
+			if ($cur_page < ($pg_cnt - $range))
+			{
+				if ($cur_page != ($pg_cnt - $range - 1)) { $res .= "..."; }
+				$res .= "<a href='".$link.$getname."=".($pg_cnt - 1) * $count."'>".$pg_cnt."</a>\n";
+			}
+		}
+
+		return "<div class='pagenav'>\n".$res."</div>\n";
+	}
 	
 	private function ExcludePanelList($position)
 	{

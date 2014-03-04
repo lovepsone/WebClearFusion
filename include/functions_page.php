@@ -29,68 +29,6 @@
 		}
 
 	//=============================================================================================
-	// функция, создающая навигацию
-	function show_page($LinkText,$Page,$AllPages)
-		{
-			$Page = intval($Page);
-			$AllPages = intval($AllPages);
-			if ($Page > $AllPages) $Page = 1;
-			$text ="<table border='0' cellpadding='5' cellspacing='3'><tr>";
-			if ($AllPages < 16)
-				{
-   					for ($i = 1; $i <= $AllPages; $i++)
-						{
-       							if ($i == $Page)  $text .= "<td>$i</td>";
-       							else $text .= "<td><a href='$LinkText$i' target='_self'>$i</a></td>";
-      						}
-  				} 
-			else
-				{
-    					if ($Page < 6)
-						{
-        						for ($i = 1; $i <= 6; $i++)
-								{
-            								if ($i == $Page)  $text .= "<td>$i</td>";
-            								else $text .= "<td><a href='$LinkText$i' target='_self'>$i</a></td>";
-            							}
-        						$text .= "<td>...</td>";
-        						$text .= "<td><a href='$LinkText($AllPages-2)' target='_self'>($AllPages-2)</a></td>";
-        						$text .= "<td><a href='$LinkText($AllPages-1)' target='_self'>($AllPages-1)</a></td>";
-        						$text .= "<td><a href='$LinkText$AllPages' target='_self'>$AllPages</a></td>";
-        					}
-
-    					else if ($Page > ($AllPages-5))
-						{
-        						$text .= "<td><a href='$LinkText1' target='_self'>1</a></td>";
-        						$text .= "<td><a href='$LinkText2' target='_self'>2</a></td>";
-        						$text .= "<td><a href='$LinkText3' target='_self'>3</a></td>";
-        						$text .= "<td>...</td>";
-
-        						for ($i = ($AllPages-5); $i <= $AllPages; $i++)
-								{
-            								if ($i == $Page)  $text .= "<td>$i</td>";
-            								else $text .= "<td><a href='$LinkText$i' target='_self'>$i</a></td>";
-            							}
-        					}
-    					else
-						{
-        						$text .= "<td><a href='$LinkText1' target='_self'>1</a></td>";
-        						$text .= "<td><a href='$LinkText2' target='_self'>2</a></td>";
-        						$text .= "<td><a href='$LinkText3' target='_self'>3</a></td>";
-        						$text .= "<td>...</td>";
-        						$text .= "<td><a href='$LinkText($Page-1)' target='_self'>($Page-1)</a></td>";
-        						$text .= "<td>$Page</td>";
-        						$text .= "<td><a href='$LinkText($Page+1)' target='_self'>($Page+1)</a></td>";
-        						$text .= "<td>...</td>";
-        						$text .= "<td><a href='$LinkText($AllPages-2)' target='_self'>($AllPages-2)</a></td>";
-        						$text .= "<td><a href='$LinkText($AllPages-1)' target='_self'>($AllPages-1)</a></td>";
-        						$text .= "<td><a href='$LinkText$AllPages' target='_self'>$AllPages</a></td>";
-        					}
-  				}
-			$text .= "</tr></table>";
-			return $text;
-		}
-	//=============================================================================================
 	// функция чтения элементов каталога и заносит их в массив
 	function admin_files_page($patch)
 		{
