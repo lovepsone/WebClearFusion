@@ -85,23 +85,6 @@ class WCF
 		return true;
 	}
 
-	/*
-	* $CountFullIntem - количество новостей/коментов/постов/форумов и тд.
-	* $NameItem - название категории (новость/коменты/форум)
-	* $Page
-	*/
-	public static function getCountItem($CountFullIntem, $NameItem, $Page)
-	{
-		if ($CountFullIntem > self::$cfgSetting[$NameItem])
-		{
-    			if (!isset($Page) || ($Page == ''))
-				return array('PageLen' => self::$cfgSetting[$NameItem], 'StartRec' => 0);
-			else
-				return array('PageLen' => self::$cfgSetting[$NameItem], 'StartRec' => ((int)$Page-1)*self::$cfgSetting[$NameItem]);
-		}
-		return array('PageLen' => $CountFullIntem, 'StartRec' => 0);
-	}
-
 	public static function Log()
 	{
         	return self::$DEBUG;
