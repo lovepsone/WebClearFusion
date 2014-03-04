@@ -65,7 +65,6 @@
 	{
 		global $logsdb;
 		$logsdb .= $sql.'<br>';
-		//WCF::Log()->writeRows('%s\n', $sql);	
 	}
 
 	WCF::$DB->setErrorHandler('databaseErrorHandler');
@@ -130,13 +129,11 @@
 	}
 	else
 	{
-		WCF::Log()->writeError('Can not loading %s',WCF::$cfgSetting['_themefile']);
 		include(THEMES."default/theme.php");
 	}
 
 	if (!file_exists(WCF::$cfgSetting['_cssfile']))
 	{
-		WCF::Log()->writeError('Can not loading %s', WCF::$cfgSetting['_cssfile']);
 		WCF::$cfgSetting['_cssfile'] = THEMES."default/style.css";
 	}
 

@@ -17,7 +17,6 @@ class WCF
 	public static $cfgTitle = array();
 
 	public static $TF = null; 		// TextFormatting
-	private static $DEBUG = null; 		// WCFDebug
 	public static $templating = null;
 	public static $DB = null; 		// DbSimple
 
@@ -35,8 +34,6 @@ class WCF
 			die('<b>Error</b>: unable to load DbSimple lib!');
 		if(!@include(BASEDIR.'include/class.TextFormatting.php'))
 			die('<b>Error</b>: unable to load TextFormatting file!');
-		if(!@require_once(BASEDIR.'include/class.debug.php'))
-			die('<b>Error</b>: unable to load debug file!');
 	
 		self::$cfgSetting = $WCFConfig['settings'];
 		self::$cfgMySql   = $WCFConfig['mysql'];
@@ -61,13 +58,12 @@ class WCF
 		}
 
 		self::$TF = new TextFormatting();
-		self::$DEBUG = new Debug(array('useDebug' => self::$cfgSetting['useDebug'], 'logLevel' => self::$cfgSetting['logLevel']));
 
 		// load langs
 		if (!isset(self::$cfgSetting['lang']) || !file_exists(BASEDIR.'lang/'.self::$cfgSetting['lang'].'.xml'))
 		{
 			self::$xmlLang = simplexml_load_file(BASEDIR.'lang/'.self::$cfgSetting['defaultLocale'].'.xml');
-			self::Log()->writeError('Can not loading locale %s', self::$cfgSetting['lang']);
+			die('<b>Error</b>:Can not loading locale '.self::$cfgSetting['lang']);
 		}
 		else
 		{
@@ -83,11 +79,6 @@ class WCF
 	public static function CheckGroup($group)
 	{
 		return true;
-	}
-
-	public static function Log()
-	{
-        	return self::$DEBUG;
 	}
 
 	public static function getEncodingPage()
@@ -117,14 +108,14 @@ class WCF
 		return 0;
 	}
 
-	public static function stripget($check_url)
+	public static function StripGet($check_url)
 	{
 		$return = false;
 		if (is_array($check_url))
 		{
 			foreach ($check_url as $value)
 			{
-				$return = self::stripget($value);
+				$return = self::StripGet($value);
 				if ($return == true) { return true; }
 			}
 		}
@@ -174,7 +165,7 @@ class WCF
 	//=============================================================================================================
 	// Функция проверяет ввод чисел
 	//=============================================================================================================
-	public static function isnum($value)
+	public static function isNum($value)
 	{
 		if (!is_array($value))
 		{
@@ -189,7 +180,7 @@ class WCF
 	//=============================================================================================================
 	// Trim a line of text to a preferred length
 	//=============================================================================================================
-	public static function trimlink($text, $length)
+	public static function TrimLink($text, $length)
 	{
 		$dec = array("&", "\"", "'", "\\", '\"', "\'", "<", ">");
 		$enc = array("&amp;", "&quot;", "&#39;", "&#92;", "&quot;", "&#39;", "&lt;", "&gt;");
