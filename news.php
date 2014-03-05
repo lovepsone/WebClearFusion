@@ -53,6 +53,10 @@
 			}
 			if ($RowCount['N'] > WCF::$cfgSetting['newsperpage']) echo "<div align='center' style=';margin-top:5px;'>\n".WCF::$ST->MakePageNav($_GET['rowstart'], WCF::$cfgSetting['newsperpage'],$RowCount['N'],3)."\n</div>\n";
 		}
+		else
+		{
+			WCF::Redirect(WCF::$cfgSetting['opening_page']);
+		}
 	}
 	else
 	{
