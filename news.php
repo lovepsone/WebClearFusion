@@ -39,9 +39,11 @@
 			echo "<td class='main-body middle-border'>".$news_cat_image.$data['news_text']."</td>\n";
 			echo "</tr>\n<tr>\n";
 			echo "<td align='center' class='news-footer middle-border'>\n";
-			echo THEME_BULLET." <span><a href='".BASEDIR."profile.php?lookup=user_id'>".ucfirst(strtolower($data['user_name']))."</a></span> ";
-			echo THEME_BULLET." <span>".$data['news_date']."</span> ";
-			echo THEME_BULLET." <span><a href='".BASEDIR."news_cats.php?lookup=cat_id'>".$data['news_cat_name']."</a></span>";
+			echo THEME_BULLET." <span><a href='".BASEDIR."profile.php?lookup=user_id'>".ucfirst(strtolower($data['user_name']))."</a> ".$data['news_date']."</span> ";
+			echo THEME_BULLET." <span>".WCF::getLocale('news', 3)."<a href='".BASEDIR."news_cats.php?lookup=cat_id'>".$data['news_cat_name']."</a></span> ";
+			echo THEME_BULLET." <span><a href='".BASEDIR."news.php?readmore=".$data['news_id']."'>".WCF::getLocale('news', 0)."</a></span> ";
+			echo THEME_BULLET." <span>".WCF::getLocale('news', 1)." 0</span> ";
+			echo THEME_BULLET." <span>".WCF::getLocale('news', 2)." 0</span> ";
 			echo "</td>\n";
 			echo "</tr><tr>\n";
 			echo "<td style='height:5px;background-color:#f6a504;'></td>\n";

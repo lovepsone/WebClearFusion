@@ -23,7 +23,9 @@
   <lang id="2" name="Добро пожаловать"/>
  </panel>
  <news>
-  <lang id="0" name=""/>
-  <lang id="1" name=""/>
+  <lang id="0" name=" Читать полностью"/>
+  <lang id="1" name="Комментариев"/>
+  <lang id="2" name="Прочтений"/>
+  <lang id="3" name="Категория:"/>
  </news>
 </locale>
