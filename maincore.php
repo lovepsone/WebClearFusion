@@ -60,11 +60,11 @@
 		exit();
 	}
 
-	$logsdb = "";
 	function DBLogger($db, $sql)
 	{
-		global $logsdb;
-		$logsdb .= $sql.'<br>';
+		$fp = fopen(BASEDIR."cache/tmp.dbg", "a");
+		fwrite($fp, $sql);
+		fclose($fp);
 	}
 
 	WCF::$DB->setErrorHandler('databaseErrorHandler');
