@@ -93,6 +93,21 @@
 	define("WCF_QUERY", isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : "");
 	define("WCF_SELF", basename($_SERVER['PHP_SELF']));
 
+	// Calculate current true url
+	$script_url = explode("/", $_SERVER['PHP_SELF']);
+	$url_count = count($script_url);
+	$base_url_count = substr_count(BASEDIR, "/") + 1;
+	$current_page = "";
+	while ($base_url_count != 0)
+	{
+		$current = $url_count - $base_url_count;
+		$current_page .= "/".$script_url[$current];
+		$base_url_count--;
+	}
+
+	define("TURE_WCF_SELF", $current_page);
+	define("START_PAGE", substr(preg_replace("#(&amp;|\?)(s_action=edit&amp;shout_id=)([0-9]+)#s", "", TURE_WCF_SELF.(WCF_QUERY ? "?".WCF_QUERY : "")), 1));
+
 	//=============================================================================================================
 	// auth
 	//=============================================================================================================

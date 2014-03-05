@@ -43,7 +43,7 @@ class SettingTheme
 				{
 					if ($i == 1) { $li_class .= ($li_class ? " " : "")."first-link"; }
 
-					//if (START_PAGE == $data['link_url']) { $li_class .= ($li_class ? " " : "")."current-link"; }
+					if (START_PAGE == $data['link_url']) { $li_class .= ($li_class ? " " : "")."current-link"; }
 					if (preg_match("!^(ht|f)tp(s)?://!i", $data['link_url']))
 					{
 						$res .= "<li".($li_class ? " class='".$li_class."'" : "").">".$sep."<a href='".$data['link_url']."'>\n";

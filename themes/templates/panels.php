@@ -10,21 +10,6 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	// Calculate current true url
-	$script_url = explode("/", $_SERVER['PHP_SELF'].(WCF_QUERY ? "?".WCF_QUERY : ""));
-	$url_count = count($script_url);
-	$base_url_count = substr_count(BASEDIR, "/") + 1;
-	$start_page = "";
-
-	while ($base_url_count != 0)
-	{
-		$current = $url_count - $base_url_count;
-		$start_page .= "/".$script_url[$current];
-		$base_url_count--;
-	}
-
-	define("START_PAGE", substr(preg_replace("#(&amp;|\?)(s_action=edit&amp;shout_id=)([0-9]+)#s", "", $start_page), 1));
-
 	$p_sql = false; $p_arr = array(1 => false, 2 => false, 3 => false, 4 => false);
 
 	if (!defined("EXCLUDE_PANEL") && !defined("ADMIN_PANEL") && !defined("ACP_PANEL") && defined("MAIN_PANEL"))
