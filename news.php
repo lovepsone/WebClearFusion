@@ -89,6 +89,36 @@
 			echo "</tr><tr>\n";
 			echo "<td style='height:5px;background-color:#f6a504;'></td>\n";
 			echo "</tr>\n</table>\n";
+
+			//comments
+			$rows = WCF::$DB->select(' -- CACHE: 180
+						SELECT * FROM ?_comments
+						LEFT JOIN ?_users ON ?_users.`user_id` = ?_comments.`user_id`
+						WHERE `comment_item_id` = ?d AND `comment_type`=1', $_GET['readmore']);
+
+			opentable(WCF::getLocale('comments', 0));
+			if ($rows != null)
+			{
+				$i = 1;
+				foreach ($rows as $numRow=>$data)
+				{
+					echo "<div class='comments floatfix'>\n";
+					echo "<div class='tbl2'>\n";
+					echo "<div style='float:right' class='comment_actions'><a href='".WCF_REQUEST."&amp;c_action=delete&amp;comment_id=".$data['comment_id']."'>".WCF::getLocale('comments', 8)."</a>\n</div>\n";
+					echo "<div style='float:right' class='comment_actions'><a href='".WCF_REQUEST."&amp;c_action=edit&amp;comment_id=".$data['comment_id']."#edit_comment'>".WCF::getLocale('comments', 7)."</a>|</div>\n";
+					echo "<a href='".WCF_REQUEST."#c".$data['comment_id']."' id='c".$data['comment_id']."' name='c".$data['comment_id']."'>#".$i."</a> |\n";
+					echo "<span class='comment-name'>".ucfirst(strtolower($data['user_name']))."</span>\n";
+					echo "<span class='small'>".$data['comment_date']."</span>\n";
+					echo "</div>\n<div class='tbl1 comment_message'>".$data['comment_message']."</div>\n";
+					echo "</div>\n";
+					$i++;
+				}
+			}
+			else
+			{
+				echo WCF::getLocale('comments', 1)."\n";
+			}
+			closetable();
 		}
 		else
 		{
