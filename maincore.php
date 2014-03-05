@@ -92,6 +92,7 @@
 	define("IN_WCF", TRUE);
 	define("WCF_QUERY", isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : "");
 	define("WCF_SELF", basename($_SERVER['PHP_SELF']));
+	define("WCF_REQUEST", isset($_SERVER['REQUEST_URI']) && $_SERVER['REQUEST_URI'] != "" ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME']);
 
 	// Calculate current true url
 	$script_url = explode("/", $_SERVER['PHP_SELF']);
