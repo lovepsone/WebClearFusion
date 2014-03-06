@@ -62,6 +62,13 @@
 
 	function DBLogger($db, $sql)
 	{
+		if (filesize(BASEDIR."cache/tmp.dbg") > 150000)
+		{
+			$fp = fopen(BASEDIR."cache/tmp.dbg","w");
+			fputs($fp,"");
+			fclose($fp);
+		}
+
 		$fp = fopen(BASEDIR."cache/tmp.dbg", "a");
 		fwrite($fp, $sql);
 		fclose($fp);
@@ -69,7 +76,6 @@
 
 	WCF::$DB->setErrorHandler('databaseErrorHandler');
 	WCF::$DB->setLogger('DBLogger');
-
 
 	//=============================================================================================================
 	// Предотвращения возможных атак через XSS $_GET.
