@@ -15,6 +15,11 @@
 
 	define("MAIN_PANEL", true);
 
+	if (MEMBER)
+	{ 
+		WCF::$DB->query('UPDATE ?_users SET `user_lastvisit`=? WHERE `user_id` = ?d', time(), $USER['Id']);
+	}
+
 	echo"<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Frameset//EN' 'http://www.w3.org/TR/html4/frameset.dtd'>";
 	echo"<head><link rel='SHORTCUT ICON' href='".THEMES.WCF::$cfgSetting['theme']."/favicon.ico' />";
 	echo"<title>".WCF::$cfgSetting['servername']."</title>";

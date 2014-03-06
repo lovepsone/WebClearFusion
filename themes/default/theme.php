@@ -61,7 +61,7 @@
 	{
 		global $USER, $_SERVER;
 		ob_start();
-		if ($USER['Id'] == 0 /*and check IP-addres*/)
+		if (GUEST)
 		{
 			echo "<div id='slider' style='margin-top: 10px'><div id='slider-in'><form name='loginform' action='".WCF_SELF."' method='post'>";
 			echo "<p style='padding-bottom: 2px; color: #555; text-decoration: none;'>".WCF::getLocale('auth', 2)."</p>";
@@ -75,7 +75,7 @@
 			echo "<div id='close-div-auth' style='display:none'><a href='#' id='close-button-auth' class='side'>".WCF::getLocale('auth', 1)."</a></div>";
 			echo "</div>";
 		}
-		else if ($USER['Id'] != 0 /*and check IP-addres*/)
+		else
 		{
 		
 			echo THEME_BULLET." <a href='#' class='white'>".WCF::getLocale('auth', 6)."</a>";

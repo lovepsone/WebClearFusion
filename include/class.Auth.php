@@ -102,9 +102,7 @@ class Auth
 		}
 		else
 		{
-			// куки не включены
-			//WCF::Redirect("http://".$_SERVER['HTTP_HOST']."/news.php?action=error2", true);
-			self::getEmptyUserData();
+			return self::getEmptyUserData();
 		}
 	}
 
