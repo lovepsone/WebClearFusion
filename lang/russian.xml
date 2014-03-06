@@ -8,14 +8,16 @@
  </common>
  <auth>
   <lang id="0" name="Авторизация"/>
-  <lang id="1" name="Закрыть"/>
+  <lang id="1" name=""/>
   <lang id="2" name="Логин: "/>
   <lang id="3" name="Пароль: "/>
   <lang id="4" name="Войти"/>
   <lang id="5" name="Регистрация"/>
-  <lang id="6" name="Профиль"/>
+  <lang id="6" name="Редактировать профиль"/>
   <lang id="7" name="Выйти"/>
   <lang id="8" name="Авторизация пользователя"/>
+  <lang id="9" name="Админка"/>
+  <lang id="10" name="Приватные сообщения"/>
  </auth>
  <panel>
   <lang id="0" name="Меню сайта"/>

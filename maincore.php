@@ -30,7 +30,7 @@
 		if ($i == 7) { die("Config file not found"); }
 	}
 	define("BASEDIR", $folder_level);
-	define("ADMIN", BASEDIR."administration/");
+	define("ADMIN", BASEDIR."admin/");
 	define("FORUM", BASEDIR."forum/");
 	define("IMAGES", BASEDIR."images/");
 	define("IMAGES_N", BASEDIR."images/news/");

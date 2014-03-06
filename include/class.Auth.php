@@ -93,7 +93,7 @@ class Auth
 			if ($row != null)
 			{
 				
-				return array('Id' => $row['user_id'] , 'Name' => $row['user_name'], 'Email' => $row['user_email'], 'HideEmail' => $row['user_hide_email'], 'Avatar' => $row['user_avatar'], 'level' => $row['user_level']);
+				return array('Id' => $row['user_id'] , 'Name' => ucfirst(strtolower($row['user_name'])), 'Email' => $row['user_email'], 'HideEmail' => $row['user_hide_email'], 'Avatar' => $row['user_avatar'], 'level' => $row['user_level']);
 			}
 			else
 			{

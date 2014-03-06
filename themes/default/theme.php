@@ -19,7 +19,7 @@
 		echo "<table cellpadding='0' cellspacing='0' width='100%'>\n<tr>\n";
 		echo "<td class='sub-header-left'></td>\n";
 		echo "<td class='sub-header'>".WCF::$ST->ShowsubLinks(" ".THEME_BULLET." ", "white")."</td>\n";
-		echo "<td align='right' class='sub-header'>".RenderAuth()."</td>\n";
+		echo "<td align='right' class='sub-header'></td>\n";
 		echo "<td class='sub-header-right'></td>\n";
 		echo "</tr>\n</table>\n";
 
@@ -55,35 +55,6 @@
 		}
 		echo "</td>\n";
 		echo "</tr>\n</table>\n";
-	}
-
-	function RenderAuth()
-	{
-		global $USER, $_SERVER;
-		ob_start();
-		if (GUEST)
-		{
-			echo "<div id='slider' style='margin-top: 10px'><div id='slider-in'><form name='loginform' action='".WCF_SELF."' method='post'>";
-			echo "<p style='padding-bottom: 2px; color: #555; text-decoration: none;'>".WCF::getLocale('auth', 2)."</p>";
-			echo "<input type='text' name='auth_name' id='login' class='textbox'>";
-			echo "<p style='padding-bottom: 2px; color: #555; text-decoration: none;'>".WCF::getLocale('auth', 3)."</p>";
-			echo "<input type='password' name='auth_pass' class='textbox'>";
-			echo "<input type='submit' name='btnsubmit' value='".WCF::getLocale('auth', 4)."' style='width: 100px; height: 25px; margin-top: -50px' class='button'>";
-			echo "</form></div>";
-		
-			echo "<div id='open-div-auth'><a href='' id='open-button-auth' class='white'>".WCF::getLocale('auth', 0)."</a> | <a href='#' class='white'>".WCF::getLocale('auth', 5)."</a></div>";
-			echo "<div id='close-div-auth' style='display:none'><a href='#' id='close-button-auth' class='side'>".WCF::getLocale('auth', 1)."</a></div>";
-			echo "</div>";
-		}
-		else
-		{
-		
-			echo THEME_BULLET." <a href='#' class='white'>".WCF::getLocale('auth', 6)."</a>";
-			echo THEME_BULLET." <a href='".WCF::$cfgSetting['opening_page']."?action=logout' class='white'>".WCF::getLocale('auth', 7)."</a>";
-		}
-		$output = ob_get_contents();
-		ob_end_clean();
-		return $output;
 	}
 
 	function opentable($title)

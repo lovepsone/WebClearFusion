@@ -205,6 +205,7 @@ class SettingTheme
 
 	public function PanelDisplay()
 	{
+		global $USER;
 		$p_arr = array(1 => false, 2 => false, 3 => false, 4 => false);
 		$p_sql = $this->CheckPanelDisplay();
 		if ($p_sql)
