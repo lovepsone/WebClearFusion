@@ -39,4 +39,9 @@
   <lang id="7" name="Редактировать"/>
   <lang id="8" name="Удалить"/>
  </comments>
+ <bbcodes>
+  // [b][/b]
+  <lang id="0" name="Показать выбранный текст как жирный"/>
+  <lang id="1" name="Жирный текст"/>
+ </bbcodes>
 </locale>

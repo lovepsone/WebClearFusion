@@ -20,7 +20,6 @@ class WCF
 	public static $templating = null;
 	public static $DB = null; 		// DbSimple
 
-	//
 	public static $ST = null;		// SettingTheme
 	
 	private static $lang = array();		// locale
@@ -94,6 +93,88 @@ class WCF
 		return self::$xmlLang->$section->lang[$id]['name'];
 	}
 
+	private static function getBBCodes()
+	{
+		$Cache = array();
+		$BB = simplexml_load_file(BASEDIR.'include/Data/BBCodes.xml');
+		for ($i = 0; $i < count($BB->item); $i++)
+		{
+			$Cache[] = $BB->item[$i]['name'];
+		}
+		return $Cache;
+	}
+
+	public static function DisplayBBCodes($Width, $TextAreaName = "message", $InputFormName = "inputform")
+	{
+		$_BBCODE_ = array(); $bbcodes = ""; $BBCache = array(); $BBCache = self::getBBCodes();
+
+		if (is_array($BBCache) && count($BBCache))
+		{
+			foreach ($BBCache as $BBCode)
+			{
+				include (INCLUDES."bbcodes/".$BBCode."_var.php");
+			}	
+		}
+
+		if (sizeof($__BBCODE__) != 0)
+		{
+			foreach ($__BBCODE__ as $key => $bbdata)
+			{
+				if (file_exists(INCLUDES."bbcodes/images/".$bbdata['value'].".png"))
+				{
+					$type = "type='image' src='".INCLUDES."bbcodes/images/".$bbdata['value'].".png'";
+				}
+				else
+				{
+					$type = "type='button' value='".$bbdata['value']."'";
+				}
+         	
+				if (array_key_exists('onclick', $bbdata) && $bbdata['onclick'] != "")
+				{
+					$onclick = $bbdata['onclick'];
+				}
+				else
+				{
+					if (array_key_exists('bbcode_end', $bbdata) && $bbdata['bbcode_end'] != "")
+					{
+						$onclick = "addText('".$TextAreaName."','".$bbdata['bbcode_start']."','".$bbdata['bbcode_end']."','".$InputFormName."');return false;";
+					}
+					else
+					{
+						$onclick = "insertText('".$TextAreaName."','".$bbdata['bbcode_start']."','".$InputFormName."');return false;";
+					}
+				}
+           
+				if (array_key_exists('onmouseover', $bbdata) && $bbdata['onmouseover'] != "")
+				{
+					$onmouseover = "onMouseOver=\"".$bbdata['onmouseover']."\"";
+				}
+				else
+				{
+					$onmouseover = "";
+				}
+
+				if (array_key_exists('onmouseout', $bbdata) && $bbdata['onmouseout'] != "")
+				{
+					$onmouseout = "onMouseOut=\"".$bbdata['onmouseout']."\"";
+				}
+				else
+				{
+					$onmouseout = "";
+				}
+			
+				$bbcodes .= substr($bbdata['value'], 0, 1) != "!" ? "<input ".$type." class='bbcode' onclick=\"".$onclick."\" ".$onmouseover." ".$onmouseout." title='".$bbdata['description']."' />\n":"";
+				if (array_key_exists('html_start', $bbdata) && $bbdata['html_start'] != "") { $bbcodes .= $bbdata['html_start']."\n"; }
+				if (array_key_exists('includejscript', $bbdata) && $bbdata['includejscript'] != "") { $bbcodes .= "<script type='text/javascript' src='".INCLUDES."bbcodes/".$bbdata['includejscript']."'></script>\n"; }
+				if (array_key_exists('calljscript', $bbdata) && $bbdata['calljscript'] != "") { $bbcodes .= "<script type='text/javascript'>\n<!--\n".$bbdata['calljscript']."\n-->\n</script>\n"; }
+				if (array_key_exists('html_middle', $bbdata) && $bbdata['html_middle'] != "") { $bbcodes .= $bbdata['html_middle']."\n"; }
+				if (array_key_exists('html_end', $bbdata) && $bbdata['html_end'] != "") { $bbcodes .= $bbdata['html_end']."\n"; }
+			}
+		}
+		unset ($__BBCODE__);
+
+		return "<div style='width:".$Width."'>\n".$bbcodes."</div>\n";
+	}
 	public static function CheckExistPageForum($Fid = false, $Tid = false, $Pid = false)
 	{
 		if($Fid && !$Tid && !$Pid)

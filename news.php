@@ -118,6 +118,13 @@
 			{
 				echo WCF::getLocale('comments', 1)."\n";
 			}
+			$comment_message = "";
+			echo "<form name='inputform' method='post' action='".WCF_SELF."?readmore=".$_GET['readmore']."'>\n";
+			echo "<div align='center' class='tbl'>\n";
+			echo "<textarea name='comment_message' cols='70' rows='6' class='textbox' style='width:360px'>".$comment_message."</textarea><br />\n";
+			echo WCF::DisplayBBCodes("360px", "comment_message");
+			echo "<input type='submit' name='post_comment' value='".WCF::getLocale('comments', 2)."' class='button' />";
+			echo "</div>\n</form>\n";
 			closetable();
 		}
 		else

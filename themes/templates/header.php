@@ -20,8 +20,8 @@
 	echo"<title>".WCF::$cfgSetting['servername']."</title>";
 	echo"<link href='".WCF::$cfgSetting['_cssfile']."' type=text/css rel=stylesheet />";
 	echo"<meta http-equiv='content-type' content='text/html; charset=WCF::getEncodingPage()' />";
-	echo"<script type='text/javascript' src='".INCLUDES."js/jquery-1.7.1.min.js'></script>";
-	echo"<script type='text/javascript' src='".INCLUDES."js/jquery-ui-1.8.17.custom.min.js'></script>";
+	echo"<script type='text/javascript' src='".INCLUDES."js/jquery.js'></script>";
+	echo"<script type='text/javascript' src='".INCLUDES."js/jscript.js'></script>";
 	echo"<script type='text/javascript' src='".INCLUDES."js/auth.js'></script>";
 	echo"</head><body>";
 

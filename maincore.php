@@ -77,12 +77,6 @@
 	if (WCF::stripget($_GET))
 		die("Prevented a XSS attack through a GET variable!");
 
-	// временно пока движок не перейдет на новые рельсы
-	@include(BASEDIR.'include/functions_users.php');
-	@include(BASEDIR.'include/functions_page.php');
-	@include(BASEDIR.'include/include_access_list.php');
-	@include(BASEDIR.'include/functions_files.php');
-
 	//=============================================================================================================
 	// глобальные переменные и константы\Run the setup
 	//=============================================================================================================
@@ -152,5 +146,4 @@
 	{
 		WCF::$cfgSetting['_cssfile'] = THEMES."default/style.css";
 	}
-
 ?>
