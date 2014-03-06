@@ -162,11 +162,25 @@ class WCF
 				{
 					$onmouseout = "";
 				}
-			
+
+				if (array_key_exists('wcf', $bbdata) && $bbdata['wcf'] != "")
+				{
+					$php = $bbdata['wcf'].(substr($bbdata['wcf'], -1, 1) != ";" ? ";" : "");
+					ob_start(); 
+					eval($php);
+					$wcf = ob_get_contents();
+					ob_end_clean();
+				}
+				else
+				{
+					$wcf = "";
+				}
+
 				$bbcodes .= substr($bbdata['value'], 0, 1) != "!" ? "<input ".$type." class='bbcode' onclick=\"".$onclick."\" ".$onmouseover." ".$onmouseout." title='".$bbdata['description']."' />\n":"";
 				if (array_key_exists('html_start', $bbdata) && $bbdata['html_start'] != "") { $bbcodes .= $bbdata['html_start']."\n"; }
 				if (array_key_exists('includejscript', $bbdata) && $bbdata['includejscript'] != "") { $bbcodes .= "<script type='text/javascript' src='".INCLUDES."bbcodes/".$bbdata['includejscript']."'></script>\n"; }
 				if (array_key_exists('calljscript', $bbdata) && $bbdata['calljscript'] != "") { $bbcodes .= "<script type='text/javascript'>\n<!--\n".$bbdata['calljscript']."\n-->\n</script>\n"; }
+				if (array_key_exists('wcf', $bbdata) && $bbdata['wcf'] != "") { $bbcodes .= $wcf; }
 				if (array_key_exists('html_middle', $bbdata) && $bbdata['html_middle'] != "") { $bbcodes .= $bbdata['html_middle']."\n"; }
 				if (array_key_exists('html_end', $bbdata) && $bbdata['html_end'] != "") { $bbcodes .= $bbdata['html_end']."\n"; }
 			}

@@ -60,7 +60,6 @@
 	function RenderAuth()
 	{
 		global $USER, $_SERVER;
-		//http://phpguru.com.ua/posts.php?id=19
 		ob_start();
 		if ($USER['Id'] == 0 /*and check IP-addres*/)
 		{
