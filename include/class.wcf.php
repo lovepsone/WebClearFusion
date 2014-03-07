@@ -104,6 +104,31 @@ class WCF
 		return $Cache;
 	}
 
+	public static function getAdminPage()
+	{
+		$Cache = array();
+		$admin = simplexml_load_file(BASEDIR.'include/Data/AdminSystems.xml');
+		for ($ii = 1; $ii < 5; $ii++)
+		{
+			switch($ii)
+			{
+			case 1: $section = 'contet'; break;
+			case 2: $section = 'users';   break;
+			case 3: $section = 'system';  break;
+			case 4: $section = 'setting'; break;
+			}
+
+			for ($i = 0; $i < count($admin->$section->item); $i++)
+			{
+				$Cache[$ii][] = array('id' => $i,
+							'img' => $admin->$section->item[$i]['img'],
+							'text' => $admin->$section->item[$i]['text'],
+							'file' => $admin->$section->item[$i]['file']);
+			}
+		}
+		return $Cache;
+	}
+
 	public static function DisplayBBCodes($Width, $TextAreaName = "message", $InputFormName = "inputform")
 	{
 		$_BBCODE_ = array(); $bbcodes = ""; $BBCache = array(); $BBCache = self::getBBCodes();

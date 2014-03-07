@@ -56,4 +56,31 @@
   <lang id="7" name="Цвет выбранного текста"/>
   <lang id="8" name="16-ричное значение цвета (без решетки)"/>
  </bbcodes>
+ <adminc>
+  <lang id="0" name="Новости"/>
+  <lang id="1" name="Форум"/>
+  <lang id="2" name="Панели"/>
+  <lang id="3" name="FAQ"/>
+  <lang id="4" name="Категории новостей"/>
+ </adminc>
+ <adminu>
+  <lang id="0" name="test"/>
+ </adminu>
+ <admins>
+  <lang id="0" name="Навигация сайта"/>
+ </admins>
+ <admint>
+  <lang id="0" name="Главные установки"/>
+  <lang id="1" name="Прочие установки"/>
+ </admint>
+ <admin>
+  <lang id="0" name="Панель Администратора"/>
+  <lang id="1" name="Навигация"/>
+ </admin>
+ <adminHead>
+  <lang id="0" name="Администрирование контента"/>
+  <lang id="1" name="Администрирование пользователей"/>
+  <lang id="2" name="Администрирование системы"/>
+  <lang id="3" name="Настройки"/>
+ </adminHead>
 </locale>

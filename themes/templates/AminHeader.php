@@ -15,19 +15,20 @@
 
 	define("ADMIN_PANEL", true);
 
+	if (MEMBER)
+	{ 
+		WCF::$DB->query('UPDATE ?_users SET `user_lastvisit`=? WHERE `user_id` = ?d', time(), $USER['Id']);
+	}
+
 	echo"<!DOCTYPE HTML PUBLIC '-//W3C//DTD HTML 4.01 Frameset//EN' 'http://www.w3.org/TR/html4/frameset.dtd'>";
 	echo"<head><link rel='SHORTCUT ICON' href='".THEMES.WCF::$cfgSetting['theme']."/favicon.ico' />";
 	echo"<title>".WCF::$cfgSetting['servername']."</title>";
 	echo"<link href='".WCF::$cfgSetting['_cssfile']."' type=text/css rel=stylesheet />";
 	echo"<meta http-equiv='content-type' content='text/html; charset=WCF::getEncodingPage()' />";
-	echo"<script type='text/javascript' src='".INCLUDES."js/jscript.js'></script>";
 	echo"<script type='text/javascript' src='".INCLUDES."js/jquery.js'></script>";
-	echo"<script type='text/javascript' src='".INCLUDES."js/admin-msg.js'></script>";
-	echo"<script type='text/javascript' src='".INCLUDES."js/tinymce/tinymce.min.js'></script>";
-	echo"<script type='text/javascript' src='".INCLUDES."js/LoadTinymce.js'></script>";
+	echo"<script type='text/javascript' src='".INCLUDES."js/jscript.js'></script>";
 	echo"</head><body>";
 
 	require_once THEMES."templates/panels.php";
-	require_once THEMES.'templates/AdminSettingList.php';
 	ob_start();
 ?>

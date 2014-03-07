@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<admin>
+ <contet>
+  <item id="0" img="news.gif" 		text="0"  file=""/>
+  <item id="1" img="forums.gif" 	text="1"  file=""/>
+  <item id="2" img="panels.gif" 	text="2"  file=""/>
+  <item id="3" img="faq.gif" 		text="3"  file=""/>
+  <item id="4" img="news_cats.gif" 	text="4"  file=""/>
+ </contet>
+ <users>
+  <item id="0" img="news.gif" 		text="0"  file=""/>
+ </users>
+ <system>
+  <item id="0" img="site_links.gif" 	text="0"  file=""/>
+ </system>
+ <setting>
+  <item id="0" img="settings.gif" 	text="0"  file=""/>
+  <item id="1" img="settings_misc.gif" 	text="1"  file=""/>
+ </setting>
+</admin>
