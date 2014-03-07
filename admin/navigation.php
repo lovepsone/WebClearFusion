@@ -1,7 +1,7 @@
 <?php
 /*-------------------------------------------------------+
 | WebClearFusion Content Management System
-| Copyright (C) 2010 - 2013 lovepsone
+| Copyright (C) 2010 - 2014 lovepsone
 +--------------------------------------------------------+
 | Filename: navigation.php
 | Author: lovepsone
@@ -10,66 +10,52 @@
 | without written permission from the original author(s).
 +--------------------------------------------------------*/
 
-	require_once THEMES.'templates/AdminSettingList.php';
+	include PANELS."user_info_panel/user_info_panel.php";
 
-	$pages = array(1 => false, 2 => false, 3 => false, 4 => false, 5 => false); 
+	$list = array(1 => false, 2 => false, 3 => false, 4 => false, 5 => false); $ListData = array(); $text = "";
+	$ListData = WCF::getAdminPage();
 	$index_link = false; $admin_nav_opts = ""; $current_page = 0;
 
-	for ($i = 1; $i < count($AdminSettingList['contet']) + 1; $i++)
-		$pages[1] .= "<option value='".ADMIN.$AdminSettingList['contet'][$i]['file']."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", WCF::$locale[$AdminSettingList['contet'][$i]['txt']])."</option>";
+	for ($ii = 1; $ii <= count($ListData); $ii++)
+	{
+		switch ($ii)
+		{
+		  case 1: $text = "adminc"; break;
+		  case 2: $text = "adminu"; break;
+		  case 3: $text = "admins"; break;
+		  case 4: $text = "admint"; break;
+		}
+		for ($i = 1; $i <= count($ListData[$ii]); $i++)
+		{
+			$list[$ii] .= "<option value=''>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", WCF::getLocale($text, $i))."</option>\n";
+		}
+	}
 
-	for ($i = 1; $i < count($AdminSettingList['users']) + 1; $i++)
-		$pages[2] .= "<option value='".ADMIN.$AdminSettingList['users'][$i]['file']."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", WCF::$locale[$AdminSettingList['users'][$i]['txt']])."</option>";
-
-
-	for ($i = 1; $i < count($AdminSettingList['system']) + 1; $i++)
-		$pages[3] .= "<option value='".ADMIN.$AdminSettingList['system'][$i]['file']."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", WCF::$locale[$AdminSettingList['system'][$i]['txt']])."</option>";
-
-	for ($i = 1; $i < count($AdminSettingList['plants']) + 1; $i++)
-		$pages[4] .= "<option value='".ADMIN.$AdminSettingList['plants'][$i]['file']."'>".preg_replace("/&(?!(#\d+|\w+);)/", "&amp;", WCF::$locale[$AdminSettingList['plants'][$i]['txt']])."</option>";
-
-	openside(WCF::$locale['title_admin']);
+	openside(WCF::getLocale('admin', 1));
 
 	$content = false;
 	for ($i = 1; $i < 5; $i++)
 	{
-		$page = $pages[$i];
+		$ListP = $list[$i];
+
 		if ($i == 1)
 		{
-			echo" <a href='".ADMIN."administration.php?contet'>".WCF::$locale['menu_admin_panel_admin']."</a>";
-			echo"<hr>";
-		}	
-		if ($page)
+			echo THEME_BULLET." <a href='".ADMIN."index.php' class='side'>".WCF::getLocale('auth', 9)."</a>\n";
+			echo "<hr class='side-hr' />\n";
+		}
+		if ($ListP)
 		{
-			switch ($i)
-			{
-			  case 1:
-			    $t = 'content';
-			    break;
-			  case 2:
-			    $t = 'users';
-			    break;
-			  case 3:
-			    $t = 'system';
-			    break;
-			  case 4:
-			    $t = 'plants';
-			    break;
-			  case 5:
-			    $t = 'module';
-			    break;
-			}
 			$admin_pages = true;
-			echo"<form action='".WCF_SELF."'>";
-			echo"<select onchange='window.location.href=this.value' style='width:100%;' class='textbox'>";
-			echo"<option value='".WCF_SELF."' style='font-style:italic;' selected='selected'>".WCF::$locale['menu_admin_'.$t]."</option>";
-			echo $page."</select></form>";
+			echo "<form action='".WCF_SELF."'>\n";
+			echo "<select onchange='window.location.href=this.value' style='width:100%;' class='textbox'>\n";
+			echo "<option value='".WCF_SELF."' style='font-style:italic;' selected='selected'>".WCF::getLocale('adminHead', $i-1)."</option>\n";
+			echo $ListP."</select>\n</form>\n";
 			$content = true;
 		}
 		if ($i == 4)
 		{
-			if ($content) { echo"<hr>"; }
-			echo" <a href='".BASEDIR."index.php'>".WCF::$locale['menu_admin_revert']."</a>";
+			if ($content) { echo "<hr class='side-hr' />\n"; }
+			echo THEME_BULLET." <a href='".BASEDIR."index.php' class='side'>".WCF::getLocale('common', 4)."</a>\n";
 		}
 	}
 	closeside();
